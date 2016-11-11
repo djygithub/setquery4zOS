@@ -1,0 +1,12 @@
+//ZNETPREP JOB (330DJY00),'D J YOUNG ',MSGCLASS=O,NOTIFY=DAVID,                 
+//  REGION=0K,CLASS=Q                                                           
+//*     TRANSLATE STL PROGRAM                                                   
+//*                                                                             
+//STEP1   EXEC PGM=ITPENTER,PARM='REPL,SUMMARY,PREP'                            
+//STEPLIB DD DSN=TPNS.LOAD,DISP=SHR                                             
+//SYSPRINT  DD SYSOUT=*                                                         
+//SYSIN     DD DISP=SHR,DSN=DAVID.SETQUERY.WORKLOAD(SQLN100)                    
+//SYSUT2 DD UNIT=3390,SPACE=(CYL,(1,1,10))                                      
+//SYSUT3 DD UNIT=3390,SPACE=(CYL,(1,1,10))                                      
+//MSGDD     DD DISP=SHR,DSN=DAVID.TPNS.MSGDD                                    
+//INITDD    DD DISP=SHR,DSN=DAVID.TPNS.INITDD                                   

@@ -1,0 +1,7 @@
+//VARYON      JOB (X),DYOUNG,MSGCLASS=X,PRTY=13                         00000003
+//STEP1       EXEC PGM=IEFBR14                                          00000080
+//DD1 DD DUMMY                                                          00000090
+// V 140-14F,ONLINE                                                     00000090
+// V 700-70F,ONLINE                                                     00000090
+// V 6C0-6CF,ONLINE                                                     00000090
+// V 980-98F,ONLINE                                                     00000090

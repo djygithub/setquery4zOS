@@ -1,0 +1,9 @@
+           COMPUTE VAL2 = LOWNUM + (((HIGHNUM - LOWNUM) / 10) * 1).             
+           COMPUTE VAL3 = LOWNUM + (((HIGHNUM - LOWNUM) / 10) * 2).             
+           COMPUTE VAL4 = LOWNUM + (((HIGHNUM - LOWNUM) / 10) * 3).             
+           COMPUTE VAL5 = LOWNUM + (((HIGHNUM - LOWNUM) / 10) * 4).             
+           COMPUTE VAL6 = LOWNUM + (((HIGHNUM - LOWNUM) / 10) * 5).             
+           COMPUTE VAL7 = LOWNUM + (((HIGHNUM - LOWNUM) / 10) * 6).             
+           COMPUTE VAL8 = LOWNUM + (((HIGHNUM - LOWNUM) / 10) * 7).             
+           COMPUTE VAL9 = LOWNUM + (((HIGHNUM - LOWNUM) / 10) * 8).             
+           COMPUTE VAL10 = LOWNUM + (((HIGHNUM - LOWNUM) / 10) * 9).            

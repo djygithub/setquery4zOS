@@ -1,0 +1,20 @@
+-- ****************************************************************** --        
+--                                                                    --        
+--  DATABASE SQ10DB TABLE DAVID.SQ10                               --           
+--       2,500,000 ROWS                                               --        
+--     224 BYTES PER ROW                                              --        
+--                                                                    --        
+--                                                                    --        
+--                                                                    --        
+-- ****************************************************************** --        
+ CREATE STOGROUP SQ10TEST VOLUMES (DB2SG2,DB2SG1) VCAT DSNC220;                 
+ CREATE DATABASE SQ10TSDB STOGROUP SQ10TEST;                                    
+ CREATE TABLESPACE SQ10TSTS                                                     
+     IN SQ10TSDB                                                                
+     BUFFERPOOL BP0                                                             
+     USING STOGROUP SQ10TEST                                                    
+     PRIQTY 810720                                                              
+     SECQTY 10000                                                               
+     ERASE NO                                                                   
+     LOCKSIZE PAGE                                                              
+     CLOSE NO;                                                                  

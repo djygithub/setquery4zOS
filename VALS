@@ -1,0 +1,11 @@
+       01  SQL-VALUES.                                                          
+           03  VAL1               PIC S9(9) COMP.                               
+           03  VAL2               PIC S9(9) COMP.                               
+           03  VAL3               PIC S9(9) COMP.                               
+           03  VAL4               PIC S9(9) COMP.                               
+           03  VAL5               PIC S9(9) COMP.                               
+           03  VAL6               PIC S9(9) COMP.                               
+           03  VAL7               PIC S9(9) COMP.                               
+           03  VAL8               PIC S9(9) COMP.                               
+           03  VAL9               PIC S9(9) COMP.                               
+           03  VAL10              PIC S9(9) COMP.                               

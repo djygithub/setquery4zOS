@@ -1,0 +1,10 @@
+//STLTAPE  JOB (330DJY00),'D J YOUNG ',MSGCLASS=P,NOTIFY=DAVID          00010000
+//*     SAMPLE IEBGENER                                                 00020000
+//*                                                                     00030000
+//STEP1   EXEC PGM=IEBGENER                                             00040000
+//SYSPRINT  DD SYSOUT=*                                                 00050000
+//SYSIN     DD DUMMY                                                    00060000
+//SYSUT1 DD VOL=SER=MVI674,UNIT=EE8,DSN=GT0040.SMF3.DATA,               00070000
+//   LABEL=(1,SL),DISP=SHR                                              00071000
+//SYSUT2    DD UNIT=3390,DSN=SWBTSTL.SMF,SPACE=(CYL,(50,40)),           00072000
+//    VOL=SER=CICS32,DISP=(,KEEP)                                       00073000

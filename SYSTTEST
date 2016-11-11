@@ -1,0 +1,20 @@
+//SYSSTATS JOB (AMW,000),'DEFINE UCAT',MSGCLASS=O,                              
+//             TIME=(,10),USER=DAVID                                            
+//JOBLIB  DD  DISP=SHR,                                                         
+//            DSN=SYS1.DSNLOAD                                                  
+//        DD  DSN=DSNDJY.RUNLIB.LOAD,DISP=SHR                                   
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(DB2MON) PLAN(DB2MON) -                                            
+       LIB('DSNDJY.RUNLIB.LOAD')                                                
+  END                                                                           
+//                                                                              

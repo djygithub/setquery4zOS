@@ -1,0 +1,144 @@
+//TPNPCICS JOB (330DJY00),'D J YOUNG ',MSGCLASS=Q,NOTIFY=DAVID,                 
+//  REGION=0K                                                                   
+//*     TRANSLATE STL PROGRAM                                                   
+//*                                                                             
+//U100    EXEC PGM=ITPRESP,PARM='RESP=50'                                       
+//STEPLIB DD DSN=TPNS.LOAD,DISP=SHR                                             
+//SYSPRINT  DD SYSOUT=*                                                         
+//SYSIN     DD *                                                                
+ PROCESS ACTUAL                                                                 
+ TIME 1340-1350                                                                 
+ REPORT LEVEL=SUMMARY,SUMMARY=(NOLIST,GRAPH,CGRAPH,TGRAPH,NOTRANS)              
+ TGRAPH INTERVAL=60                                                             
+ RUN                                                                            
+ END                                                                            
+//SYSUT2 DD UNIT=3390,SPACE=(CYL,(1,1,10))                                      
+//SYSUT3 DD UNIT=3390,SPACE=(CYL,(1,1,10))                                      
+//SYSUT1 DD UNIT=3390,DISP=SHR,VOL=SER=VOLC07,                                  
+//       DSN=TPNS.CICS,DCB=(BUFNO=30,NCP=30)                                    
+//U200    EXEC PGM=ITPRESP,PARM='RESP=50'                                       
+//STEPLIB DD DSN=TPNS.LOAD,DISP=SHR                                             
+//SYSPRINT  DD SYSOUT=*                                                         
+//SYSIN     DD *                                                                
+ PROCESS ACTUAL                                                                 
+ TIME 1350-1400                                                                 
+ REPORT LEVEL=SUMMARY,SUMMARY=(NOLIST,GRAPH,CGRAPH,TGRAPH,NOTRANS)              
+ TGRAPH INTERVAL=60                                                             
+ RUN                                                                            
+ END                                                                            
+//SYSUT2 DD UNIT=3390,SPACE=(CYL,(1,1,10))                                      
+//SYSUT3 DD UNIT=3390,SPACE=(CYL,(1,1,10))                                      
+//SYSUT1 DD UNIT=3390,DISP=SHR,VOL=SER=VOLC07,                                  
+//       DSN=TPNS.CICS,DCB=(BUFNO=30,NCP=30)                                    
+//U300    EXEC PGM=ITPRESP,PARM='RESP=50'                                       
+//STEPLIB DD DSN=TPNS.LOAD,DISP=SHR                                             
+//SYSPRINT  DD SYSOUT=*                                                         
+//SYSIN     DD *                                                                
+ PROCESS ACTUAL                                                                 
+ TIME 1400-1410                                                                 
+ REPORT LEVEL=SUMMARY,SUMMARY=(NOLIST,GRAPH,CGRAPH,TGRAPH,NOTRANS)              
+ TGRAPH INTERVAL=60                                                             
+ RUN                                                                            
+ END                                                                            
+//SYSUT2 DD UNIT=3390,SPACE=(CYL,(1,1,10))                                      
+//SYSUT3 DD UNIT=3390,SPACE=(CYL,(1,1,10))                                      
+//SYSUT1 DD UNIT=3390,DISP=SHR,VOL=SER=VOLC07,                                  
+//       DSN=TPNS.CICS,DCB=(BUFNO=30,NCP=30)                                    
+//U400    EXEC PGM=ITPRESP,PARM='RESP=50'                                       
+//STEPLIB DD DSN=TPNS.LOAD,DISP=SHR                                             
+//SYSPRINT  DD SYSOUT=*                                                         
+//SYSIN     DD *                                                                
+ PROCESS ACTUAL                                                                 
+ TIME 1410-1420                                                                 
+ REPORT LEVEL=SUMMARY,SUMMARY=(NOLIST,GRAPH,CGRAPH,TGRAPH,NOTRANS)              
+ TGRAPH INTERVAL=60                                                             
+ RUN                                                                            
+ END                                                                            
+//SYSUT2 DD UNIT=3390,SPACE=(CYL,(1,1,10))                                      
+//SYSUT3 DD UNIT=3390,SPACE=(CYL,(1,1,10))                                      
+//SYSUT1 DD UNIT=3390,DISP=SHR,VOL=SER=VOLC07,                                  
+//       DSN=TPNS.CICS,DCB=(BUFNO=30,NCP=30)                                    
+//U500    EXEC PGM=ITPRESP,PARM='RESP=50'                                       
+//STEPLIB DD DSN=TPNS.LOAD,DISP=SHR                                             
+//SYSPRINT  DD SYSOUT=*                                                         
+//SYSIN     DD *                                                                
+ PROCESS ACTUAL                                                                 
+ TIME 1420-1430                                                                 
+ REPORT LEVEL=SUMMARY,SUMMARY=(NOLIST,GRAPH,CGRAPH,TGRAPH,NOTRANS)              
+ TGRAPH INTERVAL=60                                                             
+ RUN                                                                            
+ END                                                                            
+//SYSUT2 DD UNIT=3390,SPACE=(CYL,(1,1,10))                                      
+//SYSUT3 DD UNIT=3390,SPACE=(CYL,(1,1,10))                                      
+//SYSUT1 DD UNIT=3390,DISP=SHR,VOL=SER=VOLC07,                                  
+//       DSN=TPNS.CICS,DCB=(BUFNO=30,NCP=30)                                    
+//U600    EXEC PGM=ITPRESP,PARM='RESP=50'                                       
+//STEPLIB DD DSN=TPNS.LOAD,DISP=SHR                                             
+//SYSPRINT  DD SYSOUT=*                                                         
+//SYSIN     DD *                                                                
+ PROCESS ACTUAL                                                                 
+ TIME 1430-1440                                                                 
+ REPORT LEVEL=SUMMARY,SUMMARY=(NOLIST,GRAPH,CGRAPH,TGRAPH,NOTRANS)              
+ TGRAPH INTERVAL=60                                                             
+ RUN                                                                            
+ END                                                                            
+//SYSUT2 DD UNIT=3390,SPACE=(CYL,(1,1,10))                                      
+//SYSUT3 DD UNIT=3390,SPACE=(CYL,(1,1,10))                                      
+//SYSUT1 DD UNIT=3390,DISP=SHR,VOL=SER=VOLC07,                                  
+//       DSN=TPNS.CICS,DCB=(BUFNO=30,NCP=30)                                    
+//U700    EXEC PGM=ITPRESP,PARM='RESP=50'                                       
+//STEPLIB DD DSN=TPNS.LOAD,DISP=SHR                                             
+//SYSPRINT  DD SYSOUT=*                                                         
+//SYSIN     DD *                                                                
+ PROCESS ACTUAL                                                                 
+ TIME 1440-1450                                                                 
+ REPORT LEVEL=SUMMARY,SUMMARY=(NOLIST,GRAPH,CGRAPH,TGRAPH,NOTRANS)              
+ TGRAPH INTERVAL=60                                                             
+ RUN                                                                            
+ END                                                                            
+//SYSUT2 DD UNIT=3390,SPACE=(CYL,(1,1,10))                                      
+//SYSUT3 DD UNIT=3390,SPACE=(CYL,(1,1,10))                                      
+//SYSUT1 DD UNIT=3390,DISP=SHR,VOL=SER=VOLC07,                                  
+//       DSN=TPNS.CICS,DCB=(BUFNO=30,NCP=30)                                    
+//U800    EXEC PGM=ITPRESP,PARM='RESP=50'                                       
+//STEPLIB DD DSN=TPNS.LOAD,DISP=SHR                                             
+//SYSPRINT  DD SYSOUT=*                                                         
+//SYSIN     DD *                                                                
+ PROCESS ACTUAL                                                                 
+ TIME 1450-1500                                                                 
+ REPORT LEVEL=SUMMARY,SUMMARY=(NOLIST,GRAPH,CGRAPH,TGRAPH,NOTRANS)              
+ TGRAPH INTERVAL=60                                                             
+ RUN                                                                            
+ END                                                                            
+//SYSUT2 DD UNIT=3390,SPACE=(CYL,(1,1,10))                                      
+//SYSUT3 DD UNIT=3390,SPACE=(CYL,(1,1,10))                                      
+//SYSUT1 DD UNIT=3390,DISP=SHR,VOL=SER=VOLC07,                                  
+//       DSN=TPNS.CICS,DCB=(BUFNO=30,NCP=30)                                    
+//U900    EXEC PGM=ITPRESP,PARM='RESP=50'                                       
+//STEPLIB DD DSN=TPNS.LOAD,DISP=SHR                                             
+//SYSPRINT  DD SYSOUT=*                                                         
+//SYSIN     DD *                                                                
+ PROCESS ACTUAL                                                                 
+ TIME 1500-1510                                                                 
+ REPORT LEVEL=SUMMARY,SUMMARY=(NOLIST,GRAPH,CGRAPH,TGRAPH,NOTRANS)              
+ TGRAPH INTERVAL=60                                                             
+ RUN                                                                            
+ END                                                                            
+//SYSUT2 DD UNIT=3390,SPACE=(CYL,(1,1,10))                                      
+//SYSUT3 DD UNIT=3390,SPACE=(CYL,(1,1,10))                                      
+//SYSUT1 DD UNIT=3390,DISP=SHR,VOL=SER=VOLC07,                                  
+//       DSN=TPNS.CICS,DCB=(BUFNO=30,NCP=30)                                    
+//U1000   EXEC PGM=ITPRESP,PARM='RESP=50'                                       
+//STEPLIB DD DSN=TPNS.LOAD,DISP=SHR                                             
+//SYSPRINT  DD SYSOUT=*                                                         
+//SYSIN     DD *                                                                
+ PROCESS ACTUAL                                                                 
+ TIME 1510-1520                                                                 
+ REPORT LEVEL=SUMMARY,SUMMARY=(NOLIST,GRAPH,CGRAPH,TGRAPH,NOTRANS)              
+ TGRAPH INTERVAL=60                                                             
+ RUN                                                                            
+ END                                                                            
+//SYSUT2 DD UNIT=3390,SPACE=(CYL,(1,1,10))                                      
+//SYSUT3 DD UNIT=3390,SPACE=(CYL,(1,1,10))                                      
+//SYSUT1 DD UNIT=3390,DISP=SHR,VOL=SER=VOLC07,                                  
+//       DSN=TPNS.CICS,DCB=(BUFNO=30,NCP=30)                                    

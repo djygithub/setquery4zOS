@@ -1,0 +1,84 @@
+//TPNSCICS JOB (330DJY00),'D J YOUNG ',MSGCLASS=O,NOTIFY=DAVID,                 
+//  REGION=0K                                                                   
+//*     TRANSLATE STL PROGRAM                                                   
+//*                                                                             
+//STEP1   EXEC PGM=ITPENTER,PARM='DMAPPL=DMAPPL,NTWRK=MRO0100'                  
+//STEPLIB DD DSN=TPNS.LOAD,DISP=SHR,UNIT=3390,VOL=SER=MV4RSA                    
+//SYSPRINT  DD SYSOUT=*                                                         
+//*YSIN     DD DISP=SHR,DSN=DAVID.SETQUERY.WORKLOAD(SQLNET)                     
+//SYSUT2 DD UNIT=3390,SPACE=(CYL,(1,1,10))                                      
+//SYSUT3 DD UNIT=3390,SPACE=(CYL,(1,1,10))                                      
+//LOGDD  DD DISP=SHR,UNIT=3390,VOL=SER=MV4DLB,                                  
+//  DSN=TPNS.CICS,DCB=(BUFNO=25,NCP=10)                                         
+//MSGDD     DD DISP=SHR,DSN=DAVID.TPNS.MSGDD                                    
+//INITDD    DD DISP=SHR,DSN=DAVID.TPNS.INITDD                                   
+//TPNSAICS JOB (330DJY00),'D J YOUNG ',MSGCLASS=O,NOTIFY=DAVID,                 
+//  REGION=0K                                                                   
+//*     TRANSLATE STL PROGRAM                                                   
+//*                                                                             
+//STEP1   EXEC PGM=ITPENTER,PARM='DMAPPL=DMAPPL,NTWRK=MRO1100'                  
+//STEPLIB DD DSN=TPNS.LOAD,DISP=SHR,UNIT=3390,VOL=SER=MV4RSA                    
+//SYSPRINT  DD SYSOUT=*                                                         
+//*YSIN     DD DISP=SHR,DSN=DAVID.SETQUERY.WORKLOAD(SQLNET)                     
+//SYSUT2 DD UNIT=3390,SPACE=(CYL,(1,1,10))                                      
+//SYSUT3 DD UNIT=3390,SPACE=(CYL,(1,1,10))                                      
+//LOGDD  DD DISP=SHR,UNIT=3390,VOL=SER=CICC03,                                  
+//  DSN=TPNS.AICS,DCB=(BUFNO=25,NCP=25)                                         
+//MSGDD     DD DISP=SHR,DSN=DAVID.TPNS.MSGDD                                    
+//INITDD    DD DISP=SHR,DSN=DAVID.TPNS.INITDD                                   
+//TPNSEICS JOB (330DJY00),'D J YOUNG ',MSGCLASS=O,NOTIFY=DAVID,                 
+//  REGION=0K                                                                   
+//*     TRANSLATE STL PROGRAM                                                   
+//*                                                                             
+//STEP1   EXEC PGM=ITPENTER,PARM='DMAPPL=DMAPPL,NTWRK=MRO2100'                  
+//STEPLIB DD DSN=TPNS.LOAD,DISP=SHR,UNIT=3390,VOL=SER=MV4RSA                    
+//SYSPRINT  DD SYSOUT=*                                                         
+//*YSIN     DD DISP=SHR,DSN=DAVID.SETQUERY.WORKLOAD(SQLNET)                     
+//SYSUT2 DD UNIT=3390,SPACE=(CYL,(1,1,10))                                      
+//SYSUT3 DD UNIT=3390,SPACE=(CYL,(1,1,10))                                      
+//LOGDD  DD DISP=SHR,UNIT=3390,VOL=SER=CICC04,                                  
+//  DSN=TPNS.EICS,DCB=(BUFNO=25,NCP=25)                                         
+//MSGDD     DD DISP=SHR,DSN=DAVID.TPNS.MSGDD                                    
+//INITDD    DD DISP=SHR,DSN=DAVID.TPNS.INITDD                                   
+//TPNSGICS JOB (330DJY00),'D J YOUNG ',MSGCLASS=O,NOTIFY=DAVID,                 
+//  REGION=0K                                                                   
+//*     TRANSLATE STL PROGRAM                                                   
+//*                                                                             
+//STEP1   EXEC PGM=ITPENTER,PARM='DMAPPL=DMAPPL,NTWRK=MRO3100'                  
+//STEPLIB DD DSN=TPNS.LOAD,DISP=SHR,UNIT=3390,VOL=SER=MV4RSA                    
+//SYSPRINT  DD SYSOUT=*                                                         
+//*YSIN     DD DISP=SHR,DSN=DAVID.SETQUERY.WORKLOAD(SQLNET)                     
+//SYSUT2 DD UNIT=3390,SPACE=(CYL,(1,1,10))                                      
+//SYSUT3 DD UNIT=3390,SPACE=(CYL,(1,1,10))                                      
+//LOGDD  DD DISP=SHR,UNIT=3390,VOL=SER=CICC05,                                  
+//  DSN=TPNS.GICS,DCB=(BUFNO=25,NCP=25)                                         
+//MSGDD     DD DISP=SHR,DSN=DAVID.TPNS.MSGDD                                    
+//INITDD    DD DISP=SHR,DSN=DAVID.TPNS.INITDD                                   
+//TPNSIICS JOB (330DJY00),'D J YOUNG ',MSGCLASS=O,NOTIFY=DAVID,                 
+//  REGION=0K                                                                   
+//*     TRANSLATE STL PROGRAM                                                   
+//*                                                                             
+//STEP1   EXEC PGM=ITPENTER,PARM='DMAPPL=DMAPPL,NTWRK=MRO4100'                  
+//STEPLIB DD DSN=TPNS.LOAD,DISP=SHR,UNIT=3390,VOL=SER=MV4RSA                    
+//SYSPRINT  DD SYSOUT=*                                                         
+//*YSIN     DD DISP=SHR,DSN=DAVID.SETQUERY.WORKLOAD(SQLNET)                     
+//SYSUT2 DD UNIT=3390,SPACE=(CYL,(1,1,10))                                      
+//SYSUT3 DD UNIT=3390,SPACE=(CYL,(1,1,10))                                      
+//LOGDD  DD DISP=SHR,UNIT=3390,VOL=SER=CICC06,                                  
+//  DSN=TPNS.IICS,DCB=(BUFNO=25,NCP=25)                                         
+//MSGDD     DD DISP=SHR,DSN=DAVID.TPNS.MSGDD                                    
+//INITDD    DD DISP=SHR,DSN=DAVID.TPNS.INITDD                                   
+//TPNSKICS JOB (330DJY00),'D J YOUNG ',MSGCLASS=O,NOTIFY=DAVID,                 
+//  REGION=0K                                                                   
+//*     TRANSLATE STL PROGRAM                                                   
+//*                                                                             
+//STEP1   EXEC PGM=ITPENTER,PARM='DMAPPL=DMAPPL,NTWRK=MRO5100'                  
+//STEPLIB DD DSN=TPNS.LOAD,DISP=SHR,UNIT=3390,VOL=SER=MV4RSA                    
+//SYSPRINT  DD SYSOUT=*                                                         
+//*YSIN     DD DISP=SHR,DSN=DAVID.SETQUERY.WORKLOAD(SQLNET)                     
+//SYSUT2 DD UNIT=3390,SPACE=(CYL,(1,1,10))                                      
+//SYSUT3 DD UNIT=3390,SPACE=(CYL,(1,1,10))                                      
+//LOGDD  DD DISP=SHR,UNIT=3390,VOL=SER=CICC07,                                  
+//  DSN=TPNS.KICS,DCB=(BUFNO=25,NCP=25)                                         
+//MSGDD     DD DISP=SHR,DSN=DAVID.TPNS.MSGDD                                    
+//INITDD    DD DISP=SHR,DSN=DAVID.TPNS.INITDD                                   

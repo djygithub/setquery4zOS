@@ -1,0 +1,66 @@
+SQLN0125 NTWRK HEAD='SQL NETWORK',                                              
+               TYPE=3270,MODEL=2,REPORT=NONE,                                   
+               BUFSIZE=3000,                                                    
+               DLOGMOD=D4B32782,MLOG=YES,                                       
+               ITIME=1,RESOURCE=CICS,                                           
+               INIT=SEC,DISPLAY=(24,80),                                        
+               LOGDSPLY=NONE,                                                   
+               LUTYPE=LU2,                                                      
+               SCAN=(0,0),                                                      
+               STLTRACE=NO,FRSTTXT=LOGON1,                                      
+               OPTIONS=(CONRATE,MONCMND),                                       
+               THKTIME=UNLOCK,USERAREA=16,NETUSER=16,                           
+               UTI=500                                                          
+1        RN    HIGH=05000,LOW=0                                                 
+ROUTES   PATH  Q101R,Q201R,Q301R,Q401R,Q501R,Q601R                              
+ROUTES   DIST  19,19,19,19,5,19                                                 
+TPNS0101 VTAMAPPL RESOURCE=CICS,INIT=SEC,APPLID=TPNS0101                        
+PPNS0101 LU  DISPLAY=(24,80,32,80)                                              
+TPNS0102 VTAMAPPL RESOURCE=CICS,INIT=SEC,APPLID=TPNS0102                        
+PPNS0102 LU  DISPLAY=(24,80,32,80)                                              
+TPNS0103 VTAMAPPL RESOURCE=CICS,INIT=SEC,APPLID=TPNS0103                        
+PPNS0103 LU  DISPLAY=(24,80,32,80)                                              
+TPNS0104 VTAMAPPL RESOURCE=CICS,INIT=SEC,APPLID=TPNS0104                        
+PPNS0104 LU  DISPLAY=(24,80,32,80)                                              
+TPNS0105 VTAMAPPL RESOURCE=CICS,INIT=SEC,APPLID=TPNS0105                        
+PPNS0105 LU  DISPLAY=(24,80,32,80)                                              
+TPNS0106 VTAMAPPL RESOURCE=CICS,INIT=SEC,APPLID=TPNS0106                        
+PPNS0106 LU  DISPLAY=(24,80,32,80)                                              
+TPNS0107 VTAMAPPL RESOURCE=CICS,INIT=SEC,APPLID=TPNS0107                        
+PPNS0107 LU  DISPLAY=(24,80,32,80)                                              
+TPNS0108 VTAMAPPL RESOURCE=CICS,INIT=SEC,APPLID=TPNS0108                        
+PPNS0108 LU  DISPLAY=(24,80,32,80)                                              
+TPNS0109 VTAMAPPL RESOURCE=CICS,INIT=SEC,APPLID=TPNS0109                        
+PPNS0109 LU  DISPLAY=(24,80,32,80)                                              
+TPNS0110 VTAMAPPL RESOURCE=CICS,INIT=SEC,APPLID=TPNS0110                        
+PPNS0110 LU  DISPLAY=(24,80,32,80)                                              
+TPNS0111 VTAMAPPL RESOURCE=CICS,INIT=SEC,APPLID=TPNS0111                        
+PPNS0111 LU  DISPLAY=(24,80,32,80)                                              
+TPNS0112 VTAMAPPL RESOURCE=CICS,INIT=SEC,APPLID=TPNS0112                        
+PPNS0112 LU  DISPLAY=(24,80,32,80)                                              
+TPNS0113 VTAMAPPL RESOURCE=CICS,INIT=SEC,APPLID=TPNS0113                        
+PPNS0113 LU  DISPLAY=(24,80,32,80)                                              
+TPNS0114 VTAMAPPL RESOURCE=CICS,INIT=SEC,APPLID=TPNS0114                        
+PPNS0114 LU  DISPLAY=(24,80,32,80)                                              
+TPNS0115 VTAMAPPL RESOURCE=CICS,INIT=SEC,APPLID=TPNS0115                        
+PPNS0115 LU  DISPLAY=(24,80,32,80)                                              
+TPNS0116 VTAMAPPL RESOURCE=CICS,INIT=SEC,APPLID=TPNS0116                        
+PPNS0116 LU  DISPLAY=(24,80,32,80)                                              
+TPNS0117 VTAMAPPL RESOURCE=CICS,INIT=SEC,APPLID=TPNS0117                        
+PPNS0117 LU  DISPLAY=(24,80,32,80)                                              
+TPNS0118 VTAMAPPL RESOURCE=CICS,INIT=SEC,APPLID=TPNS0118                        
+PPNS0118 LU  DISPLAY=(24,80,32,80)                                              
+TPNS0119 VTAMAPPL RESOURCE=CICS,INIT=SEC,APPLID=TPNS0119                        
+PPNS0119 LU  DISPLAY=(24,80,32,80)                                              
+TPNS0120 VTAMAPPL RESOURCE=CICS,INIT=SEC,APPLID=TPNS0120                        
+PPNS0120 LU  DISPLAY=(24,80,32,80)                                              
+TPNS0121 VTAMAPPL RESOURCE=CICS,INIT=SEC,APPLID=TPNS0121                        
+PPNS0121 LU  DISPLAY=(24,80,32,80)                                              
+TPNS0122 VTAMAPPL RESOURCE=CICS,INIT=SEC,APPLID=TPNS0122                        
+PPNS0122 LU  DISPLAY=(24,80,32,80)                                              
+TPNS0123 VTAMAPPL RESOURCE=CICS,INIT=SEC,APPLID=TPNS0123                        
+PPNS0123 LU  DISPLAY=(24,80,32,80)                                              
+TPNS0124 VTAMAPPL RESOURCE=CICS,INIT=SEC,APPLID=TPNS0124                        
+PPNS0124 LU  DISPLAY=(24,80,32,80)                                              
+TPNS0125 VTAMAPPL RESOURCE=CICS,INIT=SEC,APPLID=TPNS0125                        
+PPNS0125 LU  DISPLAY=(24,80,32,80)                                              

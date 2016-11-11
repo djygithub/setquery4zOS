@@ -1,0 +1,21 @@
+-- Q101 --                                                                      
+SELECT COUNT(*) FROM DAVID.SQ1 WHERE K250K = 2;                                 
+COMMIT;                                                                         
+SELECT COUNT(*) FROM DAVID.SQ1 WHERE K100K = 2;                                 
+COMMIT;                                                                         
+SELECT COUNT(*) FROM DAVID.SQ1 WHERE K10K = 2;                                  
+COMMIT;                                                                         
+SELECT COUNT(*) FROM DAVID.SQ1 WHERE K1K = 2;                                   
+COMMIT;                                                                         
+SELECT COUNT(*) FROM DAVID.SQ1 WHERE K100 = 2;                                  
+COMMIT;                                                                         
+SELECT COUNT(*) FROM DAVID.SQ1 WHERE K25 = 2;                                   
+COMMIT;                                                                         
+SELECT COUNT(*) FROM DAVID.SQ1 WHERE K10 = 2;                                   
+COMMIT;                                                                         
+SELECT COUNT(*) FROM DAVID.SQ1 WHERE K5 = 2;                                    
+COMMIT;                                                                         
+SELECT COUNT(*) FROM DAVID.SQ1 WHERE K4 = 2;                                    
+COMMIT;                                                                         
+SELECT COUNT(*) FROM DAVID.SQ1 WHERE K2 = 2;                                    
+COMMIT;                                                                         

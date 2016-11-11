@@ -1,0 +1,32 @@
+//PPOM250K JOB (RWM,T),'DUMP',MSGCLASS=R,CLASS=A                        00010004
+//*UTPIT OUTPUT DEST=PRT5                                               00011000
+//U025     EXEC PGM=IFASMFDP,REGION=512K                                00012000
+//SYSPRINT DD  SYSOUT=*                                                 00013000
+//DUMPOUT DD DISP=(NEW,PASS),                                           00014000
+//        DSN=&&TEMP,UNIT=3390,SPACE=(CYL,(10,10))                      00015000
+//DUMPIN  DD DSN=DB2310.JUN13943.SMFDATA,DISP=SHR,UNIT=3390,            00016004
+//        VOL=SER=DB2310                                                00017000
+//SYSIN DD *                                                            00018000
+ INDD(DUMPIN,OPTIONS(DUMP))                                             00019000
+ OUTDD(DUMPOUT,TYPE(100:110))                                           00020000
+//STEP2   EXEC PGM=IDCAMS,REGION=4096K                                  00021000
+//SYSUT1    DD DSN=&&TEMP,DISP=(OLD,DELETE)                             00022000
+//SYSPRINT  DD SYSOUT=*                                                 00023000
+//SYSUT2    DD DSN=&&TEMP2,UNIT=3390,                                   00024000
+// SPACE=(CYL,(15,15)),DCB=(LRECL=32756,BLKSIZE=32760,RECFM=VB),        00025000
+// DISP=(,PASS)                                                         00026000
+//SYSIN DD *                                                            00027000
+  REPRO  INFILE(SYSUT1) OUTFILE(SYSUT2)                                 00028000
+//STEP3   EXEC PGM=DB2SMFXX,REGION=4096K,                               00029000
+// PARM='SYSSTATS=N,DBSTATS=N,APPSTATS=ALL     '                        00030000
+//STEPLIB   DD DSN=DAVID.DB2SMF23.PGMLIB,DISP=SHR,UNIT=3390,            00040000
+//          VOL=SER=DB2IMS                                              00050000
+//SNAPOUT   DD DUMMY                                                    00060000
+//DB2SMF  DD DSN=&&TEMP2,DISP=(OLD,DELETE),DCB=(BUFNO=10,NCP=10)        00070000
+//SYSOUT DD SYSOUT=O                                                    00070100
+//SYSABOUT DD SYSOUT=*                                                  00070200
+//SYSUDUMP DD SYSOUT=*                                                  00070300
+//OUTPUT DD SYSOUT=*                                                    00070400
+//CONTROL   DD *                                                        00070500
+COBDSS3                                                                 00070600
+COBDSS6A                                                                00070700

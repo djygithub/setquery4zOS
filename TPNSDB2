@@ -1,0 +1,15 @@
+//TPNSDB2  JOB (330DJY00),'D J YOUNG ',MSGCLASS=O,NOTIFY=DAVID,                 
+//  REGION=0K                                                                   
+//*     TRANSLATE STL PROGRAM                                                   
+//*                                                                             
+//*TEP1   EXEC PGM=ITPENTER,PARM='DMAPPL=DMAPPL,NTWRK=MRO0100'                  
+//STEP1   EXEC PGM=ITPENTER,PARM='DMAPPL=DMAPPL',DPRTY=(15,13)                  
+//STEPLIB DD DSN=TPNS.LOAD,DISP=SHR,UNIT=3390,VOL=SER=MV4RSA                    
+//SYSPRINT  DD SYSOUT=*                                                         
+//*YSIN     DD DISP=SHR,DSN=DAVID.SETQUERY.WORKLOAD(SQLNET)                     
+//SYSUT2 DD UNIT=3390,SPACE=(CYL,(1,1,10))                                      
+//SYSUT3 DD UNIT=3390,SPACE=(CYL,(1,1,10))                                      
+//LOGDD  DD UNIT=3390,VOL=SER=DB2S01,DISP=SHR,                                  
+//  DSN=TPNS.DB2,DCB=(BUFNO=25,NCP=10)                                          
+//MSGDD     DD DISP=SHR,DSN=DAVID.TPNS.MSGDD                                    
+//INITDD    DD DISP=SHR,DSN=DAVID.TPNS.INITDD                                   

@@ -1,0 +1,2 @@
+SELECT COUNT(*) FROM DAVID.SQ10                                                 
+  WHERE K2=2;                                                                   

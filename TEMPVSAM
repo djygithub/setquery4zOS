@@ -1,0 +1,21 @@
+//DEFFILES JOB 'CHAO     ',CHAO,MSGCLASS=X,NOTIFY=CHAO,MSGLEVEL=(1,1)   00010000
+//DEFINE    EXEC PGM=IDCAMS,REGION=1M                                   00119200
+//SYSPRINT DD SYSOUT=*                                                  00119300
+//SYSIN    DD *                                                         00119400
+ /*                                  */                                 00119500
+ /* DEFINE A FILEA DATASET           */                                 00120000
+ /*                                  */                                 00130000
+ DEFINE CLUSTER(NAME(DAVID.CICS.FILEA001)-                              00140000
+          REC(3400)-                                                    00150000
+          IXD -                                                         00160000
+          VOLUMES(DB2SMS)) -                                            00170000
+         DATA(NAME(IICS330.CICS.FILEA001.DATA)-                         00180000
+         RECSZ(4089 4089) CISZ(4096) -                                  00190000
+         UNIQUE -                                                       00200000
+         KEYS(6 1)) -                                                   00210000
+        INDEX(NAME(IICS330.CICS.FILEA001.INDEX) CISZ(1536)-             00220000
+          UNIQUE -                                                      00221000
+          SHR(2 3))                                                     00222000
+ /*                                  */                                 00223000
+ /* DEFINE A FILEA DATASET           */                                 00224000
+ /*                                  */                                 00225000

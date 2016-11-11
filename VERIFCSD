@@ -1,0 +1,7 @@
+//DEFTERM  JOB  (85012,MS75),'SPETH',MSGCLASS=X                                 
+//VTAMDEF  EXEC  PGM=DFHCSDUP                                                   
+//STEPLIB  DD  DSN=CICS321.SDFHLOAD,DISP=SHR                                    
+//DFHCSD  DD  DSN=CICS321.DFHCSD,DISP=SHR                                       
+//SYSPRINT  DD  SYSOUT=*                                                        
+//SYSIN  DD  *                                                                  
+VERIFY                                                                          

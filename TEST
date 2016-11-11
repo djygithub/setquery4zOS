@@ -1,0 +1,23 @@
+//TESTSTOP JOB   (ACCT#),                                                       
+//         'DJ YOUNG',                                        /*OPER*/          
+//         CLASS=Q,                                           /*JCLAS*/         
+//         MSGLEVEL=(1,1),                                                      
+//         MSGCLASS=X,                                                          
+//         NOTIFY=,                                                             
+//         TIME=1440                                                            
+//*        USER=,GROUP=,PASSWORD=                             /*RACF*/          
+//JOBLIB  DD  DISP=SHR,                                                 00180000
+//            DSN=SYS1.DSNLOAD                                          00190000
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                 000     
+//SYSTSPRT DD  SYSOUT=*                                                 000     
+//SYSPRINT DD  SYSOUT=*                                                 000     
+//SYSUDUMP DD  SYSOUT=*                                                 000     
+//SYSTSIN  DD  *                                                        000     
+  DSN SYSTEM(DSN)                                                       000     
+  RUN PROGRAM(DSNTIAD)  PLAN(DSNTIA22) PARM('RC0') -                    000     
+       LIB('DSN22X.RUNLIB.LOAD')                                        000     
+  END                                                                   000     
+//SYSIN    DD  *                                                        000     
+  DROP STOGROUP TESTICLE;                                                       
+  CREATE STOGROUP TESTICLE VOLUMES (MV4RS1) VCAT DSNC220;                       
+  DROP STOGROUP TESTICLE;                                                       

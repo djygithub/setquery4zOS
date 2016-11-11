@@ -1,0 +1,85 @@
+       ID DIVISION.                                                             
+       PROGRAM-ID.  SQRY0100.                                                   
+       AUTHOR.  D J YOUNG, HDS SANTA CLARA.                                     
+       DATE-COMPILED.                                                           
+       ENVIRONMENT DIVISION.                                                    
+       INPUT-OUTPUT SECTION.                                                    
+       FILE-CONTROL.                                                            
+           SELECT OUTPUT-FILE ASSIGN TO UT-S-OUTPUT.                            
+       DATA DIVISION.                                                           
+       FILE SECTION.                                                            
+       FD  OUTPUT-FILE                                                          
+           LABEL RECORDS ARE STANDARD                                           
+           DATA RECORD IS OUTPUT-RECORD.                                        
+       01  OUTPUT-RECORD               PIC X(121).                              
+       WORKING-STORAGE SECTION.                                                 
+       77  EOF-FLAG                    PIC X(3).                                
+       77  CUST-NUM-SQL                PIC S9(9) COMP.                          
+       01  SQLCA.                                                               
+           05  SQLCAID                 PIC X(8).                                
+           05  SQLCABC                 PIC S9(9) COMP.                          
+           05  SQLCODE                 PIC S9(9) COMP.                          
+           05  SQLERRM.                                                         
+               49  SQLERRML            PIC S9(4) COMP.                          
+               49  SQLERRMC            PIC X(70).                               
+           05  SQLERRP                 PIC X(8).                                
+           05  SQLERRD                 PIC S9(9) COMP OCCURS 6 TIMES.           
+           05  SQLWARN.                                                         
+               10  SQLWARN0            PIC X.                                   
+               10  SQLWARN1            PIC X.                                   
+               10  SQLWARN2            PIC X.                                   
+               10  SQLWARN3            PIC X.                                   
+               10  SQLWARN4            PIC X.                                   
+               10  SQLWARN5            PIC X.                                   
+               10  SQLWARN6            PIC X.                                   
+               10  SQLWARN7            PIC X.                                   
+           05  SQLEXT                  PIC X(8).                                
+       PROCEDURE DIVISION.                                                      
+       MAIN-ROUTINE.                                                            
+           EXEC SQL                                                             
+           WHENEVER SQLERROR CONTINUE                                           
+           END-EXEC.                                                            
+      *(1)                                                                      
+           OPEN OUTPUT OUTPUT-FILE.                                             
+      *    OPEN INPUT INPUT-FILE OUTPUT OUTPUT-FILE.                            
+      *(2)                                                                      
+      *    READ INPUT-FILE AT END MOVE 'YES' TO EOF-FLAG.                       
+      *(3)                                                                      
+           PERFORM GET-AND-PRINT.                                               
+      *(4)                                                                      
+           CLOSE  OUTPUT-FILE.                                                  
+      *(5)                                                                      
+           GOBACK.                                                              
+       GET-AND-PRINT.                                                           
+      *(1)                                                                      
+           EXEC SQL                                                             
+                DECLARE CUSTCURS CURSOR FOR                                     
+                SELECT KSEQ, K500K FROM DAVID.SQ10                              
+                  WHERE K2 = 1                                                  
+                  AND   K100 > 80                                               
+                  AND K10K BETWEEN 2000 AND 2000                                
+           END-EXEC.                                                            
+      *(2)                                                                      
+           EXEC SQL                                                             
+           OPEN CUSTCURS                                                        
+           END-EXEC.                                                            
+      *(3)                                                                      
+           PERFORM FETCHIT.                                                     
+      *(4)                                                                      
+           EXEC SQL                                                             
+           CLOSE CUSTCURS                                                       
+           END-EXEC.                                                            
+      *(5)                                                                      
+       FETCHIT.                                                                 
+      *(1)                                                                      
+           EXEC SQL                                                             
+           FETCH CUSTCURS INTO OUTPUT-RECORD                                    
+           END-EXEC.                                                            
+      *(2)                                                                      
+           DISPLAY                                                              
+                  OUTPUT-RECORD.                                                
+       SQL-ERROR.                                                               
+           IF  SQLCODE NOT = 100                                                
+           DISPLAY  SQLCAID, SQLCABC, SQLCODE, SQLERRM,                         
+           SQLERRP, SQLWARN, SQLEXT, SQLERRD(1), SQLERRD(2),                    
+           SQLERRD(3), SQLERRD(4), SQLERRD(5), SQLERRD(6).                      

@@ -1,0 +1,2 @@
+ SELECT SUM(SORTPACK) FROM SQ10                                                 
+    WHERE KSEQ BETWEEN 1 AND 2500000;                                           

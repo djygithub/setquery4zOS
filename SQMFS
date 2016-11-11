@@ -1,0 +1,30 @@
+         PRINT NOGEN                                                            
+SQDF1    FMT                                                                    
+         DEV   TYPE=(3270,2),FEAT=IGNORE,DSCA=X'00A0',SYSMSG=MSGFLD             
+         DIV   TYPE=INOUT                                                       
+         DPAGE CURSOR=((15,37))                                                 
+         DFLD  'AUBREY SUSAN SUPPORT SYSTEMS',POS=(03,26,01)                    
+         DFLD  'TRANCODE ',POS=(15,27)                                          
+TRANCODE DFLD  POS=(15,37),LTH=9                                                
+         DFLD  'STARTNUM ',POS=(16,27)                                          
+STARTNUM DFLD  POS=(16,37),LTH=9                                                
+         DFLD  'ENDNUM   ',POS=(17,27)                                          
+ENDNUM   DFLD  POS=(17,37),LTH=9                                                
+         DFLD  'RESULT   ',POS=(18,27)                                          
+RESULT   DFLD  POS=(18,37),LTH=9                                                
+MSGFLD   DFLD  POS=(21,02),LTH=79                                               
+         FMTEND                                                                 
+SQMO1    MSG   TYPE=OUTPUT,SOR=(SQDF1,IGNORE),NXT=SQMI1                         
+         SEG                                                                    
+         MFLD  TRANCODE,LTH=9                                                   
+         MFLD  STARTNUM,LTH=9                                                   
+         MFLD  ENDNUM,LTH=9                                                     
+         MFLD  RESULT,LTH=9                                                     
+         MSGEND                                                                 
+SQMI1    MSG   TYPE=INPUT,SOR=(SQDF1,IGNORE),NXT=SQMO1                          
+         SEG                                                                    
+         MFLD  TRANCODE,LTH=9                                                   
+         MFLD  STARTNUM,LTH=9                                                   
+         MFLD  ENDNUM,LTH=9                                                     
+         MSGEND                                                                 
+         END                                                                    

@@ -1,0 +1,14 @@
+//TPNSLL   JOB (330DJY00),'D J YOUNG ',MSGCLASS=O,NOTIFY=DAVID,                 
+//  REGION=0K                                                                   
+//*     TRANSLATE STL PROGRAM                                                   
+//*                                                                             
+//STEP1   EXEC PGM=ITPLL                                                        
+//STEPLIB DD DSN=TPNS.LOAD,DISP=SHR                                             
+//SYSPRINT  DD SYSOUT=*                                                         
+//SYSIN     DD *                                                                
+  NTWRK SQLNET                                                                  
+  RUN                                                                           
+//SYSUT2 DD UNIT=SYSDA,SPACE=(CYL,(1,1,10))                                     
+//SYSUT3 DD UNIT=SYSDA,SPACE=(CYL,(1,1,10))                                     
+//SYSUT1 DD UNIT=SYSDA,DISP=SHR,                                                
+//       DSN=TPNS.LOG                                                           
