@@ -1,0 +1,103 @@
+//DFHIVPOL JOB   (0,75),                                                        
+//         'DJ YOUNG',                                        /*OPER*/          
+//         CLASS=A,                                           /*JCLAS*/         
+//         MSGLEVEL=(1,1),                                                      
+//         MSGCLASS=X,                                                          
+//         TIME=1440,                                                           
+//         USER=DAVID                                         /*RACF*/          
+//*                                                           /*JCTRL*/         
+//*                                                                             
+//*                                                                             
+//* LIB: CICSVS.IPO1.SAMPLIB(DFHIVPOL)                                          
+//*                                                                             
+//* GDE: CICS INSTALLATION AND OPERATIONS GUIDE                                 
+//*                                                                             
+//* DOC: THIS JOB WILL EXECUTE THE ONLINE IVP.                                  
+//*                                                                             
+//*********************************************************************         
+//*                                                                             
+//*                                                                             
+//* THIS JOB CAN BE USED TO VERIFY CICS ONLINE OPERATION.                       
+//* THE SYSTEM AND USER JOURNALS MUST BE CREATED, USING JOB DFHJNLCR            
+//* BEFORE THIS JOB IS RUN                                                      
+//*                                                                             
+//* THE JOB IS DESIGNED TO BE RERUNNABLE. NORMALLY ONE WOULD KEEP               
+//* SOME OF THE DATASETS RATHER THAN DELETE THEM AND RECREATE THEM.             
+//*                                                                             
+//* THE STEPS ARE:                                                              
+//*  DEFDS                                                                      
+//*    DELETE AND REDEFINE THE CLUSTERS FOR                                     
+//*                                                                             
+//*    SAMPLE PROGRAM FILE           - CICSVS.IVP.FILEA                         
+//*    XRF CONTROL DATASET           - CICSVS.IVP.DFHXRCTL                      
+//*    XRF MESSAGE DATASET           - CICSVS.IVP.DFHXRMSG                      
+//*                                                                             
+//*     CIC311 IS THE VOLUME FOR VSAM DATASETS.                                 
+//*          CIC311 IS NOT MENTIONED IN PROCEDURES                              
+//*          OR DATA FILES USED BY THIS JOB.                                    
+//*          THERE MUST BE ENOUGH SPACE ON CIC311                               
+//*          FOR THE UNIQUE VSAM CLUSTERS TO BE CREATED.                        
+//*                                                                             
+//*  LOADFILE                                                                   
+//*     LOAD SAMPLE DATA INTO CICSVS.IVP.FILEA                                  
+//*                                                                             
+//*  CICSU                                                                      
+//*     RUN THE CICS BRING-UP PROCEDURE.  CICS IS BROUGHT UP USING              
+//*     THE IBM-SUPPLIED GROUP LIST FROM THE CSD, AS SPECIFIED IN               
+//*     THE SAMPLE SIT.  SAMPLE TRANSACTIONS AND PROGRAMS ARE THEN              
+//*     DYNAMICALLY INSTALLED USING 'CEDA'.                                     
+//*                                                                             
+//*********************************************************************         
+//*                                                                             
+//*********************************************************************         
+//* BRING UP CICS USING THE IBM-SUPPLIED LIST 'DFHLIST', THEN                   
+//* USE CEDA COMMANDS LIKE THE EXAMPLE BELOW TO ADD THE SAMPLE                  
+//* TRANSACTIONS AND PROGRAMS TO THE RUNNING CICS SYSTEM.                       
+//*                                                                             
+//*  CEDA INSTALL GROUP(DFH$AFLA)                                               
+//*       (END KEY)                                                             
+//*                                                                             
+//* THE 'CEDA' TRANSACTION SHOWN ABOVE WILL MAKE THE ASSEMBLER                  
+//* 'FILEA' SAMPLE APPLICATION AVAILABLE ONLINE.  TYPE THE                      
+//* TRANSACTION CODE 'AMNU' TO DISPLAY OPERATOR INSTRUCTION MENU.               
+//*                                                                             
+//*      THE 'RESOURCE DEFINITION (ONLINE)' MANUAL DESCRIBES                    
+//*      THE ONLINE RESOURCE DEFINITION TRANSACTION 'CEDA'.                     
+//*                                                                             
+//*********************************************************************         
+//CICSU   EXEC DFHS23,                                                          
+//             INDEX1='CICS321',      INDEX FOR LIBRARIES                       
+//             INDEX2='CICS321',      INDEX FOR LIBRARIES                       
+//             DSINDEX='CICS321',     INDEX FOR LIBRARIES                       
+//             REG=32M,                 SIZE OF REGION                          
+//             OUTC='*'                    SYSOUT CLASS                         
+//*            WORK='3390'                UNIT - TEMPORARY DATA SETS            
+//*            COND=((8,LT,DEFDS),(4,LT,LOADFILE))                              
+//*ICS.FILEA DD DSN=CICSVS.IVP.FILEA,DISP=SHR                                   
+//DFHJ01A  DD  DSN=CICS321.DFHJ01A,DISP=SHR                                     
+//DFHJ01B  DD  DSN=CICS321.DFHJ01B,DISP=SHR                                     
+//DFHJ01X  DD  DSN=CICS321.DFHJ01X,DISP=SHR                                     
+//*FHXRCTL DD  DSN=CICSVS.IVP.DFHXRCTL,DISP=SHR                                 
+//*FHXRMSG DD  DSN=CICSVS.IVP.DFHXRMSG,DISP=SHR                                 
+//DFHCXRF  DD  SYSOUT=*                                                         
+//DFHJACD  DD  DSN=CICS321.DFHJACD,DISP=SHR                                     
+//DFHJPDS  DD  DSN=CICS321.DFHJPDS,DISP=SHR                                     
+//DFHJOUT  DD  SYSOUT=(X,INTRDR)                                                
+//*   CHANGE 'R' TO MATCH YOUR JES INTERNAL READER                              
+//TRACEOUT DD  SYSOUT=*                                                         
+//CICS.SYSIN DD *                                                               
+SIT=6$,                                                                         
+AUXTR=OFF,                                                                      
+AUXTRSW=NEXT,                                                                   
+AMXT=99,                                                                        
+MXT=99,                                                                         
+CICSSVC=216,                                                                    
+DSASZE=2500000,                                                                 
+EDSASZE=10000000,                                                               
+GRPLIST=TLIST,                                                                  
+SEC=NO,                                                                         
+XRF=NO,                                                                         
+DFLTUSER=DAVID,                                                                 
+APPLID=(CICS)                                                                   
+.END                                                                            
+/*                                                                              

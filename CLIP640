@@ -1,0 +1,16 @@
+//INITSSS     JOB (X),DYOUNG,MSGCLASS=X,PRTY=13                         00000003
+//STEP1       EXEC PGM=ICKDSF,REGION=4096K                              00000080
+//SYSPRINT    DD SYSOUT=*                                               00000090
+//SYSUDUMP    DD SYSOUT=*                                               00000090
+//SYSIN       DD *                                                      00000100
+ INIT UNIT(640) NVFY NCHK VTOC(0,1,14) VOLID(DB2D25)                    00000110
+//STEP1       EXEC PGM=ICKDSF,REGION=4096K                              00000080
+//SYSPRINT    DD SYSOUT=*                                               00000090
+//SYSUDUMP    DD SYSOUT=*                                               00000090
+//SYSIN       DD *                                                      00000100
+ INIT UNIT(641) NVFY NCHK VTOC(0,1,14) VOLID(DB2D26)                    00000110
+//STEP1       EXEC PGM=ICKDSF,REGION=4096K                              00000080
+//SYSPRINT    DD SYSOUT=*                                               00000090
+//SYSUDUMP    DD SYSOUT=*                                               00000090
+//SYSIN       DD *                                                      00000100
+ INIT UNIT(642) NVFY NCHK VTOC(0,1,14) VOLID(DB2D27)                    00000110

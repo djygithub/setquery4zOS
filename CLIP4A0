@@ -1,0 +1,56 @@
+//INITSSS     JOB (X),DYOUNG,MSGCLASS=X,PRTY=13                         00000003
+//STEP1       EXEC PGM=ICKDSF,REGION=4096K                              00000080
+//SYSPRINT    DD SYSOUT=*                                               00000090
+//SYSUDUMP    DD SYSOUT=*                                               00000090
+//SYSIN       DD *                                                      00000100
+ INIT UNIT(4A0) NVFY NCHK VTOC(0,1,14) VOLID(VOL4A0)                    00000110
+//STEP1       EXEC PGM=ICKDSF,REGION=4096K                              00000080
+//SYSPRINT    DD SYSOUT=*                                               00000090
+//SYSUDUMP    DD SYSOUT=*                                               00000090
+//SYSIN       DD *                                                      00000100
+ INIT UNIT(4A1) NVFY NCHK VTOC(0,1,14) VOLID(VOL4A1)                    00000110
+//STEP1       EXEC PGM=ICKDSF,REGION=4096K                              00000080
+//SYSPRINT    DD SYSOUT=*                                               00000090
+//SYSUDUMP    DD SYSOUT=*                                               00000090
+//SYSIN       DD *                                                      00000100
+ INIT UNIT(4A2) NVFY NCHK VTOC(0,1,14) VOLID(VOL4A2)                    00000110
+//STEP1       EXEC PGM=ICKDSF,REGION=4096K                              00000080
+//SYSPRINT    DD SYSOUT=*                                               00000090
+//SYSUDUMP    DD SYSOUT=*                                               00000090
+//SYSIN       DD *                                                      00000100
+ INIT UNIT(4A3) NVFY NCHK VTOC(0,1,14) VOLID(VOL4A3)                    00000110
+//STEP1       EXEC PGM=ICKDSF,REGION=4096K                              00000080
+//SYSPRINT    DD SYSOUT=*                                               00000090
+//SYSUDUMP    DD SYSOUT=*                                               00000090
+//SYSIN       DD *                                                      00000100
+ INIT UNIT(4A4) NVFY NCHK VTOC(0,1,14) VOLID(VOL4A4)                    00000110
+//STEP1       EXEC PGM=ICKDSF,REGION=4096K                              00000080
+//SYSPRINT    DD SYSOUT=*                                               00000090
+//SYSUDUMP    DD SYSOUT=*                                               00000090
+//SYSIN       DD *                                                      00000100
+ INIT UNIT(4A5) NVFY NCHK VTOC(0,1,14) VOLID(VOL4A5)                    00000110
+//STEP1       EXEC PGM=ICKDSF,REGION=4096K                              00000080
+//SYSPRINT    DD SYSOUT=*                                               00000090
+//SYSUDUMP    DD SYSOUT=*                                               00000090
+//SYSIN       DD *                                                      00000100
+ INIT UNIT(4A8) NVFY NCHK VTOC(0,1,14) VOLID(VOL4A8)                    00000110
+//STEP1       EXEC PGM=ICKDSF,REGION=4096K                              00000080
+//SYSPRINT    DD SYSOUT=*                                               00000090
+//SYSUDUMP    DD SYSOUT=*                                               00000090
+//SYSIN       DD *                                                      00000100
+ INIT UNIT(4A9) NVFY NCHK VTOC(0,1,14) VOLID(VOL4A9)                    00000110
+//STEP1       EXEC PGM=ICKDSF,REGION=4096K                              00000080
+//SYSPRINT    DD SYSOUT=*                                               00000090
+//SYSUDUMP    DD SYSOUT=*                                               00000090
+//SYSIN       DD *                                                      00000100
+ INIT UNIT(4AA) NVFY NCHK VTOC(0,1,14) VOLID(VOL4AA)                    00000110
+//STEP1       EXEC PGM=ICKDSF,REGION=4096K                              00000080
+//SYSPRINT    DD SYSOUT=*                                               00000090
+//SYSUDUMP    DD SYSOUT=*                                               00000090
+//SYSIN       DD *                                                      00000100
+ INIT UNIT(4AB) NVFY NCHK VTOC(0,1,14) VOLID(VOL4AB)                    00000110
+//STEP1       EXEC PGM=ICKDSF,REGION=4096K                              00000080
+//SYSPRINT    DD SYSOUT=*                                               00000090
+//SYSUDUMP    DD SYSOUT=*                                               00000090
+//SYSIN       DD *                                                      00000100
+ INIT UNIT(4AC) NVFY NCHK VTOC(0,1,14) VOLID(VOL4AC)                    00000110

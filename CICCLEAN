@@ -1,0 +1,87 @@
+//DFHJNLCR JOB   (0,75),                                                        
+//         'YOUNG   ',                                        /*OPER*/          
+//         CLASS=A,                                           /*JCLAS*/         
+//         MSGLEVEL=(1,1),                                                      
+//         MSGCLASS=X,                                                          
+//         TIME=30,                                                             
+//         USER=DAVID                                         /*RACF*/          
+//*                                                           /*JCTRL*/         
+//*                                                                             
+//*                                                                             
+//* LIB: CICSVS.IPO1.SAMPLIB(DFHJNLCR)                                          
+//*                                                                             
+//* GDE: CICS INSTALLATION AND OPERATIONS GUIDE                                 
+//*                                                                             
+//* DOC: THIS JOB CREATES THE SYSTEM JOURNALS REQUIRED BY                       
+//*      CICIVPOL.                                                              
+//*                                                                             
+//*      THE STEPS ARE:                                                         
+//*                                                                             
+//*        DELJNLS - DELETE THE JOURNALS IF THEY EXIST                          
+//*                                                                             
+//*        FRMTJ01A,FRMTJ01B,FRMTJ01X - INITIALIZE SYSTEM LOG DATA SETS         
+//*                                                                             
+//*        DEFPDS  - DEFINE THE JCL PDS CICSVS.IVP.DFHJPDS                      
+//*                  AND LOAD THE JCL.                                          
+//*                                                                             
+//*        DEFDS   - DELETE AND REDEFINE THE CLUSTERS FOR JOURNAL               
+//*                  ARCHIVE DATA SET CICSVS.IVP.DFHJACD.                       
+//*                                                                             
+//*********************************************************************         
+//*********************************************************************         
+//DELJNLS EXEC PGM=IEHPROGM                                                     
+//*********************************************************************         
+//*  DELETE,CREATE AND FORMAT JOURNAL DATASETS                                  
+//*********************************************************************         
+//SYSPRINT DD  SYSOUT=*                                                         
+//DDJNLS   DD  UNIT=3390,VOLUME=SER=CICS32,DISP=OLD                             
+//SYSIN    DD  *                                                                
+ SCRATCH DSNAME=CICS321.DFHJ01A,VOL=3390=CICS32                                 
+ UNCATLG DSNAME=CICS321.DFHJ01A                                                 
+ SCRATCH DSNAME=CICS321.DFHJ01B,VOL=3390=CICS32                                 
+ UNCATLG DSNAME=CICS321.DFHJ01B                                                 
+ SCRATCH DSNAME=CICS321.DFHJ01X,VOL=3390=CICS32                                 
+ UNCATLG DSNAME=CICS321.DFHJ01X                                                 
+/*                                                                              
+//*********************************************************************         
+//FRMTJ01A EXEC PGM=DFHJCJFP,COND=(8,LT,DELJNLS)                                
+//STEPLIB  DD  DSN=CICS321.SDFHLOAD,DISP=SHR                                    
+//JOURNAL  DD  DSN=CICS321.DFHJ01A,                                             
+//             VOL=SER=CICS32,UNIT=3390,                                        
+//             DISP=(NEW,CATLG,DELETE),                                         
+//             SPACE=(CYL,50,,CONTIG),DCB=BLKSIZE=1200                          
+//*********************************************************************         
+//FRMTJ01B EXEC PGM=DFHJCJFP,COND=(8,LT,DELJNLS)                                
+//STEPLIB  DD  DSN=CICS321.SDFHLOAD,DISP=SHR                                    
+//JOURNAL  DD  DSN=CICS321.DFHJ01B,                                             
+//             VOL=SER=CICS32,UNIT=3390,                                        
+//             DISP=(NEW,CATLG,DELETE),                                         
+//             SPACE=(CYL,50,,CONTIG),DCB=BLKSIZE=1200                          
+//*********************************************************************         
+//FRMTJ01X EXEC PGM=DFHJCJFP,COND=(8,LT,DELJNLS)                                
+//STEPLIB  DD  DSN=CICS321.SDFHLOAD,DISP=SHR                                    
+//JOURNAL  DD  DSN=CICS321.DFHJ01X,                                             
+//             VOL=SER=CICS32,UNIT=3390,                                        
+//             DISP=(NEW,CATLG,DELETE),                                         
+//             SPACE=(CYL,50,,CONTIG),DCB=BLKSIZE=1200                          
+//*********************************************************************         
+//DEFDS   EXEC PGM=IDCAMS                                                       
+//DDCICVOL DD  VOL=SER=CICS32,UNIT=3390,DISP=SHR                                
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSIN    DD  *                                                                
+ /*                                                                 */          
+ /*     DELETE AND REDEFINE THE JOURNAL ARCHIVE DATASET             */          
+ /*                                                                 */          
+         DEL CICS321.DFHJACD -                                                  
+             FILE (DDCICVOL)                                                    
+         DEF CL (  NAME(CICS321.DFHJACD) -                                      
+                   NUMBERED -                                                   
+                   REC( 199 ) -                                                 
+                   RECSZ( 505 505 ) -                                           
+                   CISZ( 512 ) -                                                
+                   SHR( 4 ) -                                                   
+                   FILE( DDCICVOL ) -                                           
+                   VOLUMES( CICS32 ) ) -                                        
+           DATA (  NAME(CICSVS.IVP.DFHJACD.DATA) )                              
+/*                                                                 */           
+//*********************************************************************         

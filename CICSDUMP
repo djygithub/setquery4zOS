@@ -1,0 +1,21 @@
+//CICSDUMP JOB (330DJY00),'D J YOUNG ',MSGCLASS=Q,NOTIFY=DAVID          00001001
+//* EXECUTE DUMP UTILITY PROGRAM TO PRINT THE                           01150000
+//* CONTENTS OF THE DUMP DATASET A                                      01160000
+//PRTDMPA  EXEC  PGM=DFHDUP,PARM=SINGLE,REGION=0M                       01170001
+//STEPLIB  DD DSN=CICS321.SDFHLOAD,DISP=SHR                             01180001
+//DFHTINDX DD SYSOUT=*                                                  01190001
+//SYSPRINT DD SYSOUT=*                                                  01200001
+//DFHPRINT DD SYSOUT=*                                                  01210001
+//DFHDMPDS DD DISP=SHR,                                                 01220000
+// DSN=CICS321.CICS.DFHDMPA                                             01230001
+//SYSIN    DD DUMMY                                                     01240000
+//*        EXECUTE DUMP UTILITY PROGRAM TO PRINT THE                    01250000
+//*        CONTENTS OF THE DUMP DATASET B                               01260000
+//PRTDMPB  EXEC  PGM=DFHDUP,PARM=SINGLE,REGION=0M                       01270001
+//STEPLIB  DD DSN=CICS321.SDFHLOAD,DISP=SHR                             01280001
+//DFHTINDX DD SYSOUT=*                                                  01290001
+//SYSPRINT DD SYSOUT=*                                                  01300001
+//DFHPRINT DD SYSOUT=*                                                  01310001
+//DFHDMPDS DD DISP=SHR,                                                 01320000
+// DSN=CICS321.CICS.DFHDMPB                                             01330001
+//SYSIN    DD DUMMY                                                     01340000

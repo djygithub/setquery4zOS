@@ -1,0 +1,69 @@
+//DSN3SSGN JOB (RWM,T),'DUMP',MSGCLASS=O                                00001001
+//**********************************************************************00010000
+//* DSNTIJEX: PREPARE THE AUTHORIZATION EXITS                           00020000
+//*    COPYRIGHT = 5665-DB2 (C) COPYRIGHT IBM CORP 1982, 1989           00021000
+//*    REFER TO COPYRIGHT INSTRUCTIONS FORM NUMBER G120-2083            00022000
+//*                                                                     00024000
+//*    STATUS = VERSION 2 RELEASE 2, LEVEL 0                            00026000
+//*                                                                     00028000
+//*   ASMCL PROC     - ASSEMBLE AND LINK AN ASSEMBLY LANGUAGE PROGRAM   00030000
+//*   JEX0001 STEP 1 - INVOKE ASMCL TO PREPARE SIGNON EXIT DSN3@SGN     00040000
+//*   JEX0002 STEP 2 - INVOKE ASMCL TO PREPARE IDENTIFY EXIT DSN3@ATH   00050000
+//*                                                                     00060000
+//* THIS JOB IS OPTIONAL.  IT (OR AN EQUIVALENT) IS ONLY NEEDED IF      00070000
+//* YOU DO NOT INTEND TO USE THE DEFAULT AUTHORIZATION EXITS.           00080000
+//**********************************************************************00100000
+//ASMHPROC PROC WSPC=500,MEM=TEMPNAME                                   00110000
+//*                                                                     00120000
+//*            ASSEMBLE                                                 00130000
+//*                                                                     00140000
+//ASM     EXEC PGM=IEV90,PARM='OBJECT,NODECK'                           00150000
+//SYSIN    DD  DISP=SHR,                                                00160000
+//         DSN=DAVID.SETQUERY.WORKLOAD(&MEM)                            00170001
+//SYSLIB   DD  DSN=SYS1.AMODGEN,DISP=SHR                                00180000
+//         DD  DSN=SYS1.MACLIB,DISP=SHR                                 00185000
+//         DD  DISP=SHR,                                                00190000
+//         DSN=DSN22X.DSNMACS                                           00200001
+//         DD  DISP=SHR,                                                00210000
+//         DSN=DSN22X.DSNSAMP                                           00220001
+//SYSLIN   DD  DSN=&&LOADSET,DISP=(MOD,PASS),UNIT=3390,                 00230001
+//             SPACE=(800,(&WSPC,&WSPC)),DCB=(BLKSIZE=800)              00240000
+//SYSPRINT DD  SYSOUT=*                                                 00250000
+//SYSUDUMP DD  SYSOUT=*                                                 00260000
+//SYSUT1   DD  UNIT=3390,SPACE=(800,(&WSPC,&WSPC),,,ROUND)              00270001
+//SYSUT2   DD  UNIT=3390,SPACE=(800,(&WSPC,&WSPC),,,ROUND)              00280001
+//SYSUT3   DD  UNIT=3390,SPACE=(800,(&WSPC,&WSPC),,,ROUND)              00290001
+//*                                                                     00300000
+//*            LINKEDIT IF THE ASSEMBLER                                00310000
+//*            RETURN CODE IS 4 OR LESS                                 00320000
+//*                                                                     00330000
+//LKED    EXEC PGM=IEWL,REGION=1024K,                                   00340000
+// PARM='SIZE=(900K,124K),LIST,XREF,RENT,OL,NCAL,AMODE=31,RMODE=ANY',   00350000
+//             COND=(4,LT,ASM)                                          00360000
+//SYSLIN   DD  DSN=&&LOADSET,DISP=(OLD,DELETE)                          00370000
+//DSNLOAD  DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00380001
+//SYSLMOD  DD  DISP=SHR,                                                00390000
+//         DSN=SYS1.DSNEXIT(&MEM)                                       00400001
+//SYSPRINT DD  SYSOUT=*                                                 00410000
+//SYSUDUMP DD  SYSOUT=*                                                 00420000
+//SYSUT1   DD  UNIT=3390,SPACE=(1024,(50,50))                           00430001
+//ASMHPROC PEND                                                         00440000
+//**********************************************************************00450000
+//* STEP 1 : ASSEMBLE AND LINK EDIT SIGNON EXIT                         00460000
+//**********************************************************************00470000
+//JEX0001 EXEC ASMHPROC,MEM=DSN3SSGN                                    00480000
+//LKED.SYSLIN DD                                                        00490000
+//            DD  *                                                     00500000
+  ENTRY DSN3@SGN                                                        00510000
+  NAME DSN3@SGN(R)                                                      00520000
+//*                                                                     00531001
+//**********************************************************************00540000
+//* STEP 2 : ASSEMBLE AND LINK EDIT IDENTIFY EXIT                       00550000
+//**********************************************************************00560000
+//JEX0001 EXEC ASMHPROC                                                 00570002
+//ASM.SYSIN DD DSN=DSN22X.DSNSAMP(DSN3SATH),DISP=SHR                    00571002
+//LKED.SYSLIN DD                                                        00580000
+//            DD  *                                                     00590000
+  ENTRY DSN3@ATH                                                        00600000
+  NAME DSN3@ATH(R)                                                      00610000
+//*                                                                     00620000

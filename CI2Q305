@@ -1,0 +1,72 @@
+       IDENTIFICATION DIVISION.                                                 
+       PROGRAM-ID.  CI2Q305.                                                    
+       ENVIRONMENT DIVISION.                                                    
+       DATA DIVISION.                                                           
+       WORKING-STORAGE SECTION.                                                 
+           EXEC SQL INCLUDE SQLCA END-EXEC.                                     
+       77  SQLVALUE               PIC S9(9) COMP.                               
+       77  LOWNUM                 PIC S9(9) COMP.                               
+       77  HIGHNUM                PIC S9(9) COMP.                               
+       01  COMMAREA               PIC X(1).                                     
+           EXEC SQL INCLUDE DJYMSQLA END-EXEC.                                  
+       01  MFINPUT REDEFINES DJYSQLAI.                                          
+           03  FILLER             PIC X(15).                                    
+           03  TR-CODE            PIC X(4).                                     
+           03  LOW-IN             PIC 9(9).                                     
+           03  HIGH-IN            PIC 9(9).                                     
+           03  FILLER             PIC X(60).                                    
+       01  WORKSPOT.                                                            
+           03  TRAN-CODE          PIC X(4).                                     
+           03  NUMBER1            PIC 9(9).                                     
+           03  NUMBER2            PIC 9(9).                                     
+           03  FILLER             PIC X(58).                                    
+       01  OUTSPOT.                                                             
+           03  NUMBER-2           PIC 9(9).                                     
+           03  NUMBER-1           PIC 9(9).                                     
+           03  TRANS-CODE         PIC X(4).                                     
+           03  FILLER             PIC X(58) VALUE SPACES.                       
+                                                                                
+       PROCEDURE DIVISION.                                                      
+      *                                                                         
+      *    EXEC SQL WHENEVER SQLERROR CONTINUE END-EXEC.                        
+      *                                                                         
+           EXEC CICS HANDLE CONDITION MAPFAIL (FAILMAP) END-EXEC.               
+      *                                                                         
+      *    MOVE 'TRY AGAIN' TO INFLD1O.                                         
+      *                                                                         
+           EXEC CICS RECEIVE MAP('DJYSQLA')                                     
+                             MAPSET('DJYSQLA')                                  
+                             END-EXEC.                                          
+      *                                                                         
+       FAILMAP.                                                                 
+      *                                                                         
+           PERFORM SQL-CALL.                                                    
+           MOVE TRAN-CODE TO TRANS-CODE.                                        
+           MOVE NUMBER1 TO NUMBER-1.                                            
+           MOVE SQLVALUE TO NUMBER-2.                                           
+           MOVE OUTSPOT TO INFLD1O.                                             
+      *                                                                         
+           EXEC CICS SEND MAP('DJYSQLA')                                        
+                          MAPSET('DJYSQLA')                                     
+                          ERASEAUP                                              
+                          CURSOR(1)                                             
+                          LAST                                                  
+                          END-EXEC.                                             
+      *                                                                         
+           EXEC CICS RETURN  END-EXEC.                                          
+           GOBACK.                                                              
+       SQL-CALL.                                                                
+           MOVE LOW-IN  TO LOWNUM.                                              
+           MOVE HIGH-IN TO HIGHNUM.                                             
+           EXEC SQL DECLARE TESTCURS CURSOR FOR                                 
+                SELECT SUM(K1K) FROM SQSYN                                      
+                WHERE KSEQ BETWEEN :LOWNUM AND :HIGHNUM                         
+                AND K25    = 3                                                  
+                END-EXEC.                                                       
+           EXEC SQL OPEN TESTCURS END-EXEC.                                     
+           EXEC SQL                                                             
+                FETCH TESTCURS INTO :SQLVALUE                                   
+                END-EXEC.                                                       
+           EXEC SQL                                                             
+                CLOSE TESTCURS                                                  
+                END-EXEC.                                                       
