@@ -1,0 +1,84 @@
+//JUL12954 JOB (NSE),CLASS=A,MSGCLASS=P                                 00010056
+//SMFDP    PROC                                                         00020000
+//STEP1    EXEC PGM=IFASMFDP                                            00030000
+//INDD1  DD DSN=MV43RS.JUL12954.SMFDATA,DISP=SHR,UNIT=3390,             00040056
+//       VOL=SER=MV43RS                                                 00041051
+//OUTDD1 DD DSN=&&TEMP,DISP=(NEW,PASS),UNIT=3390,                       00042000
+// SPACE=(CYL,(3,3))                                                    00043000
+//SYSPRINT DD  SYSOUT=*                                                 00044000
+//STEP2    EXEC PGM=DQDPOST,REGION=0M                                   00045000
+//STEPLIB DD DSN=DAVID.G5798DQD.LOAD,DISP=SHR                           00046029
+//  DD DSN=SYS1.V2R3M0.SIBMBASE,DISP=SHR                                00047051
+//  DD DSN=SYS1.V2R3M0.SIBMLINK,DISP=SHR                                00048051
+//  DD DSN=SYS1.V2R3M0.PLIBASE,DISP=SHR                                 00049051
+//  DD DSN=SYS1.V2R3M0.PLILINK,DISP=SHR                                 00050051
+//TAPEIN   DD  DSN=&&TEMP,DISP=(OLD,DELETE)                             00060000
+//SYSPRINT DD  SYSOUT=*                                                 00070000
+//SUMMARY  DD  SYSOUT=*                                                 00080000
+//SYSOUT   DD  SYSOUT=*                                                 00090000
+//SYSABEND DD  SYSOUT=*                                                 00100000
+//         PEND                                                         00110000
+//LOAD     EXEC SMFDP                                                   00120008
+//STEP1.SYSIN    DD  *                                                  00130000
+ START(1410)                                                            00140056
+ END(1415)                                                              00150056
+ INDD(INDD1,OPTIONS(DUMP))                                              00160000
+ OUTDD(OUTDD1,TYPE(244,245))                                            00170000
+/*                                                                      00180000
+//STEP2.SYSIN    DD  *                                                  00190000
+* MODEL 11, 13, 21, 23, & 03 STATISTICS                                 00200000
+01/01/91,12/31/99                                                       00210000
+00:00:00,24:00:00                                                       00220000
+06,244,$$$$ D A                                                         00230029
+06 245 $$$$ D A                                                         00240029
+03,244,$$$$ D A                                                         00241037
+03 245 $$$$ D A                                                         00242037
+/*                                                                      00250000
+//RUNSTAT  EXEC SMFDP                                                   00260024
+//STEP1.SYSIN    DD  *                                                  00270024
+ START(1416)                                                            00280056
+ END(1419)                                                              00290056
+ INDD(INDD1,OPTIONS(DUMP))                                              00300024
+ OUTDD(OUTDD1,TYPE(244,245))                                            00310024
+/*                                                                      00320024
+//STEP2.SYSIN    DD  *                                                  00330024
+* MODEL 11, 13, 21, 23, & 03 STATISTICS                                 00340024
+01/01/91,12/31/99                                                       00350024
+00:00:00,24:00:00                                                       00360024
+06,244,$$$$ D A                                                         00370031
+06 245 $$$$ D A                                                         00380031
+03,244,$$$$ D A                                                         00381037
+03 245 $$$$ D A                                                         00382037
+/*                                                                      00390024
+//BSCAN    EXEC SMFDP                                                   00400050
+//STEP1.SYSIN    DD  *                                                  00410024
+ START(1420)                                                            00420056
+ END(1423)                                                              00430056
+ INDD(INDD1,OPTIONS(DUMP))                                              00440024
+ OUTDD(OUTDD1,TYPE(244,245))                                            00450024
+/*                                                                      00460024
+//STEP2.SYSIN    DD  *                                                  00470024
+* MODEL 11, 13, 21, 23, & 03 STATISTICS                                 00480024
+01/01/91,12/31/99                                                       00490024
+00:00:00,24:00:00                                                       00500024
+06,244,$$$$ D A                                                         00510031
+06 245 $$$$ D A                                                         00520031
+03,244,$$$$ D A                                                         00521037
+03 245 $$$$ D A                                                         00522037
+/*                                                                      00530024
+//QALL     EXEC SMFDP                                                   00540050
+//STEP1.SYSIN    DD  *                                                  00550024
+ START(1424)                                                            00560056
+ END(1504)                                                              00570056
+ INDD(INDD1,OPTIONS(DUMP))                                              00580024
+ OUTDD(OUTDD1,TYPE(244,245))                                            00590024
+/*                                                                      00600024
+//STEP2.SYSIN    DD  *                                                  00610024
+* MODEL 11, 13, 21, 23, & 03 STATISTICS                                 00620024
+01/01/91,12/31/99                                                       00630024
+00:00:00,24:00:00                                                       00640024
+06,244,$$$$ D A                                                         00650031
+06 245 $$$$ D A                                                         00660031
+03,244,$$$$ D A                                                         00661037
+03 245 $$$$ D A                                                         00662037
+/*                                                                      00670024

@@ -1,0 +1,29 @@
+//ASRECTYP JOB (330RWM00,),'D J YOUNG',MSGCLASS=O,REGION=4096K,                 
+//       USER=DAVID                                                             
+//*                                                                             
+//ASMCL PROC                                                                    
+//ASS2  EXEC PGM=IEV90,PARM='OBJECT,NODECK',REGION=4096K                        
+//SYSLIB   DD  DISP=SHR,UNIT=SYSDA,VOL=SER=DB2IMS,                              
+//         DSN=DSNDJY.DSNMACS                                                   
+//         DD  DISP=SHR,                                                        
+//         DSN=SYS1.MACLIB                                                      
+//SYSLIN   DD  DSN=&&LOADSET,DISP=(MOD,PASS),                                   
+//             UNIT=SYSDA,                                                      
+//             SPACE=(TRK,(3,3))                                                
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSUT1   DD  UNIT=SYSDA,SPACE=(800,(50,50),,,ROUND)                           
+//SYSUT2   DD  UNIT=SYSDA,SPACE=(800,(50,50),,,ROUND)                           
+//SYSUT3   DD  UNIT=SYSDA,SPACE=(800,(50,50),,,ROUND)                           
+//LKED     EXEC  PGM=IEWL,PARM='LIST,XREF,NCAL,MAP',COND=(5,LT,ASS2),           
+//             REGION=1024K                                                     
+//SYSLIN   DD  DSNAME=&&LOADSET,DISP=(OLD,DELETE)                               
+//         DD  DDNAME=SYSIN                                                     
+//SYSLMOD  DD  DSNAME=DAVID.DB2SMF.SRCLIB(&LODMOD),DISP=SHR,                    
+//         UNIT=SYSDA,VOL=SER=DB2IMS                                            
+//SYSUT1   DD  UNIT=SYSDA,SPACE=(CYL,(1,1))                                     
+//SYSPRINT DD  SYSOUT=*                                                         
+// PEND                                                                         
+//SURF2SQL EXEC PROC=ASMCL,LODMOD=RECTYPE                                       
+//ASS2.SYSIN DD DSN=DAVID.SETQUERY.WORKLOAD(RECTYPE),DISP=SHR,                  
+//     UNIT=SYSDA,VOL=SER=DB2850                                                

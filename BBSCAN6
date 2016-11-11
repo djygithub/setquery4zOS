@@ -1,0 +1,25 @@
+//BSCAN6   JOB (AMW,000),'DEFINE UCAT',MSGCLASS=O,CLASS=A,                      
+//             TIME=(1440),USER=DAVID                                           
+//*        GETDBID TEST                            */                           
+//*                                                                 */          
+//* *************************************************************** */          
+//JOBLIB  DD  DISP=SHR,                                                         
+//            DSN=SYS1.DSN310.SDSNLOAD                                          
+//        DD  DSN=DSN310.RUNLIB.LOAD,DISP=SHR                                   
+//R1K     EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DB3)                                                               
+  RUN PROGRAM(BTBLSCN6) PLAN(BTBLSCN6) -                                        
+       LIB('DSN310.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001000100000                                                              

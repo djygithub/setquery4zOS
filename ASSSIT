@@ -1,0 +1,217 @@
+//ASSSIT   JOB (D3330RWM,ROOM),'D J YOUNG',MSGCLASS=O                           
+//DFHAUPLE PROC ASMBLR=IEV90,                                                   
+//       LNKED=IEWL,                                                            
+//       RENTATT=NORENT,                                                        
+//       INDEX='CICS321',                                                       
+//       INDEX2='SYS1',                                                         
+//       OUTC='*',                                                              
+//       REG=4M,                                                                
+//       NAME=SDFHLOAD,                                                         
+//       WORK=3390,                                                             
+//       SMPPGM=GIMSMP,                                                         
+//       GZONE='CICS321.GZONE.CSI',                                             
+//       ZNAME=&TNAME                                                           
+//*                                                                             
+//*      THIS PROCEDURE IS USED                                                 
+//*      TO GENERATE CICS/ESA TABLES.                                           
+//*                                                                             
+//*      THE FOLLOWING JCL SHOULD BE USED                                       
+//*      TO EXECUTE THIS PROCEDURE                                              
+//*                                                                             
+//*      //TABLEASM EXEC DFHAUPLE                                               
+//*      //ASSEM.SYSUT1 DD *                                                    
+//*         .                                                                   
+//*         . TABLE GENERATION MACROS                                           
+//*         .                                                                   
+//*      /*                                                                     
+//*                                                                             
+//ASSEM  EXEC PGM=IEBGENER                                                      
+//SYSPRINT DD  SYSOUT=&OUTC                                                     
+//SYSIN    DD  DUMMY                                                            
+//SYSUT2   DD  DSN=&&TEMPPDS(MACROS),                                           
+//             UNIT=&WORK,DISP=(,PASS),                                         
+//             DCB=(RECFM=FB,LRECL=80,BLKSIZE=400),                             
+//             SPACE=(400,(200,100,5))                                          
+//ASM    EXEC PGM=&ASMBLR,                                                      
+//        PARM='SYSPARM(INITIAL),DECK,NOOBJECT,ALIGN',                          
+//        REGION=&REG,                                                          
+//        COND=(3,LT,ASSEM)                                                     
+//SYSLIB   DD  DSN=&INDEX..SDFHMAC,DISP=SHR                                     
+//         DD  DSN=&INDEX..SDFHSAMP,DISP=SHR                                    
+//         DD  DSN=SYS1.MACLIB,DISP=SHR                                         
+//*                                                                             
+//*  IF THIS PROCEDURE IS USED TO GENERATE PROGRAM                              
+//*  SPECIFICATION BLOCKS (PDIR) AND DATA MANAGEMENT                            
+//*  BLOCKS (DDIR) AS PART OF INSTALLING DL/1 SUPPORT                           
+//*  THE FOLLOWING DD STATEMENTS SHOULD BE UNCOMMENTED:                         
+//*                                                                             
+//*ISYSLIB COMMENT                                                              
+//*                                                                             
+//SYSUT1   DD  UNIT=&WORK,SPACE=(1700,(400,400))                                
+//SYSUT2   DD  UNIT=&WORK,SPACE=(1700,(400,400))                                
+//SYSUT3   DD  UNIT=&WORK,SPACE=(1700,(400,400))                                
+//SYSPUNCH DD  DSN=&&OBJMOD,                                                    
+//             DISP=(,PASS),UNIT=&WORK,                                         
+//             DCB=(RECFM=FB,LRECL=80,BLKSIZE=400),                             
+//             SPACE=(400,(100,100))                                            
+//SYSPRINT DD  SYSOUT=&OUTC                                                     
+//SYSIN    DD  DSN=&&TEMPPDS(MACROS),                                           
+//             VOL=REF=*.ASSEM.SYSUT2,                                          
+//             DISP=(OLD,PASS)                                                  
+//BLDMBR EXEC PGM=IEBUPDTE,PARM=NEW,                                            
+//        COND=((3,LT,ASSEM),(7,LT,ASM))                                        
+//SYSPRINT DD  DUMMY                                                            
+//SYSUT2   DD  DSN=&&TEMPPDS,                                                   
+//             VOL=REF=*.ASSEM.SYSUT2,                                          
+//             DISP=(OLD,PASS)                                                  
+//SYSIN    DD  DSN=&&OBJMOD,DISP=(OLD,DELETE)                                   
+//LNKEDT EXEC PGM=&LNKED,                                                       
+//        PARM='&RENTATT,LIST,XREF,LET,NCAL',                                   
+//        COND=((3,LT,ASSEM),(7,LT,ASM),                                        
+//        (3,LT,BLDMBR))                                                        
+//SYSUT1   DD  UNIT=&WORK,SPACE=(1024,(100,50))                                 
+//SYSPRINT DD  SYSOUT=&OUTC                                                     
+//SYSLMOD  DD  DSN=&INDEX2..&NAME,DISP=SHR                                      
+//SYSPUNCH DD  DSN=&&TEMPPDS,                                                   
+//             VOL=REF=*.ASSEM.SYSUT2,                                          
+//             DISP=(OLD,PASS)                                                  
+//SYSLIN   DD  DSN=&&TEMPPDS(LNKCTL),                                           
+//             VOL=REF=*.ASSEM.SYSUT2,                                          
+//             DISP=(OLD,PASS)                                                  
+//ZNAME  EXEC PGM=&ASMBLR,PARM='DECK,NOOBJECT,SYSPARM(&ZNAME)'                  
+//SYSPRINT DD  SYSOUT=&OUTC                                                     
+//SYSUT1   DD  UNIT=&WORK,SPACE=(1700,(4,4))                                    
+//SYSUT2   DD  UNIT=&WORK,SPACE=(1700,(4,4))                                    
+//SYSUT3   DD  UNIT=&WORK,SPACE=(1700,(4,4))                                    
+//SYSIN    DD  DSN=&INDEX..SDFHMAC(DFHZNSET),DISP=SHR                           
+//SYSPUNCH DD  DSN=&&SETBDY,                                                    
+//             DISP=(,PASS),UNIT=&WORK,                                         
+//             DCB=(RECFM=FB,LRECL=80,BLKSIZE=400),                             
+//             SPACE=(400,(1,1))                                                
+//SMP    EXEC PGM=&SMPPGM,REGION=&REG,                                          
+//        COND=((3,LT,ASSEM),(7,LT,ASM),                                        
+//        (3,LT,BLDMBR),(7,LT,LNKEDT))                                          
+//SMPOUT   DD  SYSOUT=&OUTC                                                     
+//SYSPRINT DD  SYSOUT=&OUTC                                                     
+//SMPCSI   DD  DSN=&GZONE,DISP=SHR                                              
+//SMPCNTL  DD  DSN=&&SETBDY,DISP=(OLD,DELETE)                                   
+//         DD  DSN=&&TEMPPDS(SMPCNTL),                                          
+//             VOL=REF=*.ASSEM.SYSUT2,                                          
+//             DISP=(OLD,PASS)                                                  
+//SMPJCLIN DD  DSN=&&TEMPPDS(SMPJCL1),                                          
+//             VOL=REF=*.ASSEM.SYSUT2,                                          
+//             DISP=(OLD,PASS)                                                  
+//         DD  DSN=&&TEMPPDS(MACROS),                                           
+//             VOL=REF=*.ASSEM.SYSUT2,                                          
+//             DISP=(OLD,PASS)                                                  
+//         DD  DSN=&&TEMPPDS(SMPJCL2),                                          
+//             VOL=REF=*.ASSEM.SYSUT2,                                          
+//             DISP=(OLD,PASS)                                                  
+//         DD  DSN=&&TEMPPDS(LNKCTL),                                           
+//             VOL=REF=*.ASSEM.SYSUT2,                                          
+//             DISP=(OLD,PASS)                                                  
+//         DD  DSN=&&TEMPPDS(SMPEOF),                                           
+//             VOL=REF=*.ASSEM.SYSUT2,                                          
+//             DISP=(OLD,PASS)                                                  
+//DELTEMP EXEC PGM=IEFBR14                                                      
+//TEMP     DD  DSN=&&TEMPPDS,                                                   
+//             VOL=REF=*.ASSEM.SYSUT2,                                          
+//             DISP=(OLD,DELETE)                                                
+//  PEND                                                                        
+//DOIT EXEC PROC=DFHAUPLE,NAME=SDFHAUTH                                         
+//ASSEM.SYSUT1 DD *                                                             
+* $MOD(DFHSIT6$),COMP(STARTER),PROD(CICS/ESA):                          00500000
+*        5685-083                                                     * 00510000
+*        COPYRIGHT = NONE                                             * 00520000
+SIT      TITLE 'DFHSIT6$ - CICS SAMPLE SYSTEM INITIALIZATION TABLE'     01000000
+         DFHSIT TYPE=CSECT,                                            X04000000
+               ADI=30,                  DELAY BEFORE TAKE IS ATTEMPTED X05000000
+               AIEXIT=DFHZATDX,         AUTO-INSTALL USER PROGRAM      X05200000
+               AIQMAX=100,              AUTO-INSTALL MAXIMUM           X05300000
+               AILDELAY=0,              AUTO-INSTALL LOGOFF DELAY      X05400000
+               AIRDELAY=500,            AUTO-INSTALL RESTART DELAY     X05700000
+               AKPFREQ=200,             ACTIVITY KEYPOINTING NEEDED    X06000000
+               AMXT=10,                 MAX ACTIVE TASKS               X07000000
+               APPLID=(DBDCCICS,DBDCCICX), APPL NAME OF CICS SYSTEM    X08000000
+               AUXTR=OFF,               AUXILIARY TRACE OFF            X08500000
+               AUXTRSW=NO,              NO AUTO SWITCH FOR AUX. TRACE  X08700000
+               BMS=(FULL,COLD,UNALIGN,DDS), FULL BASIC MAPPING SUPPORT X10000000
+               CLSDSTP=NOTIFY,          REQUEST VTAM NOTIFY FOR PASS   X10500000
+               CMXT=(4,4,4,4,4,4,4,4,4,4), 4 TASKS PER TRANSAC. CLASS  X11000000
+               CSDACC=READWRITE,        CSD access                     X11200000
+               CSDBKUP=STATIC,          Backuptype of CSD              X11220000
+               CSDFRLOG=1,              Journal id. for CSD forw. recovX11250000
+               CSDJID=1,                Journal id. for CSD auto. journX11300000
+               CSDSTRNO=2,              CSD Number of strings          X11400000
+               CSDLSRNO=1,              VSAM LSR pool number for CSD   X11600000
+               CSDRECOV=ALL,            CSD recoverable file option    X12200000
+               DATFORM=MMDDYY,          EXTERNAL DATE DISPLAY          X13000000
+               DBP=1$,                  DYNAMIC BACKOUT PROGRAM        X14000000
+               DBUFSZ=500,              BUFFER SIZE FOR DYN BACKOUT    X15000000
+               DCT=2$,                  TD AND OTHER DESTINATIONS      X17000000
+               DFLTUSER=CICSUSER,       DEFAULT USER                   X17500000
+               DIP=NO,                  NO BATCH DATA INTERCHANGE      X18000000
+               DLI=NO,                  NO DL/I SUPPORT                X19000000
+               DSASZE=1572864,          SIZE OF DYNAMIC STORAGE AREA   X19700000
+               DUMP=YES,                DUMP SELECTION                 X20500000
+               DUMPDS=AUTO,             AUTO CHOOSE DUMP DATASET       X20900000
+               DUMPSW=NO,               NO AUTO SWICH OF DUMP DATASET  X21300000
+               DURETRY=30,              RE-TRY SDUMPING FOR 30 SECONDS X21500000
+               DTRPGM=DFHDYP,           DYNAMIC ROUTING PROGRAM        X21700000
+               EDSASZE=4194304,         SIZE OF EXT DYNAMIC STORAGE    X22400000
+               ESCS=16834,              EDSA STORAGE CUSHION           X23200000
+               FCT=2$,                  SAMPLE VSAM FILE FILEA         X26000000
+               GRPLIST=DFHLIST,         IBM SUPPLIED GROUP LIST        X27000000
+               GTFTR=OFF,               DISABLE GEN. TRACE FACILITY    X28000000
+               HPO=YES,                 hpo vtam auth path             X28000100
+               ICV=1000,                INTERVAL CONTROL EXIT TIME-MS  X29000000
+               ICVR=20000,              RUNAWAY TASK TIME              X30000000
+               ICVTSD=100,              TERMINAL SCAN DELAY            X32000000
+               ISC=NO,                  NO INTERSYSTEM COMMUNICATION   X35000000
+               ISRDELAY=30,             TIMEOUT VALUE FOR SNT TABLE    X35500000
+               JCT=2$,                  DUAL EXTENT JOURNALLING        X36000000
+               JESDI=30,                CEC FAILURE TIME DELAY         X37000000
+               LPA=NO,                  NO CICS MANAGM MODULES FROM LPAX39000000
+               MCT=NO,                  NO MONITORING                  X40000000
+               MN=OFF,                  NO MONITORING                  X40500000
+               MNPER=OFF,               NO MONITORING                  X40600000
+               MNEXC=OFF,               NO MONITORING                  X40700000
+               MNEVE=OFF,               NO MONITORING                  X40800000
+               MSGCASE=MIXED,           MIXED CASE MESSAGES            X40900000
+               MSGLVL=1,                PRINT START-UP MSGS            X41000000
+               MXT=32,                  MAX NO. OF ALL CONCURRENT TASKSX42000000
+               NATLANG=E,               NATIONAL LANGUAGE ENGLISH      X43000000
+               PARMERR=INTERACT,        ACTION ON PARAMETER ERRORS     X45000000
+               PDI=30,                  DELAY BETWEEN HEARTBEAT & MSG  X47000000
+               PGCHAIN=X/,              BMS COMMAND - PAGE CHAINING    X49000000
+               PGCOPY=C/,                           - PAGE COPY        X50000000
+               PGPURGE=T/,                          - PAGE PURGE       X51000000
+               PGRET=P/,                            - PAGE RETRIEVAL   X52000000
+               PRGDLAY=0,               NO TERMINAL PAGE CLEAN UP      X58000000
+               PRINT=PA1,               REQUEST KEY FOR 3270 PRINTOUT  X59000000
+               PRTYAGE=1,               MULTIPLIER FOR TASK PRIORITY   X60000000
+               PVDELAY=30,              TIMEOUT VALUE FOR LUIT TABLE   X60200000
+               RAPOOL=20,                                              x        
+               RMTRAN=CSGM,             XRF CAPABLE TERMINAL TRANSACTN X60500000
+               SCS=16384,               STORAGE CUSHION-MIN OF 4 PAGES X61000000
+               SEC=YES,                 RACF SUPPORT                   X62000000
+               SRT=1$,                  SYSTEM RECOVERY TABLE          X63000000
+               START=COLD,              COLD START                     X64000000
+               STARTER=YES,             ALLOWS $ IN SUFFIX             X65000000
+               STGRCVY=YES,             STORAGE RECOVERY FUNCTION      X65300000
+               SUBTSKS=0,               EXTRA TCB'S REQUIRED           X65600000
+               SUFFIX=6$,               STARTER SUFFIX                 X66000000
+               TAKEOVR=MANUAL,          CONFIRMATION OF TAKEOVER REQUD X69000000
+               TCP=YES,                 TERMINAL CONTROL PROGRAM       X72000000
+               TCT=NO,                  VTAM TERMINALS ONLY            X74000000
+               TD=(3,3),                TRANSIENT DATA, 3 BUFS, 3 STRGSX76000000
+               INTTR=OFF,               INTERNAL TRACE ON              X82000000
+               TRTABSZ=64,              TRACE TABLE SIZE (KILOBYTES)   X85000000
+               TS=(,3,3),               FULL TS (3 BUFFERS, 3 STRINGS) X88000000
+               TSMGSET=4,               4 MESSAGE SET ENTRIES          X88500000
+               TST=NO,                  NO TEMP STORAGE TABLE INCLUDED X89000000
+               VTAM=YES,                INITIALIZE FOR VTAM            X89500000
+               WRKAREA=512,             COMMON WORK AREA OF THE CSA    X90000000
+               XLT=NO,                  NO TRANS LIST TABLE            X92000000
+               XRF=YES                  EXTENDED RECOVERY REQUIRED      94000000
+         END   DFHSITBA                                                 98000000

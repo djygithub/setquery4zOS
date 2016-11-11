@@ -1,0 +1,435 @@
+****************************==>SYSTEM STATISTICS <==****************************
+***************==>G.M.T. == 151102.6846 JULIAN DATE == 1991317<==***************
+PROC            MSTR TCB          1.5095 SRB           .2765 ASID           0030
+PROC            DBM1 TCB          1.2825 SRB           .2802 ASID           0031
+PROC            IRLM TCB           .0611 SRB           .0443 ASID           0032
+IDENTIFY          75 SIGNON            0 CREA THRD         2 TERM THRD         2
+UOR RESLV          0 COMM PH1          0 COMM PH2          0 ABENDS            0
+COMM SNGL          1 UOR IND           0 SSAM EOT          0 SSAM EOM          0
+TOTAL SSI         76 QD THREADS        0                                        
+DIS DB             0 DIS THRD          1 DIS UTIL          0 REC BSDS          0
+REC INDOUBT        0 STA DB            0 STA TRACE         0 STA SUBSYS        1
+STOP DB            0 STOP TRACE        0 STOP SS           0 TERM UTIL         0
+DIS TRACE          0 RESERVED          0 UNRECOGNIZ        0 STA RLIMIT        0
+STOP RLIM          0 DIS RLIM          0 MOD TRACE         0                    
+CHECKPOINT COUNT        1HIGH USED LOG RBA (HEX) 0000000001D3BADC               
+WRITE WAIT         0 WRT NOWAIT      184 WRT FORCE         3 WAIT ACBUF        0
+READ BUFFER        0 READ ACTIV      173 READ ARCH         0 READ DELAY        0
+BSDS ACCESS       18 ARCH CISSS        5 WRITE ACT         6 ARC RALLOC        0
+ARC WALLOC         0 CI COUNT          0                                        
+********************************************************************************
+***************************==>DATA BASE STATISTICS<==***************************
+***************==>G.M.T. == 151103.4227 JULIAN DATE == 1991317<==***************
+SELECTS            0 INSERTS           0 UPDATES           0 DELETES           0
+DESCRIBES          0 PREPARES          0 OPENS             0 CLOSES            0
+CR TABLE           0 CR INDEX          0 CR TSPACE         0 CR SYN            0
+CR DBASE           0 CR STOGRP         0 CR VIEW           0 DR INDEX          0
+DR TABLE           0 DR TSPACE         0 DR DBASE          0 DR SYN            0
+DR STGRP           0 DR VIEW           0 ALT STGRP         0 FETCHES           0
+ALT TSPACE         0 ALT TABLE         0 ALT INDEX         0 COMMENT ON        0
+LOCK TBL           0 GRANT             0 REVOKES           0 INC BINDS         0
+LABEL ON           0 SET SQLID         0                                        
+ATT ALLOC          2 SUCC ALLOC        2 AUTO BINDS        1 SUCC AUBND        1
+INVALID RES        0 BIND ADDSB        0 BIND RESUB        1 TEST BINDS        0
+PLANS BOUND        1 REBIND SUB        0 ATT REBIND        0 PLNS REBND        0
+FREE SUB           0 ATT FREES         0 PLNS FREED        0 AUTH CHEKS        3
+SUCC AUTHS         3 CURR OPNDS       20 MAX OPNDS        20                    
+BUFFPOOL ID        0 GET PAGES       180 SYNC READS       48 BPOOL EXPS        0
+EXP FAIL MX        0 EXPFAIL GM        0 BUFF UPDS        59 SETW UW           0
+PAGES WRITN        0 PW UW             0 ASYNC WRIT        0 CURR ACBUF       14
+PAGEIN RIO         0 PAGEIN WIO        0 SUCC OPENS       20 SYNC WRITE        0
+SEQ PRE REQ        0 SP PAGREAD        0 PDIS NOBUF        0 PDIS NOENG        0
+DEF WRITE          0 DM CRITICL        0 MIG DS            0 RCL TIMOUT        0
+PF ASY-READ        0 PF ABRT ZZ        0 WKFIL FAIL        0 PF DIS DUP        0
+DEADLOCKS          0 SUS LKCON         0 TIMEOUTS          0 LK ESC SHR        0
+LK ESC EXC         0 MAX PGLKS         0 FLAG BYTE         0 RLIM ID           0
+LIMIT DET          0 LIM SU            0 LIM CPU16         0 HIGH CPU16        0
+LATCH CON          0 OTHER CON         1 LK RQ           130 UL RQ            28
+QUERIES            0 CHANGES          17 OTHER             2                    
+FULL FAILS         0 PAGES           465 CT REQ            1 LOAD CT           1
+CT PAGES           1 FREE PAGES      455 DBD PAGES         8 SKCT PAGES        1
+DBD REQUEST        7 LOAD DBD          3                                        
+********************************************************************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        3              DAVID             000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>CICS     N        0                                000D
+<==*********
+*******************************BLANK CORRID      *******************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>TSO      T  *     5 DAVID        DAVID    DB2MON   001D
+<==*********
+***************==>G.M.T. == 151104.0307 JULIAN DATE == 1991317<==***************
+ELAPSED        .3035 TCB           .1031 SRB           .0032                    
+I/O WAIT       .0000 LOCK WAIT     .0000 ENTRY/EXIT        8 WAIT TRACE        0
+BPOOL ID           0 GET PAGES         7 BP EXPANTS        0 SETW SYS          0
+SETW UW            0 SYNC READS        2 SEQ PREF          0 SYNC WRITE        0
+DEADLOCKS          0 SUS LKCON         0 TIMEOUTS          0 LK ESC SHR        0
+LK ESC EXC         0 MAX PGLKS         0 FLAG BYTE  00       RLIM ID            
+LIMIT DET          0 LIM SU            0 LIM CPU16         0 HIGH CPU16        0
+LATCH CON          0 OTHER CON         0 LOCK REQ          0 UNLOCK REQ        0
+QUERIES            0 CHANGES           0 OTHER             0                    
+CONN TYPE   BATCH    REQ COUNT         6 ASID             29 APPL OR DB2?      D
+CONN STATUS       80 LAST IFCID      121 PRIORIFCID      122                    
+LOCK HASH   00000000 LOCK NAME  000000000000000000000000                        
+********************************************************************************

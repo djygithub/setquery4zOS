@@ -1,0 +1,4 @@
+  DSN SYSTEM(DB3)                                                               
+  RUN PROGRAM(BTBLSCN6) PLAN(BTBLSCN6) -                                        
+       LIB('DSN310.RUNLIB.LOAD')                                                
+  END                                                                           

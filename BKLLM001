@@ -1,0 +1,11 @@
+//BKOPSYS  JOB (D3330RWM,ROOM),'D J YOUNG',MSGCLASS=X                           
+//BKLLM001 EXEC PGM=ADRDSSU,REGION=4096K                                        
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=LLM001                                    
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=EE8,DSN=DSS.BACKUP.VLLM001,                 
+// LABEL=(1,SL)                                                                 
+//SYSPRINT DD SYSOUT=*                                                          
+ DUMP INDDNAME(DASD1),OUTDDNAME(TAPE1) FULL ALLEXCP                             

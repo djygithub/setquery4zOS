@@ -1,0 +1,12 @@
+//DSNTIJTM JOB 'CHAO     ',CHAO,MSGCLASS=X,NOTIFY=CHAO,MSGLEVEL=(1,1),  00001002
+//     USER=$CHAO,REGION=8M                                             00001102
+//DSNTIAB EXEC PGM=IKJEFT01,DYNAMNBR=20                                 00560000
+//SYSTSPRT DD  SYSOUT=*                                                 00570000
+//SYSPRINT DD  SYSOUT=*                                                 00580000
+//SYSUDUMP DD  SYSOUT=*                                                 00590000
+//SYSTSIN  DD  *                                                        00600000
+  DSN SYSTEM(DB3)                                                       00610000
+  -ALTER BUFFERPOOL (BP0) VPSIZE(2000) HPSIZE(0) CASTOUT(Y)             00620000
+  -ALTER BUFFERPOOL (BP32K) VPSIZE(24) HPSIZE(0) CASTOUT(Y)             00630000
+//SYSIN    DD  *                                                        00640000
+//*                                                                     00650000

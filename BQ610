@@ -1,0 +1,50 @@
+       IDENTIFICATION DIVISION.                                                 
+       PROGRAM-ID.  CIBQ610.                                                    
+       ENVIRONMENT DIVISION.                                                    
+       INPUT-OUTPUT SECTION.                                                    
+       FILE-CONTROL.                                                            
+           SELECT INPUT-FILE ASSIGN TO UT-S-INPUT.                              
+       DATA DIVISION.                                                           
+       FILE SECTION.                                                            
+       FD  INPUT-FILE                                                           
+           BLOCK CONTAINS 0 RECORDS                                             
+           LABEL RECORDS ARE STANDARD                                           
+           DATA RECORD IS INPUT-RECORD.                                         
+       01  INPUT-RECORD.                                                        
+           03  LOW-IN             PIC S9(9) .                                   
+           03  HIGH-IN            PIC S9(9).                                    
+           03  FILLER             PIC X(62).                                    
+       WORKING-STORAGE SECTION.                                                 
+           EXEC SQL INCLUDE SQLCA END-EXEC.                                     
+       77  RET1                   PIC S9(9) COMP.                               
+       77  RET2                   PIC S9(9) COMP.                               
+       77  RET3                   PIC S9(9) COMP.                               
+       77  SQLVALUE               PIC S9(9) COMP.                               
+       77  LOWNUM                 PIC S9(9) COMP.                               
+       77  HIGHNUM                PIC S9(9) COMP.                               
+       77  EOF-FLAG               PIC X(3) VALUE 'NO'.                          
+       PROCEDURE DIVISION.                                                      
+           OPEN INPUT INPUT-FILE.                                               
+           READ INPUT-FILE AT END MOVE 'YES' TO EOF-FLAG.                       
+           PERFORM SQL-CALL.                                                    
+           CLOSE INPUT-FILE.                                                    
+      *                                                                         
+      *                                                                         
+           GOBACK.                                                              
+       SQL-CALL.                                                                
+           MOVE LOW-IN  TO LOWNUM.                                              
+           MOVE HIGH-IN TO HIGHNUM.                                             
+           EXEC SQL DECLARE TESTCURS CURSOR FOR                                 
+                SELECT COUNT(*) FROM DAVID.SQ100 T1, DAVID.SQ100 T2             
+                WHERE T1.KSEQ BETWEEN :LOWNUM AND :HIGHNUM                      
+                AND T1.K100  = 49                                               
+                AND T1.K250K = T2.K500K                                         
+                AND T2.K25   = 19                                               
+                END-EXEC.                                                       
+           EXEC SQL OPEN TESTCURS END-EXEC.                                     
+           EXEC SQL                                                             
+                FETCH TESTCURS INTO :SQLVALUE                                   
+                END-EXEC.                                                       
+           EXEC SQL                                                             
+                CLOSE TESTCURS                                                  
+                END-EXEC.                                                       

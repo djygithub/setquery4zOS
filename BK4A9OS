@@ -1,0 +1,16 @@
+//BK4A9OS1 JOB (D3330RWM,ROOM),'D J YOUNG',MSGCLASS=X                           
+//BKMV51RS EXEC PGM=ADRDSSU,REGION=4096K                                        
+//BKMV51CA EXEC PGM=ADRDSSU,REGION=4096K                                        
+//BKMV51DL EXEC PGM=ADRDSSU,REGION=4096K                                        
+//BKCICS41 EXEC PGM=ADRDSSU,REGION=4096K                                        
+//BKRESTQA EXEC PGM=ADRDSSU,REGION=4096K                                        
+//BKCICS32 EXEC PGM=ADRDSSU,REGION=4096K                                        
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=MV51CA                                    
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=EEA,DSN=DSS.BACKUP.VMV51CA,                 
+// LABEL=(1,SL)                                                                 
+//SYSPRINT DD SYSOUT=*                                                          
+ DUMP INDDNAME(DASD1),OUTDDNAME(TAPE1) FULL ALLEXCP                             

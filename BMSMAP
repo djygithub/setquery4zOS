@@ -1,0 +1,51 @@
+//BMSMAP   JOB   0,YOUNG,MSGLEVEL=(1,1),                                00001000
+//         MSGCLASS=O                                                   00002000
+//**********************************************************************00003000
+//*  NAME = DSNTEJ5C                                                   *00004000
+//*                                                                    *00005000
+//*  DESCRIPTIVE NAME = DB2 SAMPLE APPLICATION                         *00006000
+//*                     PHASE 5                                        *00007000
+//*                     COBOL, CICS                                    *00008000
+//*                                                                    *00009000
+//*    COPYRIGHT = 5665-DB2 (C) COPYRIGHT IBM CORP 1982, 1989          *00010000
+//*    REFER TO COPYRIGHT INSTRUCTIONS FORM NUMBER G120-2083           *00020000
+//*                                                                    *00021000
+//*    STATUS = VERSION 2 RELEASE 2, LEVEL 0                           *00022000
+//*                                                                    *00023000
+//*  FUNCTION = THIS JCL PERFORMS THE PHASE 5 SETUP FOR THE SAMPLE     *00024000
+//*             APPLICATIONS AT SITES WITH COBOL.  IT PREPARES THE     *00025000
+//*             COBOL CICS PROGRAM.                                    *00026000
+//*                                                                    *00027000
+//*             RUN THIS JOB ANYTIME AFTER PHASE 2.                    *00028000
+//**********************************************************************00029000
+//*                                                                     00030000
+//JOBLIB  DD  DISP=SHR,                                                 00040000
+//            DSN=SYS1.DSN230.DSNLOAD                                   00050002
+//        DD  DISP=SHR,                                                 00060000
+//            DSN=CICS321.SDFHLOAD                                      00070000
+//*       STEP  1: CREATE CICS LOGICAL MAP                              00080000
+//MAPG    EXEC DFHASMVS,PARM='DECK,NOOBJECT,SYSPARM(DSECT)',            00090000
+//             OUTC='*',MOD=TEMP                                        00100000
+//SYSIN    DD  DISP=SHR,                                                00110000
+//             DSN=DAVID.SETQUERY.WORKLOAD(DJYSQLA)                     00120000
+//SYSPUNCH DD  DISP=OLD,                                                00130000
+//             DSN=DSN230.SRCLIB.DATA(DJYMSQLA)                         00140001
+//*                                                                     00650000
+//*        STEP  5: CREATE THE CICS BMS PHYSICAL MAP                    00660000
+//MAPGP    EXEC DFHASMVS,COND=(4,LT),OUTC='*',MOD=TEMP                  00670000
+//SYSPUNCH DD DSN=&&TEMP,UNIT=3390,DISP=(,PASS),                        00680000
+//         DCB=(RECFM=F,BLKSIZE=80),SPACE=(1024,(100,10))               00690000
+//SYSIN    DD DISP=SHR,                                                 00700000
+//            DSN=DAVID.SETQUERY.WORKLOAD(DJYSQLA)                      00710000
+//*                                                                     00720000
+//*        STEP  6: LINKEDIT THE CICS BMS PHYSICAL MAP                  00730000
+//MAPGL    EXEC PGM=IEWL,PARM='LIST,LET,XREF',COND=(4,LT)               00740000
+//SYSUT1   DD UNIT=3390,SPACE=(1024,(100,10))                           00750000
+//SYSLMOD  DD DISP=SHR,                                                 00760000
+//            DSN=DSN230.RUNLIB.LOAD                                    00770001
+//SYSPRINT DD SYSOUT=*                                                  00780000
+//SYSUDUMP DD SYSOUT=*                                                  00790000
+//SYSLIN   DD DSN=&&TEMP,DISP=(OLD,DELETE)                              00800000
+//         DD *                                                         00810000
+ NAME DJYSQLA(R)                                                        00820000
+//*                                                                     00830000

@@ -1,0 +1,21 @@
+//BKDB2I07 JOB (D3330RWM,ROOM),'D J YOUNG',MSGCLASS=X,CLASS=Q                   
+//BKDB2I07 EXEC PGM=ADRDSSU,REGION=4096K                                        
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=DB2I07                                    
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=EFA,DSN=DSS.BACKUP.VDB2I07                  
+//SYSPRINT DD SYSOUT=*                                                          
+ DUMP INDDNAME(DASD1),OUTDDNAME(TAPE1) FULL COMPRESS                            
+//*                                                                             
+//BKDB2I08 EXEC PGM=ADRDSSU,REGION=4096K                                        
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=DB2I08                                    
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=EF8,DSN=DSS.BACKUP.VDB2I08                  
+//SYSPRINT DD SYSOUT=*                                                          
+ DUMP INDDNAME(DASD1),OUTDDNAME(TAPE1) FULL COMPRESS                            
+//*                                                                             

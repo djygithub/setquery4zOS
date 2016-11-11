@@ -1,0 +1,100 @@
+//Q5031K   JOB (AMW,000),'DEFINE UCAT',MSGCLASS=O,CLASS=Q,                      
+//             TIME=(1440),USER=DAVID                                           
+//*        GETDBID TEST                            */                           
+//*                                                                 */          
+//* *************************************************************** */          
+//JOBLIB  DD  DISP=SHR,                                                         
+//            DSN=SYS1.DSN230.DSNLOAD                                           
+//        DD  DSN=DSN230.RUNLIB.LOAD,DISP=SHR                                   
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(CIBQ503) PLAN(CIBQ503) -                                          
+       LIB('DSN230.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001000001000                                                              
+//Q50310K  JOB (AMW,000),'DEFINE UCAT',MSGCLASS=O,CLASS=Q,                      
+//             TIME=(1440),USER=DAVID                                           
+//*        GETDBID TEST                            */                           
+//*                                                                 */          
+//* *************************************************************** */          
+//JOBLIB  DD  DISP=SHR,                                                         
+//            DSN=SYS1.DSN230.DSNLOAD                                           
+//        DD  DSN=DSN230.RUNLIB.LOAD,DISP=SHR                                   
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(CIBQ503) PLAN(CIBQ503) -                                          
+       LIB('DSN230.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001000010000                                                              
+//Q503100K JOB (AMW,000),'DEFINE UCAT',MSGCLASS=O,CLASS=Q,                      
+//             TIME=(1440),USER=DAVID                                           
+//*        GETDBID TEST                            */                           
+//*                                                                 */          
+//* *************************************************************** */          
+//JOBLIB  DD  DISP=SHR,                                                         
+//            DSN=SYS1.DSN230.DSNLOAD                                           
+//        DD  DSN=DSN230.RUNLIB.LOAD,DISP=SHR                                   
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(CIBQ503) PLAN(CIBQ503) -                                          
+       LIB('DSN230.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001000100000                                                              
+//Q5031M   JOB (AMW,000),'DEFINE UCAT',MSGCLASS=O,CLASS=Q,                      
+//             TIME=(1440),USER=DAVID                                           
+//*        GETDBID TEST                            */                           
+//*                                                                 */          
+//* *************************************************************** */          
+//JOBLIB  DD  DISP=SHR,                                                         
+//            DSN=SYS1.DSN230.DSNLOAD                                           
+//        DD  DSN=DSN230.RUNLIB.LOAD,DISP=SHR                                   
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(CIBQ503) PLAN(CIBQ503) -                                          
+       LIB('DSN230.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001001000000                                                              

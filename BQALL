@@ -1,0 +1,200 @@
+       IDENTIFICATION DIVISION.                                                 
+       PROGRAM-ID.  BQALL.                                                      
+       ENVIRONMENT DIVISION.                                                    
+       INPUT-OUTPUT SECTION.                                                    
+       FILE-CONTROL.                                                            
+           SELECT INPUT-FILE ASSIGN TO UT-S-INPUT.                              
+       DATA DIVISION.                                                           
+       FILE SECTION.                                                            
+       FD  INPUT-FILE                                                           
+           BLOCK CONTAINS 0 RECORDS                                             
+           LABEL RECORDS ARE STANDARD                                           
+           DATA RECORD IS INPUT-RECORD.                                         
+       01  INPUT-RECORD.                                                        
+           03  LOW-IN             PIC S9(9) .                                   
+           03  HIGH-IN            PIC S9(9).                                    
+           03  FILLER             PIC X(62).                                    
+       WORKING-STORAGE SECTION.                                                 
+           EXEC SQL INCLUDE SQLCA END-EXEC.                                     
+       77  SQLVALUE               PIC S9(9) COMP.                               
+       77  LOWNUM                 PIC S9(9) COMP.                               
+       77  HIGHNUM                PIC S9(9) COMP.                               
+       77  EOF-FLAG               PIC X(3) VALUE 'NO'.                          
+       PROCEDURE DIVISION.                                                      
+           OPEN INPUT INPUT-FILE.                                               
+           READ INPUT-FILE AT END MOVE 'YES' TO EOF-FLAG.                       
+           PERFORM SQL-CALL.                                                    
+           CLOSE INPUT-FILE.                                                    
+      *                                                                         
+      *                                                                         
+           GOBACK.                                                              
+       SQL-CALL.                                                                
+      *Q101.                                                                    
+           MOVE LOW-IN  TO LOWNUM.                                              
+           MOVE HIGH-IN TO HIGHNUM.                                             
+           EXEC SQL DECLARE TESTCURS CURSOR FOR                                 
+                SELECT COUNT(*) FROM DAVID.SQ100                                
+                WHERE KSEQ BETWEEN :LOWNUM AND :HIGHNUM                         
+                AND K250K = 2                                                   
+                END-EXEC.                                                       
+           EXEC SQL OPEN TESTCURS END-EXEC.                                     
+           EXEC SQL                                                             
+                FETCH TESTCURS INTO :SQLVALUE                                   
+                END-EXEC.                                                       
+                DISPLAY SQLVALUE.                                               
+           EXEC SQL                                                             
+                CLOSE TESTCURS                                                  
+                END-EXEC.                                                       
+      *Q102.                                                                    
+           EXEC SQL DECLARE TESTCURS CURSOR FOR                                 
+                SELECT COUNT(*) FROM SQSYN                                      
+                WHERE KSEQ BETWEEN :LOWNUM AND :HIGHNUM                         
+                AND K100K = 2                                                   
+                END-EXEC.                                                       
+           EXEC SQL OPEN TESTCURS END-EXEC.                                     
+           EXEC SQL                                                             
+                FETCH TESTCURS INTO :SQLVALUE                                   
+                END-EXEC.                                                       
+           EXEC SQL                                                             
+                CLOSE TESTCURS                                                  
+                END-EXEC.                                                       
+      *Q103                                                                     
+           MOVE LOW-IN  TO LOWNUM.                                              
+           MOVE HIGH-IN TO HIGHNUM.                                             
+           EXEC SQL DECLARE TESTCURS CURSOR FOR                                 
+                SELECT COUNT(*) FROM SQSYN                                      
+                WHERE KSEQ BETWEEN :LOWNUM AND :HIGHNUM                         
+                AND K10K = 2                                                    
+                END-EXEC.                                                       
+           EXEC SQL OPEN TESTCURS END-EXEC.                                     
+           EXEC SQL                                                             
+                FETCH TESTCURS INTO :SQLVALUE                                   
+                END-EXEC.                                                       
+           EXEC SQL                                                             
+                CLOSE TESTCURS                                                  
+                END-EXEC.                                                       
+      *Q104                                                                     
+           MOVE LOW-IN  TO LOWNUM.                                              
+           MOVE HIGH-IN TO HIGHNUM.                                             
+           EXEC SQL DECLARE TESTCURS CURSOR FOR                                 
+                SELECT COUNT(*) FROM SQSYN                                      
+                WHERE KSEQ BETWEEN :LOWNUM AND :HIGHNUM                         
+                AND K1K = 2                                                     
+                END-EXEC.                                                       
+           EXEC SQL OPEN TESTCURS END-EXEC.                                     
+           EXEC SQL                                                             
+                FETCH TESTCURS INTO :SQLVALUE                                   
+                END-EXEC.                                                       
+           EXEC SQL                                                             
+                CLOSE TESTCURS                                                  
+                END-EXEC.                                                       
+      *Q105                                                                     
+           MOVE LOW-IN  TO LOWNUM.                                              
+           MOVE HIGH-IN TO HIGHNUM.                                             
+           EXEC SQL DECLARE TESTCURS CURSOR FOR                                 
+                SELECT COUNT(*) FROM SQSYN                                      
+                WHERE KSEQ BETWEEN :LOWNUM AND :HIGHNUM                         
+                AND K100 = 2                                                    
+                END-EXEC.                                                       
+           EXEC SQL OPEN TESTCURS END-EXEC.                                     
+           EXEC SQL                                                             
+                FETCH TESTCURS INTO :SQLVALUE                                   
+                END-EXEC.                                                       
+           EXEC SQL                                                             
+                CLOSE TESTCURS                                                  
+                END-EXEC.                                                       
+      *Q106                                                                     
+           MOVE LOW-IN  TO LOWNUM.                                              
+           MOVE HIGH-IN TO HIGHNUM.                                             
+           EXEC SQL DECLARE TESTCURS CURSOR FOR                                 
+                SELECT COUNT(*) FROM SQSYN                                      
+                WHERE KSEQ BETWEEN :LOWNUM AND :HIGHNUM                         
+                AND K25 = 2                                                     
+                END-EXEC.                                                       
+      *    EXEC CICS DUMP TRANSACTION                                           
+      *         DUMPCODE(SQL1)                                                  
+      *         FROM(SQLCA)                                                     
+      *         LENGTH(200)                                                     
+      *         END-EXEC.                                                       
+           EXEC SQL OPEN TESTCURS END-EXEC.                                     
+      *    EXEC CICS DUMP TRANSACTION                                           
+      *         DUMPCODE(SQL2)                                                  
+      *         FROM(SQLCA)                                                     
+      *         LENGTH(200)                                                     
+      *         END-EXEC.                                                       
+           EXEC SQL                                                             
+                FETCH TESTCURS INTO :SQLVALUE                                   
+                END-EXEC.                                                       
+      *    EXEC CICS DUMP TRANSACTION                                           
+      *         DUMPCODE(SQL3)                                                  
+      *         FROM(SQLCA)                                                     
+      *         LENGTH(200)                                                     
+      *         END-EXEC.                                                       
+           EXEC SQL                                                             
+                CLOSE TESTCURS                                                  
+                END-EXEC.                                                       
+      *    EXEC CICS DUMP TRANSACTION                                           
+      *         DUMPCODE(SQL4)                                                  
+      *         FROM(SQLCA)                                                     
+      *         LENGTH(200)                                                     
+      *         END-EXEC.                                                       
+      *Q107                                                                     
+           MOVE LOW-IN  TO LOWNUM.                                              
+           MOVE HIGH-IN TO HIGHNUM.                                             
+           EXEC SQL DECLARE TESTCURS CURSOR FOR                                 
+                SELECT COUNT(*) FROM SQSYN                                      
+                WHERE KSEQ BETWEEN :LOWNUM AND :HIGHNUM                         
+                AND K10 = 2                                                     
+                END-EXEC.                                                       
+           EXEC SQL OPEN TESTCURS END-EXEC.                                     
+           EXEC SQL                                                             
+                FETCH TESTCURS INTO :SQLVALUE                                   
+                END-EXEC.                                                       
+           EXEC SQL                                                             
+                CLOSE TESTCURS                                                  
+                END-EXEC.                                                       
+      *Q108                                                                     
+           MOVE LOW-IN  TO LOWNUM.                                              
+           MOVE HIGH-IN TO HIGHNUM.                                             
+           EXEC SQL DECLARE TESTCURS CURSOR FOR                                 
+                SELECT COUNT(*) FROM SQSYN                                      
+                WHERE KSEQ BETWEEN :LOWNUM AND :HIGHNUM                         
+                AND K5 = 2                                                      
+                END-EXEC.                                                       
+           EXEC SQL OPEN TESTCURS END-EXEC.                                     
+           EXEC SQL                                                             
+                FETCH TESTCURS INTO :SQLVALUE                                   
+                END-EXEC.                                                       
+           EXEC SQL                                                             
+                CLOSE TESTCURS                                                  
+                END-EXEC.                                                       
+      *Q109                                                                     
+           MOVE LOW-IN  TO LOWNUM.                                              
+           MOVE HIGH-IN TO HIGHNUM.                                             
+           EXEC SQL DECLARE TESTCURS CURSOR FOR                                 
+                SELECT COUNT(*) FROM SQSYN                                      
+                WHERE KSEQ BETWEEN :LOWNUM AND :HIGHNUM                         
+                AND K4 = 2                                                      
+                END-EXEC.                                                       
+           EXEC SQL OPEN TESTCURS END-EXEC.                                     
+           EXEC SQL                                                             
+                FETCH TESTCURS INTO :SQLVALUE                                   
+                END-EXEC.                                                       
+           EXEC SQL                                                             
+                CLOSE TESTCURS                                                  
+                END-EXEC.                                                       
+      *Q110                                                                     
+           MOVE LOW-IN  TO LOWNUM.                                              
+           MOVE HIGH-IN TO HIGHNUM.                                             
+           EXEC SQL DECLARE TESTCURS CURSOR FOR                                 
+                SELECT COUNT(*) FROM SQSYN                                      
+                WHERE KSEQ BETWEEN :LOWNUM AND :HIGHNUM                         
+                AND K2 = 2                                                      
+                END-EXEC.                                                       
+           EXEC SQL OPEN TESTCURS END-EXEC.                                     
+           EXEC SQL                                                             
+                FETCH TESTCURS INTO :SQLVALUE                                   
+                END-EXEC.                                                       
+           EXEC SQL                                                             
+                CLOSE TESTCURS                                                  
+                END-EXEC.                                                       

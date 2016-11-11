@@ -1,0 +1,91 @@
+//C370DB2  JOB (330DJY00),'D J YOUNG ',MSGCLASS=R,NOTIFY=DAVID          00001001
+//**********************************************************************00010000
+//*  NAME = DSNTEJ2D                                                   *00020000
+//*                                                                    *00030000
+//*  DESCRIPTIVE NAME = DB2 SAMPLE APPLICATION                         *00040000
+//*                     PHASE 2                                        *00050000
+//*                     C                                              *00060000
+//*                                                                    *00070000
+//*    COPYRIGHT = 5685-DB2 (C) COPYRIGHT IBM CORP 1982,               *00080000
+//*    1993 (UNPUBLISHED)                                              *00083000
+//*    SEE COPYRIGHT INSTRUCTIONS                                      *00086000
+//*    LICENSED MATERIALS - PROPERTY OF IBM                            *00093000
+//*                                                                    *00100000
+//*    STATUS = VERSION 3                                              *00110000
+//*                                                                    *00120000
+//*  FUNCTION = THIS JCL PERFORMS THE PHASE 2 C LANGUAGE SETUP FOR     *00130000
+//*             THE SAMPLE APPLICATIONS.  IT PREPARES AND EXECUTES     *00140000
+//*             C BATCH PROGRAMS.                                      *00150000
+//*                                                                    *00160000
+//*             THIS JOB IS RUN AFTER PHASE 1.                         *00170000
+//*                                                                    *00172000
+//* CHANGE ACTIVITY =                                                  *00174000
+//**********************************************************************00180000
+//*                                                                     00190000
+//JOBLIB  DD  DSN=EDC.V1R2M0.SEDCLINK,DISP=SHR                          00200001
+//        DD  DSN=DJY.V2R3M0.SIBMLINK,DISP=SHR                          00210001
+//        DD  DSN=SYS1.DSN310.SDSNLOAD,DISP=SHR                         00220001
+//*                                                                     00240000
+//*        STEP 1 : PREPARE ERROR MESSAGE ROUTINE                       00250000
+//PH02DS01 EXEC DSNHC,MEM=DSN8MDG,                                      00260000
+//         PARM.PC='HOST(C),SOURCE,XREF,MARGINS(1,72),STDSQL(NO)',      00280000
+//         PARM.C='SOURCE XREF MARGINS(1,72)',                          00290000
+//         PARM.LKED='NCAL,MAP,AMODE=31,RMODE=ANY'                      00300000
+//PC.DBRMLIB   DD DSN=DSN310.DBRMLIB.DATA(DSN8MDG),                     00310000
+//             DISP=SHR                                                 00312000
+//PC.SYSLIB    DD DSN=DSN310.SRCLIB.DATA,                               00314000
+//             DISP=SHR                                                 00316000
+//PC.SYSIN     DD DSN=DSN310.SDSNSAMP(DSN8MDG),                         00318000
+//             DISP=SHR                                                 00321000
+//LKED.SYSLMOD DD DSN=DSN310.RUNLIB.LOAD(DSN8MDG),                      00324000
+//             DISP=SHR                                                 00327000
+//*                                                                     00330000
+//*        STEP 2 : PREPARE C PHONE PROGRAM                             00340000
+//PH02DS02 EXEC DSNHC,MEM=DSN8BD3,                                      00350000
+//         COND=(4,LT),                                                 00370000
+//         PARM.PC='HOST(C),SOURCE,XREF,MARGINS(1,72),STDSQL(NO)',      00380000
+//         PARM.C='SOURCE LIST MARGINS(1,72)',                          00390000
+//         PARM.LKED='AMODE=31,RMODE=ANY,MAP'                           00400000
+//PC.DBRMLIB   DD DSN=DSN310.DBRMLIB.DATA(DSN8BD3),                     00410000
+//             DISP=SHR                                                 00413000
+//PC.SYSLIB    DD DSN=DSN310.SRCLIB.DATA,                               00416000
+//             DISP=SHR                                                 00419000
+//PC.SYSIN     DD DSN=DSN310.SDSNSAMP(DSN8BD3),                         00422000
+//             DISP=SHR                                                 00426000
+//LKED.SYSLMOD DD DSN=DSN310.RUNLIB.LOAD(DSN8BD3),                      00430000
+//             DISP=SHR                                                 00434000
+//LKED.RUNLIB  DD DSN=DSN310.RUNLIB.LOAD,                               00438000
+//             DISP=SHR                                                 00442000
+//LKED.SYSIN   DD *                                                     00446000
+     INCLUDE SYSLIB(DSNELI)                                             00450000
+     INCLUDE RUNLIB(DSN8MDG)                                            00460000
+//*                                                                     00470000
+//                                                                      00471000
+//*        STEP 3 : BIND AND RUN PROGRAMS                               00480000
+//PH02DS03 EXEC PGM=IKJEFT01,DYNAMNBR=20,COND=(4,LT)                    00490000
+//DBRMLIB   DD  DISP=SHR,DSN=DSN!!0.DBRMLIB.DATA                        00500000
+//SYSTSPRT  DD  SYSOUT=*                                                00510000
+//SYSPRINT  DD  SYSOUT=*                                                00520000
+//CEEDUMP   DD  SYSOUT=*                                                00530000
+//SYSUDUMP  DD  SYSOUT=*                                                00540000
+//SYSOUT    DD  SYSOUT=*                                                00550000
+//REPORT    DD  SYSOUT=*                                                00560000
+//SYSIN     DD  *                                                       00570000
+ GRANT BIND, EXECUTE ON PLAN DSN8BD!! TO PUBLIC;                        00580000
+//SYSTSIN   DD  *                                                       00590000
+ DSN SYSTEM(DSN)                                                        00600000
+ BIND PLAN(DSN8BD!!) MEMBER(DSN8BD3) ACT(REP) ISOLATION(CS)             00610000
+ RUN  PROGRAM(DSNTIAD) PLAN(DSNTIA!!)  -                                00620000
+      LIB('DSN!!0.RUNLIB.LOAD')                                         00630000
+ RUN  PROGRAM(DSN8BD3) PLAN(DSN8BD!!) -                                 00640000
+      LIB('DSN!!0.RUNLIB.LOAD')                                         00650000
+ END                                                                    00660000
+//CARDIN   DD  *                                                        00670000
+L*                                                                      00680000
+LJO%                                                                    00690000
+L%SON                                                                   00700000
+LSMITH                                                                  00710000
+LBROWN          ALAN                                                    00720000
+LBROWN          DAVID                                                   00730000
+U                           0002304265                                  00740000
+//*                                                                     00750000

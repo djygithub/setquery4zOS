@@ -1,0 +1,21 @@
+//ASSCIMAC JOB (330RWM00,),'D J YOUNG',MSGCLASS=O,REGION=4096K,                 
+//       USER=DAVID                                                             
+//*                                                                             
+//ASMCL PROC                                                                    
+//ASS2  EXEC PGM=IEV90,PARM='OBJECT,NODECK',REGION=4096K                        
+//SYSLIB   DD  DISP=SHR,                                                        
+//         DSN=SYS1.MACLIB                                                      
+//         DD  DISP=SHR,                                                        
+//         DSN=CICS321.SDFHMAC                                                  
+//SYSLIN   DD  DSN=&&LOADSET,DISP=(MOD,PASS),                                   
+//             UNIT=3390,                                                       
+//             SPACE=(TRK,(3,3))                                                
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSUT1   DD  UNIT=3390,SPACE=(800,(50,50),,,ROUND)                            
+//SYSUT2   DD  UNIT=3390,SPACE=(800,(50,50),,,ROUND)                            
+//SYSUT3   DD  UNIT=3390,SPACE=(800,(50,50),,,ROUND)                            
+// PEND                                                                         
+//SURF2SQL EXEC PROC=ASMCL                                                      
+//ASS2.SYSIN DD *                                                               
+        DFHTCA                                                                  

@@ -1,0 +1,41 @@
+//BACK2   JOB (D3330RWM,ROOM),'D J YOUNG',MSGCLASS=O                            
+//MV4RS1  EXEC PGM=ADRDSSU,REGION=4096K                                         
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=MV4RS1                                    
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=EE2,DSN=DSS.BACKUP.VMV4RS1                  
+//SYSPRINT DD SYSOUT=*                                                          
+ DUMP INDDNAME(DASD1),OUTDDNAME(TAPE1) FULL COMPRESS                            
+//*                                                                             
+//MV4DLB  EXEC PGM=ADRDSSU,REGION=4096K                                         
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=MV4DLB                                    
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=EE2,DSN=DSS.BACKUP.VMV4DLB                  
+//SYSPRINT DD SYSOUT=*                                                          
+ DUMP INDDNAME(DASD1),OUTDDNAME(TAPE1) FULL COMPRESS                            
+//*                                                                             
+//MV4CAT  EXEC PGM=ADRDSSU,REGION=4096K                                         
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=MV4CAT                                    
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=EE2,DSN=DSS.BACKUP.VMV4CAT                  
+//SYSPRINT DD SYSOUT=*                                                          
+ DUMP INDDNAME(DASD1),OUTDDNAME(TAPE1) FULL COMPRESS                            
+//*                                                                             
+//CICS32  EXEC PGM=ADRDSSU,REGION=4096K                                         
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=CICS32                                    
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=EE2,DSN=DSS.BACKUP.CICS32                   
+//SYSPRINT DD SYSOUT=*                                                          
+ DUMP INDDNAME(DASD1),OUTDDNAME(TAPE1) FULL COMPRESS                            
+//*                                                                             

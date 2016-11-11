@@ -1,0 +1,158 @@
+//BINDAL23 JOB   0,YOUNG,MSGLEVEL=(1,1),                                00001000
+//         MSGCLASS=O,USER=DAVID,NOTIFY=DAVID                           00002000
+//JOBLIB  DD  DISP=SHR,                                                 00003000
+//            DSN=DSN230.DSNLOAD                                        00004001
+//        DD  DISP=SHR,                                                 00005000
+//            DSN=CICS321.SDFHLOAD                                      00006000
+//BIND     EXEC PGM=IKJEFT01,DYNAMNBR=20,COND=(4,LT)                    00007000
+//DBRMLIB  DD DISP=SHR,                                                 00008000
+//            DSN=DSN230.DBRMLIB.DATA                                   00009001
+//SYSUDUMP DD SYSOUT=*                                                  00010000
+//SYSTSPRT DD SYSOUT=*                                                  00020000
+//SYSPRINT DD SYSOUT=*                                                  00030000
+//SYSTSIN  DD *                                                         00040000
+DSN SYSTEM(DSN)                                                         00050000
+BIND PLAN(CI2Q101) MEMBER(CI2Q101) ACT(REP) ISO(CS) EXPLAIN(YES) -      00060000
+ VALIDATE(BIND)                                                         00070000
+BIND PLAN(CI2Q102) MEMBER(CI2Q102) ACT(REP) ISO(CS) EXPLAIN(YES) -      00080000
+ VALIDATE(BIND)                                                         00090000
+BIND PLAN(CI2Q103) MEMBER(CI2Q103) ACT(REP) ISO(CS) EXPLAIN(YES) -      00100000
+ VALIDATE(BIND)                                                         00110000
+BIND PLAN(CI2Q104) MEMBER(CI2Q104) ACT(REP) ISO(CS) EXPLAIN(YES) -      00120000
+ VALIDATE(BIND)                                                         00130000
+BIND PLAN(CI2Q105) MEMBER(CI2Q105) ACT(REP) ISO(CS) EXPLAIN(YES) -      00140000
+ VALIDATE(BIND)                                                         00150000
+BIND PLAN(CI2Q106) MEMBER(CI2Q106) ACT(REP) ISO(CS) EXPLAIN(YES) -      00160000
+ VALIDATE(BIND)                                                         00170000
+BIND PLAN(CI2Q107) MEMBER(CI2Q107) ACT(REP) ISO(CS) EXPLAIN(YES) -      00180000
+ VALIDATE(BIND)                                                         00190000
+BIND PLAN(CI2Q108) MEMBER(CI2Q108) ACT(REP) ISO(CS) EXPLAIN(YES) -      00200000
+ VALIDATE(BIND)                                                         00210000
+BIND PLAN(CI2Q109) MEMBER(CI2Q109) ACT(REP) ISO(CS) EXPLAIN(YES) -      00220000
+ VALIDATE(BIND)                                                         00230000
+BIND PLAN(CI2Q110) MEMBER(CI2Q110) ACT(REP) ISO(CS) EXPLAIN(YES) -      00240000
+ VALIDATE(BIND)                                                         00250000
+BIND PLAN(CI2Q201) MEMBER(CI2Q201) ACT(REP) ISO(CS) EXPLAIN(YES) -      00260000
+ VALIDATE(BIND)                                                         00270000
+BIND PLAN(CI2Q202) MEMBER(CI2Q202) ACT(REP) ISO(CS) EXPLAIN(YES) -      00280000
+ VALIDATE(BIND)                                                         00290000
+BIND PLAN(CI2Q203) MEMBER(CI2Q203) ACT(REP) ISO(CS) EXPLAIN(YES) -      00300000
+ VALIDATE(BIND)                                                         00310000
+BIND PLAN(CI2Q204) MEMBER(CI2Q204) ACT(REP) ISO(CS) EXPLAIN(YES) -      00320000
+ VALIDATE(BIND)                                                         00330000
+BIND PLAN(CI2Q205) MEMBER(CI2Q205) ACT(REP) ISO(CS) EXPLAIN(YES) -      00331000
+ VALIDATE(BIND)                                                         00332000
+BIND PLAN(CI2Q206) MEMBER(CI2Q206) ACT(REP) ISO(CS) EXPLAIN(YES) -      00333000
+ VALIDATE(BIND)                                                         00334000
+BIND PLAN(CI2Q207) MEMBER(CI2Q207) ACT(REP) ISO(CS) EXPLAIN(YES) -      00334100
+ VALIDATE(BIND)                                                         00334200
+BIND PLAN(CI2Q208) MEMBER(CI2Q208) ACT(REP) ISO(CS) EXPLAIN(YES) -      00334300
+ VALIDATE(BIND)                                                         00334400
+BIND PLAN(CI2Q209) MEMBER(CI2Q209) ACT(REP) ISO(CS) EXPLAIN(YES) -      00334500
+ VALIDATE(BIND)                                                         00334600
+BIND PLAN(CI2Q210) MEMBER(CI2Q210) ACT(REP) ISO(CS) EXPLAIN(YES) -      00334700
+ VALIDATE(BIND)                                                         00334800
+BIND PLAN(CI2Q211) MEMBER(CI2Q211) ACT(REP) ISO(CS) EXPLAIN(YES) -      00334900
+ VALIDATE(BIND)                                                         00335000
+BIND PLAN(CI2Q212) MEMBER(CI2Q212) ACT(REP) ISO(CS) EXPLAIN(YES) -      00336000
+ VALIDATE(BIND)                                                         00337000
+BIND PLAN(CI2Q213) MEMBER(CI2Q213) ACT(REP) ISO(CS) EXPLAIN(YES) -      00338000
+ VALIDATE(BIND)                                                         00339000
+BIND PLAN(CI2Q214) MEMBER(CI2Q214) ACT(REP) ISO(CS) EXPLAIN(YES) -      00340000
+ VALIDATE(BIND)                                                         00350000
+BIND PLAN(CI2Q215) MEMBER(CI2Q215) ACT(REP) ISO(CS) EXPLAIN(YES) -      00350100
+ VALIDATE(BIND)                                                         00350200
+BIND PLAN(CI2Q216) MEMBER(CI2Q216) ACT(REP) ISO(CS) EXPLAIN(YES) -      00350300
+ VALIDATE(BIND)                                                         00350400
+BIND PLAN(CI2Q217) MEMBER(CI2Q217) ACT(REP) ISO(CS) EXPLAIN(YES) -      00350500
+ VALIDATE(BIND)                                                         00350600
+BIND PLAN(CI2Q218) MEMBER(CI2Q218) ACT(REP) ISO(CS) EXPLAIN(YES) -      00350700
+ VALIDATE(BIND)                                                         00350800
+BIND PLAN(CI2Q301) MEMBER(CI2Q301) ACT(REP) ISO(CS) EXPLAIN(YES) -      00350900
+ VALIDATE(BIND)                                                         00351000
+BIND PLAN(CI2Q302) MEMBER(CI2Q302) ACT(REP) ISO(CS) EXPLAIN(YES) -      00352000
+ VALIDATE(BIND)                                                         00353000
+BIND PLAN(CI2Q303) MEMBER(CI2Q303) ACT(REP) ISO(CS) EXPLAIN(YES) -      00354000
+ VALIDATE(BIND)                                                         00355000
+BIND PLAN(CI2Q304) MEMBER(CI2Q304) ACT(REP) ISO(CS) EXPLAIN(YES) -      00356000
+ VALIDATE(BIND)                                                         00357000
+BIND PLAN(CI2Q305) MEMBER(CI2Q305) ACT(REP) ISO(CS) EXPLAIN(YES) -      00358000
+ VALIDATE(BIND)                                                         00359000
+BIND PLAN(CI2Q306) MEMBER(CI2Q306) ACT(REP) ISO(CS) EXPLAIN(YES) -      00360000
+ VALIDATE(BIND)                                                         00361000
+BIND PLAN(CI2Q307) MEMBER(CI2Q307) ACT(REP) ISO(CS) EXPLAIN(YES) -      00362000
+ VALIDATE(BIND)                                                         00363000
+BIND PLAN(CI2Q308) MEMBER(CI2Q308) ACT(REP) ISO(CS) EXPLAIN(YES) -      00364000
+ VALIDATE(BIND)                                                         00365000
+BIND PLAN(CI2Q309) MEMBER(CI2Q309) ACT(REP) ISO(CS) EXPLAIN(YES) -      00366000
+ VALIDATE(BIND)                                                         00367000
+BIND PLAN(CI2Q310) MEMBER(CI2Q310) ACT(REP) ISO(CS) EXPLAIN(YES) -      00368000
+ VALIDATE(BIND)                                                         00369000
+BIND PLAN(CI2Q311) MEMBER(CI2Q311) ACT(REP) ISO(CS) EXPLAIN(YES) -      00370000
+ VALIDATE(BIND)                                                         00380000
+BIND PLAN(CI2Q312) MEMBER(CI2Q312) ACT(REP) ISO(CS) EXPLAIN(YES) -      00380100
+ VALIDATE(BIND)                                                         00380200
+BIND PLAN(CI2Q313) MEMBER(CI2Q313) ACT(REP) ISO(CS) EXPLAIN(YES) -      00380300
+ VALIDATE(BIND)                                                         00380400
+BIND PLAN(CI2Q314) MEMBER(CI2Q314) ACT(REP) ISO(CS) EXPLAIN(YES) -      00380500
+ VALIDATE(BIND)                                                         00380600
+BIND PLAN(CI2Q315) MEMBER(CI2Q315) ACT(REP) ISO(CS) EXPLAIN(YES) -      00380700
+ VALIDATE(BIND)                                                         00380800
+BIND PLAN(CI2Q316) MEMBER(CI2Q316) ACT(REP) ISO(CS) EXPLAIN(YES) -      00380900
+ VALIDATE(BIND)                                                         00381000
+BIND PLAN(CI2Q401) MEMBER(CI2Q401) ACT(REP) ISO(CS) EXPLAIN(YES) -      00382000
+ VALIDATE(BIND)                                                         00383000
+BIND PLAN(CI2Q402) MEMBER(CI2Q402) ACT(REP) ISO(CS) EXPLAIN(YES) -      00384000
+ VALIDATE(BIND)                                                         00385000
+BIND PLAN(CI2Q403) MEMBER(CI2Q403) ACT(REP) ISO(CS) EXPLAIN(YES) -      00386000
+ VALIDATE(BIND)                                                         00387000
+BIND PLAN(CI2Q404) MEMBER(CI2Q404) ACT(REP) ISO(CS) EXPLAIN(YES) -      00388000
+ VALIDATE(BIND)                                                         00389000
+BIND PLAN(CI2Q405) MEMBER(CI2Q405) ACT(REP) ISO(CS) EXPLAIN(YES) -      00390000
+ VALIDATE(BIND)                                                         00391000
+BIND PLAN(CI2Q406) MEMBER(CI2Q406) ACT(REP) ISO(CS) EXPLAIN(YES) -      00392000
+ VALIDATE(BIND)                                                         00393000
+BIND PLAN(CI2Q407) MEMBER(CI2Q407) ACT(REP) ISO(CS) EXPLAIN(YES) -      00394000
+ VALIDATE(BIND)                                                         00395000
+BIND PLAN(CI2Q408) MEMBER(CI2Q408) ACT(REP) ISO(CS) EXPLAIN(YES) -      00395100
+ VALIDATE(BIND)                                                         00395200
+BIND PLAN(CI2Q409) MEMBER(CI2Q409) ACT(REP) ISO(CS) EXPLAIN(YES) -      00395300
+ VALIDATE(BIND)                                                         00395400
+BIND PLAN(CI2Q410) MEMBER(CI2Q410) ACT(REP) ISO(CS) EXPLAIN(YES) -      00395500
+ VALIDATE(BIND)                                                         00395600
+BIND PLAN(CI2Q411) MEMBER(CI2Q411) ACT(REP) ISO(CS) EXPLAIN(YES) -      00395700
+ VALIDATE(BIND)                                                         00395800
+BIND PLAN(CI2Q412) MEMBER(CI2Q412) ACT(REP) ISO(CS) EXPLAIN(YES) -      00395900
+ VALIDATE(BIND)                                                         00396000
+BIND PLAN(CI2Q413) MEMBER(CI2Q413) ACT(REP) ISO(CS) EXPLAIN(YES) -      00397000
+ VALIDATE(BIND)                                                         00398000
+BIND PLAN(CI2Q414) MEMBER(CI2Q414) ACT(REP) ISO(CS) EXPLAIN(YES) -      00399000
+ VALIDATE(BIND)                                                         00400000
+BIND PLAN(CI2Q501) MEMBER(CI2Q501) ACT(REP) ISO(CS) EXPLAIN(YES) -      00410000
+ VALIDATE(BIND)                                                         00411000
+BIND PLAN(CI2Q502) MEMBER(CI2Q502) ACT(REP) ISO(CS) EXPLAIN(YES) -      00412000
+ VALIDATE(BIND)                                                         00413000
+BIND PLAN(CI2Q503) MEMBER(CI2Q503) ACT(REP) ISO(CS) EXPLAIN(YES) -      00414000
+ VALIDATE(BIND)                                                         00415000
+BIND PLAN(CI2Q601) MEMBER(CI2Q601) ACT(REP) ISO(CS) EXPLAIN(YES) -      00416000
+ VALIDATE(BIND)                                                         00417000
+BIND PLAN(CI2Q602) MEMBER(CI2Q602) ACT(REP) ISO(CS) EXPLAIN(YES) -      00418000
+ VALIDATE(BIND)                                                         00419000
+BIND PLAN(CI2Q603) MEMBER(CI2Q603) ACT(REP) ISO(CS) EXPLAIN(YES) -      00420000
+ VALIDATE(BIND)                                                         00430000
+BIND PLAN(CI2Q604) MEMBER(CI2Q604) ACT(REP) ISO(CS) EXPLAIN(YES) -      00431000
+ VALIDATE(BIND)                                                         00432000
+BIND PLAN(CI2Q605) MEMBER(CI2Q605) ACT(REP) ISO(CS) EXPLAIN(YES) -      00433000
+ VALIDATE(BIND)                                                         00433100
+BIND PLAN(CI2Q606) MEMBER(CI2Q606) ACT(REP) ISO(CS) EXPLAIN(YES) -      00433200
+ VALIDATE(BIND)                                                         00433300
+BIND PLAN(CI2Q607) MEMBER(CI2Q607) ACT(REP) ISO(CS) EXPLAIN(YES) -      00433400
+ VALIDATE(BIND)                                                         00433500
+BIND PLAN(CI2Q608) MEMBER(CI2Q608) ACT(REP) ISO(CS) EXPLAIN(YES) -      00433600
+ VALIDATE(BIND)                                                         00433700
+BIND PLAN(CI2Q609) MEMBER(CI2Q609) ACT(REP) ISO(CS) EXPLAIN(YES) -      00433800
+ VALIDATE(BIND)                                                         00433900
+BIND PLAN(CI2Q610) MEMBER(CI2Q610) ACT(REP) ISO(CS) EXPLAIN(YES) -      00434000
+ VALIDATE(BIND)                                                         00434100
+END                                                                     00434200
+//*                                                                     00434300

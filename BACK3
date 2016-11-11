@@ -1,0 +1,56 @@
+//BACK3    JOB (D3330RWM,ROOM),'D J YOUNG',MSGCLASS=O                           
+//DB25CD  EXEC PGM=ADRDSSU,REGION=4096K                                         
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=DB25CD                                    
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=EE1,DSN=DSS.BACKUP.VDB25CD,                 
+// VOLUME=(,,,8)                                                                
+//SYSPRINT DD SYSOUT=*                                                          
+ DUMP INDDNAME(DASD1),OUTDDNAME(TAPE1) FULL COMPRESS                            
+//*                                                                             
+//DB25CE  EXEC PGM=ADRDSSU,REGION=4096K                                         
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=DB25CE                                    
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=EE1,DSN=DSS.BACKUP.VDB25CE,                 
+// VOLUME=(,,,8)                                                                
+//SYSPRINT DD SYSOUT=*                                                          
+ DUMP INDDNAME(DASD1),OUTDDNAME(TAPE1) FULL COMPRESS                            
+//*                                                                             
+//DB25CF  EXEC PGM=ADRDSSU,REGION=4096K                                         
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=DB25CF                                    
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=EE1,DSN=DSS.BACKUP.VDB25CF,                 
+// VOLUME=(,,,8)                                                                
+//SYSPRINT DD SYSOUT=*                                                          
+ DUMP INDDNAME(DASD1),OUTDDNAME(TAPE1) FULL COMPRESS                            
+//*                                                                             
+//DB2S0A  EXEC PGM=ADRDSSU,REGION=4096K                                         
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=DB2S0A                                    
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=EE1,DSN=DSS.BACKUP.VDB2S0A,                 
+// VOLUME=(,,,8)                                                                
+//SYSPRINT DD SYSOUT=*                                                          
+ DUMP INDDNAME(DASD1),OUTDDNAME(TAPE1) FULL COMPRESS                            
+//*                                                                             
+//DB2S0B  EXEC PGM=ADRDSSU,REGION=4096K                                         
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=DB2S0B                                    
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=EE1,DSN=DSS.BACKUP.VDB2S0B,                 
+// VOLUME=(,,,8)                                                                
+//SYSPRINT DD SYSOUT=*                                                          
+ DUMP INDDNAME(DASD1),OUTDDNAME(TAPE1) FULL COMPRESS                            
+//*                                                                             

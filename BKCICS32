@@ -1,0 +1,12 @@
+//BKCICS32 JOB (D3330RWM,ROOM),'D J YOUNG',MSGCLASS=O                           
+//S1      EXEC PGM=ADRDSSU,REGION=4096K                                         
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=CICS32                                    
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=CTAPE,DSN=DSS.BACKUP.VCICS32                
+//*  VOL=SER=(001878,001872)                                                    
+//SYSPRINT DD SYSOUT=*                                                          
+ DUMP INDDNAME(DASD1),OUTDDNAME(TAPE1) FULL COMPRESS                            
+//*                                                                             

@@ -1,0 +1,160 @@
+//JUL19942 JOB (NSE),CLASS=A,MSGCLASS=P                                 00010024
+//SMFDP    PROC                                                         00020000
+//STEP1    EXEC PGM=IFASMFDP                                            00030021
+//INDD1  DD DSN=DJYSMF.JUL19942.SMFDATA,DISP=SHR,UNIT=3390,             00040024
+//       VOL=SER=DJYSMF                                                 00041024
+//OUTDD1 DD DSN=&&TEMP,DISP=(NEW,PASS),UNIT=3390,                       00042000
+// SPACE=(CYL,(3,3))                                                    00043000
+//SYSPRINT DD  SYSOUT=*                                                 00044000
+//STEP2    EXEC PGM=DQDPOST,REGION=0M                                   00080021
+//STEPLIB DD DSN=CACHE.E5798DQD.LOAD,DISP=SHR,UNIT=3390,VOL=SER=MV43RS  00090023
+//  DD DSN=DJY.V2R3M0.SIBMBASE,DISP=SHR,UNIT=3390,VOL=SER=MV4RS1        00100020
+//  DD DSN=DJY.V2R3M0.SIBMLINK,DISP=SHR,UNIT=3390,VOL=SER=MV4RS1        00110020
+//  DD DSN=DJY.V2R3M0.PLIBASE,DISP=SHR,UNIT=3390,VOL=SER=MV4RS1         00120020
+//  DD DSN=DJY.V2R3M0.PLILINK,DISP=SHR,UNIT=3390,VOL=SER=MV4RS1         00130020
+//TAPEIN   DD  DSN=&&TEMP,DISP=(OLD,DELETE)                             00140006
+//SYSPRINT DD  SYSOUT=*                                                 00150000
+//SUMMARY  DD  SYSOUT=*                                                 00160000
+//SYSOUT   DD  SYSOUT=*                                                 00170000
+//SYSABEND DD  SYSOUT=*                                                 00180000
+//         PEND                                                         00181021
+//U100     EXEC SMFDP                                                   00182021
+//STEP1.SYSIN    DD  *                                                  00183021
+ START(0700)                                                            00184024
+ END(0710)                                                              00185024
+ INDD(INDD1,OPTIONS(DUMP))                                              00186021
+ OUTDD(OUTDD1,TYPE(244,245))                                            00187021
+/*                                                                      00188021
+//STEP2.SYSIN    DD  *                                                  00190021
+* MODEL 11, 13, 21, 23, & 03 STATISTICS                                 00200000
+01/01/91,12/31/99                                                       00210000
+00:00:00,24:00:00                                                       00220000
+03,244,$$$$ D A                                                         00230003
+03 245 $$$$ D A                                                         00240003
+/*                                                                      00250000
+//U100     EXEC SMFDP                                                   00260022
+//STEP1.SYSIN    DD  *                                                  00270022
+ START(0710)                                                            00280024
+ END(0720)                                                              00290024
+ INDD(INDD1,OPTIONS(DUMP))                                              00300022
+ OUTDD(OUTDD1,TYPE(244,245))                                            00310022
+/*                                                                      00320022
+//STEP2.SYSIN    DD  *                                                  00330022
+* MODEL 11, 13, 21, 23, & 03 STATISTICS                                 00340022
+01/01/91,12/31/99                                                       00350022
+00:00:00,24:00:00                                                       00360022
+03,244,$$$$ D A                                                         00370022
+03 245 $$$$ D A                                                         00380022
+/*                                                                      00390022
+//U100     EXEC SMFDP                                                   00400022
+//STEP1.SYSIN    DD  *                                                  00410022
+ START(0720)                                                            00420024
+ END(0730)                                                              00430024
+ INDD(INDD1,OPTIONS(DUMP))                                              00440022
+ OUTDD(OUTDD1,TYPE(244,245))                                            00450022
+/*                                                                      00460022
+//STEP2.SYSIN    DD  *                                                  00470022
+* MODEL 11, 13, 21, 23, & 03 STATISTICS                                 00480022
+01/01/91,12/31/99                                                       00490022
+00:00:00,24:00:00                                                       00500022
+03,244,$$$$ D A                                                         00510022
+03 245 $$$$ D A                                                         00520022
+/*                                                                      00530022
+//U100     EXEC SMFDP                                                   00540022
+//STEP1.SYSIN    DD  *                                                  00550022
+ START(0730)                                                            00560024
+ END(0740)                                                              00570024
+ INDD(INDD1,OPTIONS(DUMP))                                              00580022
+ OUTDD(OUTDD1,TYPE(244,245))                                            00590022
+/*                                                                      00600022
+//STEP2.SYSIN    DD  *                                                  00610022
+* MODEL 11, 13, 21, 23, & 03 STATISTICS                                 00620022
+01/01/91,12/31/99                                                       00630022
+00:00:00,24:00:00                                                       00640022
+03,244,$$$$ D A                                                         00650022
+03 245 $$$$ D A                                                         00660022
+/*                                                                      00670022
+//U100     EXEC SMFDP                                                   00680022
+//STEP1.SYSIN    DD  *                                                  00690022
+ START(0740)                                                            00700024
+ END(0750)                                                              00710024
+ INDD(INDD1,OPTIONS(DUMP))                                              00720022
+ OUTDD(OUTDD1,TYPE(244,245))                                            00730022
+/*                                                                      00740022
+//STEP2.SYSIN    DD  *                                                  00750022
+* MODEL 11, 13, 21, 23, & 03 STATISTICS                                 00760022
+01/01/91,12/31/99                                                       00770022
+00:00:00,24:00:00                                                       00780022
+03,244,$$$$ D A                                                         00790022
+03 245 $$$$ D A                                                         00800022
+/*                                                                      00810022
+//U100     EXEC SMFDP                                                   00820022
+//STEP1.SYSIN    DD  *                                                  00830022
+ START(0750)                                                            00840024
+ END(0810)                                                              00850024
+ INDD(INDD1,OPTIONS(DUMP))                                              00860022
+ OUTDD(OUTDD1,TYPE(244,245))                                            00870022
+/*                                                                      00880022
+//STEP2.SYSIN    DD  *                                                  00890022
+* MODEL 11, 13, 21, 23, & 03 STATISTICS                                 00900022
+01/01/91,12/31/99                                                       00910022
+00:00:00,24:00:00                                                       00920022
+03,244,$$$$ D A                                                         00930022
+03 245 $$$$ D A                                                         00940022
+/*                                                                      00950022
+//U100     EXEC SMFDP                                                   00960022
+//STEP1.SYSIN    DD  *                                                  00970022
+ START(1736)                                                            00980022
+ END(1751)                                                              00990022
+ INDD(INDD1,OPTIONS(DUMP))                                              01000022
+ OUTDD(OUTDD1,TYPE(244,245))                                            01010022
+/*                                                                      01020022
+//STEP2.SYSIN    DD  *                                                  01030022
+* MODEL 11, 13, 21, 23, & 03 STATISTICS                                 01040022
+01/01/91,12/31/99                                                       01050022
+00:00:00,24:00:00                                                       01060022
+03,244,$$$$ D A                                                         01070022
+03 245 $$$$ D A                                                         01080022
+/*                                                                      01090022
+//U100     EXEC SMFDP                                                   01100022
+//STEP1.SYSIN    DD  *                                                  01110022
+ START(1751)                                                            01120022
+ END(1806)                                                              01130022
+ INDD(INDD1,OPTIONS(DUMP))                                              01140022
+ OUTDD(OUTDD1,TYPE(244,245))                                            01150022
+/*                                                                      01160022
+//STEP2.SYSIN    DD  *                                                  01170022
+* MODEL 11, 13, 21, 23, & 03 STATISTICS                                 01180022
+01/01/91,12/31/99                                                       01190022
+00:00:00,24:00:00                                                       01200022
+03,244,$$$$ D A                                                         01210022
+03 245 $$$$ D A                                                         01220022
+/*                                                                      01230022
+//U100     EXEC SMFDP                                                   01240022
+//STEP1.SYSIN    DD  *                                                  01250022
+ START(1806)                                                            01260022
+ END(1821)                                                              01270022
+ INDD(INDD1,OPTIONS(DUMP))                                              01280022
+ OUTDD(OUTDD1,TYPE(244,245))                                            01290022
+/*                                                                      01300022
+//STEP2.SYSIN    DD  *                                                  01310022
+* MODEL 11, 13, 21, 23, & 03 STATISTICS                                 01320022
+01/01/91,12/31/99                                                       01330022
+00:00:00,24:00:00                                                       01340022
+03,244,$$$$ D A                                                         01350022
+03 245 $$$$ D A                                                         01360022
+/*                                                                      01370022
+//U100     EXEC SMFDP                                                   01380022
+//STEP1.SYSIN    DD  *                                                  01390022
+ START(1821)                                                            01400022
+ END(1836)                                                              01410022
+ INDD(INDD1,OPTIONS(DUMP))                                              01420022
+ OUTDD(OUTDD1,TYPE(244,245))                                            01430022
+/*                                                                      01440022
+//STEP2.SYSIN    DD  *                                                  01450022
+* MODEL 11, 13, 21, 23, & 03 STATISTICS                                 01460022
+01/01/91,12/31/99                                                       01470022
+00:00:00,24:00:00                                                       01480022
+03,244,$$$$ D A                                                         01490022
+03 245 $$$$ D A                                                         01500022
+/*                                                                      01510022

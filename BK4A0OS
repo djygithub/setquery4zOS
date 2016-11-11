@@ -1,0 +1,82 @@
+//BK4A0OS1 JOB (D3330RWM,ROOM),'D J YOUNG',MSGCLASS=X                           
+//BKMV43RS EXEC PGM=ADRDSSU,REGION=4096K                                        
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=MV43RS                                    
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=EEC,DSN=DSS.BACKUP.VMV43RS,                 
+// LABEL=(1,SL)                                                                 
+//SYSPRINT DD SYSOUT=*                                                          
+ DUMP INDDNAME(DASD1),OUTDDNAME(TAPE1) FULL ALLEXCP                             
+//BKMV43DL EXEC PGM=ADRDSSU,REGION=4096K                                        
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=MV43DL                                    
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=EEC,DSN=DSS.BACKUP.VMV43DL,                 
+// LABEL=(1,SL)                                                                 
+//SYSPRINT DD SYSOUT=*                                                          
+ DUMP INDDNAME(DASD1),OUTDDNAME(TAPE1) FULL ALLEXCP                             
+//BKMV43CA EXEC PGM=ADRDSSU,REGION=4096K                                        
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=MV43CA                                    
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=EEC,DSN=DSS.BACKUP.VMV43CA,                 
+// LABEL=(1,SL)                                                                 
+//SYSPRINT DD SYSOUT=*                                                          
+ DUMP INDDNAME(DASD1),OUTDDNAME(TAPE1) FULL ALLEXCP                             
+//BKCICS33 EXEC PGM=ADRDSSU,REGION=4096K                                        
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=CICS33                                    
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=EEC,DSN=DSS.BACKUP.VCICS33,                 
+// LABEL=(1,SL)                                                                 
+//SYSPRINT DD SYSOUT=*                                                          
+ DUMP INDDNAME(DASD1),OUTDDNAME(TAPE1) FULL ALLEXCP                             
+//BK4A0OS2 JOB (D3330RWM,ROOM),'D J YOUNG',MSGCLASS=X                           
+//BKTESTQA EXEC PGM=ADRDSSU,REGION=4096K                                        
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=TESTQA                                    
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=EED,DSN=DSS.BACKUP.VTESTQA,                 
+// LABEL=(1,SL)                                                                 
+//SYSPRINT DD SYSOUT=*                                                          
+ DUMP INDDNAME(DASD1),OUTDDNAME(TAPE1) FULL ALLEXCP                             
+//BKDB2IMS EXEC PGM=ADRDSSU,REGION=4096K                                        
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=DB2IMS                                    
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=EED,DSN=DSS.BACKUP.VDB2IMS,                 
+// LABEL=(1,SL)                                                                 
+//SYSPRINT DD SYSOUT=*                                                          
+ DUMP INDDNAME(DASD1),OUTDDNAME(TAPE1) FULL ALLEXCP                             
+//BKDJYSMF EXEC PGM=ADRDSSU,REGION=4096K                                        
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=DJYSMF                                    
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=EED,DSN=DSS.BACKUP.VDJYSMF,                 
+// LABEL=(1,SL)                                                                 
+//SYSPRINT DD SYSOUT=*                                                          
+ DUMP INDDNAME(DASD1),OUTDDNAME(TAPE1) FULL ALLEXCP                             
+//BKSMS9EA EXEC PGM=ADRDSSU,REGION=4096K                                        
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=SMS9EA                                    
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=EED,DSN=DSS.BACKUP.VSMS9EA,                 
+// LABEL=(1,SL)                                                                 
+//SYSPRINT DD SYSOUT=*                                                          
+ DUMP INDDNAME(DASD1),OUTDDNAME(TAPE1) FULL ALLEXCP                             

@@ -1,0 +1,11 @@
+//CATMSTR  JOB (0,MS44),'AZIZ',MSGCLASS=X,MSGLEVEL=(1,1),                       
+//         REGION=4000K                                                         
+//S1       EXEC  PGM=IDCAMS                                                     
+//SYSPRINT DD    SYSOUT=*                                                       
+//SYSIN    DD    *                                                              
+   DEFINE-                                                                      
+           NONVSAM( -                                                           
+           NAME(CICS321.LPALIB) -                                               
+                 DEVICETYPE(3390)   -                                           
+                 VOLUMES(CICS32)) -                                             
+           CATALOG(CATALOG.MVSICFM.VMV4CAT)                                     

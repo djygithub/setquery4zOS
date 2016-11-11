@@ -1,0 +1,9 @@
+//BSDSDDF  JOB (AAA),'D J YOUNG',MSGCLASS=X,TIME=1440,USER=DAVID                
+//BSDSDDF  EXEC PGM=DSNJU003                                                    
+//STEPLIB DD DSN=SYS1.DSN230.DSNLOAD,DISP=SHR                                   
+//SYSUT1 DD DSN=DSN310.BSDS01,DISP=SHR                                          
+//SYSUT2 DD DSN=DSN310.BSDS02,DISP=SHR                                          
+//SYSPRINT DD SYSOUT=*                                                          
+//SYSIN    DD *                                                                 
+  DDF LOCATION=SCHQDB2V31,LUNAME=DB231                                          
+  DDF NOPASSWD                                                                  

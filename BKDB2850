@@ -1,0 +1,14 @@
+//BKDB2850 JOB (D3330RWM,ROOM),'D J YOUNG',MSGCLASS=O                           
+//MAP         EXEC PGM=MAPDISK,PARM=MAP                                         
+//SYSPRINT    DD SYSOUT=*                                                       
+//VOLUME00    DD UNIT=3380,VOL=SER=DB2850,DISP=SHR                              
+//S1      EXEC PGM=ADRDSSU,REGION=4096K                                         
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=SYSDA,VOL=SER=DB2850                                   
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=CTAPE,DSN=DSS.BACKUP.VDB2850                
+//SYSPRINT DD SYSOUT=*                                                          
+ DUMP INDDNAME(DASD1),OUTDDNAME(TAPE1) FULL COMPRESS                            
+//*                                                                             

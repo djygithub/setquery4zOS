@@ -1,0 +1,24 @@
+//ASSCVT   JOB (D3330RWM,ROOM),'D J YOUNG',MSGCLASS=O                           
+//ASM    EXEC PGM=ASMA90,                                                       
+//        PARM='SYSPARM(INITIAL),DECK,NOOBJECT,ALIGN',                          
+//        REGION=4M                                                             
+//SYSLIB   DD  DSN=SYS1.MACLIB,DISP=SHR                                         
+//*                                                                             
+//*  IF THIS PROCEDURE IS USED TO GENERATE PROGRAM                              
+//*  SPECIFICATION BLOCKS (PDIR) AND DATA MANAGEMENT                            
+//*  BLOCKS (DDIR) AS PART OF INSTALLING DL/1 SUPPORT                           
+//*  THE FOLLOWING DD STATEMENTS SHOULD BE UNCOMMENTED:                         
+//*                                                                             
+//*ISYSLIB COMMENT                                                              
+//*                                                                             
+//SYSUT1   DD  UNIT=3390,SPACE=(1700,(400,400))                                 
+//SYSUT2   DD  UNIT=3390,SPACE=(1700,(400,400))                                 
+//SYSUT3   DD  UNIT=3390,SPACE=(1700,(400,400))                                 
+//SYSPUNCH DD  DSN=&&OBJMOD,                                                    
+//             DISP=(,PASS),UNIT=3390,                                          
+//             DCB=(RECFM=FB,LRECL=80,BLKSIZE=400),                             
+//             SPACE=(400,(100,100))                                            
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSIN    DD  *                                                                
+     CVT DSECT=YES,LIST=YES                                                     
+//*                                                                             

@@ -1,0 +1,720 @@
+//BQ101JOB JOB (AMW,000),'DEFINE UCAT',MSGCLASS=O,                              
+//             TIME=(1440),USER=DAVID                                           
+//*        GETDBID TEST                            */                           
+//*                                                                 */          
+//* *************************************************************** */          
+//JOBLIB  DD  DISP=SHR,                                                         
+//            DSN=SYS1.DSNLOAD                                                  
+//        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                                   
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(CIBQ101) PLAN(CIBQ101) -                                          
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001000001000                                                              
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(CIBQ101) PLAN(CIBQ101) -                                          
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001000005000                                                              
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(CIBQ101) PLAN(CIBQ101) -                                          
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001000010000                                                              
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(CIBQ101) PLAN(CIBQ101) -                                          
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001000050000                                                              
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(CIBQ101) PLAN(CIBQ101) -                                          
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001000100000                                                              
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(CIBQ101) PLAN(CIBQ101) -                                          
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001001000000                                                              
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(CIBQ101) PLAN(CIBQ101) -                                          
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001010000000                                                              
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(CIBQ101) PLAN(CIBQ101) -                                          
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001100000000                                                              
+//BQ103JOB JOB (AMW,000),'DEFINE UCAT',MSGCLASS=O,                              
+//             TIME=(1440),USER=DAVID                                           
+//*        GETDBID TEST                            */                           
+//*                                                                 */          
+//* *************************************************************** */          
+//JOBLIB  DD  DISP=SHR,                                                         
+//            DSN=SYS1.DSNLOAD                                                  
+//        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                                   
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(CIBQ103) PLAN(CIBQ103) -                                          
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001000001000                                                              
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(CIBQ103) PLAN(CIBQ103) -                                          
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001000005000                                                              
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(CIBQ103) PLAN(CIBQ103) -                                          
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001000010000                                                              
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(CIBQ103) PLAN(CIBQ103) -                                          
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001000050000                                                              
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(CIBQ103) PLAN(CIBQ103) -                                          
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001000100000                                                              
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(CIBQ103) PLAN(CIBQ103) -                                          
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001001000000                                                              
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(CIBQ103) PLAN(CIBQ103) -                                          
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001010000000                                                              
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(CIBQ103) PLAN(CIBQ103) -                                          
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001100000000                                                              
+//BQ105JOB JOB (AMW,000),'DEFINE UCAT',MSGCLASS=O,                              
+//             TIME=(1440),USER=DAVID                                           
+//*        GETDBID TEST                            */                           
+//*                                                                 */          
+//* *************************************************************** */          
+//JOBLIB  DD  DISP=SHR,                                                         
+//            DSN=SYS1.DSNLOAD                                                  
+//        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                                   
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(CIBQ105) PLAN(CIBQ105) -                                          
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001000001000                                                              
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(CIBQ105) PLAN(CIBQ105) -                                          
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001000005000                                                              
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(CIBQ105) PLAN(CIBQ105) -                                          
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001000010000                                                              
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(CIBQ105) PLAN(CIBQ105) -                                          
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001000050000                                                              
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(CIBQ105) PLAN(CIBQ105) -                                          
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001000100000                                                              
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(CIBQ105) PLAN(CIBQ105) -                                          
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001001000000                                                              
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(CIBQ105) PLAN(CIBQ105) -                                          
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001010000000                                                              
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(CIBQ105) PLAN(CIBQ105) -                                          
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001100000000                                                              
+//BQ501JOB JOB (AMW,000),'DEFINE UCAT',MSGCLASS=O,                              
+//             TIME=(1440),USER=DAVID                                           
+//*        GETDBID TEST                            */                           
+//*                                                                 */          
+//* *************************************************************** */          
+//JOBLIB  DD  DISP=SHR,                                                         
+//            DSN=SYS1.DSNLOAD                                                  
+//        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                                   
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(CIBQ501) PLAN(CIBQ501) -                                          
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001000001000                                                              
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(CIBQ501) PLAN(CIBQ501) -                                          
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001000005000                                                              
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(CIBQ501) PLAN(CIBQ501) -                                          
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001000010000                                                              
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(CIBQ501) PLAN(CIBQ501) -                                          
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001000050000                                                              
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(CIBQ501) PLAN(CIBQ501) -                                          
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001000100000                                                              
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(CIBQ501) PLAN(CIBQ501) -                                          
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001001000000                                                              
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(CIBQ501) PLAN(CIBQ501) -                                          
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001010000000                                                              
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(CIBQ501) PLAN(CIBQ501) -                                          
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001100000000                                                              
+//BQ610JOB JOB (AMW,000),'DEFINE UCAT',MSGCLASS=O,                              
+//             TIME=(1440),USER=DAVID                                           
+//*        GETDBID TEST                            */                           
+//*                                                                 */          
+//* *************************************************************** */          
+//JOBLIB  DD  DISP=SHR,                                                         
+//            DSN=SYS1.DSNLOAD                                                  
+//        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                                   
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(CIBQ610) PLAN(CIBQ610) -                                          
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001000001000                                                              
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(CIBQ610) PLAN(CIBQ610) -                                          
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001000005000                                                              
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(CIBQ610) PLAN(CIBQ610) -                                          
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001000010000                                                              
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(CIBQ610) PLAN(CIBQ610) -                                          
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001000050000                                                              
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(CIBQ610) PLAN(CIBQ610) -                                          
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001000100000                                                              
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(CIBQ610) PLAN(CIBQ610) -                                          
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001001000000                                                              
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(CIBQ610) PLAN(CIBQ610) -                                          
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001010000000                                                              
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(CIBQ610) PLAN(CIBQ610) -                                          
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001100000000                                                              

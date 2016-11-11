@@ -1,0 +1,12 @@
+//ALTER    JOB   (0,75),'AZIZ',MSGLEVEL=(1,1),REGION=400K,                      
+//         MSGCLASS=X                                                           
+//ALTER    EXEC  PGM=IDCAMS                                                     
+//SYSPRINT DD    SYSOUT=*                                                       
+//DD1      DD    UNIT=3390,VOL=SER=DB25C1,DISP=OLD                              
+//SYSIN    DD    *                                                              
+  ALTER -                                                                       
+           DSNC220.DSNDBD.SQ1DB.SQ1I01.I0001.A001 -                             
+           FILE(DD1) -                                                          
+           NEWNAME (DSNC220.DSNDJD.SQ1DB.SQ1I01.I0001.A001) -                   
+           CATALOG (DSNC2201.USER.CATALOG)                                      
+//                                                                              

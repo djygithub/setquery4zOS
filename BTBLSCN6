@@ -1,0 +1,61 @@
+       IDENTIFICATION DIVISION.                                                 
+       PROGRAM-ID.  BTBLSCAN.                                                   
+       ENVIRONMENT DIVISION.                                                    
+       INPUT-OUTPUT SECTION.                                                    
+       FILE-CONTROL.                                                            
+           SELECT INPUT-FILE ASSIGN TO UT-S-INPUT.                              
+       DATA DIVISION.                                                           
+       FILE SECTION.                                                            
+       FD  INPUT-FILE                                                           
+           BLOCK CONTAINS 0 RECORDS                                             
+           LABEL RECORDS ARE STANDARD                                           
+           DATA RECORD IS INPUT-RECORD.                                         
+       01  INPUT-RECORD.                                                        
+           03  LOW-IN             PIC S9(9) .                                   
+           03  HIGH-IN            PIC S9(9).                                    
+           03  FILLER             PIC X(62).                                    
+       WORKING-STORAGE SECTION.                                                 
+           EXEC SQL INCLUDE SQLCA END-EXEC.                                     
+       77  RETURN-AREA            PIC X(200).                                   
+       77  SQLVALUE               PIC S9(9) COMP.                               
+       77  LOWNUM                 PIC S9(9) COMP.                               
+       77  HIGHNUM                PIC S9(9) COMP.                               
+       77  EOF-FLAG               PIC X(3) VALUE 'NO'.                          
+       01  FETCH-BUFFER.                                                        
+           03  F1                 PIC S9(9) COMP.                               
+           03  F2                 PIC S9(7) COMP-3.                             
+           03  F3                 PIC X(8).                                     
+           03  F4                 PIC X(30).                                    
+           03  F5                 PIC X(30).                                    
+           03  F6                 PIC X(30).                                    
+           03  F7                 PIC X(20).                                    
+           03  F8                 PIC X(22).                                    
+       PROCEDURE DIVISION.                                                      
+           OPEN INPUT INPUT-FILE.                                               
+           READ INPUT-FILE AT END MOVE 'YES' TO EOF-FLAG.                       
+           PERFORM SQL-CALL.                                                    
+           CLOSE INPUT-FILE.                                                    
+      *                                                                         
+      *                                                                         
+           GOBACK.                                                              
+       SQL-CALL.                                                                
+           MOVE LOW-IN  TO LOWNUM.                                              
+           MOVE HIGH-IN TO HIGHNUM.                                             
+           EXEC SQL DECLARE TESTCURS CURSOR FOR                                 
+                SELECT SORTBIN, SORTPACK, SORTCHAR, S4, S5, S6, S7, S8          
+                FROM DAVID.SQ6                                                  
+                WHERE KSEQ BETWEEN :LOWNUM AND :HIGHNUM                         
+                END-EXEC.                                                       
+           EXEC SQL OPEN TESTCURS END-EXEC.                                     
+      *    DISPLAY 'TRAP1', SQLCODE, SQLCA.                                     
+           PERFORM FETCHIT UNTIL SQLCODE NOT = 0.                               
+      *    DISPLAY 'TRAP2', SQLCODE, SQLCA.                                     
+           EXEC SQL                                                             
+                CLOSE TESTCURS                                                  
+                END-EXEC.                                                       
+       FETCHIT.                                                                 
+           EXEC SQL                                                             
+                FETCH TESTCURS INTO :F1, :F2, :F3, :F4, :F5, :F6,               
+                :F7, :F8                                                        
+                END-EXEC.                                                       
+      *    DISPLAY 'TRAP3', SQLCODE, SQLCA.                                     

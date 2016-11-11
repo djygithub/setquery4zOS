@@ -1,0 +1,36 @@
+//JAN11955 JOB (NSE),CLASS=A,MSGCLASS=P                                 00010010
+//SMFDP    PROC                                                         00020000
+//STEP1    EXEC PGM=IFASMFDP                                            00030000
+//INDD1  DD DSN=DJYSMF.JAN11955.SMFDATA,DISP=SHR,UNIT=3390,             00040010
+//       VOL=SER=DJYSMF                                                 00041000
+//OUTDD1 DD DSN=&&TEMP,DISP=(NEW,PASS),UNIT=3390,                       00042000
+// SPACE=(CYL,(3,3))                                                    00043000
+//SYSPRINT DD  SYSOUT=*                                                 00044000
+//STEP2    EXEC PGM=DQDPOST,REGION=0M                                   00045000
+//STEPLIB DD DSN=DAVID.G5798DQD.LOAD,DISP=SHR                           00046000
+//  DD DSN=DJY.V2R3M0.SIBMBASE,DISP=SHR                                 00047000
+//  DD DSN=DJY.V2R3M0.SIBMLINK,DISP=SHR                                 00048000
+//  DD DSN=DJY.V2R3M0.PLIBASE,DISP=SHR                                  00049000
+//  DD DSN=DJY.V2R3M0.PLILINK,DISP=SHR                                  00050000
+//TAPEIN   DD  DSN=&&TEMP,DISP=(OLD,DELETE)                             00060000
+//SYSPRINT DD  SYSOUT=*                                                 00070000
+//SUMMARY  DD  SYSOUT=*                                                 00080000
+//SYSOUT   DD  SYSOUT=*                                                 00090000
+//SYSABEND DD  SYSOUT=*                                                 00100000
+//         PEND                                                         00110000
+//LOAD     EXEC SMFDP                                                   00120000
+//STEP1.SYSIN    DD  *                                                  00130000
+ START(0000)                                                            00140000
+ END(2359)                                                              00150000
+ INDD(INDD1,OPTIONS(DUMP))                                              00160000
+ OUTDD(OUTDD1,TYPE(244,245))                                            00170000
+/*                                                                      00180000
+//STEP2.SYSIN    DD  *                                                  00190000
+* MODEL 11, 13, 21, 23, & 03 STATISTICS                                 00200000
+01/01/91,12/31/99                                                       00210000
+00:00:00,24:00:00                                                       00220000
+06,244,$$$$ D A                                                         00230000
+06 245 $$$$ D A                                                         00240000
+03,244,$$$$ D A                                                         00241000
+03 245 $$$$ D A                                                         00242000
+/*                                                                      00243000
