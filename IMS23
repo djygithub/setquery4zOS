@@ -1,0 +1,39 @@
+//IVP31CR2 JOB (USER,ACCT,NUMBER),                                              
+//         'D J YOUNG',                                                         
+//         CLASS=A,MSGCLASS=X,MSGLEVEL=(1,1),                                   
+//         REGION=4M                                                            
+//*                                                                             
+/*JOBPARM PROCLIB=PROC99                                                        
+//*                                                                             
+//*                                                                             
+//*                                                                             
+//*********************************************************************         
+//* INSTALL/IVP IMS 3.1                                                         
+//*                                                                             
+//* SKELETON: DFSIXSH6                                                          
+//*                                                                             
+//* FUNCTION: START DB/DC REGION - IVP1                                         
+//*********************************************************************         
+//*                                                                             
+//*********************************************************************         
+//*         THIS PRODUCT CONTAINS "RESTRICTED MATERIALS OF IBM".      *         
+//*                                                                   *         
+//*         5665-408 (C) COPYRIGHT IBM CORP. 1974, 1988.              *         
+//*         LICENSED MATERIALS - PROPERTY OF IBM.                     *         
+//*         ALL RIGHTS RESERVED.                                      *         
+//*                                                                   *         
+//*         U.S. GOVERNMENT USERS RESTRICTED RIGHTS -                 *         
+//*         USE, DUPLICATION, OR DISCLOSURE RESTRICTED BY             *         
+//*         GSA ADP SCHEDULE CONTRACT WITH IBM CORP.                  *         
+//*                                                                   *         
+//*         REFER TO COPYRIGHT INSTRUCTIONS FORM NUMBER G120-2083.    *         
+//*********************************************************************         
+//*                                                                             
+//*                                                                             
+//IVP31CR1 EXEC PROC=IVP31CR2,RGSUF=1,AUTO=N,VSPEC=DC,ISIS=0,PST=100,           
+//   SAV=100,WADS=S,TPDP=200,QBUF=300,PSBW=200,PSB=40,SSM=DSN                   
+//*                                                                             
+//IMSMON    DD DISP=SHR,DSN=IMS310A.IMSMON                                      
+//*                                                                             
+//DFSTCF    DD DISP=SHR,DSN=IMS310A.TCFSLIB                                     
+//*                                                                             

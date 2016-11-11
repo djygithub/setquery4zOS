@@ -1,0 +1,105 @@
+       IDENTIFICATION DIVISION.                                                 
+       PROGRAM-ID.  IM2Q110.                                                    
+       ENVIRONMENT DIVISION.                                                    
+       DATA DIVISION.                                                           
+       WORKING-STORAGE SECTION.                                                 
+       01  SQLCA.                                                               
+           05  SQLCAID        PIC X(08).                                        
+      *                                             'SQLCA   '                  
+           05  SQLCABC        PIC S9(9)  COMP.                                  
+      *                                           LENGTH OF SQLCA (136)         
+           05  SQLCODE        PIC S9(9)  COMP.                                  
+      *      0 = OK ; <0 = ERROR ; >0 = OK, BUT ; +100 = NO DATA OR EOF         
+           05  SQLERRM.                                                         
+               49  SQLERRML   PIC S9(4)  COMP.                                  
+               49  SQLERRMC   PIC X(70).                                        
+      *                                                  ERROR DATA             
+           05  SQLERRP        PIC X(08).                                        
+           05  SQLERRD        PIC S9(9)  COMP  OCCURS 6 TIMES.                  
+      *            SQLERRD(3) = NO. OF ROWS INSERTED/UPDATED/DELETED            
+           05  SQLWARN.                                                         
+               10  SQLWARN0   PIC X(01).                                        
+      *  IF WARN0 = W THEN ONE OF THE OTHERS IS W & IT'S A PGMERROR             
+               10  SQLWARN1   PIC X(01).                                        
+               10  SQLWARN2   PIC X(01).                                        
+               10  SQLWARN3   PIC X(01).                                        
+               10  SQLWARN4   PIC X(01).                                        
+               10  SQLWARN5   PIC X(01).                                        
+               10  SQLWARN6   PIC X(01).                                        
+               10  SQLWARN7   PIC X(01).                                        
+               05  SQLEXT         PIC X(08).                                    
+           SKIP2                                                                
+       77  SQLCALEN               PIC S9(4) COMP VALUE +200.                    
+       77  SQLVALUE               PIC S9(9) COMP.                               
+       77  RET1                   PIC S9(9) COMP.                               
+       77  RET2                   PIC S9(9) COMP.                               
+       77  RET3                   PIC S9(9) COMP.                               
+       77  LOWNUM                 PIC S9(9) COMP.                               
+       77  HIGHNUM                PIC S9(9) COMP.                               
+       77  SOC7                   PIC S9(7) COMP-3.                             
+       77  GET-UNIQUE             PIC X(4) VALUE 'GU'.                          
+       77  INSRT                  PIC X(4) VALUE 'ISRT'.                        
+       01  DB2-RETURN-CODE.                                                     
+           03  FILLER   PIC X(8) VALUE 'HEREITIS'.                              
+           03  SQLCODE-OUT        PIC S9(9).                                    
+       01  INPUT-MESSAGE.                                                       
+           03  LENGTH-1           PIC S9(3) COMP.                               
+           03  FILLER             PIC XX.                                       
+           03  INPUT-TEXT.                                                      
+               05  TRAN-CODE          PIC X(9).                                 
+               05  NUMBER1            PIC 9(9).                                 
+               05  NUMBER2            PIC 9(9).                                 
+               05  RESULT             PIC 9(9).                                 
+                                                                                
+       01  OUTPUT-MESSAGE.                                                      
+           03  LENGTH-2           PIC S9(3) COMP VALUE +40.                     
+           03  FILLER             PIC S9(3) COMP VALUE +0.                      
+           03  OUTPUT-TEXT.                                                     
+               05  TRAN-CODE          PIC X(9).                                 
+               05  NUMBER1            PIC 9(9).                                 
+               05  NUMBER2            PIC 9(9).                                 
+               05  RESULT             PIC 9(9).                                 
+       LINKAGE SECTION.                                                         
+       01  IO-PCB.                                                              
+           03  FILLER                 PIC X(10).                                
+           03  IO-STATUS              PIC X(2).                                 
+           03  FILLER                 PIC X(20).                                
+                                                                                
+       PROCEDURE DIVISION USING IO-PCB.                                         
+       MAIN-ROUTINE.                                                            
+      *(1)                                                                      
+           EXEC SQL WHENEVER SQLERROR CONTINUE END-EXEC.                        
+      *(2)                                                                      
+           CALL 'CBLTDLI' USING GET-UNIQUE                                      
+                                IO-PCB                                          
+                                INPUT-MESSAGE.                                  
+      *(3)                                                                      
+           IF  IO-STATUS NOT = SPACES                                           
+      *(4)                                                                      
+               GOBACK.                                                          
+      *(5)                                                                      
+           PERFORM SQL-CALL.                                                    
+           MOVE INPUT-TEXT TO OUTPUT-TEXT                                       
+           MOVE SQLCODE TO NUMBER1 IN OUTPUT-TEXT.                              
+           MOVE SQLVALUE TO RESULT IN OUTPUT-TEXT.                              
+      *(6)                                                                      
+           CALL 'CBLTDLI' USING INSRT                                           
+                          IO-PCB                                                
+                          OUTPUT-MESSAGE.                                       
+      *(7)                                                                      
+           GO TO MAIN-ROUTINE.                                                  
+       SQL-CALL.                                                                
+           MOVE NUMBER1 IN INPUT-TEXT TO LOWNUM.                                
+           MOVE NUMBER2 IN INPUT-TEXT TO HIGHNUM.                               
+           EXEC SQL DECLARE TESTCURS CURSOR FOR                                 
+                SELECT COUNT(*) FROM SQSYN                                      
+                WHERE KSEQ BETWEEN :LOWNUM AND :HIGHNUM                         
+                AND K2 = 2                                                      
+                END-EXEC.                                                       
+           EXEC SQL OPEN TESTCURS END-EXEC.                                     
+           EXEC SQL                                                             
+                FETCH TESTCURS INTO :SQLVALUE                                   
+                END-EXEC.                                                       
+           EXEC SQL                                                             
+                CLOSE TESTCURS                                                  
+                END-EXEC.                                                       

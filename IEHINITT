@@ -1,0 +1,6 @@
+//IEHINEF0 JOB   IEHINITT,SDIWPB,MSGLEVEL=(1,1),MSGCLASS=X              00010017
+//IEHINITT EXEC  PGM=IEHINITT                                           00020000
+//SYSPRINT DD    SYSOUT=*                                               00030000
+//LABEL    DD    UNIT=EF0                                               00040017
+//SYSIN    DD    *                                                      00050000
+LABEL     INITT SER=002751                                              00060017

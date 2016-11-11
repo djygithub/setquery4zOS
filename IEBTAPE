@@ -1,0 +1,27 @@
+//DB2GTF   JOB (330DJY00),'D J YOUNG ',MSGCLASS=P,NOTIFY=DAVID          00010002
+//*     SAMPLE IEBGENER                                                 00020000
+//*                                                                     00030000
+//STEP1   EXEC PGM=IEBGENER                                             00040000
+//SYSPRINT  DD SYSOUT=*                                                 00050000
+//SYSIN     DD DUMMY                                                    00060000
+//SYSUT1    DD UNIT=3390,DSN=SYS002.R7700.DB2TSO.GTF,DISP=OLD           00072004
+//SYSUT2 DD UNIT=EEA,DSN=R7700.DB2TSO.GTF,                              00073006
+//   LABEL=(1,SL),DISP=(NEW,PASS),VOL=SER=001048                        00074006
+//STEP1   EXEC PGM=IEBGENER                                             00074105
+//SYSPRINT  DD SYSOUT=*                                                 00074205
+//SYSIN     DD DUMMY                                                    00074305
+//SYSUT1    DD UNIT=3390,DSN=SYS001.JUL26941.RAMACGTF,DISP=OLD          00074405
+//SYSUT2 DD UNIT=EEA,DSN=RAMAC.DB2TSO.GTF,                              00074506
+//   LABEL=(2,SL),DISP=(NEW,PASS),VOL=SER=001048                        00074606
+//STEP1   EXEC PGM=IEBGENER                                             00075004
+//SYSPRINT  DD SYSOUT=*                                                 00076004
+//SYSIN     DD DUMMY                                                    00077004
+//SYSUT1    DD UNIT=3390,DSN=CDN.SMF0719G,DISP=OLD,VOL=SER=MEL001       00078004
+//SYSUT2 DD UNIT=EEA,DSN=RCDN.SMF0719G,                                 00079006
+//   LABEL=(3,SL),DISP=(NEW,PASS),VOL=SER=001048                        00080006
+//STEP1   EXEC PGM=IEBGENER                                             00090004
+//SYSPRINT  DD SYSOUT=*                                                 00100004
+//SYSIN     DD DUMMY                                                    00110004
+//SYSUT1    DD UNIT=3390,DSN=CDN.SMF0719H,DISP=OLD,VOL=SER=MEL001       00120004
+//SYSUT2 DD UNIT=EEA,DSN=RCDN.SMF0719H,                                 00130006
+//   LABEL=(4,SL),DISP=(NEW,PASS),VOL=SER=001048                        00140006

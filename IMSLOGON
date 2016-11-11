@@ -1,0 +1,9 @@
+IMSLOGON: MSGTXT                                                                
+    DO WHILE INDEX(SCREEN,'DFS2002') = 0                                        
+       SUSPEND(2)                                                               
+    END                                                                         
+    TRANSMIT USING CLEAR                                                        
+    TRANSMIT USING PA2                                                          
+    TYPE '/FOR SQMO1'                                                           
+    TRANSMIT USING ENTER                                                        
+ENDTXT                                                                          

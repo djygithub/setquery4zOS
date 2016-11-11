@@ -1,0 +1,7 @@
+**********************************************************************          
+*  TPNS REMOTE TERMINALS                                                        
+**********************************************************************          
+         TYPE UNITYPE=3270,MODEL=2,FEAT=(PFK,CARD,PEN),PTRSIZE=132,    X        
+               OPTIONS=(FORCRESP,PAGDEL,NOCOPY)                                 
+         TERMINAL NAME=TPNS0001,FPBUF=256                                       
+             NAME  TPNS0001                                                     

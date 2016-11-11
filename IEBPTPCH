@@ -1,0 +1,24 @@
+//PPOM   JOB     0,YOUNG,MSGLEVEL=(1,1),                                        
+//         MSGCLASS=R                                                           
+//IEBPTPCH EXEC  PGM=IEBPTPCH                                                   
+//SYSPRINT DD    SYSOUT=*                                                       
+//SYSUT1   DD    DSN=FRANK.DB2SMF31.STUFF,DISP=SHR                              
+//SYSUT2   DD    SYSOUT=*,DCB=LRECL=133                                         
+//SYSIN    DD    *                                                              
+   PRINT   TYPORG=PO,MAXFLDS=1                                                  
+   RECORD  FIELD=(80)                                                           
+//IEBPTPCH EXEC  PGM=IEBPTPCH                                                   
+//SYSPRINT DD    SYSOUT=*                                                       
+//SYSUT1   DD    DSN=FRANK.DB2SMF23.STUFF,DISP=SHR                              
+//SYSUT2   DD    SYSOUT=*,DCB=LRECL=133                                         
+//SYSIN    DD    *                                                              
+   PRINT   TYPORG=PO,MAXFLDS=1                                                  
+   RECORD  FIELD=(80)                                                           
+//IEBPTPCH EXEC  PGM=IEBPTPCH                                                   
+//SYSPRINT DD    SYSOUT=*                                                       
+//SYSUT1   DD    DSN=FRANK.PPOM31.STUFF,DISP=SHR                                
+//SYSUT2   DD    SYSOUT=*,DCB=LRECL=133                                         
+//SYSIN    DD    *                                                              
+   PRINT   TYPORG=PO,MAXFLDS=1                                                  
+   RECORD  FIELD=(80)                                                           
+//                                                                              

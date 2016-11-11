@@ -1,0 +1,8 @@
+//IEHLIST  JOB   0,YOUNG,MSGLEVEL=(1,1),                                        
+//         MSGCLASS=Q                                                           
+//IEHLIST  EXEC  PGM=IEHLIST                                                    
+//SYSPRINT DD    SYSOUT=*                                                       
+//DD1      DD    UNIT=3390,VOL=SER=DB2IMS,DISP=OLD                              
+//SYSIN    DD    *                                                              
+   LISTPDS DSNAME=DAVID.PPOM23.STUFF,VOL=3390=DB2IMS                            
+//                                                                              

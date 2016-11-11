@@ -1,0 +1,33 @@
+**********************************************************************          
+*   IMS/DB2 SET QUERY APPLICATIONS DEFINITION                                   
+**********************************************************************          
+         APPLCTN RESIDENT,PSB=IM2Q101,PGMTYPE=TP                                
+            TRANSACT CODE=Q101,                                        X        
+               PRTY=(8,12,10),                                         X        
+               MSGTYPE=(SNGLSEG,RESPONSE,1),                           X        
+               PROCLIM=(65535,65535),                                  X        
+               MODE=SNGL                                                        
+         APPLCTN RESIDENT,PSB=IM2Q103,PGMTYPE=TP                                
+            TRANSACT CODE=Q103,                                        X        
+               PRTY=(8,12,10),                                         X        
+               MSGTYPE=(SNGLSEG,RESPONSE,1),                           X        
+               PROCLIM=(65535,65535),                                  X        
+               MODE=SNGL                                                        
+         APPLCTN RESIDENT,PSB=IM2Q105,PGMTYPE=TP                                
+            TRANSACT CODE=Q105,                                        X        
+               PRTY=(8,12,10),                                         X        
+               MSGTYPE=(SNGLSEG,RESPONSE,1),                           X        
+               PROCLIM=(65535,65535),                                  X        
+               MODE=SNGL                                                        
+         APPLCTN RESIDENT,PSB=IM2Q501,PGMTYPE=TP                                
+            TRANSACT CODE=Q501,                                        X        
+               PRTY=(8,12,10),                                         X        
+               MSGTYPE=(SNGLSEG,RESPONSE,1),                           X        
+               PROCLIM=(65535,65535),                                  X        
+               MODE=SNGL                                                        
+         APPLCTN RESIDENT,PSB=IM2Q610,PGMTYPE=TP                                
+            TRANSACT CODE=Q610,                                        X        
+               PRTY=(8,12,10),                                         X        
+               MSGTYPE=(SNGLSEG,RESPONSE,1),                           X        
+               PROCLIM=(65535,65535),                                  X        
+               MODE=SNGL                                                        

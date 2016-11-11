@@ -1,0 +1,10 @@
+//DB2GT0   JOB (330DJY00),'D J YOUNG ',MSGCLASS=P,NOTIFY=DAVID          00010000
+//*     SAMPLE IEBGENER                                                 00020000
+//*                                                                     00030000
+//STEP1   EXEC PGM=IEBGENER                                             00040000
+//SYSPRINT  DD SYSOUT=*                                                 00050000
+//SYSIN     DD DUMMY                                                    00060000
+//SYSUT2    DD UNIT=3390,DSN=SYS001.JUL18951.GTF,DISP=(NEW,CATLG),      00070000
+// SPACE=(CYL,(222,10))                                                 00070100
+//SYSUT1 DD UNIT=EE5,DSN=SYS001.JUL18941.GTFTAPE,                       00071000
+//   LABEL=(1,SL),DISP=SHR,VOL=SER=002732                               00072000

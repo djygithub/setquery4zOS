@@ -1,0 +1,19 @@
+//CICIMPRT JOB (0,MS44),'AZIZ',MSGCLASS=X,MSGLEVEL=(1,1),                       
+//         REGION=4000K                                                         
+//S1       EXEC  PGM=IDCAMS                                                     
+//SYSPRINT DD    SYSOUT=*                                                       
+//SYSIN    DD    *                                                              
+   IMPORT-                                                                      
+           OBJECTS -                                                            
+                 ((DSNC2201.USER.CATALOG -                                      
+                 VOLUMES(DB2S02) -                                              
+                 DEVICETYPE(3390))) -                                           
+           CONNECT -                                                            
+           CATALOG(CATALOG.MVSICFM.VMV4CAT)                                     
+//DEFALIA EXEC PGM=IDCAMS                                               00005000
+//SYSPRINT DD  SYSOUT=*                                                 00006000
+//SYSUDUMP DD  SYSOUT=*                                                 00007000
+//SYSIN    DD  *                                                        00009000
+   DEFINE ALIAS                               -                         00010000
+         ( NAME(DSNC220)                -                               00020004
+           RELATE(DSNC2201.USER.CATALOG))                               00030004

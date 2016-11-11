@@ -1,0 +1,41 @@
+//NUCGN    JOB (USER,ACCT,NUMBER),                                              
+//         'D J YOUNG',                                                         
+//         CLASS=A,MSGCLASS=X,MSGLEVEL=(1,1),                                   
+//         REGION=4M                                                            
+//*                                                                             
+//*                                                                             
+//*                                                                             
+//*********************************************************************         
+//* INSTALL/IVP IMS 3.1                                                         
+//*                                                                             
+//* SKELETON: DFSIXSC3                                                          
+//*                                                                             
+//* FUNCTION: RUN THE IMS SYSTEM DEFINITION STAGE1                              
+//*********************************************************************         
+//*                                                                             
+//*********************************************************************         
+//*         THIS PRODUCT CONTAINS "RESTRICTED MATERIALS OF IBM".      *         
+//*                                                                   *         
+//*         5665-408 (C) COPYRIGHT IBM CORP. 1974, 1988.              *         
+//*         LICENSED MATERIALS - PROPERTY OF IBM.                     *         
+//*         ALL RIGHTS RESERVED.                                      *         
+//*                                                                   *         
+//*         U.S. GOVERNMENT USERS RESTRICTED RIGHTS -                 *         
+//*         USE, DUPLICATION, OR DISCLOSURE RESTRICTED BY             *         
+//*         GSA ADP SCHEDULE CONTRACT WITH IBM CORP.                  *         
+//*                                                                   *         
+//*         REFER TO COPYRIGHT INSTRUCTIONS FORM NUMBER G120-2083.    *         
+//*********************************************************************         
+//*                                                                             
+//STAGE1   EXEC PGM=IEV90,PARM='NOLOAD,DECK',TIME=(300)                         
+//SYSPRINT DD SYSOUT=*                                                          
+//SYSLIB   DD DISP=SHR,DSN=IMS310.GENLIB                                        
+//         DD DISP=SHR,DSN=IMS310.GENLIBA                                       
+//         DD DISP=SHR,DSN=IMS310.GENLIBB                                       
+//SYSPUNCH DD DISP=SHR,                                                         
+//            DSN=DAVID.SETQUERY.WORKLOAD(CTLJOBS)                              
+//SYSUT1   DD UNIT=3390,SPACE=(CYL,(05,05)),DCB=OPTCD=C                         
+//SYSUT2   DD UNIT=3390,SPACE=(CYL,(05,05)),DCB=OPTCD=C                         
+//SYSUT3   DD UNIT=3390,SPACE=(CYL,(05,05)),DCB=OPTCD=C                         
+//SYSIN    DD DISP=SHR,                                                         
+//            DSN=DAVID.SETQUERY.WORKLOAD(IMSGEN)                               
