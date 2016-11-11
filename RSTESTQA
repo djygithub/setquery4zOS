@@ -1,0 +1,12 @@
+//RSTESTQA JOB (D3330RWM,ROOM),'D J YOUNG',MSGCLASS=O,TIME=1440                 
+//S1      EXEC PGM=ADRDSSU,REGION=4096K                                         
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=SYSDA,VOL=SER=VOLC04                                   
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=CTAPE,DSN=DSS.BACKUP.VTESTQA,               
+//      VOL=SER=(002379,002377)                                                 
+//SYSPRINT DD SYSOUT=*                                                          
+ REST INDDNAME(TAPE1),OUTDDNAME(DASD1) COPYVOLID                                
+//*                                                                             

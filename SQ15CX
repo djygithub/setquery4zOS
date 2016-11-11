@@ -1,0 +1,332 @@
+-- ****************************************************************** --        
+--                                                                    --        
+--  DATABASE SQ1DB TABLE DAVID.SQ1                               --             
+--     1,000,000 ROWS                                               --          
+--     224 BYTES PER ROW                                              --        
+--                                                                    --        
+--                                                                    --        
+--                                                                    --        
+-- ****************************************************************** --        
+ CREATE STOGROUP DB26C0SG VOLUMES (MV4RSA) VCAT DSNC220;                        
+ CREATE STOGROUP DB26C1SG VOLUMES (MV4DLA) VCAT DSNC220;                        
+ CREATE STOGROUP DB26C2SG VOLUMES (MV4CAA) VCAT DSNC220;                        
+ CREATE STOGROUP DB26C3SG VOLUMES (DB2IMS) VCAT DSNC220;                        
+ CREATE STOGROUP DB26C4SG VOLUMES (DB2S01) VCAT DSNC220;                        
+ CREATE STOGROUP DB26C5SG VOLUMES (DB2S02) VCAT DSNC220;                        
+ CREATE STOGROUP DB26C6SG VOLUMES (CICS32) VCAT DSNC220;                        
+ CREATE STOGROUP DB26C7SG VOLUMES (DB2S01) VCAT DSNC220;                        
+ CREATE STOGROUP DB26C8SG VOLUMES (DB2S02) VCAT DSNC220;                        
+ CREATE STOGROUP DB26C9SG VOLUMES (MV4RS1) VCAT DSNC220;                        
+ CREATE STOGROUP DB26CASG VOLUMES (MV4DLB) VCAT DSNC220;                        
+ CREATE STOGROUP DB26CBSG VOLUMES (MV4CAT) VCAT DSNC220;                        
+ CREATE STOGROUP DB26CCSG VOLUMES (TESTQA) VCAT DSNC220;                        
+ CREATE STOGROUP DB26CDSG VOLUMES (DB25CD) VCAT DSNC220;                        
+ CREATE STOGROUP DB26CESG VOLUMES (DB25CE) VCAT DSNC220;                        
+ CREATE STOGROUP DB26CFSG VOLUMES (DB25CF) VCAT DSNC220;                        
+ CREATE STOGROUP DB2140SG VOLUMES (MV4RSA) VCAT DSNC220;                        
+ CREATE STOGROUP DB2141SG VOLUMES (MV4DLA) VCAT DSNC220;                        
+ CREATE STOGROUP DB2142SG VOLUMES (MV4CAA) VCAT DSNC220;                        
+ CREATE STOGROUP DB2143SG VOLUMES (DB2IMS) VCAT DSNC220;                        
+ CREATE STOGROUP DB2144SG VOLUMES (DB2S01) VCAT DSNC220;                        
+ CREATE STOGROUP DB2145SG VOLUMES (DB2S02) VCAT DSNC220;                        
+ CREATE STOGROUP DB2146SG VOLUMES (CICS32) VCAT DSNC220;                        
+ CREATE STOGROUP DB2147SG VOLUMES (DB2S01) VCAT DSNC220;                        
+ CREATE STOGROUP DB2148SG VOLUMES (DB2S02) VCAT DSNC220;                        
+ CREATE STOGROUP DB2149SG VOLUMES (MV4RS1) VCAT DSNC220;                        
+ CREATE STOGROUP DB214ASG VOLUMES (MV4DLB) VCAT DSNC220;                        
+ CREATE STOGROUP DB214BSG VOLUMES (MV4CAT) VCAT DSNC220;                        
+ CREATE STOGROUP DB214CSG VOLUMES (TESTQA) VCAT DSNC220;                        
+ CREATE STOGROUP DB214DSG VOLUMES (DB25CD) VCAT DSNC220;                        
+ CREATE STOGROUP DB214ESG VOLUMES (DB25CE) VCAT DSNC220;                        
+ CREATE STOGROUP DB214FSG VOLUMES (DB25CF) VCAT DSNC220;                        
+ CREATE DATABASE SQ1DB STOGROUP DB26C0SG;                                       
+-- ****************************************************************** --        
+--                                                                    --        
+--                                                                    --        
+-- ****************************************************************** --        
+ CREATE TABLESPACE SQ1TS                                                        
+     IN SQ1DB                                                                   
+     BUFFERPOOL BP0                                                             
+     NUMPARTS 16                                                                
+     (PART  1 USING STOGROUP DB26C0SG                                           
+     PRIQTY 15000                                                               
+     SECQTY 5000                                                                
+     ERASE NO,                                                                  
+     PART   2 USING STOGROUP DB26C1SG                                           
+     PRIQTY 15000                                                               
+     SECQTY 5000                                                                
+     ERASE NO,                                                                  
+     PART   3 USING STOGROUP DB26C2SG                                           
+     PRIQTY 15000                                                               
+     SECQTY 5000                                                                
+     ERASE NO,                                                                  
+     PART   4 USING STOGROUP DB26C3SG                                           
+     PRIQTY 15000                                                               
+     SECQTY 5000                                                                
+     ERASE NO,                                                                  
+     PART   5 USING STOGROUP DB26C4SG                                           
+     PRIQTY 15000                                                               
+     SECQTY 5000                                                                
+     ERASE NO,                                                                  
+     PART   6 USING STOGROUP DB26C5SG                                           
+     PRIQTY 15000                                                               
+     SECQTY 5000                                                                
+     ERASE NO,                                                                  
+     PART   7 USING STOGROUP DB26C6SG                                           
+     PRIQTY 15000                                                               
+     SECQTY 5000                                                                
+     ERASE NO,                                                                  
+     PART   8 USING STOGROUP DB26C7SG                                           
+     PRIQTY 15000                                                               
+     SECQTY 5000                                                                
+     ERASE NO,                                                                  
+     PART   9 USING STOGROUP DB26C8SG                                           
+     PRIQTY 15000                                                               
+     SECQTY 5000                                                                
+     ERASE NO,                                                                  
+     PART  10 USING STOGROUP DB26C9SG                                           
+     PRIQTY 15000                                                               
+     SECQTY 5000                                                                
+     ERASE NO,                                                                  
+     PART  11 USING STOGROUP DB26CASG                                           
+     PRIQTY 15000                                                               
+     SECQTY 5000                                                                
+     ERASE NO,                                                                  
+     PART  12 USING STOGROUP DB26CBSG                                           
+     PRIQTY 15000                                                               
+     SECQTY 5000                                                                
+     ERASE NO,                                                                  
+     PART  13 USING STOGROUP DB26CCSG                                           
+     PRIQTY 15000                                                               
+     SECQTY 5000                                                                
+     ERASE NO,                                                                  
+     PART  14 USING STOGROUP DB26CDSG                                           
+     PRIQTY 15000                                                               
+     SECQTY 5000                                                                
+     ERASE NO,                                                                  
+     PART  15 USING STOGROUP DB26CESG                                           
+     PRIQTY 15000                                                               
+     SECQTY 5000                                                                
+     ERASE NO,                                                                  
+     PART  16 USING STOGROUP DB26CFSG                                           
+     PRIQTY 15000                                                               
+     SECQTY 5000                                                                
+     ERASE NO)                                                                  
+     LOCKSIZE PAGE                                                              
+     CLOSE NO;                                                                  
+ CREATE TABLE DAVID.SQ1                                                         
+     (KSEQ              INTEGER NOT NULL,                                       
+      K500K             INTEGER NOT NULL,                                       
+      K250K             INTEGER NOT NULL,                                       
+      K100K             INTEGER NOT NULL,                                       
+      K40K              INTEGER NOT NULL,                                       
+      K10K              INTEGER NOT NULL,                                       
+      K1K               INTEGER NOT NULL,                                       
+      K100              INTEGER NOT NULL,                                       
+      K25               INTEGER NOT NULL,                                       
+      K10               INTEGER NOT NULL,                                       
+      K5                INTEGER NOT NULL,                                       
+      K4                INTEGER NOT NULL,                                       
+      K2                INTEGER NOT NULL,                                       
+      SORTBIN           INTEGER NOT NULL,                                       
+      SORTPACK          DEC(7)   NOT NULL,                                      
+      SORTCHAR          CHAR(8) NOT NULL,                                       
+      S4                CHAR(30) NOT NULL,                                      
+      S5                CHAR(30) NOT NULL,                                      
+      S6                CHAR(30) NOT NULL,                                      
+      S7                CHAR(20) NOT NULL,                                      
+      S8                CHAR(22) NOT NULL)                                      
+      IN  SQ1DB.SQ1TS;                                                          
+-- **************************************************************** --   --     
+--                                                                  --   --     
+--                                                                  --          
+-- **************************************************************** --          
+ CREATE UNIQUE INDEX DAVID.SQ1I01                                               
+        ON DAVID.SQ1(KSEQ)                                                      
+         SUBPAGES 8                                                             
+         CLUSTER                                                                
+         (PART 1 VALUES(62500)                                                  
+         USING STOGROUP DB2140SG                                                
+         PRIQTY 1000                                                            
+         SECQTY 500                                                             
+         ERASE NO,                                                              
+         PART 2 VALUES(125000)                                                  
+         USING STOGROUP DB2140SG                                                
+         PRIQTY 1000                                                            
+         SECQTY 500                                                             
+         ERASE NO,                                                              
+         PART 3 VALUES(187500)                                                  
+         USING STOGROUP DB2140SG                                                
+         PRIQTY 1000                                                            
+         SECQTY 500                                                             
+         ERASE NO,                                                              
+         PART 4 VALUES(250000)                                                  
+         USING STOGROUP DB2140SG                                                
+         PRIQTY 1000                                                            
+         SECQTY 500                                                             
+         ERASE NO,                                                              
+         PART 5 VALUES(312500)                                                  
+         USING STOGROUP DB2141SG                                                
+         PRIQTY 1000                                                            
+         SECQTY 500                                                             
+         ERASE NO,                                                              
+         PART 6 VALUES(375000)                                                  
+         USING STOGROUP DB2141SG                                                
+         PRIQTY 1000                                                            
+         SECQTY 500                                                             
+         ERASE NO,                                                              
+         PART 7 VALUES(437500)                                                  
+         USING STOGROUP DB2141SG                                                
+         PRIQTY 1000                                                            
+         SECQTY 500                                                             
+         ERASE NO,                                                              
+         PART 8 VALUES(500000)                                                  
+         USING STOGROUP DB2141SG                                                
+         PRIQTY 1000                                                            
+         SECQTY 500                                                             
+         ERASE NO,                                                              
+         PART 9 VALUES(562500)                                                  
+         USING STOGROUP DB2142SG                                                
+         PRIQTY 1000                                                            
+         SECQTY 500                                                             
+         ERASE NO,                                                              
+         PART 10 VALUES(625000)                                                 
+         USING STOGROUP DB2142SG                                                
+         PRIQTY 1000                                                            
+         SECQTY 500                                                             
+         ERASE NO,                                                              
+         PART 11 VALUES(687500)                                                 
+         USING STOGROUP DB2142SG                                                
+         PRIQTY 1000                                                            
+         SECQTY 500                                                             
+         ERASE NO,                                                              
+         PART 12 VALUES(750000)                                                 
+         USING STOGROUP DB2142SG                                                
+         PRIQTY 1000                                                            
+         SECQTY 500                                                             
+         ERASE NO,                                                              
+         PART 13 VALUES(812500)                                                 
+         USING STOGROUP DB2143SG                                                
+         PRIQTY 1000                                                            
+         SECQTY 500                                                             
+         ERASE NO,                                                              
+         PART 14 VALUES(875000)                                                 
+         USING STOGROUP DB2143SG                                                
+         PRIQTY 1000                                                            
+         SECQTY 500                                                             
+         ERASE NO,                                                              
+         PART 15 VALUES(937500)                                                 
+         USING STOGROUP DB2143SG                                                
+         PRIQTY 1000                                                            
+         SECQTY 500                                                             
+         ERASE NO,                                                              
+         PART 16 VALUES(1000000)                                                
+         USING STOGROUP DB2143SG                                                
+         PRIQTY 1000                                                            
+         SECQTY 500                                                             
+         ERASE NO)                                                              
+         CLOSE NO;                                                              
+-- **************************************************************** --   --     
+--                                                                  --   --     
+--                                                                  --          
+-- **************************************************************** --          
+ CREATE INDEX DAVID.SQ1I02                                                      
+        ON DAVID.SQ1(K500K)                                                     
+        USING STOGROUP DB2144SG                                                 
+        PRIQTY 10400                                                            
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+-- **************************************************************** --   --     
+--                                                                  --   --     
+--                                                                  --          
+-- **************************************************************** --          
+ CREATE INDEX DAVID.SQ1I03                                                      
+        ON DAVID.SQ1(K250K)                                                     
+        USING STOGROUP DB2145SG                                                 
+        PRIQTY 7400                                                             
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+-- **************************************************************** --   --     
+--                                                                  --   --     
+--                                                                  --          
+-- **************************************************************** --          
+ CREATE INDEX DAVID.SQ1I04                                                      
+        ON DAVID.SQ1(K100K)                                                     
+        USING STOGROUP DB2146SG                                                 
+        PRIQTY 7400                                                             
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+-- **************************************************************** --   --     
+--                                                                  --   --     
+--                                                                  --          
+-- **************************************************************** --          
+ CREATE INDEX DAVID.SQ1I05                                                      
+        ON DAVID.SQ1(K40K)                                                      
+        USING STOGROUP DB2147SG                                                 
+        PRIQTY 5113                                                             
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+-- **************************************************************** --   --     
+--                                                                  --   --     
+--                                                                  --          
+-- **************************************************************** --          
+ CREATE INDEX DAVID.SQ1I06                                                      
+        ON DAVID.SQ1(K10K)                                                      
+        USING STOGROUP DB2148SG                                                 
+        PRIQTY   4987                                                           
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+ CREATE INDEX DAVID.SQ1I07                                                      
+        ON DAVID.SQ1(K1K)                                                       
+        USING STOGROUP DB2149SG                                                 
+        PRIQTY   4987                                                           
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+ CREATE INDEX DAVID.SQ1I08                                                      
+        ON DAVID.SQ1(K100)                                                      
+        USING STOGROUP DB214ASG                                                 
+        PRIQTY 4800                                                             
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+ CREATE INDEX DAVID.SQ1I09                                                      
+        ON DAVID.SQ1(K25)                                                       
+        USING STOGROUP DB214BSG                                                 
+        PRIQTY 4800                                                             
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+ CREATE INDEX DAVID.SQ1I10                                                      
+        ON DAVID.SQ1(K10)                                                       
+        USING STOGROUP DB214CSG                                                 
+        PRIQTY 4800                                                             
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+ CREATE INDEX DAVID.SQ1I11                                                      
+        ON DAVID.SQ1(K5)                                                        
+        USING STOGROUP DB214DSG                                                 
+        PRIQTY 4800                                                             
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+ CREATE INDEX DAVID.SQ1I12                                                      
+        ON DAVID.SQ1(K4)                                                        
+        USING STOGROUP DB214ESG                                                 
+        PRIQTY 4800                                                             
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+ CREATE INDEX DAVID.SQ1I13                                                      
+        ON DAVID.SQ1(K2)                                                        
+        USING STOGROUP DB214FSG                                                 
+        PRIQTY 4800                                                             
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              

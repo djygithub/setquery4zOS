@@ -1,0 +1,165 @@
+-- ****************************************************************** --        
+--                                                                    --        
+--  DATABASE SQ5DB TABLE DAVID.SQ5                               --             
+--     1,000,000 ROWS                                               --          
+--     224 BYTES PER ROW                                              --        
+--                                                                    --        
+--                                                                    --        
+--                                                                    --        
+-- ****************************************************************** --        
+ CREATE STOGROUP MV43CAS3 VOLUMES (MV43CA) VCAT DSN310;                         
+ CREATE STOGROUP MV43CAS4 VOLUMES (MV43CA) VCAT DSN310;                         
+ CREATE DATABASE SQ5DB STOGROUP MV43CAS3;                                       
+-- ****************************************************************** --        
+--                                                                    --        
+--                                                                    --        
+-- ****************************************************************** --        
+ CREATE TABLESPACE SQ5TS                                                        
+     IN SQ5DB                                                                   
+     BUFFERPOOL BP32K                                                           
+     USING STOGROUP MV43CAS3                                                    
+     PRIQTY 224000                                                              
+     SECQTY 10000                                                               
+     ERASE NO                                                                   
+     LOCKSIZE PAGE                                                              
+     CLOSE NO                                                                   
+     COMPRESS NO;                                                               
+ CREATE TABLE DAVID.SQ5                                                         
+     (KSEQ              INTEGER NOT NULL,                                       
+      K500K             INTEGER NOT NULL,                                       
+      K250K             INTEGER NOT NULL,                                       
+      K100K             INTEGER NOT NULL,                                       
+      K40K              INTEGER NOT NULL,                                       
+      K10K              INTEGER NOT NULL,                                       
+      K1K               INTEGER NOT NULL,                                       
+      K100              INTEGER NOT NULL,                                       
+      K25               INTEGER NOT NULL,                                       
+      K10               INTEGER NOT NULL,                                       
+      K5                INTEGER NOT NULL,                                       
+      K4                INTEGER NOT NULL,                                       
+      K2                INTEGER NOT NULL,                                       
+      SORTBIN           INTEGER NOT NULL,                                       
+      SORTPACK          DEC(7)   NOT NULL,                                      
+      SORTCHAR          CHAR(8) NOT NULL,                                       
+      S4                VARCHAR(2030) NOT NULL,                                 
+      S5                VARCHAR(2030) NOT NULL,                                 
+      S6                VARCHAR(2030) NOT NULL,                                 
+      S7                VARCHAR(2020) NOT NULL,                                 
+      S8                VARCHAR(2022) NOT NULL)                                 
+      IN  SQ5DB.SQ5TS;                                                          
+-- **************************************************************** --   --     
+--                                                                  --   --     
+--                                                                  --          
+-- **************************************************************** --          
+ CREATE UNIQUE INDEX DAVID.SQ5I01                                               
+        ON DAVID.SQ5(KSEQ)                                                      
+         USING STOGROUP MV43CAS4                                                
+         PRIQTY 10000                                                           
+         SECQTY 2000                                                            
+         SUBPAGES 8                                                             
+         CLUSTER                                                                
+         CLOSE NO;                                                              
+-- **************************************************************** --   --     
+--                                                                  --   --     
+--                                                                  --          
+-- **************************************************************** --          
+ CREATE INDEX DAVID.SQ5I02                                                      
+        ON DAVID.SQ5(K500K)                                                     
+        USING STOGROUP MV43CAS4                                                 
+        PRIQTY 10400                                                            
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+-- **************************************************************** --   --     
+--                                                                  --   --     
+--                                                                  --          
+-- **************************************************************** --          
+ CREATE INDEX DAVID.SQ5I03                                                      
+        ON DAVID.SQ5(K250K)                                                     
+        USING STOGROUP MV43CAS4                                                 
+        PRIQTY 7400                                                             
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+-- **************************************************************** --   --     
+--                                                                  --   --     
+--                                                                  --          
+-- **************************************************************** --          
+ CREATE INDEX DAVID.SQ5I04                                                      
+        ON DAVID.SQ5(K100K)                                                     
+        USING STOGROUP MV43CAS4                                                 
+        PRIQTY 7400                                                             
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+-- **************************************************************** --   --     
+--                                                                  --   --     
+--                                                                  --          
+-- **************************************************************** --          
+ CREATE INDEX DAVID.SQ5I05                                                      
+        ON DAVID.SQ5(K40K)                                                      
+        USING STOGROUP MV43CAS4                                                 
+        PRIQTY 5113                                                             
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+-- **************************************************************** --   --     
+--                                                                  --   --     
+--                                                                  --          
+-- **************************************************************** --          
+ CREATE INDEX DAVID.SQ5I06                                                      
+        ON DAVID.SQ5(K10K)                                                      
+        USING STOGROUP MV43CAS4                                                 
+        PRIQTY   4987                                                           
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+ CREATE INDEX DAVID.SQ5I07                                                      
+        ON DAVID.SQ5(K1K)                                                       
+        USING STOGROUP MV43CAS4                                                 
+        PRIQTY   4987                                                           
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+ CREATE INDEX DAVID.SQ5I08                                                      
+        ON DAVID.SQ5(K100)                                                      
+        USING STOGROUP MV43CAS4                                                 
+        PRIQTY 4800                                                             
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+ CREATE INDEX DAVID.SQ5I09                                                      
+        ON DAVID.SQ5(K25)                                                       
+        USING STOGROUP MV43CAS4                                                 
+        PRIQTY 4800                                                             
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+ CREATE INDEX DAVID.SQ5I10                                                      
+        ON DAVID.SQ5(K10)                                                       
+        USING STOGROUP MV43CAS4                                                 
+        PRIQTY 4800                                                             
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+ CREATE INDEX DAVID.SQ5I11                                                      
+        ON DAVID.SQ5(K5)                                                        
+        USING STOGROUP MV43CAS4                                                 
+        PRIQTY 4800                                                             
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+ CREATE INDEX DAVID.SQ5I12                                                      
+        ON DAVID.SQ5(K4)                                                        
+        USING STOGROUP MV43CAS4                                                 
+        PRIQTY 4800                                                             
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+ CREATE INDEX DAVID.SQ5I13                                                      
+        ON DAVID.SQ5(K2)                                                        
+        USING STOGROUP MV43CAS4                                                 
+        PRIQTY 4800                                                             
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              

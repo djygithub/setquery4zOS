@@ -1,0 +1,25 @@
+ EXPLAIN PLAN SET QUERYNO = 606 FOR                                             
+                SELECT COUNT(*) FROM DAVID.SQ10 T1, DAVID.SQ10 T2               
+                   WHERE T1.K100K = 49                                          
+              AND  T1.K250K = T2.K500K                                          
+              AND  T2.K25   = 19;                                               
+ EXPLAIN PLAN SET QUERYNO = 607 FOR                                             
+                SELECT COUNT(*) FROM DAVID.SQ10 T1, DAVID.SQ10 T2               
+                   WHERE T1.K40K  = 49                                          
+              AND  T1.K250K = T2.K500K                                          
+              AND  T2.K25   = 19;                                               
+ EXPLAIN PLAN SET QUERYNO = 608 FOR                                             
+                SELECT COUNT(*) FROM DAVID.SQ10 T1, DAVID.SQ10 T2               
+                   WHERE T1.K10K  = 49                                          
+              AND  T1.K250K = T2.K500K                                          
+              AND  T2.K25   = 19;                                               
+ EXPLAIN PLAN SET QUERYNO = 609 FOR                                             
+                SELECT COUNT(*) FROM DAVID.SQ10 T1, DAVID.SQ10 T2               
+                   WHERE T1.K1K   = 49                                          
+              AND  T1.K250K = T2.K500K                                          
+              AND  T2.K25   = 19;                                               
+ EXPLAIN PLAN SET QUERYNO = 610 FOR                                             
+                SELECT COUNT(*) FROM DAVID.SQ10 T1, DAVID.SQ10 T2               
+                   WHERE T1.K100  = 49                                          
+              AND  T1.K250K = T2.K500K                                          
+              AND  T2.K25   = 19;                                               

@@ -1,0 +1,31 @@
+//SMPEREC  JOB (X),DRUDOLPH,MSGCLASS=X,NOTIFY=DICK                              
+//R9404    EXEC  SMPE                                                           
+ SET BDY(GLOBAL).                                                               
+ RECEIVE .                                                                      
+//SMPPTFIN DD  DSN=SMPMCS,DISP=SHR,UNIT=EEC,VOL=(,RETAIN,SER=IBM491),           
+//             DCB=(LRECL=80,RECFM=FB,BLKSIZE=32720),LABEL=(,NL)                
+//SMPHOLD  DD  DSN=SMPMCS,DISP=SHR,VOL=REF=*.SMPPTFIN,                          
+//             DCB=(LRECL=80,RECFM=FB,BLKSIZE=32720),LABEL=(4,NL)               
+//R9405    EXEC  SMPE                                                           
+ SET BDY(GLOBAL).                                                               
+ RECEIVE .                                                                      
+//SMPPTFIN DD  DSN=SMPMCS,DISP=SHR,UNIT=EEC,VOL=(,RETAIN,SER=IBM491),           
+//             DCB=(LRECL=80,RECFM=FB,BLKSIZE=32720),LABEL=(,NL)                
+//SMPHOLD  DD  DSN=SMPMCS,DISP=SHR,VOL=REF=*.SMPPTFIN,                          
+//             DCB=(LRECL=80,RECFM=FB,BLKSIZE=32720),LABEL=(4,NL)               
+//R9406    EXEC  SMPE                                                           
+ SET BDY(GLOBAL).                                                               
+ RECEIVE .                                                                      
+//SMPPTFIN DD  DSN=SMPMCS,DISP=SHR,UNIT=EEC,VOL=(,RETAIN,SER=IBM491),           
+//             DCB=(LRECL=80,RECFM=FB,BLKSIZE=32720),LABEL=(,NL)                
+//SMPHOLD  DD  DSN=SMPMCS,DISP=SHR,VOL=REF=*.SMPPTFIN,                          
+//             DCB=(LRECL=80,RECFM=FB,BLKSIZE=32720),LABEL=(4,NL)               
+//REJECTAC EXEC  SMPE                                                           
+ SET BDY(MV43TZ) .                                                              
+ CLEANUP COMPRESS(ALL) .                                                        
+ SET BDY(GLOBAL) .                                                              
+ REJECT PTFS FUNCTIONS USERMODS PURGE(MV43DZ) .                                 
+//REJECTXA EXEC  SMPE                                                           
+ SET BDY(GLOBAL) .                                                              
+ REJECT NOFMID COMPRESS(ALL) .                                                  
+//                                                                              

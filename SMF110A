@@ -1,0 +1,408 @@
+R0       EQU   0                                                                
+R1       EQU   1                                                                
+R2       EQU   2                                                                
+R3       EQU   3                                                                
+R4       EQU   4                                                                
+R5       EQU   5                                                                
+R6       EQU   6                                                                
+R7       EQU   7                                                                
+R8       EQU   8                                                                
+R9       EQU   9                                                                
+R10      EQU   10                                                               
+R11      EQU   11                                                               
+R12      EQU   12                                                               
+R13      EQU   13                                                               
+R14      EQU   14                                                               
+R15      EQU   15                                                               
+*                                                                               
+$SM10X   DSECT                                                                  
+SM10XFLG DS    X                   SYSTEM ID                                    
+SM10XRTY DS    X                   RECORD TYPE                                  
+SM10XTME DS    XL4                 TIME SMF MOVED RECORD                        
+SM10XDTE DS    XL4                 DATE SMF MOVED RECORD                        
+SM10XSID DS    XL4                 SYSTEM ID                                    
+SM10XSSI DS    XL4                 SUBSYSTEM ID                                 
+SM10XSTF DS    X                   RESERVED                                     
+SM10XRI  DS    C                   RESERVED                                     
+SM10XBUF DS    XL4                 RESERVED                                     
+SM10XEND DS    0C                  START OF SELF DEFINING SECTIONS              
+         ORG   SM10XSTF            REDEFINE FOR CICS 110                        
+SMFSTSTY DS    XL2                 RECORD SUBTYPE X'0002' FOR STATS             
+SMFSTTRN DS    XL2                 NUMBER OF TRIPLETS                           
+         DS    XL2                 RESERVED                                     
+SMFSTAPS DS    XL4                 OFFSET TO PRODUCT SECTION                    
+SMFSTLPS DS    XL2                 LENGTH OF PRODUCT SECTION                    
+SMFSTNPS DS    XL2                 NUMBER OF PRODUCT SECTIONS                   
+SMFSTASS DS    XL4                 OFFSET TO DATA SECTION                       
+SMFSTASL DS    XL2                 LENGTH OF DATA SECTION                       
+SMFSTASN DS    XL2                 NUMBER OF DATA SECTIONS                      
+*        SMF PRODUCT SECTION                                                    
+SMFSTRVN DS    XL2                 RECORD VERSION                               
+*        = X'0321' FOR RELEASE 3.2.1                                            
+SMFSTPRN DS    CL8                 PRODUCT NAME (GENERIC APPLID)                
+SMFSTSPN DS    CL8                 PRODUCT NAME (SPECIFIC APPLID)               
+SMFSTMFL DS    XL2                 RECORD MAINTENANCE INDICATOR                 
+         DS    XL2                 RESERVED                                     
+         DS    XL2                 RESERVED                                     
+SMFSTDTK DS    XL4                 DOMAIN TOKEN                                 
+SMFSTDID DS    CL2                 DOMAIN ID                                    
+SMFSTRQT DS    CL3                 USS/EOD/REQ/INT STATISTICS TYPE              
+SMFSTICD DS    CL3                 YES IF INCOMPLETE DATA RECORDED              
+SMFSTDAT DS    CL6                 COLLECTION DATE MMDDYY                       
+SMFSTCLT DS    CL6                 COLLECTION TIME HHMMSS                       
+         DS    XL2                 RESERVED                                     
+SMFSTINT DS    CL6                 INTERVAL HHMMSS                              
+SMFSTINO DS    XL4                 INTERVAL NUMBER                              
+SMFSTRTK DS    XL8                 REQUEST TOKEN                                
+SMFSTLRT DS    CL6                 LAST RESET TIME HHMMSS                       
+SMFSTCST DS    XL8                 CICS START TIME                              
+SMFEND   EQU   *                   END OF HEADER, BEGINNING OF DATA             
+*                                                                               
+*********************************************************************** 00900000
+*                                                                     * 01800000
+* CONTROL BLOCK NAME = DFHA02DS                                       * 02700000
+*                                                                     * 03600000
+* NAME OF MATCHING PLS CONTROL BLOCK = DFHA02PS                       * 04500000
+*                                                                     * 05400000
+* DESCRIPTIVE NAME = CICS/ESA TRANSACTION STATISTICS.                 * 06300000
+*                                                                     * 07200000
+*    COPYRIGHT = 5685-083 (C) COPYRIGHT IBM CORP. 1988                * 07210000
+*                THIS MODULE IS "RESTRICTED MATERIALS OF IBM"         * 07220000
+*                LICENSED MATERIALS - PROPERTY OF IBM                 * 07230000
+*                REFER TO COPYRIGHT INSTRUCTIONS                      * 07240000
+*                FORM NUMBER G120-2083                                * 07250000
+*                                                                     * 09000000
+* STATUS = 3.1.1                                                      * 09900000
+*                                                                     * 10800000
+* FUNCTION = THIS DSECT IS USED TO DESCRIBE THE BLOCK OF STORAGE      * 11700000
+*        CONTAINING THE STATISTICS FOR AN INDIVIDUAL TRANSACTION.     * 12600000
+*                                                                     * 13500000
+*        IT IS PART OF THE DFHSTTN MODULE WHICH IS PART OF THE        * 14400000
+*        AP DOMAIN.                                                   * 15300000
+*        A SINGLE INSTANCE OF THE STORAGE BLOCK REPRESENTS            * 16200000
+*        THE STATISTICS FOR A SINGLE TRANSACTION. A NUMBER OF         * 17100000
+*        SIMILAR STORAGE BLOCKS MAY BE CONCATONATED TO FILL A         * 18000000
+*        DOMAIN CALL BUFFER.                                          * 18900000
+*                                                                     * 19800000
+* LIFETIME =                                                          * 20700000
+*        A STORAGE BLOCK DEFINED BY THIS DSECT IS CREATED IN          * 21600000
+*        RESPONSE TO A REQUEST FOR TRANSACTION STATISTICS AND WILL    * 22500000
+*        EXIST UNTIL THE REQUEST HAS BEEN SATISFIED.                  * 23400000
+*                                                                     * 24300000
+*                                                                     * 25200000
+* LOCATION = CALLER IS PASSED A POINTER TO THE HEAD OF THE BUFFER.    * 26100000
+*                                                                     * 27000000
+* INNER CONTROL BLOCKS = NONE                                         * 28000000
+*                                                                     * 29000000
+* NOTES :                                                             * 30000000
+*    DEPENDENCIES = S/370                                             * 31000000
+*    RESTRICTIONS = NONE                                              * 32000000
+*    MODULE TYPE = CONTROL BLOCK DEFINITION                           * 33000000
+*    PROCESSOR = ASSEMBLER                                            * 34000000
+*                                                                     * 35000000
+*-------------------------------------------------------------------- * 36000000
+*                                                                     * 37000000
+* EXTERNAL REFERENCES = NONE                                          * 38000000
+*                                                                     * 39000000
+*     DATA AREAS = NONE                                               * 40000000
+*                                                                     * 41000000
+*     CONTROL BLOCKS =                                                * 42000000
+*                        DFHPCT PCTTI                                 * 43000000
+*                        DFHPCT PCTIPIA                               * 44000000
+*                        DFHPCT PCTTA                                 * 45000000
+*                        DFHPCT PCTTADL                               * 46000000
+*                        DFHPCT PCTTADR                               * 47000000
+*                        DFHPCT PCTATRTC                              * 49000000
+*                        DFHPCT PCTSCSVC                              * 50000000
+*                                                                     * 51000000
+*     GLOBAL VARIABLES (MACRO PASS) = NONE                            * 52000000
+*                                                                     * 53000000
+*-------------------------------------------------------------------- * 54000000
+*                                                                     * 55000000
+* CHANGE ACTIVITY :                                                   * 56000000
+*        $SEG(DFHA02DS),COMP(STATS),PROD(CICS/ESA):                   * 57000000
+*                                                                     * 58000000
+*     PN= REASON REL YYMMDD HDXIII : REMARKS                          * 59000000
+*    $L0= MA1    311 8610   HD3GRFW: IMPLICIT FLAG.                   * 60000000
+*    $01  RESERVED FOR APAR FIX                                       * 61000000
+*    $02  RESERVED FOR APAR FIX                                       * 62000000
+*    $03  RESERVED FOR APAR FIX                                       * 63000000
+*    $D1= I03667 311 890320 HD3GRFW: LIBRARY SEPARATION               * 64000000
+*    $D2  RESERVED FOR DCR                                            * 65000000
+*    $D3  RESERVED FOR DCR                                            * 66000000
+*    $H1  RESERVED FOR HARDWARE SUPPORT                               * 67000000
+*    $H2  RESERVED FOR HARDWARE SUPPORT                               * 68000000
+*    $H3  RESERVED FOR HARDWARE SUPPORT                               * 69000000
+*    $L1  RESERVED FOR LINE ITEM                                      * 70000000
+*    $L2  RESERVED FOR LINE ITEM                                      * 71000000
+*    $L3  RESERVED FOR LINE ITEM                                      * 72000000
+*    $P1  RESERVED FOR PTM                                            * 73000000
+*    $P2  RESERVED FOR PTM                                            * 74000000
+*    $P3  RESERVED FOR PTM                                            * 75000000
+*                                                                     * 76000000
+*********************************************************************** 77000000
+*                                                                       77100000
+* ALTHOUGH PROVIDED IN A GENERAL INTERFACE LIBRARY DFHA02DS IS          77200000
+* NOT TO BE USED AS A GENERAL PROGRAMMING INTERFACE. REFER TO           77400000
+* PRODUCT DOCUMENTATION TO DETERMINE INTENDED USAGE.                    77600000
+*                                                                       77800000
+DFHA02DS DSECT               TRANSACTION STATISTICS (RESID & TOTALS)    78000000
+*                                                                       79000000
+         DS    0F            FULLWORD ALIGNMENT                         80000000
+A02LEN   DS    H             LENGTH OF DATA AREA                        81000000
+A02IDR   EQU   4             TRANSACTION RESID STATS ID MASK            82000000
+A02IDT   EQU   5             TRANSACTION STATS TOTALS ID MASK           83000000
+A02ID    DS    AL2           TRANSACTION STATS ID (EITHER A02IDR OR    X84000000
+                                                          A02IDT)       85000000
+A02VERS  EQU   X'01'         DSECT VERSION NUMBER MASK                  86000000
+A02DVERS DS    CL1           TRANSACTION STATS VERSION NUMBER           87000000
+         DS    CL3           FILLER                                     88000000
+A02TI    DS    CL4           TRANSACTION ID                             89000000
+A02IPIA  DS    CL8           PROGRAM NAME                               90000000
+         DS    H             FILLER                                     91000000
+A02ATRCT DS    H             TIMES TRANSACTION RESTARTED                92000000
+A02TTA   DS    F             TIMES CALLED BY TRANSACTION                94000000
+A02TADL  DS    F             TIMES LOCAL DYNAMIC RUN                    95000000
+A02TADR  DS    F             TIMES REMOTE DYNAMIC RUN                   96000000
+A02SCSVC DS    F             STORAGE VIOLATIONS                         97000000
+A02END   EQU   *                                                        98000000
+A02CLEN  EQU   *-A02LEN      LENGTH OF DSECT                            99000000
+*********************************************************************** 00700000
+*                                                                     * 01400000
+* CONTROL BLOCK NAME = DFHDSGDS                                       * 02100000
+*                                                                     * 02800000
+* NAME OF MATCHING PLS CONTROL BLOCK = DFHDSGPS                       * 03500000
+*                                                                     * 04200000
+* DESCRIPTIVE NAME = CICS/ESA DISPATCHER STATISTICS                   * 04900000
+*                                                                     * 05600000
+*    COPYRIGHT = 5685-083 (C) COPYRIGHT IBM CORP. 1988                * 05610000
+*                THIS MODULE IS "RESTRICTED MATERIALS OF IBM"         * 05620000
+*                LICENSED MATERIALS - PROPERTY OF IBM                 * 05630000
+*                REFER TO COPYRIGHT INSTRUCTIONS                      * 05640000
+*                FORM NUMBER G120-2083                                * 05650000
+*                                                                     * 07000000
+* STATUS = 3.2.1                                                      * 07700000
+**       CICS LEVEL AT WHICH THIS MODULE WAS LAST UPDATED             * 08400000
+*                                                                     * 09100000
+* FUNCTION =                                                          * 09800000
+*        THIS DATA AREA CONTAINS GLOBAL STATISTICS PROVIDED BY THE    * 10500000
+*        DISPATCHER DOMAIN                                            * 11200000
+*                                                                     * 11900000
+*        IT IS PROVIDED FOR USE IN USERS MONITORING APPLICATIONS      * 12600000
+*        TO MAP THE STATISTICS RETURNED VIA THE API OR THE STATISTICS * 13300000
+*        EXIT.                                                        * 14000000
+*        THERE IS A SINGLE INSTANCE OF THIS DATA BLOCK.               * 14700000
+*                                                                     * 15400000
+* LIFETIME =                                                          * 16100000
+*        THIS DATA BLOCK IS CREATED BY THE DISPATCHER TO STORE        * 16800000
+*        STATISTICS TO BE PASSED TO THE USER IN RESPONSE TO A REQUEST * 17500000
+*        TO A REQUEST FOR STATISTICS. THE STORAGE IS RELEASED WHEN    * 18200000
+*        THE USER TASK IS DETACHED.                                   * 18900000
+*                                                                     * 19600000
+*        THE DSECT ALSO MAPS THE CONTENTS OF PART OF THE SMF BUFFER   * 20300000
+*        CREATED BY THE STATISTICS DOMAIN AND IS USED IN THE          * 21000000
+*        STATISTICS EXIT.                                             * 21700000
+*                                                                     * 22400000
+* STORAGE CLASS =                                                     * 23100000
+*                                                                     * 23800000
+* LOCATION =                                                          * 24500000
+*        THE USER IS PASSED A POINTER TO THE HEAD OF THE STORAGE      * 25200000
+*        BLOCK.                                                       * 25900000
+*                                                                     * 26600000
+* INNER CONTROL BLOCKS =  NONE                                        * 27300000
+*                                                                     * 28000000
+* NOTES :                                                             * 28700000
+*    DEPENDENCIES = S/370                                             * 29400000
+*    RESTRICTIONS = NONE                                              * 30100000
+*    MODULE TYPE = DOMAIN CALL BUFFER                                   30800000
+*    PROCESSOR = ASSEMBLER                                            * 31500000
+*                                                                     * 32200000
+*-------------------------------------------------------------------- * 32900000
+*                                                                     * 33600000
+* EXTERNAL REFERENCES = NONE                                          * 34300000
+*                                                                     * 35000000
+*     DATA AREAS = NONE                                               * 35700000
+*                                                                     * 36400000
+*     CONTROL BLOCKS =  FROM DISPATCHER DOMAIN                        * 37100000
+*                                                                     * 37800000
+*     GLOBAL VARIABLES (MACRO PASS) = NONE                            * 38500000
+*                                                                     * 39200000
+*-------------------------------------------------------------------- * 40000000
+*                                                                     * 40800000
+* CHANGE ACTIVITY :                                                   * 41600000
+*        $SEG(DFHDSGDS),COMP(STATS),PROD(CICS/ESA):                   * 42400000
+*                                                                     * 43200000
+*     PN= REASON REL YYMMDD HDXIII : REMARKS                          * 44000000
+*    $L0= MA1    310 8610   HD3GRFW: IMPLICIT FLAG.                   * 44800000
+*    $01  RESERVED FOR APAR FIX                                       * 45600000
+*    $02  RESERVED FOR APAR FIX                                       * 46400000
+*    $03  RESERVED FOR APAR FIX                                       * 47200000
+*    $D1= I03667 310 890328 HD3GRFW: LIBRARY SEPARATION               * 48000000
+*    $D2= I04311 321 900904 HD9CTG : PLACE ICV TIME IN A FULL WORD    * 48800000
+*    $D3  RESERVED FOR DCR                                            * 49600000
+*    $H1  RESERVED FOR HARDWARE SUPPORT                               * 50400000
+*    $H2  RESERVED FOR HARDWARE SUPPORT                               * 51200000
+*    $H3  RESERVED FOR HARDWARE SUPPORT                               * 52000000
+*    $L1  RESERVED FOR LINE ITEM                                      * 52800000
+*    $L2  RESERVED FOR LINE ITEM                                      * 53600000
+*    $L3  RESERVED FOR LINE ITEM                                      * 54400000
+*    $P1= M54646 310 881118 HD5ZJD: ADDITION OF TIMES AT MXT STAT.    * 55200000
+*    $P2= M56438 310 890530 HD5LL : DISPATCHER START TIME             * 55300000
+*    $P3= M56461 310 890518 HD5LL : MIGRATE DCR1.1/2                  * 55400000
+*    $P4= M56532 310 890607 HD9GDD: BOUNDARY ALIGN TCB_STATS ARRAY    * 55600000
+*    $P5= M57472 310 891108 HD2IPD: REVERSION DSECT                   * 55800000
+*    $P6  RESERVED FOR PTM                                            * 56800000
+*    $P7  RESERVED FOR PTM                                            * 57000000
+*    $P8  RESERVED FOR PTM                                            * 57300000
+*                                                                     * 57600000
+*********************************************************************** 58400000
+*                                                                       58500000
+* ALTHOUGH PROVIDED IN A GENERAL INTERFACE LIBRARY DFHDSGDS IS          58600000
+* NOT TO BE USED AS A GENERAL PROGRAMMING INTERFACE. REFER TO           58700000
+* PRODUCT DOCUMENTATION TO DETERMINE INTENDED USAGE.                    58800000
+*                                                                       59000000
+DFHDSGDS DSECT                    Dispatcher Domain DSECT               59200000
+         DS    0F                 Fullword alignment                    60000000
+DSGLEN   DS    H                  Length of data area                   60800000
+DSGIDE   EQU   0057               Dispatcher domain id mask             61600000
+DSGID    DC    AL2(DSGIDE)        Dispatcher domain id                  62400000
+DSGVERS  EQU   X'02'              Stats version number id mask     @P5C 63200000
+DSGDVERS DS    CL1                Stats version number                  64000000
+         DS    CL3                Filler                                64800000
+DSGICVT  DS    F                  Current ICV time                 @D2C 65600000
+DSGICVSD DS    H                  Current ICVSD time                    66400000
+DSGTL    DS    H                  Current maxt value                    67200000
+DSGCNT   DS    H                  Current number of tasks               68000000
+DSGPNT   DS    H                  Peak number of tasks                  68800000
+DSGAMXTL DS    H                  Current AMAX limit                    69600000
+DSGAMXTC DS    H                  Current AMAX club membership          70400000
+DSGAMXTP DS    H                  Peak AMAX club membership             71200000
+DSGTAMXT DS    H                  # Times at MXT                   @P1A 71400000
+DSGLRT   DS    CL8                Last reset time                       71600000
+         DS    CL14               Filler                           @P1C 71800000
+DSGNTCB  DS    H                  No. of TCBs                           72000000
+         DS    H                  Filler                           @P4A 72400000
+DSGMEND  EQU   *                                                        72800000
+DSGMCLEN EQU   *-DSGLEN           Length                                73600000
+*********************************************************************** 74400000
+* TCB STATISTICS                                                        75200000
+*                                                                       76000000
+* THE STATS FOR THE DISPATCHER TCBS ARE KEPT IN AN OPEN ENDED ARRAY     76800000
+*                                                                       77600000
+* THE TCB NUMBER TO DISPATCHER MODE MAP IS AS FOLLOWS:                  78400000
+*                                                                       79200000
+*  TCB1  = QUASI REENTRANT MODE                                         80000000
+*  TCB2  = RESOURCE OWNING MODE                                         80800000
+*  TCB3  = CONCURRENT MODE                                              81600000
+*                                                                       83200000
+*********************************************************************** 84000000
+DSGTCB   DSECT                    TCB Stats                             84800000
+DSGSYSW  DS    F                  No partn exits                        85600000
+DSGPERCT DS    F                  CPU percent usage                @P2A 86000000
+*********************************************************************** 86400000
+* THE FOLLOWING CL8 DEFINITIONS ARE REALLY "STORE CLOCK" FORMAT         87200000
+*********************************************************************** 88000000
+DSGTWT   DS    CL8                Cum real time CICS in OS wait         88800000
+DSGTDT   DS    CL8                Cum real time TCB disp by MVS         89600000
+DSGTCT   DS    CL8                Cum CPU time for DS task         @P3C 91000000
+DSGACT   DS    CL8                Cum CPU time for TCB             @P3C 92000000
+DSGSWT   DS    CL8                Cum wait time saved              @P3P 93000000
+DSGSCP   DS    CL8                Cum TCB CPU time saved           @P3C 94000000
+DSGSTART DS    CL8                 Dispatcher start time           @P2C 95000000
+         DS    CL8                 RESERVED                             96000000
+DSGEND   EQU   *                                                        98400000
+DSGCLEN  EQU   *-DSGTCB           Length of TCB stats                   99200000
+**********************************************************************          
+* TRANSACTION TABLE IN MAIN ROUTINE                                             
+**********************************************************************          
+TRANTABL DSECT                                                                  
+FILLER   DC   CL8'CICSTRAN'                                                     
+NUMTRAN  DS   F                                                                 
+TRAN     DS   0CL32  REPEATS UP TO 300 TIMES                                    
+TRANCODE DS   XL4                                                               
+PROGNAME DS   XL8                                                               
+         DS   XL2                                                               
+RESTART  DS   XL2                                                               
+TOTAL    DS   XL4                                                               
+DYNLOC   DS   XL4                                                               
+DYNRMT   DS   XL4                                                               
+STGVIOL  DS   XL4                                                               
+**********************************************************************          
+*                                                                               
+*     PROGRAM NAME - SMF110                                                     
+*                                                                               
+*     FUNCTION     - PROCESS CICS SHUTDOWN STATISTICS                           
+*                    LIMITED TO TRANSACTION COUNTS AT THIS TIME                 
+*                                                                               
+*     INPUT        - UPON ENTRY R1 POINTS AT THE FOLLOWING PARMS                
+*                    P1 - SMF RECORD                                            
+*                    P2 - FILLER   DC   XL8'CICSTRAN'                           
+*                         NUMTRAN  DS   F                                       
+*                         TRAN     DS   0CL32  REPEATS UP TO 300 TIMES          
+*                         TRANCODE DS   XL4                                     
+*                         PROGNAME DS   XL8                                     
+*                                  DS   XL2                                     
+*                         RESTART  DS   XL2                                     
+*                         TOTAL    DS   XL4                                     
+*                         DYNLOC   DS   XL4                                     
+*                         DYNRMT   DS   XL4                                     
+*                         STGVIOL  DS   XL4                                     
+*                                                                               
+*     REGISTERS    - R1 --> CALLER PARMLIST                                     
+*                    R3 --> SMF RECORD SUPPLIED BY DB2SMF                       
+*                    R4 --> TRANSACTION TABLE                                   
+*                                                                               
+*     OUTPUT       - TRANSACTION COUNTS FILLED IN IN MAIN ROUTINE               
+*                                                                               
+*     MACROS       - NONE                                                       
+*                                                                               
+*                                                                               
+**********************************************************************          
+SMF110    CSECT                                                                 
+          STM   R14,R12,12(R13)                                                 
+          BAL   R14,80(R15)                                                     
+          DC    18F'-1'                                                         
+          ST    R13,4(R14)                                                      
+          ST    R14,8(R13)                                                      
+          LR    R13,R14                                                         
+          USING SMF110+8,R13                                                    
+*(1)                                                                            
+          LM    R3,R4,0(R1)          GET ADDRESSES OF PARMS                     
+          USING $SM10X,R3            R3--> SMF RECORD                           
+          USING TRANTABL,R4          R4--> TRANSACTION TABLE                    
+*(2)                                                                            
+          L     R5,NUMTRAN           GET NUMBER OF STORED TRANSACTIONS          
+          LR    R6,R5                SAVE IT                                    
+          SLL   R6,5                 MULTIPLY BY 32                             
+          LA    R7,TRAN              POINT AT FIRST TRAN                        
+          LA    R7,0(R6,R7)          POINT TO PROPER TRAN                       
+*(3)                                                                            
+          LH    R9,SMFSTASL          GET LENGTH OF DATA SECTION                 
+          S     R9,=F'4'             DECREMENT BY 4 FOR RDW                     
+          A     R9,SMFSTASS          ADD OFFSET TO DATA SECTION                 
+          LA    R8,0(R3,R9)          R8--> END OF SMF RECORD                    
+*(4)                                                                            
+          LA    R10,SMFEND           GET FIRST STATISTICS RECORD                
+          USING DFHA02DS,R10         R10--> FIRST STAT RECORD                   
+*(5)                                                                            
+TOP       CR    R8,R10               END OF RECORD?                             
+          BC    B'1100',GETOUT       GETOUT                                     
+          C     R5,=F'300'           TOO MANY TRANSACTIONS?                     
+          BC    B'1010',GETOUT       GETOUT                                     
+*(6)                                                                            
+          CLC   A02ID,=XL2'0004'     TRANSACTION DATA?                          
+          BNE   ADJREC               IF NOT TAKE A HIKE                         
+*(7)                                                                            
+          MVC   0(32,R7),A02TI       MOVE DATA                                  
+          LA    R5,1(R5)             INCREMENT # OF TRANSACTIONS                
+          ST    R5,NUMTRAN           SAVE IT                                    
+          LA    R7,32(R7)            INCREMENT TRAN TABLE POINTER               
+*(8)                                                                            
+ADJREC    LH    R11,A02LEN           GET LENGTH OF ENTRY                        
+          LA    R10,0(R10,R11)       INCREMENT SMF RECORD POINTER               
+          B     TOP                  BRANCH TO THE TOP                          
+GETOUT    L     R13,4(R13)           RESTORE SAVEAREA POINTER                   
+          LM    R14,R12,12(R13)      RESTORE REGISTERS                          
+          BR    R14                                                             
+          LTORG                                                                 
+          END                                                                   

@@ -1,0 +1,72 @@
+//RSMV4RS1 JOB (D3330RWM,ROOM),'D J YOUNG',MSGCLASS=O,TIME=1440                 
+//S1      EXEC PGM=ADRDSSU,REGION=4096K                                         
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=SYSDA,VOL=SER=MV4RS1                                   
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=EF0,DSN=DSS.BACKUP.VMV4RS1,                 
+//      VOL=SER=(002676,002673,002683,002185)                                   
+//SYSPRINT DD SYSOUT=*                                                          
+ REST INDDNAME(TAPE1),OUTDDNAME(DASD1) COPYVOLID                                
+//*                                                                             
+//RSMV4CAT JOB (D3330RWM,ROOM),'D J YOUNG',MSGCLASS=O,TIME=1440                 
+//S1      EXEC PGM=ADRDSSU,REGION=4096K                                         
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=SYSDA,VOL=SER=MV4CAT                                   
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=EF0,DSN=DSS.BACKUP.VMV4CAT,                 
+//      VOL=SER=(001224,002057,002199,002669,001806)                            
+//SYSPRINT DD SYSOUT=*                                                          
+ REST INDDNAME(TAPE1),OUTDDNAME(DASD1) COPYVOLID                                
+//*                                                                             
+//RSMV4DLB JOB (D3330RWM,ROOM),'D J YOUNG',MSGCLASS=O,TIME=1440                 
+//S1      EXEC PGM=ADRDSSU,REGION=4096K                                         
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=SYSDA,VOL=SER=MV4DLB                                   
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=EF0,DSN=DSS.BACKUP.VMV4DLB,                 
+//      VOL=SER=(001537,002618,002671,002680)                                   
+//SYSPRINT DD SYSOUT=*                                                          
+ REST INDDNAME(TAPE1),OUTDDNAME(DASD1) COPYVOLID                                
+//*                                                                             
+//RSDB2IMS JOB (D3330RWM,ROOM),'D J YOUNG',MSGCLASS=O,TIME=1440                 
+//S1      EXEC PGM=ADRDSSU,REGION=4096K                                         
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=SYSDA,VOL=SER=DB2IMS                                   
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=EF0,DSN=DSS.BACKUP.VDB2IMS,                 
+//      VOL=SER=(000417,002663,002682,000257)                                   
+//SYSPRINT DD SYSOUT=*                                                          
+ REST INDDNAME(TAPE1),OUTDDNAME(DASD1) COPYVOLID                                
+//*                                                                             
+//RSTESTQA JOB (D3330RWM,ROOM),'D J YOUNG',MSGCLASS=O,TIME=1440                 
+//S1      EXEC PGM=ADRDSSU,REGION=4096K                                         
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=SYSDA,VOL=SER=TESTQA                                   
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=EF0,DSN=DSS.BACKUP.VTESTQA,                 
+//      VOL=SER=(002636,002672,002668,001261)                                   
+//SYSPRINT DD SYSOUT=*                                                          
+ REST INDDNAME(TAPE1),OUTDDNAME(DASD1) COPYVOLID                                
+//*                                                                             
+//RSCICS32 JOB (D3330RWM,ROOM),'D J YOUNG',MSGCLASS=O,TIME=1440                 
+//S1      EXEC PGM=ADRDSSU,REGION=4096K                                         
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=SYSDA,VOL=SER=CICS32                                   
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=EF0,DSN=DSS.BACKUP.VCICS32,                 
+//  VOL=(,,,7,SER=(002607,001933,001787,001526,002624,002621,002681))           
+//SYSPRINT DD SYSOUT=*                                                          
+ REST INDDNAME(TAPE1),OUTDDNAME(DASD1) COPYVOLID                                
+//*                                                                             

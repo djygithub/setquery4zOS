@@ -1,0 +1,12 @@
+//RSMV4RSA JOB (D3330RWM,ROOM),'D J YOUNG',MSGCLASS=O,TIME=1440                 
+//S1      EXEC PGM=ADRDSSU,REGION=4096K                                         
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=MV4RSA                                    
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=3490,DSN=DSS.BACKUP.VMV4RSA,                
+//      VOL=SER=(002749)                                                        
+//SYSPRINT DD SYSOUT=*                                                          
+ REST INDDNAME(TAPE1),OUTDDNAME(DASD1) COPYVOLID                                
+//*                                                                             

@@ -1,0 +1,165 @@
+-- ****************************************************************** --        
+--                                                                    --        
+--  DATABASE SQ8DB TABLE DAVID.SQ8                               --             
+--     1,000,000 ROWS                                               --          
+--     224 BYTES PER ROW                                              --        
+--                                                                    --        
+--                                                                    --        
+--                                                                    --        
+-- ****************************************************************** --        
+ CREATE STOGROUP VOLFC5S3 VOLUMES (VOLFC5) VCAT DSN310;                         
+ CREATE STOGROUP VOLFC5S4 VOLUMES (VOLFC5) VCAT DSN310;                         
+ CREATE DATABASE SQ8DB STOGROUP VOLFC5S3;                                       
+-- ****************************************************************** --        
+--                                                                    --        
+--                                                                    --        
+-- ****************************************************************** --        
+ CREATE TABLESPACE SQ8TS                                                        
+     IN SQ8DB                                                                   
+     BUFFERPOOL BP0                                                             
+     USING STOGROUP VOLFC5S3                                                    
+     PRIQTY 224000                                                              
+     SECQTY 10000                                                               
+     ERASE NO                                                                   
+     LOCKSIZE PAGE                                                              
+     CLOSE NO                                                                   
+     COMPRESS NO;                                                               
+ CREATE TABLE DAVID.SQ8                                                         
+     (KSEQ              INTEGER NOT NULL,                                       
+      K500K             INTEGER NOT NULL,                                       
+      K250K             INTEGER NOT NULL,                                       
+      K100K             INTEGER NOT NULL,                                       
+      K40K              INTEGER NOT NULL,                                       
+      K10K              INTEGER NOT NULL,                                       
+      K1K               INTEGER NOT NULL,                                       
+      K100              INTEGER NOT NULL,                                       
+      K25               INTEGER NOT NULL,                                       
+      K10               INTEGER NOT NULL,                                       
+      K5                INTEGER NOT NULL,                                       
+      K4                INTEGER NOT NULL,                                       
+      K2                INTEGER NOT NULL,                                       
+      SORTBIN           INTEGER NOT NULL,                                       
+      SORTPACK          DEC(7)   NOT NULL,                                      
+      SORTCHAR          CHAR(8) NOT NULL,                                       
+      S4                CHAR(30) NOT NULL,                                      
+      S5                CHAR(30) NOT NULL,                                      
+      S6                CHAR(30) NOT NULL,                                      
+      S7                CHAR(20) NOT NULL,                                      
+      S8                CHAR(22) NOT NULL)                                      
+      IN  SQ8DB.SQ8TS;                                                          
+-- **************************************************************** --   --     
+--                                                                  --   --     
+--                                                                  --          
+-- **************************************************************** --          
+ CREATE UNIQUE INDEX DAVID.SQ8I01                                               
+        ON DAVID.SQ8(KSEQ)                                                      
+         USING STOGROUP VOLFC5S4                                                
+         PRIQTY 10000                                                           
+         SECQTY 2000                                                            
+         SUBPAGES 8                                                             
+         CLUSTER                                                                
+         CLOSE NO;                                                              
+-- **************************************************************** --   --     
+--                                                                  --   --     
+--                                                                  --          
+-- **************************************************************** --          
+ CREATE INDEX DAVID.SQ8I02                                                      
+        ON DAVID.SQ8(K500K)                                                     
+        USING STOGROUP VOLFC5S4                                                 
+        PRIQTY 10400                                                            
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+-- **************************************************************** --   --     
+--                                                                  --   --     
+--                                                                  --          
+-- **************************************************************** --          
+ CREATE INDEX DAVID.SQ8I03                                                      
+        ON DAVID.SQ8(K250K)                                                     
+        USING STOGROUP VOLFC5S4                                                 
+        PRIQTY 7400                                                             
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+-- **************************************************************** --   --     
+--                                                                  --   --     
+--                                                                  --          
+-- **************************************************************** --          
+ CREATE INDEX DAVID.SQ8I04                                                      
+        ON DAVID.SQ8(K100K)                                                     
+        USING STOGROUP VOLFC5S4                                                 
+        PRIQTY 7400                                                             
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+-- **************************************************************** --   --     
+--                                                                  --   --     
+--                                                                  --          
+-- **************************************************************** --          
+ CREATE INDEX DAVID.SQ8I05                                                      
+        ON DAVID.SQ8(K40K)                                                      
+        USING STOGROUP VOLFC5S4                                                 
+        PRIQTY 5113                                                             
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+-- **************************************************************** --   --     
+--                                                                  --   --     
+--                                                                  --          
+-- **************************************************************** --          
+ CREATE INDEX DAVID.SQ8I06                                                      
+        ON DAVID.SQ8(K10K)                                                      
+        USING STOGROUP VOLFC5S4                                                 
+        PRIQTY   4987                                                           
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+ CREATE INDEX DAVID.SQ8I07                                                      
+        ON DAVID.SQ8(K1K)                                                       
+        USING STOGROUP VOLFC5S4                                                 
+        PRIQTY   4987                                                           
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+ CREATE INDEX DAVID.SQ8I08                                                      
+        ON DAVID.SQ8(K100)                                                      
+        USING STOGROUP VOLFC5S4                                                 
+        PRIQTY 4800                                                             
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+ CREATE INDEX DAVID.SQ8I09                                                      
+        ON DAVID.SQ8(K25)                                                       
+        USING STOGROUP VOLFC5S4                                                 
+        PRIQTY 4800                                                             
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+ CREATE INDEX DAVID.SQ8I10                                                      
+        ON DAVID.SQ8(K10)                                                       
+        USING STOGROUP VOLFC5S4                                                 
+        PRIQTY 4800                                                             
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+ CREATE INDEX DAVID.SQ8I11                                                      
+        ON DAVID.SQ8(K5)                                                        
+        USING STOGROUP VOLFC5S4                                                 
+        PRIQTY 4800                                                             
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+ CREATE INDEX DAVID.SQ8I12                                                      
+        ON DAVID.SQ8(K4)                                                        
+        USING STOGROUP VOLFC5S4                                                 
+        PRIQTY 4800                                                             
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+ CREATE INDEX DAVID.SQ8I13                                                      
+        ON DAVID.SQ8(K2)                                                        
+        USING STOGROUP VOLFC5S4                                                 
+        PRIQTY 4800                                                             
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              

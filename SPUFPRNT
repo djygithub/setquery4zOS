@@ -1,0 +1,8 @@
+//SMFPRINT JOB (RWM,T),'DUMP',MSGCLASS=R                                00010061
+//DEFVSAM EXEC PGM=IDCAMS                                                       
+//SYSPRINT DD  SYSOUT=*                                                         
+//PRINTS   DD  SYSOUT=*                                                         
+//TEMP     DD  DSN=DAVID.SPUFSAV1,DISP=SHR                                      
+//SYSIN    DD  *                                                                
+ REPRO  INFILE(TEMP) OUTFILE(PRINTS)                                            
+/*                                                                              

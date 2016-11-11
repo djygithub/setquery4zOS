@@ -1,0 +1,27 @@
+//SETDFWF2 JOB (330DJY00),'D J YOUNG ',MSGCLASS=X,NOTIFY=DAVID          00010000
+//SETCAC  EXEC PGM=IDCAMS                                               00020000
+//SYSPRINT DD  SYSOUT=*                                                 00030000
+//SYSUDUMP DD  SYSOUT=*                                                 00040000
+//SETA14   DD  UNIT=3390,DISP=OLD,VOL=SER=SMS9EA                        00050000
+//SYSIN    DD  *                                                        00051000
+   SETCACHE FILE(SETA14) SUBSYSTEM OFF                                  00052000
+//SETCAC  EXEC PGM=IDCAMS                                               00053000
+//SYSPRINT DD  SYSOUT=*                                                 00054000
+//SYSUDUMP DD  SYSOUT=*                                                 00055000
+//SETA14   DD  UNIT=3390,DISP=OLD,VOL=SER=SMS9EA                        00055100
+//SYSIN    DD  *                                                        00055200
+   SETCACHE FILE(SETA14) NVS OFF                                        00055300
+   SETCACHE -                                                           00055400
+         FILE(SETA14) -                                                 00055500
+            DASDFASTWRITE OFF                                           00055600
+   SETCACHE -                                                           00055700
+         FILE(SETA14) -                                                 00055800
+          CACHEFASTWRITE OFF                                            00055900
+//SETCAC  EXEC PGM=IDCAMS                                               00056000
+//SYSPRINT DD  SYSOUT=*                                                 00056100
+//SYSUDUMP DD  SYSOUT=*                                                 00056200
+//SETC0    DD  UNIT=3390,DISP=OLD,VOL=SER=SMS9EA                        00056300
+//SYSIN    DD  *                                                        00056400
+   SETCACHE -                                                           00056500
+         FILE(SETC0) -                                                  00056600
+            OFF                                                         00056700

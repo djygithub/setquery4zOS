@@ -1,0 +1,13 @@
+//SETCAOFF JOB (330DJY00),'D J YOUNG ',MSGCLASS=X,NOTIFY=DAVID          00010000
+//SETCAC  EXEC PGM=IDCAMS                                               00020000
+//SYSPRINT DD  SYSOUT=*                                                 00030000
+//SYSUDUMP DD  SYSOUT=*                                                 00040000
+//SETC0    DD  UNIT=3390,DISP=OLD,VOL=SER=DB2I01                        00050000
+//SETC1    DD  UNIT=3390,DISP=OLD,VOL=SER=DB2I04                        00051001
+//SYSIN    DD  *                                                        00054100
+   SETCACHE -                                                           00054200
+         FILE(SETC0) -                                                  00054300
+            OFF                                                         00054400
+   SETCACHE -                                                           00054500
+         FILE(SETC1) -                                                  00054600
+            OFF                                                         00054700

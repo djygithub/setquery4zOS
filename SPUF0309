@@ -1,0 +1,64 @@
+ EXPLAIN PLAN SET QUERYNO = 309 FOR                                             
+                SELECT SUM(K1K) FROM DAVID.SQ10                                 
+                  WHERE KSEQ BETWEEN 400000 AND 410000                          
+                  OR    KSEQ BETWEEN 420000 AND 430000                          
+                  OR    KSEQ BETWEEN 440000 AND 450000                          
+                  OR    KSEQ BETWEEN 460000 AND 470000                          
+                  OR    KSEQ BETWEEN 480000 AND 500000                          
+                  AND K100K = 3;                                                
+ EXPLAIN PLAN SET QUERYNO = 310 FOR                                             
+                SELECT SUM(K1K) FROM DAVID.SQ10                                 
+                  WHERE KSEQ BETWEEN 400000 AND 410000                          
+                  OR    KSEQ BETWEEN 420000 AND 430000                          
+                  OR    KSEQ BETWEEN 440000 AND 450000                          
+                  OR    KSEQ BETWEEN 460000 AND 470000                          
+                  OR    KSEQ BETWEEN 480000 AND 500000                          
+                  AND K10K = 3;                                                 
+ EXPLAIN PLAN SET QUERYNO = 311 FOR                                             
+                SELECT SUM(K1K) FROM DAVID.SQ10                                 
+                  WHERE KSEQ BETWEEN 400000 AND 410000                          
+                  OR    KSEQ BETWEEN 420000 AND 430000                          
+                  OR    KSEQ BETWEEN 440000 AND 450000                          
+                  OR    KSEQ BETWEEN 460000 AND 470000                          
+                  OR    KSEQ BETWEEN 480000 AND 500000                          
+                  AND K1K = 3;                                                  
+ EXPLAIN PLAN SET QUERYNO = 312 FOR                                             
+                SELECT SUM(K1K) FROM DAVID.SQ10                                 
+                  WHERE KSEQ BETWEEN 400000 AND 410000                          
+                  OR    KSEQ BETWEEN 420000 AND 430000                          
+                  OR    KSEQ BETWEEN 440000 AND 450000                          
+                  OR    KSEQ BETWEEN 460000 AND 470000                          
+                  OR    KSEQ BETWEEN 480000 AND 500000                          
+                  AND K100  = 3;                                                
+ EXPLAIN PLAN SET QUERYNO = 313 FOR                                             
+                SELECT SUM(K1K) FROM DAVID.SQ10                                 
+                  WHERE KSEQ BETWEEN 400000 AND 410000                          
+                  OR    KSEQ BETWEEN 420000 AND 430000                          
+                  OR    KSEQ BETWEEN 440000 AND 450000                          
+                  OR    KSEQ BETWEEN 460000 AND 470000                          
+                  OR    KSEQ BETWEEN 480000 AND 500000                          
+                  AND K25   = 3;                                                
+ EXPLAIN PLAN SET QUERYNO = 314 FOR                                             
+                SELECT SUM(K1K) FROM DAVID.SQ10                                 
+                  WHERE KSEQ BETWEEN 400000 AND 410000                          
+                  OR    KSEQ BETWEEN 420000 AND 430000                          
+                  OR    KSEQ BETWEEN 440000 AND 450000                          
+                  OR    KSEQ BETWEEN 460000 AND 470000                          
+                  OR    KSEQ BETWEEN 480000 AND 500000                          
+                  AND K10   = 3;                                                
+ EXPLAIN PLAN SET QUERYNO = 315 FOR                                             
+                SELECT SUM(K1K) FROM DAVID.SQ10                                 
+                  WHERE KSEQ BETWEEN 400000 AND 410000                          
+                  OR    KSEQ BETWEEN 420000 AND 430000                          
+                  OR    KSEQ BETWEEN 440000 AND 450000                          
+                  OR    KSEQ BETWEEN 460000 AND 470000                          
+                  OR    KSEQ BETWEEN 480000 AND 500000                          
+                  AND K5    = 3;                                                
+ EXPLAIN PLAN SET QUERYNO = 316 FOR                                             
+                SELECT SUM(K1K) FROM DAVID.SQ10                                 
+                  WHERE KSEQ BETWEEN 400000 AND 410000                          
+                  OR    KSEQ BETWEEN 420000 AND 430000                          
+                  OR    KSEQ BETWEEN 440000 AND 450000                          
+                  OR    KSEQ BETWEEN 460000 AND 470000                          
+                  OR    KSEQ BETWEEN 480000 AND 500000                          
+                  AND K4    = 3;                                                

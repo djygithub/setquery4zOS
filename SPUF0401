@@ -1,0 +1,40 @@
+ EXPLAIN PLAN SET QUERYNO = 401 FOR                                             
+                SELECT COUNT(*) FROM DAVID.SQ10                                 
+                  WHERE K2   =   1                                              
+                  AND   K100 > 80                                               
+                  AND   K10K BETWEEN 2000 AND 3000;                             
+ EXPLAIN PLAN SET QUERYNO = 402 FOR                                             
+                SELECT COUNT(*) FROM DAVID.SQ10                                 
+                  WHERE K100 > 80                                               
+                  AND   K10K BETWEEN 2000 AND 3000                              
+                  AND   K5   = 3;                                               
+ EXPLAIN PLAN SET QUERYNO = 403 FOR                                             
+                SELECT COUNT(*) FROM DAVID.SQ10                                 
+                  WHERE K10K BETWEEN 2000 AND 3000                              
+                  AND   K5   = 3                                                
+                  AND   (K25 = 11 OR K25 = 9);                                  
+ EXPLAIN PLAN SET QUERYNO = 404 FOR                                             
+                SELECT COUNT(*) FROM DAVID.SQ10                                 
+                  WHERE K5   = 3                                                
+                  AND   (K25 = 11 OR K25 = 9)                                   
+                  AND   K4   = 3;                                               
+ EXPLAIN PLAN SET QUERYNO = 405 FOR                                             
+                SELECT COUNT(*) FROM DAVID.SQ10                                 
+                  WHERE (K25 = 11 OR K25 = 9)                                   
+                  AND   K4   = 3                                                
+                  AND   K100 < 41;                                              
+ EXPLAIN PLAN SET QUERYNO = 406 FOR                                             
+                SELECT COUNT(*) FROM DAVID.SQ10                                 
+                  WHERE K4   = 3                                                
+                  AND   K100 < 41                                               
+                  AND   K1K BETWEEN 850  AND 950;                               
+ EXPLAIN PLAN SET QUERYNO = 407 FOR                                             
+                SELECT COUNT(*) FROM DAVID.SQ10                                 
+                  WHERE K100 < 41                                               
+                  AND   K1K BETWEEN 850  AND 950                                
+                  AND   K10  = 7;                                               
+ EXPLAIN PLAN SET QUERYNO = 408 FOR                                             
+                SELECT COUNT(*) FROM DAVID.SQ10                                 
+                  WHERE K1K BETWEEN 850  AND 950                                
+                  AND   K10  = 7                                                
+                  AND   K25  BETWEEN 3 AND 4;                                   

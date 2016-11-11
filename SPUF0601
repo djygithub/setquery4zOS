@@ -1,0 +1,20 @@
+ EXPLAIN PLAN SET QUERYNO = 601 FOR                                             
+                SELECT COUNT(*) FROM DAVID.SQ10 T1, DAVID.SQ10 T2               
+                   WHERE T1.K100K = 49                                          
+              AND  T1.K250K = T2.K500K;                                         
+ EXPLAIN PLAN SET QUERYNO = 602 FOR                                             
+                SELECT COUNT(*) FROM DAVID.SQ10 T1, DAVID.SQ10 T2               
+                   WHERE T1.K40K = 49                                           
+              AND  T1.K250K = T2.K500K;                                         
+ EXPLAIN PLAN SET QUERYNO = 603 FOR                                             
+                SELECT COUNT(*) FROM DAVID.SQ10 T1, DAVID.SQ10 T2               
+                   WHERE T1.K10K = 49                                           
+              AND  T1.K250K = T2.K500K;                                         
+ EXPLAIN PLAN SET QUERYNO = 604 FOR                                             
+                SELECT COUNT(*) FROM DAVID.SQ10 T1, DAVID.SQ10 T2               
+                   WHERE T1.K1K = 49                                            
+              AND  T1.K250K = T2.K500K;                                         
+ EXPLAIN PLAN SET QUERYNO = 605 FOR                                             
+                SELECT COUNT(*) FROM DAVID.SQ10 T1, DAVID.SQ10 T2               
+                   WHERE T1.K100  = 49                                          
+              AND  T1.K250K = T2.K500K;                                         

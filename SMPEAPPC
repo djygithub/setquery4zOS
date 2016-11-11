@@ -1,0 +1,8 @@
+//APPLY    JOB (X),DRUDOLPH,MSGCLASS=X,NOTIFY=DICK,                             
+//             TIME=1440                                                        
+//APPLY    EXEC  SMPE                                                           
+ SET BDY(MV43TZ).                                                               
+ APPLY S(UY91047,UW05295,UW04108,UW00419,UW00255,UW03717,                       
+         UY99568,UW00122,UY99358,UW00700,UW01838,UW03123,                       
+         UY98792,UY98331,UW04536,UW07411)                                       
+   CHECK.                                                                       

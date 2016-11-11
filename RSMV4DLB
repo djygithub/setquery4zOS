@@ -1,0 +1,12 @@
+//RSMV4DLB JOB (D3330RWM,ROOM),'D J YOUNG',MSGCLASS=O,TIME=1440                 
+//S1      EXEC PGM=ADRDSSU,REGION=4096K                                         
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=SYSDA,VOL=SER=MV4DLB                                   
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=EF0,DSN=BACKUP.VMV4DLB,                     
+//      VOL=SER=(001537,002618,002671,002680)                                   
+//SYSPRINT DD SYSOUT=*                                                          
+ REST INDDNAME(TAPE1),OUTDDNAME(DASD1) COPYVOLID                                
+//*                                                                             

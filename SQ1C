@@ -1,0 +1,165 @@
+-- ****************************************************************** --        
+--                                                                    --        
+--  DATABASE SQ1DB TABLE DAVID.SQ1                               --             
+--     1,000,000 ROWS                                               --          
+--     224 BYTES PER ROW                                              --        
+--                                                                    --        
+--                                                                    --        
+--                                                                    --        
+-- ****************************************************************** --        
+ CREATE STOGROUP DB2S01SG VOLUMES (DJYSMF) VCAT DSN230;                         
+ CREATE STOGROUP DB2S02SG VOLUMES (DJYSMF) VCAT DSN230;                         
+ CREATE DATABASE SQ1DB STOGROUP DB2S01SG;                                       
+-- ****************************************************************** --        
+--                                                                    --        
+--                                                                    --        
+-- ****************************************************************** --        
+ CREATE TABLESPACE SQ1TS                                                        
+     IN SQ1DB                                                                   
+     BUFFERPOOL BP0                                                             
+     USING STOGROUP DB2S01SG                                                    
+     PRIQTY 224000                                                              
+     SECQTY 10000                                                               
+     ERASE NO                                                                   
+     LOCKSIZE PAGE                                                              
+     CLOSE NO;                                                                  
+--   COMPRESS YES;                                                              
+ CREATE TABLE DAVID.SQ1                                                         
+     (KSEQ              INTEGER NOT NULL,                                       
+      K500K             INTEGER NOT NULL,                                       
+      K250K             INTEGER NOT NULL,                                       
+      K100K             INTEGER NOT NULL,                                       
+      K40K              INTEGER NOT NULL,                                       
+      K10K              INTEGER NOT NULL,                                       
+      K1K               INTEGER NOT NULL,                                       
+      K100              INTEGER NOT NULL,                                       
+      K25               INTEGER NOT NULL,                                       
+      K10               INTEGER NOT NULL,                                       
+      K5                INTEGER NOT NULL,                                       
+      K4                INTEGER NOT NULL,                                       
+      K2                INTEGER NOT NULL,                                       
+      SORTBIN           INTEGER NOT NULL,                                       
+      SORTPACK          DEC(7)   NOT NULL,                                      
+      SORTCHAR          CHAR(8) NOT NULL,                                       
+      S4                CHAR(30) NOT NULL,                                      
+      S5                CHAR(30) NOT NULL,                                      
+      S6                CHAR(30) NOT NULL,                                      
+      S7                CHAR(20) NOT NULL,                                      
+      S8                CHAR(22) NOT NULL)                                      
+      IN  SQ1DB.SQ1TS;                                                          
+-- **************************************************************** --   --     
+--                                                                  --   --     
+--                                                                  --          
+-- **************************************************************** --          
+ CREATE UNIQUE INDEX DAVID.SQ1I01                                               
+        ON DAVID.SQ1(KSEQ)                                                      
+         USING STOGROUP DB2S02SG                                                
+         PRIQTY 10000                                                           
+         SECQTY 2000                                                            
+         SUBPAGES 8                                                             
+         CLUSTER                                                                
+         CLOSE NO;                                                              
+-- **************************************************************** --   --     
+--                                                                  --   --     
+--                                                                  --          
+-- **************************************************************** --          
+ CREATE INDEX DAVID.SQ1I02                                                      
+        ON DAVID.SQ1(K500K)                                                     
+        USING STOGROUP DB2S02SG                                                 
+        PRIQTY 10400                                                            
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+-- **************************************************************** --   --     
+--                                                                  --   --     
+--                                                                  --          
+-- **************************************************************** --          
+ CREATE INDEX DAVID.SQ1I03                                                      
+        ON DAVID.SQ1(K250K)                                                     
+        USING STOGROUP DB2S02SG                                                 
+        PRIQTY 7400                                                             
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+-- **************************************************************** --   --     
+--                                                                  --   --     
+--                                                                  --          
+-- **************************************************************** --          
+ CREATE INDEX DAVID.SQ1I04                                                      
+        ON DAVID.SQ1(K100K)                                                     
+        USING STOGROUP DB2S02SG                                                 
+        PRIQTY 7400                                                             
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+-- **************************************************************** --   --     
+--                                                                  --   --     
+--                                                                  --          
+-- **************************************************************** --          
+ CREATE INDEX DAVID.SQ1I05                                                      
+        ON DAVID.SQ1(K40K)                                                      
+        USING STOGROUP DB2S02SG                                                 
+        PRIQTY 5113                                                             
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+-- **************************************************************** --   --     
+--                                                                  --   --     
+--                                                                  --          
+-- **************************************************************** --          
+ CREATE INDEX DAVID.SQ1I06                                                      
+        ON DAVID.SQ1(K10K)                                                      
+        USING STOGROUP DB2S02SG                                                 
+        PRIQTY   4987                                                           
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+ CREATE INDEX DAVID.SQ1I07                                                      
+        ON DAVID.SQ1(K1K)                                                       
+        USING STOGROUP DB2S02SG                                                 
+        PRIQTY   4987                                                           
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+ CREATE INDEX DAVID.SQ1I08                                                      
+        ON DAVID.SQ1(K100)                                                      
+        USING STOGROUP DB2S02SG                                                 
+        PRIQTY 4800                                                             
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+ CREATE INDEX DAVID.SQ1I09                                                      
+        ON DAVID.SQ1(K25)                                                       
+        USING STOGROUP DB2S02SG                                                 
+        PRIQTY 4800                                                             
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+ CREATE INDEX DAVID.SQ1I10                                                      
+        ON DAVID.SQ1(K10)                                                       
+        USING STOGROUP DB2S02SG                                                 
+        PRIQTY 4800                                                             
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+ CREATE INDEX DAVID.SQ1I11                                                      
+        ON DAVID.SQ1(K5)                                                        
+        USING STOGROUP DB2S02SG                                                 
+        PRIQTY 4800                                                             
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+ CREATE INDEX DAVID.SQ1I12                                                      
+        ON DAVID.SQ1(K4)                                                        
+        USING STOGROUP DB2S02SG                                                 
+        PRIQTY 4800                                                             
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+ CREATE INDEX DAVID.SQ1I13                                                      
+        ON DAVID.SQ1(K2)                                                        
+        USING STOGROUP DB2S02SG                                                 
+        PRIQTY 4800                                                             
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              

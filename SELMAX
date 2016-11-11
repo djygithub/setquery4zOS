@@ -1,0 +1,1 @@
+SELECT MAX(KSEQ) FROM DAVID.SQ1;                                        00010006

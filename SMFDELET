@@ -1,0 +1,6 @@
+//SMFDELET JOB (RWM,T),'DUMP',MSGCLASS=X                                00010099
+//IEFPROC  EXEC PGM=IFASMFDP,REGION=512K                                00052000
+//SYSPRINT DD  SYSOUT=*                                                 00053000
+//DUMPOUT DD DISP=(,DELETE),UNIT=3390,                                  00054031
+//        SPACE=(CYL,(5,5))                                             00055000
+//DUMPIN  DD DSN=SYS1.MAN2,DISP=OLD                                     00056099

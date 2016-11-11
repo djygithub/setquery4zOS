@@ -1,0 +1,572 @@
+-- ****************************************************************** --        
+--                                                                    --        
+--  DATABASE SQ100DB TABLE DAVID.SQ100                             --           
+--     100,000,000 ROWS                                               --        
+--     224 BYTES PER ROW                                              --        
+--                                                                    --        
+--                                                                    --        
+--                                                                    --        
+-- ****************************************************************** --        
+ CREATE STOGROUP SQ100P01 VOLUMES (DB2D01) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100P02 VOLUMES (DB2D02) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100P03 VOLUMES (DB2D03) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100P04 VOLUMES (DB2D04) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100P05 VOLUMES (DB2D05) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100P06 VOLUMES (DB2D06) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100P07 VOLUMES (DB2D07) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100P08 VOLUMES (DB2D08) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100P09 VOLUMES (DB2D09) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100P10 VOLUMES (DB2D10) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100P11 VOLUMES (DB2D11) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100P12 VOLUMES (DB2D12) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100P13 VOLUMES (DB2D13) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100P14 VOLUMES (DB2D14) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100P15 VOLUMES (DB2D15) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100P16 VOLUMES (DB2D16) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100P17 VOLUMES (DB2D17) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100P18 VOLUMES (DB2D18) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100P19 VOLUMES (DB2D19) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100P20 VOLUMES (DB2D20) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100P21 VOLUMES (DB2D21) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100P22 VOLUMES (DB2D22) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100P23 VOLUMES (DB2D23) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100P24 VOLUMES (DB2D24) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100P25 VOLUMES (DB2D25) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100P26 VOLUMES (DB2D26) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100P27 VOLUMES (DB2D27) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100P28 VOLUMES (DB2D28) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100P29 VOLUMES (DB2D29) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100P30 VOLUMES (DB2D30) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100P31 VOLUMES (DB2D31) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100P32 VOLUMES (DB2D32) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100P33 VOLUMES (DB2D33) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100P34 VOLUMES (DB2D34) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100P35 VOLUMES (DB2D35) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100P36 VOLUMES (DB2D36) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100P37 VOLUMES (DB2D37) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100P38 VOLUMES (DB2D38) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100P39 VOLUMES (DB2D39) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100P40 VOLUMES (DB2D40) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100I1A VOLUMES (DB2I01) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100I1B VOLUMES (DB2I02) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100I1C VOLUMES (DB2I04) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100I1D VOLUMES (DB2I05) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100I02 VOLUMES (DB2I07) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100I03 VOLUMES (DB2I08) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100I04 VOLUMES (DB2I10) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100I05 VOLUMES (DB2I11) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100I06 VOLUMES (DB2I13) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100I07 VOLUMES (DB2I14) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100I08 VOLUMES (DB2I17) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100I09 VOLUMES (DB2I18) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100I10 VOLUMES (DB2I09) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100I11 VOLUMES (DB2I12) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100I12 VOLUMES (DB2I15) VCAT DSNC220;                        
+ CREATE STOGROUP SQ100I13 VOLUMES (DB2I16) VCAT DSNC220;                        
+ CREATE DATABASE SQ100DB STOGROUP SQ100P01;                                     
+-- ****************************************************************** --        
+--                                                                    --        
+--                                                                    --        
+-- ****************************************************************** --        
+ CREATE TABLESPACE SQ100TS                                                      
+     IN SQ100DB                                                                 
+     BUFFERPOOL BP0                                                             
+     NUMPARTS 40                                                                
+    (PART  1 USING STOGROUP SQ100P01                                            
+     PRIQTY 570000                                                              
+     SECQTY 10000                                                               
+     ERASE NO,                                                                  
+     PART  2 USING STOGROUP SQ100P02                                            
+     PRIQTY 570000                                                              
+     SECQTY 10000                                                               
+     ERASE NO,                                                                  
+     PART  3 USING STOGROUP SQ100P03                                            
+     PRIQTY 570000                                                              
+     SECQTY 10000                                                               
+     ERASE NO,                                                                  
+     PART  4 USING STOGROUP SQ100P04                                            
+     PRIQTY 570000                                                              
+     SECQTY 10000                                                               
+     ERASE NO,                                                                  
+     PART  5 USING STOGROUP SQ100P05                                            
+     PRIQTY 570000                                                              
+     SECQTY 10000                                                               
+     ERASE NO,                                                                  
+     PART  6 USING STOGROUP SQ100P06                                            
+     PRIQTY 570000                                                              
+     SECQTY 10000                                                               
+     ERASE NO,                                                                  
+     PART  7 USING STOGROUP SQ100P07                                            
+     PRIQTY 570000                                                              
+     SECQTY 10000                                                               
+     ERASE NO,                                                                  
+     PART  8 USING STOGROUP SQ100P08                                            
+     PRIQTY 570000                                                              
+     SECQTY 10000                                                               
+     ERASE NO,                                                                  
+     PART  9 USING STOGROUP SQ100P09                                            
+     PRIQTY 570000                                                              
+     SECQTY 10000                                                               
+     ERASE NO,                                                                  
+     PART 10 USING STOGROUP SQ100P10                                            
+     PRIQTY 570000                                                              
+     SECQTY 10000                                                               
+     ERASE NO,                                                                  
+     PART 11 USING STOGROUP SQ100P11                                            
+     PRIQTY 570000                                                              
+     SECQTY 10000                                                               
+     ERASE NO,                                                                  
+     PART 12 USING STOGROUP SQ100P12                                            
+     PRIQTY 570000                                                              
+     SECQTY 10000                                                               
+     ERASE NO,                                                                  
+     PART 13 USING STOGROUP SQ100P13                                            
+     PRIQTY 570000                                                              
+     SECQTY 10000                                                               
+     ERASE NO,                                                                  
+     PART 14 USING STOGROUP SQ100P14                                            
+     PRIQTY 570000                                                              
+     SECQTY 10000                                                               
+     ERASE NO,                                                                  
+     PART 15 USING STOGROUP SQ100P15                                            
+     PRIQTY 570000                                                              
+     SECQTY 10000                                                               
+     ERASE NO,                                                                  
+     PART 16 USING STOGROUP SQ100P16                                            
+     PRIQTY 570000                                                              
+     SECQTY 10000                                                               
+     ERASE NO,                                                                  
+     PART 17 USING STOGROUP SQ100P17                                            
+     PRIQTY 570000                                                              
+     SECQTY 10000                                                               
+     ERASE NO,                                                                  
+     PART 18 USING STOGROUP SQ100P18                                            
+     PRIQTY 570000                                                              
+     SECQTY 10000                                                               
+     ERASE NO,                                                                  
+     PART 19 USING STOGROUP SQ100P19                                            
+     PRIQTY 570000                                                              
+     SECQTY 10000                                                               
+     ERASE NO,                                                                  
+     PART 20 USING STOGROUP SQ100P20                                            
+     PRIQTY 570000                                                              
+     SECQTY 10000                                                               
+     ERASE NO,                                                                  
+     PART 21 USING STOGROUP SQ100P21                                            
+     PRIQTY 570000                                                              
+     SECQTY 10000                                                               
+     ERASE NO,                                                                  
+     PART 22 USING STOGROUP SQ100P22                                            
+     PRIQTY 570000                                                              
+     SECQTY 10000                                                               
+     ERASE NO,                                                                  
+     PART 23 USING STOGROUP SQ100P23                                            
+     PRIQTY 570000                                                              
+     SECQTY 10000                                                               
+     ERASE NO,                                                                  
+     PART 24 USING STOGROUP SQ100P24                                            
+     PRIQTY 570000                                                              
+     SECQTY 10000                                                               
+     ERASE NO,                                                                  
+     PART 25 USING STOGROUP SQ100P25                                            
+     PRIQTY 570000                                                              
+     SECQTY 10000                                                               
+     ERASE NO,                                                                  
+     PART 26 USING STOGROUP SQ100P26                                            
+     PRIQTY 570000                                                              
+     SECQTY 10000                                                               
+     ERASE NO,                                                                  
+     PART 27 USING STOGROUP SQ100P27                                            
+     PRIQTY 570000                                                              
+     SECQTY 10000                                                               
+     ERASE NO,                                                                  
+     PART 28 USING STOGROUP SQ100P28                                            
+     PRIQTY 570000                                                              
+     SECQTY 10000                                                               
+     ERASE NO,                                                                  
+     PART 29 USING STOGROUP SQ100P29                                            
+     PRIQTY 570000                                                              
+     SECQTY 10000                                                               
+     ERASE NO,                                                                  
+     PART 30 USING STOGROUP SQ100P30                                            
+     PRIQTY 570000                                                              
+     SECQTY 10000                                                               
+     ERASE NO,                                                                  
+     PART 31 USING STOGROUP SQ100P31                                            
+     PRIQTY 570000                                                              
+     SECQTY 10000                                                               
+     ERASE NO,                                                                  
+     PART 32 USING STOGROUP SQ100P32                                            
+     PRIQTY 570000                                                              
+     SECQTY 10000                                                               
+     ERASE NO,                                                                  
+     PART 33 USING STOGROUP SQ100P33                                            
+     PRIQTY 570000                                                              
+     SECQTY 10000                                                               
+     ERASE NO,                                                                  
+     PART 34 USING STOGROUP SQ100P34                                            
+     PRIQTY 570000                                                              
+     SECQTY 10000                                                               
+     ERASE NO,                                                                  
+     PART 35 USING STOGROUP SQ100P35                                            
+     PRIQTY 570000                                                              
+     SECQTY 10000                                                               
+     ERASE NO,                                                                  
+     PART 36 USING STOGROUP SQ100P36                                            
+     PRIQTY 570000                                                              
+     SECQTY 10000                                                               
+     ERASE NO,                                                                  
+     PART 37 USING STOGROUP SQ100P37                                            
+     PRIQTY 570000                                                              
+     SECQTY 10000                                                               
+     ERASE NO,                                                                  
+     PART 38 USING STOGROUP SQ100P38                                            
+     PRIQTY 570000                                                              
+     SECQTY 10000                                                               
+     ERASE NO,                                                                  
+     PART 39 USING STOGROUP SQ100P39                                            
+     PRIQTY 570000                                                              
+     SECQTY 10000                                                               
+     ERASE NO,                                                                  
+     PART 40 USING STOGROUP SQ100P40                                            
+     PRIQTY 570000                                                              
+     SECQTY 10000                                                               
+     ERASE NO)                                                                  
+     LOCKSIZE PAGE                                                              
+     CLOSE NO;                                                                  
+ CREATE TABLE DAVID.SQ100                                                       
+     (KSEQ              INTEGER NOT NULL,                                       
+      K500K             INTEGER NOT NULL,                                       
+      K250K             INTEGER NOT NULL,                                       
+      K100K             INTEGER NOT NULL,                                       
+      K40K              INTEGER NOT NULL,                                       
+      K10K              INTEGER NOT NULL,                                       
+      K1K               INTEGER NOT NULL,                                       
+      K100              INTEGER NOT NULL,                                       
+      K25               INTEGER NOT NULL,                                       
+      K10               INTEGER NOT NULL,                                       
+      K5                INTEGER NOT NULL,                                       
+      K4                INTEGER NOT NULL,                                       
+      K2                INTEGER NOT NULL,                                       
+      SORTBIN           INTEGER NOT NULL,                                       
+      SORTPACK          DEC(7)   NOT NULL,                                      
+      SORTCHAR          CHAR(8) NOT NULL,                                       
+      S4                CHAR(30) NOT NULL,                                      
+      S5                CHAR(30) NOT NULL,                                      
+      S6                CHAR(30) NOT NULL,                                      
+      S7                CHAR(20) NOT NULL,                                      
+      S8                CHAR(22) NOT NULL)                                      
+      IN  SQ100DB.SQ100TS;                                                      
+-- **************************************************************** --   --     
+--                                                                  --   --     
+--                                                                  --          
+-- **************************************************************** --          
+ CREATE UNIQUE INDEX DAVID.SQ100I01                                             
+        ON DAVID.SQ100(KSEQ)                                                    
+         SUBPAGES 8                                                             
+         CLUSTER                                                                
+        (PART  1 VALUES(2500000)                                                
+         USING STOGROUP SQ100I1A                                                
+         PRIQTY 26000                                                           
+         SECQTY 2000                                                            
+         ERASE NO,                                                              
+         PART  2 VALUES(5000000)                                                
+         USING STOGROUP SQ100I1A                                                
+         PRIQTY 26000                                                           
+         SECQTY 2000                                                            
+         ERASE NO,                                                              
+         PART  3 VALUES(7500000)                                                
+         USING STOGROUP SQ100I1A                                                
+         PRIQTY 26000                                                           
+         SECQTY 2000                                                            
+         ERASE NO,                                                              
+         PART  4 VALUES(10000000)                                               
+         USING STOGROUP SQ100I1A                                                
+         PRIQTY 26000                                                           
+         SECQTY 2000                                                            
+         ERASE NO,                                                              
+         PART  5 VALUES(12500000)                                               
+         USING STOGROUP SQ100I1A                                                
+         PRIQTY 26000                                                           
+         SECQTY 2000                                                            
+         ERASE NO,                                                              
+         PART  6 VALUES(15000000)                                               
+         USING STOGROUP SQ100I1A                                                
+         PRIQTY 26000                                                           
+         SECQTY 2000                                                            
+         ERASE NO,                                                              
+         PART  7 VALUES(17500000)                                               
+         USING STOGROUP SQ100I1A                                                
+         PRIQTY 26000                                                           
+         SECQTY 2000                                                            
+         ERASE NO,                                                              
+         PART  8 VALUES(20000000)                                               
+         USING STOGROUP SQ100I1A                                                
+         PRIQTY 26000                                                           
+         SECQTY 2000                                                            
+         ERASE NO,                                                              
+         PART  9 VALUES(22500000)                                               
+         USING STOGROUP SQ100I1A                                                
+         PRIQTY 26000                                                           
+         SECQTY 2000                                                            
+         ERASE NO,                                                              
+         PART 10 VALUES(25000000)                                               
+         USING STOGROUP SQ100I1A                                                
+         PRIQTY 26000                                                           
+         SECQTY 2000                                                            
+         ERASE NO,                                                              
+         PART 11 VALUES(27500000)                                               
+         USING STOGROUP SQ100I1B                                                
+         PRIQTY 26000                                                           
+         SECQTY 2000                                                            
+         ERASE NO,                                                              
+         PART 12 VALUES(30000000)                                               
+         USING STOGROUP SQ100I1B                                                
+         PRIQTY 26000                                                           
+         SECQTY 2000                                                            
+         ERASE NO,                                                              
+         PART 13 VALUES(32500000)                                               
+         USING STOGROUP SQ100I1B                                                
+         PRIQTY 26000                                                           
+         SECQTY 2000                                                            
+         ERASE NO,                                                              
+         PART 14 VALUES(35000000)                                               
+         USING STOGROUP SQ100I1B                                                
+         PRIQTY 26000                                                           
+         SECQTY 2000                                                            
+         ERASE NO,                                                              
+         PART 15 VALUES(37500000)                                               
+         USING STOGROUP SQ100I1B                                                
+         PRIQTY 26000                                                           
+         SECQTY 2000                                                            
+         ERASE NO,                                                              
+         PART 16 VALUES(40000000)                                               
+         USING STOGROUP SQ100I1B                                                
+         PRIQTY 26000                                                           
+         SECQTY 2000                                                            
+         ERASE NO,                                                              
+         PART 17 VALUES(42500000)                                               
+         USING STOGROUP SQ100I1B                                                
+         PRIQTY 26000                                                           
+         SECQTY 2000                                                            
+         ERASE NO,                                                              
+         PART 18 VALUES(45000000)                                               
+         USING STOGROUP SQ100I1B                                                
+         PRIQTY 26000                                                           
+         SECQTY 2000                                                            
+         ERASE NO,                                                              
+         PART 19 VALUES(47500000)                                               
+         USING STOGROUP SQ100I1B                                                
+         PRIQTY 26000                                                           
+         SECQTY 2000                                                            
+         ERASE NO,                                                              
+         PART 20 VALUES(50000000)                                               
+         USING STOGROUP SQ100I1B                                                
+         PRIQTY 26000                                                           
+         SECQTY 2000                                                            
+         ERASE NO,                                                              
+         PART 21 VALUES(52500000)                                               
+         USING STOGROUP SQ100I1C                                                
+         PRIQTY 26000                                                           
+         SECQTY 2000                                                            
+         ERASE NO,                                                              
+         PART 22 VALUES(55000000)                                               
+         USING STOGROUP SQ100I1C                                                
+         PRIQTY 26000                                                           
+         SECQTY 2000                                                            
+         ERASE NO,                                                              
+         PART 23 VALUES(57500000)                                               
+         USING STOGROUP SQ100I1C                                                
+         PRIQTY 26000                                                           
+         SECQTY 2000                                                            
+         ERASE NO,                                                              
+         PART 24 VALUES(60000000)                                               
+         USING STOGROUP SQ100I1C                                                
+         PRIQTY 26000                                                           
+         SECQTY 2000                                                            
+         ERASE NO,                                                              
+         PART 25 VALUES(62500000)                                               
+         USING STOGROUP SQ100I1C                                                
+         PRIQTY 26000                                                           
+         SECQTY 2000                                                            
+         ERASE NO,                                                              
+         PART 26 VALUES(65000000)                                               
+         USING STOGROUP SQ100I1C                                                
+         PRIQTY 26000                                                           
+         SECQTY 2000                                                            
+         ERASE NO,                                                              
+         PART 27 VALUES(67500000)                                               
+         USING STOGROUP SQ100I1C                                                
+         PRIQTY 26000                                                           
+         SECQTY 2000                                                            
+         ERASE NO,                                                              
+         PART 28 VALUES(70000000)                                               
+         USING STOGROUP SQ100I1C                                                
+         PRIQTY 26000                                                           
+         SECQTY 2000                                                            
+         ERASE NO,                                                              
+         PART 29 VALUES(72500000)                                               
+         USING STOGROUP SQ100I1C                                                
+         PRIQTY 26000                                                           
+         SECQTY 2000                                                            
+         ERASE NO,                                                              
+         PART 30 VALUES(75000000)                                               
+         USING STOGROUP SQ100I1C                                                
+         PRIQTY 26000                                                           
+         SECQTY 2000                                                            
+         ERASE NO,                                                              
+         PART 31 VALUES(77500000)                                               
+         USING STOGROUP SQ100I1D                                                
+         PRIQTY 26000                                                           
+         SECQTY 2000                                                            
+         ERASE NO,                                                              
+         PART 32 VALUES(80000000)                                               
+         USING STOGROUP SQ100I1D                                                
+         PRIQTY 26000                                                           
+         SECQTY 2000                                                            
+         ERASE NO,                                                              
+         PART 33 VALUES(82500000)                                               
+         USING STOGROUP SQ100I1D                                                
+         PRIQTY 26000                                                           
+         SECQTY 2000                                                            
+         ERASE NO,                                                              
+         PART 34 VALUES(85000000)                                               
+         USING STOGROUP SQ100I1D                                                
+         PRIQTY 26000                                                           
+         SECQTY 2000                                                            
+         ERASE NO,                                                              
+         PART 35 VALUES(87500000)                                               
+         USING STOGROUP SQ100I1D                                                
+         PRIQTY 26000                                                           
+         SECQTY 2000                                                            
+         ERASE NO,                                                              
+         PART 36 VALUES(90000000)                                               
+         USING STOGROUP SQ100I1D                                                
+         PRIQTY 26000                                                           
+         SECQTY 2000                                                            
+         ERASE NO,                                                              
+         PART 37 VALUES(92500000)                                               
+         USING STOGROUP SQ100I1D                                                
+         PRIQTY 26000                                                           
+         SECQTY 2000                                                            
+         ERASE NO,                                                              
+         PART 38 VALUES(95000000)                                               
+         USING STOGROUP SQ100I1D                                                
+         PRIQTY 26000                                                           
+         SECQTY 2000                                                            
+         ERASE NO,                                                              
+         PART 39 VALUES(97500000)                                               
+         USING STOGROUP SQ100I1D                                                
+         PRIQTY 26000                                                           
+         SECQTY 2000                                                            
+         ERASE NO,                                                              
+         PART 40 VALUES(100000000)                                              
+         USING STOGROUP SQ100I1D                                                
+         PRIQTY 26000                                                           
+         SECQTY 2000                                                            
+         ERASE NO)                                                              
+         CLOSE NO;                                                              
+-- **************************************************************** --   --     
+--                                                                  --   --     
+--                                                                  --          
+-- **************************************************************** --          
+ CREATE INDEX DAVID.SQ100I02                                                    
+        ON DAVID.SQ100(K500K)                                                   
+        USING STOGROUP SQ100I02                                                 
+        PRIQTY 1040000                                                          
+        SECQTY 20000                                                            
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+-- **************************************************************** --   --     
+--                                                                  --   --     
+--                                                                  --          
+-- **************************************************************** --          
+ CREATE INDEX DAVID.SQ100I03                                                    
+        ON DAVID.SQ100(K250K)                                                   
+        USING STOGROUP SQ100I03                                                 
+        PRIQTY 740000                                                           
+        SECQTY 20000                                                            
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+-- **************************************************************** --   --     
+--                                                                  --   --     
+--                                                                  --          
+-- **************************************************************** --          
+ CREATE INDEX DAVID.SQ100I04                                                    
+        ON DAVID.SQ100(K100K)                                                   
+        USING STOGROUP SQ100I04                                                 
+        PRIQTY 616480                                                           
+        SECQTY 20000                                                            
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+-- **************************************************************** --   --     
+--                                                                  --   --     
+--                                                                  --          
+-- **************************************************************** --          
+ CREATE INDEX DAVID.SQ100I05                                                    
+        ON DAVID.SQ100(K40K)                                                    
+        USING STOGROUP SQ100I05                                                 
+        PRIQTY 511360                                                           
+        SECQTY 20000                                                            
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+-- **************************************************************** --   --     
+--                                                                  --   --     
+--                                                                  --          
+-- **************************************************************** --          
+ CREATE INDEX DAVID.SQ100I06                                                    
+        ON DAVID.SQ100(K10K)                                                    
+        USING STOGROUP SQ100I06                                                 
+        PRIQTY   498720                                                         
+        SECQTY 20000                                                            
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+ CREATE INDEX DAVID.SQ100I07                                                    
+        ON DAVID.SQ100(K1K)                                                     
+        USING STOGROUP SQ100I07                                                 
+        PRIQTY   498720                                                         
+        SECQTY 20000                                                            
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+ CREATE INDEX DAVID.SQ100I08                                                    
+        ON DAVID.SQ100(K100)                                                    
+        USING STOGROUP SQ100I08                                                 
+        PRIQTY 480000                                                           
+        SECQTY 20000                                                            
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+ CREATE INDEX DAVID.SQ100I09                                                    
+        ON DAVID.SQ100(K25)                                                     
+        USING STOGROUP SQ100I09                                                 
+        PRIQTY 480000                                                           
+        SECQTY 20000                                                            
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+ CREATE INDEX DAVID.SQ100I10                                                    
+        ON DAVID.SQ100(K10)                                                     
+        USING STOGROUP SQ100I10                                                 
+        PRIQTY 480000                                                           
+        SECQTY 20000                                                            
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+ CREATE INDEX DAVID.SQ100I11                                                    
+        ON DAVID.SQ100(K5)                                                      
+        USING STOGROUP SQ100I11                                                 
+        PRIQTY 480000                                                           
+        SECQTY 20000                                                            
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+ CREATE INDEX DAVID.SQ100I12                                                    
+        ON DAVID.SQ100(K4)                                                      
+        USING STOGROUP SQ100I12                                                 
+        PRIQTY 480000                                                           
+        SECQTY 20000                                                            
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+ CREATE INDEX DAVID.SQ100I13                                                    
+        ON DAVID.SQ100(K2)                                                      
+        USING STOGROUP SQ100I13                                                 
+        PRIQTY 480000                                                           
+        SECQTY 20000                                                            
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              

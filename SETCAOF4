@@ -1,0 +1,69 @@
+//SETCAOFF JOB (330DJY00),'D J YOUNG ',MSGCLASS=X,NOTIFY=DAVID          00010000
+//SETCAC  EXEC PGM=IDCAMS                                               00020000
+//SYSPRINT DD  SYSOUT=*                                                 00030000
+//SYSUDUMP DD  SYSOUT=*                                                 00040000
+//SETD0    DD  UNIT=3390,DISP=OLD,VOL=SER=DB2D01                        00052400
+//SETD1    DD  UNIT=3390,DISP=OLD,VOL=SER=DB2D02                        00052500
+//SETD2    DD  UNIT=3390,DISP=OLD,VOL=SER=DB2D03                        00052600
+//SETD3    DD  UNIT=3390,DISP=OLD,VOL=SER=DB2D04                        00052700
+//SETD4    DD  UNIT=3390,DISP=OLD,VOL=SER=DB2D05                        00052800
+//SETD5    DD  UNIT=3390,DISP=OLD,VOL=SER=DB2D06                        00052900
+//SETD6    DD  UNIT=3390,DISP=OLD,VOL=SER=DB2D07                        00053000
+//SETD7    DD  UNIT=3390,DISP=OLD,VOL=SER=DB2D08                        00053100
+//SETD8    DD  UNIT=3390,DISP=OLD,VOL=SER=DB2D09                        00053200
+//SETD9    DD  UNIT=3390,DISP=OLD,VOL=SER=DB2D10                        00053300
+//SETDA    DD  UNIT=3390,DISP=OLD,VOL=SER=DB2I01                        00053400
+//SETDB    DD  UNIT=3390,DISP=OLD,VOL=SER=DB2I07                        00053500
+//SETDC    DD  UNIT=3390,DISP=OLD,VOL=SER=DB2I09                        00053600
+//SETDD    DD  UNIT=3390,DISP=OLD,VOL=SER=DB2I11                        00053700
+//SETDE    DD  UNIT=3390,DISP=OLD,VOL=SER=DB2I12                        00053800
+//SETDF    DD  UNIT=3390,DISP=OLD,VOL=SER=DB2I15                        00053900
+//SYSIN    DD  *                                                        00054000
+   SETCACHE -                                                           00370000
+         FILE(SETD0) -                                                  00380000
+            OFF                                                         00390000
+   SETCACHE -                                                           00400000
+         FILE(SETD1) -                                                  00410000
+            OFF                                                         00420000
+   SETCACHE -                                                           00430000
+         FILE(SETD2) -                                                  00440000
+            OFF                                                         00450000
+   SETCACHE -                                                           00460000
+         FILE(SETD3) -                                                  00470000
+            OFF                                                         00480000
+   SETCACHE -                                                           00490000
+         FILE(SETD4) -                                                  00500000
+            OFF                                                         00510000
+   SETCACHE -                                                           00520000
+         FILE(SETD5) -                                                  00530000
+            OFF                                                         00540000
+   SETCACHE -                                                           00550000
+         FILE(SETD6) -                                                  00560000
+            OFF                                                         00570000
+   SETCACHE -                                                           00580000
+         FILE(SETD7) -                                                  00590000
+            OFF                                                         00600000
+   SETCACHE -                                                           00610000
+         FILE(SETD8) -                                                  00620000
+            OFF                                                         00630000
+   SETCACHE -                                                           00640000
+         FILE(SETD9) -                                                  00650000
+            OFF                                                         00660000
+   SETCACHE -                                                           00670000
+         FILE(SETDA) -                                                  00680000
+            ON                                                          00690000
+   SETCACHE -                                                           00700000
+         FILE(SETDB) -                                                  00710000
+            OFF                                                         00720000
+   SETCACHE -                                                           00730000
+         FILE(SETDC) -                                                  00740000
+            OFF                                                         00750000
+   SETCACHE -                                                           00760000
+         FILE(SETDD) -                                                  00770000
+            OFF                                                         00780000
+   SETCACHE -                                                           00790000
+         FILE(SETDE) -                                                  00800000
+            OFF                                                         00810000
+   SETCACHE -                                                           00820000
+         FILE(SETDF) -                                                  00830000
+            OFF                                                         00840000

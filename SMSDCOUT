@@ -1,0 +1,26 @@
+//DAVIDE  JOB  (ACCOUNT),'NAME',MSGCLASS=Y                                      
+//*                                                                             
+//*                                                                             
+//*                                                                             
+//*                                                                             
+//*                                                                             
+//*                                                                             
+//*                                                                             
+//*                                                                             
+//*                                                                             
+//STEP1  EXEC  PGM=IDCAMS                                                       
+//*                                                                             
+//*                                                                             
+//SYSPRINT  DD  SYSOUT=*                                                        
+//DCOUT    DD    DSN=DAVID.SMSDCOUT,                                            
+//         DISP=(NEW,CATLG,DELETE),UNIT=3390,VOL=SER=SMS9EA,                    
+//         SPACE=(1,(1,1)),AVGREC=K,                                            
+//         DSORG=PS,RECFM=VB,LRECL=264                                          
+//SYSIN    DD    *                                                              
+     DCOLLECT -                                                                 
+           OUTFILE(DCOUT) -                                                     
+           VOLUMES( -                                                           
+                   SMS9EA -                                                     
+                    ) -                                                         
+                                                                                
+/* END OF DCOLLECT COMMAND                                                      

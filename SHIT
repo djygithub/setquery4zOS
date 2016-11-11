@@ -1,0 +1,8 @@
+//CPPACK1 JOB (0,75),'LORENZO',MSGCLASS=X                               00010001
+//DB2S02  EXEC PGM=ADRDSSU,REGION=4M                                    00510001
+//SYSPRINT DD  SYSOUT=*                                                 00520001
+//IN       DD  UNIT=3390,VOL=SER=DB2S02,DISP=SHR                        00530001
+//OUT      DD  UNIT=3390,VOL=SER=VOL177,DISP=SHR                        00540001
+//SYSIN    DD  *                                                        00550001
+ COPY OUTDDNAME(OUT) INDDNAME(IN) CANCELERROR -                         00560001
+ ALLDATA(*) ALLEXCP COPYVOLID                                           00570001

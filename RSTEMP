@@ -1,0 +1,12 @@
+//RSMV4RS1 JOB (D3330RWM,ROOM),'D J YOUNG',MSGCLASS=O,TIME=1440                 
+//MV4CAT  EXEC PGM=ADRDSSU,REGION=4096K                                         
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=SYSDA,VOL=SER=MV4CAA                                   
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=EF8,DSN=DSS.BACKUP.VMV4CAT,                 
+//      VOL=SER=(001224,002057,002199)                                          
+//SYSPRINT DD SYSOUT=*                                                          
+ REST INDDNAME(TAPE1),OUTDDNAME(DASD1) COPYVOLID                                
+//*                                                                             

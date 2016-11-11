@@ -1,0 +1,143 @@
+//SETCAON JOB (330DJY00),'D J YOUNG ',MSGCLASS=X,NOTIFY=DAVID           00010000
+//SETCAC  EXEC PGM=IDCAMS                                               00020000
+//SYSPRINT DD  SYSOUT=*                                                 00030000
+//SYSUDUMP DD  SYSOUT=*                                                 00040000
+//SETC0    DD  UNIT=3390,DISP=OLD,VOL=SER=MV43RS                        00050000
+//SYSIN    DD  *                                                        00050100
+   SETCACHE -                                                           00050200
+         FILE(SETC0) -                                                  00050300
+         SUBSYSTEM -                                                    00050400
+            ON                                                          00050500
+   SETCACHE -                                                           00050600
+         FILE(SETC0) -                                                  00050700
+         NVS -                                                          00050800
+            ON                                                          00050900
+   SETCACHE -                                                           00051000
+         FILE(SETC0) -                                                  00051100
+         CACHEFASTWRITE -                                               00051200
+            ON                                                          00051300
+//SETCAC  EXEC PGM=IDCAMS                                               00051400
+//SYSPRINT DD  SYSOUT=*                                                 00051500
+//SYSUDUMP DD  SYSOUT=*                                                 00051600
+//SETC0    DD  UNIT=3390,DISP=OLD,VOL=SER=MV43RS                        00051700
+//SETC1    DD  UNIT=3390,DISP=OLD,VOL=SER=MV43DL                        00051800
+//SETC2    DD  UNIT=3390,DISP=OLD,VOL=SER=MV43CA                        00051900
+//SETC3    DD  UNIT=3390,DISP=OLD,VOL=SER=CICS33                        00052000
+//SETC4    DD  UNIT=3390,DISP=OLD,VOL=SER=TESTQA                        00052100
+//SETC5    DD  UNIT=3390,DISP=OLD,VOL=SER=DB2IMS                        00052200
+//SETC6    DD  UNIT=3390,DISP=OLD,VOL=SER=CICS32                        00052300
+//SETC7    DD  UNIT=3390,DISP=OLD,VOL=SER=CICS41                        00052400
+//SETC8    DD  UNIT=3390,DISP=OLD,VOL=SER=SMS9EA                        00052500
+//SETC9    DD  UNIT=3390,DISP=OLD,VOL=SER=MV51RS                        00052600
+//SETCA    DD  UNIT=3390,DISP=OLD,VOL=SER=MV51CA                        00052700
+//SETCB    DD  UNIT=3390,DISP=OLD,VOL=SER=MV51DL                        00052800
+//SETCC    DD  UNIT=3390,DISP=OLD,VOL=SER=DJYSMF                        00052900
+//SYSIN    DD  *                                                        00054900
+   SETCACHE -                                                           00055000
+         FILE(SETC0) -                                                  00055100
+            ON                                                          00055200
+   SETCACHE -                                                           00055300
+         FILE(SETC1) -                                                  00055400
+            ON                                                          00055500
+   SETCACHE -                                                           00055600
+         FILE(SETC2) -                                                  00055700
+            ON                                                          00055800
+   SETCACHE -                                                           00055900
+         FILE(SETC3) -                                                  00056000
+            ON                                                          00057000
+   SETCACHE -                                                           00058000
+         FILE(SETC4) -                                                  00059000
+            ON                                                          00060000
+   SETCACHE -                                                           00070000
+         FILE(SETC5) -                                                  00080000
+            ON                                                          00090000
+   SETCACHE -                                                           00100000
+         FILE(SETC6) -                                                  00110000
+            ON                                                          00120000
+   SETCACHE -                                                           00130000
+         FILE(SETC7) -                                                  00140000
+            ON                                                          00150000
+   SETCACHE -                                                           00160000
+         FILE(SETC8) -                                                  00170000
+            ON                                                          00180000
+   SETCACHE -                                                           00190000
+         FILE(SETC9) -                                                  00200000
+            ON                                                          00210000
+   SETCACHE -                                                           00220000
+         FILE(SETCA) -                                                  00230000
+            ON                                                          00240000
+   SETCACHE -                                                           00250000
+         FILE(SETCB) -                                                  00260000
+            ON                                                          00270000
+   SETCACHE -                                                           00280000
+         FILE(SETCC) -                                                  00290000
+            ON                                                          00300000
+//SETDFW  EXEC PGM=IDCAMS                                               00880000
+//SYSPRINT DD  SYSOUT=*                                                 00890000
+//SYSUDUMP DD  SYSOUT=*                                                 00900000
+//SETC0    DD  UNIT=3390,DISP=OLD,VOL=SER=MV43RS                        00910000
+//SETC1    DD  UNIT=3390,DISP=OLD,VOL=SER=MV43DL                        00920000
+//SETC2    DD  UNIT=3390,DISP=OLD,VOL=SER=MV43CA                        00930000
+//SETC3    DD  UNIT=3390,DISP=OLD,VOL=SER=CICS33                        00940000
+//SETC4    DD  UNIT=3390,DISP=OLD,VOL=SER=TESTQA                        00950000
+//SETC5    DD  UNIT=3390,DISP=OLD,VOL=SER=DB2IMS                        00960000
+//SETC6    DD  UNIT=3390,DISP=OLD,VOL=SER=CICS32                        00970000
+//SETC7    DD  UNIT=3390,DISP=OLD,VOL=SER=CICS41                        00980000
+//SETC8    DD  UNIT=3390,DISP=OLD,VOL=SER=SMS9EA                        00990000
+//SETC9    DD  UNIT=3390,DISP=OLD,VOL=SER=MV51RS                        01000000
+//SETCA    DD  UNIT=3390,DISP=OLD,VOL=SER=MV51CA                        01010000
+//SETCB    DD  UNIT=3390,DISP=OLD,VOL=SER=MV51DL                        01020000
+//SETCC    DD  UNIT=3390,DISP=OLD,VOL=SER=DJYSMF                        01030000
+//SYSIN    DD  *                                                        01230000
+   SETCACHE -                                                           01240000
+         FILE(SETC0) -                                                  01250000
+         DASDFASTWRITE -                                                01260000
+            ON                                                          01270000
+   SETCACHE -                                                           01280000
+         FILE(SETC1) -                                                  01290000
+         DASDFASTWRITE -                                                01291000
+            ON                                                          01292000
+   SETCACHE -                                                           01293000
+         FILE(SETC2) -                                                  01294000
+         DASDFASTWRITE -                                                01295000
+            ON                                                          01296000
+   SETCACHE -                                                           01297000
+         FILE(SETC3) -                                                  01298000
+         DASDFASTWRITE -                                                01299000
+            ON                                                          01300000
+   SETCACHE -                                                           01310000
+         FILE(SETC4) -                                                  01320000
+         DASDFASTWRITE -                                                01330000
+            ON                                                          01340000
+   SETCACHE -                                                           01350000
+         FILE(SETC5) -                                                  01360000
+         DASDFASTWRITE -                                                01370000
+            ON                                                          01380000
+   SETCACHE -                                                           01390000
+         FILE(SETC6) -                                                  01400000
+         DASDFASTWRITE -                                                01410000
+            ON                                                          01420000
+   SETCACHE -                                                           01430000
+         FILE(SETC7) -                                                  01440000
+         DASDFASTWRITE -                                                01450000
+            ON                                                          01460000
+   SETCACHE -                                                           01470000
+         FILE(SETC8) -                                                  01480000
+         DASDFASTWRITE -                                                01490000
+            ON                                                          01500000
+   SETCACHE -                                                           01510000
+         FILE(SETC9) -                                                  01520000
+         DASDFASTWRITE -                                                01530000
+            ON                                                          01540000
+   SETCACHE -                                                           01550000
+         FILE(SETCA) -                                                  01560000
+         DASDFASTWRITE -                                                01561000
+            ON                                                          01562000
+   SETCACHE -                                                           01563000
+         FILE(SETCB) -                                                  01564000
+         DASDFASTWRITE -                                                01565000
+            ON                                                          01566000
+   SETCACHE -                                                           01567000
+         FILE(SETCC) -                                                  01568000
+         DASDFASTWRITE -                                                01569000
+            ON                                                          01570000

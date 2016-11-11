@@ -1,0 +1,30 @@
+ EXPLAIN PLAN SET QUERYNO = 101 FOR                                             
+                SELECT COUNT(*) FROM DAVID.SQ10                                 
+                  WHERE KSEQ = 2;                                               
+ EXPLAIN PLAN SET QUERYNO = 102 FOR                                             
+                SELECT COUNT(*) FROM DAVID.SQ10                                 
+                  WHERE K100K = 2;                                              
+ EXPLAIN PLAN SET QUERYNO = 103 FOR                                             
+                SELECT COUNT(*) FROM DAVID.SQ10                                 
+                  WHERE K10K = 2;                                               
+ EXPLAIN PLAN SET QUERYNO = 104 FOR                                             
+                SELECT COUNT(*) FROM DAVID.SQ10                                 
+                  WHERE K1K  = 2;                                               
+ EXPLAIN PLAN SET QUERYNO = 105 FOR                                             
+                SELECT COUNT(*) FROM DAVID.SQ10                                 
+                  WHERE K100 = 2;                                               
+ EXPLAIN PLAN SET QUERYNO = 106 FOR                                             
+                SELECT COUNT(*) FROM DAVID.SQ10                                 
+                  WHERE K25  = 2;                                               
+ EXPLAIN PLAN SET QUERYNO = 107 FOR                                             
+                SELECT COUNT(*) FROM DAVID.SQ10                                 
+                  WHERE K10  = 2;                                               
+ EXPLAIN PLAN SET QUERYNO = 108 FOR                                             
+                SELECT COUNT(*) FROM DAVID.SQ10                                 
+                  WHERE K5   = 2;                                               
+ EXPLAIN PLAN SET QUERYNO = 109 FOR                                             
+                SELECT COUNT(*) FROM DAVID.SQ10                                 
+                  WHERE K4   = 2;                                               
+ EXPLAIN PLAN SET QUERYNO = 110 FOR                                             
+                SELECT COUNT(*) FROM DAVID.SQ10                                 
+                  WHERE K2   = 2;                                               

@@ -1,0 +1,9 @@
+ EXPLAIN PLAN SET QUERYNO = 501 FOR                                             
+                SELECT K2, K100, COUNT(*) FROM DAVID.SQ10                       
+                  GROUP BY K2, K100;                                            
+ EXPLAIN PLAN SET QUERYNO = 502 FOR                                             
+                SELECT K4, K25,  COUNT(*) FROM DAVID.SQ10                       
+                  GROUP BY K4, K25;                                             
+ EXPLAIN PLAN SET QUERYNO = 503 FOR                                             
+                SELECT K10, K25, COUNT(*) FROM DAVID.SQ10                       
+                  GROUP BY K10, K25;                                            

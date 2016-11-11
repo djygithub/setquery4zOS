@@ -1,0 +1,1 @@
+select avg(k100) from david.sq6 where k2 = 2;                           00010003

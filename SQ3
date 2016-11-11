@@ -1,0 +1,165 @@
+-- ****************************************************************** --        
+--                                                                    --        
+--  DATABASE SQADB TABLE DAVID.SQA                               --             
+--     1,000,000 ROWS                                               --          
+--     224 BYTES PER ROW                                              --        
+--                                                                    --        
+--                                                                    --        
+--                                                                    --        
+-- ****************************************************************** --        
+ CREATE STOGROUP CICS33S1 VOLUMES (CICS33) VCAT DSN310;                         
+ CREATE STOGROUP CICS33S2 VOLUMES (CICS33) VCAT DSN310;                         
+ CREATE DATABASE SQADB STOGROUP DB2S01SG;                                       
+-- ****************************************************************** --        
+--                                                                    --        
+--                                                                    --        
+-- ****************************************************************** --        
+ CREATE TABLESPACE SQATS                                                        
+     IN SQADB                                                                   
+     BUFFERPOOL BP0                                                             
+     USING STOGROUP CICS33S1                                                    
+     PRIQTY 224                                                                 
+     SECQTY 100                                                                 
+     ERASE NO                                                                   
+     LOCKSIZE PAGE                                                              
+     CLOSE NO                                                                   
+     COMPRESS YES;                                                              
+ CREATE TABLE DAVID.SQA                                                         
+     (KSEQ              INTEGER NOT NULL,                                       
+      K500K             INTEGER NOT NULL,                                       
+      K250K             INTEGER NOT NULL,                                       
+      K100K             INTEGER NOT NULL,                                       
+      K40K              INTEGER NOT NULL,                                       
+      K10K              INTEGER NOT NULL,                                       
+      K1K               INTEGER NOT NULL,                                       
+      K100              INTEGER NOT NULL,                                       
+      K25               INTEGER NOT NULL,                                       
+      K10               INTEGER NOT NULL,                                       
+      K5                INTEGER NOT NULL,                                       
+      K4                INTEGER NOT NULL,                                       
+      K2                INTEGER NOT NULL,                                       
+      SORTBIN           INTEGER NOT NULL,                                       
+      SORTPACK          DEC(7)   NOT NULL,                                      
+      SORTCHAR          CHAR(8) NOT NULL,                                       
+      S4                CHAR(30) NOT NULL,                                      
+      S5                CHAR(30) NOT NULL,                                      
+      S6                CHAR(30) NOT NULL,                                      
+      S7                CHAR(20) NOT NULL,                                      
+      S8                CHAR(22) NOT NULL)                                      
+      IN  SQADB.SQATS;                                                          
+-- **************************************************************** --   --     
+--                                                                  --   --     
+--                                                                  --          
+-- **************************************************************** --          
+ CREATE UNIQUE INDEX DAVID.SQAI01                                               
+        ON DAVID.SQA(KSEQ)                                                      
+         USING STOGROUP CICS33S2                                                
+         PRIQTY 100                                                             
+         SECQTY 200                                                             
+         SUBPAGES 8                                                             
+         CLUSTER                                                                
+         CLOSE NO;                                                              
+-- **************************************************************** --   --     
+--                                                                  --   --     
+--                                                                  --          
+-- **************************************************************** --          
+ CREATE INDEX DAVID.SQAI02                                                      
+        ON DAVID.SQA(K500K)                                                     
+        USING STOGROUP CICS33S2                                                 
+        PRIQTY 104                                                              
+        SECQTY 200                                                              
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+-- **************************************************************** --   --     
+--                                                                  --   --     
+--                                                                  --          
+-- **************************************************************** --          
+ CREATE INDEX DAVID.SQAI03                                                      
+        ON DAVID.SQA(K250K)                                                     
+        USING STOGROUP CICS33S2                                                 
+        PRIQTY 740                                                              
+        SECQTY 200                                                              
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+-- **************************************************************** --   --     
+--                                                                  --   --     
+--                                                                  --          
+-- **************************************************************** --          
+ CREATE INDEX DAVID.SQAI04                                                      
+        ON DAVID.SQA(K100K)                                                     
+        USING STOGROUP CICS33S2                                                 
+        PRIQTY 740                                                              
+        SECQTY 200                                                              
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+-- **************************************************************** --   --     
+--                                                                  --   --     
+--                                                                  --          
+-- **************************************************************** --          
+ CREATE INDEX DAVID.SQAI05                                                      
+        ON DAVID.SQA(K40K)                                                      
+        USING STOGROUP CICS33S2                                                 
+        PRIQTY 511                                                              
+        SECQTY 200                                                              
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+-- **************************************************************** --   --     
+--                                                                  --   --     
+--                                                                  --          
+-- **************************************************************** --          
+ CREATE INDEX DAVID.SQAI06                                                      
+        ON DAVID.SQA(K10K)                                                      
+        USING STOGROUP CICS33S2                                                 
+        PRIQTY   487                                                            
+        SECQTY 200                                                              
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+ CREATE INDEX DAVID.SQAI07                                                      
+        ON DAVID.SQA(K1K)                                                       
+        USING STOGROUP CICS33S2                                                 
+        PRIQTY   987                                                            
+        SECQTY 200                                                              
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+ CREATE INDEX DAVID.SQAI08                                                      
+        ON DAVID.SQA(K100)                                                      
+        USING STOGROUP CICS33S2                                                 
+        PRIQTY 480                                                              
+        SECQTY 200                                                              
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+ CREATE INDEX DAVID.SQAI09                                                      
+        ON DAVID.SQA(K25)                                                       
+        USING STOGROUP CICS33S2                                                 
+        PRIQTY 480                                                              
+        SECQTY 200                                                              
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+ CREATE INDEX DAVID.SQAI10                                                      
+        ON DAVID.SQA(K10)                                                       
+        USING STOGROUP CICS33S2                                                 
+        PRIQTY 480                                                              
+        SECQTY 200                                                              
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+ CREATE INDEX DAVID.SQAI11                                                      
+        ON DAVID.SQA(K5)                                                        
+        USING STOGROUP CICS33S2                                                 
+        PRIQTY 480                                                              
+        SECQTY 200                                                              
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+ CREATE INDEX DAVID.SQAI12                                                      
+        ON DAVID.SQA(K4)                                                        
+        USING STOGROUP CICS33S2                                                 
+        PRIQTY 480                                                              
+        SECQTY 200                                                              
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+ CREATE INDEX DAVID.SQAI13                                                      
+        ON DAVID.SQA(K2)                                                        
+        USING STOGROUP CICS33S2                                                 
+        PRIQTY 400                                                              
+        SECQTY 200                                                              
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              

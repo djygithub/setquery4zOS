@@ -1,0 +1,42 @@
+ EXPLAIN PLAN SET QUERYNO = 409 FOR                                             
+                SELECT KSEQ, K500K FROM DAVID.SQ10                              
+                  WHERE K2   =   1                                              
+                  AND   K100 > 80                                               
+                  AND   K10K BETWEEN 2000 AND 3000                              
+                  AND   K5   = 3                                                
+                  AND   (K25 = 11 OR K25 = 9);                                  
+ EXPLAIN PLAN SET QUERYNO = 410 FOR                                             
+                SELECT KSEQ, K500K FROM DAVID.SQ10                              
+                  WHERE K100 > 80                                               
+                  AND   K10K BETWEEN 2000 AND 3000                              
+                  AND   K5   = 3                                                
+                  AND   (K25 = 11 OR K25 = 9)                                   
+                  AND   K4   = 3;                                               
+ EXPLAIN PLAN SET QUERYNO = 411 FOR                                             
+                SELECT KSEQ, K500K FROM DAVID.SQ10                              
+                  WHERE K10K BETWEEN 2000 AND 3000                              
+                  AND   K5   = 3                                                
+                  AND   (K25 = 11 OR K25 = 9)                                   
+                  AND   K4   = 3                                                
+                  AND   K100 < 41;                                              
+ EXPLAIN PLAN SET QUERYNO = 412 FOR                                             
+                SELECT KSEQ, K500K FROM DAVID.SQ10                              
+                  WHERE K5   = 3                                                
+                  AND   (K25 = 11 OR K25 = 9)                                   
+                  AND   K4   = 3                                                
+                  AND   K100 < 41                                               
+                  AND   K1K BETWEEN 850  AND 950;                               
+ EXPLAIN PLAN SET QUERYNO = 413 FOR                                             
+                SELECT KSEQ, K500K FROM DAVID.SQ10                              
+                  WHERE (K25 = 11 OR K25 = 9)                                   
+                  AND   K4   = 3                                                
+                  AND   K100 < 41                                               
+                  AND   K1K BETWEEN 850  AND 950                                
+                  AND   K10  = 7;                                               
+ EXPLAIN PLAN SET QUERYNO = 414 FOR                                             
+                SELECT KSEQ, K500K FROM DAVID.SQ10                              
+                  WHERE K4   = 3                                                
+                  AND   K100 < 41                                               
+                  AND   K1K BETWEEN 850  AND 950                                
+                  AND   K10  = 7                                                
+                  AND   K25  BETWEEN 3 AND 4;                                   

@@ -1,0 +1,34 @@
+//RSMV43   JOB (D3330RWM,ROOM),'D J YOUNG',MSGCLASS=O,TIME=1440                 
+//MV43RS  EXEC PGM=ADRDSSU,REGION=4096K                                         
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=VOL4A0                                    
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=EE0,DSN=DSS.BACKUP.VMV43RS,                 
+//      VOL=SER=002865                                                          
+//SYSPRINT DD SYSOUT=*                                                          
+ REST INDDNAME(TAPE1),OUTDDNAME(DASD1) COPYVOLID                                
+//*                                                                             
+//MV43DL  EXEC PGM=ADRDSSU,REGION=4096K                                         
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=VOL4A1                                    
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=EE0,DSN=DSS.BACKUP.VMV43DL,                 
+//      VOL=SER=(002866,002899)                                                 
+//SYSPRINT DD SYSOUT=*                                                          
+ REST INDDNAME(TAPE1),OUTDDNAME(DASD1) COPYVOLID                                
+//*                                                                             
+//MV43CA  EXEC PGM=ADRDSSU,REGION=4096K                                         
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=VOL4A2                                    
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=EE0,DSN=DSS.BACKUP.VMV43CA,                 
+//      VOL=SER=002861                                                          
+//SYSPRINT DD SYSOUT=*                                                          
+ REST INDDNAME(TAPE1),OUTDDNAME(DASD1) COPYVOLID                                
+//*                                                                             

@@ -1,0 +1,13 @@
+//RSI07A   JOB (D3330RWM,ROOM),'D J YOUNG',MSGCLASS=X                           
+//RSDB2I07 EXEC PGM=ADRDSSU,REGION=4096K                                        
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=DB2I07                                    
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=EF8,DSN=DSS.BACKUP.VDB2I07,                 
+// VOL=(,,,8,SER=(000300,002656,001985,002377,002099,002191,                    
+//     001788,002019))                                                          
+//SYSPRINT DD SYSOUT=*                                                          
+ REST INDDNAME(TAPE1),OUTDDNAME(DASD1)                                          
+//*                                                                             

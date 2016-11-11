@@ -1,0 +1,56 @@
+//SCRATCH  JOB (USER,ACCT,NUMBER),                                              
+//         'D J YOUNG',                                                         
+//         CLASS=A,MSGCLASS=X,MSGLEVEL=(1,1),                                   
+//         REGION=4M                                                            
+//*                                                                             
+//*                                                                             
+//*                                                                             
+//*********************************************************************         
+//* INSTALL/IVP IMS 3.1                                               *         
+//*                                                                   *         
+//* SKELETON: DFSIXSE0                                                *         
+//*                                                                   *         
+//* FUNCTION: ALLOCATE THE SYSTEM APPLICATION AND EXECUTION DATA SETS *         
+//*********************************************************************         
+//*                                                                             
+//*********************************************************************         
+//*         THIS PRODUCT CONTAINS "RESTRICTED MATERIALS OF IBM".      *         
+//*                                                                   *         
+//*         5665-408 (C) COPYRIGHT IBM CORP. 1974, 1988.              *         
+//*         LICENSED MATERIALS - PROPERTY OF IBM.                     *         
+//*         ALL RIGHTS RESERVED.                                      *         
+//*                                                                   *         
+//*         U.S. GOVERNMENT USERS RESTRICTED RIGHTS -                 *         
+//*         USE, DUPLICATION, OR DISCLOSURE RESTRICTED BY             *         
+//*         GSA ADP SCHEDULE CONTRACT WITH IBM CORP.                  *         
+//*                                                                   *         
+//*         REFER TO COPYRIGHT INSTRUCTIONS FORM NUMBER G120-2083.    *         
+//*********************************************************************         
+//*                                                                             
+//* SCRATCH THE DATA SETS IF THEY ALREADY EXIST                                 
+//*                                                                             
+//SCRATCH  EXEC PGM=IEHPROGM                                                    
+//SYSPRINT DD SYSOUT=*                                                          
+//IVPSYS   DD DISP=OLD,UNIT=3390,VOL=SER=DB2S01                                 
+//IVPSYS   DD DISP=OLD,UNIT=3390,VOL=SER=CICS32                                 
+//IVPEX1   DD DISP=OLD,UNIT=3390,VOL=SER=CICS32                                 
+//IVPEX2   DD DISP=OLD,UNIT=3390,VOL=SER=CICS32                                 
+//SYSIN    DD *                                                                 
+  UNCATLG DSNAME=DSN230.DBRMLIB.DATA                                            
+  SCRATCH DSNAME=DSN230.DBRMLIB.DATA                                   X        
+               VOL=3390=DB2S01                                                  
+  UNCATLG DSNAME=DSN230.NEW.DSNCLIST                                            
+  SCRATCH DSNAME=DSN230.NEW.DSNCLIST                                   X        
+               VOL=3390=DB2S01                                                  
+  UNCATLG DSNAME=DSN230.NEW.DSNSAMP                                             
+  SCRATCH DSNAME=DSN230.NEW.DSNSAMP                                    X        
+               VOL=3390=DB2S01                                                  
+  UNCATLG DSNAME=DSN230.NEW.DSNTEMP                                             
+  SCRATCH DSNAME=DSN230.NEW.DSNTEMP                                    X        
+               VOL=3390=DB2S01                                                  
+  UNCATLG DSNAME=DSN230.RUNLIB.LOAD                                             
+  SCRATCH DSNAME=DSN230.RUNLIB.LOAD                                    X        
+               VOL=3390=DB2S01                                                  
+  UNCATLG DSNAME=DSN230.SRCLIB.DATA                                             
+  SCRATCH DSNAME=DSN230.SRCLIB.DATA                                    X        
+               VOL=3390=DB2S01                                                  

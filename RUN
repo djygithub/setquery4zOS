@@ -1,0 +1,7 @@
+@PROGRAM = RUNPGM                                                               
+RUN: MSGTXT                                                                     
+DO FOREVER                                                                      
+   TYPE 'SQLA000000100000000500'                                                
+   TRANSMIT USING ENTER                                                         
+END                                                                             
+ENDTXT                                                                          

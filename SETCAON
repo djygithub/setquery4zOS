@@ -1,0 +1,19 @@
+//SETCAON  JOB (330DJY00),'D J YOUNG ',MSGCLASS=X,NOTIFY=DAVID          00010000
+//SETCAC  EXEC PGM=IDCAMS                                               00020000
+//SYSPRINT DD  SYSOUT=*                                                 00030000
+//SYSUDUMP DD  SYSOUT=*                                                 00040000
+//SETC0    DD  UNIT=3390,DISP=OLD,VOL=SER=CICS33                        00050001
+//SYSIN    DD  *                                                        00054100
+   SETCACHE -                                                           00054200
+         FILE(SETC0) -                                                  00054300
+            ON                                                          00054400
+//SETDFWON JOB (330DJY00),'D J YOUNG ',MSGCLASS=X,NOTIFY=DAVID          00054801
+//SETCAC  EXEC PGM=IDCAMS                                               00054901
+//SYSPRINT DD  SYSOUT=*                                                 00055001
+//SYSUDUMP DD  SYSOUT=*                                                 00056001
+//SETC0    DD  UNIT=3390,DISP=OLD,VOL=SER=CICS33                        00057001
+//SYSIN    DD  *                                                        00350001
+   SETCACHE FILE(SETC0) NVS ON                                          00360001
+   SETCACHE -                                                           00370001
+         FILE(SETC0) -                                                  00380001
+            DASDFASTWRITE ON                                            00390001
