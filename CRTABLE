@@ -1,0 +1,232 @@
+-- ****************************************************************** --        
+--                                                                    --        
+--  DATABASE SQ10DB TABLE DAVID.SQ10                               --           
+--       2,500,000 ROWS                                               --        
+--     224 BYTES PER ROW                                              --        
+--                                                                    --        
+--                                                                    --        
+--                                                                    --        
+-- ****************************************************************** --        
+ CREATE STOGROUP SQ10DA01 VOLUMES (DB2850) VCAT DSNC220;                        
+ CREATE STOGROUP SQ10IN01 VOLUMES (DB2850) VCAT DSNC220;                        
+ CREATE STOGROUP SQ10IN02 VOLUMES (DB2850) VCAT DSNC220;                        
+ CREATE STOGROUP SQ10IN03 VOLUMES (DB2850) VCAT DSNC220;                        
+ CREATE STOGROUP SQ10IN04 VOLUMES (DB2850) VCAT DSNC220;                        
+ CREATE STOGROUP SQ10IN05 VOLUMES (DB2850) VCAT DSNC220;                        
+ CREATE STOGROUP SQ10IN06 VOLUMES (DB2850) VCAT DSNC220;                        
+ CREATE STOGROUP SQ10IN07 VOLUMES (DB2850) VCAT DSNC220;                        
+ CREATE STOGROUP SQ10IN08 VOLUMES (DB2850) VCAT DSNC220;                        
+ CREATE STOGROUP SQ10IN09 VOLUMES (DB2850) VCAT DSNC220;                        
+ CREATE STOGROUP SQ10IN10 VOLUMES (DB2850) VCAT DSNC220;                        
+ CREATE STOGROUP SQ10IN11 VOLUMES (DB2850) VCAT DSNC220;                        
+ CREATE STOGROUP SQ10IN12 VOLUMES (DB2850) VCAT DSNC220;                        
+ CREATE STOGROUP SQ10IN13 VOLUMES (DB2850) VCAT DSNC220;                        
+ CREATE DATABASE SQ10DB STOGROUP SQ10DA01;                                      
+-- ****************************************************************** --        
+--  4074 BYTES/PAGE /200 BYTES/ROW = 20 ROWS/PAGE                     --        
+--   2,500,000 ROWS / 20 ROWS/PAGE = 125,000 4K PAGES                 --        
+--            125,000 4K PAGES * 4 = 500,000 K                        --        
+--  125,000 PAGES / 150 PAGES/CYL  = 833 CYLINDERS                    --        
+--                                                                    --        
+-- ****************************************************************** --        
+ CREATE TABLESPACE SQ10TS                                                       
+     IN SQ10DB                                                                  
+     BUFFERPOOL BP0                                                             
+     USING STOGROUP SQ10DA01                                                    
+     PRIQTY 560000                                                              
+     SECQTY 10000                                                               
+     ERASE NO                                                                   
+     LOCKSIZE PAGE                                                              
+     CLOSE NO;                                                                  
+ CREATE TABLE DAVID.SQ10                                                        
+     (KSEQ              INTEGER NOT NULL,                                       
+      K500K             INTEGER NOT NULL,                                       
+      K250K             INTEGER NOT NULL,                                       
+      K100K             INTEGER NOT NULL,                                       
+      K40K              INTEGER NOT NULL,                                       
+      K10K              INTEGER NOT NULL,                                       
+      K1K               INTEGER NOT NULL,                                       
+      K100              INTEGER NOT NULL,                                       
+      K25               INTEGER NOT NULL,                                       
+      K10               INTEGER NOT NULL,                                       
+      K5                INTEGER NOT NULL,                                       
+      K4                INTEGER NOT NULL,                                       
+      K2                INTEGER NOT NULL,                                       
+      SORTBIN           INTEGER NOT NULL,                                       
+      SORTPACK          DEC(7)   NOT NULL,                                      
+      SORTCHAR          CHAR(8) NOT NULL,                                       
+      S4                CHAR(30) NOT NULL,                                      
+      S5                CHAR(30) NOT NULL,                                      
+      S6                CHAR(30) NOT NULL,                                      
+      S7                CHAR(20) NOT NULL,                                      
+      S8                CHAR(22) NOT NULL)                                      
+      IN  SQ10DB.SQ10TS;                                                        
+-- **************************************************************** --   --     
+--                                                                  --   --     
+-- (4067 - (8 SUBPAGES * (4 BYTE KEY + 21)))/(4 BYTE KEY + (4 * 1 D --          
+--       (4067 - (8 * 25))/ (4 + 4) =                               --          
+--       (4067 - 200)     / 8       = 483 INDEX ENTRIES PER PAGE    --          
+-- 2,500,000 ROWS / 483 ENTRIES/PAGE = 5,176  LEAF PAGES            --          
+--        5,176  / 483 ENTRIES/PAGE =     11 SECOND LEVEL PAGES     --          
+--           33  / 483 ENTRIES/PAGE =      1 THIRD LEVEL PAGE       --          
+--                 (5,176 + 12) * 4 = 20,752 K                      --          
+--      5,176 PAGES / 150 PAGES/CYL = 35 CYLINDERS                  --          
+--                                                                  --          
+-- **************************************************************** --          
+ CREATE UNIQUE INDEX DAVID.SQ10IN01                                             
+        ON DAVID.SQ10 (KSEQ)                                                    
+        USING STOGROUP SQ10IN01                                                 
+        PRIQTY 24000                                                            
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLUSTER                                                                
+         CLOSE NO;                                                              
+-- **************************************************************** --   --     
+--                                                                  --   --     
+-- 2(4067- (8 SUBPAGES * (4 BYTE KEY + 21)))/(4 BYTE KEY + (4 * 2)  --          
+--      2(4067 - (8 * 25))/ (4 + 8) =                               --          
+--      2(4067 - 200)     / 12      =                               --          
+--      2 * 3867          / 12      = 644 INDEX ENTRIES PER PAGE    --          
+-- 2,500,000 ROWS / 644 ENTRIES/PAGE = 3,881  LEAF PAGES            --          
+--        3,881  / 644 ENTRIES/PAGE =      6 SECOND LEVEL PAGES     --          
+--            6  / 644 ENTRIES/PAGE =      1 THIRD LEVEL PAGE       --          
+--           (3,881 + 6 + 1 )   * 4 = 15,552 K                      --          
+--      3,888 PAGES / 150 PAGES/CYL = 26 CYLINDERS                  --          
+--                                                                  --          
+-- **************************************************************** --          
+ CREATE INDEX DAVID.SQ10IN02                                                    
+        ON DAVID.SQ10 (K500K)                                                   
+        USING STOGROUP SQ10IN02                                                 
+        PRIQTY 24000                                                            
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+-- **************************************************************** --   --     
+--                                                                  --   --     
+-- 4(4067- (8 SUBPAGES * (4 BYTE KEY + 21)))/(4 BYTE KEY + (4 * 4)  --          
+--      4(4067 - (8 * 25))/ (4 +16) =                               --          
+--      4(4067 - 200)     / 20      =                               --          
+--      4 * 3867          / 20      = 773 INDEX ENTRIES PER PAGE    --          
+-- 2,500,000 ROWS / 773 ENTRIES/PAGE = 3,234  LEAF PAGES            --          
+--        3,234  / 773 ENTRIES/PAGE =      4 SECOND LEVEL PAGES     --          
+--            4  / 773 ENTRIES/PAGE =      1 THIRD LEVEL PAGE       --          
+--           (3,234 + 4 + 1 )   * 4 = 12,956 K                      --          
+--      3,239 PAGES / 150 PAGES/CYL = 22 CYLINDERS                  --          
+--                                                                  --          
+-- **************************************************************** --          
+ CREATE INDEX DAVID.SQ10IN03                                                    
+        ON DAVID.SQ10 (K250K)                                                   
+        USING STOGROUP SQ10IN03                                                 
+        PRIQTY 12500                                                            
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+-- **************************************************************** --   --     
+--                                                                  --   --     
+--   10(4067-(8 SUBPAGES*(4 BYTE KEY+ 21)))/(4 BYTE KEY +(4 * 10)   --          
+--     10(4067 - (8 * 25))/ (4 +40) =                               --          
+--     10(4067 - 200)     / 44      =                               --          
+--     10 * 3867          / 44      = 878 INDEX ENTRIES PER PAGE    --          
+-- 2,500,000 ROWS / 878 ENTRIES/PAGE = 2,848  LEAF PAGES            --          
+--        2,848  / 878 ENTRIES/PAGE =      4 SECOND LEVEL PAGES     --          
+--            4  / 878 ENTRIES/PAGE =      1 THIRD LEVEL PAGE       --          
+--           (2,848 + 4 + 1 )   * 4 = 11,412 K                      --          
+--      2,853 PAGES / 150 PAGES/CYL = 20 CYLINDERS                  --          
+--                                                                  --          
+-- **************************************************************** --          
+ CREATE INDEX DAVID.SQ10IN04                                                    
+        ON DAVID.SQ10 (K100K)                                                   
+        USING STOGROUP SQ10IN04                                                 
+        PRIQTY 9412                                                             
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+-- **************************************************************** --   --     
+--                                                                  --   --     
+--   25(4067-(8 SUBPAGES*(4 BYTE KEY+21)))/(4 BYTE KEY+(4 * 25)     --          
+--     25(4067 - (8 * 25))/ (4 +100)=                               --          
+--     25(4067 - 200)     / 104     =                               --          
+--     25 * 3867          / 104     = 929 INDEX ENTRIES PER PAGE    --          
+-- 2,500,000 ROWS / 929 ENTRIES/PAGE = 2,692  LEAF PAGES            --          
+--        2,692  / 929 ENTRIES/PAGE =      3 SECOND LEVEL PAGES     --          
+--            3  / 929 ENTRIES/PAGE =      1 THIRD LEVEL PAGE       --          
+--           (2,692 + 3 + 1 )   * 4 = 10,784 K                      --          
+--      2,696 PAGES / 150 PAGES/CYL = 18 CYLINDERS                  --          
+--                                                                  --          
+-- **************************************************************** --          
+ CREATE INDEX DAVID.SQ10IN05                                                    
+        ON DAVID.SQ10 (K40K)                                                    
+        USING STOGROUP SQ10IN05                                                 
+        PRIQTY 8784                                                             
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+-- **************************************************************** --   --     
+--                                                                  --   --     
+--  100(4067-(8 SUBPAGES*(4 BYTE KEY+21)))/(4 BYTE KEY+(4*100))     --          
+--    100(4067 - (8 * 25))/ (4 +400)=                               --          
+--    100(4067 - 200)     / 404     =                               --          
+--    100 * 3867          / 404     = 957 INDEX ENTRIES PER PAGE    --          
+-- 2,500,000 ROWS / 957 ENTRIES/PAGE = 2,613  LEAF PAGES            --          
+--        2,613  / 957 ENTRIES/PAGE =      3 SECOND LEVEL PAGES     --          
+--            3  / 957 ENTRIES/PAGE =      1 THIRD LEVEL PAGE       --          
+--           (2,613 + 3 + 1 )   * 4 = 10,468 K                      --          
+--      2,617 PAGES / 150 PAGES/CYL = 18 CYLINDERS                  --          
+--                                                                  --          
+-- **************************************************************** --          
+ CREATE INDEX DAVID.SQ10IN06                                                    
+        ON DAVID.SQ10 (K10K)                                                    
+        USING STOGROUP SQ10IN06                                                 
+        PRIQTY   8468                                                           
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+ CREATE INDEX DAVID.SQ10IN07                                                    
+        ON DAVID.SQ10 (K1K)                                                     
+        USING STOGROUP SQ10IN07                                                 
+        PRIQTY   8468                                                           
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+ CREATE INDEX DAVID.SQ10IN08                                                    
+        ON DAVID.SQ10 (K100)                                                    
+        USING STOGROUP SQ10IN08                                                 
+        PRIQTY   8000                                                           
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+ CREATE INDEX DAVID.SQ10IN09                                                    
+        ON DAVID.SQ10 (K25)                                                     
+        USING STOGROUP SQ10IN09                                                 
+        PRIQTY   8000                                                           
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+ CREATE INDEX DAVID.SQ10IN10                                                    
+        ON DAVID.SQ10 (K10)                                                     
+        USING STOGROUP SQ10IN10                                                 
+        PRIQTY   8000                                                           
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+ CREATE INDEX DAVID.SQ10IN11                                                    
+        ON DAVID.SQ10 (K5)                                                      
+        USING STOGROUP SQ10IN11                                                 
+        PRIQTY   8000                                                           
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+ CREATE INDEX DAVID.SQ10IN12                                                    
+        ON DAVID.SQ10 (K4)                                                      
+        USING STOGROUP SQ10IN12                                                 
+        PRIQTY   8000                                                           
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+ CREATE INDEX DAVID.SQ10IN13                                                    
+        ON DAVID.SQ10 (K2)                                                      
+        USING STOGROUP SQ10IN13                                                 
+        PRIQTY  8000                                                            
+        SECQTY 2000                                                             
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              

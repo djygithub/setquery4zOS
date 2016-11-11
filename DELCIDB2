@@ -1,0 +1,36 @@
+//DELCIDB2 JOB  (85012,MS75),'SPETH',MSGCLASS=X                                 
+//VTAMDEF  EXEC  PGM=DFHCSDUP                                                   
+//STEPLIB  DD  DSN=CICS321.SDFHLOAD,DISP=SHR                                    
+//DFHCSD  DD  DSN=CICS321.DFHCSD,DISP=SHR                                       
+//SYSPRINT  DD  SYSOUT=*                                                        
+//SYSIN  DD  *                                                                  
+**********************************************************************  00557000
+**********(DB2 CICS ATTACHMENT FACILITY DEFINITIONS)******************  00558000
+* --> ENSURE GROUP AND LIST NAMES ARE CORRECT FOR YOUR SITE <--      *  00558100
+**********************************************************************  00559000
+DELETE TRANSACTION(-DIS) GROUP(DB2GRP)                                  00563000
+DELETE TRANSACTION(-ERR) GROUP(DB2GRP)                                  00564000
+DELETE TRANSACTION(-REC) GROUP(DB2GRP)                                  00565000
+DELETE TRANSACTION(-STA) GROUP(DB2GRP)                                  00566000
+DELETE TRANSACTION(-STO) GROUP(DB2GRP)                                  00567000
+DELETE TRANSACTION(DISC) GROUP(DB2GRP)                                  00568000
+DELETE TRANSACTION(DISP) GROUP(DB2GRP)                                  00569000
+DELETE TRANSACTION(DSNC) GROUP(DB2GRP)                                  00570000
+DELETE TRANSACTION(GOOP) GROUP(DB2GRP)                                  00571000
+DELETE TRANSACTION(MODI) GROUP(DB2GRP)                                  00572000
+DELETE TRANSACTION(STOP) GROUP(DB2GRP)                                  00573000
+DELETE TRANSACTION(STRT) GROUP(DB2GRP)                                  00574000
+*                                                                       00575000
+*                                                                       00562000
+DELETE PROGRAM(DSNCCOM1) GROUP(DB2GRP)                                  00576000
+DELETE PROGRAM(DSNCEXT1) GROUP(DB2GRP)                                  00579000
+DELETE PROGRAM(DSNCEXT2) GROUP(DB2GRP)                                  00580000
+DELETE PROGRAM(DSNCMSG0) GROUP(DB2GRP)                                  00581000
+DELETE PROGRAM(DSNCSTOP) GROUP(DB2GRP)                                  00582000
+DELETE PROGRAM(DSNCSTRT) GROUP(DB2GRP)                                  00583000
+DELETE PROGRAM(DSNCUEXT) GROUP(DB2GRP)                                  00584000
+DELETE PROGRAM(DSNCSM21) GROUP(DB2GRP)                                  00584300
+DELETE PROGRAM(DSNCSM31) GROUP(DB2GRP)                                  00584600
+*********************************************************************** 00615000
+ADD    GROUP(DB2) LIST(tLIST)                                           00561000
+/*                                                                      00616000

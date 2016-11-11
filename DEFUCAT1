@@ -1,0 +1,24 @@
+//CUCAT  JOB (330DJY00),'D J YOUNG ',MSGCLASS=X,NOTIFY=DAVID            00001000
+//*                                                                     00002000
+//*     UCAT FOR AD/CYCLE C/370                                         00003000
+//*                                                                     00004000
+//DSNTCAT EXEC PGM=IDCAMS                                               00005000
+//SYSPRINT DD  SYSOUT=*                                                 00006000
+//SYSUDUMP DD  SYSOUT=*                                                 00007000
+//CAT      DD  UNIT=3390,DISP=OLD,VOL=SER=MV43DL                        00008000
+//SYSIN    DD  *                                                        00009000
+   DEFINE UCAT                                -                         00010000
+         ( NAME(CATALOG.ADCYC370.VMV43DL)   -                           00020000
+           FILE(CAT)                          -                         00030000
+           CYLINDERS(2 1)                     -                         00040000
+           VOL(MV43DL)                        -                         00050000
+           ICFCATALOG   )                     -                         00060000
+      DATA                                    -                         00070000
+         ( CYLINDERS (9 9)    )               -                         00080000
+      INDEX                                   -                         00090000
+         ( CYLINDERS (9 9)    )                                         00100000
+                                                                        00110000
+   DEFINE ALIAS                               -                         00120000
+         ( NAME(CEE)                    -                               00130000
+           RELATE(CATALOG.ADCYC370.VMV43DL)  )                          00140000
+                                                                        00150000

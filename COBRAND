@@ -1,0 +1,239 @@
+//COB2COMP JOB (330DJY00),'D J YOUNG ',MSGCLASS=O,NOTIFY=DAVID          00001008
+//COB2UCL PROC                                                          00010000
+//*   PROC FOR COBOL II - COMPILE AND LINK                              00020000
+//COB2 EXEC PGM=IGYCRCTL,PARM='OBJECT,LIB,APOST,LIST',REGION=1024K      00030002
+//*TEPLIB  DD  DSNAME=DB2IMS.COB2COMP,DISP=SHR                          00040005
+//STEPLIB  DD  DSNAME=SYS1.COB2COMP,DISP=SHR                            00040005
+//SYSPRINT DD  SYSOUT=*                                                 00050000
+//SYSLIN   DD  DSNAME=&&LOADSET,UNIT=SYSDA,DISP=(MOD,PASS),             00060000
+//             SPACE=(TRK,(3,3))                                        00070000
+//SYSUT1   DD  UNIT=SYSDA,SPACE=(CYL,(1,1))                             00080000
+//SYSUT2   DD  UNIT=SYSDA,SPACE=(CYL,(1,1))                             00090000
+//SYSUT3   DD  UNIT=SYSDA,SPACE=(CYL,(1,1))                             00100000
+//SYSUT4   DD  UNIT=SYSDA,SPACE=(CYL,(1,1))                             00110000
+//SYSUT5   DD  UNIT=SYSDA,SPACE=(CYL,(1,1))                             00120000
+//SYSUT6   DD  UNIT=SYSDA,SPACE=(CYL,(1,1))                             00121000
+//SYSUT7   DD  UNIT=SYSDA,SPACE=(CYL,(1,1))                             00122000
+//LKED   EXEC  PGM=IEWL,PARM='LIST,XREF,',COND=(5,LT,COB2),             00130003
+//             REGION=512K                                              00140003
+//SYSLIN   DD  DSNAME=&&LOADSET,DISP=(OLD,DELETE)                       00150003
+//SYSLMOD  DD  DSNAME=DAVID.DB2SMF.PGMLIB(RANDCOBL),                    00170005
+//             DISP=SHR                                                 00180003
+//SYSLIB   DD  DSNAME=SYS1.COB2LIB,DISP=SHR                             00190005
+//         DD  DSNAME=DAVID.DB2SMF.SRCLIB,DISP=SHR                      00190005
+//SYSUT1   DD  UNIT=SYSDA,SPACE=(CYL,(1,1))                             00200003
+//SYSPRINT DD  SYSOUT=*                                                 00210003
+// PEND                                                                 00220000
+//DOIT EXEC COB2UCL                                                     00230000
+//SYSIN DD *                                                            00240010
+       ID DIVISION.                                                             
+       PROGRAM-ID. RANDCOBL.                                                    
+       AUTHOR. D J YOUNG.                                                       
+       ENVIRONMENT DIVISION.                                                    
+       INPUT-OUTPUT SECTION.                                                    
+       FILE-CONTROL.                                                            
+           SELECT OUTPUT-FILE ASSIGN TO UT-S-OUTPUT.                            
+       DATA DIVISION.                                                           
+       FILE SECTION.                                                            
+       FD  OUTPUT-FILE                                                          
+           BLOCK CONTAINS 0 RECORDS                                             
+           RECORD CONTAINS 200 CHARACTERS                                       
+           RECORDING MODE F                                                     
+           LABEL RECORDS ARE STANDARD.                                          
+       01  OUTPUT-RECORD        PIC X(200).                                     
+       WORKING-STORAGE SECTION.                                                 
+       77  YES-FLAG             PIC X VALUE 'Y'.                                
+       77  NO-FLAG              PIC X VALUE 'N'.                                
+       77  ABEND-CODE           PIC S9(4) COMP.                                 
+       77  TIMER-CONSTANT       PIC S9(10) COMP VALUE +4096000000.              
+       01  OUTPUT-BUFFER.                                                       
+           05  KSEQ             PIC S9(9) COMP.                                 
+           05  KIN1             PIC S9(9) COMP.                                 
+           05  KIN2             PIC S9(9) COMP.                                 
+           05  KIN3             PIC S9(9) COMP.                                 
+           05  KIN4             PIC S9(9) COMP.                                 
+           05  KIN5             PIC S9(9) COMP.                                 
+           05  KIN6             PIC S9(9) COMP.                                 
+           05  KIN7             PIC S9(9) COMP.                                 
+           05  KIN8             PIC S9(9) COMP.                                 
+           05  KIN9             PIC S9(9) COMP.                                 
+           05  KIN10            PIC S9(9) COMP.                                 
+           05  KIN11            PIC S9(9) COMP.                                 
+           05  KIN12            PIC S9(9) COMP.                                 
+           05  SORTBIN          PIC S9(9) COMP.                                 
+           05  SORTPACK         PIC S9(7) COMP-3.                               
+           05  SORTCHAR         PIC S9(8).                                      
+           05  S4               PIC X(30).                                      
+           05  S5               PIC X(30).                                      
+           05  S6               PIC X(30).                                      
+           05  S7               PIC X(20).                                      
+           05  S8               PIC X(22).                                      
+       01  INDEXED-FIELD-DIVISORS.                                              
+           05  KIN1-VAL         PIC S9V9  COMP VALUE .5.                        
+           05  KIN2-VAL         PIC S9V99 COMP VALUE .25.                       
+           05  KIN3-VAL         PIC S9V99 COMP VALUE .10.                       
+           05  KIN4-VAL         PIC S9V99 COMP VALUE .04.                       
+           05  KIN5-VAL         PIC S9V99 COMP VALUE .01.                       
+           05  KIN6-VAL         PIC S9V999     COMP VALUE .001.                 
+           05  KIN7-VAL         PIC S9V9999    COMP VALUE .0001.                
+           05  KIN8-VAL         PIC S9V999999  COMP VALUE .000025.              
+           05  KIN9-VAL         PIC S9V99999   COMP VALUE .00001.               
+           05  KIN10-VAL        PIC S9V999999  COMP VALUE .000005.              
+           05  KIN11-VAL        PIC S9V999999  COMP VALUE .000004.              
+           05  KIN12-VAL        PIC S9V999999  COMP VALUE .000002.              
+       01  RANDASM-PARMS.                                                       
+           05  LOWER-BOUND      PIC S9(9) COMP VALUE 1.                         
+           05  UPPER-BOUND      PIC S9(9) COMP VALUE 200.                       
+           05  RANGE2           PIC S9(9) COMP VALUE 404.                       
+           05  SEED             PIC S9(9) COMP.                                 
+       LINKAGE SECTION.                                                         
+       01  INPUT-PARMS.                                                         
+           05  PARM-LENGTH      PIC S9(3) COMP.                                 
+           05  STARTING-KSEQ    PIC 9(9).                                       
+           05  FILLER           PIC X.                                          
+           05  ENDING-KSEQ      PIC 9(9).                                       
+           05  FILLER           PIC X.                                          
+           05  TOTAL-ROWS       PIC 9(9).                                       
+       PROCEDURE DIVISION USING INPUT-PARMS.                                    
+       MAIN-ROUTINE.                                                            
+      *(1)                                                                      
+           OPEN OUTPUT OUTPUT-FILE.                                             
+      *(2)                                                                      
+           MOVE STARTING-KSEQ TO SEED.                                          
+           MOVE STARTING-KSEQ TO KSEQ.                                          
+      *(3)                                                                      
+           COMPUTE UPPER-BOUND = TOTAL-ROWS * KIN1-VAL.                         
+           COMPUTE RANGE2 = 2 * (UPPER-BOUND - LOWER-BOUND + 1).                
+           CALL 'RANDAS01' USING YES-FLAG,                                      
+                                 KIN1,                                          
+                                 SEED,                                          
+                                 LOWER-BOUND,                                   
+                                 UPPER-BOUND,                                   
+                                 RANGE2.                                        
+           COMPUTE UPPER-BOUND = TOTAL-ROWS * KIN2-VAL.                         
+           COMPUTE RANGE2 = 2 * (UPPER-BOUND - LOWER-BOUND + 1).                
+           CALL 'RANDAS02' USING YES-FLAG,                                      
+                                 KIN1,                                          
+                                 SEED,                                          
+                                 LOWER-BOUND,                                   
+                                 UPPER-BOUND,                                   
+                                 RANGE2.                                        
+           COMPUTE UPPER-BOUND = TOTAL-ROWS * KIN3-VAL.                         
+           COMPUTE RANGE2 = 2 * (UPPER-BOUND - LOWER-BOUND + 1).                
+           CALL 'RANDAS03' USING YES-FLAG,                                      
+                                 KIN1,                                          
+                                 SEED,                                          
+                                 LOWER-BOUND,                                   
+                                 UPPER-BOUND,                                   
+                                 RANGE2.                                        
+           COMPUTE UPPER-BOUND = TOTAL-ROWS * KIN4-VAL.                         
+           COMPUTE RANGE2 = 2 * (UPPER-BOUND - LOWER-BOUND + 1).                
+           CALL 'RANDAS04' USING YES-FLAG,                                      
+                                 KIN1,                                          
+                                 SEED,                                          
+                                 LOWER-BOUND,                                   
+                                 UPPER-BOUND,                                   
+                                 RANGE2.                                        
+           COMPUTE UPPER-BOUND = TOTAL-ROWS * KIN5-VAL.                         
+           COMPUTE RANGE2 = 2 * (UPPER-BOUND - LOWER-BOUND + 1).                
+           CALL 'RANDAS05' USING YES-FLAG,                                      
+                                 KIN1,                                          
+                                 SEED,                                          
+                                 LOWER-BOUND,                                   
+                                 UPPER-BOUND,                                   
+                                 RANGE2.                                        
+           COMPUTE UPPER-BOUND = TOTAL-ROWS * KIN6-VAL.                         
+           COMPUTE RANGE2 = 2 * (UPPER-BOUND - LOWER-BOUND + 1).                
+           CALL 'RANDAS06' USING YES-FLAG,                                      
+                                 KIN1,                                          
+                                 SEED,                                          
+                                 LOWER-BOUND,                                   
+                                 UPPER-BOUND,                                   
+                                 RANGE2.                                        
+           COMPUTE UPPER-BOUND = TOTAL-ROWS * KIN7-VAL.                         
+           COMPUTE RANGE2 = 2 * (UPPER-BOUND - LOWER-BOUND + 1).                
+           CALL 'RANDAS07' USING YES-FLAG,                                      
+                                 KIN1,                                          
+                                 SEED,                                          
+                                 LOWER-BOUND,                                   
+                                 UPPER-BOUND,                                   
+                                 RANGE2.                                        
+           COMPUTE UPPER-BOUND = TOTAL-ROWS * KIN8-VAL.                         
+           COMPUTE RANGE2 = 2 * (UPPER-BOUND - LOWER-BOUND + 1).                
+           CALL 'RANDAS08' USING YES-FLAG,                                      
+                                 KIN1,                                          
+                                 SEED,                                          
+                                 LOWER-BOUND,                                   
+                                 UPPER-BOUND,                                   
+                                 RANGE2.                                        
+           COMPUTE UPPER-BOUND = TOTAL-ROWS * KIN9-VAL.                         
+           COMPUTE RANGE2 = 2 * (UPPER-BOUND - LOWER-BOUND + 1).                
+           CALL 'RANDAS09' USING YES-FLAG,                                      
+                                 KIN1,                                          
+                                 SEED,                                          
+                                 LOWER-BOUND,                                   
+                                 UPPER-BOUND,                                   
+                                 RANGE2.                                        
+           COMPUTE UPPER-BOUND = TOTAL-ROWS * KIN10-VAL.                        
+           COMPUTE RANGE2 = 2 * (UPPER-BOUND - LOWER-BOUND + 1).                
+           CALL 'RANDAS10' USING YES-FLAG,                                      
+                                 KIN1,                                          
+                                 SEED,                                          
+                                 LOWER-BOUND,                                   
+                                 UPPER-BOUND,                                   
+                                 RANGE2.                                        
+           COMPUTE UPPER-BOUND = TOTAL-ROWS * KIN11-VAL.                        
+           COMPUTE RANGE2 = 2 * (UPPER-BOUND - LOWER-BOUND + 1).                
+           CALL 'RANDAS11' USING YES-FLAG,                                      
+                                 KIN1,                                          
+                                 SEED,                                          
+                                 LOWER-BOUND,                                   
+                                 UPPER-BOUND,                                   
+                                 RANGE2.                                        
+           COMPUTE UPPER-BOUND = TOTAL-ROWS * KIN12-VAL.                        
+           COMPUTE RANGE2 = 2 * (UPPER-BOUND - LOWER-BOUND + 1).                
+           CALL 'RANDAS12' USING YES-FLAG,                                      
+                                 KIN1,                                          
+                                 SEED,                                          
+                                 LOWER-BOUND,                                   
+                                 UPPER-BOUND,                                   
+                                 RANGE2.                                        
+      *(4)                                                                      
+           PERFORM COMPUTE-AND-WRITE UNTIL KSEQ > ENDING-KSEQ.                  
+      *(5)                                                                      
+           CLOSE OUTPUT-FILE.                                                   
+           GOBACK.                                                              
+      ******************************************************************        
+      *                                                                         
+      *                                                                         
+      ******************************************************************        
+       COMPUTE-AND-WRITE.                                                       
+           CALL 'RANDAS01' USING NO-FLAG,                                       
+                                KIN1.                                           
+           CALL 'RANDAS02' USING NO-FLAG,                                       
+                                KIN2.                                           
+           CALL 'RANDAS03' USING NO-FLAG,                                       
+                                KIN3.                                           
+           CALL 'RANDAS04' USING NO-FLAG,                                       
+                                KIN4.                                           
+           CALL 'RANDAS05' USING NO-FLAG,                                       
+                                KIN5.                                           
+               MOVE KIN5 TO SORTBIN.                                            
+               MOVE KIN5 TO SORTCHAR.                                           
+               MOVE KIN5 TO SORTPACK.                                           
+           CALL 'RANDAS06' USING NO-FLAG,                                       
+                                KIN6.                                           
+           CALL 'RANDAS07' USING NO-FLAG,                                       
+                                KIN7.                                           
+           CALL 'RANDAS08' USING NO-FLAG,                                       
+                                KIN8.                                           
+           CALL 'RANDAS09' USING NO-FLAG,                                       
+                                KIN9.                                           
+           CALL 'RANDAS10' USING NO-FLAG,                                       
+                                KIN10.                                          
+           CALL 'RANDAS11' USING NO-FLAG,                                       
+                                KIN11.                                          
+           CALL 'RANDAS12' USING NO-FLAG,                                       
+                                KIN12.                                          
+           WRITE OUTPUT-RECORD FROM OUTPUT-BUFFER.                              
+           ADD 1 TO KSEQ.                                                       

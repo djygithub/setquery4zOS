@@ -1,0 +1,39 @@
+//DEFFILEA JOB 'CHAO     ',CHAO,MSGCLASS=X,NOTIFY=CHAO,MSGLEVEL=(1,1)           
+//*                                                                             
+//* THIS JOB DELETES AND RECREATES                                              
+//* CICS SYSTEM DATA SETS                                                       
+//*                                                                             
+//*  STEPS:                                                                     
+//*  . DELETE AND DEFINE                                                        
+//*      - DELETE/DEFINE THE CLUSTERS FOR:                                      
+//*          . A SAMPLE PROGRAM FILE                                            
+//*               - CICS321.CICS.FILEA                                          
+//*  . LOADFILE                                                                 
+//*      - LOAD SAMPLE DATA                                                     
+//*          - INTO CICS321.CICS.FILEA                                          
+//DELETE    EXEC PGM=IDCAMS,REGION=1M                                           
+//SYSPRINT DD SYSOUT=*                                                          
+//SYSIN    DD *                                                                 
+ DELETE CICS321.CICS.FILEA                                                      
+/*                                                                              
+//DEFINE    EXEC PGM=IDCAMS,REGION=1M                                           
+//SYSPRINT DD SYSOUT=*                                                          
+//SYSIN    DD *                                                                 
+ DEFINE CLUSTER(NAME(CICS321.CICS.FILEA)-                                       
+          REC(80)-                                                              
+          IXD -                                                                 
+          VOLUMES(CICS32)) -                                                    
+         DATA(NAME(CICS321.CICS.FILEA.DATA)-                                    
+         RECSZ(80 80)-                                                          
+         UNIQUE -                                                               
+         KEYS(6 1)) -                                                           
+        INDEX(NAME(CICS321.CICS.FILEA.INDEX)-                                   
+          UNIQUE -                                                              
+          SHR(2 3))                                                             
+//LOADFILE EXEC PGM=DFH$LDSP                                                    
+//STEPLIB  DD DSN=CICS321.SDFHLOAD,DISP=SHR                                     
+//FILEA    DD DISP=SHR,                                                         
+// DSN=CICS321.CICS.FILEA                                                       
+//SYSOUT   DD SYSOUT=*                                                          
+//SYSIN    DD DISP=SHR,                                                         
+// DSN=CICS321.SDFHSAMP(DFH$FAIN)                                               

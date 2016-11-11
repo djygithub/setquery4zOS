@@ -1,0 +1,344 @@
+//DEFTERM  JOB  (85012,MS75),'SPETH',MSGCLASS=X                                 
+//VTAMDEF  EXEC  PGM=DFHCSDUP                                                   
+//STEPLIB  DD  DSN=CICS321.SDFHLOAD,DISP=SHR                                    
+//DFHCSD  DD  DSN=CICS321.DFHCSD,DISP=SHR                                       
+//SYSPRINT  DD  SYSOUT=*                                                        
+//SYSIN  DD  *                                                                  
+DELETE GROUP(CRTS)                                                              
+DELETE LIST(TLIST)                                                              
+DEFINE TYPETERM(3180S)     GROUP(CRTS)          DEVICE(3270)                    
+       DEFSCREEN(24,80)    ALTSCREEN(32,80)     BUILDCHAIN(NO)                  
+       BRACKET(YES)        SENDSIZE(1920)       AUDIBLEALARM(YES)               
+       DUALCASEKYBD(YES)   UCTRAN(YES)          COLOR(NO)                       
+       EXTENDEDDS(NO)      HILIGHT(NO)          LIGHTPEN(NO)                    
+       ERRLASTLINE(NO)     ERRINTENSIFY(NO)     ERRCOLOR(NO)                    
+       ERRHILIGHT(NO)      AUTOCONNECT(YES)     ATI(YES)                        
+       TTI(YES)            LOGONMSG(YES)        RELREQ(YES)                     
+       SIGNOFF(YES)        RECEIVESIZE(1920)    IOAREALEN(2000,4000)            
+       TERMMODEL(2)        DESCRIPTION(ATTRIBUTES FOR 3278 MODEL 2)             
+*                                                                               
+DEFINE TYPETERM(LU2)       GROUP(CRTS)          DEVICE(LUTYPE2)                 
+       DEFSCREEN(24,80)    ALTSCREEN(32,80)     BUILDCHAIN(NO)                  
+       BRACKET(YES)        SENDSIZE(1920)       AUDIBLEALARM(YES)               
+       DUALCASEKYBD(YES)   UCTRAN(YES)          COLOR(NO)                       
+       EXTENDEDDS(NO)      HILIGHT(NO)          LIGHTPEN(NO)                    
+       ERRLASTLINE(NO)     ERRINTENSIFY(NO)     ERRCOLOR(NO)                    
+       ERRHILIGHT(NO)      AUTOCONNECT(YES)     ATI(YES)                        
+       TTI(YES)            LOGONMSG(YES)        RELREQ(YES)                     
+       SIGNOFF(YES)        RECEIVESIZE(1920)    IOAREALEN(2000,4000)            
+       TERMMODEL(2)        DESCRIPTION(ATTRIBUTES FOR 3278 MODEL 2)             
+*                                                                               
+DEFINE TERMINAL(C020)    NETNAME(HM31T020)      GROUP(CRTS)                     
+       TYPETERM(3180S)   AUTINSTMODEL(YES)                                      
+*                                                                               
+DEFINE TERMINAL(C021)    NETNAME(HM31T021)      GROUP(CRTS)                     
+       TYPETERM(3180S)   AUTINSTMODEL(NO)                                       
+*                                                                               
+DEFINE TERMINAL(C022)    NETNAME(HM31T022)      GROUP(CRTS)                     
+       TYPETERM(3180S)   AUTINSTMODEL(YES)                                      
+*                                                                               
+DEFINE TERMINAL(C023)    NETNAME(HM31T023)      GROUP(CRTS)                     
+       TYPETERM(3180S)   AUTINSTMODEL(YES)                                      
+*                                                                               
+DEFINE TERMINAL(C02E)    NETNAME(HM31T02E)      GROUP(CRTS)                     
+       TYPETERM(3180S)   AUTINSTMODEL(YES)                                      
+*                                                                               
+DEFINE TERMINAL(C02F)    NETNAME(HM31T02F)      GROUP(CRTS)                     
+       TYPETERM(3180S)   AUTINSTMODEL(YES)                                      
+*                                                                               
+DEFINE TERMINAL(C030)    NETNAME(HM31T030)      GROUP(CRTS)                     
+       TYPETERM(3180S)   AUTINSTMODEL(YES)                                      
+*                                                                               
+DEFINE TERMINAL(C041)    NETNAME(HM31T041)      GROUP(CRTS)                     
+       TYPETERM(3180S)   AUTINSTMODEL(YES)                                      
+*                                                                               
+DEFINE TERMINAL(0000)    NETNAME(TPNS0000)     GROUP(CRTS)                      
+       TYPETERM(LU2)     AUTINSTMODEL(NO)                                       
+*                                                                               
+DEFINE TERMINAL(0001)    NETNAME(TPNS0001)     GROUP(CRTS)                      
+       TYPETERM(LU2)     AUTINSTMODEL(NO)                                       
+*                                                                               
+DEFINE TERMINAL(0002)    NETNAME(TPNS0002)     GROUP(CRTS)                      
+       TYPETERM(LU2)     AUTINSTMODEL(NO)                                       
+*                                                                               
+DEFINE TERMINAL(0003)    NETNAME(TPNS0003)     GROUP(CRTS)                      
+       TYPETERM(LU2)     AUTINSTMODEL(NO)                                       
+*                                                                               
+DEFINE TERMINAL(0004)    NETNAME(TPNS0004)     GROUP(CRTS)                      
+       TYPETERM(LU2)     AUTINSTMODEL(NO)                                       
+*                                                                               
+DEFINE TERMINAL(0005)    NETNAME(TPNS0005)     GROUP(CRTS)                      
+       TYPETERM(LU2)     AUTINSTMODEL(NO)                                       
+*                                                                               
+DEFINE TERMINAL(0006)    NETNAME(TPNS0006)     GROUP(CRTS)                      
+       TYPETERM(LU2)     AUTINSTMODEL(NO)                                       
+*                                                                               
+DEFINE TERMINAL(0007)    NETNAME(TPNS0007)     GROUP(CRTS)                      
+       TYPETERM(LU2)     AUTINSTMODEL(NO)                                       
+*                                                                               
+DEFINE TERMINAL(0008)    NETNAME(TPNS0008)     GROUP(CRTS)                      
+       TYPETERM(LU2)     AUTINSTMODEL(NO)                                       
+*                                                                               
+DEFINE TERMINAL(0009)    NETNAME(TPNS0009)     GROUP(CRTS)                      
+       TYPETERM(LU2)     AUTINSTMODEL(NO)                                       
+*                                                                               
+DEFINE TERMINAL(0010)    NETNAME(TPNS0010)     GROUP(CRTS)                      
+       TYPETERM(LU2)     AUTINSTMODEL(NO)                                       
+*                                                                               
+DEFINE TERMINAL(C000)      GROUP(CRTS)          TYPETERM(DFHCONS)               
+       CONSOLE(00)         DESCRIPTION(FIRST MVS CONSOLE ID 0)                  
+*                                                                               
+DEFINE TERMINAL(C001)      GROUP(CRTS)          TYPETERM(DFHCONS)               
+       CONSOLE(34)         DESCRIPTION(SECOND MVS CONSOLE ID 1)                 
+*                                                                               
+DEFINE TERMINAL(C002)      GROUP(CRTS)          TYPETERM(DFHCONS)               
+       CONSOLE(02)         DESCRIPTION(THIRD MVS CONSOLE ID 2)                  
+*                                                                               
+DEFINE TERMINAL(C003)      GROUP(CRTS)          TYPETERM(DFHCONS)               
+       CONSOLE(03)         DESCRIPTION(THIRD MVS CONSOLE ID 2)                  
+*                                                                               
+DEFINE TERMINAL(C004)      GROUP(CRTS)          TYPETERM(DFHCONS)               
+       CONSOLE(04)         DESCRIPTION(SECOND MVS CONSOLE ID 1)                 
+*                                                                               
+DEFINE TERMINAL(C005)      GROUP(CRTS)          TYPETERM(DFHCONS)               
+       CONSOLE(05)         DESCRIPTION(THIRD MVS CONSOLE ID 2)                  
+*                                                                               
+DEFINE TERMINAL(C006)      GROUP(CRTS)          TYPETERM(DFHCONS)               
+       CONSOLE(06)         DESCRIPTION(THIRD MVS CONSOLE ID 2)                  
+*                                                                               
+*                                                                               
+DEFINE PROGRAM(DSNCCOM1) GROUP(DB2GRP) LANGUAGE(ASSEMBLER)                      
+DEFINE PROGRAM(DSNCEXT1) GROUP(DB2GRP) LANGUAGE(ASSEMBLER)                      
+DEFINE PROGRAM(DSNCEXT2) GROUP(DB2GRP) LANGUAGE(ASSEMBLER)                      
+DEFINE PROGRAM(DSNCMSG0) GROUP(DB2GRP) LANGUAGE(ASSEMBLER)                      
+DEFINE PROGRAM(DSNCSTOP) GROUP(DB2GRP) LANGUAGE(ASSEMBLER)                      
+DEFINE PROGRAM(DSNCSTRT) GROUP(DB2GRP) LANGUAGE(ASSEMBLER)                      
+DEFINE PROGRAM(DSNCUEXT) GROUP(DB2GRP) LANGUAGE(ASSEMBLER)                      
+DEFINE TRANSACTION(DSNC) PROGRAM(DSNCCOM1) GROUP(DB2GRP) TWASIZE(500)           
+                                                                                
+*                                                                               
+*                                                                               
+*                                                                               
+DEFINE PROGRAM(CIFORMAT)   GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(CFMT) PROGRAM(CIFORMAT) GROUP(DB2GRP)                        
+DEFINE PROGRAM(CI2Q101)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q101) PROGRAM(CI2Q101) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q102)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q102) PROGRAM(CI2Q102) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q103)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q103) PROGRAM(CI2Q103) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q104)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q104) PROGRAM(CI2Q104) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q105)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q105) PROGRAM(CI2Q105) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q106)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q106) PROGRAM(CI2Q106) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q107)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q107) PROGRAM(CI2Q107) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q108)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q108) PROGRAM(CI2Q108) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q109)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q109) PROGRAM(CI2Q109) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q110)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q110) PROGRAM(CI2Q110) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q201)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q201) PROGRAM(CI2Q201) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q202)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q202) PROGRAM(CI2Q202) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q203)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q203) PROGRAM(CI2Q203) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q204)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q204) PROGRAM(CI2Q204) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q205)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q205) PROGRAM(CI2Q205) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q206)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q206) PROGRAM(CI2Q206) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q207)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q207) PROGRAM(CI2Q207) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q208)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q208) PROGRAM(CI2Q208) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q209)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q209) PROGRAM(CI2Q209) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q210)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q210) PROGRAM(CI2Q210) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q211)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q211) PROGRAM(CI2Q211) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q212)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q212) PROGRAM(CI2Q212) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q213)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q213) PROGRAM(CI2Q213) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q214)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q214) PROGRAM(CI2Q214) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q215)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q215) PROGRAM(CI2Q215) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q216)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q216) PROGRAM(CI2Q216) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q217)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q217) PROGRAM(CI2Q217) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q218)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q218) PROGRAM(CI2Q218) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q301)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q301) PROGRAM(CI2Q301) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q302)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q302) PROGRAM(CI2Q302) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q303)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q303) PROGRAM(CI2Q303) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q304)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q304) PROGRAM(CI2Q304) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q305)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q305) PROGRAM(CI2Q305) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q306)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q306) PROGRAM(CI2Q306) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q307)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q307) PROGRAM(CI2Q307) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q308)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q308) PROGRAM(CI2Q308) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q309)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q309) PROGRAM(CI2Q309) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q310)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q310) PROGRAM(CI2Q310) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q311)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q311) PROGRAM(CI2Q311) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q312)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q312) PROGRAM(CI2Q312) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q313)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q313) PROGRAM(CI2Q313) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q314)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q314) PROGRAM(CI2Q314) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q315)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q315) PROGRAM(CI2Q315) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q316)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q316) PROGRAM(CI2Q316) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q401)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q401) PROGRAM(CI2Q401) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q402)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q402) PROGRAM(CI2Q402) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q403)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q403) PROGRAM(CI2Q403) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q404)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q404) PROGRAM(CI2Q404) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q405)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q405) PROGRAM(CI2Q405) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q406)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q406) PROGRAM(CI2Q406) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q407)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q407) PROGRAM(CI2Q407) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q408)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q408) PROGRAM(CI2Q408) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q409)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q409) PROGRAM(CI2Q409) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q410)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q410) PROGRAM(CI2Q410) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q411)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q411) PROGRAM(CI2Q411) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q412)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q412) PROGRAM(CI2Q412) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q413)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q413) PROGRAM(CI2Q413) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q414)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q414) PROGRAM(CI2Q414) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q501)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q501) PROGRAM(CI2Q501) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q502)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q502) PROGRAM(CI2Q502) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q503)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q503) PROGRAM(CI2Q503) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q601)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q601) PROGRAM(CI2Q601) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q602)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q602) PROGRAM(CI2Q602) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q603)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q603) PROGRAM(CI2Q603) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q604)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q604) PROGRAM(CI2Q604) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q605)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q605) PROGRAM(CI2Q605) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q606)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q606) PROGRAM(CI2Q606) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q607)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q607) PROGRAM(CI2Q607) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q608)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q608) PROGRAM(CI2Q608) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q609)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q609) PROGRAM(CI2Q609) GROUP(DB2GRP)                         
+DEFINE PROGRAM(CI2Q610)    GROUP(DB2GRP)     LANGUAGE(COBOL)                    
+DEFINE TRANSACTION(Q610) PROGRAM(CI2Q610) GROUP(DB2GRP)                         
+*                                                                               
+*                                                                               
+DEFINE PROGRAM(IGZCPCC)    GROUP(COB2GRP)     LANGUAGE(ASSEMBLER)               
+*                                                                               
+DEFINE PROGRAM(IGZCPAC)    GROUP(COB2GRP)     LANGUAGE(ASSEMBLER)               
+*                                                                               
+DEFINE PROFILE(OUTBCHN)    GROUP(DB2GRP)     CHAINCONTROL(YES)                  
+*                                                                               
+APPEND LIST(DFHLIST) TO (TLIST)                                                 
+*                                                                               
+ADD GROUP(CRTS) LIST(TLIST)                                                     
+*                                                                               
+ADD GROUP(DFH$ACCT) LIST(TLIST)                                                 
+*                                                                               
+ADD GROUP(DB2GRP) LIST(TLIST)                                                   
+*                                                                               
+ADD GROUP(COB2GRP) LIST(TLIST)                                                  
+*                                                                               
+LIST LIST(TLIST) OBJECTS                                                        
+/*                                                                              
+//DEFCIDB2 EXEC  PGM=DFHCSDUP                                                   
+//STEPLIB  DD  DSN=CICS321.SDFHLOAD,DISP=SHR                                    
+//DFHCSD  DD  DSN=CICS321.DFHCSD,DISP=SHR                                       
+//SYSPRINT  DD  SYSOUT=*                                                        
+//SYSIN  DD  *                                                                  
+**********************************************************************  00557000
+**********(DB2 CICS ATTACHMENT FACILITY DEFINITIONS)******************  00558000
+* --> ENSURE GROUP AND LIST NAMES ARE CORRECT FOR YOUR SITE <--      *  00558100
+**********************************************************************  00559000
+DELETE TRANSACTION(-DIS) GROUP(DB2GRP)                                  00563000
+DELETE TRANSACTION(-ERR) GROUP(DB2GRP)                                  00564000
+DELETE TRANSACTION(-REC) GROUP(DB2GRP)                                  00565000
+DELETE TRANSACTION(-STA) GROUP(DB2GRP)                                  00566000
+DELETE TRANSACTION(-STO) GROUP(DB2GRP)                                  00567000
+DELETE TRANSACTION(DISC) GROUP(DB2GRP)                                  00568000
+DELETE TRANSACTION(DISP) GROUP(DB2GRP)                                  00569000
+DELETE TRANSACTION(DSNC) GROUP(DB2GRP)                                  00570000
+DELETE TRANSACTION(GOOP) GROUP(DB2GRP)                                  00571000
+DELETE TRANSACTION(MODI) GROUP(DB2GRP)                                  00572000
+DELETE TRANSACTION(STOP) GROUP(DB2GRP)                                  00573000
+DELETE TRANSACTION(STRT) GROUP(DB2GRP)                                  00574000
+*                                                                       00575000
+*                                                                       00562000
+*                                                                       00575000
+DEFINE TRANSACTION(-DIS) GROUP(DB2GRP) PROGRAM(DSNCCOM1) TWASIZE(1068)  00563000
+DEFINE TRANSACTION(-ERR) GROUP(DB2GRP) PROGRAM(DSNCCOM1) TWASIZE(1068)  00564000
+DEFINE TRANSACTION(-REC) GROUP(DB2GRP) PROGRAM(DSNCCOM1) TWASIZE(1068)  00565000
+DEFINE TRANSACTION(-STA) GROUP(DB2GRP) PROGRAM(DSNCCOM1) TWASIZE(1068)  00566000
+DEFINE TRANSACTION(-STO) GROUP(DB2GRP) PROGRAM(DSNCCOM1) TWASIZE(1068)  00567000
+DEFINE TRANSACTION(DISC) GROUP(DB2GRP) PROGRAM(DSNCCOM1) TWASIZE(1068)  00568000
+DEFINE TRANSACTION(DISP) GROUP(DB2GRP) PROGRAM(DSNCCOM1) TWASIZE(1068)  00569000
+DEFINE TRANSACTION(DSNC) GROUP(DB2GRP) PROGRAM(DSNCCOM1) TWASIZE(1068)  00570000
+DEFINE TRANSACTION(GOOP) GROUP(DB2GRP) PROGRAM(DSNCCOM1) TWASIZE(1068)  00571000
+DEFINE TRANSACTION(MODI) GROUP(DB2GRP) PROGRAM(DSNCCOM1) TWASIZE(1068)  00572000
+DEFINE TRANSACTION(STOP) GROUP(DB2GRP) PROGRAM(DSNCCOM1) TWASIZE(1068)  00573000
+DEFINE TRANSACTION(STRT) GROUP(DB2GRP) PROGRAM(DSNCCOM1) TWASIZE(1068)  00574000
+*                                                                       00575000
+DELETE PROGRAM(DSNCCOM1) GROUP(DB2GRP)                                  00576000
+DELETE PROGRAM(DSNCEXT1) GROUP(DB2GRP)                                  00579000
+DELETE PROGRAM(DSNCEXT2) GROUP(DB2GRP)                                  00580000
+DELETE PROGRAM(DSNCMSG0) GROUP(DB2GRP)                                  00581000
+DELETE PROGRAM(DSNCSTOP) GROUP(DB2GRP)                                  00582000
+DELETE PROGRAM(DSNCSTRT) GROUP(DB2GRP)                                  00583000
+DELETE PROGRAM(DSNCUEXT) GROUP(DB2GRP)                                  00584000
+DELETE PROGRAM(DSNCSM21) GROUP(DB2GRP)                                  00584300
+DELETE PROGRAM(DSNCSM31) GROUP(DB2GRP)                                  00584600
+*                                                                       00575000
+DEFINE PROGRAM(DSNCCOM1) GROUP(DB2) LANGUAGE(ASSEMBLER) CEDF(NO)        00576000
+DEFINE PROGRAM(DSNCEXT1) GROUP(DB2) LANGUAGE(ASSEMBLER) CEDF(NO)        00579000
+DEFINE PROGRAM(DSNCEXT2) GROUP(DB2) LANGUAGE(ASSEMBLER) CEDF(NO)        00580000
+DEFINE PROGRAM(DSNCMSG0) GROUP(DB2) LANGUAGE(ASSEMBLER) CEDF(NO)        00581000
+DEFINE PROGRAM(DSNCSTOP) GROUP(DB2) LANGUAGE(ASSEMBLER) CEDF(NO)        00582000
+DEFINE PROGRAM(DSNCSTRT) GROUP(DB2) LANGUAGE(ASSEMBLER) CEDF(NO)        00583000
+DEFINE PROGRAM(DSNCUEXT) GROUP(DB2) LANGUAGE(ASSEMBLER) CEDF(NO)        00584000
+DEFINE PROGRAM(DSNCSM21) GROUP(DB2) LANGUAGE(ASSEMBLER) CEDF(NO)        00584300
+DEFINE PROGRAM(DSNCSM31) GROUP(DB2) LANGUAGE(ASSEMBLER) CEDF(NO)        00584600
+*********************************************************************** 00615000
+ADD    GROUP(DB2) LIST(tLIST)                                           00561000
+/*                                                                      00616000

@@ -1,0 +1,29 @@
+//COB2COMP JOB (330DJY00),'D J YOUNG ',MSGCLASS=X                       00001000
+//COB2UCL PROC                                                          00010000
+//*   PROC FOR COBOL II - COMPILE AND LINK                              00020000
+//COB2 EXEC PGM=IGYCRCTL,PARM='OBJECT,LIB,APOST,LIST',REGION=1024K      00030000
+//STEPLIB  DD DSNAME=DB2IMS.COB2COMP,DISP=SHR,UNIT=SYSDA,VOL=SER=DB2IMS 00040000
+//SYSPRINT DD  SYSOUT=*                                                 00050000
+//SYSLIN   DD  DSNAME=&&LOADSET,UNIT=SYSDA,DISP=(MOD,PASS),             00060000
+//             SPACE=(TRK,(3,3))                                        00070000
+//SYSUT1   DD  UNIT=SYSDA,SPACE=(CYL,(1,1))                             00080000
+//SYSUT2   DD  UNIT=SYSDA,SPACE=(CYL,(1,1))                             00090000
+//SYSUT3   DD  UNIT=SYSDA,SPACE=(CYL,(1,1))                             00100000
+//SYSUT4   DD  UNIT=SYSDA,SPACE=(CYL,(1,1))                             00110000
+//SYSUT5   DD  UNIT=SYSDA,SPACE=(CYL,(1,1))                             00120000
+//SYSUT6   DD  UNIT=SYSDA,SPACE=(CYL,(1,1))                             00121000
+//SYSUT7   DD  UNIT=SYSDA,SPACE=(CYL,(1,1))                             00122000
+//LKED   EXEC  PGM=IEWL,PARM='LIST,XREF,LET,NCAL',COND=(5,LT,COB2),     00130000
+//             REGION=512K                                              00140000
+//SYSLIN   DD  DSNAME=&&LOADSET,DISP=(OLD,DELETE)                       00150000
+//SYSLMOD  DD  DSNAME=DSNDJY.SRCLIB.DATA(DB2MON),                       00170000
+//             DISP=SHR,UNIT=SYSDA,VOL=SER=DB2IMS                       00180000
+//SYSLIB  DD DSNAME=DB2IMS.COB2COMP,DISP=SHR,UNIT=SYSDA,VOL=SER=DB2IMS  00190000
+//SYSUT1   DD  UNIT=SYSDA,SPACE=(CYL,(1,1))                             00200000
+//SYSPRINT DD  SYSOUT=*                                                 00210000
+// PEND                                                                 00220000
+//DOIT EXEC COB2UCL                                                     00230000
+//COB2.SYSIN DD DSN=DAVID.ESAHDS.WORKLOAD(DB2MONC),DISP=SHR,UNIT=SYSDA, 00240000
+//         VOL=SER=DB2IMS                                               00241000
+//LKED.SYSLMOD  DD  DSNAME=DSNDJY.SRCLIB.DATA(DB2MON),                  00250000
+//             DISP=SHR,UNIT=SYSDA,VOL=SER=DB2IMS                       00260000

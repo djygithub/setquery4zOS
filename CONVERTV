@@ -1,0 +1,21 @@
+//DAVIDD  JOB  (ACCOUNT),'NAME',MSGCLASS=Y                                      
+//*                                                                             
+//*                                                                             
+//*                                                                             
+//*                                                                             
+//*                                                                             
+//*                                                                             
+//*                                                                             
+//*                                                                             
+//**NOTE - THE REGION SIZE IS MINIMUM AND MAY BE CHANGED                        
+//STEP1  EXEC  PGM=ADRDSSU,REGION=2048K                                         
+//*                                                                             
+//*                                                                             
+//SYSPRINT  DD  SYSOUT=*                                                        
+//INVOL1   DD    VOL=SER=SMS9EA,UNIT=3390,DISP=SHR                              
+//SYSIN    DD    *                                                              
+ CONVERTV -                                                                     
+      SMS -                                                                     
+      TEST -                                                                    
+      DDNAME(INVOL1)                                                            
+/*                                                                              

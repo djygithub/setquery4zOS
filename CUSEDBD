@@ -1,0 +1,6 @@
+         DBD   NAME=CUSEDBD,ACCESS=HDAM                                         
+         DATASET DD1=CUSEDD1,DEVICE=3390                                        
+         SEGM  NAME=CUSESEGM,BYTES=200,PARENT=0                                 
+           FIELD NAME=(CUSESEQ,SEQ,U),BYTES=4,START=1,TYPE=F                    
+           FIELD NAME=CUSEDATA,BYTES=196,START=5,TYPE=C                         
+         DBDGEN                                                                 

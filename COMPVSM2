@@ -1,0 +1,26 @@
+//COMPVSAM JOB (COMPRESS),'DJYOUNG',MSGCLASS=X                          00010002
+//DELETE    EXEC PGM=IDCAMS,REGION=6M                                   00020000
+//SYSPRINT DD SYSOUT=*                                                  00030000
+//SYSIN    DD *                                                         00040000
+ DELETE DAVID.VSAMCOMP.TEST                                             00050002
+ SET MAXCC=0                                                            00060000
+//DEFINE    EXEC PGM=IDCAMS,REGION=6M                                   00070000
+//SYSPRINT DD SYSOUT=*                                                  00080000
+//SYSIN    DD *                                                         00090000
+ /*                                  */                                 00100000
+ /* DEFINE A FILEA DATASET           */                                 00110000
+ /*                                  */                                 00120000
+ DEFINE CLUSTER(NAME(DAVID.VSAMCOMP.TEST)-                              00130002
+          MGMTCLAS(SMS) -                                               00141000
+          CYL(50 50) -                                                  00142000
+          IXD -                                                         00143000
+          VOLUMES(SMS9EA)) -                                            00144000
+         DATA(NAME(DAVID.VSAMCOMP.TEST.DATA)-                           00145002
+         RECSZ(80 80) CISZ(4096) -                                      00146000
+         UNIQUE -                                                       00147000
+         KEYS(6 1)) -                                                   00148000
+        INDEX(NAME(DAVID.VSAMCOMP.TEST.INDEX) CISZ(1536)-               00149002
+          UNIQUE -                                                      00150000
+          SHR(2 3))                                                     00160000
+ REPRO INDATASET(CICS410.CICS.FILEA001) -                               00170000
+       OUTDATASET(DAVID.VSAMCOMP.TEST)                                  00180002

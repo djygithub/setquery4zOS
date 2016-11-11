@@ -1,0 +1,41 @@
+//COPYCAT  JOB (330DJY00),'D J YOUNG ',MSGCLASS=X,NOTIFY=DAVID          00001000
+//*                                                                     00002000
+//*     UCAT FOR ESA PORTABLE DB2 SYSTEM                                00003000
+//*                                                                     00004000
+//DEFCAT  EXEC PGM=IDCAMS                                               00005000
+//SYSPRINT DD  SYSOUT=*                                                 00006000
+//SYSUDUMP DD  SYSOUT=*                                                 00007000
+//CAT      DD  UNIT=3390,DISP=OLD,VOL=SER=CICS32                        00008000
+//SYSIN    DD  *                                                        00009000
+   DEFINE UCAT                                -                         00010000
+         ( NAME(CATALOG.IMS310A.VCICS32)   -                            00020000
+           FILE(CAT)                          -                         00030000
+           CYLINDERS(2 1)                     -                         00040000
+           VOL(CICS32)                        -                         00050000
+           ICFCATALOG   )                     -                         00060000
+      DATA                                    -                         00070000
+         ( CYLINDERS (9 9)    )               -                         00080000
+      INDEX                                   -                         00090000
+         ( CYLINDERS (9 9)    )                                         00100000
+//REPRO   EXEC PGM=IDCAMS                                               00101000
+//SYSPRINT DD  SYSOUT=*                                                 00102000
+//SYSUDUMP DD  SYSOUT=*                                                 00103000
+//SYSIN    DD  *                                                        00105000
+   REPRO NOMERGECAT -                                                   00106000
+         INDATASET(CATALOG.IMS310A.VIMS310) -                           00110000
+         OUTDATASET(CATALOG.IMS310A.VCICS32)                            00120000
+   EXPORT CATALOG.IMS310A.VIMS310 DISCONNECT                            00130000
+//LISTCAT EXEC PGM=IDCAMS                                               00131000
+//STEPCAT  DD  DSN=CATALOG.IMS310A.VCICS32,DISP=OLD                     00132000
+//SYSPRINT DD  SYSOUT=*                                                 00132100
+//SYSUDUMP DD  SYSOUT=*                                                 00133000
+//SYSIN    DD  *                                                        00134000
+   LISTCAT NAMES                                                        00135000
+//DFALIAS EXEC PGM=IDCAMS                                               00136000
+//SYSPRINT DD  SYSOUT=*                                                 00137000
+//SYSUDUMP DD  SYSOUT=*                                                 00138000
+//SYSIN    DD  *                                                        00139000
+   DEFINE ALIAS (NAME(CATALOG.IMS310A.VCICS32) -                        00139100
+          RELATE(CATALOG.IMS310A.VIMS310))                              00140000
+                                                                        00150000
+                                                                        00160000

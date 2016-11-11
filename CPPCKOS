@@ -1,0 +1,24 @@
+//MV43RS  JOB (0,75),'LORENZO',MSGCLASS=X                               00010001
+//MV43RS  EXEC PGM=ADRDSSU,REGION=4M                                    00020000
+//SYSPRINT DD  SYSOUT=*                                                 00030000
+//IN       DD  UNIT=3390,VOL=SER=MV43RS,DISP=SHR                        00040000
+//OUT      DD  UNIT=3390,VOL=SER=VOL4A9,DISP=SHR                        00050000
+//SYSIN    DD  *                                                        00060000
+ COPY OUTDDNAME(OUT) INDDNAME(IN) CANCELERROR -                         00070000
+ ALLDATA(*) ALLEXCP COPYVOLID                                           00080000
+//MV43DL  JOB (0,75),'LORENZO',MSGCLASS=X                               00081001
+//MV43DL  EXEC PGM=ADRDSSU,REGION=4M                                    00090000
+//SYSPRINT DD  SYSOUT=*                                                 00100000
+//IN       DD  UNIT=3390,VOL=SER=MV43DL,DISP=SHR                        00110001
+//OUT      DD  UNIT=3390,VOL=SER=VOL4AB,DISP=SHR                        00120000
+//SYSIN    DD  *                                                        00130000
+ COPY OUTDDNAME(OUT) INDDNAME(IN) CANCELERROR -                         00140000
+ ALLDATA(*) ALLEXCP COPYVOLID                                           00150000
+//MV43CA  JOB (0,75),'LORENZO',MSGCLASS=X                               00151001
+//MV43CA  EXEC PGM=ADRDSSU,REGION=4M                                    00160000
+//SYSPRINT DD  SYSOUT=*                                                 00170000
+//IN       DD  UNIT=3390,VOL=SER=MV43CA,DISP=SHR                        00180000
+//OUT      DD  UNIT=3390,VOL=SER=VOL4AA,DISP=SHR                        00190000
+//SYSIN    DD  *                                                        00200000
+ COPY OUTDDNAME(OUT) INDDNAME(IN) CANCELERROR -                         00210000
+ ALLDATA(*) ALLEXCP COPYVOLID                                           00220000

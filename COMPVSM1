@@ -1,0 +1,12 @@
+//COMPVSAM JOB (SUMPRESS),'DJYOUNG',MSGCLASS=X                          00010002
+//DEFINE    EXEC PGM=IDCAMS,REGION=6M                                   00070001
+//SYSPRINT DD SYSOUT=*                                                  00080001
+//FILE1 DD DSN=CICS410.CICS.FILEA001,DISP=SHR,STORCLAS=NEVER            00081001
+//FILE2 DD DSN=DAVID.VSAMCOMP.TEST,DISP=SHR,STORCLAS=COMPRESS,          00082002
+//   DATACLAS=COMPRESS                                                  00083001
+//SYSIN    DD *                                                         00090001
+ /*                                  */                                 00100001
+ /* DEFINE A FILEA DATASET           */                                 00110001
+ /*                                  */                                 00120001
+ REPRO INFILE(FILE1) -                                                  00170001
+       OUTFILE(FILE2)                                                   00180001

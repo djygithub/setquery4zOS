@@ -1,0 +1,23 @@
+CNETMAST NTWRK HEAD='SQL NETWORK',                                              
+               TYPE=3270,MODEL=2,REPORT=NONE,                                   
+               BUFSIZE=3000,                                                    
+               DLOGMOD=D4B32782,MLOG=YES,                                       
+               ITIME=1,RESOURCE=CICS,                                           
+               INIT=SEC,DISPLAY=(24,80),                                        
+               LOGDSPLY=NONE,                                                   
+               LUTYPE=LU2,                                                      
+               SCAN=(0,0),                                                      
+               STLTRACE=NO,FRSTTXT=LOGON1,                                      
+               OPTIONS=(CONRATE,MONCMND),                                       
+               THKTIME=UNLOCK,USERAREA=16,NETUSER=16,                           
+               UTI=500                                                          
+       FE TIME=10,COMMAND=(I CNET0100,S)                                        
+       FE TIME=20,COMMAND=(I CNET0200,S)                                        
+       FE TIME=30,COMMAND=(I CNET0300,S)                                        
+       FE TIME=40,COMMAND=(I CNET0400,S)                                        
+       FE TIME=50,COMMAND=(I CNET0500,S)                                        
+       FE TIME=60,COMMAND=(I CNET0600,S)                                        
+       FE TIME=70,COMMAND=(I CNET0700,S)                                        
+       FE TIME=80,COMMAND=(I CNET0800,S)                                        
+       FE TIME=90,COMMAND=(I CNET0900,S)                                        
+       FE TIME=100,COMMAND=(I CNET1000,S)                                       

@@ -1,0 +1,9 @@
+//COMPRESS JOB (0,75),'D J YOUNG',MSGCLASS=X,TYPRUN=HOLD                        
+//S1    EXEC PGM=IEBCOPY,REGION=4M                                              
+//SYSPRINT DD SYSOUT=*                                                          
+//INPUT2   DD DISP=SHR,DSN=SYS1.LINKLIB,UNIT=3390,VOL=SER=MV43PS                
+//OUTPUT2  DD DISP=SHR,DSN=SYS1.LINKLIB,UNIT=3390,VOL=SER=MV43PS                
+//SYSUT3 DD UNIT=3390,SPACE=(CYL,(1,1))                                         
+//SYSUT4 DD UNIT=3390,SPACE=(CYL,(1,1))                                         
+//SYSIN  DD *                                                                   
+    COPY INDD=INPUT2,OUTDD=OUTPUT2                                              

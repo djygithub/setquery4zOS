@@ -1,0 +1,60 @@
+//NOV20912 JOB (RWM,T),'DUMP',MSGCLASS=O                                00010001
+//*UTPIT OUTPUT DEST=PRT5                                               00011000
+//IEFPROC  EXEC PGM=IFASMFDP,REGION=512K                                00012000
+//SYSPRINT DD  SYSOUT=*                                                 00013000
+//DUMPOUT DD DISP=(NEW,PASS),                                           00014000
+//        DSN=&&TEMP,UNIT=3390,SPACE=(CYL,(5,5))                        00015000
+//DUMPIN  DD DSN=MV4DLB.NOV20912.SMFDATA,DISP=SHR,UNIT=3390,            00016001
+//        VOL=SER=MV4DLB                                                00017000
+//SYSIN DD *                                                            00018000
+ INDD(DUMPIN,OPTIONS(DUMP))                                             00019000
+ OUTDD(DUMPOUT,TYPE(100:102))                                           00020000
+/*  START(1420)                                                         00021000
+/*   END(1650)                                                          00022000
+//STEP2   EXEC PGM=IDCAMS,REGION=4096K                                  00023000
+//SYSUT1    DD DSN=&&TEMP,DISP=(OLD,DELETE)                             00024000
+//SYSPRINT  DD SYSOUT=*                                                 00025000
+//SYSUT2    DD DSN=&&TEMP2,UNIT=3390,                                   00026000
+// SPACE=(CYL,(5,5)),DCB=(LRECL=4092,BLKSIZE=4096,RECFM=VB),            00027000
+// DISP=(,PASS)                                                         00028000
+//SYSIN DD *                                                            00029000
+  REPRO  INFILE(SYSUT1) OUTFILE(SYSUT2)                                 00030000
+//STEP3   EXEC PGM=DB2SMF3,REGION=4096K,                                00040000
+// PARM='SYSSTATS=N,DBSTATS=N,APPSTATS=ALL     '                        00050000
+//STEPLIB   DD DSN=DAVID.DB2SMF.PGMLIB,DISP=SHR,UNIT=3390,              00060000
+//          VOL=SER=DB2IMS                                              00070000
+//SNAPOUT   DD DUMMY                                                    00071000
+//CONTROL   DD *                                                        00072000
+CI2Q101                                                                 00073000
+CI2Q102                                                                 00074000
+CI2Q103                                                                 00075000
+CI2Q104                                                                 00076000
+CI2Q105                                                                 00077000
+CI2Q106                                                                 00077100
+CI2Q107                                                                 00077200
+CI2Q108                                                                 00077300
+CI2Q109                                                                 00077400
+CI2Q110                                                                 00077500
+CI2Q201                                                                 00077600
+CI2Q202                                                                 00077700
+CI2Q203                                                                 00077800
+CI2Q204                                                                 00077900
+CI2Q205                                                                 00078000
+CI2Q206                                                                 00078100
+CI2Q207                                                                 00078200
+CI2Q208                                                                 00078300
+CI2Q209                                                                 00078400
+CI2Q210                                                                 00078500
+CI2Q211                                                                 00078600
+CI2Q212                                                                 00078700
+CI2Q213                                                                 00078800
+CI2Q214                                                                 00078900
+CI2Q215                                                                 00079000
+CI2Q216                                                                 00079100
+CI2Q217                                                                 00079200
+CI2Q218                                                                 00079300
+//DB2SMF  DD DSN=&&TEMP2,DISP=(OLD,DELETE)                              00083700
+//SYSOUT DD SYSOUT=*                                                    00083800
+//SYSABOUT DD SYSOUT=*                                                  00083900
+//SYSUDUMP DD SYSOUT=*                                                  00084000
+//OUTPUT DD SYSOUT=*                                                    00085000

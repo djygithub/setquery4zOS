@@ -1,0 +1,292 @@
+//LDSQ1C   JOB (AAA),'D J YOUNG',MSGCLASS=X,TIME=1440,USER=DAVID,               
+//         REGION=0K                                                            
+//DSNUPROC PROC LIB='SYS1.DSN310.SDSNLOAD',                                     
+//         SYSTEM=DB3,                                                          
+//         SIZE=1024K,UID='',UTPROC=''                                          
+//*        SIZE=1024K,UID='',UTPROC='RESTART'                                   
+//*        COMPRESS = YES                                                       
+//DSNUPROC EXEC PGM=DSNUTILB,REGION=&SIZE,                                      
+//         PARM=(&SYSTEM,'&UID','&UTPROC')                                      
+//STEPLIB  DD DSN=&LIB,DISP=SHR                                                 
+//SYSPRINT DD SYSOUT=*                                                          
+//UTPRINT  DD SYSOUT=*                                                          
+//SYSUDUMP DD SYSOUT=*                                                          
+//    PEND                                                                      
+//UTIL EXEC DSNUPROC,SYSTEM=DB3,UID='LOADSQ1',UTPROC=''                         
+//*                                                                             
+//**********************************************                                
+//*                                                                             
+//*  GENERATING JCL FOR THE LOAD UTILITY                                        
+//*  DATE:  11/04/87          TIME:  05:03:15                                   
+//*                                                                             
+//**********************************************                                
+//*                                                                             
+//DSNUPROC.SORTWK01 DD DSN=&&SORT1,                                             
+//     DISP=(,DELETE),DCB=BLKSIZE=15400,                                        
+//     SPACE=(CYL,(90,50),,,ROUND),                                             
+//     UNIT=3390,VOL=SER=MV43CA                                                 
+//DSNUPROC.SORTWK02 DD DSN=&&SORT2,                                             
+//     DISP=(,DELETE),DCB=BLKSIZE=15400,                                        
+//     SPACE=(CYL,(90,50),,,ROUND),                                             
+//     UNIT=3390,VOL=SER=MV43CA                                                 
+//DSNUPROC.SORTWK03 DD DSN=&&SORT3,                                             
+//     DISP=(,DELETE),DCB=BLKSIZE=15400,                                        
+//     SPACE=(CYL,(90,50),,,ROUND),                                             
+//     UNIT=3390,VOL=SER=MV43RS                                                 
+//DSNUPROC.SORTWK04 DD DSN=&&SORT4,                                             
+//     DISP=(,DELETE),DCB=BLKSIZE=15400,                                        
+//     SPACE=(CYL,(90,50),,,ROUND),                                             
+//     UNIT=3390,VOL=SER=MV43DL                                                 
+//DSNUPROC.SYSUT1 DD DSN=&&SYSUT1,                                              
+//     DISP=(,DELETE),DCB=BLKSIZE=15400,                                        
+//     SPACE=(CYL,(90,50),,,ROUND),                                             
+//     UNIT=3390,VOL=SER=MV43DL                                                 
+//DSNUPROC.SORTOUT DD DSN=&&SORTOT,                                             
+//     DISP=(,DELETE),DCB=BLKSIZE=15400,                                        
+//     SPACE=(CYL,(250,90),,,ROUND),                                            
+//     UNIT=3390,VOL=SER=MV43DL                                                 
+//DSNUPROC.MYDD1 DD DSN=DAVID.X2.DATA,DISP=SHR,                                 
+//        UNIT=3390,VOL=SER=CICS33                                              
+//DSNUPROC.SYSMAP DD  DSN=&&SYSMAP,UNIT=3390,DISP=(NEW,DELETE,DELETE),          
+// SPACE=(CYL,(5,5)),DCB=BLKSIZE=15400,VOL=SER=MV43RS                           
+//DSNUPROC.SYSIN    DD  *                                                       
+ LOAD DATA INDDN(MYDD1) LOG NO RESUME NO                                00010000
+      INTO TABLE DAVID.SQ2                                              00020000
+     (KSEQ  POSITION(1:4) INTEGER,                                              
+      K500K POSITION(5:8)     INTEGER,                                          
+      K250K POSITION(9:12)    INTEGER,                                          
+      K100K POSITION(13:16)   INTEGER,                                          
+      K40K  POSITION(17:20)   INTEGER,                                          
+      K10K  POSITION(21:24)   INTEGER,                                          
+      K1K   POSITION(25:28)   INTEGER,                                          
+      K100  POSITION(29:32)   INTEGER,                                          
+      K25   POSITION(33:36)   INTEGER,                                          
+      K10   POSITION(37:40)   INTEGER,                                          
+      K5    POSITION(41:44)   INTEGER,                                          
+      K4    POSITION(45:48)   INTEGER,                                          
+      K2    POSITION(49:52)   INTEGER,                                          
+      SORTBIN  POSITION(53:56)   INTEGER,                                       
+      SORTPACK POSITION(57:60)   DEC PACKED,                                    
+      SORTCHAR POSITION(61:68)   CHAR(8),                                       
+      S4       POSITION(69:98)   CHAR(30),                                      
+      S5       POSITION(99:128)  CHAR(30),                                      
+      S6       POSITION(129:158) CHAR(30),                                      
+      S7       POSITION(159:178) CHAR(20),                                      
+      S8       POSITION(179:200) CHAR(22))                                      
+//RUNST31  JOB (AAA),'D J YOUNG',MSGCLASS=X,TIME=1440,USER=DAVID                
+//DSNUPROC PROC LIB='SYS1.DSN310.SDSNLOAD',                                     
+//         SYSTEM=DB3,                                                          
+//         SIZE=1024K,UID='',UTPROC=''                                          
+//*        SIZE=1024K,UID='',UTPROC='RESTART'                                   
+//DSNUPROC EXEC PGM=DSNUTILB,REGION=&SIZE,                                      
+//         PARM=(&SYSTEM,'&UID','&UTPROC')                                      
+//STEPLIB  DD DSN=&LIB,DISP=SHR                                                 
+//SYSPRINT DD SYSOUT=*                                                          
+//UTPRINT  DD SYSOUT=*                                                          
+//SYSUDUMP DD SYSOUT=*                                                          
+//    PEND                                                                      
+//UTIL EXEC DSNUPROC,SYSTEM=DB3,UID='RSQ100'                                    
+//*                                                                             
+//**********************************************                                
+//*                                                                             
+//*  GENERATING JCL FOR THE LOAD UTILITY                                        
+//*  DATE:  11/04/87          TIME:  05:03:15                                   
+//*                                                                             
+//**********************************************                                
+//*                                                                             
+//DSNUPROC.SYSIN    DD  *                                                       
+ RUNSTATS TABLESPACE SQ2DB.SQ2TS TABLE (ALL) INDEX (ALL)                00010000
+//PRETSCAN JOB (330DJY00),'D J YOUNG ',MSGCLASS=O,NOTIFY=DAVID,                 
+//         USER=DAVID                                                           
+//JOBLIB   DD DSN=SYS1.DSN310.SDSNLOAD,DISP=SHR                                 
+//COB2UCL PROC                                                                  
+//*   PROC FOR COBOL II - COMPILE AND LINK                                      
+//COB2 EXEC PGM=IGYCRCTL,PARM='OBJECT,LIB,APOST,LIST',REGION=1024K              
+//STEPLIB  DD  DSNAME=SYS1.COB2COMP,DISP=SHR                                    
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSLIN   DD  DSNAME=&&LOADSET,UNIT=3390,DISP=(MOD,PASS),                      
+//             SPACE=(TRK,(3,3))                                                
+//SYSUT1   DD  UNIT=3390,SPACE=(CYL,(1,1))                                      
+//SYSUT2   DD  UNIT=3390,SPACE=(CYL,(1,1))                                      
+//SYSUT3   DD  UNIT=3390,SPACE=(CYL,(1,1))                                      
+//SYSUT4   DD  UNIT=3390,SPACE=(CYL,(1,1))                                      
+//SYSUT5   DD  UNIT=3390,SPACE=(CYL,(1,1))                                      
+//SYSUT6   DD  UNIT=3390,SPACE=(CYL,(1,1))                                      
+//SYSUT7   DD  UNIT=3390,SPACE=(CYL,(1,1))                                      
+//LKED   EXEC  PGM=IEWL,PARM='LIST,XREF,LET,NCAL',COND=(5,LT,COB2),             
+//             REGION=512K                                                      
+//SYSLIN   DD  DSNAME=&&LOADSET,DISP=(OLD,DELETE)                               
+//SYSLIB   DD  DSNAME=SYS1.COB2LIB,DISP=SHR                                     
+//SYSUT1   DD  UNIT=3390,SPACE=(CYL,(1,1))                                      
+//SYSPRINT DD  SYSOUT=*                                                         
+// PEND                                                                         
+//TMP01    EXEC PGM=IKJEFT01,DYNAMNBR=20,REGION=4096K                           
+//SYSTSPRT DD SYSOUT=*,DCB=BLKSIZE=2420                                         
+//SYSTSIN  DD *                                                                 
+PROFILE    PREFIX(DAVID)                                                        
+ALLOC      DD(SYSPROC) DSN('SYS1.DSN310.SDSNCLST') SHR                          
+%DSNH BIND(NO) COMPILE(NO) CONTROL(NONE)-                                       
+ DBRMLIB('''DSN310.DBRMLIB.DATA(BTBLSCAN)''')-                                  
+ DECIMAL(PERIOD) DELIMIT(APOST)-                                                
+ HOST(COB2) INPUT('''DAVID.SETQUERY.WORKLOAD(BTBLSCAN)''')-                     
+ LINECOUNT(60) LINK(NO)-                                                        
+ OUTNAME(TEMP) MACRO(NO)-                                                       
+ -                                                                              
+ PRECOMP(YES) PRINT(TEMP) RUN(NO)-                                              
+ SYSTEM(DSN) SQLDELIM(APOST) TERM(TERM)-                                        
+ /* THIS LINE NEEDED TO END THE DSNH INPUT */                                   
+//DOIT EXEC COB2UCL,COND=(4,LT)                                                 
+//COB2.SYSIN DD DSN=DAVID.TEMP.COBOL,DISP=SHR                                   
+//LKED.SYSLMOD  DD  DSNAME=DSN310.SRCLIB.DATA(BTBLSCAN),                        
+//             DISP=SHR                                                         
+//BIND    EXEC PGM=IKJEFT01,DYNAMNBR=20,COND=(4,LT)                     00308000
+//SYSTSPRT DD  SYSOUT=*                                                 00309000
+//SYSPRINT DD  SYSOUT=*                                                 00310000
+//SYSUDUMP DD  SYSOUT=*                                                 00320000
+//SYSTSIN  DD  *                                                        00330000
+  ALLOC F(SYSPROC) DA('SYS1.DSN310.SDSNCLST') SHR                       00340000
+  DSN SYSTEM(DB3)                                                       00350000
+  BIND PLAN(BTBLSCAN) MEM(BTBLSCAN) EXPLAIN(YES) -                      00370000
+             ACT(REP) ISOLATION(CS) VALIDATE(BIND) -                    00370000
+       LIB('DSN310.DBRMLIB.DATA')                                       00380000
+//LINKEDIT EXEC PGM=IEWL,                                                       
+//             PARM='XREF,LIST',                                                
+//             TIME=(,10),COND=(4,LT)                                           
+//SYSLIB   DD  DSN=DSN310.SRCLIB.DATA,DISP=SHR                                  
+//         DD  DSN=SYS1.DSN310.SDSNLOAD,DISP=SHR                                
+//         DD  DSN=SYS1.COB2LIB,DISP=SHR                                        
+//SYSUT1   DD  UNIT=3390,                                                       
+//             SPACE=(CYL,(1,1))                                                
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSLMOD  DD  DSN=DSN310.RUNLIB.LOAD,DISP=SHR                                  
+//SYSLIN   DD  DDNAME=SYSIN                                                     
+//SYSIN    DD  *                                                                
+  INCLUDE SYSLIB(BTBLSCAN)                                                      
+  NAME    BTBLSCAN(R)                                                           
+//BSCAN    JOB (AMW,000),'DEFINE UCAT',MSGCLASS=O,CLASS=A,                      
+//             TIME=(1440),USER=DAVID                                           
+//*        GETDBID TEST                            */                           
+//*                                                                 */          
+//* *************************************************************** */          
+//JOBLIB  DD  DISP=SHR,                                                         
+//            DSN=SYS1.DSN310.SDSNLOAD                                          
+//        DD  DSN=DSN310.RUNLIB.LOAD,DISP=SHR                                   
+//R1K     EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DB3)                                                               
+  RUN PROGRAM(BTBLSCAN) PLAN(BTBLSCAN) -                                        
+       LIB('DSN310.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001000001000                                                              
+//R5K     EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DB3)                                                               
+  RUN PROGRAM(BTBLSCAN) PLAN(BTBLSCAN) -                                        
+       LIB('DSN310.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001000005000                                                              
+//R10K    EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DB3)                                                               
+  RUN PROGRAM(BTBLSCAN) PLAN(BTBLSCAN) -                                        
+       LIB('DSN310.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001000010000                                                              
+//R50K    EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DB3)                                                               
+  RUN PROGRAM(BTBLSCAN) PLAN(BTBLSCAN) -                                        
+       LIB('DSN310.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001000050000                                                              
+//R100K   EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DB3)                                                               
+  RUN PROGRAM(BTBLSCAN) PLAN(BTBLSCAN) -                                        
+       LIB('DSN310.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001000100000                                                              
+//R500K   EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DB3)                                                               
+  RUN PROGRAM(BTBLSCAN) PLAN(BTBLSCAN) -                                        
+       LIB('DSN310.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001000500000                                                              
+//R1M     EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSABOUT DD  SYSOUT=*                                                         
+//SYSOUT   DD  SYSOUT=*                                                         
+//OUTPUT   DD  SYSOUT=*                                                         
+//SNAPOUT DD  SYSOUT=*                                                          
+//*UTPUT DD DSN=DAVID.DB2MON.OUTPUT,DISP=SHR                                    
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DB3)                                                               
+  RUN PROGRAM(BTBLSCAN) PLAN(BTBLSCAN) -                                        
+       LIB('DSN310.RUNLIB.LOAD')                                                
+  END                                                                           
+/*                                                                              
+//INPUT DD *                                                                    
+000000001001000000                                                              

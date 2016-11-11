@@ -1,0 +1,15 @@
+//DEFTERM  JOB  (85012,MS75),'SPETH',MSGCLASS=X                                 
+//VTAMDEF  EXEC  PGM=DFHCSDUP                                                   
+//STEPLIB  DD  DSN=CICS321.SDFHLOAD,DISP=SHR                                    
+//DFHCSD  DD  DSN=CICS321.DFHCSD,DISP=SHR                                       
+//SYSPRINT  DD  SYSOUT=*                                                        
+//SYSIN  DD  *                                                                  
+DEFINE PROGRAM(DSNCCOM1) GROUP(DB2GRP) LANGUAGE(ASSEMBLER)                      
+DEFINE PROGRAM(DSNCEXT1) GROUP(DB2GRP) LANGUAGE(ASSEMBLER)                      
+DEFINE PROGRAM(DSNCEXT2) GROUP(DB2GRP) LANGUAGE(ASSEMBLER)                      
+DEFINE PROGRAM(DSNCMSG0) GROUP(DB2GRP) LANGUAGE(ASSEMBLER)                      
+DEFINE PROGRAM(DSNCSTOP) GROUP(DB2GRP) LANGUAGE(ASSEMBLER)                      
+DEFINE PROGRAM(DSNCSTRT) GROUP(DB2GRP) LANGUAGE(ASSEMBLER)                      
+DEFINE PROGRAM(DSNCUEXT) GROUP(DB2GRP) LANGUAGE(ASSEMBLER)                      
+DEFINE TRANSACTION(DSNC) PROGRAM(DSNCCOM1) GROUP(DB2GRP) TWASIZE(500)           
+                                                                                

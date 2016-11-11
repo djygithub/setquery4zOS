@@ -1,0 +1,2251 @@
+//DAVIS1 JOB CLASS=A,MSGCLASS=X,REGION=6M                                       
+//S1 EXEC PGM=LOADER,PARM='MAP,RMODE=24,EP=ICTMAIN'                             
+//STEPLIB DD DSN=SYS9.DRIVER.V2.LOAD,DISP=SHR                                   
+//SYSLIN DD DSN=SYS9.DRIVER.V2.LOAD(IOCTLTSK),DISP=SHR                          
+//SYSOUT DD SYSOUT=X                                                            
+//SYSLOUT DD SYSOUT=X                                                           
+//SYSPRINT DD SYSOUT=X                                                          
+//SYSABEND DD SYSOUT=X                                                          
+//* HAS QSAM AND BDAM IN IT                                                     
+//SYSIN  DD *                                                                   
+RECORDS=12000                                                                   
+SKIP                                                                            
+TIME=10                                                                         
+RANDOM                                                                          
+R/W=2                                                                           
+WRITE                                                                           
+WAIT=45                                                                         
+DDN=BANDB01                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=45                                                                         
+DDN=BANDB02                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+RANDOM                                                                          
+R/W=2                                                                           
+WRITE                                                                           
+WAIT=45                                                                         
+DDN=BANDB03                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=45                                                                         
+DDN=BANDB04                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+WRITE                                                                           
+SKIP                                                                            
+RANDOM                                                                          
+R/W=2                                                                           
+WAIT=45                                                                         
+DDN=BANDB05                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=45                                                                         
+DDN=BANDB06                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=45                                                                         
+DDN=BANDB07                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=45                                                                         
+DDN=BANDB08                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=45                                                                         
+DDN=BANDB09                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=45                                                                         
+DDN=BANDB10                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=45                                                                         
+DDN=BANDB11                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=45                                                                         
+DDN=BANDB12                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=45                                                                         
+DDN=BANDB13                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=45                                                                         
+DDN=BANDB14                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+WRITE                                                                           
+RANDOM                                                                          
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=45                                                                         
+DDN=BANDB15                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=45                                                                         
+DDN=BANDB16                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+WRITE                                                                           
+RANDOM                                                                          
+SKIP                                                                            
+R/W=2                                                                           
+WAIT=45                                                                         
+DDN=BANDB17                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=45                                                                         
+DDN=BANDB18                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=45                                                                         
+DDN=BANDB19                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=45                                                                         
+DDN=BANDB20                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+WAIT=45                                                                         
+DDN=BANDB21                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=45                                                                         
+DDN=BANDB22                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+WAIT=45                                                                         
+DDN=BANDB23                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=45                                                                         
+DDN=BANDB24                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+WAIT=45                                                                         
+DDN=BANDB25                                                                     
+RECORDS=60000                                                                   
+SKIP                                                                            
+TIME=10                                                                         
+WAIT=45                                                                         
+DDN=BANDB26                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+WAIT=45                                                                         
+DDN=BANDB27                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=45                                                                         
+DDN=BANDB28                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=45                                                                         
+DDN=BANDB29                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=45                                                                         
+DDN=BANDB30                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=45                                                                         
+DDN=BANDB31                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=45                                                                         
+DDN=BANDB32                                                                     
+//BANDB01 DD DISP=SHR,VOL=SER=DB2D21,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB02 DD DISP=SHR,VOL=SER=DB2D21,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB03 DD DISP=SHR,VOL=SER=DB2D22,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB04 DD DISP=SHR,VOL=SER=DB2D22,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB05 DD DISP=SHR,VOL=SER=DB2D23,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB06 DD DISP=SHR,VOL=SER=DB2D23,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB07 DD DISP=SHR,VOL=SER=DB2D24,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB08 DD DISP=SHR,VOL=SER=DB2D24,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB09 DD DISP=SHR,VOL=SER=DB2D25,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB10 DD DISP=SHR,VOL=SER=DB2D25,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB11 DD DISP=SHR,VOL=SER=DB2D26,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB12 DD DISP=SHR,VOL=SER=DB2D26,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB13 DD DISP=SHR,VOL=SER=DB2D27,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB14 DD DISP=SHR,VOL=SER=DB2D27,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB15 DD DISP=SHR,VOL=SER=DB2D28,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB16 DD DISP=SHR,VOL=SER=DB2D28,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB17 DD DISP=SHR,VOL=SER=DB2D29,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB18 DD DISP=SHR,VOL=SER=DB2D29,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB19 DD DISP=SHR,VOL=SER=DB2D30,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB20 DD DISP=SHR,VOL=SER=DB2D30,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB21 DD DISP=SHR,VOL=SER=DB2I04,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB22 DD DISP=SHR,VOL=SER=DB2I04,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB23 DD DISP=SHR,VOL=SER=DB2I0A,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB24 DD DISP=SHR,VOL=SER=DB2I0A,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB25 DD DISP=SHR,VOL=SER=DB2I0B,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB26 DD DISP=SHR,VOL=SER=DB2I0B,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB27 DD DISP=SHR,VOL=SER=DB2I1C,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB28 DD DISP=SHR,VOL=SER=DB2I1C,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB29 DD DISP=SHR,VOL=SER=DB2I1D,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB30 DD DISP=SHR,VOL=SER=DB2I1D,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB31 DD DISP=SHR,VOL=SER=DB2I1E,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB32 DD DISP=SHR,VOL=SER=DB2I1E,UNIT=3390,DSN=BANDB.DATA03                 
+//*                                                                             
+//DAVIS1 JOB CLASS=A,MSGCLASS=X,REGION=6M                                       
+//S2 EXEC PGM=LOADER,PARM='MAP,RMODE=24,EP=ICTMAIN'                             
+//STEPLIB DD DSN=SYS9.DRIVER.V2.LOAD,DISP=SHR                                   
+//SYSLIN DD DSN=SYS9.DRIVER.V2.LOAD(IOCTLTSK),DISP=SHR                          
+//SYSOUT DD SYSOUT=X                                                            
+//SYSLOUT DD SYSOUT=X                                                           
+//SYSPRINT DD SYSOUT=X                                                          
+//SYSABEND DD SYSOUT=X                                                          
+//SYSIN  DD *                                                                   
+RECORDS=12000                                                                   
+SKIP                                                                            
+TIME=10                                                                         
+RANDOM                                                                          
+R/W=2                                                                           
+WRITE                                                                           
+WAIT=40                                                                         
+DDN=BANDB01                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=40                                                                         
+DDN=BANDB02                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+RANDOM                                                                          
+R/W=2                                                                           
+WRITE                                                                           
+WAIT=40                                                                         
+DDN=BANDB03                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=40                                                                         
+DDN=BANDB04                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+WRITE                                                                           
+SKIP                                                                            
+RANDOM                                                                          
+R/W=2                                                                           
+WAIT=40                                                                         
+DDN=BANDB05                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=40                                                                         
+DDN=BANDB06                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=40                                                                         
+DDN=BANDB07                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=40                                                                         
+DDN=BANDB08                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=40                                                                         
+DDN=BANDB09                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=40                                                                         
+DDN=BANDB10                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=40                                                                         
+DDN=BANDB11                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=40                                                                         
+DDN=BANDB12                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=40                                                                         
+DDN=BANDB13                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=40                                                                         
+DDN=BANDB14                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+WRITE                                                                           
+RANDOM                                                                          
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=40                                                                         
+DDN=BANDB15                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=40                                                                         
+DDN=BANDB16                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+WRITE                                                                           
+RANDOM                                                                          
+SKIP                                                                            
+R/W=2                                                                           
+WAIT=40                                                                         
+DDN=BANDB17                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=40                                                                         
+DDN=BANDB18                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=40                                                                         
+DDN=BANDB19                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=40                                                                         
+DDN=BANDB20                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+WAIT=40                                                                         
+DDN=BANDB21                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=40                                                                         
+DDN=BANDB22                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+WAIT=40                                                                         
+DDN=BANDB23                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=40                                                                         
+DDN=BANDB24                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+WAIT=40                                                                         
+DDN=BANDB25                                                                     
+RECORDS=60000                                                                   
+SKIP                                                                            
+TIME=10                                                                         
+WAIT=40                                                                         
+DDN=BANDB26                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+WAIT=40                                                                         
+DDN=BANDB27                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=40                                                                         
+DDN=BANDB28                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=40                                                                         
+DDN=BANDB29                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=40                                                                         
+DDN=BANDB30                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=40                                                                         
+DDN=BANDB31                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=40                                                                         
+DDN=BANDB32                                                                     
+//BANDB01 DD DISP=SHR,VOL=SER=DB2D21,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB02 DD DISP=SHR,VOL=SER=DB2D21,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB03 DD DISP=SHR,VOL=SER=DB2D22,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB04 DD DISP=SHR,VOL=SER=DB2D22,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB05 DD DISP=SHR,VOL=SER=DB2D23,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB06 DD DISP=SHR,VOL=SER=DB2D23,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB07 DD DISP=SHR,VOL=SER=DB2D24,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB08 DD DISP=SHR,VOL=SER=DB2D24,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB09 DD DISP=SHR,VOL=SER=DB2D25,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB10 DD DISP=SHR,VOL=SER=DB2D25,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB11 DD DISP=SHR,VOL=SER=DB2D26,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB12 DD DISP=SHR,VOL=SER=DB2D26,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB13 DD DISP=SHR,VOL=SER=DB2D27,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB14 DD DISP=SHR,VOL=SER=DB2D27,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB15 DD DISP=SHR,VOL=SER=DB2D28,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB16 DD DISP=SHR,VOL=SER=DB2D28,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB17 DD DISP=SHR,VOL=SER=DB2D29,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB18 DD DISP=SHR,VOL=SER=DB2D29,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB19 DD DISP=SHR,VOL=SER=DB2D30,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB20 DD DISP=SHR,VOL=SER=DB2D30,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB21 DD DISP=SHR,VOL=SER=DB2I04,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB22 DD DISP=SHR,VOL=SER=DB2I04,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB23 DD DISP=SHR,VOL=SER=DB2I0A,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB24 DD DISP=SHR,VOL=SER=DB2I0A,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB25 DD DISP=SHR,VOL=SER=DB2I0B,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB26 DD DISP=SHR,VOL=SER=DB2I0B,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB27 DD DISP=SHR,VOL=SER=DB2I1C,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB28 DD DISP=SHR,VOL=SER=DB2I1C,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB29 DD DISP=SHR,VOL=SER=DB2I1D,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB30 DD DISP=SHR,VOL=SER=DB2I1D,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB31 DD DISP=SHR,VOL=SER=DB2I1E,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB32 DD DISP=SHR,VOL=SER=DB2I1E,UNIT=3390,DSN=BANDB.DATA03                 
+//*                                                                             
+//DAVIS1 JOB CLASS=A,MSGCLASS=X,REGION=6M                                       
+//S3 EXEC PGM=LOADER,PARM='MAP,RMODE=24,EP=ICTMAIN'                             
+//STEPLIB DD DSN=SYS9.DRIVER.V2.LOAD,DISP=SHR                                   
+//SYSLIN DD DSN=SYS9.DRIVER.V2.LOAD(IOCTLTSK),DISP=SHR                          
+//SYSOUT DD SYSOUT=X                                                            
+//SYSLOUT DD SYSOUT=X                                                           
+//SYSPRINT DD SYSOUT=X                                                          
+//SYSABEND DD SYSOUT=X                                                          
+//SYSIN  DD *                                                                   
+RECORDS=12000                                                                   
+SKIP                                                                            
+TIME=10                                                                         
+RANDOM                                                                          
+R/W=2                                                                           
+WRITE                                                                           
+WAIT=35                                                                         
+DDN=BANDB01                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=35                                                                         
+DDN=BANDB02                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+RANDOM                                                                          
+R/W=2                                                                           
+WRITE                                                                           
+WAIT=35                                                                         
+DDN=BANDB03                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=35                                                                         
+DDN=BANDB04                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+WRITE                                                                           
+SKIP                                                                            
+RANDOM                                                                          
+R/W=2                                                                           
+WAIT=35                                                                         
+DDN=BANDB05                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=35                                                                         
+DDN=BANDB06                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=35                                                                         
+DDN=BANDB07                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=35                                                                         
+DDN=BANDB08                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=35                                                                         
+DDN=BANDB09                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=35                                                                         
+DDN=BANDB10                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=35                                                                         
+DDN=BANDB11                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=35                                                                         
+DDN=BANDB12                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=35                                                                         
+DDN=BANDB13                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=35                                                                         
+DDN=BANDB14                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+WRITE                                                                           
+RANDOM                                                                          
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=35                                                                         
+DDN=BANDB15                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=35                                                                         
+DDN=BANDB16                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+WRITE                                                                           
+RANDOM                                                                          
+SKIP                                                                            
+R/W=2                                                                           
+WAIT=35                                                                         
+DDN=BANDB17                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=35                                                                         
+DDN=BANDB18                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=35                                                                         
+DDN=BANDB19                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=35                                                                         
+DDN=BANDB20                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+WAIT=35                                                                         
+DDN=BANDB21                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=35                                                                         
+DDN=BANDB22                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+WAIT=35                                                                         
+DDN=BANDB23                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=35                                                                         
+DDN=BANDB24                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+WAIT=35                                                                         
+DDN=BANDB25                                                                     
+RECORDS=60000                                                                   
+SKIP                                                                            
+TIME=10                                                                         
+WAIT=35                                                                         
+DDN=BANDB26                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+WAIT=35                                                                         
+DDN=BANDB27                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=35                                                                         
+DDN=BANDB28                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=35                                                                         
+DDN=BANDB29                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=35                                                                         
+DDN=BANDB30                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=35                                                                         
+DDN=BANDB31                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=35                                                                         
+DDN=BANDB32                                                                     
+//BANDB01 DD DISP=SHR,VOL=SER=DB2D21,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB02 DD DISP=SHR,VOL=SER=DB2D21,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB03 DD DISP=SHR,VOL=SER=DB2D22,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB04 DD DISP=SHR,VOL=SER=DB2D22,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB05 DD DISP=SHR,VOL=SER=DB2D23,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB06 DD DISP=SHR,VOL=SER=DB2D23,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB07 DD DISP=SHR,VOL=SER=DB2D24,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB08 DD DISP=SHR,VOL=SER=DB2D24,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB09 DD DISP=SHR,VOL=SER=DB2D25,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB10 DD DISP=SHR,VOL=SER=DB2D25,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB11 DD DISP=SHR,VOL=SER=DB2D26,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB12 DD DISP=SHR,VOL=SER=DB2D26,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB13 DD DISP=SHR,VOL=SER=DB2D27,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB14 DD DISP=SHR,VOL=SER=DB2D27,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB15 DD DISP=SHR,VOL=SER=DB2D28,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB16 DD DISP=SHR,VOL=SER=DB2D28,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB17 DD DISP=SHR,VOL=SER=DB2D29,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB18 DD DISP=SHR,VOL=SER=DB2D29,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB19 DD DISP=SHR,VOL=SER=DB2D30,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB20 DD DISP=SHR,VOL=SER=DB2D30,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB21 DD DISP=SHR,VOL=SER=DB2I04,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB22 DD DISP=SHR,VOL=SER=DB2I04,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB23 DD DISP=SHR,VOL=SER=DB2I0A,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB24 DD DISP=SHR,VOL=SER=DB2I0A,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB25 DD DISP=SHR,VOL=SER=DB2I0B,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB26 DD DISP=SHR,VOL=SER=DB2I0B,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB27 DD DISP=SHR,VOL=SER=DB2I1C,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB28 DD DISP=SHR,VOL=SER=DB2I1C,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB29 DD DISP=SHR,VOL=SER=DB2I1D,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB30 DD DISP=SHR,VOL=SER=DB2I1D,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB31 DD DISP=SHR,VOL=SER=DB2I1E,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB32 DD DISP=SHR,VOL=SER=DB2I1E,UNIT=3390,DSN=BANDB.DATA03                 
+//*                                                                             
+//DAVIS1 JOB CLASS=A,MSGCLASS=X,REGION=6M                                       
+//S4 EXEC PGM=LOADER,PARM='MAP,RMODE=24,EP=ICTMAIN'                             
+//STEPLIB DD DSN=SYS9.DRIVER.V2.LOAD,DISP=SHR                                   
+//SYSLIN DD DSN=SYS9.DRIVER.V2.LOAD(IOCTLTSK),DISP=SHR                          
+//SYSOUT DD SYSOUT=X                                                            
+//SYSLOUT DD SYSOUT=X                                                           
+//SYSPRINT DD SYSOUT=X                                                          
+//SYSABEND DD SYSOUT=X                                                          
+//SYSIN  DD *                                                                   
+RECORDS=12000                                                                   
+SKIP                                                                            
+TIME=10                                                                         
+RANDOM                                                                          
+R/W=2                                                                           
+WRITE                                                                           
+WAIT=30                                                                         
+DDN=BANDB01                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=30                                                                         
+DDN=BANDB02                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+RANDOM                                                                          
+R/W=2                                                                           
+WRITE                                                                           
+WAIT=30                                                                         
+DDN=BANDB03                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=30                                                                         
+DDN=BANDB04                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+WRITE                                                                           
+SKIP                                                                            
+RANDOM                                                                          
+R/W=2                                                                           
+WAIT=30                                                                         
+DDN=BANDB05                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=30                                                                         
+DDN=BANDB06                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=30                                                                         
+DDN=BANDB07                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=30                                                                         
+DDN=BANDB08                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=30                                                                         
+DDN=BANDB09                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=30                                                                         
+DDN=BANDB10                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=30                                                                         
+DDN=BANDB11                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=30                                                                         
+DDN=BANDB12                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=30                                                                         
+DDN=BANDB13                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=30                                                                         
+DDN=BANDB14                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+WRITE                                                                           
+RANDOM                                                                          
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=30                                                                         
+DDN=BANDB15                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=30                                                                         
+DDN=BANDB16                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+WRITE                                                                           
+RANDOM                                                                          
+SKIP                                                                            
+R/W=2                                                                           
+WAIT=30                                                                         
+DDN=BANDB17                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=30                                                                         
+DDN=BANDB18                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=30                                                                         
+DDN=BANDB19                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=30                                                                         
+DDN=BANDB20                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+WAIT=30                                                                         
+DDN=BANDB21                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=30                                                                         
+DDN=BANDB22                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+WAIT=30                                                                         
+DDN=BANDB23                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=30                                                                         
+DDN=BANDB24                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+WAIT=30                                                                         
+DDN=BANDB25                                                                     
+RECORDS=60000                                                                   
+SKIP                                                                            
+TIME=10                                                                         
+WAIT=30                                                                         
+DDN=BANDB26                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+WAIT=30                                                                         
+DDN=BANDB27                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=30                                                                         
+DDN=BANDB28                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=30                                                                         
+DDN=BANDB29                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=30                                                                         
+DDN=BANDB30                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=30                                                                         
+DDN=BANDB31                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=30                                                                         
+DDN=BANDB32                                                                     
+//BANDB01 DD DISP=SHR,VOL=SER=DB2D21,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB02 DD DISP=SHR,VOL=SER=DB2D21,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB03 DD DISP=SHR,VOL=SER=DB2D22,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB04 DD DISP=SHR,VOL=SER=DB2D22,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB05 DD DISP=SHR,VOL=SER=DB2D23,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB06 DD DISP=SHR,VOL=SER=DB2D23,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB07 DD DISP=SHR,VOL=SER=DB2D24,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB08 DD DISP=SHR,VOL=SER=DB2D24,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB09 DD DISP=SHR,VOL=SER=DB2D25,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB10 DD DISP=SHR,VOL=SER=DB2D25,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB11 DD DISP=SHR,VOL=SER=DB2D26,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB12 DD DISP=SHR,VOL=SER=DB2D26,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB13 DD DISP=SHR,VOL=SER=DB2D27,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB14 DD DISP=SHR,VOL=SER=DB2D27,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB15 DD DISP=SHR,VOL=SER=DB2D28,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB16 DD DISP=SHR,VOL=SER=DB2D28,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB17 DD DISP=SHR,VOL=SER=DB2D29,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB18 DD DISP=SHR,VOL=SER=DB2D29,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB19 DD DISP=SHR,VOL=SER=DB2D30,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB20 DD DISP=SHR,VOL=SER=DB2D30,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB21 DD DISP=SHR,VOL=SER=DB2I04,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB22 DD DISP=SHR,VOL=SER=DB2I04,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB23 DD DISP=SHR,VOL=SER=DB2I0A,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB24 DD DISP=SHR,VOL=SER=DB2I0A,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB25 DD DISP=SHR,VOL=SER=DB2I0B,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB26 DD DISP=SHR,VOL=SER=DB2I0B,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB27 DD DISP=SHR,VOL=SER=DB2I1C,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB28 DD DISP=SHR,VOL=SER=DB2I1C,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB29 DD DISP=SHR,VOL=SER=DB2I1D,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB30 DD DISP=SHR,VOL=SER=DB2I1D,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB31 DD DISP=SHR,VOL=SER=DB2I1E,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB32 DD DISP=SHR,VOL=SER=DB2I1E,UNIT=3390,DSN=BANDB.DATA03                 
+//*                                                                             
+//DAVIS1 JOB CLASS=A,MSGCLASS=X,REGION=6M                                       
+//S5 EXEC PGM=LOADER,PARM='MAP,RMODE=24,EP=ICTMAIN'                             
+//STEPLIB DD DSN=SYS9.DRIVER.V2.LOAD,DISP=SHR                                   
+//SYSLIN DD DSN=SYS9.DRIVER.V2.LOAD(IOCTLTSK),DISP=SHR                          
+//SYSOUT DD SYSOUT=X                                                            
+//SYSLOUT DD SYSOUT=X                                                           
+//SYSPRINT DD SYSOUT=X                                                          
+//SYSABEND DD SYSOUT=X                                                          
+//SYSIN  DD *                                                                   
+RECORDS=12000                                                                   
+SKIP                                                                            
+TIME=10                                                                         
+RANDOM                                                                          
+R/W=2                                                                           
+WRITE                                                                           
+WAIT=25                                                                         
+DDN=BANDB01                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=25                                                                         
+DDN=BANDB02                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+RANDOM                                                                          
+R/W=2                                                                           
+WRITE                                                                           
+WAIT=25                                                                         
+DDN=BANDB03                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=25                                                                         
+DDN=BANDB04                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+WRITE                                                                           
+SKIP                                                                            
+RANDOM                                                                          
+R/W=2                                                                           
+WAIT=25                                                                         
+DDN=BANDB05                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=25                                                                         
+DDN=BANDB06                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=25                                                                         
+DDN=BANDB07                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=25                                                                         
+DDN=BANDB08                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=25                                                                         
+DDN=BANDB09                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=25                                                                         
+DDN=BANDB10                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=25                                                                         
+DDN=BANDB11                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=25                                                                         
+DDN=BANDB12                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=25                                                                         
+DDN=BANDB13                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=25                                                                         
+DDN=BANDB14                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+WRITE                                                                           
+RANDOM                                                                          
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=25                                                                         
+DDN=BANDB15                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=25                                                                         
+DDN=BANDB16                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+WRITE                                                                           
+RANDOM                                                                          
+SKIP                                                                            
+R/W=2                                                                           
+WAIT=25                                                                         
+DDN=BANDB17                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=25                                                                         
+DDN=BANDB18                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=25                                                                         
+DDN=BANDB19                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=25                                                                         
+DDN=BANDB20                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+WAIT=25                                                                         
+DDN=BANDB21                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=25                                                                         
+DDN=BANDB22                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+WAIT=25                                                                         
+DDN=BANDB23                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=25                                                                         
+DDN=BANDB24                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+WAIT=25                                                                         
+DDN=BANDB25                                                                     
+RECORDS=60000                                                                   
+SKIP                                                                            
+TIME=10                                                                         
+WAIT=25                                                                         
+DDN=BANDB26                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+WAIT=25                                                                         
+DDN=BANDB27                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=25                                                                         
+DDN=BANDB28                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=25                                                                         
+DDN=BANDB29                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=25                                                                         
+DDN=BANDB30                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=25                                                                         
+DDN=BANDB31                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=25                                                                         
+DDN=BANDB32                                                                     
+//BANDB01 DD DISP=SHR,VOL=SER=DB2D21,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB02 DD DISP=SHR,VOL=SER=DB2D21,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB03 DD DISP=SHR,VOL=SER=DB2D22,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB04 DD DISP=SHR,VOL=SER=DB2D22,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB05 DD DISP=SHR,VOL=SER=DB2D23,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB06 DD DISP=SHR,VOL=SER=DB2D23,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB07 DD DISP=SHR,VOL=SER=DB2D24,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB08 DD DISP=SHR,VOL=SER=DB2D24,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB09 DD DISP=SHR,VOL=SER=DB2D25,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB10 DD DISP=SHR,VOL=SER=DB2D25,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB11 DD DISP=SHR,VOL=SER=DB2D26,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB12 DD DISP=SHR,VOL=SER=DB2D26,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB13 DD DISP=SHR,VOL=SER=DB2D27,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB14 DD DISP=SHR,VOL=SER=DB2D27,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB15 DD DISP=SHR,VOL=SER=DB2D28,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB16 DD DISP=SHR,VOL=SER=DB2D28,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB17 DD DISP=SHR,VOL=SER=DB2D29,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB18 DD DISP=SHR,VOL=SER=DB2D29,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB19 DD DISP=SHR,VOL=SER=DB2D30,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB20 DD DISP=SHR,VOL=SER=DB2D30,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB21 DD DISP=SHR,VOL=SER=DB2I04,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB22 DD DISP=SHR,VOL=SER=DB2I04,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB23 DD DISP=SHR,VOL=SER=DB2I0A,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB24 DD DISP=SHR,VOL=SER=DB2I0A,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB25 DD DISP=SHR,VOL=SER=DB2I0B,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB26 DD DISP=SHR,VOL=SER=DB2I0B,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB27 DD DISP=SHR,VOL=SER=DB2I1C,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB28 DD DISP=SHR,VOL=SER=DB2I1C,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB29 DD DISP=SHR,VOL=SER=DB2I1D,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB30 DD DISP=SHR,VOL=SER=DB2I1D,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB31 DD DISP=SHR,VOL=SER=DB2I1E,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB32 DD DISP=SHR,VOL=SER=DB2I1E,UNIT=3390,DSN=BANDB.DATA03                 
+//*                                                                             
+//DAVIS1 JOB CLASS=A,MSGCLASS=X,REGION=6M                                       
+//S6 EXEC PGM=LOADER,PARM='MAP,RMODE=24,EP=ICTMAIN'                             
+//STEPLIB DD DSN=SYS9.DRIVER.V2.LOAD,DISP=SHR                                   
+//SYSLIN DD DSN=SYS9.DRIVER.V2.LOAD(IOCTLTSK),DISP=SHR                          
+//SYSOUT DD SYSOUT=X                                                            
+//SYSLOUT DD SYSOUT=X                                                           
+//SYSPRINT DD SYSOUT=X                                                          
+//SYSABEND DD SYSOUT=X                                                          
+//SYSIN  DD *                                                                   
+RECORDS=12000                                                                   
+SKIP                                                                            
+TIME=10                                                                         
+RANDOM                                                                          
+R/W=2                                                                           
+WRITE                                                                           
+WAIT=20                                                                         
+DDN=BANDB01                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=20                                                                         
+DDN=BANDB02                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+RANDOM                                                                          
+R/W=2                                                                           
+WRITE                                                                           
+WAIT=20                                                                         
+DDN=BANDB03                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=20                                                                         
+DDN=BANDB04                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+WRITE                                                                           
+SKIP                                                                            
+RANDOM                                                                          
+R/W=2                                                                           
+WAIT=20                                                                         
+DDN=BANDB05                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=20                                                                         
+DDN=BANDB06                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=20                                                                         
+DDN=BANDB07                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=20                                                                         
+DDN=BANDB08                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=20                                                                         
+DDN=BANDB09                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=20                                                                         
+DDN=BANDB10                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=20                                                                         
+DDN=BANDB11                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=20                                                                         
+DDN=BANDB12                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=20                                                                         
+DDN=BANDB13                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=20                                                                         
+DDN=BANDB14                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+WRITE                                                                           
+RANDOM                                                                          
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=20                                                                         
+DDN=BANDB15                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=20                                                                         
+DDN=BANDB16                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+WRITE                                                                           
+RANDOM                                                                          
+SKIP                                                                            
+R/W=2                                                                           
+WAIT=20                                                                         
+DDN=BANDB17                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=20                                                                         
+DDN=BANDB18                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=20                                                                         
+DDN=BANDB19                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=20                                                                         
+DDN=BANDB20                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+WAIT=20                                                                         
+DDN=BANDB21                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=20                                                                         
+DDN=BANDB22                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+WAIT=20                                                                         
+DDN=BANDB23                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=20                                                                         
+DDN=BANDB24                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+WAIT=20                                                                         
+DDN=BANDB25                                                                     
+RECORDS=60000                                                                   
+SKIP                                                                            
+TIME=10                                                                         
+WAIT=20                                                                         
+DDN=BANDB26                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+WAIT=20                                                                         
+DDN=BANDB27                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=20                                                                         
+DDN=BANDB28                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=20                                                                         
+DDN=BANDB29                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=20                                                                         
+DDN=BANDB30                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=20                                                                         
+DDN=BANDB31                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=20                                                                         
+DDN=BANDB32                                                                     
+//BANDB01 DD DISP=SHR,VOL=SER=DB2D21,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB02 DD DISP=SHR,VOL=SER=DB2D21,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB03 DD DISP=SHR,VOL=SER=DB2D22,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB04 DD DISP=SHR,VOL=SER=DB2D22,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB05 DD DISP=SHR,VOL=SER=DB2D23,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB06 DD DISP=SHR,VOL=SER=DB2D23,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB07 DD DISP=SHR,VOL=SER=DB2D24,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB08 DD DISP=SHR,VOL=SER=DB2D24,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB09 DD DISP=SHR,VOL=SER=DB2D25,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB10 DD DISP=SHR,VOL=SER=DB2D25,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB11 DD DISP=SHR,VOL=SER=DB2D26,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB12 DD DISP=SHR,VOL=SER=DB2D26,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB13 DD DISP=SHR,VOL=SER=DB2D27,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB14 DD DISP=SHR,VOL=SER=DB2D27,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB15 DD DISP=SHR,VOL=SER=DB2D28,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB16 DD DISP=SHR,VOL=SER=DB2D28,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB17 DD DISP=SHR,VOL=SER=DB2D29,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB18 DD DISP=SHR,VOL=SER=DB2D29,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB19 DD DISP=SHR,VOL=SER=DB2D30,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB20 DD DISP=SHR,VOL=SER=DB2D30,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB21 DD DISP=SHR,VOL=SER=DB2I04,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB22 DD DISP=SHR,VOL=SER=DB2I04,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB23 DD DISP=SHR,VOL=SER=DB2I0A,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB24 DD DISP=SHR,VOL=SER=DB2I0A,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB25 DD DISP=SHR,VOL=SER=DB2I0B,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB26 DD DISP=SHR,VOL=SER=DB2I0B,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB27 DD DISP=SHR,VOL=SER=DB2I1C,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB28 DD DISP=SHR,VOL=SER=DB2I1C,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB29 DD DISP=SHR,VOL=SER=DB2I1D,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB30 DD DISP=SHR,VOL=SER=DB2I1D,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB31 DD DISP=SHR,VOL=SER=DB2I1E,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB32 DD DISP=SHR,VOL=SER=DB2I1E,UNIT=3390,DSN=BANDB.DATA03                 
+//*                                                                             
+//DAVIS1 JOB CLASS=A,MSGCLASS=X,REGION=6M                                       
+//S7 EXEC PGM=LOADER,PARM='MAP,RMODE=24,EP=ICTMAIN'                             
+//STEPLIB DD DSN=SYS9.DRIVER.V2.LOAD,DISP=SHR                                   
+//SYSLIN DD DSN=SYS9.DRIVER.V2.LOAD(IOCTLTSK),DISP=SHR                          
+//SYSOUT DD SYSOUT=X                                                            
+//SYSLOUT DD SYSOUT=X                                                           
+//SYSPRINT DD SYSOUT=X                                                          
+//SYSABEND DD SYSOUT=X                                                          
+//SYSIN  DD *                                                                   
+RECORDS=12000                                                                   
+SKIP                                                                            
+TIME=10                                                                         
+RANDOM                                                                          
+R/W=2                                                                           
+WRITE                                                                           
+WAIT=15                                                                         
+DDN=BANDB01                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=15                                                                         
+DDN=BANDB02                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+RANDOM                                                                          
+R/W=2                                                                           
+WRITE                                                                           
+WAIT=15                                                                         
+DDN=BANDB03                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=15                                                                         
+DDN=BANDB04                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+WRITE                                                                           
+SKIP                                                                            
+RANDOM                                                                          
+R/W=2                                                                           
+WAIT=15                                                                         
+DDN=BANDB05                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=15                                                                         
+DDN=BANDB06                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=15                                                                         
+DDN=BANDB07                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=15                                                                         
+DDN=BANDB08                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=15                                                                         
+DDN=BANDB09                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=15                                                                         
+DDN=BANDB10                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=15                                                                         
+DDN=BANDB11                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=15                                                                         
+DDN=BANDB12                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=15                                                                         
+DDN=BANDB13                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=15                                                                         
+DDN=BANDB14                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+WRITE                                                                           
+RANDOM                                                                          
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=15                                                                         
+DDN=BANDB15                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=15                                                                         
+DDN=BANDB16                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+WRITE                                                                           
+RANDOM                                                                          
+SKIP                                                                            
+R/W=2                                                                           
+WAIT=15                                                                         
+DDN=BANDB17                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=15                                                                         
+DDN=BANDB18                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=15                                                                         
+DDN=BANDB19                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=15                                                                         
+DDN=BANDB20                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+WAIT=15                                                                         
+DDN=BANDB21                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=15                                                                         
+DDN=BANDB22                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+WAIT=15                                                                         
+DDN=BANDB23                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=15                                                                         
+DDN=BANDB24                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+WAIT=15                                                                         
+DDN=BANDB25                                                                     
+RECORDS=60000                                                                   
+SKIP                                                                            
+TIME=10                                                                         
+WAIT=15                                                                         
+DDN=BANDB26                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+WAIT=15                                                                         
+DDN=BANDB27                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=15                                                                         
+DDN=BANDB28                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=15                                                                         
+DDN=BANDB29                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=15                                                                         
+DDN=BANDB30                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=15                                                                         
+DDN=BANDB31                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=15                                                                         
+DDN=BANDB32                                                                     
+//BANDB01 DD DISP=SHR,VOL=SER=DB2D21,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB02 DD DISP=SHR,VOL=SER=DB2D21,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB03 DD DISP=SHR,VOL=SER=DB2D22,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB04 DD DISP=SHR,VOL=SER=DB2D22,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB05 DD DISP=SHR,VOL=SER=DB2D23,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB06 DD DISP=SHR,VOL=SER=DB2D23,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB07 DD DISP=SHR,VOL=SER=DB2D24,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB08 DD DISP=SHR,VOL=SER=DB2D24,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB09 DD DISP=SHR,VOL=SER=DB2D25,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB10 DD DISP=SHR,VOL=SER=DB2D25,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB11 DD DISP=SHR,VOL=SER=DB2D26,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB12 DD DISP=SHR,VOL=SER=DB2D26,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB13 DD DISP=SHR,VOL=SER=DB2D27,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB14 DD DISP=SHR,VOL=SER=DB2D27,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB15 DD DISP=SHR,VOL=SER=DB2D28,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB16 DD DISP=SHR,VOL=SER=DB2D28,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB17 DD DISP=SHR,VOL=SER=DB2D29,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB18 DD DISP=SHR,VOL=SER=DB2D29,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB19 DD DISP=SHR,VOL=SER=DB2D30,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB20 DD DISP=SHR,VOL=SER=DB2D30,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB21 DD DISP=SHR,VOL=SER=DB2I04,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB22 DD DISP=SHR,VOL=SER=DB2I04,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB23 DD DISP=SHR,VOL=SER=DB2I0A,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB24 DD DISP=SHR,VOL=SER=DB2I0A,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB25 DD DISP=SHR,VOL=SER=DB2I0B,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB26 DD DISP=SHR,VOL=SER=DB2I0B,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB27 DD DISP=SHR,VOL=SER=DB2I1C,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB28 DD DISP=SHR,VOL=SER=DB2I1C,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB29 DD DISP=SHR,VOL=SER=DB2I1D,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB30 DD DISP=SHR,VOL=SER=DB2I1D,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB31 DD DISP=SHR,VOL=SER=DB2I1E,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB32 DD DISP=SHR,VOL=SER=DB2I1E,UNIT=3390,DSN=BANDB.DATA03                 
+//*                                                                             
+//DAVIS1 JOB CLASS=A,MSGCLASS=X,REGION=6M                                       
+//S8 EXEC PGM=LOADER,PARM='MAP,RMODE=24,EP=ICTMAIN'                             
+//STEPLIB DD DSN=SYS9.DRIVER.V2.LOAD,DISP=SHR                                   
+//SYSLIN DD DSN=SYS9.DRIVER.V2.LOAD(IOCTLTSK),DISP=SHR                          
+//SYSOUT DD SYSOUT=X                                                            
+//SYSLOUT DD SYSOUT=X                                                           
+//SYSPRINT DD SYSOUT=X                                                          
+//SYSABEND DD SYSOUT=X                                                          
+//SYSIN  DD *                                                                   
+RECORDS=12000                                                                   
+SKIP                                                                            
+TIME=10                                                                         
+RANDOM                                                                          
+R/W=2                                                                           
+WRITE                                                                           
+WAIT=10                                                                         
+DDN=BANDB01                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=10                                                                         
+DDN=BANDB02                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+RANDOM                                                                          
+R/W=2                                                                           
+WRITE                                                                           
+WAIT=10                                                                         
+DDN=BANDB03                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=10                                                                         
+DDN=BANDB04                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+WRITE                                                                           
+SKIP                                                                            
+RANDOM                                                                          
+R/W=2                                                                           
+WAIT=10                                                                         
+DDN=BANDB05                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=10                                                                         
+DDN=BANDB06                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=10                                                                         
+DDN=BANDB07                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=10                                                                         
+DDN=BANDB08                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=10                                                                         
+DDN=BANDB09                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=10                                                                         
+DDN=BANDB10                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=10                                                                         
+DDN=BANDB11                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=10                                                                         
+DDN=BANDB12                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=10                                                                         
+DDN=BANDB13                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=10                                                                         
+DDN=BANDB14                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+WRITE                                                                           
+RANDOM                                                                          
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=10                                                                         
+DDN=BANDB15                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=10                                                                         
+DDN=BANDB16                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+WRITE                                                                           
+RANDOM                                                                          
+SKIP                                                                            
+R/W=2                                                                           
+WAIT=10                                                                         
+DDN=BANDB17                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=10                                                                         
+DDN=BANDB18                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=10                                                                         
+DDN=BANDB19                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=10                                                                         
+DDN=BANDB20                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+WAIT=10                                                                         
+DDN=BANDB21                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=10                                                                         
+DDN=BANDB22                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+WAIT=10                                                                         
+DDN=BANDB23                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=10                                                                         
+DDN=BANDB24                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+WAIT=10                                                                         
+DDN=BANDB25                                                                     
+RECORDS=60000                                                                   
+SKIP                                                                            
+TIME=10                                                                         
+WAIT=10                                                                         
+DDN=BANDB26                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+WAIT=10                                                                         
+DDN=BANDB27                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=10                                                                         
+DDN=BANDB28                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=10                                                                         
+DDN=BANDB29                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=10                                                                         
+DDN=BANDB30                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=10                                                                         
+DDN=BANDB31                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=10                                                                         
+DDN=BANDB32                                                                     
+//BANDB01 DD DISP=SHR,VOL=SER=DB2D21,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB02 DD DISP=SHR,VOL=SER=DB2D21,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB03 DD DISP=SHR,VOL=SER=DB2D22,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB04 DD DISP=SHR,VOL=SER=DB2D22,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB05 DD DISP=SHR,VOL=SER=DB2D23,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB06 DD DISP=SHR,VOL=SER=DB2D23,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB07 DD DISP=SHR,VOL=SER=DB2D24,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB08 DD DISP=SHR,VOL=SER=DB2D24,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB09 DD DISP=SHR,VOL=SER=DB2D25,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB10 DD DISP=SHR,VOL=SER=DB2D25,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB11 DD DISP=SHR,VOL=SER=DB2D26,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB12 DD DISP=SHR,VOL=SER=DB2D26,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB13 DD DISP=SHR,VOL=SER=DB2D27,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB14 DD DISP=SHR,VOL=SER=DB2D27,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB15 DD DISP=SHR,VOL=SER=DB2D28,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB16 DD DISP=SHR,VOL=SER=DB2D28,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB17 DD DISP=SHR,VOL=SER=DB2D29,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB18 DD DISP=SHR,VOL=SER=DB2D29,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB19 DD DISP=SHR,VOL=SER=DB2D30,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB20 DD DISP=SHR,VOL=SER=DB2D30,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB21 DD DISP=SHR,VOL=SER=DB2I04,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB22 DD DISP=SHR,VOL=SER=DB2I04,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB23 DD DISP=SHR,VOL=SER=DB2I0A,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB24 DD DISP=SHR,VOL=SER=DB2I0A,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB25 DD DISP=SHR,VOL=SER=DB2I0B,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB26 DD DISP=SHR,VOL=SER=DB2I0B,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB27 DD DISP=SHR,VOL=SER=DB2I1C,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB28 DD DISP=SHR,VOL=SER=DB2I1C,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB29 DD DISP=SHR,VOL=SER=DB2I1D,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB30 DD DISP=SHR,VOL=SER=DB2I1D,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB31 DD DISP=SHR,VOL=SER=DB2I1E,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB32 DD DISP=SHR,VOL=SER=DB2I1E,UNIT=3390,DSN=BANDB.DATA03                 
+//*                                                                             
+//DAVIS1 JOB CLASS=A,MSGCLASS=X,REGION=6M                                       
+//S9 EXEC PGM=LOADER,PARM='MAP,RMODE=24,EP=ICTMAIN'                             
+//STEPLIB DD DSN=SYS9.DRIVER.V2.LOAD,DISP=SHR                                   
+//SYSLIN DD DSN=SYS9.DRIVER.V2.LOAD(IOCTLTSK),DISP=SHR                          
+//SYSOUT DD SYSOUT=X                                                            
+//SYSLOUT DD SYSOUT=X                                                           
+//SYSPRINT DD SYSOUT=X                                                          
+//SYSABEND DD SYSOUT=X                                                          
+//SYSIN  DD *                                                                   
+RECORDS=12000                                                                   
+SKIP                                                                            
+TIME=10                                                                         
+RANDOM                                                                          
+R/W=2                                                                           
+WRITE                                                                           
+WAIT=05                                                                         
+DDN=BANDB01                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=05                                                                         
+DDN=BANDB02                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+RANDOM                                                                          
+R/W=2                                                                           
+WRITE                                                                           
+WAIT=05                                                                         
+DDN=BANDB03                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=05                                                                         
+DDN=BANDB04                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+WRITE                                                                           
+SKIP                                                                            
+RANDOM                                                                          
+R/W=2                                                                           
+WAIT=05                                                                         
+DDN=BANDB05                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=05                                                                         
+DDN=BANDB06                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=05                                                                         
+DDN=BANDB07                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=05                                                                         
+DDN=BANDB08                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=05                                                                         
+DDN=BANDB09                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=05                                                                         
+DDN=BANDB10                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=05                                                                         
+DDN=BANDB11                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=05                                                                         
+DDN=BANDB12                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=05                                                                         
+DDN=BANDB13                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=05                                                                         
+DDN=BANDB14                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+WRITE                                                                           
+RANDOM                                                                          
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=05                                                                         
+DDN=BANDB15                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=05                                                                         
+DDN=BANDB16                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+WRITE                                                                           
+RANDOM                                                                          
+SKIP                                                                            
+R/W=2                                                                           
+WAIT=05                                                                         
+DDN=BANDB17                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=05                                                                         
+DDN=BANDB18                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=05                                                                         
+DDN=BANDB19                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=05                                                                         
+DDN=BANDB20                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+WAIT=05                                                                         
+DDN=BANDB21                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=05                                                                         
+DDN=BANDB22                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+WAIT=05                                                                         
+DDN=BANDB23                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=05                                                                         
+DDN=BANDB24                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+WAIT=05                                                                         
+DDN=BANDB25                                                                     
+RECORDS=60000                                                                   
+SKIP                                                                            
+TIME=10                                                                         
+WAIT=05                                                                         
+DDN=BANDB26                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+WAIT=05                                                                         
+DDN=BANDB27                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=05                                                                         
+DDN=BANDB28                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=05                                                                         
+DDN=BANDB29                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=05                                                                         
+DDN=BANDB30                                                                     
+RECORDS=12000                                                                   
+TIME=10                                                                         
+RANDOM                                                                          
+WRITE                                                                           
+R/W=2                                                                           
+SKIP                                                                            
+WAIT=05                                                                         
+DDN=BANDB31                                                                     
+RECORDS=60000                                                                   
+TIME=10                                                                         
+SKIP                                                                            
+WAIT=05                                                                         
+DDN=BANDB32                                                                     
+//BANDB01 DD DISP=SHR,VOL=SER=DB2D21,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB02 DD DISP=SHR,VOL=SER=DB2D21,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB03 DD DISP=SHR,VOL=SER=DB2D22,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB04 DD DISP=SHR,VOL=SER=DB2D22,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB05 DD DISP=SHR,VOL=SER=DB2D23,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB06 DD DISP=SHR,VOL=SER=DB2D23,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB07 DD DISP=SHR,VOL=SER=DB2D24,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB08 DD DISP=SHR,VOL=SER=DB2D24,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB09 DD DISP=SHR,VOL=SER=DB2D25,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB10 DD DISP=SHR,VOL=SER=DB2D25,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB11 DD DISP=SHR,VOL=SER=DB2D26,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB12 DD DISP=SHR,VOL=SER=DB2D26,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB13 DD DISP=SHR,VOL=SER=DB2D27,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB14 DD DISP=SHR,VOL=SER=DB2D27,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB15 DD DISP=SHR,VOL=SER=DB2D28,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB16 DD DISP=SHR,VOL=SER=DB2D28,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB17 DD DISP=SHR,VOL=SER=DB2D29,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB18 DD DISP=SHR,VOL=SER=DB2D29,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB19 DD DISP=SHR,VOL=SER=DB2D30,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB20 DD DISP=SHR,VOL=SER=DB2D30,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB21 DD DISP=SHR,VOL=SER=DB2I04,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB22 DD DISP=SHR,VOL=SER=DB2I04,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB23 DD DISP=SHR,VOL=SER=DB2I0A,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB24 DD DISP=SHR,VOL=SER=DB2I0A,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB25 DD DISP=SHR,VOL=SER=DB2I0B,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB26 DD DISP=SHR,VOL=SER=DB2I0B,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB27 DD DISP=SHR,VOL=SER=DB2I1C,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB28 DD DISP=SHR,VOL=SER=DB2I1C,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB29 DD DISP=SHR,VOL=SER=DB2I1D,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB30 DD DISP=SHR,VOL=SER=DB2I1D,UNIT=3390,DSN=BANDB.DATA03                 
+//BANDB31 DD DISP=SHR,VOL=SER=DB2I1E,UNIT=3390,DSN=BANDB.DATA02                 
+//BANDB32 DD DISP=SHR,VOL=SER=DB2I1E,UNIT=3390,DSN=BANDB.DATA03                 
+//*                                                                             

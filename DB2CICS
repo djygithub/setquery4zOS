@@ -1,0 +1,722 @@
+//APR02932 JOB (RWM,T),'DUMP',MSGCLASS=Q,CLASS=A                        00010052
+//*UTPIT OUTPUT DEST=PRT5                                               00011000
+//U400     EXEC PGM=IFASMFDP,REGION=512K                                00012050
+//SYSPRINT DD  SYSOUT=*                                                 00013000
+//DUMPOUT DD DISP=(NEW,PASS),                                           00014000
+//        DSN=&&TEMP,UNIT=3390,SPACE=(CYL,(10,10))                      00015029
+//DUMPIN  DD DSN=DB25CF.APR02932.SMFDATA,DISP=SHR,UNIT=3390,            00016052
+//        VOL=SER=DB25CF                                                00017049
+//SYSIN DD *                                                            00018000
+ INDD(DUMPIN,OPTIONS(DUMP))                                             00019000
+ OUTDD(DUMPOUT,TYPE(100:110))                                           00020000
+/*  START(0711)                                                         00021052
+/*   END(0721)                                                          00022052
+//STEP2   EXEC PGM=IDCAMS,REGION=4096K                                  00023000
+//SYSUT1    DD DSN=&&TEMP,DISP=(OLD,DELETE)                             00024000
+//SYSPRINT  DD SYSOUT=*                                                 00025000
+//SYSUT2    DD DSN=&&TEMP2,UNIT=3390,                                   00026000
+// SPACE=(CYL,(15,15)),DCB=(LRECL=32756,BLKSIZE=32760,RECFM=VB),        00027030
+// DISP=(,PASS)                                                         00028000
+//SYSIN DD *                                                            00029000
+  REPRO  INFILE(SYSUT1) OUTFILE(SYSUT2)                                 00030000
+//STEP3   EXEC PGM=DB2SMF6,REGION=4096K,                                00040000
+// PARM='SYSSTATS=N,DBSTATS=N,APPSTATS=ALL     '                        00050000
+//*TEPLIB   DD DSN=DAVID.DB2SMF.PGMLIB,DISP=SHR,UNIT=3390,              00060024
+//*         VOL=SER=DB2IMS                                              00070024
+//SNAPOUT   DD DUMMY                                                    00070100
+//DB2SMF  DD DSN=&&TEMP2,DISP=(OLD,DELETE),DCB=(BUFNO=10,NCP=10)        00070204
+//SYSOUT DD SYSOUT=O                                                    00070310
+//SYSABOUT DD SYSOUT=*                                                  00070400
+//SYSUDUMP DD SYSOUT=*                                                  00070500
+//OUTPUT DD SYSOUT=*                                                    00070600
+//*ONTROL   DD *                                                        00071000
+ONL1ATST                                                                00072000
+ONL1BTST                                                                00072100
+ONL2CTST                                                                00072200
+ONL2DTST                                                                00072300
+ONL2ETST                                                                00072400
+ONL2FTST                                                                00072500
+ONL2GTST                                                                00072600
+ONL2HTST                                                                00072700
+ONL2ITST                                                                00072800
+ONL2JTST                                                                00072900
+//CONTROL   DD *                                                        00073050
+CI2Q101                                                                 00073150
+CI2Q103                                                                 00073250
+CI2Q105                                                                 00073350
+CI2Q314                                                                 00073450
+CI2Q501                                                                 00073550
+CI2Q610                                                                 00073650
+//*ONTROL   DD *                                                        00073850
+CI2Q101                                                                 00073932
+CI2Q102                                                                 00074000
+CI2Q103                                                                 00074100
+CI2Q104                                                                 00074200
+CI2Q105                                                                 00074300
+CI2Q106                                                                 00074400
+CI2Q107                                                                 00074500
+CI2Q108                                                                 00074600
+CI2Q109                                                                 00074700
+CI2Q110                                                                 00074800
+CI2Q201                                                                 00074900
+CI2Q202                                                                 00075000
+CI2Q203                                                                 00075100
+CI2Q204                                                                 00075200
+CI2Q205                                                                 00075300
+CI2Q206                                                                 00075400
+CI2Q207                                                                 00076000
+CI2Q208                                                                 00077000
+CI2Q209                                                                 00078000
+CI2Q210                                                                 00079000
+CI2Q211                                                                 00079100
+CI2Q212                                                                 00079200
+CI2Q213                                                                 00079300
+CI2Q214                                                                 00079400
+CI2Q215                                                                 00079500
+CI2Q216                                                                 00079600
+CI2Q217                                                                 00079700
+CI2Q218                                                                 00079800
+CI2Q301                                                                 00080000
+CI2Q302                                                                 00080100
+CI2Q303                                                                 00080200
+CI2Q304                                                                 00080300
+CI2Q305                                                                 00080400
+CI2Q306                                                                 00080500
+CI2Q307                                                                 00080600
+CI2Q308                                                                 00080700
+CI2Q309                                                                 00080800
+CI2Q310                                                                 00080900
+CI2Q311                                                                 00081000
+CI2Q312                                                                 00081100
+CI2Q313                                                                 00081200
+CI2Q314                                                                 00081300
+CI2Q315                                                                 00081400
+CI2Q316                                                                 00081500
+CI2Q401                                                                 00081600
+CI2Q402                                                                 00081700
+CI2Q403                                                                 00081800
+CI2Q404                                                                 00081900
+CI2Q405                                                                 00082000
+CI2Q406                                                                 00082100
+CI2Q407                                                                 00082200
+CI2Q408                                                                 00082300
+CI2Q409                                                                 00082400
+CI2Q410                                                                 00082500
+CI2Q411                                                                 00082600
+CI2Q412                                                                 00082700
+CI2Q413                                                                 00082800
+CI2Q414                                                                 00082900
+CI2Q501                                                                 00083000
+CI2Q502                                                                 00083100
+CI2Q503                                                                 00083200
+CI2Q601                                                                 00083300
+CI2Q602                                                                 00083400
+CI2Q603                                                                 00083500
+CI2Q604                                                                 00083600
+CI2Q605                                                                 00083700
+CI2Q606                                                                 00083800
+CI2Q607                                                                 00083900
+CI2Q608                                                                 00084000
+CI2Q609                                                                 00084100
+CI2Q610                                                                 00084200
+/*                                                                      00084340
+//U500     EXEC PGM=IFASMFDP,REGION=512K                                00084450
+//SYSPRINT DD  SYSOUT=*                                                 00084548
+//DUMPOUT DD DISP=(NEW,PASS),                                           00084648
+//        DSN=&&TEMP,UNIT=3390,SPACE=(CYL,(10,10))                      00084748
+//DUMPIN  DD DSN=DB25CF.APR02932.SMFDATA,DISP=SHR,UNIT=3390,            00084852
+//        VOL=SER=DB25CF                                                00084949
+//SYSIN DD *                                                            00085048
+ INDD(DUMPIN,OPTIONS(DUMP))                                             00086048
+ OUTDD(DUMPOUT,TYPE(100:110))                                           00087048
+    START(0726)                                                         00088050
+     END(0736)                                                          00089050
+//STEP2   EXEC PGM=IDCAMS,REGION=4096K                                  00090048
+//SYSUT1    DD DSN=&&TEMP,DISP=(OLD,DELETE)                             00100048
+//SYSPRINT  DD SYSOUT=*                                                 00110048
+//SYSUT2    DD DSN=&&TEMP2,UNIT=3390,                                   00120048
+// SPACE=(CYL,(15,15)),DCB=(LRECL=32756,BLKSIZE=32760,RECFM=VB),        00130048
+// DISP=(,PASS)                                                         00140048
+//SYSIN DD *                                                            00150048
+  REPRO  INFILE(SYSUT1) OUTFILE(SYSUT2)                                 00160048
+//STEP3   EXEC PGM=DB2SMF6,REGION=4096K,                                00170048
+// PARM='SYSSTATS=N,DBSTATS=N,APPSTATS=ALL     '                        00180048
+//*TEPLIB   DD DSN=DAVID.DB2SMF.PGMLIB,DISP=SHR,UNIT=3390,              00190048
+//*         VOL=SER=DB2IMS                                              00200048
+//SNAPOUT   DD DUMMY                                                    00210048
+//DB2SMF  DD DSN=&&TEMP2,DISP=(OLD,DELETE),DCB=(BUFNO=10,NCP=10)        00220048
+//SYSOUT DD SYSOUT=O                                                    00230048
+//SYSABOUT DD SYSOUT=*                                                  00240048
+//SYSUDUMP DD SYSOUT=*                                                  00250048
+//OUTPUT DD SYSOUT=*                                                    00260048
+//*ONTROL   DD *                                                        00270048
+ONL1ATST                                                                00280048
+ONL1BTST                                                                00290048
+ONL2CTST                                                                00300048
+ONL2DTST                                                                00310048
+ONL2ETST                                                                00320048
+ONL2FTST                                                                00330048
+ONL2GTST                                                                00340048
+ONL2HTST                                                                00350048
+ONL2ITST                                                                00360048
+ONL2JTST                                                                00370048
+//CONTROL   DD *                                                        00381050
+CI2Q101                                                                 00382050
+CI2Q103                                                                 00383050
+CI2Q105                                                                 00384050
+CI2Q314                                                                 00385050
+CI2Q501                                                                 00386050
+CI2Q610                                                                 00387050
+//*ONTROL   DD *                                                        00400050
+CI2Q101                                                                 00410048
+CI2Q102                                                                 00420048
+CI2Q103                                                                 00430048
+CI2Q104                                                                 00440048
+CI2Q105                                                                 00450048
+CI2Q106                                                                 00460048
+CI2Q107                                                                 00470048
+CI2Q108                                                                 00480048
+CI2Q109                                                                 00490048
+CI2Q110                                                                 00500048
+CI2Q201                                                                 00510048
+CI2Q202                                                                 00520048
+CI2Q203                                                                 00530048
+CI2Q204                                                                 00540048
+CI2Q205                                                                 00550048
+CI2Q206                                                                 00560048
+CI2Q207                                                                 00570048
+CI2Q208                                                                 00580048
+CI2Q209                                                                 00590048
+CI2Q210                                                                 00600048
+CI2Q211                                                                 00610048
+CI2Q212                                                                 00620048
+CI2Q213                                                                 00630048
+CI2Q214                                                                 00640048
+CI2Q215                                                                 00650048
+CI2Q216                                                                 00660048
+CI2Q217                                                                 00670048
+CI2Q218                                                                 00680048
+CI2Q301                                                                 00690048
+CI2Q302                                                                 00700048
+CI2Q303                                                                 00710048
+CI2Q304                                                                 00720048
+CI2Q305                                                                 00730048
+CI2Q306                                                                 00740048
+CI2Q307                                                                 00750048
+CI2Q308                                                                 00760048
+CI2Q309                                                                 00770048
+CI2Q310                                                                 00780048
+CI2Q311                                                                 00790048
+CI2Q312                                                                 00800048
+CI2Q313                                                                 00810048
+CI2Q314                                                                 00820048
+CI2Q315                                                                 00830048
+CI2Q316                                                                 00840048
+CI2Q401                                                                 00850048
+CI2Q402                                                                 00860048
+CI2Q403                                                                 00870048
+CI2Q404                                                                 00880048
+CI2Q405                                                                 00890048
+CI2Q406                                                                 00900048
+CI2Q407                                                                 00910048
+CI2Q408                                                                 00920048
+CI2Q409                                                                 00930048
+CI2Q410                                                                 00940048
+CI2Q411                                                                 00950048
+CI2Q412                                                                 00960048
+CI2Q413                                                                 00970048
+CI2Q414                                                                 00980048
+CI2Q501                                                                 00990048
+CI2Q502                                                                 01000048
+CI2Q503                                                                 01010048
+CI2Q601                                                                 01020048
+CI2Q602                                                                 01030048
+CI2Q603                                                                 01040048
+CI2Q604                                                                 01050048
+CI2Q605                                                                 01060048
+CI2Q606                                                                 01070048
+CI2Q607                                                                 01080048
+CI2Q608                                                                 01090048
+CI2Q609                                                                 01100048
+CI2Q610                                                                 01110048
+/*                                                                      01120048
+//U600     EXEC PGM=IFASMFDP,REGION=512K                                01130050
+//SYSPRINT DD  SYSOUT=*                                                 01140048
+//DUMPOUT DD DISP=(NEW,PASS),                                           01150048
+//        DSN=&&TEMP,UNIT=3390,SPACE=(CYL,(10,10))                      01160048
+//DUMPIN  DD DSN=DB25CF.APR02932.SMFDATA,DISP=SHR,UNIT=3390,            01170052
+//        VOL=SER=DB25CF                                                01180049
+//SYSIN DD *                                                            01190048
+ INDD(DUMPIN,OPTIONS(DUMP))                                             01200048
+ OUTDD(DUMPOUT,TYPE(100:110))                                           01210048
+    START(0741)                                                         01220050
+     END(0751)                                                          01230050
+//STEP2   EXEC PGM=IDCAMS,REGION=4096K                                  01240048
+//SYSUT1    DD DSN=&&TEMP,DISP=(OLD,DELETE)                             01250048
+//SYSPRINT  DD SYSOUT=*                                                 01260048
+//SYSUT2    DD DSN=&&TEMP2,UNIT=3390,                                   01270048
+// SPACE=(CYL,(15,15)),DCB=(LRECL=32756,BLKSIZE=32760,RECFM=VB),        01280048
+// DISP=(,PASS)                                                         01290048
+//SYSIN DD *                                                            01300048
+  REPRO  INFILE(SYSUT1) OUTFILE(SYSUT2)                                 01310048
+//STEP3   EXEC PGM=DB2SMF6,REGION=4096K,                                01320048
+// PARM='SYSSTATS=N,DBSTATS=N,APPSTATS=ALL     '                        01330048
+//*TEPLIB   DD DSN=DAVID.DB2SMF.PGMLIB,DISP=SHR,UNIT=3390,              01340048
+//*         VOL=SER=DB2IMS                                              01350048
+//SNAPOUT   DD DUMMY                                                    01360048
+//DB2SMF  DD DSN=&&TEMP2,DISP=(OLD,DELETE),DCB=(BUFNO=10,NCP=10)        01370048
+//SYSOUT DD SYSOUT=O                                                    01380048
+//SYSABOUT DD SYSOUT=*                                                  01390048
+//SYSUDUMP DD SYSOUT=*                                                  01400048
+//OUTPUT DD SYSOUT=*                                                    01410048
+//*ONTROL   DD *                                                        01420048
+ONL1ATST                                                                01430048
+ONL1BTST                                                                01440048
+ONL2CTST                                                                01450048
+ONL2DTST                                                                01460048
+ONL2ETST                                                                01470048
+ONL2FTST                                                                01480048
+ONL2GTST                                                                01490048
+ONL2HTST                                                                01500048
+ONL2ITST                                                                01510048
+ONL2JTST                                                                01520048
+//CONTROL   DD *                                                        01531050
+CI2Q101                                                                 01532050
+CI2Q103                                                                 01533050
+CI2Q105                                                                 01534050
+CI2Q314                                                                 01535050
+CI2Q501                                                                 01536050
+CI2Q610                                                                 01537050
+//*ONTROL   DD *                                                        01550050
+CI2Q101                                                                 01560048
+CI2Q102                                                                 01570048
+CI2Q103                                                                 01580048
+CI2Q104                                                                 01590048
+CI2Q105                                                                 01600048
+CI2Q106                                                                 01610048
+CI2Q107                                                                 01620048
+CI2Q108                                                                 01630048
+CI2Q109                                                                 01640048
+CI2Q110                                                                 01650048
+CI2Q201                                                                 01660048
+CI2Q202                                                                 01670048
+CI2Q203                                                                 01680048
+CI2Q204                                                                 01690048
+CI2Q205                                                                 01700048
+CI2Q206                                                                 01710048
+CI2Q207                                                                 01720048
+CI2Q208                                                                 01730048
+CI2Q209                                                                 01740048
+CI2Q210                                                                 01750048
+CI2Q211                                                                 01760048
+CI2Q212                                                                 01770048
+CI2Q213                                                                 01780048
+CI2Q214                                                                 01790048
+CI2Q215                                                                 01800048
+CI2Q216                                                                 01810048
+CI2Q217                                                                 01820048
+CI2Q218                                                                 01830048
+CI2Q301                                                                 01840048
+CI2Q302                                                                 01850048
+CI2Q303                                                                 01860048
+CI2Q304                                                                 01870048
+CI2Q305                                                                 01880048
+CI2Q306                                                                 01890048
+CI2Q307                                                                 01900048
+CI2Q308                                                                 01910048
+CI2Q309                                                                 01920048
+CI2Q310                                                                 01930048
+CI2Q311                                                                 01940048
+CI2Q312                                                                 01950048
+CI2Q313                                                                 01960048
+CI2Q314                                                                 01970048
+CI2Q315                                                                 01980048
+CI2Q316                                                                 01990048
+CI2Q401                                                                 02000048
+CI2Q402                                                                 02010048
+CI2Q403                                                                 02020048
+CI2Q404                                                                 02030048
+CI2Q405                                                                 02040048
+CI2Q406                                                                 02050048
+CI2Q407                                                                 02060048
+CI2Q408                                                                 02070048
+CI2Q409                                                                 02080048
+CI2Q410                                                                 02090048
+CI2Q411                                                                 02100048
+CI2Q412                                                                 02110048
+CI2Q413                                                                 02120048
+CI2Q414                                                                 02130048
+CI2Q501                                                                 02140048
+CI2Q502                                                                 02150048
+CI2Q503                                                                 02160048
+CI2Q601                                                                 02170048
+CI2Q602                                                                 02180048
+CI2Q603                                                                 02190048
+CI2Q604                                                                 02200048
+CI2Q605                                                                 02210048
+CI2Q606                                                                 02220048
+CI2Q607                                                                 02230048
+CI2Q608                                                                 02240048
+CI2Q609                                                                 02250048
+CI2Q610                                                                 02260048
+/*                                                                      02270048
+//U700     EXEC PGM=IFASMFDP,REGION=512K                                02280050
+//SYSPRINT DD  SYSOUT=*                                                 02290048
+//DUMPOUT DD DISP=(NEW,PASS),                                           02300048
+//        DSN=&&TEMP,UNIT=3390,SPACE=(CYL,(10,10))                      02310048
+//DUMPIN  DD DSN=DB25CF.APR02932.SMFDATA,DISP=SHR,UNIT=3390,            02320052
+//        VOL=SER=DB25CF                                                02330049
+//SYSIN DD *                                                            02340048
+ INDD(DUMPIN,OPTIONS(DUMP))                                             02350048
+ OUTDD(DUMPOUT,TYPE(100:110))                                           02360048
+    START(0756)                                                         02370050
+     END(0806)                                                          02380050
+//STEP2   EXEC PGM=IDCAMS,REGION=4096K                                  02390048
+//SYSUT1    DD DSN=&&TEMP,DISP=(OLD,DELETE)                             02400048
+//SYSPRINT  DD SYSOUT=*                                                 02410048
+//SYSUT2    DD DSN=&&TEMP2,UNIT=3390,                                   02420048
+// SPACE=(CYL,(15,15)),DCB=(LRECL=32756,BLKSIZE=32760,RECFM=VB),        02430048
+// DISP=(,PASS)                                                         02440048
+//SYSIN DD *                                                            02450048
+  REPRO  INFILE(SYSUT1) OUTFILE(SYSUT2)                                 02460048
+//STEP3   EXEC PGM=DB2SMF6,REGION=4096K,                                02470048
+// PARM='SYSSTATS=N,DBSTATS=N,APPSTATS=ALL     '                        02480048
+//*TEPLIB   DD DSN=DAVID.DB2SMF.PGMLIB,DISP=SHR,UNIT=3390,              02490048
+//*         VOL=SER=DB2IMS                                              02500048
+//SNAPOUT   DD DUMMY                                                    02510048
+//DB2SMF  DD DSN=&&TEMP2,DISP=(OLD,DELETE),DCB=(BUFNO=10,NCP=10)        02520048
+//SYSOUT DD SYSOUT=O                                                    02530048
+//SYSABOUT DD SYSOUT=*                                                  02540048
+//SYSUDUMP DD SYSOUT=*                                                  02550048
+//OUTPUT DD SYSOUT=*                                                    02560048
+//*ONTROL   DD *                                                        02570048
+ONL1ATST                                                                02580048
+ONL1BTST                                                                02590048
+ONL2CTST                                                                02600048
+ONL2DTST                                                                02610048
+ONL2ETST                                                                02620048
+ONL2FTST                                                                02630048
+ONL2GTST                                                                02640048
+ONL2HTST                                                                02650048
+ONL2ITST                                                                02660048
+ONL2JTST                                                                02670048
+//CONTROL   DD *                                                        02681050
+CI2Q101                                                                 02682050
+CI2Q103                                                                 02683050
+CI2Q105                                                                 02684050
+CI2Q314                                                                 02685050
+CI2Q501                                                                 02686050
+CI2Q610                                                                 02687050
+//*ONTROL   DD *                                                        02700050
+CI2Q101                                                                 02710048
+CI2Q102                                                                 02720048
+CI2Q103                                                                 02730048
+CI2Q104                                                                 02740048
+CI2Q105                                                                 02750048
+CI2Q106                                                                 02760048
+CI2Q107                                                                 02770048
+CI2Q108                                                                 02780048
+CI2Q109                                                                 02790048
+CI2Q110                                                                 02800048
+CI2Q201                                                                 02810048
+CI2Q202                                                                 02820048
+CI2Q203                                                                 02830048
+CI2Q204                                                                 02840048
+CI2Q205                                                                 02850048
+CI2Q206                                                                 02860048
+CI2Q207                                                                 02870048
+CI2Q208                                                                 02880048
+CI2Q209                                                                 02890048
+CI2Q210                                                                 02900048
+CI2Q211                                                                 02910048
+CI2Q212                                                                 02920048
+CI2Q213                                                                 02930048
+CI2Q214                                                                 02940048
+CI2Q215                                                                 02950048
+CI2Q216                                                                 02960048
+CI2Q217                                                                 02970048
+CI2Q218                                                                 02980048
+CI2Q301                                                                 02990048
+CI2Q302                                                                 03000048
+CI2Q303                                                                 03010048
+CI2Q304                                                                 03020048
+CI2Q305                                                                 03030048
+CI2Q306                                                                 03040048
+CI2Q307                                                                 03050048
+CI2Q308                                                                 03060048
+CI2Q309                                                                 03070048
+CI2Q310                                                                 03080048
+CI2Q311                                                                 03090048
+CI2Q312                                                                 03100048
+CI2Q313                                                                 03110048
+CI2Q314                                                                 03120048
+CI2Q315                                                                 03130048
+CI2Q316                                                                 03140048
+CI2Q401                                                                 03150048
+CI2Q402                                                                 03160048
+CI2Q403                                                                 03170048
+CI2Q404                                                                 03180048
+CI2Q405                                                                 03190048
+CI2Q406                                                                 03200048
+CI2Q407                                                                 03210048
+CI2Q408                                                                 03220048
+CI2Q409                                                                 03230048
+CI2Q410                                                                 03240048
+CI2Q411                                                                 03250048
+CI2Q412                                                                 03260048
+CI2Q413                                                                 03270048
+CI2Q414                                                                 03280048
+CI2Q501                                                                 03290048
+CI2Q502                                                                 03300048
+CI2Q503                                                                 03310048
+CI2Q601                                                                 03320048
+CI2Q602                                                                 03330048
+CI2Q603                                                                 03340048
+CI2Q604                                                                 03350048
+CI2Q605                                                                 03360048
+CI2Q606                                                                 03370048
+CI2Q607                                                                 03380048
+CI2Q608                                                                 03390048
+CI2Q609                                                                 03400048
+CI2Q610                                                                 03410048
+/*                                                                      03420048
+//U800     EXEC PGM=IFASMFDP,REGION=512K                                03430050
+//SYSPRINT DD  SYSOUT=*                                                 03440048
+//DUMPOUT DD DISP=(NEW,PASS),                                           03450048
+//        DSN=&&TEMP,UNIT=3390,SPACE=(CYL,(10,10))                      03460048
+//DUMPIN  DD DSN=DB25CF.APR02932.SMFDATA,DISP=SHR,UNIT=3390,            03470052
+//        VOL=SER=DB25CF                                                03480049
+//SYSIN DD *                                                            03490048
+ INDD(DUMPIN,OPTIONS(DUMP))                                             03500048
+ OUTDD(DUMPOUT,TYPE(100:110))                                           03510048
+    START(0811)                                                         03520050
+     END(0821)                                                          03530050
+//STEP2   EXEC PGM=IDCAMS,REGION=4096K                                  03540048
+//SYSUT1    DD DSN=&&TEMP,DISP=(OLD,DELETE)                             03550048
+//SYSPRINT  DD SYSOUT=*                                                 03560048
+//SYSUT2    DD DSN=&&TEMP2,UNIT=3390,                                   03570048
+// SPACE=(CYL,(15,15)),DCB=(LRECL=32756,BLKSIZE=32760,RECFM=VB),        03580048
+// DISP=(,PASS)                                                         03590048
+//SYSIN DD *                                                            03600048
+  REPRO  INFILE(SYSUT1) OUTFILE(SYSUT2)                                 03610048
+//STEP3   EXEC PGM=DB2SMF6,REGION=4096K,                                03620048
+// PARM='SYSSTATS=N,DBSTATS=N,APPSTATS=ALL     '                        03630048
+//*TEPLIB   DD DSN=DAVID.DB2SMF.PGMLIB,DISP=SHR,UNIT=3390,              03640048
+//*         VOL=SER=DB2IMS                                              03650048
+//SNAPOUT   DD DUMMY                                                    03660048
+//DB2SMF  DD DSN=&&TEMP2,DISP=(OLD,DELETE),DCB=(BUFNO=10,NCP=10)        03670048
+//SYSOUT DD SYSOUT=O                                                    03680048
+//SYSABOUT DD SYSOUT=*                                                  03690048
+//SYSUDUMP DD SYSOUT=*                                                  03700048
+//OUTPUT DD SYSOUT=*                                                    03710048
+//*ONTROL   DD *                                                        03720048
+ONL1ATST                                                                03730048
+ONL1BTST                                                                03740048
+ONL2CTST                                                                03750048
+ONL2DTST                                                                03760048
+ONL2ETST                                                                03770048
+ONL2FTST                                                                03780048
+ONL2GTST                                                                03790048
+ONL2HTST                                                                03800048
+ONL2ITST                                                                03810048
+ONL2JTST                                                                03820048
+//CONTROL   DD *                                                        03831050
+CI2Q101                                                                 03832050
+CI2Q103                                                                 03833050
+CI2Q105                                                                 03834050
+CI2Q314                                                                 03835050
+CI2Q501                                                                 03836050
+CI2Q610                                                                 03837050
+//*ONTROL   DD *                                                        03850050
+CI2Q101                                                                 03860048
+CI2Q102                                                                 03870048
+CI2Q103                                                                 03880048
+CI2Q104                                                                 03890048
+CI2Q105                                                                 03900048
+CI2Q106                                                                 03910048
+CI2Q107                                                                 03920048
+CI2Q108                                                                 03930048
+CI2Q109                                                                 03940048
+CI2Q110                                                                 03950048
+CI2Q201                                                                 03960048
+CI2Q202                                                                 03970048
+CI2Q203                                                                 03980048
+CI2Q204                                                                 03990048
+CI2Q205                                                                 04000048
+CI2Q206                                                                 04010048
+CI2Q207                                                                 04020048
+CI2Q208                                                                 04030048
+CI2Q209                                                                 04040048
+CI2Q210                                                                 04050048
+CI2Q211                                                                 04060048
+CI2Q212                                                                 04070048
+CI2Q213                                                                 04080048
+CI2Q214                                                                 04090048
+CI2Q215                                                                 04100048
+CI2Q216                                                                 04110048
+CI2Q217                                                                 04120048
+CI2Q218                                                                 04130048
+CI2Q301                                                                 04140048
+CI2Q302                                                                 04150048
+CI2Q303                                                                 04160048
+CI2Q304                                                                 04170048
+CI2Q305                                                                 04180048
+CI2Q306                                                                 04190048
+CI2Q307                                                                 04200048
+CI2Q308                                                                 04210048
+CI2Q309                                                                 04220048
+CI2Q310                                                                 04230048
+CI2Q311                                                                 04240048
+CI2Q312                                                                 04250048
+CI2Q313                                                                 04260048
+CI2Q314                                                                 04270048
+CI2Q315                                                                 04280048
+CI2Q316                                                                 04290048
+CI2Q401                                                                 04300048
+CI2Q402                                                                 04310048
+CI2Q403                                                                 04320048
+CI2Q404                                                                 04330048
+CI2Q405                                                                 04340048
+CI2Q406                                                                 04350048
+CI2Q407                                                                 04360048
+CI2Q408                                                                 04370048
+CI2Q409                                                                 04380048
+CI2Q410                                                                 04390048
+CI2Q411                                                                 04400048
+CI2Q412                                                                 04410048
+CI2Q413                                                                 04420048
+CI2Q414                                                                 04430048
+CI2Q501                                                                 04440048
+CI2Q502                                                                 04450048
+CI2Q503                                                                 04460048
+CI2Q601                                                                 04470048
+CI2Q602                                                                 04480048
+CI2Q603                                                                 04490048
+CI2Q604                                                                 04500048
+CI2Q605                                                                 04510048
+CI2Q606                                                                 04520048
+CI2Q607                                                                 04530048
+CI2Q608                                                                 04540048
+CI2Q609                                                                 04550048
+CI2Q610                                                                 04560048
+/*                                                                      04570048
+//U900     EXEC PGM=IFASMFDP,REGION=512K                                04580050
+//SYSPRINT DD  SYSOUT=*                                                 04590048
+//DUMPOUT DD DISP=(NEW,PASS),                                           04600048
+//        DSN=&&TEMP,UNIT=3390,SPACE=(CYL,(10,10))                      04610048
+//DUMPIN  DD DSN=DB25CF.APR02932.SMFDATA,DISP=SHR,UNIT=3390,            04620052
+//        VOL=SER=DB25CF                                                04630049
+//SYSIN DD *                                                            04640048
+ INDD(DUMPIN,OPTIONS(DUMP))                                             04650048
+ OUTDD(DUMPOUT,TYPE(100:110))                                           04660048
+    START(0826)                                                         04670050
+     END(0836)                                                          04680050
+//STEP2   EXEC PGM=IDCAMS,REGION=4096K                                  04690048
+//SYSUT1    DD DSN=&&TEMP,DISP=(OLD,DELETE)                             04700048
+//SYSPRINT  DD SYSOUT=*                                                 04710048
+//SYSUT2    DD DSN=&&TEMP2,UNIT=3390,                                   04720048
+// SPACE=(CYL,(15,15)),DCB=(LRECL=32756,BLKSIZE=32760,RECFM=VB),        04730048
+// DISP=(,PASS)                                                         04740048
+//SYSIN DD *                                                            04750048
+  REPRO  INFILE(SYSUT1) OUTFILE(SYSUT2)                                 04760048
+//STEP3   EXEC PGM=DB2SMF6,REGION=4096K,                                04770048
+// PARM='SYSSTATS=N,DBSTATS=N,APPSTATS=ALL     '                        04780048
+//*TEPLIB   DD DSN=DAVID.DB2SMF.PGMLIB,DISP=SHR,UNIT=3390,              04790048
+//*         VOL=SER=DB2IMS                                              04800048
+//SNAPOUT   DD DUMMY                                                    04810048
+//DB2SMF  DD DSN=&&TEMP2,DISP=(OLD,DELETE),DCB=(BUFNO=10,NCP=10)        04820048
+//SYSOUT DD SYSOUT=O                                                    04830048
+//SYSABOUT DD SYSOUT=*                                                  04840048
+//SYSUDUMP DD SYSOUT=*                                                  04850048
+//OUTPUT DD SYSOUT=*                                                    04860048
+//*ONTROL   DD *                                                        04870048
+ONL1ATST                                                                04880048
+ONL1BTST                                                                04890048
+ONL2CTST                                                                04900048
+ONL2DTST                                                                04910048
+ONL2ETST                                                                04920048
+ONL2FTST                                                                04930048
+ONL2GTST                                                                04940048
+ONL2HTST                                                                04950048
+ONL2ITST                                                                04960048
+ONL2JTST                                                                04970048
+//CONTROL   DD *                                                        04991050
+CI2Q101                                                                 04992050
+CI2Q103                                                                 04993050
+CI2Q105                                                                 04994050
+CI2Q314                                                                 04995050
+CI2Q501                                                                 04996050
+CI2Q610                                                                 04997050
+//*ONTROL   DD *                                                        05000050
+CI2Q101                                                                 05010048
+CI2Q102                                                                 05020048
+CI2Q103                                                                 05030048
+CI2Q104                                                                 05040048
+CI2Q105                                                                 05050048
+CI2Q106                                                                 05060048
+CI2Q107                                                                 05070048
+CI2Q108                                                                 05080048
+CI2Q109                                                                 05090048
+CI2Q110                                                                 05100048
+CI2Q201                                                                 05110048
+CI2Q202                                                                 05120048
+CI2Q203                                                                 05130048
+CI2Q204                                                                 05140048
+CI2Q205                                                                 05150048
+CI2Q206                                                                 05160048
+CI2Q207                                                                 05170048
+CI2Q208                                                                 05180048
+CI2Q209                                                                 05190048
+CI2Q210                                                                 05200048
+CI2Q211                                                                 05210048
+CI2Q212                                                                 05220048
+CI2Q213                                                                 05230048
+CI2Q214                                                                 05240048
+CI2Q215                                                                 05250048
+CI2Q216                                                                 05260048
+CI2Q217                                                                 05270048
+CI2Q218                                                                 05280048
+CI2Q301                                                                 05290048
+CI2Q302                                                                 05300048
+CI2Q303                                                                 05310048
+CI2Q304                                                                 05320048
+CI2Q305                                                                 05330048
+CI2Q306                                                                 05340048
+CI2Q307                                                                 05350048
+CI2Q308                                                                 05360048
+CI2Q309                                                                 05370048
+CI2Q310                                                                 05380048
+CI2Q311                                                                 05390048
+CI2Q312                                                                 05400048
+CI2Q313                                                                 05410048
+CI2Q314                                                                 05420048
+CI2Q315                                                                 05430048
+CI2Q316                                                                 05440048
+CI2Q401                                                                 05450048
+CI2Q402                                                                 05460048
+CI2Q403                                                                 05470048
+CI2Q404                                                                 05480048
+CI2Q405                                                                 05490048
+CI2Q406                                                                 05500048
+CI2Q407                                                                 05510048
+CI2Q408                                                                 05520048
+CI2Q409                                                                 05530048
+CI2Q410                                                                 05540048
+CI2Q411                                                                 05550048
+CI2Q412                                                                 05560048
+CI2Q413                                                                 05570048
+CI2Q414                                                                 05580048
+CI2Q501                                                                 05590048
+CI2Q502                                                                 05600048
+CI2Q503                                                                 05610048
+CI2Q601                                                                 05620048
+CI2Q602                                                                 05630048
+CI2Q603                                                                 05640048
+CI2Q604                                                                 05650048
+CI2Q605                                                                 05660048
+CI2Q606                                                                 05670048
+CI2Q607                                                                 05680048
+CI2Q608                                                                 05690048
+CI2Q609                                                                 05700048
+CI2Q610                                                                 05710048
+/*                                                                      05720048

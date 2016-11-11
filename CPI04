@@ -1,0 +1,8 @@
+//CPI04   JOB (0,75),'LORENZO',MSGCLASS=X                               00010000
+//DB2I01  EXEC PGM=ADRDSSU,REGION=4M                                    00020000
+//SYSPRINT DD  SYSOUT=*                                                 00030000
+//IN       DD  UNIT=3390,VOL=SER=DB2I04,DISP=SHR                        00040000
+//OUT      DD  UNIT=3390,VOL=SER=PB2I04,DISP=SHR                        00050000
+//SYSIN    DD  *                                                        00060000
+ COPY OUTDDNAME(OUT) INDDNAME(IN) CANCELERROR -                         00070000
+ ALLDATA(*) ALLEXCP COPYVOLID                                           00080000

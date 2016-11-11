@@ -1,0 +1,15 @@
+//DEFDB2   JOB (0,MS44),'AZIZ',MSGCLASS=X,MSGLEVEL=(1,1),                       
+//         REGION=4000K                                                         
+//S1       EXEC  PGM=IDCAMS                                                     
+//SYSPRINT DD    SYSOUT=*                                                       
+//SYSIN    DD    *                                                              
+   DEFINE CLUSTER -                                                             
+         (NAME(DSNC220.DSNDBC.SQ1DB.SQ1I01.I0001.A001) -                        
+          LINEAR -                                                              
+          REUSE -                                                               
+          VOLUMES(DB2S01) -                                                     
+          TRACKS(15 5) -                                                        
+          SHAREOPTIONS(3 3)) -                                                  
+          DATA -                                                                
+         (NAME(DSNC220.DSNDBD.SQ1DB.SQ1I01.I0001.A001)) -                       
+         CATALOG(DSNC2201.USER.CATALOG)                                         

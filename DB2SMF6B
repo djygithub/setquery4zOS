@@ -1,0 +1,116 @@
+//DEC04912 JOB (RWM,T),'DUMP',MSGCLASS=O,CLASS=A                        00010000
+//*UTPIT OUTPUT DEST=PRT5                                               00011000
+//IEFPROC  EXEC PGM=IFASMFDP,REGION=512K                                00012000
+//SYSPRINT DD  SYSOUT=*                                                 00013000
+//DUMPOUT DD DISP=(NEW,PASS),                                           00014000
+//        DSN=&&TEMP,UNIT=3390,SPACE=(CYL,(5,5))                        00015000
+//DUMPIN  DD DSN=MV4DLB.DEC04912.SMFDATA,DISP=SHR,UNIT=3390,            00016000
+//        VOL=SER=MV4DLB                                                00017000
+//SYSIN DD *                                                            00018000
+ INDD(DUMPIN,OPTIONS(DUMP))                                             00019000
+ OUTDD(DUMPOUT,TYPE(100:110))                                           00020000
+/*  START(1420)                                                         00021000
+/*   END(1650)                                                          00022000
+//STEP2   EXEC PGM=IDCAMS,REGION=4096K                                  00023000
+//SYSUT1    DD DSN=&&TEMP,DISP=(OLD,DELETE)                             00024000
+//SYSPRINT  DD SYSOUT=*                                                 00025000
+//SYSUT2    DD DSN=&&TEMP2,UNIT=3390,                                   00026000
+// SPACE=(CYL,(5,5)),DCB=(LRECL=32756,BLKSIZE=32760,RECFM=VB),          00027000
+// DISP=(,PASS)                                                         00028000
+//SYSIN DD *                                                            00029000
+  REPRO  INFILE(SYSUT1) OUTFILE(SYSUT2)                                 00030000
+//STEP3   EXEC PGM=DB2SMF6,REGION=4096K,                                00040000
+// PARM='SYSSTATS=N,DBSTATS=N,APPSTATS=ALL     '                        00050000
+//STEPLIB   DD DSN=DAVID.DB2SMF.PGMLIB,DISP=SHR,UNIT=3390,              00060000
+//          VOL=SER=DB2IMS                                              00070000
+//SNAPOUT   DD DUMMY                                                    00070100
+//DB2SMF  DD DSN=&&TEMP2,DISP=(OLD,DELETE)                              00070200
+//SYSOUT DD SYSOUT=*                                                    00070300
+//SYSABOUT DD SYSOUT=*                                                  00070400
+//SYSUDUMP DD SYSOUT=*                                                  00070500
+//OUTPUT DD SYSOUT=*                                                    00070600
+//*ONTROL   DD *                                                        00070700
+ONL1ATST                                                                00070800
+ONL1BTST                                                                00070900
+ONL2CTST                                                                00071000
+ONL2DTST                                                                00072000
+ONL2ETST                                                                00072100
+ONL2FTST                                                                00072200
+ONL2GTST                                                                00072300
+ONL2HTST                                                                00072400
+ONL2ITST                                                                00072500
+ONL2JTST                                                                00072600
+//CONTROL   DD *                                                        00072700
+IM2Q101                                                                 00072800
+//                                                                      00072900
+CI2Q102                                                                 00073000
+CI2Q103                                                                 00073100
+CI2Q104                                                                 00073200
+CI2Q105                                                                 00073300
+CI2Q106                                                                 00073400
+CI2Q107                                                                 00073500
+CI2Q108                                                                 00073600
+CI2Q109                                                                 00073700
+CI2Q110                                                                 00073800
+CI2Q201                                                                 00073900
+CI2Q202                                                                 00074000
+CI2Q203                                                                 00074100
+CI2Q204                                                                 00074200
+CI2Q205                                                                 00074300
+CI2Q206                                                                 00074400
+CI2Q207                                                                 00074500
+CI2Q208                                                                 00074600
+CI2Q209                                                                 00074700
+CI2Q210                                                                 00074800
+CI2Q211                                                                 00074900
+CI2Q212                                                                 00075000
+CI2Q213                                                                 00075100
+CI2Q214                                                                 00076000
+CI2Q215                                                                 00077000
+CI2Q216                                                                 00078000
+CI2Q217                                                                 00079000
+CI2Q218                                                                 00079100
+//*                                                                     00079200
+CI2Q301                                                                 00079300
+CI2Q302                                                                 00079400
+CI2Q303                                                                 00079500
+CI2Q304                                                                 00079600
+CI2Q305                                                                 00079700
+CI2Q306                                                                 00079800
+CI2Q307                                                                 00079900
+CI2Q308                                                                 00080000
+CI2Q309                                                                 00080100
+CI2Q310                                                                 00080200
+CI2Q311                                                                 00080300
+CI2Q312                                                                 00080400
+CI2Q313                                                                 00080500
+CI2Q314                                                                 00080600
+CI2Q315                                                                 00080700
+CI2Q316                                                                 00080800
+CI2Q401                                                                 00080900
+CI2Q402                                                                 00081000
+CI2Q403                                                                 00081100
+CI2Q404                                                                 00081200
+CI2Q405                                                                 00081300
+CI2Q406                                                                 00081400
+CI2Q407                                                                 00081500
+CI2Q408                                                                 00081600
+CI2Q409                                                                 00081700
+CI2Q410                                                                 00081800
+CI2Q411                                                                 00081900
+CI2Q412                                                                 00082000
+CI2Q413                                                                 00082100
+CI2Q414                                                                 00082200
+CI2Q501                                                                 00082300
+CI2Q502                                                                 00082400
+CI2Q503                                                                 00082500
+CI2Q601                                                                 00082600
+CI2Q602                                                                 00082700
+CI2Q603                                                                 00082800
+CI2Q604                                                                 00082900
+CI2Q605                                                                 00083000
+CI2Q606                                                                 00083100
+CI2Q607                                                                 00083200
+CI2Q608                                                                 00083300
+CI2Q609                                                                 00083400
+CI2Q610                                                                 00083500

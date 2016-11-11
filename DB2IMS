@@ -1,0 +1,718 @@
+//FEB13923 JOB (RWM,T),'DUMP',MSGCLASS=Q,CLASS=A                        00010027
+//*UTPIT OUTPUT DEST=PRT5                                               00011000
+//U400     EXEC PGM=IFASMFDP,REGION=512K                                00012026
+//SYSPRINT DD  SYSOUT=*                                                 00013000
+//DUMPOUT DD DISP=(NEW,PASS),DCB=(BUFNO=10,NCP=10),                     00014014
+//        DSN=&&TEMP,UNIT=3390,SPACE=(CYL,(10,10))                      00015014
+//DUMPIN  DD DSN=MV4CAT.FEB13923.SMFDATA,DISP=SHR,UNIT=3390,            00016027
+//        VOL=SER=MV4CAA,DCB=(BUFNO=10,NCP=10)                          00017027
+//SYSIN DD *                                                            00018000
+ INDD(DUMPIN,OPTIONS(DUMP))                                             00019000
+ OUTDD(DUMPOUT,TYPE(100:110))                                           00020000
+//* START(1151)                                                         00021027
+//*  END(1201)                                                          00022027
+//STEP2   EXEC PGM=IDCAMS,REGION=4096K                                  00023000
+//SYSUT1    DD DSN=&&TEMP,DISP=(OLD,DELETE),DCB=(BUFNO=10,NCP=10)       00024014
+//SYSPRINT  DD SYSOUT=*                                                 00025000
+//SYSUT2    DD DSN=&&TEMP2,UNIT=3390,                                   00026000
+// SPACE=(CYL,(10,10)),DISP=(,PASS),                                    00027014
+// DCB=(BUFNO=10,NCP=10,LRECL=32756,BLKSIZE=32760,RECFM=VB)             00028014
+//SYSIN DD *                                                            00029000
+  REPRO  INFILE(SYSUT1) OUTFILE(SYSUT2)                                 00030000
+//STEP3   EXEC PGM=DB2SMF6,REGION=4096K,                                00040000
+// PARM='SYSSTATS=N,DBSTATS=N,APPSTATS=ALL     '                        00050000
+//*TEPLIB   DD DSN=DAVID.DB2SMF.PGMLIB,DISP=SHR,UNIT=3390,              00060013
+//*         VOL=SER=DB2IMS                                              00070013
+//SNAPOUT   DD DUMMY                                                    00070100
+//DB2SMF  DD DSN=&&TEMP2,DISP=(OLD,DELETE),DCB=(BUFNO=10,NCP=10)        00070200
+//SYSOUT DD SYSOUT=O                                                    00070301
+//SYSABOUT DD SYSOUT=*                                                  00070400
+//SYSUDUMP DD SYSOUT=*                                                  00070500
+//OUTPUT DD SYSOUT=*                                                    00070600
+//*ONTROL   DD *                                                        00071000
+ONL1ATST                                                                00072000
+ONL1BTST                                                                00072100
+ONL2CTST                                                                00072200
+ONL2DTST                                                                00072300
+ONL2ETST                                                                00072400
+ONL2FTST                                                                00072500
+ONL2GTST                                                                00072600
+ONL2HTST                                                                00072700
+ONL2ITST                                                                00072800
+ONL2JTST                                                                00072900
+//*ONTROL   DD *                                                        00073020
+NDB2PLAN                                                                00073619
+//CONTROL   DD *                                                        00073820
+IM2Q101                                                                 00073918
+IM2Q103                                                                 00074026
+IM2Q105                                                                 00074126
+IM2Q314                                                                 00074226
+IM2Q501                                                                 00074326
+IM2Q610                                                                 00074426
+//*ONTROL   DD *                                                        00074526
+IM2Q101                                                                 00074626
+IM2Q102                                                                 00074726
+IM2Q103                                                                 00074826
+IM2Q104                                                                 00074926
+IM2Q105                                                                 00075026
+IM2Q106                                                                 00075126
+IM2Q107                                                                 00075200
+IM2Q108                                                                 00075300
+IM2Q109                                                                 00075400
+IM2Q110                                                                 00075500
+IM2Q201                                                                 00075600
+IM2Q202                                                                 00075700
+IM2Q203                                                                 00075800
+IM2Q204                                                                 00075900
+IM2Q205                                                                 00076000
+IM2Q206                                                                 00076100
+IM2Q207                                                                 00076200
+IM2Q208                                                                 00077000
+IM2Q209                                                                 00078000
+IM2Q210                                                                 00079000
+IM2Q211                                                                 00079100
+IM2Q212                                                                 00079200
+IM2Q213                                                                 00079300
+IM2Q214                                                                 00079400
+IM2Q215                                                                 00079500
+IM2Q216                                                                 00079600
+IM2Q217                                                                 00079700
+IM2Q218                                                                 00079800
+IM2Q301                                                                 00080000
+IM2Q302                                                                 00080100
+IM2Q303                                                                 00080200
+IM2Q304                                                                 00080300
+IM2Q305                                                                 00080400
+IM2Q306                                                                 00080500
+IM2Q307                                                                 00080600
+IM2Q308                                                                 00080700
+IM2Q309                                                                 00080800
+IM2Q310                                                                 00080900
+IM2Q311                                                                 00081000
+IM2Q312                                                                 00081100
+IM2Q313                                                                 00081200
+IM2Q314                                                                 00081300
+IM2Q315                                                                 00081400
+IM2Q316                                                                 00081500
+IM2Q401                                                                 00081600
+IM2Q402                                                                 00081700
+IM2Q403                                                                 00081800
+IM2Q404                                                                 00081900
+IM2Q405                                                                 00082000
+IM2Q406                                                                 00082100
+IM2Q407                                                                 00082200
+IM2Q408                                                                 00082300
+IM2Q409                                                                 00082400
+IM2Q410                                                                 00082500
+IM2Q411                                                                 00082600
+IM2Q412                                                                 00082700
+IM2Q413                                                                 00082800
+IM2Q414                                                                 00082900
+IM2Q501                                                                 00083000
+IM2Q502                                                                 00083100
+IM2Q503                                                                 00083200
+IM2Q601                                                                 00083300
+IM2Q602                                                                 00083400
+IM2Q603                                                                 00083500
+IM2Q604                                                                 00083600
+IM2Q605                                                                 00083700
+IM2Q606                                                                 00083800
+IM2Q607                                                                 00083900
+IM2Q608                                                                 00084000
+IM2Q609                                                                 00084100
+IM2Q610                                                                 00084200
+//U500     EXEC PGM=IFASMFDP,REGION=512K                                00084326
+//SYSPRINT DD  SYSOUT=*                                                 00084424
+//DUMPOUT DD DISP=(NEW,PASS),DCB=(BUFNO=10,NCP=10),                     00084524
+//        DSN=&&TEMP,UNIT=3390,SPACE=(CYL,(10,10))                      00084624
+//DUMPIN  DD DSN=DB25CF.FEB13923.SMFDATA,DISP=SHR,UNIT=3390,            00084727
+//        VOL=SER=DB25CF,DCB=(BUFNO=10,NCP=10)                          00084825
+//SYSIN DD *                                                            00084924
+ INDD(DUMPIN,OPTIONS(DUMP))                                             00085024
+ OUTDD(DUMPOUT,TYPE(100:110))                                           00086024
+    START(1206)                                                         00087026
+     END(1216)                                                          00088026
+//STEP2   EXEC PGM=IDCAMS,REGION=4096K                                  00089024
+//SYSUT1    DD DSN=&&TEMP,DISP=(OLD,DELETE),DCB=(BUFNO=10,NCP=10)       00090024
+//SYSPRINT  DD SYSOUT=*                                                 00100024
+//SYSUT2    DD DSN=&&TEMP2,UNIT=3390,                                   00110024
+// SPACE=(CYL,(10,10)),DISP=(,PASS),                                    00120024
+// DCB=(BUFNO=10,NCP=10,LRECL=32756,BLKSIZE=32760,RECFM=VB)             00130024
+//SYSIN DD *                                                            00140024
+  REPRO  INFILE(SYSUT1) OUTFILE(SYSUT2)                                 00150024
+//STEP3   EXEC PGM=DB2SMF6,REGION=4096K,                                00160024
+// PARM='SYSSTATS=N,DBSTATS=N,APPSTATS=ALL     '                        00170024
+//*TEPLIB   DD DSN=DAVID.DB2SMF.PGMLIB,DISP=SHR,UNIT=3390,              00180024
+//*         VOL=SER=DB2IMS                                              00190024
+//SNAPOUT   DD DUMMY                                                    00200024
+//DB2SMF  DD DSN=&&TEMP2,DISP=(OLD,DELETE),DCB=(BUFNO=10,NCP=10)        00210024
+//SYSOUT DD SYSOUT=O                                                    00220024
+//SYSABOUT DD SYSOUT=*                                                  00230024
+//SYSUDUMP DD SYSOUT=*                                                  00240024
+//OUTPUT DD SYSOUT=*                                                    00250024
+//*ONTROL   DD *                                                        00260024
+ONL1ATST                                                                00270024
+ONL1BTST                                                                00280024
+ONL2CTST                                                                00290024
+ONL2DTST                                                                00300024
+ONL2ETST                                                                00310024
+ONL2FTST                                                                00320024
+ONL2GTST                                                                00330024
+ONL2HTST                                                                00340024
+ONL2ITST                                                                00350024
+ONL2JTST                                                                00360024
+//CONTROL   DD *                                                        00381026
+IM2Q101                                                                 00382026
+IM2Q103                                                                 00383026
+IM2Q105                                                                 00384026
+IM2Q314                                                                 00385026
+IM2Q501                                                                 00386026
+IM2Q610                                                                 00387026
+//*ONTROL   DD *                                                        00390026
+IM2Q101                                                                 00400024
+IM2Q102                                                                 00410024
+IM2Q103                                                                 00420024
+IM2Q104                                                                 00430024
+IM2Q105                                                                 00440024
+IM2Q106                                                                 00450024
+IM2Q107                                                                 00460024
+IM2Q108                                                                 00470024
+IM2Q109                                                                 00480024
+IM2Q110                                                                 00490024
+IM2Q201                                                                 00500024
+IM2Q202                                                                 00510024
+IM2Q203                                                                 00520024
+IM2Q204                                                                 00530024
+IM2Q205                                                                 00540024
+IM2Q206                                                                 00550024
+IM2Q207                                                                 00560024
+IM2Q208                                                                 00570024
+IM2Q209                                                                 00580024
+IM2Q210                                                                 00590024
+IM2Q211                                                                 00600024
+IM2Q212                                                                 00610024
+IM2Q213                                                                 00620024
+IM2Q214                                                                 00630024
+IM2Q215                                                                 00640024
+IM2Q216                                                                 00650024
+IM2Q217                                                                 00660024
+IM2Q218                                                                 00670024
+IM2Q301                                                                 00680024
+IM2Q302                                                                 00690024
+IM2Q303                                                                 00700024
+IM2Q304                                                                 00710024
+IM2Q305                                                                 00720024
+IM2Q306                                                                 00730024
+IM2Q307                                                                 00740024
+IM2Q308                                                                 00750024
+IM2Q309                                                                 00760024
+IM2Q310                                                                 00770024
+IM2Q311                                                                 00780024
+IM2Q312                                                                 00790024
+IM2Q313                                                                 00800024
+IM2Q314                                                                 00810024
+IM2Q315                                                                 00820024
+IM2Q316                                                                 00830024
+IM2Q401                                                                 00840024
+IM2Q402                                                                 00850024
+IM2Q403                                                                 00860024
+IM2Q404                                                                 00870024
+IM2Q405                                                                 00880024
+IM2Q406                                                                 00890024
+IM2Q407                                                                 00900024
+IM2Q408                                                                 00910024
+IM2Q409                                                                 00920024
+IM2Q410                                                                 00930024
+IM2Q411                                                                 00940024
+IM2Q412                                                                 00950024
+IM2Q413                                                                 00960024
+IM2Q414                                                                 00970024
+IM2Q501                                                                 00980024
+IM2Q502                                                                 00990024
+IM2Q503                                                                 01000024
+IM2Q601                                                                 01010024
+IM2Q602                                                                 01020024
+IM2Q603                                                                 01030024
+IM2Q604                                                                 01040024
+IM2Q605                                                                 01050024
+IM2Q606                                                                 01060024
+IM2Q607                                                                 01070024
+IM2Q608                                                                 01080024
+IM2Q609                                                                 01090024
+IM2Q610                                                                 01100024
+//U600     EXEC PGM=IFASMFDP,REGION=512K                                01110026
+//SYSPRINT DD  SYSOUT=*                                                 01120024
+//DUMPOUT DD DISP=(NEW,PASS),DCB=(BUFNO=10,NCP=10),                     01130024
+//        DSN=&&TEMP,UNIT=3390,SPACE=(CYL,(10,10))                      01140024
+//DUMPIN  DD DSN=DB25CF.FEB13923.SMFDATA,DISP=SHR,UNIT=3390,            01150027
+//        VOL=SER=DB25CF,DCB=(BUFNO=10,NCP=10)                          01160025
+//SYSIN DD *                                                            01170024
+ INDD(DUMPIN,OPTIONS(DUMP))                                             01180024
+ OUTDD(DUMPOUT,TYPE(100:110))                                           01190024
+    START(1221)                                                         01200026
+     END(1231)                                                          01210026
+//STEP2   EXEC PGM=IDCAMS,REGION=4096K                                  01220024
+//SYSUT1    DD DSN=&&TEMP,DISP=(OLD,DELETE),DCB=(BUFNO=10,NCP=10)       01230024
+//SYSPRINT  DD SYSOUT=*                                                 01240024
+//SYSUT2    DD DSN=&&TEMP2,UNIT=3390,                                   01250024
+// SPACE=(CYL,(10,10)),DISP=(,PASS),                                    01260024
+// DCB=(BUFNO=10,NCP=10,LRECL=32756,BLKSIZE=32760,RECFM=VB)             01270024
+//SYSIN DD *                                                            01280024
+  REPRO  INFILE(SYSUT1) OUTFILE(SYSUT2)                                 01290024
+//STEP3   EXEC PGM=DB2SMF6,REGION=4096K,                                01300024
+// PARM='SYSSTATS=N,DBSTATS=N,APPSTATS=ALL     '                        01310024
+//*TEPLIB   DD DSN=DAVID.DB2SMF.PGMLIB,DISP=SHR,UNIT=3390,              01320024
+//*         VOL=SER=DB2IMS                                              01330024
+//SNAPOUT   DD DUMMY                                                    01340024
+//DB2SMF  DD DSN=&&TEMP2,DISP=(OLD,DELETE),DCB=(BUFNO=10,NCP=10)        01350024
+//SYSOUT DD SYSOUT=O                                                    01360024
+//SYSABOUT DD SYSOUT=*                                                  01370024
+//SYSUDUMP DD SYSOUT=*                                                  01380024
+//OUTPUT DD SYSOUT=*                                                    01390024
+//*ONTROL   DD *                                                        01400024
+ONL1ATST                                                                01410024
+ONL1BTST                                                                01420024
+ONL2CTST                                                                01430024
+ONL2DTST                                                                01440024
+ONL2ETST                                                                01450024
+ONL2FTST                                                                01460024
+ONL2GTST                                                                01470024
+ONL2HTST                                                                01480024
+ONL2ITST                                                                01490024
+ONL2JTST                                                                01500024
+//CONTROL   DD *                                                        01521026
+IM2Q101                                                                 01522026
+IM2Q103                                                                 01523026
+IM2Q105                                                                 01524026
+IM2Q314                                                                 01525026
+IM2Q501                                                                 01526026
+IM2Q610                                                                 01527026
+//*ONTROL   DD *                                                        01530026
+IM2Q101                                                                 01540024
+IM2Q102                                                                 01550024
+IM2Q103                                                                 01560024
+IM2Q104                                                                 01570024
+IM2Q105                                                                 01580024
+IM2Q106                                                                 01590024
+IM2Q107                                                                 01600024
+IM2Q108                                                                 01610024
+IM2Q109                                                                 01620024
+IM2Q110                                                                 01630024
+IM2Q201                                                                 01640024
+IM2Q202                                                                 01650024
+IM2Q203                                                                 01660024
+IM2Q204                                                                 01670024
+IM2Q205                                                                 01680024
+IM2Q206                                                                 01690024
+IM2Q207                                                                 01700024
+IM2Q208                                                                 01710024
+IM2Q209                                                                 01720024
+IM2Q210                                                                 01730024
+IM2Q211                                                                 01740024
+IM2Q212                                                                 01750024
+IM2Q213                                                                 01760024
+IM2Q214                                                                 01770024
+IM2Q215                                                                 01780024
+IM2Q216                                                                 01790024
+IM2Q217                                                                 01800024
+IM2Q218                                                                 01810024
+IM2Q301                                                                 01820024
+IM2Q302                                                                 01830024
+IM2Q303                                                                 01840024
+IM2Q304                                                                 01850024
+IM2Q305                                                                 01860024
+IM2Q306                                                                 01870024
+IM2Q307                                                                 01880024
+IM2Q308                                                                 01890024
+IM2Q309                                                                 01900024
+IM2Q310                                                                 01910024
+IM2Q311                                                                 01920024
+IM2Q312                                                                 01930024
+IM2Q313                                                                 01940024
+IM2Q314                                                                 01950024
+IM2Q315                                                                 01960024
+IM2Q316                                                                 01970024
+IM2Q401                                                                 01980024
+IM2Q402                                                                 01990024
+IM2Q403                                                                 02000024
+IM2Q404                                                                 02010024
+IM2Q405                                                                 02020024
+IM2Q406                                                                 02030024
+IM2Q407                                                                 02040024
+IM2Q408                                                                 02050024
+IM2Q409                                                                 02060024
+IM2Q410                                                                 02070024
+IM2Q411                                                                 02080024
+IM2Q412                                                                 02090024
+IM2Q413                                                                 02100024
+IM2Q414                                                                 02110024
+IM2Q501                                                                 02120024
+IM2Q502                                                                 02130024
+IM2Q503                                                                 02140024
+IM2Q601                                                                 02150024
+IM2Q602                                                                 02160024
+IM2Q603                                                                 02170024
+IM2Q604                                                                 02180024
+IM2Q605                                                                 02190024
+IM2Q606                                                                 02200024
+IM2Q607                                                                 02210024
+IM2Q608                                                                 02220024
+IM2Q609                                                                 02230024
+IM2Q610                                                                 02240024
+//U700     EXEC PGM=IFASMFDP,REGION=512K                                02250026
+//SYSPRINT DD  SYSOUT=*                                                 02260024
+//DUMPOUT DD DISP=(NEW,PASS),DCB=(BUFNO=10,NCP=10),                     02270024
+//        DSN=&&TEMP,UNIT=3390,SPACE=(CYL,(10,10))                      02280024
+//DUMPIN  DD DSN=DB25CF.FEB13923.SMFDATA,DISP=SHR,UNIT=3390,            02290027
+//        VOL=SER=DB25CF,DCB=(BUFNO=10,NCP=10)                          02300025
+//SYSIN DD *                                                            02310024
+ INDD(DUMPIN,OPTIONS(DUMP))                                             02320024
+ OUTDD(DUMPOUT,TYPE(100:110))                                           02330024
+    START(1236)                                                         02340026
+     END(1246)                                                          02350026
+//STEP2   EXEC PGM=IDCAMS,REGION=4096K                                  02360024
+//SYSUT1    DD DSN=&&TEMP,DISP=(OLD,DELETE),DCB=(BUFNO=10,NCP=10)       02370024
+//SYSPRINT  DD SYSOUT=*                                                 02380024
+//SYSUT2    DD DSN=&&TEMP2,UNIT=3390,                                   02390024
+// SPACE=(CYL,(10,10)),DISP=(,PASS),                                    02400024
+// DCB=(BUFNO=10,NCP=10,LRECL=32756,BLKSIZE=32760,RECFM=VB)             02410024
+//SYSIN DD *                                                            02420024
+  REPRO  INFILE(SYSUT1) OUTFILE(SYSUT2)                                 02430024
+//STEP3   EXEC PGM=DB2SMF6,REGION=4096K,                                02440024
+// PARM='SYSSTATS=N,DBSTATS=N,APPSTATS=ALL     '                        02450024
+//*TEPLIB   DD DSN=DAVID.DB2SMF.PGMLIB,DISP=SHR,UNIT=3390,              02460024
+//*         VOL=SER=DB2IMS                                              02470024
+//SNAPOUT   DD DUMMY                                                    02480024
+//DB2SMF  DD DSN=&&TEMP2,DISP=(OLD,DELETE),DCB=(BUFNO=10,NCP=10)        02490024
+//SYSOUT DD SYSOUT=O                                                    02500024
+//SYSABOUT DD SYSOUT=*                                                  02510024
+//SYSUDUMP DD SYSOUT=*                                                  02520024
+//OUTPUT DD SYSOUT=*                                                    02530024
+//*ONTROL   DD *                                                        02540024
+ONL1ATST                                                                02550024
+ONL1BTST                                                                02560024
+ONL2CTST                                                                02570024
+ONL2DTST                                                                02580024
+ONL2ETST                                                                02590024
+ONL2FTST                                                                02600024
+ONL2GTST                                                                02610024
+ONL2HTST                                                                02620024
+ONL2ITST                                                                02630024
+ONL2JTST                                                                02640024
+//CONTROL   DD *                                                        02661026
+IM2Q101                                                                 02662026
+IM2Q103                                                                 02663026
+IM2Q105                                                                 02664026
+IM2Q314                                                                 02665026
+IM2Q501                                                                 02666026
+IM2Q610                                                                 02667026
+//*ONTROL   DD *                                                        02670026
+IM2Q101                                                                 02680024
+IM2Q102                                                                 02690024
+IM2Q103                                                                 02700024
+IM2Q104                                                                 02710024
+IM2Q105                                                                 02720024
+IM2Q106                                                                 02730024
+IM2Q107                                                                 02740024
+IM2Q108                                                                 02750024
+IM2Q109                                                                 02760024
+IM2Q110                                                                 02770024
+IM2Q201                                                                 02780024
+IM2Q202                                                                 02790024
+IM2Q203                                                                 02800024
+IM2Q204                                                                 02810024
+IM2Q205                                                                 02820024
+IM2Q206                                                                 02830024
+IM2Q207                                                                 02840024
+IM2Q208                                                                 02850024
+IM2Q209                                                                 02860024
+IM2Q210                                                                 02870024
+IM2Q211                                                                 02880024
+IM2Q212                                                                 02890024
+IM2Q213                                                                 02900024
+IM2Q214                                                                 02910024
+IM2Q215                                                                 02920024
+IM2Q216                                                                 02930024
+IM2Q217                                                                 02940024
+IM2Q218                                                                 02950024
+IM2Q301                                                                 02960024
+IM2Q302                                                                 02970024
+IM2Q303                                                                 02980024
+IM2Q304                                                                 02990024
+IM2Q305                                                                 03000024
+IM2Q306                                                                 03010024
+IM2Q307                                                                 03020024
+IM2Q308                                                                 03030024
+IM2Q309                                                                 03040024
+IM2Q310                                                                 03050024
+IM2Q311                                                                 03060024
+IM2Q312                                                                 03070024
+IM2Q313                                                                 03080024
+IM2Q314                                                                 03090024
+IM2Q315                                                                 03100024
+IM2Q316                                                                 03110024
+IM2Q401                                                                 03120024
+IM2Q402                                                                 03130024
+IM2Q403                                                                 03140024
+IM2Q404                                                                 03150024
+IM2Q405                                                                 03160024
+IM2Q406                                                                 03170024
+IM2Q407                                                                 03180024
+IM2Q408                                                                 03190024
+IM2Q409                                                                 03200024
+IM2Q410                                                                 03210024
+IM2Q411                                                                 03220024
+IM2Q412                                                                 03230024
+IM2Q413                                                                 03240024
+IM2Q414                                                                 03250024
+IM2Q501                                                                 03260024
+IM2Q502                                                                 03270024
+IM2Q503                                                                 03280024
+IM2Q601                                                                 03290024
+IM2Q602                                                                 03300024
+IM2Q603                                                                 03310024
+IM2Q604                                                                 03320024
+IM2Q605                                                                 03330024
+IM2Q606                                                                 03340024
+IM2Q607                                                                 03350024
+IM2Q608                                                                 03360024
+IM2Q609                                                                 03370024
+IM2Q610                                                                 03380024
+//U800     EXEC PGM=IFASMFDP,REGION=512K                                03390026
+//SYSPRINT DD  SYSOUT=*                                                 03400024
+//DUMPOUT DD DISP=(NEW,PASS),DCB=(BUFNO=10,NCP=10),                     03410024
+//        DSN=&&TEMP,UNIT=3390,SPACE=(CYL,(10,10))                      03420024
+//DUMPIN  DD DSN=DB25CF.FEB13923.SMFDATA,DISP=SHR,UNIT=3390,            03430027
+//        VOL=SER=DB25CF,DCB=(BUFNO=10,NCP=10)                          03440025
+//SYSIN DD *                                                            03450024
+ INDD(DUMPIN,OPTIONS(DUMP))                                             03460024
+ OUTDD(DUMPOUT,TYPE(100:110))                                           03470024
+    START(1251)                                                         03480026
+     END(1301)                                                          03490026
+//STEP2   EXEC PGM=IDCAMS,REGION=4096K                                  03500024
+//SYSUT1    DD DSN=&&TEMP,DISP=(OLD,DELETE),DCB=(BUFNO=10,NCP=10)       03510024
+//SYSPRINT  DD SYSOUT=*                                                 03520024
+//SYSUT2    DD DSN=&&TEMP2,UNIT=3390,                                   03530024
+// SPACE=(CYL,(10,10)),DISP=(,PASS),                                    03540024
+// DCB=(BUFNO=10,NCP=10,LRECL=32756,BLKSIZE=32760,RECFM=VB)             03550024
+//SYSIN DD *                                                            03560024
+  REPRO  INFILE(SYSUT1) OUTFILE(SYSUT2)                                 03570024
+//STEP3   EXEC PGM=DB2SMF6,REGION=4096K,                                03580024
+// PARM='SYSSTATS=N,DBSTATS=N,APPSTATS=ALL     '                        03590024
+//*TEPLIB   DD DSN=DAVID.DB2SMF.PGMLIB,DISP=SHR,UNIT=3390,              03600024
+//*         VOL=SER=DB2IMS                                              03610024
+//SNAPOUT   DD DUMMY                                                    03620024
+//DB2SMF  DD DSN=&&TEMP2,DISP=(OLD,DELETE),DCB=(BUFNO=10,NCP=10)        03630024
+//SYSOUT DD SYSOUT=O                                                    03640024
+//SYSABOUT DD SYSOUT=*                                                  03650024
+//SYSUDUMP DD SYSOUT=*                                                  03660024
+//OUTPUT DD SYSOUT=*                                                    03670024
+//*ONTROL   DD *                                                        03680024
+ONL1ATST                                                                03690024
+ONL1BTST                                                                03700024
+ONL2CTST                                                                03710024
+ONL2DTST                                                                03720024
+ONL2ETST                                                                03730024
+ONL2FTST                                                                03740024
+ONL2GTST                                                                03750024
+ONL2HTST                                                                03760024
+ONL2ITST                                                                03770024
+ONL2JTST                                                                03780024
+//CONTROL   DD *                                                        03801026
+IM2Q101                                                                 03802026
+IM2Q103                                                                 03803026
+IM2Q105                                                                 03804026
+IM2Q314                                                                 03805026
+IM2Q501                                                                 03806026
+IM2Q610                                                                 03807026
+//*ONTROL   DD *                                                        03810026
+IM2Q101                                                                 03820024
+IM2Q102                                                                 03830024
+IM2Q103                                                                 03840024
+IM2Q104                                                                 03850024
+IM2Q105                                                                 03860024
+IM2Q106                                                                 03870024
+IM2Q107                                                                 03880024
+IM2Q108                                                                 03890024
+IM2Q109                                                                 03900024
+IM2Q110                                                                 03910024
+IM2Q201                                                                 03920024
+IM2Q202                                                                 03930024
+IM2Q203                                                                 03940024
+IM2Q204                                                                 03950024
+IM2Q205                                                                 03960024
+IM2Q206                                                                 03970024
+IM2Q207                                                                 03980024
+IM2Q208                                                                 03990024
+IM2Q209                                                                 04000024
+IM2Q210                                                                 04010024
+IM2Q211                                                                 04020024
+IM2Q212                                                                 04030024
+IM2Q213                                                                 04040024
+IM2Q214                                                                 04050024
+IM2Q215                                                                 04060024
+IM2Q216                                                                 04070024
+IM2Q217                                                                 04080024
+IM2Q218                                                                 04090024
+IM2Q301                                                                 04100024
+IM2Q302                                                                 04110024
+IM2Q303                                                                 04120024
+IM2Q304                                                                 04130024
+IM2Q305                                                                 04140024
+IM2Q306                                                                 04150024
+IM2Q307                                                                 04160024
+IM2Q308                                                                 04170024
+IM2Q309                                                                 04180024
+IM2Q310                                                                 04190024
+IM2Q311                                                                 04200024
+IM2Q312                                                                 04210024
+IM2Q313                                                                 04220024
+IM2Q314                                                                 04230024
+IM2Q315                                                                 04240024
+IM2Q316                                                                 04250024
+IM2Q401                                                                 04260024
+IM2Q402                                                                 04270024
+IM2Q403                                                                 04280024
+IM2Q404                                                                 04290024
+IM2Q405                                                                 04300024
+IM2Q406                                                                 04310024
+IM2Q407                                                                 04320024
+IM2Q408                                                                 04330024
+IM2Q409                                                                 04340024
+IM2Q410                                                                 04350024
+IM2Q411                                                                 04360024
+IM2Q412                                                                 04370024
+IM2Q413                                                                 04380024
+IM2Q414                                                                 04390024
+IM2Q501                                                                 04400024
+IM2Q502                                                                 04410024
+IM2Q503                                                                 04420024
+IM2Q601                                                                 04430024
+IM2Q602                                                                 04440024
+IM2Q603                                                                 04450024
+IM2Q604                                                                 04460024
+IM2Q605                                                                 04470024
+IM2Q606                                                                 04480024
+IM2Q607                                                                 04490024
+IM2Q608                                                                 04500024
+IM2Q609                                                                 04510024
+IM2Q610                                                                 04520024
+//U900     EXEC PGM=IFASMFDP,REGION=512K                                04530026
+//SYSPRINT DD  SYSOUT=*                                                 04540024
+//DUMPOUT DD DISP=(NEW,PASS),DCB=(BUFNO=10,NCP=10),                     04550024
+//        DSN=&&TEMP,UNIT=3390,SPACE=(CYL,(10,10))                      04560024
+//DUMPIN  DD DSN=DB25CF.FEB13923.SMFDATA,DISP=SHR,UNIT=3390,            04570027
+//        VOL=SER=DB25CF,DCB=(BUFNO=10,NCP=10)                          04580025
+//SYSIN DD *                                                            04590024
+ INDD(DUMPIN,OPTIONS(DUMP))                                             04600024
+ OUTDD(DUMPOUT,TYPE(100:110))                                           04610024
+    START(1306)                                                         04620026
+     END(1316)                                                          04630026
+//STEP2   EXEC PGM=IDCAMS,REGION=4096K                                  04640024
+//SYSUT1    DD DSN=&&TEMP,DISP=(OLD,DELETE),DCB=(BUFNO=10,NCP=10)       04650024
+//SYSPRINT  DD SYSOUT=*                                                 04660024
+//SYSUT2    DD DSN=&&TEMP2,UNIT=3390,                                   04670024
+// SPACE=(CYL,(10,10)),DISP=(,PASS),                                    04680024
+// DCB=(BUFNO=10,NCP=10,LRECL=32756,BLKSIZE=32760,RECFM=VB)             04690024
+//SYSIN DD *                                                            04700024
+  REPRO  INFILE(SYSUT1) OUTFILE(SYSUT2)                                 04710024
+//STEP3   EXEC PGM=DB2SMF6,REGION=4096K,                                04720024
+// PARM='SYSSTATS=N,DBSTATS=N,APPSTATS=ALL     '                        04730024
+//*TEPLIB   DD DSN=DAVID.DB2SMF.PGMLIB,DISP=SHR,UNIT=3390,              04740024
+//*         VOL=SER=DB2IMS                                              04750024
+//SNAPOUT   DD DUMMY                                                    04760024
+//DB2SMF  DD DSN=&&TEMP2,DISP=(OLD,DELETE),DCB=(BUFNO=10,NCP=10)        04770024
+//SYSOUT DD SYSOUT=O                                                    04780024
+//SYSABOUT DD SYSOUT=*                                                  04790024
+//SYSUDUMP DD SYSOUT=*                                                  04800024
+//OUTPUT DD SYSOUT=*                                                    04810024
+//*ONTROL   DD *                                                        04820024
+ONL1ATST                                                                04830024
+ONL1BTST                                                                04840024
+ONL2CTST                                                                04850024
+ONL2DTST                                                                04860024
+ONL2ETST                                                                04870024
+ONL2FTST                                                                04880024
+ONL2GTST                                                                04890024
+ONL2HTST                                                                04900024
+ONL2ITST                                                                04910024
+ONL2JTST                                                                04920024
+//CONTROL   DD *                                                        04941026
+IM2Q101                                                                 04942026
+IM2Q103                                                                 04943026
+IM2Q105                                                                 04944026
+IM2Q314                                                                 04945026
+IM2Q501                                                                 04946026
+IM2Q610                                                                 04947026
+//*ONTROL   DD *                                                        04950026
+IM2Q101                                                                 04960024
+IM2Q102                                                                 04970024
+IM2Q103                                                                 04980024
+IM2Q104                                                                 04990024
+IM2Q105                                                                 05000024
+IM2Q106                                                                 05010024
+IM2Q107                                                                 05020024
+IM2Q108                                                                 05030024
+IM2Q109                                                                 05040024
+IM2Q110                                                                 05050024
+IM2Q201                                                                 05060024
+IM2Q202                                                                 05070024
+IM2Q203                                                                 05080024
+IM2Q204                                                                 05090024
+IM2Q205                                                                 05100024
+IM2Q206                                                                 05110024
+IM2Q207                                                                 05120024
+IM2Q208                                                                 05130024
+IM2Q209                                                                 05140024
+IM2Q210                                                                 05150024
+IM2Q211                                                                 05160024
+IM2Q212                                                                 05170024
+IM2Q213                                                                 05180024
+IM2Q214                                                                 05190024
+IM2Q215                                                                 05200024
+IM2Q216                                                                 05210024
+IM2Q217                                                                 05220024
+IM2Q218                                                                 05230024
+IM2Q301                                                                 05240024
+IM2Q302                                                                 05250024
+IM2Q303                                                                 05260024
+IM2Q304                                                                 05270024
+IM2Q305                                                                 05280024
+IM2Q306                                                                 05290024
+IM2Q307                                                                 05300024
+IM2Q308                                                                 05310024
+IM2Q309                                                                 05320024
+IM2Q310                                                                 05330024
+IM2Q311                                                                 05340024
+IM2Q312                                                                 05350024
+IM2Q313                                                                 05360024
+IM2Q314                                                                 05370024
+IM2Q315                                                                 05380024
+IM2Q316                                                                 05390024
+IM2Q401                                                                 05400024
+IM2Q402                                                                 05410024
+IM2Q403                                                                 05420024
+IM2Q404                                                                 05430024
+IM2Q405                                                                 05440024
+IM2Q406                                                                 05450024
+IM2Q407                                                                 05460024
+IM2Q408                                                                 05470024
+IM2Q409                                                                 05480024
+IM2Q410                                                                 05490024
+IM2Q411                                                                 05500024
+IM2Q412                                                                 05510024
+IM2Q413                                                                 05520024
+IM2Q414                                                                 05530024
+IM2Q501                                                                 05540024
+IM2Q502                                                                 05550024
+IM2Q503                                                                 05560024
+IM2Q601                                                                 05570024
+IM2Q602                                                                 05580024
+IM2Q603                                                                 05590024
+IM2Q604                                                                 05600024
+IM2Q605                                                                 05610024
+IM2Q606                                                                 05620024
+IM2Q607                                                                 05630024
+IM2Q608                                                                 05640024
+IM2Q609                                                                 05650024
+IM2Q610                                                                 05660024

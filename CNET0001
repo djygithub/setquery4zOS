@@ -1,0 +1,18 @@
+CNET0001 NTWRK HEAD='SQL NETWORK',                                              
+               TYPE=3270,MODEL=2,REPORT=NONE,                                   
+               BUFSIZE=3000,                                                    
+               DLOGMOD=D4B32782,MLOG=YES,                                       
+               ITIME=1,RESOURCE=CICS,                                           
+               INIT=SEC,DISPLAY=(24,80),                                        
+               LOGDSPLY=NONE,                                                   
+               LUTYPE=LU2,                                                      
+               SCAN=(0,0),                                                      
+               STLTRACE=NO,FRSTTXT=LOGON1,                                      
+               OPTIONS=(CONRATE,MONCMND),                                       
+               THKTIME=UNLOCK,USERAREA=16,NETUSER=16,                           
+               UTI=500                                                          
+1        RN    HIGH=003,LOW=0                                                   
+ROUTES   PATH  Q101R   ,Q201R,Q301R,Q401R,Q501R,Q601R                           
+ROUTES   DIST  100 19,20,19,20,2,20                                             
+TPNS0001 VTAMAPPL RESOURCE=CICS,INIT=SEC,APPLID=TPNS0001                        
+PPNS0001 LU  DISPLAY=(24,80,32,80)                                              

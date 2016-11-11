@@ -1,0 +1,324 @@
+//CRSQIN02 JOB   (ACCT#),                                                       
+//         'DJ YOUNG',                                                          
+//         CLASS=A,                                                             
+//         MSGLEVEL=(1,1),                                                      
+//         MSGCLASS=X,                                                          
+//         NOTIFY=,                                                             
+//         TIME=1440                                                            
+//*        USER=,GROUP=,PASSWORD=                                               
+//JOBLIB  DD  DISP=SHR,                                                         
+//            DSN=SYS1.DSNLOAD                                                  
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(DSNTIAD)  PLAN(DSNTIA22) PARM('RC0') -                            
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+//SYSIN    DD  *                                                                
+ CREATE INDEX DAVID.SQ100I02                                                    
+        ON DAVID.SQ100(K500K)                                                   
+        USING STOGROUP SQ100I02                                                 
+        PRIQTY 1040000                                                          
+        SECQTY 20000                                                            
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+//CRSQIN03 JOB   (ACCT#),                                                       
+//         'DJ YOUNG',                                                          
+//         CLASS=A,                                                             
+//         MSGLEVEL=(1,1),                                                      
+//         MSGCLASS=X,                                                          
+//         NOTIFY=,                                                             
+//         TIME=1440                                                            
+//*        USER=,GROUP=,PASSWORD=                                               
+//JOBLIB  DD  DISP=SHR,                                                         
+//            DSN=SYS1.DSNLOAD                                                  
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(DSNTIAD)  PLAN(DSNTIA22) PARM('RC0') -                            
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+//SYSIN    DD  *                                                                
+ CREATE INDEX DAVID.SQ100I03                                                    
+        ON DAVID.SQ100(K250K)                                                   
+        USING STOGROUP SQ100I03                                                 
+        PRIQTY 740000                                                           
+        SECQTY 20000                                                            
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+//CRSQIN04 JOB   (ACCT#),                                                       
+//         'DJ YOUNG',                                                          
+//         CLASS=A,                                                             
+//         MSGLEVEL=(1,1),                                                      
+//         MSGCLASS=X,                                                          
+//         NOTIFY=,                                                             
+//         TIME=1440                                                            
+//*        USER=,GROUP=,PASSWORD=                                               
+//JOBLIB  DD  DISP=SHR,                                                         
+//            DSN=SYS1.DSNLOAD                                                  
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(DSNTIAD)  PLAN(DSNTIA22) PARM('RC0') -                            
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+//SYSIN    DD  *                                                                
+ CREATE INDEX DAVID.SQ100I04                                                    
+        ON DAVID.SQ100(K100K)                                                   
+        USING STOGROUP SQ100I04                                                 
+        PRIQTY 616480                                                           
+        SECQTY 20000                                                            
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+//CRSQIN05 JOB   (ACCT#),                                                       
+//         'DJ YOUNG',                                                          
+//         CLASS=A,                                                             
+//         MSGLEVEL=(1,1),                                                      
+//         MSGCLASS=X,                                                          
+//         NOTIFY=,                                                             
+//         TIME=1440                                                            
+//*        USER=,GROUP=,PASSWORD=                                               
+//JOBLIB  DD  DISP=SHR,                                                         
+//            DSN=SYS1.DSNLOAD                                                  
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(DSNTIAD)  PLAN(DSNTIA22) PARM('RC0') -                            
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+//SYSIN    DD  *                                                                
+ CREATE INDEX DAVID.SQ100I05                                                    
+        ON DAVID.SQ100(K40K)                                                    
+        USING STOGROUP SQ100I05                                                 
+        PRIQTY 511360                                                           
+        SECQTY 20000                                                            
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+//CRSQIN06 JOB   (ACCT#),                                                       
+//         'DJ YOUNG',                                                          
+//         CLASS=A,                                                             
+//         MSGLEVEL=(1,1),                                                      
+//         MSGCLASS=X,                                                          
+//         NOTIFY=,                                                             
+//         TIME=1440                                                            
+//*        USER=,GROUP=,PASSWORD=                                               
+//JOBLIB  DD  DISP=SHR,                                                         
+//            DSN=SYS1.DSNLOAD                                                  
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(DSNTIAD)  PLAN(DSNTIA22) PARM('RC0') -                            
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+//SYSIN    DD  *                                                                
+ CREATE INDEX DAVID.SQ100I06                                                    
+        ON DAVID.SQ100(K10K)                                                    
+        USING STOGROUP SQ100I06                                                 
+        PRIQTY   498720                                                         
+        SECQTY 20000                                                            
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+//CRSQIN07 JOB   (ACCT#),                                                       
+//         'DJ YOUNG',                                                          
+//         CLASS=A,                                                             
+//         MSGLEVEL=(1,1),                                                      
+//         MSGCLASS=X,                                                          
+//         NOTIFY=,                                                             
+//         TIME=1440                                                            
+//*        USER=,GROUP=,PASSWORD=                                               
+//JOBLIB  DD  DISP=SHR,                                                         
+//            DSN=SYS1.DSNLOAD                                                  
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(DSNTIAD)  PLAN(DSNTIA22) PARM('RC0') -                            
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+//SYSIN    DD  *                                                                
+ CREATE INDEX DAVID.SQ100I07                                                    
+        ON DAVID.SQ100(K1K)                                                     
+        USING STOGROUP SQ100I07                                                 
+        PRIQTY   498720                                                         
+        SECQTY 20000                                                            
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+//CRSQIN08 JOB   (ACCT#),                                                       
+//         'DJ YOUNG',                                                          
+//         CLASS=A,                                                             
+//         MSGLEVEL=(1,1),                                                      
+//         MSGCLASS=X,                                                          
+//         NOTIFY=,                                                             
+//         TIME=1440                                                            
+//*        USER=,GROUP=,PASSWORD=                                               
+//JOBLIB  DD  DISP=SHR,                                                         
+//            DSN=SYS1.DSNLOAD                                                  
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(DSNTIAD)  PLAN(DSNTIA22) PARM('RC0') -                            
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+//SYSIN    DD  *                                                                
+ CREATE INDEX DAVID.SQ100I08                                                    
+        ON DAVID.SQ100(K100)                                                    
+        USING STOGROUP SQ100I08                                                 
+        PRIQTY 480000                                                           
+        SECQTY 20000                                                            
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+//CRSQIN09 JOB   (ACCT#),                                                       
+//         'DJ YOUNG',                                                          
+//         CLASS=A,                                                             
+//         MSGLEVEL=(1,1),                                                      
+//         MSGCLASS=X,                                                          
+//         NOTIFY=,                                                             
+//         TIME=1440                                                            
+//*        USER=,GROUP=,PASSWORD=                                               
+//JOBLIB  DD  DISP=SHR,                                                         
+//            DSN=SYS1.DSNLOAD                                                  
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(DSNTIAD)  PLAN(DSNTIA22) PARM('RC0') -                            
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+//SYSIN    DD  *                                                                
+ CREATE INDEX DAVID.SQ100I09                                                    
+        ON DAVID.SQ100(K25)                                                     
+        USING STOGROUP SQ100I09                                                 
+        PRIQTY 480000                                                           
+        SECQTY 20000                                                            
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+//CRSQIN10 JOB   (ACCT#),                                                       
+//         'DJ YOUNG',                                                          
+//         CLASS=A,                                                             
+//         MSGLEVEL=(1,1),                                                      
+//         MSGCLASS=X,                                                          
+//         NOTIFY=,                                                             
+//         TIME=1440                                                            
+//*        USER=,GROUP=,PASSWORD=                                               
+//JOBLIB  DD  DISP=SHR,                                                         
+//            DSN=SYS1.DSNLOAD                                                  
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(DSNTIAD)  PLAN(DSNTIA22) PARM('RC0') -                            
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+//SYSIN    DD  *                                                                
+ CREATE INDEX DAVID.SQ100I10                                                    
+        ON DAVID.SQ100(K10)                                                     
+        USING STOGROUP SQ100I10                                                 
+        PRIQTY 480000                                                           
+        SECQTY 20000                                                            
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+//CRSQIN11 JOB   (ACCT#),                                                       
+//         'DJ YOUNG',                                                          
+//         CLASS=A,                                                             
+//         MSGLEVEL=(1,1),                                                      
+//         MSGCLASS=X,                                                          
+//         NOTIFY=,                                                             
+//         TIME=1440                                                            
+//*        USER=,GROUP=,PASSWORD=                                               
+//JOBLIB  DD  DISP=SHR,                                                         
+//            DSN=SYS1.DSNLOAD                                                  
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(DSNTIAD)  PLAN(DSNTIA22) PARM('RC0') -                            
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+//SYSIN    DD  *                                                                
+ CREATE INDEX DAVID.SQ100I11                                                    
+        ON DAVID.SQ100(K5)                                                      
+        USING STOGROUP SQ100I11                                                 
+        PRIQTY 480000                                                           
+        SECQTY 20000                                                            
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+//CRSQIN12 JOB   (ACCT#),                                                       
+//         'DJ YOUNG',                                                          
+//         CLASS=A,                                                             
+//         MSGLEVEL=(1,1),                                                      
+//         MSGCLASS=X,                                                          
+//         NOTIFY=,                                                             
+//         TIME=1440                                                            
+//*        USER=,GROUP=,PASSWORD=                                               
+//JOBLIB  DD  DISP=SHR,                                                         
+//            DSN=SYS1.DSNLOAD                                                  
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(DSNTIAD)  PLAN(DSNTIA22) PARM('RC0') -                            
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+//SYSIN    DD  *                                                                
+ CREATE INDEX DAVID.SQ100I12                                                    
+        ON DAVID.SQ100(K4)                                                      
+        USING STOGROUP SQ100I12                                                 
+        PRIQTY 480000                                                           
+        SECQTY 20000                                                            
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              
+//CRSQIN13 JOB   (ACCT#),                                                       
+//         'DJ YOUNG',                                                          
+//         CLASS=A,                                                             
+//         MSGLEVEL=(1,1),                                                      
+//         MSGCLASS=X,                                                          
+//         NOTIFY=,                                                             
+//         TIME=1440                                                            
+//*        USER=,GROUP=,PASSWORD=                                               
+//JOBLIB  DD  DISP=SHR,                                                         
+//            DSN=SYS1.DSNLOAD                                                  
+//DSNTICU EXEC PGM=IKJEFT01,DYNAMNBR=20                                         
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSTSIN  DD  *                                                                
+  DSN SYSTEM(DSN)                                                               
+  RUN PROGRAM(DSNTIAD)  PLAN(DSNTIA22) PARM('RC0') -                            
+       LIB('DSN22X.RUNLIB.LOAD')                                                
+  END                                                                           
+//SYSIN    DD  *                                                                
+ CREATE INDEX DAVID.SQ100I13                                                    
+        ON DAVID.SQ100(K2)                                                      
+        USING STOGROUP SQ100I13                                                 
+        PRIQTY 480000                                                           
+        SECQTY 20000                                                            
+         SUBPAGES 8                                                             
+         CLOSE NO;                                                              

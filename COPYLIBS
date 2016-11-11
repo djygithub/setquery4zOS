@@ -1,0 +1,47 @@
+//COPYLIBS JOB (USER,ACCT,NUMBER),                                              
+//         'D J YOUNG',                                                         
+//         CLASS=A,MSGCLASS=X,MSGLEVEL=(1,1),                                   
+//         REGION=4M                                                            
+//*                                                                             
+/*JOBPARM PROCLIB=PROC99                                                        
+//*                                                                             
+//*                                                                             
+//*                                                                             
+//*********************************************************************         
+//* INSTALL/IVP IMS 3.1                                                         
+//*                                                                             
+//* SKELETON: DFSIXSEB                                                          
+//*                                                                             
+//* FUNCTION: COPY STAGING LIBRARIES TO ACTIVE LIBRARIES                        
+//*********************************************************************         
+//*                                                                             
+//*********************************************************************         
+//*         THIS PRODUCT CONTAINS "RESTRICTED MATERIALS OF IBM".      *         
+//*                                                                   *         
+//*         5665-408 (C) COPYRIGHT IBM CORP. 1974, 1988.              *         
+//*         LICENSED MATERIALS - PROPERTY OF IBM.                     *         
+//*         ALL RIGHTS RESERVED.                                      *         
+//*                                                                   *         
+//*         U.S. GOVERNMENT USERS RESTRICTED RIGHTS -                 *         
+//*         USE, DUPLICATION, OR DISCLOSURE RESTRICTED BY             *         
+//*         GSA ADP SCHEDULE CONTRACT WITH IBM CORP.                  *         
+//*                                                                   *         
+//*         REFER TO COPYRIGHT INSTRUCTIONS FORM NUMBER G120-2083.    *         
+//*********************************************************************         
+//*                                                                             
+//* COPY MODBLKS TO MODBLKSA                                                    
+//*                                                                             
+//STEP01   EXEC PROC=OLCUTL,SOUT='*',TYPE=MODBLKS,IN=S,OUT=A                    
+//*                                                                             
+//* COPY MATRIX  TO MATRIXA                                                     
+//*                                                                             
+//STEP02   EXEC PROC=OLCUTL,SOUT='*',TYPE=MATRIX,IN=S,OUT=A                     
+//*                                                                             
+//* COPY ACBLIB  TO ACBLIBA                                                     
+//*                                                                             
+//STEP03   EXEC PROC=OLCUTL,SOUT='*',TYPE=ACB,IN=S,OUT=A                        
+//*                                                                             
+//* COPY FORMAT  TO FORMATA                                                     
+//*                                                                             
+//STEP04   EXEC PROC=OLCUTL,SOUT='*',TYPE=FORMAT,IN=S,OUT=A                     
+//*                                                                             

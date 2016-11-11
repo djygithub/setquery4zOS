@@ -1,0 +1,24 @@
+//DB2UCAT  JOB (330DJY00),'D J YOUNG ',MSGCLASS=X,NOTIFY=DAVID          00001000
+//*                                                                     00002000
+//*     UCAT FOR ESA PORTABLE DB2 SYSTEM                                00003000
+//*                                                                     00004000
+//DSNTCAT EXEC PGM=IDCAMS                                               00005000
+//SYSPRINT DD  SYSOUT=*                                                 00006000
+//SYSUDUMP DD  SYSOUT=*                                                 00007000
+//CAT      DD  UNIT=3390,DISP=OLD,VOL=SER=DB2SMS                        00008001
+//SYSIN    DD  *                                                        00009000
+   DEFINE UCAT                                -                         00010000
+         ( NAME(CATALOG.USER.VDB2SMS)   -                               00020001
+           FILE(CAT)                          -                         00030000
+           CYLINDERS(2 1)                     -                         00040000
+           VOL(DB2SMS)                        -                         00050001
+           ICFCATALOG   )                     -                         00060000
+      DATA                                    -                         00070000
+         ( CYLINDERS (9 9)    )               -                         00080000
+      INDEX                                   -                         00090000
+         ( CYLINDERS (9 9)    )                                         00100000
+                                                                        00110000
+   DEFINE ALIAS                               -                         00120000
+         ( NAME(DB2SMS)                    -                            00130001
+           RELATE(CATALOG.USER.VDB2SMS)  )                              00140001
+                                                                        00150000

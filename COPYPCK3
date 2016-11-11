@@ -1,0 +1,8 @@
+//VOL580  JOB (0,75),'LORENZO',MSGCLASS=X                               00010017
+//DJYSMF  EXEC PGM=ADRDSSU,REGION=4M                                    00020017
+//SYSPRINT DD  SYSOUT=*                                                 00030000
+//IN       DD  UNIT=3390,VOL=SER=TESTQA,DISP=SHR                        00040019
+//OUT      DD  UNIT=3390,VOL=SER=VOL4AA,DISP=SHR                        00050019
+//SYSIN    DD  *                                                        00060000
+ COPY OUTDDNAME(OUT) INDDNAME(IN) CANCELERROR -                         00070000
+ ALLDATA(*) ALLEXCP COPYVOLID                                           00080000

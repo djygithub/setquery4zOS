@@ -1,0 +1,493 @@
+    TITLE '*** MVS/ESA SYSTEM FOR EX-310'                               00010000
+PS0   IOCONFIG ID=00                                                    00011000
+ID00     ID MSG1='PERFEVAL'                                             00012000
+**********************************************************************  00013000
+***  7/29/91 DJY 86X ARE NOW 3390S  *********************************   00014000
+***  8/08/91 DJY PROTOCL=S4 WHERE APPLICABLE ************************   00014100
+***  9/12/91 JAC 5CX ARE NOW 3390S  *********************************   00014200
+***  9/23/91 JAC IOCDS FOR EX-310 CREATED ***************************   00014300
+**********************************************************************  00014400
+**********************************************************************  00014500
+**********************************************************************  00014600
+         EJECT                                                          00014700
+*IOCP                                                                   00014800
+*IOCP DEFINE CHANNELS PRESENT ON THIS EX-310                            00014900
+*IOCP                                                                   00015000
+*                                                                       00016000
+*                                                                       00017000
+CHANEL00 CHPID PATH=((00)),TYPE=BY  CHPID 0= CHANNEL 0, CHSET 0         00018000
+CHANEL01 CHPID PATH=((01)),TYPE=BL  CHPID 1= CHANNEL 1, CHSET 0         00019000
+CHANEL02 CHPID PATH=((02)),TYPE=BL  CHPID 2, CHANNEL 2, CHSET 0         00020000
+CHANEL03 CHPID PATH=((03)),TYPE=BL  CHPID 3, CHANNEL 3, CHSET 0         00030000
+CHANEL04 CHPID PATH=((04)),TYPE=BL  CHPID 4, CHANNEL 4, CHSET 0         00040000
+CHANEL05 CHPID PATH=((05)),TYPE=BL  CHPID 5, CHANNEL 5, CHSET 0         00050000
+CHANEL06 CHPID PATH=((06)),TYPE=BL  CHPID 6, CHANNEL 6, CHSET 0         00060000
+CHANEL07 CHPID PATH=((07)),TYPE=BL  CHPID 7, CHANNEL 7, CHSET 0         00070000
+CHANEL08 CHPID PATH=((08)),TYPE=BL  CHPID 7, CHANNEL 7, CHSET 0         00080000
+CHANEL09 CHPID PATH=((09)),TYPE=BL  CHPID 7, CHANNEL 7, CHSET 0         00090000
+CHANEL0A CHPID PATH=((0A)),TYPE=BL  CHPID 7, CHANNEL 7, CHSET 0         00100000
+CHANEL0B CHPID PATH=((0B)),TYPE=BL  CHPID 7, CHANNEL 7, CHSET 0         00110000
+CHANEL0C CHPID PATH=((0C)),TYPE=BL  CHPID 7, CHANNEL 7, CHSET 0         00120000
+CHANEL0D CHPID PATH=((0D)),TYPE=BL  CHPID 7, CHANNEL 7, CHSET 0         00130000
+CHANEL0E CHPID PATH=((0E)),TYPE=BL  CHPID 7, CHANNEL 7, CHSET 0         00140000
+CHANEL0F CHPID PATH=((0F)),TYPE=BL  CHPID 7, CHANNEL 7, CHSET 0         00150000
+CHANEL10 CHPID PATH=((10)),TYPE=BL  CHPID 10, CHANNEL 8, CHSET 0        00160000
+CHANEL11 CHPID PATH=((11)),TYPE=BL  CHPID 11, CHANNEL 9, CHSET 0        00170000
+CHANEL12 CHPID PATH=((12)),TYPE=BL  CHPID 12, CHANNEL A, CHSET 0        00180000
+CHANEL13 CHPID PATH=((13)),TYPE=BL  CHPID 13, CHANNEL B, CHSET 0        00190000
+CHANEL14 CHPID PATH=((14)),TYPE=BL  CHPID 14, CHANNEL C, CHSET 0        00200000
+CHANEL15 CHPID PATH=((15)),TYPE=BL  CHPID 15, CHANNEL D, CHSET 0        00210000
+CHANEL16 CHPID PATH=((16)),TYPE=BL  CHPID 16, CHANNEL E, CHSET 0        00220000
+CHANEL17 CHPID PATH=((17)),TYPE=BL  CHPID 17, CHANNEL F, CHSET 0        00230000
+CHANEL18 CHPID PATH=((18)),TYPE=BL  CHPID 17, CHANNEL F, CHSET 0        00240000
+CHANEL19 CHPID PATH=((19)),TYPE=BL  CHPID 17, CHANNEL F, CHSET 0        00250000
+CHANEL1A CHPID PATH=((1A)),TYPE=BL  CHPID 17, CHANNEL F, CHSET 0        00260000
+CHANEL1B CHPID PATH=((1B)),TYPE=BL  CHPID 17, CHANNEL F, CHSET 0        00270000
+CHANEL1C CHPID PATH=((1C)),TYPE=BL  CHPID 17, CHANNEL F, CHSET 0        00280000
+CHANEL1D CHPID PATH=((1D)),TYPE=BL  CHPID 17, CHANNEL F, CHSET 0        00290000
+CHANEL1E CHPID PATH=((1E)),TYPE=BL  CHPID 17, CHANNEL F, CHSET 0        00300000
+CHANEL1F CHPID PATH=((1F)),TYPE=BL  CHPID 17, CHANNEL F, CHSET 0        00310000
+CHANEL20 CHPID PATH=((20)),TYPE=BL  CHPID 20                            00320000
+CHANEL21 CHPID PATH=((21)),TYPE=BL  CHPID 21                            00330000
+CHANEL22 CHPID PATH=((22)),TYPE=BL  CHPID 22                            00340000
+CHANEL23 CHPID PATH=((23)),TYPE=BL  CHPID 23                            00350000
+CHANEL24 CHPID PATH=((24)),TYPE=BL  CHPID 24                            00360000
+CHANEL25 CHPID PATH=((25)),TYPE=BL  CHPID 25                            00370000
+CHANEL26 CHPID PATH=((26)),TYPE=BL  CHPID 26                            00380000
+CHANEL27 CHPID PATH=((27)),TYPE=BL  CHPID 27                            00390000
+CHANEL28 CHPID PATH=((28)),TYPE=BL  CHPID 27                            00400000
+CHANEL29 CHPID PATH=((29)),TYPE=BL  CHPID 27                            00410000
+CHANEL2A CHPID PATH=((2A)),TYPE=BL  CHPID 27                            00420000
+CHANEL2B CHPID PATH=((2B)),TYPE=BL  CHPID 27                            00430000
+CHANEL2C CHPID PATH=((2C)),TYPE=BL  CHPID 27                            00440000
+CHANEL2D CHPID PATH=((2D)),TYPE=BL  CHPID 27                            00450000
+CHANEL2E CHPID PATH=((2E)),TYPE=BL  CHPID 27                            00460000
+CHANEL2F CHPID PATH=((2F)),TYPE=BL  CHPID 27                            00470000
+CHANEL30 CHPID PATH=((30)),TYPE=BL  CHPID 30                            00480000
+CHANEL31 CHPID PATH=((31)),TYPE=BL  CHPID 31                            00490000
+CHANEL32 CHPID PATH=((32)),TYPE=BL  CHPID 32                            00500000
+CHANEL33 CHPID PATH=((33)),TYPE=BL  CHPID 33                            00510000
+CHANEL34 CHPID PATH=((34)),TYPE=BL  CHPID 34                            00520000
+CHANEL35 CHPID PATH=((35)),TYPE=BL  CHPID 35                            00530000
+CHANEL36 CHPID PATH=((36)),TYPE=BL  CHPID 36                            00540000
+CHANEL37 CHPID PATH=((37)),TYPE=BL  CHPID 37                            00550000
+CHANEL38 CHPID PATH=((38)),TYPE=BL  CHPID 38                            00560000
+CHANEL39 CHPID PATH=((39)),TYPE=BL  CHPID 39                            00570000
+CHANEL3A CHPID PATH=((3A)),TYPE=BL  CHPID 3A                            00580000
+CHANEL3B CHPID PATH=((3B)),TYPE=BL  CHPID 3B                            00590000
+CHANEL3C CHPID PATH=((3C)),TYPE=BL  CHPID 3C                            00600000
+CHANEL3D CHPID PATH=((3D)),TYPE=BL  CHPID 3D                            00610000
+CHANEL3E CHPID PATH=((3E)),TYPE=BL  CHPID 3E                            00620000
+CHANEL3F CHPID PATH=((3F)),TYPE=BL  CHPID 3F                            00630000
+*IOCP                                                                   00640000
+*IOCP DEFINE CHANNELS NOT PRESENT ON THIS 9080                          00650000
+*IOCP                                                                   00660000
+CHANEL40 CHPID PATH=((40)),TYPE=BY  CHPID 40, CHANNEL 0, CHSET 1        00670000
+CHANEL41 CHPID PATH=((41)),TYPE=BL  CHPID 41, CHANNEL 1, CHSET 1        00680000
+CHANEL42 CHPID PATH=((42)),TYPE=BL  CHPID 42, CHANNEL 2, CHSET 1        00690000
+CHANEL43 CHPID PATH=((43)),TYPE=BL  CHPID 43, CHANNEL 3, CHSET 1        00700000
+CHANEL44 CHPID PATH=((44)),TYPE=BL  CHPID 44, CHANNEL 4, CHSET 1        00710000
+CHANEL45 CHPID PATH=((45)),TYPE=BL  CHPID 45, CHANNEL 5, CHSET 1        00720000
+CHANEL46 CHPID PATH=((46)),TYPE=BL  CHPID 46, CHANNEL 6, CHSET 1        00721000
+CHANEL47 CHPID PATH=((47)),TYPE=BL  CHPID 47, CHANNEL 7, CHSET 1        00722000
+CHANEL48 CHPID PATH=((48)),TYPE=BL  CHPID 47, CHANNEL 7, CHSET 1        00723000
+CHANEL49 CHPID PATH=((49)),TYPE=BL  CHPID 47, CHANNEL 7, CHSET 1        00724000
+CHANEL4A CHPID PATH=((4A)),TYPE=BL  CHPID 47, CHANNEL 7, CHSET 1        00725000
+CHANEL4B CHPID PATH=((4B)),TYPE=BL  CHPID 47, CHANNEL 7, CHSET 1        00726000
+CHANEL4C CHPID PATH=((4C)),TYPE=BL  CHPID 47, CHANNEL 7, CHSET 1        00726100
+CHANEL4D CHPID PATH=((4D)),TYPE=BL  CHPID 47, CHANNEL 7, CHSET 1        00726200
+CHANEL4E CHPID PATH=((4E)),TYPE=BL  CHPID 47, CHANNEL 7, CHSET 1        00726300
+CHANEL4F CHPID PATH=((4F)),TYPE=BL  CHPID 47, CHANNEL 7, CHSET 1        00726400
+CHANEL50 CHPID PATH=((50)),TYPE=BL  CHPID 50, CHANNEL 8, CHSET 1        00726500
+CHANEL51 CHPID PATH=((51)),TYPE=BL  CHPID 51, CHANNEL 9, CHSET 1        00726600
+CHANEL52 CHPID PATH=((52)),TYPE=BL  CHPID 52, CHANNEL A, CHSET 1        00726700
+CHANEL53 CHPID PATH=((53)),TYPE=BL  CHPID 53, CHANNEL B, CHSET 1        00726800
+CHANEL54 CHPID PATH=((54)),TYPE=BL  CHPID 54, CHANNEL C, CHSET 1        00726900
+CHANEL55 CHPID PATH=((55)),TYPE=BL  CHPID 55, CHANNEL D, CHSET 1        00727000
+CHANEL56 CHPID PATH=((56)),TYPE=BL  CHPID 56, CHANNEL E, CHSET 1        00727100
+CHANEL57 CHPID PATH=((57)),TYPE=BL  CHPID 57, CHANNEL F, CHSET 1        00727200
+CHANEL58 CHPID PATH=((58)),TYPE=BL  CHPID 57, CHANNEL F, CHSET 1        00727300
+CHANEL59 CHPID PATH=((59)),TYPE=BL  CHPID 57, CHANNEL F, CHSET 1        00727400
+CHANEL5A CHPID PATH=((5A)),TYPE=BL  CHPID 57, CHANNEL F, CHSET 1        00727500
+CHANEL5B CHPID PATH=((5B)),TYPE=BL  CHPID 57, CHANNEL F, CHSET 1        00727600
+CHANEL5C CHPID PATH=((5C)),TYPE=BL  CHPID 57, CHANNEL F, CHSET 1        00727700
+CHANEL5D CHPID PATH=((5D)),TYPE=BL  CHPID 57, CHANNEL F, CHSET 1        00727800
+CHANEL5E CHPID PATH=((5E)),TYPE=BL  CHPID 57, CHANNEL F, CHSET 1        00727900
+CHANEL5F CHPID PATH=((5F)),TYPE=BL  CHPID 57, CHANNEL F, CHSET 1        00728000
+CHANEL60 CHPID PATH=((60)),TYPE=BL  CHPID 60                            00728100
+CHANEL61 CHPID PATH=((61)),TYPE=BL  CHPID 61                            00728200
+CHANEL62 CHPID PATH=((62)),TYPE=BL  CHPID 62                            00728300
+CHANEL63 CHPID PATH=((63)),TYPE=BL  CHPID 63                            00728400
+CHANEL64 CHPID PATH=((64)),TYPE=BL  CHPID 64                            00728500
+CHANEL65 CHPID PATH=((65)),TYPE=BL  CHPID 65                            00728600
+CHANEL66 CHPID PATH=((66)),TYPE=BL  CHPID 66                            00728700
+CHANEL67 CHPID PATH=((67)),TYPE=BL  CHPID 67                            00728800
+CHANEL68 CHPID PATH=((68)),TYPE=BL  CHPID 67                            00728900
+CHANEL69 CHPID PATH=((69)),TYPE=BL  CHPID 67                            00729000
+CHANEL6A CHPID PATH=((6A)),TYPE=BL  CHPID 67                            00729100
+CHANEL6B CHPID PATH=((6B)),TYPE=BL  CHPID 67                            00729200
+CHANEL6C CHPID PATH=((6C)),TYPE=BL  CHPID 67                            00729300
+CHANEL6D CHPID PATH=((6D)),TYPE=BL  CHPID 67                            00729400
+CHANEL6E CHPID PATH=((6E)),TYPE=BL  CHPID 67                            00729500
+CHANEL6F CHPID PATH=((6F)),TYPE=BL  CHPID 67                            00729600
+CHANEL70 CHPID PATH=((70)),TYPE=BL  CHPID 70                            00729700
+CHANEL71 CHPID PATH=((71)),TYPE=BL  CHPID 71                            00729800
+CHANEL72 CHPID PATH=((72)),TYPE=BL  CHPID 72                            00729900
+CHANEL73 CHPID PATH=((73)),TYPE=BL  CHPID 73                            00730000
+CHANEL74 CHPID PATH=((74)),TYPE=BL  CHPID 74                            00730100
+CHANEL75 CHPID PATH=((75)),TYPE=BL  CHPID 75                            00730200
+CHANEL76 CHPID PATH=((76)),TYPE=BL  CHPID 76                            00730300
+CHANEL77 CHPID PATH=((77)),TYPE=BL  CHPID 77                            00730400
+CHANEL78 CHPID PATH=((78)),TYPE=BL  CHPID 78                            00730500
+CHANEL79 CHPID PATH=((79)),TYPE=BL  CHPID 79                            00730600
+CHANEL7A CHPID PATH=((7A)),TYPE=BL  CHPID 7A                            00730700
+CHANEL7B CHPID PATH=((7B)),TYPE=BL  CHPID 7B                            00730800
+CHANEL7C CHPID PATH=((7C)),TYPE=BL  CHPID 7C                            00730900
+CHANEL7D CHPID PATH=((7D)),TYPE=BL  CHPID 7D                            00731000
+CHANEL7E CHPID PATH=((7E)),TYPE=BL  CHPID 7E                            00731100
+CHANEL7F CHPID PATH=((7F)),TYPE=BL  CHPID 7F                            00731200
+            EJECT                                                       00731300
+*IOCP                                                                   00731400
+*IOCP CHANNEL 0 IO DEVICES (BYTE)                                       00731500
+*IOCP                                                                   00731600
+CTL01E  CNTLUNIT CUNUMBR=1E1,PATH=(00,40),PROTOCL=D,SHARED=N,          +00731700
+               UNIT=3203,UNITADD=((1E,1))                               00731800
+CTL020  CNTLUNIT CUNUMBR=020,PATH=(02,42),PROTOCL=D,SHARED=N,          +00731900
+               UNIT=3274,UNITADD=((20,32))                              00732000
+CTL040  CNTLUNIT CUNUMBR=040,PATH=(02,42),PROTOCL=D,SHARED=N,          +00733000
+               UNIT=3274,UNITADD=((40,32))                              00734000
+        EJECT                                                           00735000
+DEV01E  IODEVICE UNIT=3203,ADDRESS=01E,MODEL=4,CUNUMBR=1E1              00736000
+*                                                                       00737000
+*        THESE 3277'S, 020-02F, ARE FOR USE UNDER VM/XA                 00738000
+*                                                                       00739000
+DEV020  IODEVICE UNIT=3278,ADDRESS=(020,32),MODEL=2,CUNUMBR=020,       +00740000
+               FEATURE=(DOCHAR,EBKY3277,KB78KEY,SELPEN,NUMLOCK,AUDALRM) 00750000
+*                                                                       00760000
+DEV040  IODEVICE UNIT=3278,ADDRESS=(040,32),MODEL=2,CUNUMBR=040,       +00770000
+               FEATURE=(DOCHAR,EBKY3277,KB78KEY,SELPEN,NUMLOCK,AUDALRM) 00780000
+         EJECT                                                          00790000
+*IOCP ***************************************************************** 00800000
+*IOCP CHANNEL 1 IO DEVICES                                              00810000
+*IOCP ***************************************************************** 00820000
+CTL100  CNTLUNIT CUNUMBR=100,PATH=(03,43),PROTOCL=D,SHARED=N,          +00830000
+               UNIT=CTC,UNITADD=((00,16))                               00840000
+CTL110  CNTLUNIT CUNUMBR=110,PATH=(03,43),PROTOCL=S,SHARED=N,          +00850000
+               UNIT=3800,UNITADD=((10,1))                               00860000
+*                                                                       00870000
+         EJECT                                                          00880000
+DEV100  IODEVICE UNIT=CTC,ADDRESS=(100,16),FEATURE=370,                +00890000
+               CUNUMBR=100,TIMEOUT=N                                    00900000
+DEV110  IODEVICE UNIT=3800,ADDRESS=(110,1),MODEL=3,                    +00910000
+               CUNUMBR=110                                              00920000
+         EJECT                                                          00930000
+*IOCP ***************************************************************** 00940000
+*IOCP CHANNEL 1 IO DEVICES - 3390                                       00950000
+*IOCP ***************************************************************** 00960000
+CTL140  CNTLUNIT CUNUMBR=14,PATH=(04),PROTOCL=S4,SHARED=N,             +00970000
+               UNIT=3990,UNITADD=((40,64))                              00980000
+CTL150  CNTLUNIT CUNUMBR=15,PATH=(14),PROTOCL=S4,SHARED=N,             +00990000
+               UNIT=3990,UNITADD=((40,64))                              01000000
+CTL160  CNTLUNIT CUNUMBR=16,PATH=(24),PROTOCL=S4,SHARED=N,             +01010000
+               UNIT=3990,UNITADD=((40,64))                              01020000
+CTL170  CNTLUNIT CUNUMBR=17,PATH=(34),PROTOCL=S4,SHARED=N,             +01030000
+               UNIT=3990,UNITADD=((40,64))                              01040000
+*                                                                       01050000
+         EJECT                                                          01060000
+DEV140  IODEVICE UNIT=3390,ADDRESS=(140,64),TIMEOUT=Y,                 +01070000
+               FEATURE=(SHARED,ALTCTRL),CUNUMBR=(14,15,16,17)           01080000
+         EJECT                                                          01090000
+*IOCP ***************************************************************** 01100000
+*IOCP CHANNEL 3 IO DEVICES - 3390                                       01110000
+*IOCP ***************************************************************** 01120000
+*IOCP ***************************************************************** 01130000
+*IOCP CHANNEL 3 IO DEVICES                                              01140000
+*IOCP ***************************************************************** 01150000
+CTL300  CNTLUNIT CUNUMBR=300,PATH=(01,41),PROTOCL=S4,SHARED=N,         +01160000
+               UNIT=CTC,UNITADD=((00,32))                               01170000
+*                                                                       01180000
+         EJECT                                                          01190000
+DEV300  IODEVICE UNIT=CTC,ADDRESS=(300,32),FEATURE=370,                +01200000
+               CUNUMBR=300,TIMEOUT=Y                                    01210000
+         EJECT                                                          01220000
+CTL380  CNTLUNIT CUNUMBR=38,PATH=(06),PROTOCL=S4,SHARED=N,             +01230000
+               UNIT=3990,UNITADD=((80,64))                              01240000
+CTL390  CNTLUNIT CUNUMBR=39,PATH=(16),PROTOCL=S4,SHARED=N,             +01250000
+               UNIT=3990,UNITADD=((80,64))                              01260000
+CTL3A0  CNTLUNIT CUNUMBR=3A,PATH=(26),PROTOCL=S4,SHARED=N,             +01270000
+               UNIT=3990,UNITADD=((80,64))                              01280000
+CTL3B0  CNTLUNIT CUNUMBR=3B,PATH=(36),PROTOCL=S4,SHARED=N,             +01290000
+               UNIT=3990,UNITADD=((80,64))                              01300000
+*                                                                       01310000
+         EJECT                                                          01320000
+DEV380  IODEVICE UNIT=3390,ADDRESS=(380,64),TIMEOUT=Y,                 +01321000
+               FEATURE=(SHARED,ALTCTRL),CUNUMBR=(38,39,3A,3B)           01322000
+         EJECT                                                          01323000
+*IOCP ***************************************************************** 01324000
+*IOCP 5C0                                                               01325000
+*IOCP ***************************************************************** 01326000
+CTL5C0  CNTLUNIT CUNUMBR=5C,PATH=(0B),PROTOCL=S4,SHARED=N,             +01327000
+               UNIT=3880,UNITADD=((C0,64))                              01328000
+*                                                                       01329000
+         EJECT                                                          01330000
+DEV5C0  IODEVICE UNIT=3390,ADDRESS=(5C0,64),                           +01340000
+               FEATURE=(SHARED,ALTCTRL),CUNUMBR=(5C),TIMEOUT=Y          01350000
+         EJECT                                                          01360000
+*IOCP ***************************************************************** 01370000
+*IOCP CHANNEL 6 IO DEVICES                                              01380000
+*IOCP ***************************************************************** 01390000
+CTL640  CNTLUNIT CUNUMBR=64,PATH=(10),PROTOCL=S4,SHARED=N,             +01400000
+               UNIT=3880,UNITADD=((40,4))                               01410000
+CTL650  CNTLUNIT CUNUMBR=65,PATH=(20),PROTOCL=S4,SHARED=N,             +01420000
+               UNIT=3880,UNITADD=((40,4))                               01430000
+*                                                                       01440000
+         EJECT                                                          01450000
+DEV640  IODEVICE UNIT=3380,ADDRESS=(640,4),                            +01460000
+               FEATURE=(SHARED,ALTCTRL),CUNUMBR=(64,65),TIMEOUT=Y       01470000
+         EJECT                                                          01480000
+*IOCP ***************************************************************** 01490000
+*IOCP CHANNEL 6 IO DEVICES - 3390                                       01500000
+*IOCP ***************************************************************** 01510000
+CTL6C0  CNTLUNIT CUNUMBR=6C,PATH=(05),PROTOCL=S4,SHARED=N,             +01520000
+               UNIT=3990,UNITADD=((C0,64))                              01530000
+CTL6D0  CNTLUNIT CUNUMBR=6D,PATH=(15),PROTOCL=S4,SHARED=N,             +01540000
+               UNIT=3990,UNITADD=((C0,64))                              01550000
+CTL6E0  CNTLUNIT CUNUMBR=6E,PATH=(25),PROTOCL=S4,SHARED=N,             +01560000
+               UNIT=3990,UNITADD=((C0,64))                              01570000
+CTL6F0  CNTLUNIT CUNUMBR=6F,PATH=(35),PROTOCL=S4,SHARED=N,             +01580000
+               UNIT=3990,UNITADD=((C0,64))                              01590000
+*                                                                       01600000
+         EJECT                                                          01610000
+DEV6C0  IODEVICE UNIT=3390,ADDRESS=(6C0,64),TIMEOUT=Y,                 +01620000
+               FEATURE=(SHARED,ALTCTRL),CUNUMBR=(6C,6D,6E,6F)           01630000
+         EJECT                                                          01640000
+*IOCP ***************************************************************** 01650000
+*IOCP 7C0                                                               01660000
+*IOCP ***************************************************************** 01670000
+CTL7C0  CNTLUNIT CUNUMBR=7C,PATH=(0A),PROTOCL=S4,SHARED=N,             +01680000
+               UNIT=3880,UNITADD=((C0,64))                              01690000
+*                                                                       01700000
+         EJECT                                                          01710000
+DEV7C0  IODEVICE UNIT=3390,ADDRESS=(7C0,64),                           +01720000
+               FEATURE=(SHARED,ALTCTRL),CUNUMBR=(7C),TIMEOUT=Y          01730000
+         EJECT                                                          01740000
+*IOCP ***************************************************************** 01750000
+*IOCP CHANNEL 8 IO DEVICES                                              01760000
+*IOCP ***************************************************************** 01770000
+CTL840  CNTLUNIT CUNUMBR=84,PATH=(08),PROTOCL=S4,SHARED=N,             +01780000
+               UNIT=3990,UNITADD=((40,64))                              01790000
+CTL850  CNTLUNIT CUNUMBR=85,PATH=(43),PROTOCL=S4,SHARED=N,             +01800000
+               UNIT=3990,UNITADD=((40,64))                              01810000
+*                                                                       01820000
+         EJECT                                                          01830000
+DEV840  IODEVICE UNIT=3380,ADDRESS=(840,32),TIMEOUT=Y,                 +01840000
+               FEATURE=(SHARED,ALTCTRL),CUNUMBR=(84,85)                 01850000
+DEV860  IODEVICE UNIT=3390,ADDRESS=(860,32),TIMEOUT=Y,                 +01860000
+               FEATURE=(SHARED,ALTCTRL),CUNUMBR=(84,85)                 01870000
+         EJECT                                                          01880000
+*IOCP ***************************************************************** 01890000
+*IOCP CHANNEL 9 IO DEVICES                                              01900000
+*IOCP ***************************************************************** 01910000
+CTL980  CNTLUNIT CUNUMBR=98,PATH=(03),PROTOCL=S4,SHARED=N,             +01920000
+               UNIT=3990,UNITADD=((80,64))                              01930000
+CTL990  CNTLUNIT CUNUMBR=99,PATH=(13),PROTOCL=S4,SHARED=N,             +01940000
+               UNIT=3990,UNITADD=((80,64))                              01950000
+CTL9A0  CNTLUNIT CUNUMBR=9A,PATH=(23),PROTOCL=S4,SHARED=N,             +01960000
+               UNIT=3990,UNITADD=((80,64))                              01970000
+CTL9B0  CNTLUNIT CUNUMBR=9B,PATH=(33),PROTOCL=S4,SHARED=N,             +01980000
+               UNIT=3990,UNITADD=((80,64))                              01990000
+*                                                                       02000000
+         EJECT                                                          02010000
+DEV980  IODEVICE UNIT=3390,ADDRESS=(980,64),TIMEOUT=Y,                 +02020000
+               FEATURE=(SHARED,ALTCTRL),CUNUMBR=(98,99,9A,9B)           02030000
+         EJECT                                                          02040000
+*IOCP ***************************************************************** 02050000
+*IOCP CHANNEL B IO DEVICES - 3390                                       02060000
+*IOCP ***************************************************************** 02070000
+CTLB00  CNTLUNIT CUNUMBR=B0,PATH=(0A),PROTOCL=S4,SHARED=N,             +02080000
+               UNIT=3990,UNITADD=((00,64))                              02090000
+CTLB10  CNTLUNIT CUNUMBR=B1,PATH=(1A),PROTOCL=S4,SHARED=N,             +02100000
+               UNIT=3990,UNITADD=((00,64))                              02110000
+CTLB20  CNTLUNIT CUNUMBR=B2,PATH=(2A),PROTOCL=S4,SHARED=N,             +02120000
+               UNIT=3990,UNITADD=((00,64))                              02130000
+CTLB30  CNTLUNIT CUNUMBR=B3,PATH=(3A),PROTOCL=S4,SHARED=N,             +02140000
+               UNIT=3990,UNITADD=((00,64))                              02150000
+*                                                                       02160000
+         EJECT                                                          02170000
+DEVB00  IODEVICE UNIT=3390,ADDRESS=(B00,64),TIMEOUT=Y,                 +02180000
+               FEATURE=(SHARED,ALTCTRL),CUNUMBR=(B0,B1,B2,B3)           02190000
+         EJECT                                                          02200000
+CTLB40  CNTLUNIT CUNUMBR=B4,PATH=(0B),PROTOCL=S4,SHARED=N,             +02210000
+               UNIT=3990,UNITADD=((40,64))                              02220000
+CTLB50  CNTLUNIT CUNUMBR=B5,PATH=(1B),PROTOCL=S4,SHARED=N,             +02230000
+               UNIT=3990,UNITADD=((40,64))                              02240000
+CTLB60  CNTLUNIT CUNUMBR=B6,PATH=(2B),PROTOCL=S4,SHARED=N,             +02250000
+               UNIT=3990,UNITADD=((40,64))                              02260000
+CTLB70  CNTLUNIT CUNUMBR=B7,PATH=(3B),PROTOCL=S4,SHARED=N,             +02270000
+               UNIT=3990,UNITADD=((40,64))                              02280000
+*                                                                       02290000
+         EJECT                                                          02300000
+DEVB40  IODEVICE UNIT=3390,ADDRESS=(B40,64),TIMEOUT=Y,                 +02310000
+               FEATURE=(SHARED,ALTCTRL),CUNUMBR=(B4,B5,B6,B7)           02320000
+         EJECT                                                          02330000
+CTLB80  CNTLUNIT CUNUMBR=B8,PATH=(0C),PROTOCL=S4,SHARED=N,             +02340000
+               UNIT=3990,UNITADD=((80,64))                              02350000
+CTLB90  CNTLUNIT CUNUMBR=B9,PATH=(1C),PROTOCL=S4,SHARED=N,             +02360000
+               UNIT=3990,UNITADD=((80,64))                              02370000
+CTLBA0  CNTLUNIT CUNUMBR=BA,PATH=(2C),PROTOCL=S4,SHARED=N,             +02380000
+               UNIT=3990,UNITADD=((80,64))                              02390000
+CTLBB0  CNTLUNIT CUNUMBR=BB,PATH=(3C),PROTOCL=S4,SHARED=N,             +02400000
+               UNIT=3990,UNITADD=((80,64))                              02410000
+*                                                                       02420000
+         EJECT                                                          02430000
+DEVB80  IODEVICE UNIT=3390,ADDRESS=(B80,64),TIMEOUT=Y,                 +02440000
+               FEATURE=(SHARED,ALTCTRL),CUNUMBR=(B8,B9,BA,BB)           02450000
+         EJECT                                                          02460000
+CTLBC0  CNTLUNIT CUNUMBR=BC,PATH=(0D),PROTOCL=S4,SHARED=N,             +02470000
+               UNIT=3990,UNITADD=((C0,64))                              02480000
+CTLBD0  CNTLUNIT CUNUMBR=BD,PATH=(1D),PROTOCL=S4,SHARED=N,             +02490000
+               UNIT=3990,UNITADD=((C0,64))                              02500000
+CTLBE0  CNTLUNIT CUNUMBR=BE,PATH=(2D),PROTOCL=S4,SHARED=N,             +02510000
+               UNIT=3990,UNITADD=((C0,64))                              02520000
+CTLBF0  CNTLUNIT CUNUMBR=BF,PATH=(3D),PROTOCL=S4,SHARED=N,             +02530000
+               UNIT=3990,UNITADD=((C0,64))                              02540000
+*                                                                       02550000
+         EJECT                                                          02560000
+DEVBC0  IODEVICE UNIT=3390,ADDRESS=(BC0,64),TIMEOUT=Y,                 +02570000
+               FEATURE=(SHARED,ALTCTRL),CUNUMBR=(BC,BD,BE,BF)           02580000
+         EJECT                                                          02590000
+*IOCP ***************************************************************** 02600000
+*IOCP CHANNEL C IO DEVICES - 3390                                       02610000
+*IOCP ***************************************************************** 02620000
+CTLC00  CNTLUNIT CUNUMBR=C0,PATH=(06),PROTOCL=S4,SHARED=N,             +02630000
+               UNIT=3990,UNITADD=((00,64))                              02640000
+CTLC10  CNTLUNIT CUNUMBR=C1,PATH=(16),PROTOCL=S4,SHARED=N,             +02650000
+               UNIT=3990,UNITADD=((00,64))                              02660000
+CTLC20  CNTLUNIT CUNUMBR=C2,PATH=(26),PROTOCL=S4,SHARED=N,             +02670000
+               UNIT=3990,UNITADD=((00,64))                              02680000
+CTLC30  CNTLUNIT CUNUMBR=C3,PATH=(36),PROTOCL=S4,SHARED=N,             +02690000
+               UNIT=3990,UNITADD=((00,64))                              02700000
+*                                                                       02710000
+         EJECT                                                          02720000
+DEVC00  IODEVICE UNIT=3390,ADDRESS=(C00,64),TIMEOUT=Y,                 +02730000
+               FEATURE=(SHARED,ALTCTRL),CUNUMBR=(C0,C1,C2,C3)           02740000
+         EJECT                                                          02750000
+CTLC80  CNTLUNIT CUNUMBR=C8,PATH=(0F),PROTOCL=S4,SHARED=N,             +02760000
+               UNIT=3990,UNITADD=((80,64))                              02770000
+CTLC90  CNTLUNIT CUNUMBR=C9,PATH=(1F),PROTOCL=S4,SHARED=N,             +02780000
+               UNIT=3990,UNITADD=((80,64))                              02790000
+CTLCA0  CNTLUNIT CUNUMBR=CA,PATH=(2F),PROTOCL=S4,SHARED=N,             +02800000
+               UNIT=3990,UNITADD=((80,64))                              02810000
+CTLCB0  CNTLUNIT CUNUMBR=CB,PATH=(3F),PROTOCL=S4,SHARED=N,             +02820000
+               UNIT=3990,UNITADD=((80,64))                              02830000
+*                                                                       02840000
+         EJECT                                                          02850000
+DEVC80  IODEVICE UNIT=3390,ADDRESS=(C80,64),TIMEOUT=Y,                 +02860000
+               FEATURE=(SHARED,ALTCTRL),CUNUMBR=(C8,C9,CA,CB)           02870000
+         EJECT                                                          02880000
+*IOCP ***************************************************************** 02890000
+*IOCP CHANNEL E IO DEVICES                                              02900000
+*IOCP ***************************************************************** 02910000
+CTLEC0  CNTLUNIT CUNUMBR=EC0,PATH=(01),PROTOCL=S4,SHARED=N,            +02920000
+               UNIT=3480,UNITADD=((C0,16))                              02930000
+CTLEE0  CNTLUNIT CUNUMBR=EE0,PATH=(01),PROTOCL=S4,SHARED=N,            +02940000
+               UNIT=3480,UNITADD=((E0,32))                              02950000
+*                                                                       02960000
+DEVEC0  IODEVICE UNIT=3480,ADDRESS=(EC0,16),                           +02970000
+               FEATURE=(SHARABLE,COMPACT),                             +02980000
+               CUNUMBR=(EC0),TIMEOUT=Y                                  02990000
+DEVEE0  IODEVICE UNIT=3480,ADDRESS=(EE0,32),                           +03000000
+               FEATURE=(SHARABLE,COMPACT),                             +03010000
+               CUNUMBR=(EE0),TIMEOUT=Y                                  03020000
+         EJECT                                                          03030000
+*IOCP ***************************************************************** 03040000
+*IOCP CHANNEL F IO DEVICES                                              03050000
+*IOCP ***************************************************************** 03060000
+CTLFC0  CNTLUNIT CUNUMBR=FC,PATH=(22),PROTOCL=S4,SHARED=N,             +03070000
+               UNIT=3990,UNITADD=((C0,64))                              03080000
+CTLFD0  CNTLUNIT CUNUMBR=FD,PATH=(2A),PROTOCL=S4,SHARED=N,             +03090000
+               UNIT=3990,UNITADD=((C0,64))                              03100000
+CTLFE0  CNTLUNIT CUNUMBR=FE,PATH=(23),PROTOCL=S4,SHARED=N,             +03110000
+               UNIT=3990,UNITADD=((C0,64))                              03120000
+CTLFF0  CNTLUNIT CUNUMBR=FF,PATH=(2B),PROTOCL=S4,SHARED=N,             +03130000
+               UNIT=3990,UNITADD=((C0,64))                              03140000
+*                                                                       03150000
+         EJECT                                                          03160000
+DEVFC0  IODEVICE UNIT=3390,ADDRESS=(FC0,64),TIMEOUT=Y,                 +03170000
+               FEATURE=(SHARED,ALTCTRL),CUNUMBR=(FC,FD,FE,FF)           03180000
+         EJECT                                                          03190000
+**********************************************************************  03200000
+*     UNITNAMES FOR DIRECT ACCESS DEVICES (DASD)                     *  03210000
+**********************************************************************  03220000
+USYSDA1  UNITNAME  NAME=SYSDA,                                         +03230000
+               UNIT=((140,64),(380,8))                                  03240000
+USYSDA2  UNITNAME  NAME=SYSDA,                                         +03250000
+               UNIT=((6C0,64),                                         +03260000
+               (840,64),(980,64),(B40,64),(B80,64),(BC0,64),           +03270000
+               (C00,64),(C80,64),                                      +03280000
+               (FC0,64))                                                03290000
+*                                                                       03300000
+         EJECT                                                          03310000
+**********************************************************************  03320000
+*     UNITNAMES FOR TAPE DRIVES                                         03330000
+**********************************************************************  03340000
+*                                                                       03350000
+UCTAPE   UNITNAME UNIT=((EC0,16),(EE0,32)),NAME=CTAPE                   03360000
+U3800M3  UNITNAME UNIT=((110,1)),NAME=3800M3                            03370000
+*                                                                       03380000
+         EJECT                                                          03390000
+**********************************************************************  03400000
+*     UNITNAMES FOR COMMON I-O DEVICES                               *  03410000
+**********************************************************************  03420000
+*                                                                       03430000
+         EJECT                                                          03440000
+**********************************************************************  03450000
+*  THE FOLLOWING MACROS ARE INCLUDED FOR VIO SUPPORT.                *  03460000
+*  VIO WILL ONLY BE USED FOR TEMPORARY DATASETS, A REAL DEVICE       *  03470000
+*  WILL BE ALLOCATED IF A NON-TEMPORARY DATASET IS SPECIFIED AND     *  03480000
+*  EITHER 'VIO' OR 'SYSTS' IS SPECIFIED IN THE UNIT PARAMETER.       *  03490000
+**********************************************************************  03500000
+*                                                                       03510000
+* VIRTUAL I-O (VIO) IF USED WILL TAKE ON ALL OF THE PHYSICAL            03520000
+* CHARACTERISTICS OF A 2305 SO AS TO BE TRANSPARENT TO THE PROGRAM      03530000
+*                                                                       03540000
+UVIO UNITNAME NAME=VIO,VIO=YES,UNIT=849                                 03550000
+*                                                                       03560000
+         EJECT                                                          03570000
+*                                                                       03580000
+**********************************************************************  03590000
+* THE UNIT NAME 'SYSTS' REPRESENTS ALL OF THE DASD                      03600000
+* IODEVICES IN THIS CONFIGURATION. VIRTUAL I-O (VIO) IF USED WILL       03610000
+* TAKE ON ALL OF THE PHYSICAL CHARACTERISTICS OF THE DEVICE FIRST       03620000
+* ENCOUNTERED IN THE DEVICE PREFERENCE TABLE AND ALSO SPECIFIED         03630000
+* HERE. SINCE THE DEVICE PREFERENCE TABLE IS DEFAULTED, THE DEVICE      03640000
+* THAT WILL BE SIMULATED IS A 2305. FOR ADDITIONAL INFORMATION          03650000
+* SEE THE SYSGEN MANUAL APPENDIX C. AND 'SCHEDULR' MACRO.               03660000
+**********************************************************************  03670000
+         SPACE 5                                                        03680000
+USYSTS1  UNITNAME  NAME=SYSTS,VIO=YES,                                 +03690000
+               UNIT=((140,64),(380,8))                                  03700000
+USYSTS2  UNITNAME  NAME=SYSTS,VIO=YES,                                 +03710000
+               UNIT=((6C0,64),                                         +03720000
+               (840,64),(980,64),(B40,64),(B80,64),(BC0,64),           +03730000
+               (C00,64),(C80,64),                                      +03740000
+               (FC0,64))                                                03750000
+*                                                                       03760000
+         EJECT                                                          03770000
+**********************************************************************  03780000
+*  THE FOLLOWING MACROS ARE INCLUDED TO MODEL DIFFERENT DEVICE TYPES *  03790000
+**********************************************************************  03800000
+*                                                                       03810000
+V3380    UNITNAME NAME=V3380,       TRACK OR WINDOW SIZE 19069 BYTES   +03820000
+               VIO=YES,             VIO TRACK/CYL = 15                 +03830000
+               UNIT=(849)           VIO CYL/VOL = 884                   03840000
+*                                                                       03850000
+TDISK    UNITNAME NAME=TDISK,       TRACK OR WINDOW SIZE 19069 BYTES   +03860000
+               VIO=YES,             VIO TRACK/CYL = 30                 +03870000
+               UNIT=(849)           VIO CYL/VOL = 505                   03880000
+         EJECT                                                          03890000
+**********************************************************************  03900000
+*                      NIP CONSOLES                                  *  03910000
+**********************************************************************  03920000
+*                                                                       03930000
+CONSOLES NIPCON DEVNUM=(040,041,042,043,044,020)                        03940000

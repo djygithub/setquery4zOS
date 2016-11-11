@@ -1,0 +1,44 @@
+//CPPACK1 JOB (0,75),'LORENZO',MSGCLASS=X                               00010013
+//MV43RS  EXEC PGM=ADRDSSU,REGION=4M                                    00020013
+//SYSPRINT DD  SYSOUT=*                                                 00030000
+//IN       DD  UNIT=3390,VOL=SER=MV43RS,DISP=SHR                        00040013
+//OUT      DD  UNIT=3390,VOL=SER=VOL8CA,DISP=SHR                        00050016
+//SYSIN    DD  *                                                        00060000
+ COPY OUTDDNAME(OUT) INDDNAME(IN) CANCELERROR -                         00070000
+ ALLDATA(*) ALLEXCP COPYVOLID                                           00080000
+//MV43CA  EXEC PGM=ADRDSSU,REGION=4M                                    00090013
+//SYSPRINT DD  SYSOUT=*                                                 00100012
+//IN       DD  UNIT=3390,VOL=SER=MV43CA,DISP=SHR                        00110013
+//OUT      DD  UNIT=3390,VOL=SER=VOL8CB,DISP=SHR                        00120016
+//SYSIN    DD  *                                                        00130012
+ COPY OUTDDNAME(OUT) INDDNAME(IN) CANCELERROR -                         00140012
+ ALLDATA(*) ALLEXCP COPYVOLID                                           00150012
+//MV43DL  EXEC PGM=ADRDSSU,REGION=4M                                    00160013
+//SYSPRINT DD  SYSOUT=*                                                 00170012
+//IN       DD  UNIT=3390,VOL=SER=MV43DL,DISP=SHR                        00180013
+//OUT      DD  UNIT=3390,VOL=SER=VOL8CC,DISP=SHR                        00190017
+//SYSIN    DD  *                                                        00200012
+ COPY OUTDDNAME(OUT) INDDNAME(IN) CANCELERROR -                         00210012
+ ALLDATA(*) ALLEXCP COPYVOLID                                           00220012
+//CPPACK2 JOB (0,75),'LORENZO',MSGCLASS=X                               00221013
+//CICS33  EXEC PGM=ADRDSSU,REGION=4M                                    00230013
+//SYSPRINT DD  SYSOUT=*                                                 00240012
+//IN       DD  UNIT=3390,VOL=SER=CICS33,DISP=SHR                        00250013
+//OUT      DD  UNIT=3390,VOL=SER=VOL8CD,DISP=SHR                        00260016
+//SYSIN    DD  *                                                        00270012
+ COPY OUTDDNAME(OUT) INDDNAME(IN) CANCELERROR -                         00280012
+ ALLDATA(*) ALLEXCP COPYVOLID                                           00290012
+//TESTQA  EXEC PGM=ADRDSSU,REGION=4M                                    00300013
+//SYSPRINT DD  SYSOUT=*                                                 00310012
+//IN       DD  UNIT=3390,VOL=SER=TESTQA,DISP=SHR                        00320013
+//OUT      DD  UNIT=3390,VOL=SER=VOL8DE,DISP=SHR                        00330016
+//SYSIN    DD  *                                                        00340012
+ COPY OUTDDNAME(OUT) INDDNAME(IN) CANCELERROR -                         00350012
+ ALLDATA(*) ALLEXCP COPYVOLID                                           00360012
+//DB2IMS  EXEC PGM=ADRDSSU,REGION=4M                                    00370013
+//SYSPRINT DD  SYSOUT=*                                                 00380012
+//IN       DD  UNIT=3390,VOL=SER=DB2IMS,DISP=SHR                        00390013
+//OUT      DD  UNIT=3390,VOL=SER=VOL8DF,DISP=SHR                        00400016
+//SYSIN    DD  *                                                        00410012
+ COPY OUTDDNAME(OUT) INDDNAME(IN) CANCELERROR -                         00420012
+ ALLDATA(*) ALLEXCP COPYVOLID                                           00430012

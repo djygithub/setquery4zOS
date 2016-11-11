@@ -1,0 +1,25 @@
+//COMPVSAM JOB (COMPRESS),'DJYOUNG',MSGCLASS=X,MSGLEVEL=(2,1)           00010015
+//DELETE    EXEC PGM=IDCAMS,REGION=6M                                   00020011
+//SYSPRINT DD SYSOUT=*                                                  00030000
+//SYSIN    DD *                                                         00040000
+ DELETE DAVID.VSAMCOMP.TEST                                             00050013
+ SET MAXCC=0                                                            00118600
+//DEFINE    EXEC PGM=IDCAMS,REGION=6M                                   00118711
+//SYSPRINT DD SYSOUT=*                                                  00118800
+//SYSIN    DD *                                                         00119000
+ /*                                  */                                 00119100
+ /* DEFINE A FILEA DATASET           */                                 00120000
+ /*                                  */                                 00130000
+ DEFINE CLUSTER(NAME(DAVID.VSAMCOMP.TEST)-                              00140013
+          DATACLASS(COMPRESS)  -                                        00141004
+          MGMTCLAS(SMS) -                                               00143004
+          CYL(50 50) -                                                  00150007
+          IXD -                                                         00160000
+          VOLUMES(SMS9EA)) -                                            00170003
+         DATA(NAME(DAVID.VSAMCOMP.TEST.DATA)-                           00180013
+         RECSZ(80 80) CISZ(4096) -                                      00190011
+         UNIQUE -                                                       00200000
+         KEYS(6 1)) -                                                   00210000
+        INDEX(NAME(DAVID.VSAMCOMP.TEST.INDEX) CISZ(1536)-               00220013
+          UNIQUE -                                                      00221000
+          SHR(2 3))                                                     00222000

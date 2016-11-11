@@ -1,0 +1,1 @@
+ CREATE STOGROUP DB27C8  VOLUMES (DB2S01) VCAT DSNC220;                         
