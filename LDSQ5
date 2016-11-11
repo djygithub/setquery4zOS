@@ -1,0 +1,75 @@
+//LDSQ5    JOB (AAA),'D J YOUNG',MSGCLASS=X,TIME=1440,USER=DAVID,               
+//         REGION=0K                                                            
+//DSNUPROC PROC LIB='SYS1.DSN310.SDSNLOAD',                                     
+//         SYSTEM=DB3,                                                          
+//         SIZE=1024K,UID='',UTPROC=''                                          
+//*        SIZE=1024K,UID='',UTPROC='RESTART'                                   
+//*        COMPRESS = YES                                                       
+//DSNUPROC EXEC PGM=DSNUTILB,REGION=&SIZE,                                      
+//         PARM=(&SYSTEM,'&UID','&UTPROC')                                      
+//STEPLIB  DD DSN=&LIB,DISP=SHR                                                 
+//SYSPRINT DD SYSOUT=*                                                          
+//UTPRINT  DD SYSOUT=*                                                          
+//SYSUDUMP DD SYSOUT=*                                                          
+//    PEND                                                                      
+//UTIL EXEC DSNUPROC,SYSTEM=DB3,UID='LOADSQ4',UTPROC=''                         
+//*                                                                             
+//**********************************************                                
+//*                                                                             
+//*  GENERATING JCL FOR THE LOAD UTILITY                                        
+//*  DATE:  11/04/87          TIME:  05:03:15                                   
+//*                                                                             
+//**********************************************                                
+//*                                                                             
+//DSNUPROC.SORTWK01 DD DSN=&&SORT1,                                             
+//     DISP=(,DELETE),DCB=BLKSIZE=15400,                                        
+//     SPACE=(CYL,(90,50),,,ROUND),                                             
+//     UNIT=3390,VOL=SER=MV43CA                                                 
+//DSNUPROC.SORTWK02 DD DSN=&&SORT2,                                             
+//     DISP=(,DELETE),DCB=BLKSIZE=15400,                                        
+//     SPACE=(CYL,(90,50),,,ROUND),                                             
+//     UNIT=3390,VOL=SER=MV43CA                                                 
+//DSNUPROC.SORTWK03 DD DSN=&&SORT3,                                             
+//     DISP=(,DELETE),DCB=BLKSIZE=15400,                                        
+//     SPACE=(CYL,(90,50),,,ROUND),                                             
+//     UNIT=3390,VOL=SER=MV43RS                                                 
+//DSNUPROC.SORTWK04 DD DSN=&&SORT4,                                             
+//     DISP=(,DELETE),DCB=BLKSIZE=15400,                                        
+//     SPACE=(CYL,(90,50),,,ROUND),                                             
+//     UNIT=3390,VOL=SER=MV43DL                                                 
+//DSNUPROC.SYSUT1 DD DSN=&&SYSUT1,                                              
+//     DISP=(,DELETE),DCB=BLKSIZE=15400,                                        
+//     SPACE=(CYL,(90,50),,,ROUND),                                             
+//     UNIT=3390,VOL=SER=MV43DL                                                 
+//DSNUPROC.SORTOUT DD DSN=&&SORTOT,                                             
+//     DISP=(,DELETE),DCB=BLKSIZE=15400,                                        
+//     SPACE=(CYL,(250,90),,,ROUND),                                            
+//     UNIT=3390,VOL=SER=MV43DL                                                 
+//DSNUPROC.MYDD1 DD DSN=DAVID.X4.DATA,DISP=SHR,                                 
+//        UNIT=3390,VOL=SER=MV43CA                                              
+//DSNUPROC.SYSMAP DD  DSN=&&SYSMAP,UNIT=3390,DISP=(NEW,DELETE,DELETE),          
+// SPACE=(CYL,(5,5)),DCB=BLKSIZE=15400,VOL=SER=MV43RS                           
+//DSNUPROC.SYSIN    DD  *                                                       
+ LOAD DATA INDDN(MYDD1) LOG NO RESUME NO                                00010000
+      INTO TABLE DAVID.SQ5                                              00020000
+     (KSEQ  POSITION(1:4) INTEGER,                                              
+      K500K POSITION(5:8)     INTEGER,                                          
+      K250K POSITION(9:12)    INTEGER,                                          
+      K100K POSITION(13:16)   INTEGER,                                          
+      K40K  POSITION(17:20)   INTEGER,                                          
+      K10K  POSITION(21:24)   INTEGER,                                          
+      K1K   POSITION(25:28)   INTEGER,                                          
+      K100  POSITION(29:32)   INTEGER,                                          
+      K25   POSITION(33:36)   INTEGER,                                          
+      K10   POSITION(37:40)   INTEGER,                                          
+      K5    POSITION(41:44)   INTEGER,                                          
+      K4    POSITION(45:48)   INTEGER,                                          
+      K2    POSITION(49:52)   INTEGER,                                          
+      SORTBIN  POSITION(53:56)   INTEGER,                                       
+      SORTPACK POSITION(57:60)   DEC PACKED,                                    
+      SORTCHAR POSITION(61:68)   CHAR(8),                                       
+      S4       POSITION(69:2101)      VARCHAR,                                  
+      S5       POSITION(2101:4032)    VARCHAR,                                  
+      S6       POSITION(4133:6164)   VARCHAR,                                   
+      S7       POSITION(6165:8186)  VARCHAR,                                    
+      S8       POSITION(8187:10210) VARCHAR)                                    

@@ -1,0 +1,157 @@
+//IV3E303J JOB (USER,ACCT,NUMBER),                                              
+//         'D J YOUNG',                                                         
+//         CLASS=A,MSGCLASS=X,MSGLEVEL=(1,1),                                   
+//         REGION=4M                                                            
+//*                                                                             
+//*                                                                             
+//*                                                                             
+//*********************************************************************         
+//* INSTALL/IVP IMS 3.1                                                         
+//*                                                                             
+//* SKELETON: DFSIXSE8                                                          
+//*                                                                             
+//* FUNCTION: DEFINE EXEC PARM DEFAULTS - DFSPRRGX                              
+//*********************************************************************         
+//*                                                                             
+//*********************************************************************         
+//*         THIS PRODUCT CONTAINS "RESTRICTED MATERIALS OF IBM".      *         
+//*                                                                   *         
+//*         5665-408 (C) COPYRIGHT IBM CORP. 1974, 1988.              *         
+//*         LICENSED MATERIALS - PROPERTY OF IBM.                     *         
+//*         ALL RIGHTS RESERVED.                                      *         
+//*                                                                   *         
+//*         U.S. GOVERNMENT USERS RESTRICTED RIGHTS -                 *         
+//*         USE, DUPLICATION, OR DISCLOSURE RESTRICTED BY             *         
+//*         GSA ADP SCHEDULE CONTRACT WITH IBM CORP.                  *         
+//*                                                                   *         
+//*         REFER TO COPYRIGHT INSTRUCTIONS FORM NUMBER G120-2083.    *         
+//*********************************************************************         
+//*                                                                             
+//*********************************************************************         
+//ASMPRRGX PROC MBR=TEMPNAME                                                    
+//*                                                                             
+//ASM      EXEC PGM=IEV90,PARM='OBJECT,NODECK'                                  
+//SYSPRINT DD SYSOUT=*                                                          
+//SYSLIB   DD DISP=SHR,DSN=IMS310.GENLIB                                        
+//         DD DISP=SHR,DSN=IMS310.GENLIBA                                       
+//         DD DISP=SHR,DSN=IMS310.GENLIBB                                       
+//         DD DISP=SHR,DSN=SYS1.MACLIB                                          
+//SYSLIN   DD UNIT=3390,DISP=(,PASS,DELETE),SPACE=(CYL,(1,1)),                  
+//            DCB=(RECFM=F,LRECL=80,BLKSIZE=80)                                 
+//SYSUT1   DD UNIT=3390,DISP=(,DELETE,DELETE),SPACE=(CYL,(1,1))                 
+//SYSUT2   DD UNIT=3390,DISP=(,DELETE,DELETE),SPACE=(CYL,(1,1))                 
+//SYSUT3   DD UNIT=(3390,SEP=(SYSLIB,SYSUT1,SYSUT2)),                           
+//            DISP=(,DELETE,DELETE),SPACE=(CYL,(1,1))                           
+//*                                                                             
+//LKED     EXEC PGM=IEWL,COND=(0,LT,ASM),                                       
+//         PARM='NCAL,LET,LIST,XREF'                                            
+//SYSPRINT DD SYSOUT=*                                                          
+//SYSLIN   DD DISP=(OLD,DELETE,DELETE),                                         
+//            DSN=*.ASM.SYSLIN,VOL=REF=*.ASM.SYSLIN                             
+//SYSLMOD  DD DISP=SHR,                                                         
+//            DSN=IMS310.RESLIB(&MBR)                                           
+//SYSUT1   DD UNIT=(3390,SEP=(SYSLMOD,SYSLIN)),                                 
+//            DISP=(,DELETE,DELETE),SPACE=(CYL,(1,1))                           
+//        PEND                                                                  
+//*********************************************************************         
+//*                                                                             
+//*                                                                             
+//* THE FOLLOWING STEP ASSEMBLES AND LINK-EDITS INTO IMS RESLIB                 
+//* THE DEFAULT PARAMETERS USED BY THE IMS CONTROL REGION - IVP1                
+//*                                                                             
+//DFSPRRG1 EXEC PROC=ASMPRRGX,MBR=DFSPRRG1                                      
+//ASM.SYSIN DD *                                                                
+         MACRO                                                                  
+         PRRGERR &PARM                                                          
+         MNOTE 8,'PARAMETER ON PARMS MACRO INVALID: ''&PARM'''                  
+         MEND                                                                   
+PRRG     TITLE 'CTL, CONTROL REGION PARAMETER AREA'                             
+*---------------------------------------------------------------------*         
+*                                                                               
+*   COPYRIGHT:  REFER TO MODULE DFSAADB0.                                       
+*                                                                               
+*... INSTALLATION CAN SET UP DEFAULT FOR IMS EXECUTION TIME PARAMETERS          
+*... BY SPECIFYING ANY OF THE FOLLOWING CORRESPONDING PARAMETERS                
+*... ON THE PARMS MACRO, THEN REASSEMBLE DFSPRRG0 AND LINK EDIT IT              
+*... INTO IMS RESLIB WITH THE NAME DFSPRRG(X) AND ENTRY DFSPRRG0, WHERE         
+*... 'X' IS 1 CHARACTER SUFFIX TO BE SPECIFIED FOR RGSUF PARAMETER ON           
+*... IMS EXECUTION CARD TO INDICATE DFSPRRG(X) IS THE DEFAULT BLOCK             
+*... OF THAT EXECUTION                                                          
+*                                                                               
+*... REFER TO SPRM,  PROCEDURE 'IMS' FOR MEANING OF EACH PARAMETER              
+*                                                                               
+*... NOTE: THE DASD LOGGING FUNCTION ADDED IN IMS 1.3 OBSOLETES                 
+*...       THE FOLLOWING PARAMETERS (DYBN,LOGA,RDBN,LOGD). THESE                
+*...       PARAMETERS WERE LEFT IN THE IMS PROC AND IN THE PARMS                
+*...       MARCO FOR COMPATIBILITY WITH IMS 1.2. THESE PARMAMETERS              
+*...       ARE IGNORED BY IMS 1.3.                                              
+*                                                                               
+*---------------------------------------------------------------------*         
+         PARMS C,RGPBASE=0,                                            X        
+               RES=Y,        X      BLOCK RESIDENT Y=YES, N=NO         X        
+               FRE=00030,    XXXXX  NUMBER OF FORMAT REQUEST ELEMENT   X        
+               QBUF=0005,    XXXX   NUMBER MSG QUEUE BUFFERS           X        
+               DYBN=1,       XXX    NUMBER OF DYNAMIC LOG BUFFERS      X        
+               PST=100,      XXX    NUMBER OF PST'S                    X        
+               SAV=100,      XXX    NUMBER OF DYNAMIC SAVE AREA SETS   X        
+               EXVR=Y,       X      EXCPVR N = NO, Y = YES             X        
+               PRF=Y,        X      PREFETCH OPTION N = NO, Y = YES    X        
+               SRCH=0,       X      0=STANDARD, 1=JPA, LPA BEFORE PDS  X        
+               FBP=00048,    XXXXX  MESSAGE BUFFER POOL   IN 1K BLOCKS X        
+               PSB=0048,     XXXX   PSB POOL IF LSO NE S  IN 1K BLOCKS X        
+               DMB=0048,     XXXX   DMB POOL              IN 1K BLOCKS X        
+               DBB=,         XXX    DBB POOL              IN 1K BLOCKS X        
+               TPDP=0048,    XXXX   TP DEVICE I/O POOL    IN 1K BLOCKS X        
+               WKAP=048,     XXX    WORK STORAGE BUF POOL IN 1K BLOCKS X        
+               PSBW=0024,    XXXX   PSB WORK POOL         IN 1K BLOCKS X        
+               CWAP=000048,  XXXXXX COMM WORK POOL        IN 1K BLOCKS X        
+               DBWP=024,     XXX    DATA BASE WORK POOL   IN 1K BLOCKS X        
+               MFS=012,      XXX    MAXMUM MFSTEST SPACE  IN 1K BLOCKS X        
+               SUF=I, X     CONTROL PGM LOAD NAME SUFFIX               X        
+               FIX=DC,       XX     FIX MODULE            SUFFIX       X        
+               PRLD=DC,      XX     PRELOAD PROC MEMBER   SUFFIX       X        
+               VSPEC=DC,     XX     VSAM BUFFER POOL SPEC SUFFIX       X        
+               SOD=,         X      MVS SPIN OFF DUMP SYSOUT CLASS     X        
+               IOB=015,      XXX    NUMBER OF OSAM IOB (6 - 255)       X        
+               VAUT=1,       X      VTAM AUTH'D PATH 0=NO, 1=YES       X        
+               BSIZ=02048,   XXXXX  F/P BUF SIZE 512 TO 28672  @BIJHDPSX        
+               OTHR=005,     XXX    F/P OUTPUT THREADS (1-255)         X        
+               DBFX=00010,   XXXXX  F/P DATA BUF FIXED         @BIJHBPCX        
+               DBBF=00050,   XXXXX  F/P DATA BUFFERS           @BIJHBPCX        
+               MSDB=C,       X      F/P DBFMSDB MSDB LOAD SUFFIX       X        
+               LOGA=0,       X      LOGGING USING 0=BSAM, 1=TOSAM      X        
+               FMTO=D,       X      FORMAT DUMP OPTIONS: (D),T,L,M,N   X        
+               AUTO=N,       X      Y =AUTO RESTART, N =NOT AUTO RST   X        
+               RDBN=00001,   XXXXX  RDS BUFFERS (0-32767)              X        
+               TRN=N,        X      F = FORCED, Y = YES, N = NO        X        
+               SGN=N,        X      F = FORCED, Y = YES, N = NO        X        
+               RCF=N,        X      RACF FOR TRN AND SGN, Y=YES, N=NO  X        
+               IMSID=IVP1,   XXXX   1 TO 4 CHARACTER IMS ID            X        
+               ISIS=0,       X   ACCESS SECURITY, 0=NO, 1=RACF, 2=USER X        
+               LGNR=10,      XX     F/P LOG ENTRIES IN DMHR            X        
+               LOGD=1,       X      MVS LOG VOL DEQ, 0=NO, 1=YES       X        
+               NLXB=,        XXX    EXCESS LXBS (0-255)                X        
+               LSO=S,        X      LSO N=NO,Y=LSO,X=XLSO,S=DLI/SAS    X        
+               DBRC=Y,       X      N = NO DBRC                        X        
+               IRLM=N,       X      N = NO IRLM                        X        
+               IRLMNM=IRLM,  XXXX   4 CHARACTER IRLM NAME              X        
+               SSM=DSN,      XXXX   4 CHAR EXTERNAL SUBS INFO          X        
+               WADS=D,       X      S=SINGLE WADS, D=DUAL WADS         X        
+               ARC=01,       XX     AUTO ARCHIVE OF XX OLDS            X        
+               FBPR=0256,    XXXX   MFS POOL RESERVE INDEX AREA        X        
+               UHASH=,       XXXXXXXX F/P USER HASH MODULE NAME        X        
+               QTU=075,      XXX    QUE DS UPPER THRESHOLD (%)         X        
+               QTL=050,      XXX    QUE DS LOWER THRESHOLD (%)         X        
+               DBRCNM=IVP31RC1,      DBRC PROCLIB MEMBER NAME          X        
+               DLINM=IVP31DL1,       DL/I PROCLIB MEMBER NAME          X        
+               CSAPSB=12,    XXXX   LSO=S : CSA PSB POOL  IN 1K BLOCKS X        
+               DLIPSB=40,    XXXX   LSO=S : DLI PSB POOL  IN 1K BLOCKS X        
+               HSBID=,       X      XRF SYSTEM ID                      X        
+               HSBMBR=,      XX     XRF PROCLIB MEMBER SUFFIX          X        
+               PRDR=IVP31RD1,        NAME OF READER PROC               X        
+               RECA=5,       XXX    RECEIVE ANY BUFFERS (1-500)        X        
+               RECH=Y,       X      N=NO REC ANY HIOP/Y=REC ANY HIOP   X        
+               EPCB=0012,    XXXX   EPCB POOL SIZE        IN 1K BLOCKS X        
+               CRC=/         X      COMMAND RECOGNITION CHARACTER               
+         END                                                                    
+//*                                                                             

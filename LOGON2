@@ -1,0 +1,54 @@
+LOGON: MSGTXT                                                                   
+    DO WHILE INDEX(SCREEN,'***DFH2312') = 0                                     
+       SUSPEND(2)                                                               
+       SAY 'WAITING FOR LOGON SCREEN'                                           
+    END                                                                         
+   SAY 'CLEARING SCREEN'                                                        
+    TRANSMIT USING CLEAR AND WAIT UNTIL ONIN                                    
+   QUIESCE                                                                      
+   SAY 'ENTERING Q101'                                                          
+    TYPE 'Q101000000001000005000'                                               
+    TRANSMIT USING ENTER AND WAIT UNTIL ONIN                                    
+DO FOREVER                                                                      
+    TRANSMIT USING CLEAR AND WAIT UNTIL ONIN                                    
+   SAY 'DOING Q101 NOW'                                                         
+   TYPE 'Q101000000001000005000'                                                
+   TRANSMIT USING ENTER AND WAIT UNTIL ONIN                                     
+    TRANSMIT USING CLEAR AND WAIT UNTIL ONIN                                    
+   SAY 'DOING Q102 NOW'                                                         
+   TYPE 'Q102000000001000005000'                                                
+   TRANSMIT USING ENTER AND WAIT UNTIL ONIN                                     
+    TRANSMIT USING CLEAR AND WAIT UNTIL ONIN                                    
+   SAY 'DOING Q103 NOW'                                                         
+   TYPE 'Q103000000001000005000'                                                
+   TRANSMIT USING ENTER AND WAIT UNTIL ONIN                                     
+    TRANSMIT USING CLEAR AND WAIT UNTIL ONIN                                    
+   SAY 'DOING Q104 NOW'                                                         
+   TYPE 'Q104000000001000005000'                                                
+   TRANSMIT USING ENTER AND WAIT UNTIL ONIN                                     
+    TRANSMIT USING CLEAR AND WAIT UNTIL ONIN                                    
+   SAY 'DOING Q105 NOW'                                                         
+   TYPE 'Q105000000001000005000'                                                
+   TRANSMIT USING ENTER AND WAIT UNTIL ONIN                                     
+    TRANSMIT USING CLEAR AND WAIT UNTIL ONIN                                    
+   SAY 'DOING Q106 NOW'                                                         
+   TYPE 'Q106000000001000005000'                                                
+   TRANSMIT USING ENTER AND WAIT UNTIL ONIN                                     
+    TRANSMIT USING CLEAR AND WAIT UNTIL ONIN                                    
+   SAY 'DOING Q107 NOW'                                                         
+   TYPE 'Q107000000001000005000'                                                
+   TRANSMIT USING ENTER AND WAIT UNTIL ONIN                                     
+    TRANSMIT USING CLEAR AND WAIT UNTIL ONIN                                    
+   SAY 'DOING Q108 NOW'                                                         
+   TYPE 'Q108000000001000005000'                                                
+   TRANSMIT USING ENTER AND WAIT UNTIL ONIN                                     
+    TRANSMIT USING CLEAR AND WAIT UNTIL ONIN                                    
+   SAY 'DOING Q109 NOW'                                                         
+   TYPE 'Q109000000001000005000'                                                
+   TRANSMIT USING ENTER AND WAIT UNTIL ONIN                                     
+    TRANSMIT USING CLEAR AND WAIT UNTIL ONIN                                    
+   SAY 'DOING Q110 NOW'                                                         
+   TYPE 'Q110000000001000005000'                                                
+   TRANSMIT USING ENTER AND WAIT UNTIL ONIN                                     
+END                                                                             
+ENDTXT                                                                          

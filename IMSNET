@@ -1,0 +1,17 @@
+IMSNET   NTWRK HEAD='SQL NETWORK',                                              
+               TYPE=3270,MODEL=2,REPORT=NONE,                                   
+               BUFSIZE=3000,                                                    
+               MLOG=YES,DLOGMOD=D4B32782,                                       
+               ITIME=1,RESOURCE=IVP31CR1,                                       
+               INIT=SEC,DISPLAY=(24,80),                                        
+               LOGDSPLY=BOTH,                                                   
+               LUTYPE=LU2,                                                      
+               SCAN=(0,0),                                                      
+               STLTRACE=NO,FRSTTXT=IMSLOGON,                                    
+               OPTIONS=(CONRATE,MONCMND),                                       
+               THKTIME=UNLOCK,USERAREA=16,NETUSER=16,                           
+               UTI=500                                                          
+ROUTES   PATH  IMSQ101                                                          
+ROUTES   DIST  100                                                              
+TPNS0001 VTAMAPPL RESOURCE=IVP31CR1,INIT=SEC,APPLID=TPNS0001                    
+PPNS0001 LU  DISPLAY=(24,80,24,80)                                              

@@ -1,0 +1,44 @@
+LOGON: MSGTXT                                                                   
+    DO WHILE INDEX(SCREEN,'***DFH2312') = 0                                     
+       SUSPEND(2)                                                               
+       SAY 'WAITING FOR LOGON SCREEN'                                           
+    END                                                                         
+   SAY 'CLEARING SCREEN'                                                        
+    TRANSMIT USING CLEAR AND WAIT UNTIL ONIN                                    
+   QUIESCE                                                                      
+   SAY 'ENTERING Q101'                                                          
+    TYPE 'Q101000000001000250000'                                               
+    TRANSMIT USING ENTER AND WAIT UNTIL ONIN                                    
+DO FOREVER                                                                      
+    TRANSMIT USING CLEAR AND WAIT UNTIL ONIN                                    
+   TYPE 'Q101000000001000250000'                                                
+   TRANSMIT USING ENTER AND WAIT UNTIL ONIN                                     
+    TRANSMIT USING CLEAR AND WAIT UNTIL ONIN                                    
+   TYPE 'Q102000000001000250000'                                                
+   TRANSMIT USING ENTER AND WAIT UNTIL ONIN                                     
+    TRANSMIT USING CLEAR AND WAIT UNTIL ONIN                                    
+   TYPE 'Q103000000001000250000'                                                
+   TRANSMIT USING ENTER AND WAIT UNTIL ONIN                                     
+    TRANSMIT USING CLEAR AND WAIT UNTIL ONIN                                    
+   TYPE 'Q104000000001000250000'                                                
+   TRANSMIT USING ENTER AND WAIT UNTIL ONIN                                     
+    TRANSMIT USING CLEAR AND WAIT UNTIL ONIN                                    
+   TYPE 'Q105000000001000250000'                                                
+   TRANSMIT USING ENTER AND WAIT UNTIL ONIN                                     
+    TRANSMIT USING CLEAR AND WAIT UNTIL ONIN                                    
+   TYPE 'Q106000000001000250000'                                                
+   TRANSMIT USING ENTER AND WAIT UNTIL ONIN                                     
+    TRANSMIT USING CLEAR AND WAIT UNTIL ONIN                                    
+   TYPE 'Q107000000001000250000'                                                
+   TRANSMIT USING ENTER AND WAIT UNTIL ONIN                                     
+    TRANSMIT USING CLEAR AND WAIT UNTIL ONIN                                    
+   TYPE 'Q108000000001000250000'                                                
+   TRANSMIT USING ENTER AND WAIT UNTIL ONIN                                     
+    TRANSMIT USING CLEAR AND WAIT UNTIL ONIN                                    
+   TYPE 'Q109000000001000250000'                                                
+   TRANSMIT USING ENTER AND WAIT UNTIL ONIN                                     
+    TRANSMIT USING CLEAR AND WAIT UNTIL ONIN                                    
+   TYPE 'Q110000000001000250000'                                                
+   TRANSMIT USING ENTER AND WAIT UNTIL ONIN                                     
+END                                                                             
+ENDTXT                                                                          

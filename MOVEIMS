@@ -1,0 +1,279 @@
+//MOVEIMS  JOB (USER,ACCT,NUMBER),                                              
+//         'D J YOUNG',                                                         
+//         CLASS=A,MSGCLASS=X,MSGLEVEL=(1,1),                                   
+//         REGION=4M                                                            
+//*                                                                             
+//*                                                                             
+//*                                                                             
+//*********************************************************************         
+//* INSTALL/IVP IMS 3.1                                               *         
+//*                                                                   *         
+//* SKELETON: DFSIXSE0                                                *         
+//*                                                                   *         
+//* FUNCTION: ALLOCATE THE SYSTEM APPLICATION AND EXECUTION DATA SETS *         
+//*********************************************************************         
+//*                                                                             
+//*********************************************************************         
+//*         THIS PRODUCT CONTAINS "RESTRICTED MATERIALS OF IBM".      *         
+//*                                                                   *         
+//*         5665-408 (C) COPYRIGHT IBM CORP. 1974, 1988.              *         
+//*         LICENSED MATERIALS - PROPERTY OF IBM.                     *         
+//*         ALL RIGHTS RESERVED.                                      *         
+//*                                                                   *         
+//*         U.S. GOVERNMENT USERS RESTRICTED RIGHTS -                 *         
+//*         USE, DUPLICATION, OR DISCLOSURE RESTRICTED BY             *         
+//*         GSA ADP SCHEDULE CONTRACT WITH IBM CORP.                  *         
+//*                                                                   *         
+//*         REFER TO COPYRIGHT INSTRUCTIONS FORM NUMBER G120-2083.    *         
+//*********************************************************************         
+//*                                                                             
+//* SCRATCH THE DATA SETS IF THEY ALREADY EXIST                                 
+//*                                                                             
+//SCRATCH  EXEC PGM=IEHPROGM                                                    
+//SYSPRINT DD SYSOUT=*                                                          
+//IVPSYS   DD DISP=OLD,UNIT=3390,VOL=SER=IMS310                                 
+//IVPEX1   DD DISP=OLD,UNIT=3390,VOL=SER=IMS310                                 
+//IVPEX2   DD DISP=OLD,UNIT=3390,VOL=SER=IMS310                                 
+//SYSIN    DD *                                                                 
+  UNCATLG DSNAME=IMS310A.MODBLKSA                                               
+  SCRATCH DSNAME=IMS310A.MODBLKSA,                                     X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.MODBLKSB                                               
+  SCRATCH DSNAME=IMS310A.MODBLKSB,                                     X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.PGMLIB                                                 
+  SCRATCH DSNAME=IMS310A.PGMLIB,                                       X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.PSBLIB                                                 
+  SCRATCH DSNAME=IMS310A.PSBLIB,                                       X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.DBDLIB                                                 
+  SCRATCH DSNAME=IMS310A.DBDLIB,                                       X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.ACBLIB                                                 
+  SCRATCH DSNAME=IMS310A.ACBLIB,                                       X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.ACBLIBA                                                
+  SCRATCH DSNAME=IMS310A.ACBLIBA,                                      X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.ACBLIBB                                                
+  SCRATCH DSNAME=IMS310A.ACBLIBB,                                      X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.MODSTAT                                                
+  SCRATCH DSNAME=IMS310A.MODSTAT,                                      X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.IMSMON                                                 
+  SCRATCH DSNAME=IMS310A.IMSMON,                                       X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.MATRIX                                                 
+  SCRATCH DSNAME=IMS310A.MATRIX,                                       X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.MATRIXA                                                
+  SCRATCH DSNAME=IMS310A.MATRIXA,                                      X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.MATRIXB                                                
+  SCRATCH DSNAME=IMS310A.MATRIXB,                                      X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.RDS                                                    
+  SCRATCH DSNAME=IMS310A.RDS,                                          X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.OLP00                                                  
+  SCRATCH DSNAME=IMS310A.OLP00,                                        X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.OLS00                                                  
+  SCRATCH DSNAME=IMS310A.OLS00,                                        X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.OLP01                                                  
+  SCRATCH DSNAME=IMS310A.OLP01,                                        X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.OLS01                                                  
+  SCRATCH DSNAME=IMS310A.OLS01,                                        X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.OLP02                                                  
+  SCRATCH DSNAME=IMS310A.OLP02,                                        X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.OLS02                                                  
+  SCRATCH DSNAME=IMS310A.OLS02,                                        X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.OLP03                                                  
+  SCRATCH DSNAME=IMS310A.OLP03,                                        X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.OLS03                                                  
+  SCRATCH DSNAME=IMS310A.OLS03,                                        X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.OLP04                                                  
+  SCRATCH DSNAME=IMS310A.OLP04,                                        X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.OLS04                                                  
+  SCRATCH DSNAME=IMS310A.OLS04,                                        X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.OLP05                                                  
+  SCRATCH DSNAME=IMS310A.OLP05,                                        X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.OLS05                                                  
+  SCRATCH DSNAME=IMS310A.OLS05,                                        X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.OLP99                                                  
+  SCRATCH DSNAME=IMS310A.OLP99,                                        X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.OLS99                                                  
+  SCRATCH DSNAME=IMS310A.OLS99,                                        X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.WADS0                                                  
+  SCRATCH DSNAME=IMS310A.WADS0,                                        X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.WADS1                                                  
+  SCRATCH DSNAME=IMS310A.WADS1,                                        X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.WADS8                                                  
+  SCRATCH DSNAME=IMS310A.WADS8,                                        X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.WADS9                                                  
+  SCRATCH DSNAME=IMS310A.WADS9,                                        X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.FORMATA                                                
+  SCRATCH DSNAME=IMS310A.FORMATA,                                      X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.FORMATB                                                
+  SCRATCH DSNAME=IMS310A.FORMATB,                                      X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.JOBS                                                   
+  SCRATCH DSNAME=IMS310A.JOBS,                                         X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.TCFSLIB                                                
+  SCRATCH DSNAME=IMS310A.TCFSLIB,                                      X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.QBLKS                                                  
+  SCRATCH DSNAME=IMS310A.QBLKS,                                        X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.SHMSG                                                  
+  SCRATCH DSNAME=IMS310A.SHMSG,                                        X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.LGMSG                                                  
+  SCRATCH DSNAME=IMS310A.LGMSG,                                        X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.SPA                                                    
+  SCRATCH DSNAME=IMS310A.SPA,                                          X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.MSDBCP1                                                
+  SCRATCH DSNAME=IMS310A.MSDBCP1,                                      X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.MSDBCP2                                                
+  SCRATCH DSNAME=IMS310A.MSDBCP2,                                      X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.MSDBDUMP                                               
+  SCRATCH DSNAME=IMS310A.MSDBDUMP,                                     X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.SYSO1                                                  
+  SCRATCH DSNAME=IMS310A.SYSO1,                                        X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.SYSO2                                                  
+  SCRATCH DSNAME=IMS310A.SYSO2,                                        X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.SYSO3                                                  
+  SCRATCH DSNAME=IMS310A.SYSO3,                                        X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.IVPDB1.DFSIVD1.IC101                                   
+  SCRATCH DSNAME=IMS310A.IVPDB1.DFSIVD1.IC101,                         X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.IVPDB1.DFSIVD1.IC102                                   
+  SCRATCH DSNAME=IMS310A.IVPDB1.DFSIVD1.IC102,                         X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.IVPDB1.DFSIVD1.IC103                                   
+  SCRATCH DSNAME=IMS310A.IVPDB1.DFSIVD1.IC103,                         X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.IVPDB1I.DFSIVD1I.IC101                                 
+  SCRATCH DSNAME=IMS310A.IVPDB1I.DFSIVD1I.IC101,                       X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.IVPDB1I.DFSIVD1I.IC102                                 
+  SCRATCH DSNAME=IMS310A.IVPDB1I.DFSIVD1I.IC102,                       X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.IVPDB1I.DFSIVD1I.IC103                                 
+  SCRATCH DSNAME=IMS310A.IVPDB1I.DFSIVD1I.IC103,                       X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.IVPDB2.DFSIVD2.IC101                                   
+  SCRATCH DSNAME=IMS310A.IVPDB2.DFSIVD2.IC101,                         X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.IVPDB2.DFSIVD2.IC102                                   
+  SCRATCH DSNAME=IMS310A.IVPDB2.DFSIVD2.IC102,                         X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.IVPDB2.DFSIVD2.IC103                                   
+  SCRATCH DSNAME=IMS310A.IVPDB2.DFSIVD2.IC103,                         X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.IVPDB3.DFSIVD3A.IC101                                  
+  SCRATCH DSNAME=IMS310A.IVPDB3.DFSIVD3A.IC101,                        X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.IVPDB3.DFSIVD3A.IC102                                  
+  SCRATCH DSNAME=IMS310A.IVPDB3.DFSIVD3A.IC102,                        X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.IVPDB3.DFSIVD3A.IC103                                  
+  SCRATCH DSNAME=IMS310A.IVPDB3.DFSIVD3A.IC103,                        X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.IVPDB3.DFSIVD3B.IC101                                  
+  SCRATCH DSNAME=IMS310A.IVPDB3.DFSIVD3B.IC101,                        X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.IVPDB3.DFSIVD3B.IC102                                  
+  SCRATCH DSNAME=IMS310A.IVPDB3.DFSIVD3B.IC102,                        X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.IVPDB3.DFSIVD3B.IC103                                  
+  SCRATCH DSNAME=IMS310A.IVPDB3.DFSIVD3B.IC103,                        X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.DI21PART.DI21PART.IC101                                
+  SCRATCH DSNAME=IMS310A.DI21PART.DI21PART.IC101,                      X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.DI21PART.DI21PART.IC102                                
+  SCRATCH DSNAME=IMS310A.DI21PART.DI21PART.IC102,                      X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.DI21PART.DI21PART.IC103                                
+  SCRATCH DSNAME=IMS310A.DI21PART.DI21PART.IC103,                      X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.DI21PART.DI21PARO.IC101                                
+  SCRATCH DSNAME=IMS310A.DI21PART.DI21PARO.IC101,                      X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.DI21PART.DI21PARO.IC102                                
+  SCRATCH DSNAME=IMS310A.DI21PART.DI21PARO.IC102,                      X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.DI21PART.DI21PARO.IC103                                
+  SCRATCH DSNAME=IMS310A.DI21PART.DI21PARO.IC103,                      X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.DBFSAMD3.CUSDB.IC101                                   
+  SCRATCH DSNAME=IMS310A.DBFSAMD3.CUSDB.IC101,                         X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.DBFSAMD3.CUSDB.IC102                                   
+  SCRATCH DSNAME=IMS310A.DBFSAMD3.CUSDB.IC102,                         X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.DBFSAMD3.CUSDB.IC103                                   
+  SCRATCH DSNAME=IMS310A.DBFSAMD3.CUSDB.IC103,                         X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.DBFSAMD4.LOAN.IC101                                    
+  SCRATCH DSNAME=IMS310A.DBFSAMD4.LOAN.IC101,                          X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.DBFSAMD4.LOAN.IC102                                    
+  SCRATCH DSNAME=IMS310A.DBFSAMD4.LOAN.IC102,                          X        
+               VOL=3390=IMS310                                                  
+  UNCATLG DSNAME=IMS310A.DBFSAMD4.LOAN.IC103                                    
+  SCRATCH DSNAME=IMS310A.DBFSAMD4.LOAN.IC103,                          X        
+               VOL=3390=IMS310                                                  
+//SCRATCH  EXEC PGM=IDCAMS                                                      
+//SYSPRINT DD SYSOUT=*                                                          
+//SYSIN    DD *                                                                 
+  DELETE IMS310A.IVPDB3.DFSIVD3A.HSSIC101 CLUSTER                               
+  DELETE IMS310A.IVPDB3.DFSIVD3A.HSSIC102 CLUSTER                               
+  DELETE IMS310A.IVPDB3.DFSIVD3A.HSSIC103 CLUSTER                               
+  DELETE IMS310A.IVPDB3.DFSIVD3A.HSSIC104 CLUSTER                               
+  DELETE IMS310A.IVPDB3.DFSIVD3A.HSSIC105 CLUSTER                               
+  DELETE IMS310A.IVPDB3.DFSIVD3A.HSSIC106 CLUSTER                               
+  DELETE IMS310A.IVPDB3.DFSIVD3B.HSSIC101 CLUSTER                               
+  DELETE IMS310A.IVPDB3.DFSIVD3B.HSSIC102 CLUSTER                               
+  DELETE IMS310A.IVPDB3.DFSIVD3B.HSSIC103 CLUSTER                               
+  DELETE IMS310A.IVPDB3.DFSIVD3B.HSSIC104 CLUSTER                               
+  DELETE IMS310A.IVPDB3.DFSIVD3B.HSSIC105 CLUSTER                               
+  DELETE IMS310A.IVPDB3.DFSIVD3B.HSSIC106 CLUSTER                               
+//*                                                                             
+//SCRATCH  EXEC PGM=IDCAMS                                                      
+//SYSPRINT DD SYSOUT=*                                                          
+//SYSIN    DD *                                                                 
+  DELETE IMS310A.DBFSAMD3.CUSDB.HSSIC101 CLUSTER                                
+  DELETE IMS310A.DBFSAMD3.CUSDB.HSSIC102 CLUSTER                                
+  DELETE IMS310A.DBFSAMD3.CUSDB.HSSIC103 CLUSTER                                
+//*                                                                             

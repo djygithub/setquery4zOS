@@ -1,0 +1,4 @@
+//MAPDB2   JOB (D3330RWM,ROOM),'D J YOUNG',MSGCLASS=O                           
+//MAP         EXEC PGM=MAPDISK,PARM=MAP                                         
+//SYSPRINT    DD SYSOUT=*                                                       
+//VOLUME00    DD UNIT=3380,VOL=SER=DB2850,DISP=SHR                              

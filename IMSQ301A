@@ -1,0 +1,35 @@
+  IMSQ301T: MSGUTBL                                                             
+  'Q301     00002'                                                              
+  'Q302     00002'                                                              
+  'Q303     00002'                                                              
+  'Q304     00002'                                                              
+  'Q305     00002'                                                              
+  'Q306     00002'                                                              
+  'Q307     00002'                                                              
+  'Q308     00002'                                                              
+  'Q309     00002'                                                              
+  'Q310     00002'                                                              
+  'Q311     00002'                                                              
+  'Q312     00002'                                                              
+  'Q313     00002'                                                              
+  'Q314     00002'                                                              
+  'Q315     00002'                                                              
+  'Q316     00002'                                                              
+  ENDUTBL                                                                       
+IMSQ301A: MSGTXT                                                                
+Q3FIRST='000000001'                                                             
+Q3LAST='000000001'                                                              
+QUIESCE                                                                         
+DO FOREVER                                                                      
+    Q3BT=UTBL(IMSQ301T,'R')                                                     
+    Q3TRAN=SUBSTR(Q3BT,1,9)                                                     
+    Q3ROES=SUBSTR(Q3BT,10,5)                                                    
+    Q3ROWS=E2D (Q3ROES,5)                                                       
+    Q3RAND=RANDOM('RN',1)                                                       
+    Q3FIRST=CHAR(Q3RAND,5)                                                      
+    Q3RAND=Q3RAND+Q3ROWS                                                        
+    Q3LAST=CHAR(Q3RAND,5)                                                       
+   TYPE Q3TRAN||Q3FIRST||'0000'||Q3LAST||'0000'                                 
+   TRANSMIT USING ENTER                                                         
+END                                                                             
+ENDTXT                                                                          

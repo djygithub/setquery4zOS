@@ -1,0 +1,114 @@
+//PCFTEXEC JOB (RWM,T),'DUMP',MSGCLASS=Q                                00010000
+//COB2UCL PROC                                                          00030004
+//*   PROC FOR COBOL II - COMPILE AND LINK                              00031004
+//COB2 EXEC PGM=IGYCRCTL,PARM='OBJECT,LIB,APOST,LIST',REGION=1024K      00032004
+//*TEPLIB DD DSNAME=DB2IMS.COB2COMP,DISP=SHR,UNIT=3390,VOL=SER=DB2IMS   00033004
+//STEPLIB  DD  DSNAME=SYS1.COB2COMP,DISP=SHR                            00034004
+//SYSPRINT DD  SYSOUT=*                                                 00035004
+//SYSLIN   DD  DSNAME=&&LOADSET,UNIT=3390,DISP=(MOD,PASS),              00036004
+//             SPACE=(TRK,(3,3))                                        00037004
+//SYSUT1   DD  UNIT=3390,SPACE=(CYL,(1,1))                              00038004
+//SYSUT2   DD  UNIT=3390,SPACE=(CYL,(1,1))                              00039004
+//SYSUT3   DD  UNIT=3390,SPACE=(CYL,(1,1))                              00039104
+//SYSUT4   DD  UNIT=3390,SPACE=(CYL,(1,1))                              00039204
+//SYSUT5   DD  UNIT=3390,SPACE=(CYL,(1,1))                              00039304
+//SYSUT6   DD  UNIT=3390,SPACE=(CYL,(1,1))                              00039404
+//SYSUT7   DD  UNIT=3390,SPACE=(CYL,(1,1))                              00039504
+//LKED   EXEC  PGM=IEWL,PARM='LIST,XREF,',COND=(5,LT,COB2),             00039604
+//             REGION=512K                                              00039704
+//SYSLIN   DD  DSNAME=&&LOADSET,DISP=(OLD,DELETE)                       00039804
+//SYSLMOD  DD  DSNAME=DAVID.DB2SMF.PGMLIB(PCFTMEMB),                    00039904
+//             DISP=SHR,UNIT=3390,VOL=SER=DB2IMS                        00040004
+//*YSLMOD  DD  DSNAME=SYS1.DSN230.DSNLINK(DB2SMF6),                     00041004
+//*            DISP=SHR                                                 00042004
+//SYSLIB DD  DSNAME=SYS1.COB2LIB,DISP=SHR                               00043004
+//       DD  DSNAME=DAVID.DB2SMF.SRCLIB,DISP=SHR,UNIT=3390,             00044004
+//       VOL=SER=DB2IMS                                                 00045004
+//SYSUT1   DD  UNIT=3390,SPACE=(CYL,(1,1))                              00046004
+//SYSPRINT DD  SYSOUT=*                                                 00047004
+// PEND                                                                 00048004
+//DOIT EXEC COB2UCL                                                     00049004
+//SYSIN DD *                                                            00049104
+       ID DIVISION.                                                     00049204
+       PROGRAM-ID. PCFTMEMB.                                            00049304
+       AUTHOR. D J YOUNG.                                               00049404
+       ENVIRONMENT DIVISION.                                            00049504
+       INPUT-OUTPUT SECTION.                                            00049604
+       FILE-CONTROL.                                                    00049704
+           SELECT INPUT-FILE ASSIGN TO UT-S-PDSMEMBS.                   00049804
+           SELECT OUTPUT-FILE ASSIGN TO UT-S-OUTPUT.                    00049904
+       DATA DIVISION.                                                   00050004
+       FILE SECTION.                                                    00050104
+       FD  OUTPUT-FILE                                                  00050204
+           BLOCK CONTAINS 0 RECORDS                                     00050304
+           RECORD CONTAINS 80 CHARACTERS                                00050404
+           RECORDING MODE F                                             00050504
+           LABEL RECORDS ARE STANDARD.                                  00050604
+       01  OUTPUT-RECORD        PIC X(80).                              00050704
+       FD  INPUT-FILE                                                   00050804
+           BLOCK CONTAINS 0 RECORDS                                     00050904
+           RECORD CONTAINS 133 CHARACTERS                               00051004
+           RECORDING MODE F                                             00051104
+           LABEL RECORDS ARE STANDARD.                                  00051204
+       01  INPUT-RECORD.                                                00051304
+           05  MEMBER-IN        PIC X(8).                               00051404
+           05  FILLER           PIC X(125).                             00051504
+       WORKING-STORAGE SECTION.                                         00051604
+       77  EOF-FLAG             PIC X(3) VALUE 'NO'.                    00051704
+       01  OUTPUT-WORK.                                                 00051804
+           03  FILLER               PIC X(20) VALUE                     00051905
+               'FTTSO/R/V D:\PPOM23\'.                                  00052005
+           03  MEMBER-ONE           PIC X(8).                           00052104
+           03  FILLER               PIC X(2) VALUE SPACES.              00052204
+           03  FILLER               PIC X(21) VALUE                     00052304
+               '''DAVID.PDSTRNSF.DATA('.                                00052404
+           03  MEMBER-TWO           PIC X(8).                           00052504
+           03  FILLER               PIC X(21) VALUE                     00052605
+               ')'' DATA'.                                              00052704
+       LINKAGE SECTION.                                                 00052804
+       01  INPUT-PARMS.                                                 00052904
+           03  PARM-LENGTH       PIC S9(3) COMP.                        00053004
+           03  FILLER            PIC X(9).                              00053104
+           03  SYS-FLAG          PIC X.                                 00053204
+           03  FILLER            PIC X(9).                              00053304
+           03  DB-FLAG           PIC X.                                 00053404
+           03  FILLER            PIC X(10).                             00053504
+           03  APP-NAME          PIC X(8).                              00053604
+      ****************************************************************  00053704
+      *                                                                 00053804
+      *    THIS PROGRAM PROCESSES IEHLIST LISTPDS OUTPUT AND FORMATS    00053904
+      *    CONTROL STATEMENTS NECESSARY TO DOWNLOAD AND MVS PDS TO PC   00054004
+      *    FILES.                                                       00054104
+      *                                                                 00054204
+      *                                                                 00054304
+      *                                                                 00054404
+      *                                                                 00054504
+      *                                                                 00054604
+      *                                                                 00054704
+      *                                                                 00054804
+      ****************************************************************  00054904
+       PROCEDURE DIVISION.                                              00055004
+       MAIN-ROUTINE.                                                    00055104
+      *(1)                                                              00055204
+           OPEN INPUT  INPUT-FILE                                       00055304
+                OUTPUT OUTPUT-FILE.                                     00055404
+      *(1A)                                                             00055504
+           READ INPUT-FILE AT END MOVE 'YES' TO EOF-FLAG.               00055604
+           PERFORM READ-N-WRITE UNTIL EOF-FLAG = 'YES'.                 00055704
+           CLOSE OUTPUT-FILE INPUT-FILE.                                00055804
+           MOVE 0 TO RETURN-CODE.                                       00055904
+           GOBACK.                                                      00056004
+       READ-N-WRITE.                                                    00056104
+           MOVE MEMBER-IN TO MEMBER-ONE.                                00056204
+           MOVE MEMBER-IN TO MEMBER-TWO.                                00056304
+           WRITE OUTPUT-RECORD FROM OUTPUT-WORK.                        00056404
+           READ INPUT-FILE AT END MOVE 'YES' TO EOF-FLAG.               00056504
+//STEP1   EXEC PGM=PCFTMEMB,REGION=0K                                   00057000
+//STEPLIB   DD DSN=DAVID.DB2SMF.PGMLIB,DISP=SHR,UNIT=3390,              00060000
+//          VOL=SER=DB2IMS                                              00061000
+//PDSMEMBS DD DSN=DAVID.SDSF.PORTDB2B,DISP=SHR,UNIT=3390,VOL=SER=DB2IMS 00062003
+//OUTPUT  DD DSN=DAVID.SETQUERY.MEMBERS,DISP=SHR,UNIT=3390,             00063002
+// VOL=SER=DB2IMS                                                       00063102
+//SYSOUT DD SYSOUT=*                                                    00064000
+//SYSABOUT DD SYSOUT=*                                                  00065000
+//SYSUDUMP DD SYSOUT=*                                                  00066000

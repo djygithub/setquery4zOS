@@ -1,0 +1,16 @@
+  Q101TRAN: MSGUTBL                                                             
+  'Q101     '                                                                   
+  'Q103     '                                                                   
+  'Q105     '                                                                   
+  'Q501     '                                                                   
+  'Q610     '                                                                   
+  ENDUTBL                                                                       
+IMSQ101: MSGTXT                                                                 
+Q101DATA='000000001000100000'                                                   
+QUIESCE                                                                         
+DO FOREVER                                                                      
+    Q1TN=UTBL(Q101TRAN,'R')                                                     
+   TYPE Q1TN||Q101DATA                                                          
+   TRANSMIT USING ENTER                                                         
+END                                                                             
+ENDTXT                                                                          

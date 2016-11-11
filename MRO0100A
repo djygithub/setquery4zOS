@@ -1,0 +1,38 @@
+MRO0100A NTWRK HEAD='SQL NETWORK',                                              
+               TYPE=3270,MODEL=2,REPORT=NONE,                                   
+               BUFSIZE=3000,                                                    
+               DLOGMOD=D4B32782,MLOG=YES,                                       
+               ITIME=1,RESOURCE=CICS,                                           
+               INIT=SEC,DISPLAY=(24,80),                                        
+               LOGDSPLY=NONE,                                                   
+               LUTYPE=LU2,                                                      
+               SCAN=(0,0),                                                      
+               STLTRACE=NO,FRSTTXT=CLOGON,                                      
+               OPTIONS=(CONRATE,MONCMND),                                       
+               THKTIME=UNLOCK,USERAREA=16,NETUSER=16,                           
+               UTI=500                                                          
+1        RN    HIGH=003,LOW=0                                                   
+ROUTES   PATH  INQUIRY,UPDATE,REPORT                                            
+ROUTES   DIST  35,35,30                                                         
+TPNS0000 VTAMAPPL RESOURCE=CICS,INIT=SEC,APPLID=TPNS0000                        
+PPNS0000 LU DISPLAY=(24,80,32,80)                                               
+    FE TIME=0010,COMMAND=(I MRO0200,S)                                          
+    FE TIME=0020,COMMAND=(I MRO0300,S)                                          
+    FE TIME=0030,COMMAND=(I MRO0400,S)                                          
+    FE TIME=0040,COMMAND=(I MRO0500,S)                                          
+    FE TIME=0050,COMMAND=(I MRO0600,S)                                          
+    FE TIME=0060,COMMAND=(I MRO0700,S)                                          
+    FE TIME=0070,COMMAND=(I MRO0800,S)                                          
+    FE TIME=0080,COMMAND=(I MRO0900,S)                                          
+    FE TIME=0090,COMMAND=(I MRO1000,S)                                          
+    FE TIME=0165,COMMAND=(AU=200)                                               
+    FE TIME=0180,COMMAND=(A MRO0200,RELEASE)                                    
+    FE TIME=0780,COMMAND=(A MRO0300,RELEASE)                                    
+    FE TIME=1380,COMMAND=(A MRO0400,RELEASE)                                    
+    FE TIME=1980,COMMAND=(A MRO0500,RELEASE)                                    
+    FE TIME=2580,COMMAND=(A MRO0600,RELEASE)                                    
+    FE TIME=3180,COMMAND=(A MRO0700,RELEASE)                                    
+    FE TIME=3780,COMMAND=(A MRO0800,RELEASE)                                    
+    FE TIME=4380,COMMAND=(A MRO0900,RELEASE)                                    
+    FE TIME=4980,COMMAND=(A MRO1000,RELEASE)                                    
+    FE TIME=5590,COMMAND=(ZEND)                                                 

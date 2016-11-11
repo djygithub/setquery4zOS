@@ -1,0 +1,75 @@
+//DSNPPT   JOB   0,YOUNG,MSGLEVEL=(1,1),                                00001000
+//         MSGCLASS=O                                                   00002000
+//*                                                                     01030000
+//*        ALL SUBSEQUENT STEPS ARE ONLY PROVIDED IN PART.              01040000
+//*        THE DATA FOR THE CICS GEN MUST BE INCLUDED                   01050000
+//*        WITH OTHER INSTALLATION PPT, PCT, AND RCT                    01060000
+//*        INFORMATION.                                                 01070000
+//*                                                                     01080000
+//CICAUPLK PROC OUTC='X',                                               01081001
+//             REG=6144K,                                               01082001
+//             WORK=SYSALLDA                                            01083001
+//*                                                                     01084001
+//* LIB: CICRS1.CICSVS.IPO1.PROCLIB(CICAUPLK)                           01085001
+//* GDE: CBIPO CICS INSTALLATION                                        01086001
+//* DOC: THIS PROCEDURE IS USED TO GENERATE CICS/ESA TABLES.            01087001
+//*      THE FOLLOWING JCL SHOULD BE USED                               01088001
+//*                                                                     01089001
+//*      //TABLEASM EXEC CICAUPLK                                       01089101
+//*      //ASSEM.SYSUT1 DD *                                            01089201
+//*         .                                                           01089301
+//*         . TABLE GENERATION MACROS                                   01089401
+//*         .                                                           01089501
+//*      /*                                                             01089601
+//*                                                                     01089701
+//ASSEM   EXEC PGM=IEBGENER,REGION=&REG                                 01089801
+//SYSPRINT DD  SYSOUT=&OUTC                                             01089901
+//SYSIN    DD  DUMMY                                                    01090001
+//SYSUT2   DD  DSN=&&TEMPPDS(MACROS),                                   01090101
+//             UNIT=&WORK,DISP=(,PASS),                                 01090201
+//             DCB=(RECFM=FB,LRECL=80,BLKSIZE=400),                     01090301
+//             SPACE=(400,(200,100,5))                                  01090401
+//ASM     EXEC PGM=IEV90,                                               01090501
+//             PARM='SYSPARM(INITIAL),DECK,NOOBJECT',                   01090601
+//             REGION=&REG,                                             01090701
+//             COND=(3,LT,ASSEM)                                        01090801
+//SYSLIB   DD  DSN=CICSVS.MACLIB,DISP=SHR                               01090901
+//         DD  DSN=SYS1.MACLIB,DISP=SHR                                 01091001
+//*        DD  DSN=CICRS1.CICSVS.SAMPLIB,DISP=SHR                       01091101
+//SYSUT1   DD  UNIT=&WORK,SPACE=(1700,(400,400))                        01091201
+//SYSUT2   DD  UNIT=&WORK,SPACE=(1700,(400,400))                        01091301
+//SYSUT3   DD  UNIT=&WORK,SPACE=(1700,(400,400))                        01091401
+//SYSPUNCH DD  DSN=&&OBJMOD,                                            01091501
+//             DISP=(,PASS),UNIT=&WORK,                                 01091601
+//             DCB=(RECFM=FB,LRECL=80,BLKSIZE=400),                     01091701
+//             SPACE=(400,(100,100))                                    01091801
+//SYSPRINT DD  SYSOUT=&OUTC                                             01091901
+//SYSIN    DD  DSN=&&TEMPPDS(MACROS),                                   01092001
+//             DISP=(OLD,PASS)                                          01092101
+//BLDMBR  EXEC PGM=IEBUPDTE,PARM=NEW,REGION=&REG,                       01092201
+//             COND=((3,LT,ASSEM),(7,LT,ASM))                           01092301
+//SYSPRINT DD  DUMMY                                                    01092401
+//SYSUT2   DD  DSN=&&TEMPPDS,DISP=(OLD,PASS)                            01092501
+//SYSIN    DD  DSN=&&OBJMOD,DISP=(OLD,DELETE)                           01092601
+//LNKEDT  EXEC PGM=IEWL,                                                01092701
+//             PARM='LIST,XREF,LET,NCAL',                               01092801
+//             REGION=&REG,                                             01092901
+//             COND=((3,LT,ASSEM),(7,LT,ASM),                           01093001
+//             (3,LT,BLDMBR))                                           01093101
+//SYSUT1   DD  UNIT=&WORK,SPACE=(1024,(100,50))                         01093201
+//SYSPRINT DD  SYSOUT=&OUTC                                             01093301
+//SYSLMOD  DD  DSN=CICSVS.LOADLIB,DISP=SHR                              01093401
+//SYSPUNCH DD  DSN=&&TEMPPDS,DISP=(OLD,PASS)                            01093501
+//SYSLIN   DD  DSN=&&TEMPPDS(LNKCTL),                                   01093601
+//             DISP=(OLD,PASS),VOL=REF=*.SYSPUNCH                       01093701
+// PEND                                                                 01095501
+//PCT      EXEC DFHAUPLK                                                01096000
+//ASSEM.SYSUT1 DD DISP=SHR,                                             01100000
+//        DSN=DSN22X.DSNSAMP(DSN8FPCT)                                  01110000
+//*PPT      EXEC DFHAUPLK,COND=(4,LT)                                   01120000
+//*ASSEM.SYSUT1 DD DISP=SHR,                                            01130000
+//*        DSN=DSN22X.DSNSAMP(DSN8FPPT)                                 01140000
+//*RCT      EXEC DFHAUPLK,COND=(4,LT)                                   01150000
+//*ASSEM.SYSUT1 DD DISP=SHR,                                            01160000
+//*        DSN=DSN22X.DSNSAMP(DSN8FRCT)                                 01170000
+//*                                                                     01180000

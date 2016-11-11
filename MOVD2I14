@@ -1,0 +1,13 @@
+//MOVD2I14 JOB (D3330RWM,ROOM),'D J YOUNG',MSGCLASS=O                           
+//DB2I14  EXEC PGM=ADRDSSU,REGION=4096K                                         
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=DB2I14                                    
+//DASD2 DD DISP=SHR,UNIT=3390,VOL=SER=DB2I12                                    
+//SYSPRINT DD SYSOUT=*                                                          
+ COPY DATASET(INCLUDE(DSNC220.**)) -                                            
+      INDDNAME(DASD1),OUTDDNAME(DASD2) -                                        
+      DELETE                                                                    
+//*                                                                             

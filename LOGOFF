@@ -1,0 +1,6 @@
+@PROGRAM = LOGFPGM                                                              
+LOGOFF: MSGTXT                                                                  
+    TYPE 'CESF LOGOF'                                                           
+    TRANSMIT USING ENTER                                                        
+    QUIESCE                                                                     
+ENDTXT                                                                          

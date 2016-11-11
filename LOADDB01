@@ -1,0 +1,74 @@
+//LOADDB01 JOB (AAA),'D J YOUNG',MSGCLASS=X,TIME=1440,USER=DAVID,               
+//         REGION=0K                                                            
+//DSNUPROC PROC LIB='SYS1.DSNLOAD',                                             
+//         SYSTEM=DSN,                                                          
+//         SIZE=1024K,UID='',UTPROC=''                                          
+//*        SIZE=1024K,UID='',UTPROC='RESTART'                                   
+//DSNUPROC EXEC PGM=DSNUTILB,REGION=&SIZE,                                      
+//         PARM=(&SYSTEM,'&UID','&UTPROC')                                      
+//STEPLIB  DD DSN=&LIB,DISP=SHR                                                 
+//SYSPRINT DD SYSOUT=*                                                          
+//UTPRINT  DD SYSOUT=*                                                          
+//SYSUDUMP DD SYSOUT=*                                                          
+//    PEND                                                                      
+//UTIL EXEC DSNUPROC,SYSTEM=DSN,UID='LOADDB',UTPROC=''                          
+//*                                                                             
+//**********************************************                                
+//*                                                                             
+//*  GENERATING JCL FOR THE LOAD UTILITY                                        
+//*  DATE:  11/04/87          TIME:  05:03:15                                   
+//*                                                                             
+//**********************************************                                
+//*                                                                             
+//DSNUPROC.SORTWK01 DD DSN=&&SORT1,                                             
+//     DISP=(,DELETE),DCB=BLKSIZE=15400,                                        
+//     SPACE=(CYL,(500,100),,,ROUND),                                           
+//     UNIT=SYSDA,VOL=SER=VOLC02                                                
+//DSNUPROC.SORTWK02 DD DSN=&&SORT2,                                             
+//     DISP=(,DELETE),DCB=BLKSIZE=15400,                                        
+//     SPACE=(CYL,(500,100),,,ROUND),                                           
+//     UNIT=SYSDA,VOL=SER=VOLC03                                                
+//DSNUPROC.SORTWK03 DD DSN=&&SORT3,                                             
+//     DISP=(,DELETE),DCB=BLKSIZE=15400,                                        
+//     SPACE=(CYL,(500,100),,,ROUND),                                           
+//     UNIT=SYSDA,VOL=SER=VOLC04                                                
+//DSNUPROC.SORTWK04 DD DSN=&&SORT4,                                             
+//     DISP=(,DELETE),DCB=BLKSIZE=15400,                                        
+//     SPACE=(CYL,(500,100),,,ROUND),                                           
+//     UNIT=SYSDA,VOL=SER=VOLBA0                                                
+//DSNUPROC.SYSUT1 DD DSN=&&SYSUT1,                                              
+//     DISP=(,DELETE),DCB=BLKSIZE=15400,                                        
+//     SPACE=(CYL,(1000,50),,,ROUND),                                           
+//     UNIT=SYSDA,VOL=SER=VOLBA1                                                
+//DSNUPROC.SORTOUT DD DSN=&&SORTOT,                                             
+//     DISP=(,DELETE),DCB=BLKSIZE=15400,                                        
+//     SPACE=(CYL,(1000,50),,,ROUND),                                           
+//     UNIT=SYSDA,VOL=SER=VOLBA2                                                
+//DSNUPROC.MYDD1 DD DSN=DAVID.P1.DATA,UNIT=SYSDA,DISP=(OLD,KEEP),               
+//  VOL=SER=VOLC00                                                              
+//DSNUPROC.SYSMAP DD  DSN=&&SYSMAP,UNIT=SYSDA,DISP=(NEW,DELETE,DELETE),         
+// SPACE=(CYL,(50,50)),DCB=BLKSIZE=15400,VOL=SER=VOLBA3                         
+//DSNUPROC.SYSIN    DD  *                                                       
+ LOAD DATA INDDN(MYDD1) LOG NO RESUME YES                               00010000
+      INTO TABLE DAVID.SQ100                                            00020000
+     (KSEQ  POSITION(1:4) INTEGER,                                              
+      K500K POSITION(5:8)     INTEGER,                                          
+      K250K POSITION(9:12)    INTEGER,                                          
+      K100K POSITION(13:16)   INTEGER,                                          
+      K40K  POSITION(17:20)   INTEGER,                                          
+      K10K  POSITION(21:24)   INTEGER,                                          
+      K1K   POSITION(25:28)   INTEGER,                                          
+      K100  POSITION(29:32)   INTEGER,                                          
+      K25   POSITION(33:36)   INTEGER,                                          
+      K10   POSITION(37:40)   INTEGER,                                          
+      K5    POSITION(41:44)   INTEGER,                                          
+      K4    POSITION(45:48)   INTEGER,                                          
+      K2    POSITION(49:52)   INTEGER,                                          
+      SORTBIN  POSITION(53:56)   INTEGER,                                       
+      SORTPACK POSITION(57:60)   DEC PACKED,                                    
+      SORTCHAR POSITION(61:68)   CHAR(8),                                       
+      S4       POSITION(69:98)   CHAR(30),                                      
+      S5       POSITION(99:128)  CHAR(30),                                      
+      S6       POSITION(129:158) CHAR(30),                                      
+      S7       POSITION(159:178) CHAR(20),                                      
+      S8       POSITION(179:200) CHAR(22))                                      

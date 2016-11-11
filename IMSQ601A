@@ -1,0 +1,29 @@
+  IMSQ601T: MSGUTBL                                                             
+  'Q601     00002'                                                              
+  'Q602     00002'                                                              
+  'Q603     00002'                                                              
+  'Q604     00002'                                                              
+  'Q605     00002'                                                              
+  'Q606     00002'                                                              
+  'Q607     00002'                                                              
+  'Q608     00002'                                                              
+  'Q609     00002'                                                              
+  'Q610     00002'                                                              
+  ENDUTBL                                                                       
+IMSQ601A: MSGTXT                                                                
+Q6FIRST='000000001'                                                             
+Q6LAST='000000001'                                                              
+QUIESCE                                                                         
+DO FOREVER                                                                      
+    Q6BT=UTBL(IMSQ601T,'R')                                                     
+    Q6TRAN=SUBSTR(Q6BT,1,9)                                                     
+    Q6ROES=SUBSTR(Q6BT,10,5)                                                    
+    Q6ROWS=E2D (Q6ROES,5)                                                       
+    Q6RAND=RANDOM('RN',1)                                                       
+    Q6FIRST=CHAR(Q6RAND,5)                                                      
+    Q6RAND=Q6RAND+Q6ROWS                                                        
+    Q6LAST=CHAR(Q6RAND,5)                                                       
+   TYPE Q6TRAN||Q6FIRST||'0000'||Q6LAST||'0000'                                 
+   TRANSMIT USING ENTER                                                         
+END                                                                             
+ENDTXT                                                                          

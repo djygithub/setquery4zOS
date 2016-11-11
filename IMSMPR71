@@ -1,0 +1,1846 @@
+//IMSMPR1  JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR2  JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR3  JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR4  JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR5  JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR6  JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR7  JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR8  JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR9  JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR10 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR11 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR12 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR13 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR14 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR15 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR16 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR17 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR18 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR19 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR20 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR21 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR22 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR23 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR24 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR25 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR26 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR27 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR28 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR29 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR30 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR31 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR32 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR33 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR34 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR35 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR36 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR37 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR38 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR39 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR40 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR41 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR42 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR43 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR44 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR45 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR46 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR47 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR48 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR49 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR50 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR51 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR52 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR53 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR54 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR55 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR56 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR57 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR58 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR59 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR60 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR71 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR61 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR62 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR63 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR64 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR65 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR66 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR67 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR68 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR69 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180
+//IMSMPR70 JOB (AMW,000),'IMS MPR',MSGCLASS=X,CLASS=A,                          
+//             TIME=(1440)                                                      
+//MPPROC PROC RGN=1024K,                                                00000010
+//             CL1=001,CL2=000,CL3=000,CL4=000,                         00000020
+//             OPT=N,OVLA=0,SPIE=0,VALCK=0,TLIM=01,                     00000030
+//             PCB=000,PRLD=,STIMER=,SOD=,DBLDL=,                       00000040
+//             NBA=,OBA=,IMSID=IVP1,AGN=,VSFX=00,VFREE=,                00000050
+//             SSM=ASY                                                  00000060
+//*                                                                     00000070
+//REGION EXEC  PGM=DFSRRC00,REGION=&RGN,                                00000080
+//             TIME=1440,DPRTY=(15,14),                                 00000090
+//             PARM=(MSG,&CL1&CL2&CL3&CL4,                              00000100
+//             &OPT&OVLA&SPIE&VALCK&TLIM&PCB,                           00000110
+//             &PRLD,&STIMER,&SOD,&DBLDL,&NBA,                          00000120
+//             &OBA,&IMSID,&AGN,&VSFX,&VFREE,                           00000130
+//             &SSM)                                                    00000140
+//*                                                                     00000150
+//STEPLIB  DD  DSN=IMS310.RESLIB,DISP=SHR                               00000160
+//*        DD  DSN=DSN22X.RUNLIB.LOAD,DISP=SHR                          00000170
+//         DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//DFSESL   DD  DSN=SYS1.DSNLOAD,DISP=SHR                                00000180
+//         DD  DSN=IMS310.RESLIB,DISP=SHR                               00000180
+//PROCLIB  DD  DSN=IMS310A.PROCLIB,DISP=SHR                             00000180
+//SYSOUT   DD  SYSOUT=*                                                 00000180
+// PEND                                                                 00000180
+//DOIT EXEC MPPROC                                                      00000180

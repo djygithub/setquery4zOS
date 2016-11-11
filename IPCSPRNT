@@ -1,0 +1,16 @@
+//DB231    JOB  (X),YOUNG,MSGCLASS=P,TIME=10                                    
+//TMP      EXEC  PGM=IKJEFT01,REGION=1M                                         
+//IPCSPARM DD  DSN=SYS1.PARMLIB,DISP=SHR                                        
+//SYSPRINT DD  DSN=SYS1.SBLSCLI0,DISP=SHR                                       
+//IPCSDDIR DD  DSN=DICK.DDIR,DISP=SHR                                           
+//*PCSDDIR DD  DSN=DAVID.DUMP.DIR,DISP=SHR                                      
+//SYSTRUNK DD  DSN=DB2310.GTF,DISP=SHR,UNIT=3390,                               
+//   VOL=SER=DB2310                                                             
+//SYSTSPRT DD  SYSOUT=*                                                         
+//SYSTSIN  DD  *                                                                
+ IPCS NOPARM                                                                    
+ SETDEF DD(SYSTRUNK) NOCONFIRM                                                  
+ VERBEXIT TRACE                                                                 
+ END                                                                            
+/*                                                                              
+ VERBEXIT TRACE 'ASID(10,15,29)'                                                

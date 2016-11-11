@@ -1,0 +1,7 @@
+//LISTDATA JOB (0,MS44),'AZIZ',MSGCLASS=X,MSGLEVEL=(1,1),                       
+//         REGION=4000K                                                         
+//S1       EXEC  PGM=IDCAMS                                                     
+//DD1      DD VOL=SER=RAMFE3,UNIT=3390,SPACE=(CYL,(1,1))                        
+//SYSPRINT DD    SYSOUT=*                                                       
+//SYSIN    DD    *                                                              
+   LISTDATA VOLUME(RAMFE3) UNIT(3390) STATUS                                    

@@ -1,0 +1,125 @@
+//IV3H102J JOB (USER,ACCT,NUMBER),                                              
+//         'D J YOUNG',                                                         
+//         CLASS=A,MSGCLASS=X,MSGLEVEL=(1,1),                                   
+//         REGION=4M                                                            
+//*                                                                             
+//*                                                                             
+//*                                                                             
+//*********************************************************************         
+//* INSTALL/IVP IMS 3.1                                                         
+//*                                                                             
+//* SKELETON: DFSIXSH1                                                          
+//*                                                                             
+//* FUNCTION: INITIALIZE DBRC RECON AND REGISTER DATA BASES                     
+//*********************************************************************         
+//*                                                                             
+//*********************************************************************         
+//*         THIS PRODUCT CONTAINS "RESTRICTED MATERIALS OF IBM".      *         
+//*                                                                   *         
+//*         5665-408 (C) COPYRIGHT IBM CORP. 1974, 1988.              *         
+//*         LICENSED MATERIALS - PROPERTY OF IBM.                     *         
+//*         ALL RIGHTS RESERVED.                                      *         
+//*                                                                   *         
+//*         U.S. GOVERNMENT USERS RESTRICTED RIGHTS -                 *         
+//*         USE, DUPLICATION, OR DISCLOSURE RESTRICTED BY             *         
+//*         GSA ADP SCHEDULE CONTRACT WITH IBM CORP.                  *         
+//*                                                                   *         
+//*         REFER TO COPYRIGHT INSTRUCTIONS FORM NUMBER G120-2083.    *         
+//*********************************************************************         
+//*                                                                             
+//*********************************************************************         
+//DBRC     PROC                                                                 
+//*                                                                             
+//D        EXEC PGM=DSPURX00                                                    
+//STEPLIB  DD DISP=SHR,DSN=IMS310.RESLIB                                        
+//SYSPRINT DD SYSOUT=*                                                          
+//SYSUDUMP DD SYSOUT=*                                                          
+//IMS      DD DISP=SHR,DSN=IMS310A.DBDLIB                                       
+//JCLPDS   DD DISP=SHR,DSN=IMS310A.PROCLIB                                      
+//JCLOUT   DD SYSOUT=(A,INTRDR)                                                 
+//        PEND                                                                  
+//*********************************************************************         
+//*                                                                             
+//SCRATCH  EXEC PGM=IDCAMS                                                      
+//SYSPRINT DD SYSOUT=*                                                          
+//SYSIN    DD *                                                                 
+  DELETE IMS310A.RECON1 CLUSTER                                                 
+  DELETE IMS310A.RECON2 CLUSTER                                                 
+  DELETE IMS310A.RECON3 CLUSTER                                                 
+//*                                                                             
+//ALLOCATE EXEC PGM=IDCAMS                                                      
+//SYSPRINT DD SYSOUT=*                                                          
+//SYSIN    DD *                                                                 
+  DEFINE CLUSTER(                                -                              
+                 NAME(IMS310A.RECON1)         -                                 
+                 FREESPACE(20 20)                -                              
+                 INDEXED                         -                              
+                 KEYS(24 0)                      -                              
+                 RECORDSIZE(4086 32600)          -                              
+                 SHAREOPTIONS(3 3)               -                              
+                 RECOVERY                        -                              
+                 NOERASE                         -                              
+                 SPANNED                         -                              
+                 NOREUSE                         -                              
+                 UNORDERED                       -                              
+                 UNIQUE                          -                              
+                 VOLUMES(CICS32)              -                                 
+                 CYL(3 1)  -                                                    
+                )                                -                              
+            DATA(                                -                              
+                 NAME(IMS310A.RECON1.DATA)    -                                 
+                )                                -                              
+           INDEX(                                -                              
+                 NAME(IMS310A.RECON1.INDX)    -                                 
+                )                                                               
+  DEFINE CLUSTER(                                -                              
+                 NAME(IMS310A.RECON2)         -                                 
+                 FREESPACE(20 20)                -                              
+                 INDEXED                         -                              
+                 KEYS(24 0)                      -                              
+                 RECORDSIZE(4086 32600)          -                              
+                 SHAREOPTIONS(3 3)               -                              
+                 RECOVERY                        -                              
+                 NOERASE                         -                              
+                 SPANNED                         -                              
+                 NOREUSE                         -                              
+                 UNORDERED                       -                              
+                 UNIQUE                          -                              
+                 VOLUMES(CICS32)              -                                 
+                 CYL(3 1)  -                                                    
+                )                                -                              
+            DATA(                                -                              
+                 NAME(IMS310A.RECON2.DATA)    -                                 
+                )                                -                              
+           INDEX(                                -                              
+                 NAME(IMS310A.RECON2.INDX)    -                                 
+                )                                                               
+  DEFINE CLUSTER(                                -                              
+                 NAME(IMS310A.RECON3)         -                                 
+                 FREESPACE(20 20)                -                              
+                 INDEXED                         -                              
+                 KEYS(24 0)                      -                              
+                 RECORDSIZE(4086 32600)          -                              
+                 SHAREOPTIONS(3 3)               -                              
+                 RECOVERY                        -                              
+                 NOERASE                         -                              
+                 SPANNED                         -                              
+                 NOREUSE                         -                              
+                 UNORDERED                       -                              
+                 UNIQUE                          -                              
+                 VOLUMES(CICS32)              -                                 
+                 CYL(3 1)  -                                                    
+                )                                -                              
+            DATA(                                -                              
+                 NAME(IMS310A.RECON3.DATA)    -                                 
+                )                                -                              
+           INDEX(                                -                              
+                 NAME(IMS310A.RECON3.INDX)    -                                 
+                )                                                               
+//*                                                                             
+//*                                                                             
+//INITRCON EXEC PROC=DBRC                                                       
+//D.SYSIN  DD *                                                                 
+  INIT.RECON SSID(IVP1)                     -                                   
+             FORCER CHECK17 SHARECTL NONEW  -                                   
+             DASDUNIT(3390) TAPEUNIT(3480)                                      

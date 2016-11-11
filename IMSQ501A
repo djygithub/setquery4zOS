@@ -1,0 +1,22 @@
+  IMSQ501T: MSGUTBL                                                             
+  'Q501     00001'                                                              
+  'Q502     00001'                                                              
+  'Q503     00001'                                                              
+  ENDUTBL                                                                       
+IMSQ501A: MSGTXT                                                                
+Q5FIRST='000000001'                                                             
+Q5LAST='000000001'                                                              
+QUIESCE                                                                         
+DO FOREVER                                                                      
+    Q5BT=UTBL(IMSQ501T,'R')                                                     
+    Q5TRAN=SUBSTR(Q5BT,1,9)                                                     
+    Q5ROES=SUBSTR(Q5BT,10,5)                                                    
+    Q5ROWS=E2D (Q5ROES,5)                                                       
+    Q5RAND=RANDOM('RN',1)                                                       
+    Q5FIRST=CHAR(Q5RAND,5)                                                      
+    Q5RAND=Q5RAND+Q5ROWS                                                        
+    Q5LAST=CHAR(Q5RAND,5)                                                       
+   TYPE Q5TRAN||Q5FIRST||'0000'||Q5LAST||'0000'                                 
+   TRANSMIT USING ENTER                                                         
+END                                                                             
+ENDTXT                                                                          

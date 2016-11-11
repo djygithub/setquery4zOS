@@ -1,0 +1,325 @@
+//IMSGEN01 JOB ,                                                                
+// IMS,                                                                         
+// MSGCLASS=A                                                                   
+//STEP1    EXEC PGM=IEV90,REGION=4096K,                                         
+//             PARM='LOAD,NODECK,NOLIST'                                        
+//SYSLIB   DD DSN=IMS310.OPTIONS,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIB,DISP=SHR                                        
+//         DD DSN=IMS310.GENLIBA,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIBB,DISP=SHR                                       
+//         DD DSN=SYS1.MACLIB,DISP=SHR                                          
+//         DD DSN=SYS1.AMODGEN,DISP=SHR                                         
+//SYSLIN   DD DISP=OLD,                                                         
+//      DSN=IMS310.OBJDSET(DFSPDIRI)                                            
+//SYSPRINT DD  SYSOUT=A,                                                        
+//             DCB=(BLKSIZE=605),                                               
+//             SPACE=(605,(100,50),RLSE,,ROUND)                                 
+//SYSUT1   DD  UNIT=3390,DISP=(,DELETE),                                        
+//             SPACE=(CYL,(15,15))                                              
+//SYSIN    DD   *                                                               
+PSBDFPU  DFSPSBD DBF#FPU0,400C28                                                
+PS33     DFSPSBD DBFSAMP1,400000                                                
+PS34     DFSPSBD DBFSAMP2,400000                                                
+PS35     DFSPSBD DBFSAMP3,400030                                                
+PS36     DFSPSBD DBFSAMP4,800000                                                
+PS37     DFSPSBD DBFSAMP5,400000                                                
+PS38     DFSPSBD DBFSAMP6,400000                                                
+PS27     DFSPSBD DFHSAM04,400000                                                
+PS30     DFSPSBD DFHSAM05,400000                                                
+PS28     DFSPSBD DFHSAM14,400000                                                
+PS31     DFSPSBD DFHSAM15,400000                                                
+PS29     DFSPSBD DFHSAM24,400000                                                
+PS32     DFSPSBD DFHSAM25,400000                                                
+PS15     DFSPSBD DFSIVPA,400000                                                 
+PS16     DFSPSBD DFSIVPB,400000                                                 
+PS17     DFSPSBD DFSIVPC,400000                                                 
+PS6      DFSPSBD DFSIVP1,800000                                                 
+PS7      DFSPSBD DFSIVP2,800000                                                 
+PS8      DFSPSBD DFSIVP3,800000                                                 
+PS9      DFSPSBD DFSIVP4,404030                                                 
+PS10     DFSPSBD DFSIVP5,404030                                                 
+PS11     DFSPSBD DFSIVP6,400000                                                 
+PS12     DFSPSBD DFSIVP7,400000                                                 
+PS13     DFSPSBD DFSIVP8,400000                                                 
+PS14     DFSPSBD DFSIVP9,400000                                                 
+PS18     DFSPSBD DFSSAM01,400000                                                
+PS19     DFSPSBD DFSSAM02,800000                                                
+PS20     DFSPSBD DFSSAM03,800000                                                
+PS21     DFSPSBD DFSSAM04,800000                                                
+PS22     DFSPSBD DFSSAM05,800000                                                
+PS23     DFSPSBD DFSSAM06,800000                                                
+PS24     DFSPSBD DFSSAM07,800000                                                
+PS25     DFSPSBD DFSSAM08,400000                                                
+PS26     DFSPSBD DFSSAM09,400000                                                
+PS1      DFSPSBD IM2Q101,804000                                                 
+PS2      DFSPSBD IM2Q103,804000                                                 
+PS3      DFSPSBD IM2Q105,804000                                                 
+PS4      DFSPSBD IM2Q501,804000                                                 
+PS5      DFSPSBD IM2Q610,804000                                                 
+         DFSPSBD GEN                                                            
+         END                                                                    
+//STEP2    EXEC PGM=IEV90,REGION=4096K,                                         
+//             PARM='LOAD,NODECK,NOLIST'                                        
+//SYSLIB   DD DSN=IMS310.OPTIONS,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIB,DISP=SHR                                        
+//         DD DSN=IMS310.GENLIBA,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIBB,DISP=SHR                                       
+//         DD DSN=SYS1.MACLIB,DISP=SHR                                          
+//         DD DSN=SYS1.AMODGEN,DISP=SHR                                         
+//SYSLIN   DD DISP=OLD,                                                         
+//      DSN=IMS310.OBJDSET(DFSSMB0I)                                            
+//SYSPRINT DD  SYSOUT=A,                                                        
+//             DCB=(BLKSIZE=605),                                               
+//             SPACE=(605,(100,50),RLSE,,ROUND)                                 
+//SYSUT1   DD  UNIT=3390,DISP=(,DELETE),                                        
+//             SPACE=(CYL,(15,15))                                              
+//SYSIN    DD   *                                                               
+        DFSSMB ADDINV,7A0002,45484000,                                 ,        
+               65535,65535,0,1,0,0,0,65535,DFSSAM04,0,0,               ,        
+               ,0,0                                                             
+        DFSSMB ADDPART,7A0002,45484000,                                ,        
+               65535,65535,0,1,0,0,0,65535,DFSSAM04,0,0,               ,        
+               ,0,0                                                             
+        DFSSMB CLOSE,7A0002,45484000,                                  ,        
+               65535,65535,0,1,0,0,0,65535,DFSSAM05,0,0,               ,        
+               ,0,0                                                             
+        DFSSMB DISBURSE,7A0002,45484000,                               ,        
+               65535,65535,0,1,0,0,0,65535,DFSSAM06,0,0,               ,        
+               ,0,0                                                             
+        DFSSMB DLETINV,7A0002,45484000,                                ,        
+               65535,65535,0,1,0,0,0,65535,DFSSAM04,0,0,               ,        
+               ,0,0                                                             
+        DFSSMB DLETPART,7A0002,45484000,                               ,        
+               65535,65535,0,1,0,0,0,65535,DFSSAM04,0,0,               ,        
+               ,0,0                                                             
+        DFSSMB DSPALLI,7A0002,45484000,                                ,        
+               65535,65535,0,1,0,0,0,65535,DFSSAM07,0,0,               ,        
+               ,0,0                                                             
+        DFSSMB DSPINV,7A0002,41484000,                                 ,        
+               65535,65535,0,1,0,0,0,65535,DFSSAM03,0,0,               ,        
+               ,0,0                                                             
+        DFSSMB FPSAMP1,11FFFF,85484400,                                ,        
+               65535,65535,0,1,RCTE3,0,0,65535,DBFSAMP3,0,0,           ,        
+               FPSAMP1,0,0                                                      
+        DFSSMB FPSAMP2,11FFFF,45484000,                                ,        
+               65535,65535,0,1,0,0,0,65535,DBFSAMP4,0,0,               ,        
+               ,0,0                                                             
+        DFSSMB IVTCV,11FFFF,05E84000,                                  ,        
+               65535,65535,0,1,80,0,0,65535,DFSIVP3,0,0,               ,        
+               ,0,0                                                             
+        DFSSMB IVTFD,11FFFF,85484400,                                  ,        
+               65535,65535,0,1,RCTE1,0,0,65535,DFSIVP4,0,0,            ,        
+               IVTFD,0,0                                                        
+        DFSSMB IVTFM,11FFFF,85484400,                                  ,        
+               65535,65535,0,1,RCTE2,0,0,65535,DFSIVP5,0,0,            ,        
+               IVTFM,0,0                                                        
+        DFSSMB IVTNO,11FFFF,05484000,                                  ,        
+               65535,65535,0,1,0,0,0,65535,DFSIVP1,0,0,                ,        
+               ,0,0                                                             
+        DFSSMB IVTNV,11FFFF,05484000,                                  ,        
+               65535,65535,0,1,0,0,0,65535,DFSIVP2,0,0,                ,        
+               ,0,0                                                             
+        DFSSMB PART,7A0002,41484000,                                   ,        
+               65535,65535,0,1,0,0,0,65535,DFSSAM02,0,0,               ,        
+               ,0,0                                                             
+        DFSSMB Q101,8C000A,85484000,                                   ,        
+               65535,65535,0,1,0,0,0,65535,IM2Q101,0,0,                ,        
+               ,0,0                                                             
+        DFSSMB Q103,8C000A,85484000,                                   ,        
+               65535,65535,0,1,0,0,0,65535,IM2Q103,0,0,                ,        
+               ,0,0                                                             
+        DFSSMB Q105,8C000A,85484000,                                   ,        
+               65535,65535,0,1,0,0,0,65535,IM2Q105,0,0,                ,        
+               ,0,0                                                             
+        DFSSMB Q501,8C000A,85484000,                                   ,        
+               65535,65535,0,1,0,0,0,65535,IM2Q501,0,0,                ,        
+               ,0,0                                                             
+        DFSSMB Q610,8C000A,85484000,                                   ,        
+               65535,65535,0,1,0,0,0,65535,IM2Q610,0,0,                ,        
+               ,0,0                                                             
+         DFSSMB GEN                                                             
+         END                                                                    
+//STEP3    EXEC PGM=IEV90,REGION=4096K,                                         
+//             PARM='LOAD,NODECK,NOLIST'                                        
+//SYSLIB   DD DSN=IMS310.OPTIONS,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIB,DISP=SHR                                        
+//         DD DSN=IMS310.GENLIBA,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIBB,DISP=SHR                                       
+//         DD DSN=SYS1.MACLIB,DISP=SHR                                          
+//         DD DSN=SYS1.AMODGEN,DISP=SHR                                         
+//SYSLIN   DD DISP=OLD,                                                         
+//      DSN=IMS310.OBJDSET(DFSDDIRI)                                            
+//SYSPRINT DD  SYSOUT=A,                                                        
+//             DCB=(BLKSIZE=605),                                               
+//             SPACE=(605,(100,50),RLSE,,ROUND)                                 
+//SYSUT1   DD  UNIT=3390,DISP=(,DELETE),                                        
+//             SPACE=(CYL,(15,15))                                              
+//SYSIN    DD   *                                                               
+        DFSDMD DBFSAMD1,0000,4                                                  
+        DFSDMD DBFSAMD2,0000,4                                                  
+        DFSDMD DBFSAMD3,0000,3                                                  
+        DFSDMD DBFSAMD4,0000,3                                                  
+        DFSDMD DI21PART,0000,3                                                  
+        DFSDMD IVPDB1,0000,3                                                    
+        DFSDMD IVPDB1I,0000,3                                                   
+        DFSDMD IVPDB2,0000,3                                                    
+        DFSDMD IVPDB3,0000,3                                                    
+        DFSDMD IVPDB4,0000,4                                                    
+        DFSDMD GEN                                                              
+        END                                                                     
+//STEP4    EXEC PGM=IEV90,REGION=4096K,                                         
+//             PARM='LOAD,NODECK,NOLIST'                                        
+//SYSLIB   DD DSN=IMS310.OPTIONS,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIB,DISP=SHR                                        
+//         DD DSN=IMS310.GENLIBA,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIBB,DISP=SHR                                       
+//         DD DSN=SYS1.MACLIB,DISP=SHR                                          
+//         DD DSN=SYS1.AMODGEN,DISP=SHR                                         
+//SYSLIN   DD DISP=OLD,                                                         
+//      DSN=IMS310.OBJDSET(DFSRCTEI)                                            
+//SYSPRINT DD  SYSOUT=A,                                                        
+//             DCB=(BLKSIZE=605),                                               
+//             SPACE=(605,(100,50),RLSE,,ROUND)                                 
+//SYSUT1   DD  UNIT=3390,DISP=(,DELETE),                                        
+//             SPACE=(CYL,(15,15))                                              
+//SYSIN    DD   *                                                               
+RCTE3 DBFRCT  FPSAMP1,DBFSAMP3,10                                               
+RCTE1 DBFRCT  IVTFD,DFSIVP4,10                                                  
+RCTE2 DBFRCT  IVTFM,DFSIVP5,10                                                  
+         DBFRCT  GEN                                                            
+         END                                                                    
+//STEP5    EXEC PGM=IEV90,REGION=4096K,                                         
+//             PARM='LOAD,NODECK,NOLIST'                                        
+//SYSLIB   DD DSN=IMS310.OPTIONS,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIB,DISP=SHR                                        
+//         DD DSN=IMS310.GENLIBA,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIBB,DISP=SHR                                       
+//         DD DSN=SYS1.MACLIB,DISP=SHR                                          
+//         DD DSN=SYS1.AMODGEN,DISP=SHR                                         
+//SYSLIN   DD DISP=OLD,                                                         
+//      DSN=IMS310.OBJDSET(DFSISDBI)                                            
+//SYSPRINT DD  SYSOUT=A,                                                        
+//             DCB=(BLKSIZE=605),                                               
+//             SPACE=(605,(100,50),RLSE,,ROUND)                                 
+//SYSUT1   DD  UNIT=3390,DISP=(,DELETE),                                        
+//             SPACE=(CYL,(15,15))                                              
+//SYSIN    DD   *                                                               
+SDB0     TITLE 'DFSISDBI - SECURITY DIRECTORY BLOCKS (SDB).'                    
+DFSISDB0 CSECT                                                                  
+         ENTRY DFSISDB                                                          
+DFSISDB  DS    0D                                                               
+         DC    A(SMBL-DFSISDB)    OFFSET TO SMB LIST.                           
+         DC    A(DMDL-DFSISDB)    OFFSET TO DMD LIST.                           
+         DC    A(PSBL-DFSISDB)    OFFSET TO PSB LIST.                           
+SMBL     DC    A((SMBLE-SMBLL)/L'SMBLL,L'SMBLL)                                 
+SMBLL        DS    0CL9                                                         
+         DFSSMB SDB,ADDINV,0                                                    
+         DFSSMB SDB,ADDPART,0                                                   
+         DFSSMB SDB,CLOSE,0                                                     
+         DFSSMB SDB,DISBURSE,0                                                  
+         DFSSMB SDB,DLETINV,0                                                   
+         DFSSMB SDB,DLETPART,0                                                  
+         DFSSMB SDB,DSPALLI,0                                                   
+         DFSSMB SDB,DSPINV,0                                                    
+         DFSSMB SDB,FPSAMP1,1                                                   
+         DFSSMB SDB,FPSAMP2,0                                                   
+         DFSSMB SDB,IVTCV,0                                                     
+         DFSSMB SDB,IVTFD,1                                                     
+         DFSSMB SDB,IVTFM,1                                                     
+         DFSSMB SDB,IVTNO,0                                                     
+         DFSSMB SDB,IVTNV,0                                                     
+         DFSSMB SDB,PART,0                                                      
+         DFSSMB SDB,Q101,0                                                      
+         DFSSMB SDB,Q103,0                                                      
+         DFSSMB SDB,Q105,0                                                      
+         DFSSMB SDB,Q501,0                                                      
+         DFSSMB SDB,Q610,0                                                      
+         DFSSDB SMB                                                             
+SMBLE        EQU    *                                                           
+DMDL     DC    A((DMDLE-DMDLL)/L'DMDLL,L'DMDLL)                                 
+DMDLL        DS    0CL8                                                         
+         DFSDMD SDB,DBFSAMD1                                                    
+         DFSDMD SDB,DBFSAMD2                                                    
+         DFSDMD SDB,DBFSAMD3                                                    
+         DFSDMD SDB,DBFSAMD4                                                    
+         DFSDMD SDB,DI21PART                                                    
+         DFSDMD SDB,IVPDB1                                                      
+         DFSDMD SDB,IVPDB1I                                                     
+         DFSDMD SDB,IVPDB2                                                      
+         DFSDMD SDB,IVPDB3                                                      
+         DFSDMD SDB,IVPDB4                                                      
+         DFSSDB DMD                                                             
+DMDLE        EQU    *                                                           
+PSBL     DC    A((PSBLE-PSBLL)/L'PSBLL,L'PSBLL)                                 
+PSBLL        DS    0CL8                                                         
+         DFSPSBD SDB,DBF#FPU0                                                   
+         DFSPSBD SDB,DBFSAMP1                                                   
+         DFSPSBD SDB,DBFSAMP2                                                   
+         DFSPSBD SDB,DBFSAMP3                                                   
+         DFSPSBD SDB,DBFSAMP4                                                   
+         DFSPSBD SDB,DBFSAMP5                                                   
+         DFSPSBD SDB,DBFSAMP6                                                   
+         DFSPSBD SDB,DFHSAM04                                                   
+         DFSPSBD SDB,DFHSAM05                                                   
+         DFSPSBD SDB,DFHSAM14                                                   
+         DFSPSBD SDB,DFHSAM15                                                   
+         DFSPSBD SDB,DFHSAM24                                                   
+         DFSPSBD SDB,DFHSAM25                                                   
+         DFSPSBD SDB,DFSIVPA                                                    
+         DFSPSBD SDB,DFSIVPB                                                    
+         DFSPSBD SDB,DFSIVPC                                                    
+         DFSPSBD SDB,DFSIVP1                                                    
+         DFSPSBD SDB,DFSIVP2                                                    
+         DFSPSBD SDB,DFSIVP3                                                    
+         DFSPSBD SDB,DFSIVP4                                                    
+         DFSPSBD SDB,DFSIVP5                                                    
+         DFSPSBD SDB,DFSIVP6                                                    
+         DFSPSBD SDB,DFSIVP7                                                    
+         DFSPSBD SDB,DFSIVP8                                                    
+         DFSPSBD SDB,DFSIVP9                                                    
+         DFSPSBD SDB,DFSSAM01                                                   
+         DFSPSBD SDB,DFSSAM02                                                   
+         DFSPSBD SDB,DFSSAM03                                                   
+         DFSPSBD SDB,DFSSAM04                                                   
+         DFSPSBD SDB,DFSSAM05                                                   
+         DFSPSBD SDB,DFSSAM06                                                   
+         DFSPSBD SDB,DFSSAM07                                                   
+         DFSPSBD SDB,DFSSAM08                                                   
+         DFSPSBD SDB,DFSSAM09                                                   
+         DFSPSBD SDB,IM2Q101                                                    
+         DFSPSBD SDB,IM2Q103                                                    
+         DFSPSBD SDB,IM2Q105                                                    
+         DFSPSBD SDB,IM2Q501                                                    
+         DFSPSBD SDB,IM2Q610                                                    
+         DFSSDB PSB                                                             
+PSBLE        EQU    *                                                           
+         END                                                                    
+//IMSGEN02 JOB ,                                                                
+// IMS,TYPRUN=HOLD,                                                             
+// MSGCLASS=A                                                                   
+//STEP1 EXEC PGM=IEWL,                                                          
+//             REGION=900K,                                                     
+//             PARM='SIZE=(880K,64K),NCAL,LET,REUS,XREF,LIST'                   
+//SYSPRINT DD  SYSOUT=A,DCB=(RECFM=FBA,LRECL=121,BLKSIZE=605),                  
+//             SPACE=(605,(10,10),RLSE,,ROUND)                                  
+//SYSPUNCH DD DSN=IMS310.OBJDSET,DISP=SHR                                       
+//LOAD     DD DSN=IMS310.LOAD,DISP=SHR                                          
+//USERLIB  DD DSN=IMS310.LOAD,DISP=SHR                                          
+//SYSLMOD  DD DSN=IMS310.MODBLKS,DISP=SHR                                       
+//SYSUT1   DD UNIT=(3390,SEP=(SYSLMOD,SYSPUNCH)),                               
+//            SPACE=(CYL,(10,1))                                                
+//SYSLIN   DD *                                                                 
+  INCLUDE SYSPUNCH(DFSPDIRI)                                                    
+  MODE RMODE(ANY)                                                               
+  NAME DFSPDIRI(R)    DL/I CONTROL BLOCKS (PDIR)                                
+  INCLUDE SYSPUNCH(DFSDDIRI)                                                    
+  MODE RMODE(ANY)                                                               
+  NAME DFSDDIRI(R)    DL/I CONTROL BLOCKS (DDIR)                                
+  INCLUDE SYSPUNCH(DFSSMB0I)                                                    
+  MODE RMODE(ANY)                                                               
+  NAME DFSSMB0I(R)    DL/I CONTROL BLOCKS (SMB)                                 
+  INCLUDE SYSPUNCH(DFSRCTEI)                                                    
+  MODE RMODE(ANY)                                                               
+  NAME DFSRCTEI(R)    DL/I CONTROL BLOCKS (RCTE)                                
+  INCLUDE SYSPUNCH(DFSISDBI)                                                    
+  NAME DFSISDBI(R)    DB SECURITY BLOCKS MODULE                                 

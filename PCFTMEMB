@@ -1,0 +1,105 @@
+//PCFTMEMB JOB (330DJY00),'D J YOUNG ',MSGCLASS=Q,NOTIFY=DAVID          00001008
+//COB2UCL PROC                                                          00010000
+//*   PROC FOR COBOL II - COMPILE AND LINK                              00020000
+//COB2 EXEC PGM=IGYCRCTL,PARM='OBJECT,LIB,APOST,LIST',REGION=1024K      00030002
+//*TEPLIB DD DSNAME=DB2IMS.COB2COMP,DISP=SHR,UNIT=3390,VOL=SER=DB2IMS   00040005
+//STEPLIB  DD  DSNAME=SYS1.COB2COMP,DISP=SHR                            00040005
+//SYSPRINT DD  SYSOUT=*                                                 00050000
+//SYSLIN   DD  DSNAME=&&LOADSET,UNIT=3390,DISP=(MOD,PASS),              00060000
+//             SPACE=(TRK,(3,3))                                        00070000
+//SYSUT1   DD  UNIT=3390,SPACE=(CYL,(1,1))                              00080000
+//SYSUT2   DD  UNIT=3390,SPACE=(CYL,(1,1))                              00090000
+//SYSUT3   DD  UNIT=3390,SPACE=(CYL,(1,1))                              00100000
+//SYSUT4   DD  UNIT=3390,SPACE=(CYL,(1,1))                              00110000
+//SYSUT5   DD  UNIT=3390,SPACE=(CYL,(1,1))                              00120000
+//SYSUT6   DD  UNIT=3390,SPACE=(CYL,(1,1))                              00121000
+//SYSUT7   DD  UNIT=3390,SPACE=(CYL,(1,1))                              00122000
+//LKED   EXEC  PGM=IEWL,PARM='LIST,XREF,',COND=(5,LT,COB2),             00130003
+//             REGION=512K                                              00140003
+//SYSLIN   DD  DSNAME=&&LOADSET,DISP=(OLD,DELETE)                       00150003
+//SYSLMOD  DD  DSNAME=DAVID.DB2SMF.PGMLIB(PCFTMEMB),                    00170005
+//             DISP=SHR,UNIT=3390,VOL=SER=DB2IMS                        00180003
+//*YSLMOD  DD  DSNAME=SYS1.DSN230.DSNLINK(DB2SMF6),                     00170005
+//*            DISP=SHR                                                 00180003
+//SYSLIB DD  DSNAME=SYS1.COB2LIB,DISP=SHR                               00190005
+//       DD  DSNAME=DAVID.DB2SMF.SRCLIB,DISP=SHR,UNIT=3390,             00190005
+//       VOL=SER=DB2IMS                                                 00200003
+//SYSUT1   DD  UNIT=3390,SPACE=(CYL,(1,1))                              00200003
+//SYSPRINT DD  SYSOUT=*                                                 00210003
+// PEND                                                                 00220000
+//DOIT EXEC COB2UCL                                                     00230000
+//SYSIN DD *                                                            00240010
+       ID DIVISION.                                                             
+       PROGRAM-ID. PCFTMEMB.                                                    
+       AUTHOR. D J YOUNG.                                                       
+       ENVIRONMENT DIVISION.                                                    
+       INPUT-OUTPUT SECTION.                                                    
+       FILE-CONTROL.                                                            
+           SELECT INPUT-FILE ASSIGN TO UT-S-PDSMEMBS.                           
+           SELECT OUTPUT-FILE ASSIGN TO UT-S-OUTPUT.                            
+       DATA DIVISION.                                                           
+       FILE SECTION.                                                            
+       FD  OUTPUT-FILE                                                          
+           BLOCK CONTAINS 0 RECORDS                                             
+           RECORD CONTAINS 80 CHARACTERS                                        
+           RECORDING MODE F                                                     
+           LABEL RECORDS ARE STANDARD.                                          
+       01  OUTPUT-RECORD        PIC X(80).                                      
+       FD  INPUT-FILE                                                           
+           BLOCK CONTAINS 0 RECORDS                                             
+           RECORD CONTAINS 133 CHARACTERS                                       
+           RECORDING MODE F                                                     
+           LABEL RECORDS ARE STANDARD.                                          
+       01  INPUT-RECORD.                                                        
+           05  MEMBER-IN        PIC X(8).                                       
+           05  FILLER           PIC X(125).                                     
+       WORKING-STORAGE SECTION.                                                 
+       77  EOF-FLAG             PIC X(3) VALUE 'NO'.                            
+       01  OUTPUT-WORK.                                                         
+           03  FILLER               PIC X(18) VALUE                             
+               'FTTSO/R/V D:\AICS\'.                                            
+           03  MEMBER-ONE           PIC X(8).                                   
+           03  FILLER               PIC X(2) VALUE SPACES.                      
+           03  FILLER               PIC X(21) VALUE                             
+               '''DAVID.PDSTRNSF.DATA('.                                        
+           03  MEMBER-TWO           PIC X(8).                                   
+           03  FILLER               PIC X(23) VALUE                             
+               ')'' DATA'.                                                      
+       LINKAGE SECTION.                                                         
+       01  INPUT-PARMS.                                                         
+           03  PARM-LENGTH       PIC S9(3) COMP.                                
+           03  FILLER            PIC X(9).                                      
+           03  SYS-FLAG          PIC X.                                         
+           03  FILLER            PIC X(9).                                      
+           03  DB-FLAG           PIC X.                                         
+           03  FILLER            PIC X(10).                                     
+           03  APP-NAME          PIC X(8).                                      
+      ****************************************************************          
+      *                                                                         
+      *    THIS PROGRAM PROCESSES IEHLIST LISTPDS OUTPUT AND FORMATS            
+      *    CONTROL STATEMENTS NECESSARY TO DOWNLOAD AND MVS PDS TO PC           
+      *    FILES.                                                               
+      *                                                                         
+      *                                                                         
+      *                                                                         
+      *                                                                         
+      *                                                                         
+      *                                                                         
+      *                                                                         
+      ****************************************************************          
+       PROCEDURE DIVISION.                                                      
+       MAIN-ROUTINE.                                                            
+      *(1)                                                                      
+           OPEN INPUT  INPUT-FILE                                               
+                OUTPUT OUTPUT-FILE.                                             
+      *(1A)                                                                     
+           READ INPUT-FILE AT END MOVE 'YES' TO EOF-FLAG.                       
+           PERFORM READ-N-WRITE UNTIL EOF-FLAG = 'YES'.                         
+           CLOSE OUTPUT-FILE INPUT-FILE.                                        
+           MOVE 0 TO RETURN-CODE.                                               
+           GOBACK.                                                              
+       READ-N-WRITE.                                                            
+           MOVE MEMBER-IN TO MEMBER-ONE.                                        
+           MOVE MEMBER-IN TO MEMBER-TWO.                                        
+           WRITE OUTPUT-RECORD FROM OUTPUT-WORK.                                
+           READ INPUT-FILE AT END MOVE 'YES' TO EOF-FLAG.                       

@@ -1,0 +1,29 @@
+  IMSQ101T: MSGUTBL                                                             
+  'Q101     00002'                                                              
+  'Q102     00002'                                                              
+  'Q103     00002'                                                              
+  'Q104     00002'                                                              
+  'Q105     00002'                                                              
+  'Q106     00002'                                                              
+  'Q107     00002'                                                              
+  'Q108     00002'                                                              
+  'Q109     00002'                                                              
+  'Q110     00002'                                                              
+  ENDUTBL                                                                       
+IMSQ101A: MSGTXT                                                                
+Q1FIRST='000000001'                                                             
+Q1LAST='000000001'                                                              
+QUIESCE                                                                         
+DO FOREVER                                                                      
+    Q1BT=UTBL(IMSQ101T,'R')                                                     
+    Q1TRAN=SUBSTR(Q1BT,1,9)                                                     
+    Q1ROES=SUBSTR(Q1BT,10,5)                                                    
+    Q1ROWS=E2D (Q1ROES,5)                                                       
+    Q1RAND=RANDOM('RN',1)                                                       
+    Q1FIRST=CHAR(Q1RAND,5)                                                      
+    Q1RAND=Q1RAND+Q1ROWS                                                        
+    Q1LAST=CHAR(Q1RAND,5)                                                       
+   TYPE Q1TRAN||Q1FIRST||'0000'||Q1LAST||'0000'                                 
+   TRANSMIT USING ENTER                                                         
+END                                                                             
+ENDTXT                                                                          

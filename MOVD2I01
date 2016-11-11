@@ -1,0 +1,199 @@
+//MOVD2I01 JOB (D3330RWM,ROOM),'D J YOUNG',MSGCLASS=O                           
+//D2I01003 EXEC PGM=ADRDSSU,REGION=4096K                                        
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=DB2I01                                    
+//DASD2 DD DISP=SHR,UNIT=3390,VOL=SER=DB2D01                                    
+//SYSPRINT DD SYSOUT=*                                                          
+ COPY DATASET(INCLUDE(DSNC220.DSNDBC.SQ100DB.SQ100I01.I0001.A003)) -            
+      INDDNAME(DASD1),OUTDDNAME(DASD2) -                                        
+      DELETE                                                                    
+//D2I01004 EXEC PGM=ADRDSSU,REGION=4096K                                        
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=DB2I01                                    
+//DASD2 DD DISP=SHR,UNIT=3390,VOL=SER=DB2D01                                    
+//SYSPRINT DD SYSOUT=*                                                          
+ COPY DATASET(INCLUDE(DSNC220.DSNDBC.SQ100DB.SQ100I01.I0001.A004)) -            
+      INDDNAME(DASD1),OUTDDNAME(DASD2) -                                        
+      DELETE                                                                    
+//D2I01005 EXEC PGM=ADRDSSU,REGION=4096K                                        
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=DB2I01                                    
+//DASD2 DD DISP=SHR,UNIT=3390,VOL=SER=DB2D02                                    
+//SYSPRINT DD SYSOUT=*                                                          
+ COPY DATASET(INCLUDE(DSNC220.DSNDBC.SQ100DB.SQ100I01.I0001.A005)) -            
+      INDDNAME(DASD1),OUTDDNAME(DASD2) -                                        
+      DELETE                                                                    
+//D2I01006 EXEC PGM=ADRDSSU,REGION=4096K                                        
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=DB2I01                                    
+//DASD2 DD DISP=SHR,UNIT=3390,VOL=SER=DB2D02                                    
+//SYSPRINT DD SYSOUT=*                                                          
+ COPY DATASET(INCLUDE(DSNC220.DSNDBC.SQ100DB.SQ100I01.I0001.A006)) -            
+      INDDNAME(DASD1),OUTDDNAME(DASD2) -                                        
+      DELETE                                                                    
+//D2I01007 EXEC PGM=ADRDSSU,REGION=4096K                                        
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=DB2I01                                    
+//DASD2 DD DISP=SHR,UNIT=3390,VOL=SER=DB2D03                                    
+//SYSPRINT DD SYSOUT=*                                                          
+ COPY DATASET(INCLUDE(DSNC220.DSNDBC.SQ100DB.SQ100I01.I0001.A007)) -            
+      INDDNAME(DASD1),OUTDDNAME(DASD2) -                                        
+      DELETE                                                                    
+//D2I01008 EXEC PGM=ADRDSSU,REGION=4096K                                        
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=DB2I01                                    
+//DASD2 DD DISP=SHR,UNIT=3390,VOL=SER=DB2D03                                    
+//SYSPRINT DD SYSOUT=*                                                          
+ COPY DATASET(INCLUDE(DSNC220.DSNDBC.SQ100DB.SQ100I01.I0001.A008)) -            
+      INDDNAME(DASD1),OUTDDNAME(DASD2) -                                        
+      DELETE                                                                    
+//D2I01009 EXEC PGM=ADRDSSU,REGION=4096K                                        
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=DB2I01                                    
+//DASD2 DD DISP=SHR,UNIT=3390,VOL=SER=DB2D04                                    
+//SYSPRINT DD SYSOUT=*                                                          
+ COPY DATASET(INCLUDE(DSNC220.DSNDBC.SQ100DB.SQ100I01.I0001.A009)) -            
+      INDDNAME(DASD1),OUTDDNAME(DASD2) -                                        
+      DELETE                                                                    
+//D2I01010 EXEC PGM=ADRDSSU,REGION=4096K                                        
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=DB2I01                                    
+//DASD2 DD DISP=SHR,UNIT=3390,VOL=SER=DB2D05                                    
+//SYSPRINT DD SYSOUT=*                                                          
+ COPY DATASET(INCLUDE(DSNC220.DSNDBC.SQ100DB.SQ100I01.I0001.A010)) -            
+      INDDNAME(DASD1),OUTDDNAME(DASD2) -                                        
+      DELETE                                                                    
+//D2I01011 EXEC PGM=ADRDSSU,REGION=4096K                                        
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=DB2I01                                    
+//DASD2 DD DISP=SHR,UNIT=3390,VOL=SER=DB2D06                                    
+//SYSPRINT DD SYSOUT=*                                                          
+ COPY DATASET(INCLUDE(DSNC220.DSNDBC.SQ100DB.SQ100I01.I0001.A011)) -            
+      INDDNAME(DASD1),OUTDDNAME(DASD2) -                                        
+      DELETE                                                                    
+//D2I01012 EXEC PGM=ADRDSSU,REGION=4096K                                        
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=DB2I01                                    
+//DASD2 DD DISP=SHR,UNIT=3390,VOL=SER=DB2D07                                    
+//SYSPRINT DD SYSOUT=*                                                          
+ COPY DATASET(INCLUDE(DSNC220.DSNDBC.SQ100DB.SQ100I01.I0001.A012)) -            
+      INDDNAME(DASD1),OUTDDNAME(DASD2) -                                        
+      DELETE                                                                    
+//D2I01013 EXEC PGM=ADRDSSU,REGION=4096K                                        
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=DB2I01                                    
+//DASD2 DD DISP=SHR,UNIT=3390,VOL=SER=DB2D08                                    
+//SYSPRINT DD SYSOUT=*                                                          
+ COPY DATASET(INCLUDE(DSNC220.DSNDBC.SQ100DB.SQ100I01.I0001.A013)) -            
+      INDDNAME(DASD1),OUTDDNAME(DASD2) -                                        
+      DELETE                                                                    
+//D2I01014 EXEC PGM=ADRDSSU,REGION=4096K                                        
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=DB2I01                                    
+//DASD2 DD DISP=SHR,UNIT=3390,VOL=SER=DB2D09                                    
+//SYSPRINT DD SYSOUT=*                                                          
+ COPY DATASET(INCLUDE(DSNC220.DSNDBC.SQ100DB.SQ100I01.I0001.A014)) -            
+      INDDNAME(DASD1),OUTDDNAME(DASD2) -                                        
+      DELETE                                                                    
+//D2I01015 EXEC PGM=ADRDSSU,REGION=4096K                                        
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=DB2I01                                    
+//DASD2 DD DISP=SHR,UNIT=3390,VOL=SER=DB2D10                                    
+//SYSPRINT DD SYSOUT=*                                                          
+ COPY DATASET(INCLUDE(DSNC220.DSNDBC.SQ100DB.SQ100I01.I0001.A015)) -            
+      INDDNAME(DASD1),OUTDDNAME(DASD2) -                                        
+      DELETE                                                                    
+//D2I01016 EXEC PGM=ADRDSSU,REGION=4096K                                        
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=DB2I01                                    
+//DASD2 DD DISP=SHR,UNIT=3390,VOL=SER=DB2I07                                    
+//SYSPRINT DD SYSOUT=*                                                          
+ COPY DATASET(INCLUDE(DSNC220.DSNDBC.SQ100DB.SQ100I01.I0001.A016)) -            
+      INDDNAME(DASD1),OUTDDNAME(DASD2) -                                        
+      DELETE                                                                    
+//D2I01017 EXEC PGM=ADRDSSU,REGION=4096K                                        
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=DB2I01                                    
+//DASD2 DD DISP=SHR,UNIT=3390,VOL=SER=DB2I09                                    
+//SYSPRINT DD SYSOUT=*                                                          
+ COPY DATASET(INCLUDE(DSNC220.DSNDBC.SQ100DB.SQ100I01.I0001.A017)) -            
+      INDDNAME(DASD1),OUTDDNAME(DASD2) -                                        
+      DELETE                                                                    
+//D2I01018 EXEC PGM=ADRDSSU,REGION=4096K                                        
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=DB2I01                                    
+//DASD2 DD DISP=SHR,UNIT=3390,VOL=SER=DB2I11                                    
+//SYSPRINT DD SYSOUT=*                                                          
+ COPY DATASET(INCLUDE(DSNC220.DSNDBC.SQ100DB.SQ100I01.I0001.A018)) -            
+      INDDNAME(DASD1),OUTDDNAME(DASD2) -                                        
+      DELETE                                                                    
+//D2I01019 EXEC PGM=ADRDSSU,REGION=4096K                                        
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=DB2I01                                    
+//DASD2 DD DISP=SHR,UNIT=3390,VOL=SER=DB2I12                                    
+//SYSPRINT DD SYSOUT=*                                                          
+ COPY DATASET(INCLUDE(DSNC220.DSNDBC.SQ100DB.SQ100I01.I0001.A019)) -            
+      INDDNAME(DASD1),OUTDDNAME(DASD2) -                                        
+      DELETE                                                                    
+//D2I01020 EXEC PGM=ADRDSSU,REGION=4096K                                        
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=DB2I01                                    
+//DASD2 DD DISP=SHR,UNIT=3390,VOL=SER=DB2I15                                    
+//SYSPRINT DD SYSOUT=*                                                          
+ COPY DATASET(INCLUDE(DSNC220.DSNDBC.SQ100DB.SQ100I01.I0001.A020)) -            
+      INDDNAME(DASD1),OUTDDNAME(DASD2) -                                        
+      DELETE                                                                    

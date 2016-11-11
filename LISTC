@@ -1,0 +1,6 @@
+//LISTCSQ5 JOB (0,MS44),'AZIZ',MSGCLASS=P,MSGLEVEL=(1,1),                       
+//         REGION=4000K                                                         
+//S1       EXEC  PGM=IDCAMS                                                     
+//SYSPRINT DD    SYSOUT=*                                                       
+//SYSIN    DD    *                                                              
+   LISTC LEVEL(DSN310.DSNDBD.SQ2DB) ALL                                         

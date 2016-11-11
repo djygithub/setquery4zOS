@@ -1,0 +1,43 @@
+//MKTAPE   JOB (0,75),'D J YOUNG',MSGCLASS=X                                    
+//S1       EXEC PGM=IEBGENER,REGION=2048K                                       
+//SYSPRINT DD SYSOUT=*                                                          
+//SYSIN    DD DUMMY                                                             
+//SYSUT1   DD DSN=DAVID.IODRIVER.HDS04K.LOGFILE1,DISP=SHR,                      
+//         UNIT=3390,VOL=SER=DB2IMS                                             
+//SYSUT2   DD DSN=SANTA.HDS04K.LOGFILE,DISP=(NEW,KEEP),                         
+//         VOL=(,RETAIN,SER=002489),                                            
+//         DCB=TRTCH=NOCOMP,                                                    
+//         UNIT=3480,LABEL=(1,SL)                                               
+//S2       EXEC PGM=IEBGENER,REGION=2048K                                       
+//SYSPRINT DD SYSOUT=*                                                          
+//SYSIN    DD DUMMY                                                             
+//SYSUT1   DD DSN=DAVID.IODRIVER.HDS27K.LOGFILE1,DISP=SHR,                      
+//         UNIT=3390,VOL=SER=DB2IMS                                             
+//SYSUT2   DD DSN=SANTA.HDS27K.LOGFILE,DISP=(NEW,KEEP),                         
+//         VOL=(,RETAIN,SER=002489),                                            
+//         DCB=TRTCH=NOCOMP,                                                    
+//         UNIT=3480,LABEL=(2,SL)                                               
+//S3       EXEC PGM=IEBGENER,REGION=2048K                                       
+//SYSPRINT DD SYSOUT=*                                                          
+//SYSIN    DD DUMMY                                                             
+//SYSUT1   DD DSN=DB2310.FEB15942.SMFDATA,DISP=SHR,                             
+//         UNIT=3390,VOL=SER=DB2310                                             
+//SYSUT2   DD DSN=SANTA.SMFDATA,DISP=(NEW,KEEP),                                
+//         VOL=(,RETAIN,SER=002489),                                            
+//         DCB=TRTCH=NOCOMP,                                                    
+//         UNIT=3480,LABEL=(3,SL)                                               
+//S4       EXEC SAS606,WORK='200,200' SORT=20                                   
+//PDB04    DD DSN=DAVID.IODRIVER.HDS04K.PDB,DISP=(OLD,KEEP)                     
+//TAPE04   DD DSN=SANTA.HDS04K.SASPDB,DISP=(NEW,KEEP),                          
+//         VOL=(,RETAIN,SER=002489),                                            
+//         DCB=TRTCH=NOCOMP,                                                    
+//         UNIT=3480,LABEL=(4,SL)                                               
+//PDB27    DD DSN=DAVID.IODRIVER.HDS27K.PDB,DISP=(OLD,KEEP)                     
+//TAPE27   DD DSN=SANTA.HDS27K.SASPDB,DISP=(NEW,KEEP),                          
+//         VOL=(,RETAIN,SER=002489),                                            
+//         DCB=TRTCH=NOCOMP,                                                    
+//         UNIT=3480,LABEL=(5,SL)                                               
+//SYSIN    DD *                                                                 
+PROC COPY IN=PDB04 OUT=TAPE04;                                                  
+PROC COPY IN=PDB27 OUT=TAPE27;                                                  
+//                                                                              

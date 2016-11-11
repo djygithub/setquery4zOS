@@ -1,0 +1,25 @@
+  TRANS: MSGUTBL                                                                
+  'Q101';'Q102';'Q103';'Q104';'Q105';'Q106';'Q107';'Q108';'Q109';'Q110'         
+  'Q201';'Q202';'Q203';'Q204';'Q205';'Q206';'Q207';'Q208';'Q209';'Q210'         
+  'Q211';'Q212';'Q213';'Q214';'Q215';'Q216';'Q217';'Q218'                       
+  'Q301';'Q302';'Q303';'Q304';'Q305';'Q306';'Q307';'Q308';'Q309';'Q310'         
+  'Q311';'Q312';'Q313';'Q314';'Q315';'Q316'                                     
+  'Q401';'Q402';'Q403';'Q404';'Q405';'Q406';'Q407';'Q408';'Q409';'Q410'         
+  'Q411';'Q412';'Q413';'Q414'                                                   
+  'Q501';'Q502';'Q503'                                                          
+  'Q601';'Q602';'Q603';'Q604';'Q605';'Q606';'Q607';'Q608';'Q609';'Q610'         
+  ENDUTBL                                                                       
+LOGON: MSGTXT                                                                   
+TRANDATA='000000001000001000'                                                   
+    DO WHILE INDEX(SCREEN,'***DFH2312') = 0                                     
+       SUSPEND(2)                                                               
+    END                                                                         
+    TRANSMIT USING CLEAR AND WAIT UNTIL ONIN                                    
+   QUIESCE                                                                      
+DO FOREVER                                                                      
+    TRANSMIT USING CLEAR AND WAIT UNTIL ONIN                                    
+    TRAN=UTBL(TRANS,'R')                                                        
+   TYPE TRAN||TRANDATA                                                          
+   TRANSMIT USING ENTER AND WAIT UNTIL ONIN                                     
+END                                                                             
+ENDTXT                                                                          

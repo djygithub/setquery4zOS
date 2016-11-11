@@ -1,0 +1,3 @@
+         PCB   TYPE=DB,DBDNAME=CUSEDBD,PROCOPT=L,KEYLEN=4                       
+         SENSEG NAME=CUSESEGM,PARENT=0                                          
+         PSBGEN PSBNAME=LOADPSB,LANG=ASSEM                                      

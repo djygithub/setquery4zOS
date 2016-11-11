@@ -1,0 +1,37 @@
+  IMSQ201T: MSGUTBL                                                             
+  'Q201     00002'                                                              
+  'Q202     00002'                                                              
+  'Q203     00002'                                                              
+  'Q204     00002'                                                              
+  'Q205     00002'                                                              
+  'Q206     00002'                                                              
+  'Q207     00002'                                                              
+  'Q208     00002'                                                              
+  'Q209     00002'                                                              
+  'Q210     00002'                                                              
+  'Q211     00002'                                                              
+  'Q212     00002'                                                              
+  'Q213     00002'                                                              
+  'Q214     00002'                                                              
+  'Q215     00002'                                                              
+  'Q216     00002'                                                              
+  'Q217     00002'                                                              
+  'Q218     00002'                                                              
+  ENDUTBL                                                                       
+IMSQ201A: MSGTXT                                                                
+Q2FIRST='000000001'                                                             
+Q2LAST='000000001'                                                              
+QUIESCE                                                                         
+DO FOREVER                                                                      
+    Q2BT=UTBL(IMSQ201T,'R')                                                     
+    Q2TRAN=SUBSTR(Q2BT,1,9)                                                     
+    Q2ROES=SUBSTR(Q2BT,10,5)                                                    
+    Q2ROWS=E2D (Q2ROES,5)                                                       
+    Q2RAND=RANDOM('RN',1)                                                       
+    Q2FIRST=CHAR(Q2RAND,5)                                                      
+    Q2RAND=Q2RAND+Q2ROWS                                                        
+    Q2LAST=CHAR(Q2RAND,5)                                                       
+   TYPE Q2TRAN||Q2FIRST||'0000'||Q2LAST||'0000'                                 
+   TRANSMIT USING ENTER                                                         
+END                                                                             
+ENDTXT                                                                          

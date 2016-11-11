@@ -1,0 +1,72 @@
+****************************==>SYSTEM STATISTICS <==****************************
+END OF 50K IMPORT                                                               
+***************==>G.M.T. == 161013.4875 JULIAN DATE == 1994239<==***************
+PROC            MSTR TCB           .9830 SRB           .2080 ASID           0022
+PROC            DBM1 TCB           .4204 SRB          3.2052 ASID           0024
+PROC            DIST TCB           .0694 SRB         48.1913 ASID           0016
+IDENTIFY           9 SIGNON            0 CREA THRD         9 TERM THRD        16
+UOR RESLV          0 COMM PH1          0 COMM PH2          0 ABENDS            0
+COMM SNGL          8 UOR IND           0 SSAM EOT          0 SSAM EOM          0
+TOTAL SSI          9 QD THREADS        0                                        
+DIS DB             0 DIS THRD         15 DIS UTIL          0 REC BSDS          0
+REC INDOUBT        0 STA DB            0 STA TRACE         0 STA SUBSYS        1
+STOP DB            0 STOP TRACE        0 STOP SS           0 TERM UTIL         0
+DIS TRACE          0 RESERVED          0 UNRECOGNIZ        0 STA RLIMIT        0
+STOP RLIM          0 DIS RLIM          0 MOD TRACE         0                    
+CHECKPOINT COUNT        1HIGH USED LOG RBA (HEX) 0000000000A953F0               
+WRITE WAIT         0 WRT NOWAIT      109 WRT FORCE         3 WAIT ACBUF        0
+READ BUFFER        0 READ ACTIV      177 READ ARCH         0 READ DELAY        0
+BSDS ACCESS       20 ARCH CISSS        2 WRITE ACT         3 ARC RALLOC        0
+ARC WALLOC         0 CI COUNT          0                                        
+********************************************************************************
+***************************==>DATA BASE STATISTICS<==***************************
+***************==>G.M.T. == 161013.4899 JULIAN DATE == 1994239<==***************
+SELECTS            0 INSERTS           0 UPDATES           0 DELETES           0
+DESCRIBES          0 PREPARES          8 OPENS             7 CLOSES            7
+CR TABLE           0 CR INDEX          0 CR TSPACE         0 CR SYN            0
+CR DBASE           0 CR STOGRP         0 CR VIEW           0 DR INDEX          0
+DR TABLE           0 DR TSPACE         0 DR DBASE          0 DR SYN            0
+DR STGRP           0 DR VIEW           0 ALT STGRP         0 FETCHES       50187
+ALT TSPACE         0 ALT TABLE         0 ALT INDEX         0 COMMENT ON        0
+LOCK TBL           0 GRANT             0 REVOKES           0 INC BINDS         0
+LABEL ON           0 SET SQLID         0                                        
+ATT ALLOC         11 SUCC ALLOC       11 AUTO BINDS        1 SUCC AUBND        1
+INVALID RES        0 BIND ADDSB        0 BIND RESUB        0 TEST BINDS        0
+PLANS BOUND        0 REBIND SUB        0 ATT REBIND        0 PLNS REBND        0
+FREE SUB           0 ATT FREES         0 PLNS FREED        0 AUTH CHEKS       24
+SUCC AUTHS        24 CURR OPNDS       28 MAX OPNDS        28                    
+BUFFPOOL ID        0 GET PAGES     87239 SYNC READS     1389 BPOOL EXPS        0
+EXP FAIL MX        0 EXPFAIL GM        0 BUFF UPDS       242 SETW UW           0
+PAGES WRITN       61 PW UW             0 ASYNC WRIT       12 CURR ACBUF        0
+PAGEIN RIO         0 PAGEIN WIO        0 SUCC OPENS       28 SYNC WRITE        0
+SEQ PRE REQ     2709 SP PAGREAD    85357 PDIS NOBUF        0 PDIS NOENG        0
+DEF WRITE          0 DM CRITICL        5 MIG DS            0 RCL TIMOUT        0
+PF ASY-READ        0 PF ABRT ZZ     2709 WKFIL FAIL        0 PF DIS DUP        0
+DEADLOCKS          0 SUS LKCON         0 TIMEOUTS          0 LK ESC SHR        0
+LK ESC EXC         0 MAX PGLKS         0 FLAG BYTE         0 RLIM ID           0
+LIMIT DET          0 LIM SU            0 LIM CPU16         0 HIGH CPU16        0
+LATCH CON         15 OTHER CON         1 LK RQ         87656 UL RQ         83712
+QUERIES            0 CHANGES          30 OTHER             2                    
+FULL FAILS         0 PAGES           828 CT REQ            9 LOAD CT           1
+CT PAGES           1 FREE PAGES      813 DBD PAGES         9 SKCT PAGES        1
+DBD REQUEST       23 LOAD DBD          3                                        
+********************************************************************************
+**************************==>APPLICATION STATISTICS<==**************************
+*********==>NAME     ST A   REQ CORR-ID      AUTHID   PLAN     ASID<==**********
+*********==>TSO      T  *     5 DICK         DICK     DB2MON   0026
+<==*********
+***************==>G.M.T. == 161013.4955 JULIAN DATE == 1994239<==***************
+CLASS1 TIMES        ELAPSED        .0081 TCB           .0051 SRB           .0000
+CLASS2 TIMES        ELAPSED        .0071 TCB           .0044 SRB           .0000
+I/O WAIT       .0000 LOCK WAIT     .0000 ENTRY/EXIT        8 WAIT TRACE        0
+READ WAIT      .0000 WRITE WT      .0000 SWTCH WT      .0012 ARCH WT       .0000
+LOCK WTS           0 READ WTS          0 WRITE WTS         0 SWITCH WT        18
+DEADLOCKS          0 SUS LKCON         0 TIMEOUTS          0 LK ESC SHR        0
+LK ESC EXC         0 MAX PGLKS         0 FLAG BYTE  00       RLIM ID            
+LIMIT DET          0 LIM SU            0 LIM CPU16         0 HIGH CPU16        0
+LATCH CON          0 OTHER CON         0 LOCK REQ          0 UNLOCK REQ        0
+QUERIES            0 CHANGES           0 OTHER             0                    
+CONN TYPE   BATCH    REQ COUNT         6 ASID             38 APPL OR DB2?      D
+CONN STATUS       80 LAST IFCID      121 PRIORIFCID      122                    
+LOCK HASH   00000000 LOCK NAME  000000000000000000000000                        
+********************************************************************************

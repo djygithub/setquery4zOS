@@ -1,0 +1,379 @@
+*                                                                               
+***********************************************************************         
+* INSTALL/IVP IMS 3.1                                                           
+*                                                                               
+* SKELETON: DFSIXSC1                                                            
+*                                                                               
+* FUNCTION: STAGE 1 SOURCE FOR A DBT SYSTEM                                     
+***********************************************************************         
+*                                                                               
+***********************************************************************         
+*           THIS PRODUCT CONTAINS "RESTRICTED MATERIALS OF IBM".      *         
+*                                                                     *         
+*           5665-408 (C) COPYRIGHT IBM CORP. 1974, 1988.              *         
+*           LICENSED MATERIALS - PROPERTY OF IBM.                     *         
+*           ALL RIGHTS RESERVED.                                      *         
+*                                                                     *         
+*           U.S. GOVERNMENT USERS RESTRICTED RIGHTS -                 *         
+*           USE, DUPLICATION, OR DISCLOSURE RESTRICTED BY             *         
+*           GSA ADP SCHEDULE CONTRACT WITH IBM CORP.                  *         
+*                                                                     *         
+*           REFER TO COPYRIGHT INSTRUCTIONS FORM NUMBER G120-2083.    *         
+***********************************************************************         
+*                                                                               
+* IMSCTRL MACRO --                                                              
+*                                                                               
+         IMSCTRL  SYSTEM=(VS/2,(MODBLKS,DB/DC),3.1),                   X        
+               IRLMNM=IRLM,                                            X        
+               DBRC=(YES,YES),                                         X        
+               DBRCNM=IVP31RC1,                                        X        
+               DLINM=IVP31DL1,                                         X        
+               DCLWA=YES,                                              X        
+               IMSID=IVP1,                                             X        
+               NAMECHK=(YES,S1),                                       X        
+               MAXIO=(,015),                                           X        
+               MAXREGN=(005,512K,A,A),                                 X        
+               MCS=(2,7),                                              X        
+               DESC=7,                                                 X        
+               MAXCLAS=016                                                      
+*                                                                               
+* IMSCTF  MACRO --                                                              
+*                                                                               
+         IMSCTF SVCNO=(,203,202),                                      X        
+               CPLOG=3000,                                             X        
+               LOG=SNGL,                                               X        
+               CORE=(,,1),                                             X        
+               RDS=(3390,4096),                                        X        
+               PRDR=IVP31RD1                                                    
+*                                                                               
+* MSGQUEUE MACRO --                                                             
+*                                                                               
+         MSGQUEUE DSETS=(3390,3390,3390),                              X        
+               RECLNG=(336,3360),                                      X        
+               BUFFERS=(5,6720),                                       X        
+               SHUTDWN=100                                                      
+*                                                                               
+* FPCTRL   MACRO --                                                             
+*                                                                               
+         FPCTRL OTHREAD=5,                                             X        
+               BFALLOC=(10,50,2048),                                   X        
+               INREXIT=DBFSUIX0                                                 
+*                                                                               
+* SPAREA   MACRO --                                                             
+*      THE DASD OPERAND MUST BE CHANGED IF A 3390 DEVICE IS NOT                 
+*           USED FOR THE SPA DATA SET.                                          
+*                                                                               
+         SPAREA CORE=(4,80),DASD=(59,11476)                                     
+*                                                                               
+* BUFPOOLS MACRO --                                                             
+*                                                                               
+         BUFPOOLS PSB=24000,                                           X        
+               SASPSB=(4000,20000),                                    X        
+               PSBW=12000,                                             X        
+               DMB=24000,                                              X        
+               GENERAL=72000,                                          X        
+               FORMAT=(24000,256),                                     X        
+               COMM=36000,                                             X        
+               FRE=30                                                           
+*                                                                               
+* SECURITY MACRO --                                                             
+*                                                                               
+         SECURITY TYPE=(AGNEXIT,NORACTRM,NOTRANEX,NOSIGNEX),           X        
+               SECLVL=(NOTRAN,NOSIGN),                                 X        
+               SECCNT=2,                                               X        
+               TERMNL=YES,                                             X        
+               PASSWD=YES,                                             X        
+               TRANCMD=YES                                                      
+         EJECT  ,                                                               
+**********************************************************************          
+*   IVP DATABASES DEFINITION                                                    
+**********************************************************************          
+         SPACE 2                                                                
+         DATABASE DBD=IVPDB1,ACCESS=UP               HIDAM/OSAM                 
+         DATABASE INDEX,DBD=IVPDB1I,ACCESS=UP        HIDAM/VSAM INDEX           
+         DATABASE DBD=IVPDB2,ACCESS=UP                HDAM/VSAM                 
+         DATABASE DBD=IVPDB3,ACCESS=UP                DEDB                      
+         DATABASE DBD=IVPDB4                          MSDB                      
+         EJECT  ,                                                               
+**********************************************************************          
+*   IMS/DB2 SET QUERY APPLICATIONS DEFINITION                                   
+**********************************************************************          
+         APPLCTN RESIDENT,PSB=IM2Q101,PGMTYPE=TP                                
+            TRANSACT CODE=Q101,                                        X        
+               PRTY=(8,12,10),                                         X        
+               MSGTYPE=(SNGLSEG,RESPONSE,1),                           X        
+               PROCLIM=(65535,65535),                                  X        
+               MODE=SNGL                                                        
+         APPLCTN RESIDENT,PSB=IM2Q103,PGMTYPE=TP                                
+            TRANSACT CODE=Q103,                                        X        
+               PRTY=(8,12,10),                                         X        
+               MSGTYPE=(SNGLSEG,RESPONSE,1),                           X        
+               PROCLIM=(65535,65535),                                  X        
+               MODE=SNGL                                                        
+         APPLCTN RESIDENT,PSB=IM2Q105,PGMTYPE=TP                                
+            TRANSACT CODE=Q105,                                        X        
+               PRTY=(8,12,10),                                         X        
+               MSGTYPE=(SNGLSEG,RESPONSE,1),                           X        
+               PROCLIM=(65535,65535),                                  X        
+               MODE=SNGL                                                        
+         APPLCTN RESIDENT,PSB=IM2Q501,PGMTYPE=TP                                
+            TRANSACT CODE=Q501,                                        X        
+               PRTY=(8,12,10),                                         X        
+               MSGTYPE=(SNGLSEG,RESPONSE,1),                           X        
+               PROCLIM=(65535,65535),                                  X        
+               MODE=SNGL                                                        
+         APPLCTN RESIDENT,PSB=IM2Q610,PGMTYPE=TP                                
+            TRANSACT CODE=Q610,                                        X        
+               PRTY=(8,12,10),                                         X        
+               MSGTYPE=(SNGLSEG,RESPONSE,1),                           X        
+               PROCLIM=(65535,65535),                                  X        
+               MODE=SNGL                                                        
+**********************************************************************          
+*   IVP NON-CONVERSATIONAL APPLICATIONS DEFINITION                              
+**********************************************************************          
+         SPACE 2                                                                
+         APPLCTN PSB=DFSIVP1,PGMTYPE=TP              HIDAM/OSAM                 
+           TRANSACT CODE=IVTNO,MODE=SNGL,                              X        
+               MSGTYPE=(SNGLSEG,NONRESPONSE,1)                                  
+         SPACE                                                                  
+         APPLCTN PSB=DFSIVP2,PGMTYPE=TP               HDAM/VSAM                 
+           TRANSACT CODE=IVTNV,MODE=SNGL,                              X        
+               MSGTYPE=(SNGLSEG,NONRESPONSE,1)                                  
+         SPACE 2                                                                
+**********************************************************************          
+*   IVP CONVERSATIONAL APPLICATION DEFINITION                                   
+**********************************************************************          
+         SPACE 2                                                                
+         APPLCTN PSB=DFSIVP3,PGMTYPE=TP               HDAM/VSAM                 
+           TRANSACT CODE=IVTCV,SPA=(80,CORE),MODE=SNGL,                X        
+               MSGTYPE=(SNGLSEG,NONRESPONSE,1)                                  
+         SPACE 2                                                                
+**********************************************************************          
+*   IVP DEDB AND MSDB APPLICATION DEFINITIONS                                   
+**********************************************************************          
+         SPACE 2                                                                
+         APPLCTN RESIDENT,PSB=DFSIVP4,FPATH=YES       DEDB                      
+           TRANSACT CODE=IVTFD,MODE=SNGL,                              X        
+               MSGTYPE=(SNGLSEG,RESPONSE,1)                                     
+         SPACE 2                                                                
+         APPLCTN RESIDENT,PSB=DFSIVP5,FPATH=YES       MSDB                      
+           TRANSACT CODE=IVTFM,MODE=SNGL,                              X        
+               MSGTYPE=(SNGLSEG,RESPONSE,1)                                     
+         SPACE 2                                                                
+**********************************************************************          
+*   IVP BMP APPLICATION DEFINITION                                              
+**********************************************************************          
+         SPACE 2                                                                
+         APPLCTN PSB=DFSIVP6,PGMTYPE=BATCH           HIDAM/OSAM                 
+         SPACE 2                                                                
+         APPLCTN PSB=DFSIVP7,PGMTYPE=BATCH            HDAM/VSAM                 
+         SPACE 2                                                                
+         APPLCTN PSB=DFSIVP8,PGMTYPE=BATCH            DEDB/VSAM                 
+         SPACE 2                                                                
+         APPLCTN PSB=DFSIVP9,PGMTYPE=BATCH           HIDAM/OSAM OLIC            
+         SPACE 2                                                                
+         APPLCTN PSB=DFSIVPA,PGMTYPE=BATCH            HIDAM LOAD                
+         SPACE 2                                                                
+         APPLCTN PSB=DFSIVPB,PGMTYPE=BATCH            HDAM  LOAD                
+         SPACE 2                                                                
+         APPLCTN PSB=DFSIVPC,PGMTYPE=BATCH            DEDB (DB LOAD)            
+         SPACE 2                                                                
+         EJECT  ,                                                               
+**********************************************************************          
+*   IMS SAMPLE DATABASES DEFINITION                                             
+**********************************************************************          
+         SPACE 2                                                                
+         DATABASE DBD=DI21PART,ACCESS=UP              HISAM/VSAM                
+         EJECT  ,                                                               
+**********************************************************************          
+*   IMS SAMPLE APPLICATION DEFINITION                                           
+**********************************************************************          
+         SPACE 2                                                                
+         APPLCTN  PSB=DFSSAM01,PGMTYPE=BATCH                                    
+         SPACE 2                                                                
+         APPLCTN  PSB=DFSSAM02                                                  
+         TRANSACT CODE=PART,PRTY=(7,10,2),INQUIRY=YES,MODE=SNGL                 
+         SPACE 2                                                                
+         APPLCTN  PSB=DFSSAM03                                                  
+         TRANSACT CODE=DSPINV,PRTY=(7,10,2),INQUIRY=YES,MODE=SNGL               
+         SPACE 2                                                                
+         APPLCTN  PSB=DFSSAM04                                                  
+         TRANSACT CODE=ADDPART,PRTY=(7,10,2),INQUIRY=NO,MODE=SNGL               
+         TRANSACT CODE=ADDINV,PRTY=(7,10,2),INQUIRY=NO,MODE=SNGL                
+         TRANSACT CODE=DLETPART,PRTY=(7,10,2),INQUIRY=NO,MODE=SNGL              
+         TRANSACT CODE=DLETINV,PRTY=(7,10,2),INQUIRY=NO,MODE=SNGL               
+         SPACE 2                                                                
+         APPLCTN  PSB=DFSSAM05                                                  
+         TRANSACT CODE=CLOSE,PRTY=(7,10,2),INQUIRY=NO,MODE=SNGL                 
+         SPACE 2                                                                
+         APPLCTN  PSB=DFSSAM06                                                  
+         TRANSACT CODE=DISBURSE,PRTY=(7,10,2),INQUIRY=NO,MODE=SNGL              
+         SPACE 2                                                                
+         APPLCTN  PSB=DFSSAM07                                                  
+         TRANSACT CODE=DSPALLI,PRTY=(7,10,2),INQUIRY=NO,MODE=SNGL               
+         SPACE 2                                                                
+         APPLCTN  PSB=DFSSAM08,PGMTYPE=BATCH                                    
+         SPACE 2                                                                
+         APPLCTN  PSB=DFSSAM09,PGMTYPE=BATCH           GENERAL PURPOSE          
+         EJECT  ,                                                               
+**********************************************************************          
+*   IMS SAMPLE APPLICATION DEFINITION - CICS IVP                                
+**********************************************************************          
+         SPACE 2                                                                
+         APPLCTN PSB=DFHSAM04,PGMTYPE=BATCH                                     
+         SPACE 2                                                                
+         APPLCTN PSB=DFHSAM14,PGMTYPE=BATCH                                     
+         SPACE 2                                                                
+         APPLCTN PSB=DFHSAM24,PGMTYPE=BATCH                                     
+         SPACE 2                                                                
+         APPLCTN PSB=DFHSAM05,PGMTYPE=BATCH                                     
+         SPACE 2                                                                
+         APPLCTN PSB=DFHSAM15,PGMTYPE=BATCH                                     
+         SPACE 2                                                                
+         APPLCTN PSB=DFHSAM25,PGMTYPE=BATCH                                     
+         EJECT  ,                                                               
+**********************************************************************          
+*   FAST PATH SAMPLE DATABASES DEFINITION                                       
+**********************************************************************          
+         SPACE 2                                                                
+         DATABASE DBD=DBFSAMD1           GENERAL LEDGER - MSDB                  
+         DATABASE DBD=DBFSAMD2                   TELLER - MSDB                  
+         DATABASE DBD=DBFSAMD3,ACCESS=UP CUSTOMER ACCNT - DEDB                  
+         DATABASE DBD=DBFSAMD4,ACCESS=UP CUSTOMER  LOAN - HDAM/VSAM             
+         EJECT  ,                                                               
+**********************************************************************          
+*   FAST PATH SAMPLE APPLICATION DEFINITION                                     
+**********************************************************************          
+         SPACE 2                                                                
+         APPLCTN  PSB=DBFSAMP1,PGMTYPE=BATCH                                    
+         SPACE 2                                                                
+         APPLCTN  PSB=DBFSAMP2,PGMTYPE=BATCH                                    
+         SPACE 2                                                                
+         APPLCTN  PSB=DBFSAMP3,PGMTYPE=(TP),FPATH=YES                           
+         TRANSACT CODE=FPSAMP1,MSGTYPE=(SNGLSEG,RESPONSE)                       
+         SPACE 2                                                                
+         APPLCTN  PSB=DBFSAMP4                                                  
+         TRANSACT CODE=FPSAMP2,MODE=SNGL                                        
+         SPACE 2                                                                
+         APPLCTN  PSB=DBFSAMP5,PGMTYPE=BATCH                                    
+         SPACE 2                                                                
+         APPLCTN  PSB=DBFSAMP6,PGMTYPE=BATCH                                    
+         EJECT ,                                                                
+**********************************************************************          
+*  IVP COMMUNICATIONS NETWORK DEFINITION                                        
+**********************************************************************          
+         SPACE 2                                                                
+**********************************************************************          
+*                                                                               
+* THE IMS DB/DC SYSTEM IVP                                                      
+* MAKES USE OF 5 TERMINALS --                                                   
+*                                                                               
+*           MVS MASTER CONSOLE   - IMS LTERM NAME = WTOR                        
+*                                                                               
+*           IMS MASTER CONSOLE   - IMS LTERM NAME = HM31T022                    
+*           IMS SECONDARY MASTER - IMS LTERM NAME = HM31T021                    
+*                                                                               
+*           IMS USER TERMINAL    - IMS LTERM NAME = USER1                       
+*           IMS USER TERMINAL    - IMS LTERM NAME = USER2                       
+*                                                                               
+* THE MVS MASTER TERMINAL IS DEFINED AUTOMATICALLY.                             
+*                                                                               
+* THE OTHER FOUR IMS TERMINALS MUST BE DEFINED BY THE IMS SYSTEM                
+* DEFINITION.  THIS SAMPLE STAGE 1 SOURCE DECK USED BY THE IVP                  
+* INCLUDES SAMPLE TERMINAL DEFINITIONS FOR THE 4 IMS TERMINALS.                 
+* THE FOLLOWING DEFINITIONS ARE INCLUDED --                                     
+*                                                                               
+*      VTAM 3270 LOCAL  - PRIMARY MASTER AND USER TERMINALS                     
+*                                                                               
+*              PRINTER  - SECONDARY MASTER TERMINAL                             
+*                         (A SPOOL LINE GROUP IS ALSO AVAILABLE                 
+*                          FOR USE AS A SECONDARY MASTER)                       
+*                                                                               
+* THE IVP IS NOT DEPENDENT UPON NODE (LINE/PTERM) NAMES.                        
+*                                                                               
+* LTERM NAMES AND TRANSACTION CODES ARE USED TO ESTABLISH TERMINAL              
+* SECURITY.                                                                     
+*                                                                               
+* THE USER MUST ENSURE THAT THE SELECTED TERMINALS ARE PROPERLY                 
+* DEFINED TO VTAM AND MVS.                                                      
+*                                                                               
+* THE MESSAGE FORMAT SERVICES USED BY THE IVP TRANSACTIONS ARE                  
+* DEFINED FOR A DEVICE TYPE OF 3270-A02 (A 24X80 SCREEN SIZE).                  
+* IF THE TERMINALS WHICH ARE SELECTED SPECIFY A DIFFERENT TYPE,                 
+* THEN THE MFS SOURCE WILL HAVE TO BE CHANGED.                                  
+*                                                                               
+**********************************************************************          
+         SPACE 2                                                                
+*                                                                               
+* COMM    MACRO --                                                              
+*      THE APPLID OPERAND SPECIFIES THE VTAM APPLID AND THE PASSWD              
+*           OPERAND SPECIFIES THE APPLCIATION PASSWORD.                         
+*           THESE MUST MATCH THE APPLICATION IDENTIFICATION                     
+*           SPECIFIED IN THE VTAM ACB FOR THIS IMS DB/DC SYSTEM.                
+*                                                                               
+         COMM RECANY=(5,3842),                                         X        
+               APPLID=IVP31CR1,                                        X        
+               PASSWD=IVP31CR1,                                        X        
+               OPTIONS=(PAGING,TIMESTAMP,12000,FMTMAST,                X        
+               NOUSEMSG,NOMSTEX,NOMSPEX,NOMSLEX,                       X        
+               VTAMAUTH,BLKREQD,NOCIPH),                               X        
+               COPYLOG=ALL                                                      
+         EJECT ,                                                                
+**********************************************************************          
+*   IVP PRINTER LINE GROUP                                                      
+**********************************************************************          
+         LINEGRP  DDNAME=IVPPRT1,UNITYPE=PRINTER                                
+          LINE     ADDR=000                                                     
+           TERMINAL                                                             
+             NAME  (HM31T021,SECONDARY)                                         
+             NAME  IVPPRT1                                                      
+         EJECT ,                                                                
+**********************************************************************          
+*   IVP SPOOL LINE GROUP                                                        
+**********************************************************************          
+         LINEGRP  DDNAME=(IVPSPL1,IVPSPL2,IVPSPL3),UNITYPE=SPOOL                
+          LINE     BUFSIZE=166                                                  
+SPOOL001   TERMINAL FEAT=AUTOSCH                                                
+             NAME  IVPSPL1                                                      
+         EJECT ,                                                                
+**********************************************************************          
+*   IVP VTAM DEFINITIONS                                                        
+**********************************************************************          
+         SPACE 2                                                                
+**********************************************************************          
+*   IVP 3270 LOCAL - VTAM                                                       
+**********************************************************************          
+         SPACE 2                                                                
+         TYPE  UNITYPE=(3270,LOCAL),TYPE=3270-A02,SIZE=(24,80)                  
+           TERMINAL  NAME=HM31T022                                              
+             NAME  (HM31T022,MASTER)                                            
+         SPACE 2                                                                
+           TERMINAL  NAME=USER1,FPBUF=256,OPTIONS=(TRANRESP,NOCOPY)             
+             NAME  USER1                                                        
+             NAME  HOWARD            USED BY THE IMS SAMPLE APPLICATION         
+         SPACE 2                                                                
+           TERMINAL  NAME=USER2,FPBUF=256,OPTIONS=(TRANRESP,NOCOPY)             
+             NAME  USER2                                                        
+         SPACE 2                                                                
+         EJECT ,                                                                
+**********************************************************************          
+*  END OF IVP DEFINITION                                                        
+**********************************************************************          
+         SPACE 2                                                                
+*                                                                               
+* IMSGEN MACRO --                                                               
+*                                                                               
+         IMSGEN ASM=(H,SYSLIN),ASMPRT=OFF,                             X        
+               LKPRT=(XREF,LIST),LKSIZE=(880K,64K),LKRGN=900K,         X        
+               SURVEY=NO,                                              X        
+               MACLIB=UTILITY,                                         X        
+               OBJDSET=IMS310.OBJDSET,                                 X        
+               USERLIB=IMS310.LOAD,                                    X        
+               NODE=(IMS310,                                           X        
+               IMS310,                                                 X        
+               IMS310),                                                X        
+               PROCLIB=YES,                                            X        
+               SUFFIX=I,                                               X        
+               SCL=(255)                                                        
+         SPACE 2                                                                
+         END ,                                                                  

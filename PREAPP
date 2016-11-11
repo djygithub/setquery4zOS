@@ -1,0 +1,44 @@
+//PREAPP JOB (330RWM00,),'D J YOUNG',MSGCLASS=X,REGION=4096K,                   
+//       USER=NASUSR1                                                           
+//*                                                                             
+//ASMCL PROC                                                                    
+//ASS2  EXEC PGM=IEV90,PARM='OBJECT,NODECK',REGION=4096K                        
+//SYSLIB   DD  DISP=SHR,                                                        
+//         DSN=DSN22X.DSNMACS                                                   
+//         DD  DISP=SHR,                                                        
+//         DSN=SYS1.MACLIB                                                      
+//SYSLIN   DD  DSN=&&LOADSET,DISP=(MOD,PASS),                                   
+//             UNIT=SYSDA,                                                      
+//             SPACE=(TRK,(3,3))                                                
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSUDUMP DD  SYSOUT=*                                                         
+//SYSUT1   DD  UNIT=SYSDA,SPACE=(800,(50,50),,,ROUND)                           
+//SYSUT2   DD  UNIT=SYSDA,SPACE=(800,(50,50),,,ROUND)                           
+//SYSUT3   DD  UNIT=SYSDA,SPACE=(800,(50,50),,,ROUND)                           
+//SYSIN    DD  DSN=NASUSR1.TEMP.ASM,DISP=SHR                                    
+//LKED     EXEC  PGM=IEWL,PARM='LIST,XREF,NCAL,MAP',COND=(5,LT,ASS2),           
+//             REGION=1024K                                                     
+//SYSLIN   DD  DSNAME=&&LOADSET,DISP=(OLD,DELETE)                               
+//         DD  DDNAME=SYSIN                                                     
+//SYSLMOD  DD  DSNAME=DSNDJY.SRCLIB.DATA(&LODMOD),DISP=SHR,                     
+//         UNIT=SYSDA,VOL=SER=DB2IMS                                            
+//SYSLIB   DD  DSNAME=SYS1.DSNLOAD,DISP=SHR                                     
+//SYSUT1   DD  UNIT=SYSDA,SPACE=(CYL,(1,1))                                     
+//SYSPRINT DD  SYSOUT=*                                                         
+// PEND                                                                         
+//TMP01    EXEC PGM=IKJEFT01,DYNAMNBR=20,REGION=4096K                           
+//SYSTSPRT DD SYSOUT=*,DCB=BLKSIZE=2420                                         
+//SYSTSIN  DD *                                                                 
+PROFILE    PREFIX(NASUSR1)                                                      
+ALLOC      DD(SYSPROC) DSN('DAVID.SETQUERY.WORKLOAD') SHR                       
+%DSNH BIND(NO) COMPILE(NO) CONTROL(NONE)-                                       
+ DBRMLIB('''DSNDJY.DBRMLIB.DATA(APPSTATS)''')-                                  
+ DECIMAL(PERIOD) DELIMIT(APOST)-                                                
+ HOST(ASMH) INPUT('''DAVID.ESAHDS.WORKLOAD(APPSTATS)''')-                       
+ LINECOUNT(60) LINK(NO)-                                                        
+ OUTNAME(TEMP) MACRO(NO)-                                                       
+ -                                                                              
+ PRECOMP(YES) PRINT(TEMP) RUN(NO)-                                              
+ SYSTEM(DSN) SQLDELIM(APOST) TERM(TERM)-                                        
+ /* THIS LINE NEEDED TO END THE DSNH INPUT */                                   
+//SURF2SQL EXEC PROC=ASMCL,LODMOD=APPSTATS                                      

@@ -1,0 +1,4 @@
+//         DD DSN=SYS1.V2R3M0.SIBMBASE,DISP=SHR                         00002400
+//         DD DSN=SYS1.V2R3M0.SIBMLINK,DISP=SHR                         00002500
+//         DD DSN=SYS1.V2R3M0.PLIBASE,DISP=SHR                          00002600
+//         DD DSN=SYS1.V2R3M0.PLILINK,DISP=SHR                          00002700

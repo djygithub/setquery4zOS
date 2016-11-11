@@ -1,0 +1,2215 @@
+//IMSGEN02 JOB ,                                                                
+// IMS,TYPRUN=HOLD,                                                             
+// MSGCLASS=A                                                                   
+//STEP1    EXEC PGM=IEV90,REGION=4096K,                                         
+//             PARM='LOAD,NODECK,NOLIST'                                        
+//SYSLIB   DD DSN=IMS310.OPTIONS,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIB,DISP=SHR                                        
+//         DD DSN=IMS310.GENLIBA,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIBB,DISP=SHR                                       
+//         DD DSN=SYS1.MACLIB,DISP=SHR                                          
+//         DD DSN=SYS1.AMODGEN,DISP=SHR                                         
+//SYSLIN   DD DISP=OLD,                                                         
+//      DSN=IMS310.OBJDSET(DFSUDT0I)                                            
+//SYSPRINT DD  SYSOUT=A,                                                        
+//             DCB=(BLKSIZE=605),                                               
+//             SPACE=(605,(100,50),RLSE,,ROUND)                                 
+//SYSUT1   DD  UNIT=3390,DISP=(,DELETE),                                        
+//             SPACE=(CYL,(15,15))                                              
+//SYSIN    DD   *                                                               
+UDT0     TITLE 'DEVICE CHARACTERISTICS TABLE--DFSUDT0I'                         
+         COPY  DVCTBL                                                           
+DFSUDT0I CSECT      DEVICE CHARACTERISTICS TABLE                                
+         DC    CL8'DFSUDT0I' MODULE NAME                                        
+         DC    H'1'         NUMBER OF ENTRIES                                   
+         DC    AL2(DVCENDA-DVC3270A)   LENGTH OF ENTRY                          
+         DC    A(DVC1)        ADDRESS OF FIRST ENTRY                            
+DVC1     DS    0H                                                               
+         DC    CL8'3270-A02' SYMBOLIC NAME                                      
+         DC    H'24'         LINES                                              
+         DC    H'80'         COLUMNS                                            
+         DC    XL4'04A00000'     FEATURES                                       
+         END                                                                    
+//STEP2    EXEC PGM=IEV90,REGION=4096K,                                         
+//             PARM='LOAD,NODECK,NOLIST'                                        
+//SYSLIB   DD DSN=IMS310.OPTIONS,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIB,DISP=SHR                                        
+//         DD DSN=IMS310.GENLIBA,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIBB,DISP=SHR                                       
+//         DD DSN=SYS1.MACLIB,DISP=SHR                                          
+//         DD DSN=SYS1.AMODGEN,DISP=SHR                                         
+//SYSLIN   DD DISP=OLD,                                                         
+//      DSN=IMS310.OBJDSET(DFSOPL0I)                                            
+//SYSPRINT DD  SYSOUT=A,                                                        
+//             DCB=(BLKSIZE=605),                                               
+//             SPACE=(605,(100,50),RLSE,,ROUND)                                 
+//SYSUT1   DD  UNIT=3390,DISP=(,DELETE),                                        
+//             SPACE=(CYL,(15,15))                                              
+//SYSIN    DD   *                                                               
+DFSIOPL0 CSECT                                                                  
+         DC    A(OPTLIST)                                                       
+         ADFS  NOBRANCH                                                         
+OPTLIST  DS    0F                                                               
+         DC    CL4'SCD '                                                        
+         DC    V(DFSNEP1I)                                                      
+         DC    CL4'ESCD'                                                        
+         DC    V(DFSNEP3I)                                                      
+         DC    CL4'FRB '                                                        
+         DC    V(DFSNEP5I)                                                      
+         DC    CL4'    '                                                        
+         DC    F'0'                                                             
+         END                                                                    
+//STEP3    EXEC PGM=IEV90,REGION=4096K,                                         
+//             PARM='LOAD,NODECK,NOLIST'                                        
+//SYSLIB   DD DSN=IMS310.OPTIONS,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIB,DISP=SHR                                        
+//         DD DSN=IMS310.GENLIBA,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIBB,DISP=SHR                                       
+//         DD DSN=SYS1.MACLIB,DISP=SHR                                          
+//         DD DSN=SYS1.AMODGEN,DISP=SHR                                         
+//SYSLIN   DD DISP=OLD,                                                         
+//      DSN=IMS310.OBJDSET(DFSPDIRI)                                            
+//SYSPRINT DD  SYSOUT=A,                                                        
+//             DCB=(BLKSIZE=605),                                               
+//             SPACE=(605,(100,50),RLSE,,ROUND)                                 
+//SYSUT1   DD  UNIT=3390,DISP=(,DELETE),                                        
+//             SPACE=(CYL,(15,15))                                              
+//SYSIN    DD   *                                                               
+PSBDFPU  DFSPSBD DBF#FPU0,400C28                                                
+PS33     DFSPSBD DBFSAMP1,400000                                                
+PS34     DFSPSBD DBFSAMP2,400000                                                
+PS35     DFSPSBD DBFSAMP3,400030                                                
+PS36     DFSPSBD DBFSAMP4,800000                                                
+PS37     DFSPSBD DBFSAMP5,400000                                                
+PS38     DFSPSBD DBFSAMP6,400000                                                
+PS27     DFSPSBD DFHSAM04,400000                                                
+PS30     DFSPSBD DFHSAM05,400000                                                
+PS28     DFSPSBD DFHSAM14,400000                                                
+PS31     DFSPSBD DFHSAM15,400000                                                
+PS29     DFSPSBD DFHSAM24,400000                                                
+PS32     DFSPSBD DFHSAM25,400000                                                
+PS15     DFSPSBD DFSIVPA,400000                                                 
+PS16     DFSPSBD DFSIVPB,400000                                                 
+PS17     DFSPSBD DFSIVPC,400000                                                 
+PS6      DFSPSBD DFSIVP1,800000                                                 
+PS7      DFSPSBD DFSIVP2,800000                                                 
+PS8      DFSPSBD DFSIVP3,800000                                                 
+PS9      DFSPSBD DFSIVP4,404030                                                 
+PS10     DFSPSBD DFSIVP5,404030                                                 
+PS11     DFSPSBD DFSIVP6,400000                                                 
+PS12     DFSPSBD DFSIVP7,400000                                                 
+PS13     DFSPSBD DFSIVP8,400000                                                 
+PS14     DFSPSBD DFSIVP9,400000                                                 
+PS18     DFSPSBD DFSSAM01,400000                                                
+PS19     DFSPSBD DFSSAM02,800000                                                
+PS20     DFSPSBD DFSSAM03,800000                                                
+PS21     DFSPSBD DFSSAM04,800000                                                
+PS22     DFSPSBD DFSSAM05,800000                                                
+PS23     DFSPSBD DFSSAM06,800000                                                
+PS24     DFSPSBD DFSSAM07,800000                                                
+PS25     DFSPSBD DFSSAM08,400000                                                
+PS26     DFSPSBD DFSSAM09,400000                                                
+PS1      DFSPSBD IM2Q101,804000                                                 
+PS2      DFSPSBD IM2Q103,804000                                                 
+PS3      DFSPSBD IM2Q105,804000                                                 
+PS4      DFSPSBD IM2Q501,804000                                                 
+PS5      DFSPSBD IM2Q610,804000                                                 
+         DFSPSBD GEN                                                            
+         END                                                                    
+//STEP4    EXEC PGM=IEV90,REGION=4096K,                                         
+//             PARM='LOAD,NODECK,NOLIST'                                        
+//SYSLIB   DD DSN=IMS310.OPTIONS,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIB,DISP=SHR                                        
+//         DD DSN=IMS310.GENLIBA,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIBB,DISP=SHR                                       
+//         DD DSN=SYS1.MACLIB,DISP=SHR                                          
+//         DD DSN=SYS1.AMODGEN,DISP=SHR                                         
+//SYSLIN   DD DISP=OLD,                                                         
+//      DSN=IMS310.OBJDSET(DFSSMB0I)                                            
+//SYSPRINT DD  SYSOUT=A,                                                        
+//             DCB=(BLKSIZE=605),                                               
+//             SPACE=(605,(100,50),RLSE,,ROUND)                                 
+//SYSUT1   DD  UNIT=3390,DISP=(,DELETE),                                        
+//             SPACE=(CYL,(15,15))                                              
+//SYSIN    DD   *                                                               
+        DFSSMB ADDINV,7A0002,45484000,                                 ,        
+               65535,65535,0,1,0,0,0,65535,DFSSAM04,0,0,               ,        
+               ,0,0                                                             
+        DFSSMB ADDPART,7A0002,45484000,                                ,        
+               65535,65535,0,1,0,0,0,65535,DFSSAM04,0,0,               ,        
+               ,0,0                                                             
+        DFSSMB CLOSE,7A0002,45484000,                                  ,        
+               65535,65535,0,1,0,0,0,65535,DFSSAM05,0,0,               ,        
+               ,0,0                                                             
+        DFSSMB DISBURSE,7A0002,45484000,                               ,        
+               65535,65535,0,1,0,0,0,65535,DFSSAM06,0,0,               ,        
+               ,0,0                                                             
+        DFSSMB DLETINV,7A0002,45484000,                                ,        
+               65535,65535,0,1,0,0,0,65535,DFSSAM04,0,0,               ,        
+               ,0,0                                                             
+        DFSSMB DLETPART,7A0002,45484000,                               ,        
+               65535,65535,0,1,0,0,0,65535,DFSSAM04,0,0,               ,        
+               ,0,0                                                             
+        DFSSMB DSPALLI,7A0002,45484000,                                ,        
+               65535,65535,0,1,0,0,0,65535,DFSSAM07,0,0,               ,        
+               ,0,0                                                             
+        DFSSMB DSPINV,7A0002,41484000,                                 ,        
+               65535,65535,0,1,0,0,0,65535,DFSSAM03,0,0,               ,        
+               ,0,0                                                             
+        DFSSMB FPSAMP1,11FFFF,85484400,                                ,        
+               65535,65535,0,1,RCTE3,0,0,65535,DBFSAMP3,0,0,           ,        
+               FPSAMP1,0,0                                                      
+        DFSSMB FPSAMP2,11FFFF,45484000,                                ,        
+               65535,65535,0,1,0,0,0,65535,DBFSAMP4,0,0,               ,        
+               ,0,0                                                             
+        DFSSMB IVTCV,11FFFF,05E84000,                                  ,        
+               65535,65535,0,1,80,0,0,65535,DFSIVP3,0,0,               ,        
+               ,0,0                                                             
+        DFSSMB IVTFD,11FFFF,85484400,                                  ,        
+               65535,65535,0,1,RCTE1,0,0,65535,DFSIVP4,0,0,            ,        
+               IVTFD,0,0                                                        
+        DFSSMB IVTFM,11FFFF,85484400,                                  ,        
+               65535,65535,0,1,RCTE2,0,0,65535,DFSIVP5,0,0,            ,        
+               IVTFM,0,0                                                        
+        DFSSMB IVTNO,11FFFF,05484000,                                  ,        
+               65535,65535,0,1,0,0,0,65535,DFSIVP1,0,0,                ,        
+               ,0,0                                                             
+        DFSSMB IVTNV,11FFFF,05484000,                                  ,        
+               65535,65535,0,1,0,0,0,65535,DFSIVP2,0,0,                ,        
+               ,0,0                                                             
+        DFSSMB PART,7A0002,41484000,                                   ,        
+               65535,65535,0,1,0,0,0,65535,DFSSAM02,0,0,               ,        
+               ,0,0                                                             
+        DFSSMB Q101,8C000A,85484000,                                   ,        
+               65535,65535,0,1,0,0,0,65535,IM2Q101,0,0,                ,        
+               ,0,0                                                             
+        DFSSMB Q103,8C000A,85484000,                                   ,        
+               65535,65535,0,1,0,0,0,65535,IM2Q103,0,0,                ,        
+               ,0,0                                                             
+        DFSSMB Q105,8C000A,85484000,                                   ,        
+               65535,65535,0,1,0,0,0,65535,IM2Q105,0,0,                ,        
+               ,0,0                                                             
+        DFSSMB Q501,8C000A,85484000,                                   ,        
+               65535,65535,0,1,0,0,0,65535,IM2Q501,0,0,                ,        
+               ,0,0                                                             
+        DFSSMB Q610,8C000A,85484000,                                   ,        
+               65535,65535,0,1,0,0,0,65535,IM2Q610,0,0,                ,        
+               ,0,0                                                             
+         DFSSMB GEN                                                             
+         END                                                                    
+//STEP5    EXEC PGM=IEV90,REGION=4096K,                                         
+//             PARM='LOAD,NODECK,NOLIST'                                        
+//SYSLIB   DD DSN=IMS310.OPTIONS,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIB,DISP=SHR                                        
+//         DD DSN=IMS310.GENLIBA,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIBB,DISP=SHR                                       
+//         DD DSN=SYS1.MACLIB,DISP=SHR                                          
+//         DD DSN=SYS1.AMODGEN,DISP=SHR                                         
+//SYSLIN   DD DISP=OLD,                                                         
+//      DSN=IMS310.OBJDSET(DFSDDIRI)                                            
+//SYSPRINT DD  SYSOUT=A,                                                        
+//             DCB=(BLKSIZE=605),                                               
+//             SPACE=(605,(100,50),RLSE,,ROUND)                                 
+//SYSUT1   DD  UNIT=3390,DISP=(,DELETE),                                        
+//             SPACE=(CYL,(15,15))                                              
+//SYSIN    DD   *                                                               
+        DFSDMD DBFSAMD1,0000,4                                                  
+        DFSDMD DBFSAMD2,0000,4                                                  
+        DFSDMD DBFSAMD3,0000,3                                                  
+        DFSDMD DBFSAMD4,0000,3                                                  
+        DFSDMD DI21PART,0000,3                                                  
+        DFSDMD IVPDB1,0000,3                                                    
+        DFSDMD IVPDB1I,0000,3                                                   
+        DFSDMD IVPDB2,0000,3                                                    
+        DFSDMD IVPDB3,0000,3                                                    
+        DFSDMD IVPDB4,0000,4                                                    
+        DFSDMD GEN                                                              
+        END                                                                     
+//STEP6    EXEC PGM=IEV90,REGION=4096K,                                         
+//             PARM='LOAD,NODECK,NOLIST'                                        
+//SYSLIB   DD DSN=IMS310.OPTIONS,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIB,DISP=SHR                                        
+//         DD DSN=IMS310.GENLIBA,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIBB,DISP=SHR                                       
+//         DD DSN=SYS1.MACLIB,DISP=SHR                                          
+//         DD DSN=SYS1.AMODGEN,DISP=SHR                                         
+//SYSLIN   DD DISP=OLD,                                                         
+//      DSN=IMS310.OBJDSET(DFSRCTEI)                                            
+//SYSPRINT DD  SYSOUT=A,                                                        
+//             DCB=(BLKSIZE=605),                                               
+//             SPACE=(605,(100,50),RLSE,,ROUND)                                 
+//SYSUT1   DD  UNIT=3390,DISP=(,DELETE),                                        
+//             SPACE=(CYL,(15,15))                                              
+//SYSIN    DD   *                                                               
+RCTE3 DBFRCT  FPSAMP1,DBFSAMP3,10                                               
+RCTE1 DBFRCT  IVTFD,DFSIVP4,10                                                  
+RCTE2 DBFRCT  IVTFM,DFSIVP5,10                                                  
+         DBFRCT  GEN                                                            
+         END                                                                    
+//STEP7    EXEC PGM=IEV90,REGION=4096K,                                         
+//             PARM='LOAD,NODECK,NOLIST'                                        
+//SYSLIB   DD DSN=IMS310.OPTIONS,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIB,DISP=SHR                                        
+//         DD DSN=IMS310.GENLIBA,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIBB,DISP=SHR                                       
+//         DD DSN=SYS1.MACLIB,DISP=SHR                                          
+//         DD DSN=SYS1.AMODGEN,DISP=SHR                                         
+//SYSLIN   DD DISP=OLD,                                                         
+//      DSN=IMS310.OBJDSET(DFSCLL0I)                                            
+//SYSPRINT DD  SYSOUT=A,                                                        
+//             DCB=(BLKSIZE=605),                                               
+//             SPACE=(605,(100,50),RLSE,,ROUND)                                 
+//SYSUT1   DD  UNIT=3390,DISP=(,DELETE),                                        
+//             SPACE=(CYL,(15,15))                                              
+//SYSIN    DD   *                                                               
+CLL0     TITLE 'DFSICLL0 - IMS COMMUNICATION CONTROL BLOCKS, MODULE 0.'         
+         GBLB  &DFBESEC   ENHANCED SECURITY SPECIFIED                           
+&DFBESEC SETB  0      FOR EXTENDED CTB                                          
+         DFSCLB B,1,0,0,1,000800,0,CT0,0,0 SYSTEM CONSOLE CLB.                  
+.DFCL1  DFSCLB B,2,DFDCB1,0,1,0008,0,CT1,0,0                                    
+         AGO   .DFCL2                                                           
+.DFPL1  ANOP                                                                    
+         AGO   .DFPL2                                                           
+.LERB1 ANOP                                                                     
+         AGO   .LERB2                                                           
+.DFCL2  DFSCLB B,3,DFDCB2,0,1,00E800,0,CT2,0,3                                  
+         ENTRY DFSTFCLB                                                         
+DFSTFCLB DFSCLB B,4,0,0,0,000000,0,DFSTFCTB,0,0                                 
+         AGO   .DFLL4                                                           
+.DFPL0   ANOP                                                                   
+         TITLE 'DFSICLL0 - COMMUNICATION LINE POLLING LISTS.'                   
+         AGO   .DFPL1                                                           
+.DFPL2  ANOP                                                                    
+         TITLE 'DFSICLL0 - COMMUNICATION LINE ERROR BLOCKS.'                    
+         ENTRY DFSMSCLB                                                         
+DFSMSCLB DS    0F                                                               
+         AGO   .LERB1                                                           
+.DFLL4   ANOP                                                                   
+         ENTRY DFSMTCLB                                                         
+DFSMTCLB DFSCLB B,0,0,0,0,000000,0,DFSMTCTB,0,0                                 
+         ENTRY DFSRMCLB                                                         
+DFSRMCLB DFSCLB B,00,0,0,0,000000,0,DFSRMCTB,0,0                                
+         ENTRY DFSWTCLB                                                         
+DFSWTCLB DFSCLB B,5,0,0,1,000800,0,DFSWTCTB,0,0                                 
+         ENTRY DFSPMCLB                                                         
+DFSPMCLB DFSCLB V,6,DFSPMCLB,DFSPMCTB,0                                         
+         ENTRY DFSSMCLB                                                         
+DFSSMCLB DFSCLB B,7,DFDCB1,0,1,0008,0,DFSSMCTB,0,0                              
+         AGO   .DFPL0                                                           
+.LERB2 ANOP                                                                     
+.LERB3   ANOP                                                                   
+         TITLE 'DFSICLL0 - COMMUNICATION VTAM ACB.'                             
+         ENTRY DFSVTACB                                                         
+DFSVAPPL DC    AL1(8),CL8'IVP31CR1'                                             
+         ENTRY DFSVAPPL                                                         
+DFSVPSWD DC    AL1(8),CL8'IVP31CR1'                                             
+         EXTRN DFSCNXA0                                                         
+DFSVTACB ACB   AM=VTAM,EXLST=DFSCNXA0,APPLID=DFSVAPPL,PASSWD=DFSVPSWD           
+         TITLE 'DFSICLL0 - COMMUNICATION LINE GROUP DCB''S.'                    
+DFDCB1 DCB   DSORG=PS,MACRF=W,DEVD=DA,                                 ;        
+               DDNAME=IVPPRT1                                                   
+         EJECT                                                                  
+         EXTRN DFSSYNAD                                                         
+DFDCB2 DCB   DSORG=PS,MACRF=(R,W),DEVD=DA,                             ;        
+               SYNAD=DFSSYNAD,EODAD=DFSSYNAD,RECFM=UM,                 ;        
+               DDNAME=IVPSPL1                                                   
+         EJECT                                                                  
+DFDCB3 DCB   DSORG=PS,MACRF=(R,W),DEVD=DA,                             ;        
+               SYNAD=DFSSYNAD,EODAD=DFSSYNAD,RECFM=UM,                 ;        
+               DDNAME=IVPSPL2                                                   
+         EJECT                                                                  
+DFDCB4 DCB   DSORG=PS,MACRF=(R,W),DEVD=DA,                             ;        
+               SYNAD=DFSSYNAD,EODAD=DFSSYNAD,RECFM=UM,                 ;        
+               DDNAME=IVPSPL3                                                   
+         DC    A(0)     END OF SPOOL DCB SET                                    
+         TITLE 'DFSICLL0 - COMMUNICATION LINE GROUP OPEN LIST.'                 
+         ENTRY DFSICDB                                                          
+DFSICDB  DS    0D                                                               
+         DC    AL1(15),AL3(DFDCB1)                                              
+         DC    AL1(3),AL3(DFDCB2)                                               
+         DC    AL1(3),AL3(DFDCB3)                                               
+         DC    AL1(131),AL3(DFDCB4)                                             
+         EJECT                                                                  
+         ENTRY DFSICDCB                                                         
+DFSICDCB IDCBOS OPTCD=P,DDNAME=IMSSPA                                           
+         SPACE 2                                                                
+         ENTRY DFSLIST0                                                         
+DFSLIST0 DS    0D            USER SUPPLIED SMB EDITS                            
+CT0      DFSCTB B,CTT0,DFSICLB,1,000000,00000B00,00,00,00000000,       ;        
+               CN11,0,0,0,00,00,00                                              
+CT1     DFSCTB B,CTT1,DFSICLB+172,2,008181,40000B40,00,00,             ;        
+               00000000,CN1,0,0,0,00,00,00                                      
+CT2     DFSCTB B,CTT2,DFSICLB+344,3,000000,00000B00,C0,00,             ;        
+               00000000,CN3,0,0,0,00,00,00                                      
+         ENTRY DFSTFCTB                                                         
+DFSTFCTB DFSCTB B,DFSTFCTT,DFSTFCLB,4,000000,00000B00,00,00,00000000,  ;        
+               DFSTCFI,0,0,0,00,00,00                                           
+         ENTRY DFSMTCTB                                                         
+DFSMTCTB DFSCTB B,CTT0,DFSMTCLB,0,000000,00000B00,00,00,00000000,      ;        
+               DFSMTCNT,0,0,0,00,00,00                                          
+         ENTRY DFSRMCTB                                                         
+DFSRMCTB DFSCTB B,CTT0,DFSRMCLB,0,000000,00000B00,00,00,00000000,      ;        
+               DFSRMCNT,0,0,0,00,00,00                                          
+         ENTRY DFSWTCTB                                                         
+DFSWTCTB DFSCTB B,CTT0,DFSWTCLB,5,000000,00000B00,00,00,00000000,      ;        
+               DFSWTCNT,0,0,0,00,00,00                                          
+         ENTRY DFSPMCTB                                                         
+DFSPMCTB DFSCTB VDUM,CTT3,DFSPMCLB,6,000000,40000B00,08,2A,            ;        
+               00000000,DFSPMCNT,0,0,0,00,00,00                                 
+         ENTRY DFSSMCTB                                                         
+DFSSMCTB DFSCTB B,CTT1,DFSSMCLB,7,008181,40000B40,00,00,               ;        
+               00000000,DFSSMCNT,0,0,0,00,00,00                                 
+         ENTRY DFSISID                                                          
+DFSISID  DS    0F                                                               
+         ENTRY DFSMTCNT                                                         
+DFSMTCNT DFSCNT DFSMTCNT,DFSMTCTB,0,001005,0,0,1,0                              
+         ENTRY  DFSRMCNT                                                        
+DFSRMCNT DFSCNT DFSRMCNT,DFSRMCTB,0,001005,0,0,0,0                              
+DFSTCF   DFSCNT DFSTCF,DFSTFCTB,0,000001,0,0,0,0                                
+DFSTCFI  DFSCNT DFSTCFI,0,DFSTCF,000001,0,0,0,0                                 
+CN1      DFSCNT HM31T021,CT1,CN2,400001,0,0,1,0                                 
+         ENTRY CN1                                                              
+CN4      DFSCNT HM31T022,0,0,400001,0,0,1,HM31T022                              
+         ENTRY CN4                                                              
+CN6      DFSCNT HOWARD,0,0,000001,0,0,0,USER1                                   
+CN2      DFSCNT IVPPRT1,CT1,0,000001,0,0,1,0                                    
+CN3      DFSCNT IVPSPL1,CT2,0,000001,0,0,0,0                                    
+CN8      DFSCNT TPNS0001,0,0,000001,0,0,0,TPNS0001                              
+CN5      DFSCNT USER1,0,CN6,000001,0,0,0,USER1                                  
+CN7      DFSCNT USER2,0,0,000001,0,0,0,USER2                                    
+CN11     DFSCNT WTOR,CT0,0,001001,0,0,1,0                                       
+         ENTRY DFSWTCNT                                                         
+DFSWTCNT DFSCNT DFSWTCNT,DFSWTCTB,0,001001,0,0,0,0                              
+DFSPMCNT DFSCNT DFSCN1,DFSPMCTB,0,400001,0,0,0,0                                
+         ENTRY DFSPMCNT                                                         
+DFSSMCNT DFSCNT DFSCN2,DFSSMCTB,DFSCN3,400001,0,0,0,0                           
+         ENTRY DFSSMCNT                                                         
+DFSCN3   DFSCNT DFSCN3,DFSSMCTB,0,000001,0,0,0,0                                
+         DFSCNT GEN,HM31T022,HM31T021                                           
+         END                                                                    
+//STEP8    EXEC PGM=IEV90,REGION=4096K,                                         
+//             PARM='LOAD,NODECK,NOLIST'                                        
+//SYSLIB   DD DSN=IMS310.OPTIONS,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIB,DISP=SHR                                        
+//         DD DSN=IMS310.GENLIBA,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIBB,DISP=SHR                                       
+//         DD DSN=SYS1.MACLIB,DISP=SHR                                          
+//         DD DSN=SYS1.AMODGEN,DISP=SHR                                         
+//SYSLIN   DD DISP=OLD,                                                         
+//      DSN=IMS310.OBJDSET(DFSCLL1I)                                            
+//SYSPRINT DD  SYSOUT=A,                                                        
+//             DCB=(BLKSIZE=605),                                               
+//             SPACE=(605,(100,50),RLSE,,ROUND)                                 
+//SYSUT1   DD  UNIT=3390,DISP=(,DELETE),                                        
+//             SPACE=(CYL,(15,15))                                              
+//SYSIN    DD   *                                                               
+CLL1     TITLE 'DFSICLL1 - IMS COMMUNICATION CONTROL BLOCKS, MODULE 1.'         
+         DFSCCBS 59,4                                                           
+         TITLE 'DFSICLL1 - COMMUNICATION TERMINAL TABLES (CTT).'                
+DFSICTT0 CSECT                                                                  
+         ENTRY CTT0                                                             
+CTT0     ICTTG OPT1=231,OPT2=4,DD=DFSDNSC0,TSND=TRCONSS,TREC=TRCONSS,  ;        
+               BUFSZ=146,INLNG=129,NTRYL=0,LTC=51                               
+         ENTRY CTT1                                                             
+CTT1     ICTTG BUFSZ=55,NTRYL=0,IDLNL=0,                               ;        
+               INLNG=10,IDLTAB=0,IDLLF=0,                              ;        
+               LTC=15,OPT1=103,OPT2=32,                                ;        
+               OPT3=0,OPT4=0,OPT5=0,                                   ;        
+               OPT6=0,                                                 ;        
+               DD=DFSDN150,                                            ;        
+               TSND=TRPRTPN,                                           ;        
+               TREC=0                                                           
+         ENTRY CTT2                                                             
+CTT2     ICTTG BUFSZ=168,NTRYL=0,IDLNL=0,                              ;        
+               INLNG=32,IDLTAB=0,IDLLF=0,                              ;        
+               LTC=15,OPT1=103,OPT2=32,                                ;        
+               OPT3=0,OPT4=0,OPT5=0,                                   ;        
+               OPT6=0,                                                 ;        
+               DD=DFSDN150,                                            ;        
+               TSND=0,                                                 ;        
+               TREC=0                                                           
+         ENTRY CTT3                                                             
+CTT3     ICTTG BUFSZ=2138,NTRYL=0,IDLNL=0,                             ;        
+               BUF01=138,BUF02=138,                                    ;        
+               INLNG=0,IDLTAB=0,IDLLF=0,                               ;        
+               LTC=19,OPT1=101,OPT2=6,                                 ;        
+               OPT3=63,OPT4=160,OPT5=8,                                ;        
+               OPT6=0,                                                 ;        
+               DD=DFSDN190,                                            ;        
+               TSND=TRCONSS,                                           ;        
+               TREC=TRCONSS                                                     
+         ENTRY CTT4                                                             
+CTT4     ICTTG BUFSZ=2138,NTRYL=0,IDLNL=0,                             ;        
+               BUF01=138,BUF02=138,                                    ;        
+               INLNG=0,IDLTAB=0,IDLLF=0,                               ;        
+               LTC=19,OPT1=69,OPT2=6,                                  ;        
+               OPT3=63,OPT4=160,OPT5=8,                                ;        
+               OPT6=0,                                                 ;        
+               DD=DFSDN190,                                            ;        
+               TSND=TRCONSS,                                           ;        
+               TREC=TRCONSS                                                     
+         ENTRY CTT5                                                             
+CTT5     ICTTG BUFSZ=2138,NTRYL=6,IDLNL=0,                             ;        
+               BUF01=138,BUF02=138,                                    ;        
+               INLNG=0,IDLTAB=0,IDLLF=0,                               ;        
+               LTC=19,OPT1=85,OPT2=22,                                 ;        
+               OPT3=63,OPT4=160,OPT5=8,                                ;        
+               OPT6=0,                                                 ;        
+               DD=DFSDN190,                                            ;        
+               TSND=TRCONSS,                                           ;        
+               TREC=TRCONSS                                                     
+         ENTRY DFSTFCTT                                                         
+DFSTFCTT ICTTG OPT1=231,OPT2=0,DD=DFSTDDM0,TSND=TRCONSS,TREC=TRCONSS,  ;        
+               BUFSZ=146,INLNG=129,NTRYL=0,LTC=20                               
+         ROUTINE GEN                                                            
+         TITLE 'DFSICLL1 - COMMUNICATION TRANSLATION TABLES.'                   
+DFSITRT0 CSECT                                                                  
+         COPY TRCONSS                                                           
+         COPY TRPRTPN                                                           
+         END                                                                    
+//STEP9    EXEC PGM=IEV90,REGION=4096K,                                         
+//             PARM='LOAD,NODECK,NOLIST'                                        
+//SYSLIB   DD DSN=IMS310.OPTIONS,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIB,DISP=SHR                                        
+//         DD DSN=IMS310.GENLIBA,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIBB,DISP=SHR                                       
+//         DD DSN=SYS1.MACLIB,DISP=SHR                                          
+//         DD DSN=SYS1.AMODGEN,DISP=SHR                                         
+//SYSLIN   DD DISP=OLD,                                                         
+//      DSN=IMS310.OBJDSET(DFSCLV0I)                                            
+//SYSPRINT DD  SYSOUT=A,                                                        
+//             DCB=(BLKSIZE=605),                                               
+//             SPACE=(605,(100,50),RLSE,,ROUND)                                 
+//SYSUT1   DD  UNIT=3390,DISP=(,DELETE),                                        
+//             SPACE=(CYL,(15,15))                                              
+//SYSIN    DD   *                                                               
+CLV0     TITLE 'DFSCLV00 - IMS VTAM CONTROL BLOCKS, MODULE 0'                   
+         GBLB  &DFBESEC   ENHANCED SECURITY SPECIFIED                           
+&DFBESEC SETB  0      FOR EXTENDED CTB                                          
+DFSCLV00 CSECT                                                                  
+         DFSPPRE FUNC=NDSECT  IPAGE PREFIX                                      
+         DC    16H'0' IPAGE PREFIX BUFFER (BPRE=)                               
+         DFSCLB  V,4,HM31T022,CT3,0                                             
+CT3     DFSCTB V,120,CLB4,3,000000,40000B00,08,2A,                     ;        
+               00000000,0,CRB1,CI1,0,00,00,00                                   
+CRB1    DFSCRB 0000,80,00,CT3,,00000000,HM31T022                                
+CI1     DFSCIB 42C7000000000000,1572944,00,V,00                                 
+WA3    DFSDSL 0                                                                 
+         DC    XL4'0' BUMP TO 32 BYTE BOUNDARY                                  
+         DFSCLB  V,5,USER1,CT4,0                                                
+CT4     DFSCTB V,160,CLB5,4,000000,00020B00,08,2A,                     ;        
+               00000000,0,CRB2,CI2,256,00,00,00                                 
+CRB2    DFSCRB 0000,80,00,CT4,,00000000,USER1                                   
+CI2     DFSCIB 42C7000000000000,1572944,00,V,00                                 
+WA4    DFSDSL 0                                                                 
+         DC    XL4'0' BUMP TO 32 BYTE BOUNDARY                                  
+         DFSCLB  V,6,USER2,CT5,0                                                
+CT5     DFSCTB V,160,CLB6,5,000000,00020B00,08,2A,                     ;        
+               00000000,0,CRB3,CI3,256,00,00,00                                 
+CRB3    DFSCRB 0000,80,00,CT5,,00000000,USER2                                   
+CI3     DFSCIB 42C7000000000000,1572944,00,V,00                                 
+WA5    DFSDSL 0                                                                 
+         DC    XL4'0' BUMP TO 32 BYTE BOUNDARY                                  
+         DFSCLB  VEND,7,TPNS0001,CT6,0                                          
+CT6     DFSCTB V,200,CLB7,6,000000,00020B00,08,2A,                     ;        
+               00000000,0,CRB4,CI4,256,00,00,00                                 
+CRB4    DFSCRB 0000,80,00,CT6,,00000000,TPNS0001                                
+CI4     DFSCIB 02C7000000000000,1572944,00,V,00                                 
+WA6    DFSDSL 0                                                                 
+         DC    XL4'0' BUMP TO 32 BYTE BOUNDARY                                  
+         END                                                                    
+//STEP10   EXEC PGM=IEV90,REGION=4096K,                                         
+//             PARM='LOAD,NODECK,NOLIST'                                        
+//SYSLIB   DD DSN=IMS310.OPTIONS,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIB,DISP=SHR                                        
+//         DD DSN=IMS310.GENLIBA,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIBB,DISP=SHR                                       
+//         DD DSN=SYS1.MACLIB,DISP=SHR                                          
+//         DD DSN=SYS1.AMODGEN,DISP=SHR                                         
+//SYSLIN   DD DISP=OLD,                                                         
+//      DSN=IMS310.OBJDSET(DFSCVB0I)                                            
+//SYSPRINT DD  SYSOUT=A,                                                        
+//             DCB=(BLKSIZE=605),                                               
+//             SPACE=(605,(100,50),RLSE,,ROUND)                                 
+//SYSUT1   DD  UNIT=3390,DISP=(,DELETE),                                        
+//             SPACE=(CYL,(15,15))                                              
+//SYSIN    DD   *                                                               
+CVB0     TITLE 'DFSICVB0 - COMMUNICATION VERB BLOCKS.'                          
+          CVBG  /ACTIVATE,DFSICM00,CTM=0,FLAGS=80,FLG2=03                       
+          CVBG  /ASSIGN,DFSICL70,CTM=0,FLG2=83                                  
+          CVBG  /BROADCAST,DFSICL10,FLAGS=98,FLG2=82                            
+          CVBG  /CANCEL,DFSCLP20,FLAGS=C6                                       
+          CVBG  /CHANGE,DFSICL60,CTM=0,FLAGS=14,FLG2=02                         
+          CVBG  /CHECKPOINT,DFSICL20,CTM=0,FLAGS=80,FLG2=83                     
+          CVBG  /CLSDST,DFSICLQ0,CTM=0,FLAGS=80,FLG2=03                         
+          CVBG  /COMPT,DFSICLU0,CTM=0,FLAGS=80,FLG2=03                          
+          CVBG  /DBDUMP,DFSICL20,CTM=0,FLAGS=80,FLG2=83                         
+          CVBG  /DBRECOVERY,DFSICL20,CTM=0,FLAGS=80,FLG2=83                     
+          CVBG  /DELETE,DFSICL80,CTM=0,FLG2=83                                  
+          CVBG  /DEQUEUE,DFSICLJ0,FLAGS=80,CTM=0,FLG2=03                        
+          CVBG  /DISPLAY,DFSICLD0,CTM=0,FLAGS=80,FLG2=03                        
+          CVBG  /END,DFSICL50,FLG2=02                                           
+          CVBG  /ERESTART,DFSICL20,CTM=0,FLAGS=B4,FLG2=00                       
+          CVBG  /EXCLUSIVE,DFSICL50,FLG2=82                                     
+          CVBG  /EXIT,DFSICLH0,FLG2=82                                          
+          CVBG  /FORMAT,DFSICLK0,FLAGS=80,FLG2=06                               
+          CVBG  /HOLD,DFSICLH0,FLG2=80                                          
+          CVBG  /IDLE,DFSICLG0,CTM=0,FLAGS=80,FLG2=03                           
+          CVBG  /LOCK,DFSICL90,FLG2=82                                          
+          CVBG  /LOG,DFSCLP10,FLAGS=02,FLG2=82                                  
+          CVBG  /LOOPTEST,DFSICL50,FLAGS=98,FLG2=86                             
+          CVBG  /MODIFY,DFSICLV0,CTM=0,FLAGS=80,FLG2=81                         
+          CVBG  /NRESTART,DFSICL20,CTM=0,FLAGS=A4,FLG2=00                       
+          CVBG  /OPNDST,DFSICLQ0,CTM=0,FLAGS=80,FLG2=03                         
+          CVBG  /PSTOP,DFSICL40,CTM=0,FLAGS=01,FLG2=03                          
+          CVBG  /PURGE,DFSICL40,CTM=0,FLAGS=01,FLG2=83                          
+          CVBG  /RCLSDST,DFSICLQ0,FLAGS=80,FLG2=01                              
+          CVBG  /RCOMPT,DFSICLU0,FLAGS=80,FLG2=01                               
+          CVBG  /RDISPLAY,DFSICLD0,FLAGS=80,FLG2=02                             
+          CVBG  /RELEASE,DFSICLH0,FLG2=84                                       
+          CVBG  /RESET,DFSICLE0,FLG2=80                                         
+          CVBG  /RMCHANGE,DFSICLW0,CTM=0,FLAGS=92,FLG2=83                       
+          CVBG  /RMDELETE,DFSICLW0,CTM=0,FLAGS=92,FLG2=83                       
+          CVBG  /RMGENJCL,DFSICLW0,CTM=0,FLAGS=92,FLG2=83                       
+          CVBG  /RMINIT,DFSICLW0,CTM=0,FLAGS=92,FLG2=83                         
+          CVBG  /RMLIST,DFSICLW0,FLAGS=92,FLG2=03                               
+          CVBG  /RMNOTIFY,DFSICLW0,CTM=0,FLAGS=92,FLG2=83                       
+          CVBG  /RSTART,DFSICL40,CTM=0,FLAGS=01,FLG2=03                         
+          CVBG  /SET,DFSICLE0,FLG2=80                                           
+          CVBG  /SMCOPY,DFSICLY0,CTM=0,FLG2=02                                  
+          CVBG  /SSR,DFSICLM0,CTM=0,FLAGS=92,FLG2=82                            
+          CVBG  /START,DFSICL40,CTM=0,FLAGS=01,FLG2=03                          
+          CVBG  /STOP,DFSICL40,CTM=0,FLAGS=01,FLG2=03                           
+          CVBG  /SWITCH,DFSICA20,CTM=0,FLAGS=80,FLG2=03                         
+          CVBG  /TEST,DFSICL50,FLAGS=80,FLG2=02                                 
+          CVBG  /TRACE,DFSICLN0,FLAGS=80,CTM=0,FLG2=03                          
+          CVBG  /UNLOCK,DFSICL90,FLG2=82                                        
+         END                                                                    
+//STEP11   EXEC PGM=IEV90,REGION=4096K,                                         
+//             PARM='LOAD,NODECK,NOLIST'                                        
+//SYSLIB   DD DSN=IMS310.OPTIONS,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIB,DISP=SHR                                        
+//         DD DSN=IMS310.GENLIBA,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIBB,DISP=SHR                                       
+//         DD DSN=SYS1.MACLIB,DISP=SHR                                          
+//         DD DSN=SYS1.AMODGEN,DISP=SHR                                         
+//SYSLIN   DD DISP=OLD,                                                         
+//      DSN=IMS310.OBJDSET(DFSSMULI)                                            
+//SYSPRINT DD  SYSOUT=A,                                                        
+//             DCB=(BLKSIZE=605),                                               
+//             SPACE=(605,(100,50),RLSE,,ROUND)                                 
+//SYSUT1   DD  UNIT=3390,DISP=(,DELETE),                                        
+//             SPACE=(CYL,(15,15))                                              
+//SYSIN    DD   *                                                               
+         TITLE 'TRANSACTION COMMAND TABLE.'                                     
+SMUL0    CSECT                                                                  
+         DC    CL10'ACTIVATE'                                                   
+         DC    CL10'ASSIGN'                                                     
+         DC    CL10'BROADCAST'                                                  
+         DC    CL10'CHANGE'                                                     
+         DC    CL10'CHECKPOINT'                                                 
+         DC    CL10'CLSDST'                                                     
+         DC    CL10'COMPT'                                                      
+         DC    CL10'DBDUMP'                                                     
+         DC    CL10'DBRECOVERY'                                                 
+         DC    CL10'DELETE'                                                     
+         DC    CL10'DEQUEUE'                                                    
+         DC    CL10'DISPLAY'                                                    
+         DC    CL10'END'                                                        
+         DC    CL10'EXCLUSIVE'                                                  
+         DC    CL10'EXIT'                                                       
+         DC    CL10'FORMAT'                                                     
+         DC    CL10'IDLE'                                                       
+         DC    CL10'LOCK'                                                       
+         DC    CL10'LOG'                                                        
+         DC    CL10'LOOPTEST'                                                   
+         DC    CL10'OPNDST'                                                     
+         DC    CL10'PSTOP'                                                      
+         DC    CL10'PURGE'                                                      
+         DC    CL10'RDISPLAY'                                                   
+         DC    CL10'RMCHANGE'                                                   
+         DC    CL10'RMDELETE'                                                   
+         DC    CL10'RMGENJCL'                                                   
+         DC    CL10'RMINIT'                                                     
+         DC    CL10'RMLIST'                                                     
+         DC    CL10'RMNOTIFY'                                                   
+         DC    CL10'RSTART'                                                     
+         DC    CL10'SMCOPY'                                                     
+         DC    CL10'SSR'                                                        
+         DC    CL10'START'                                                      
+         DC    CL10'STOP'                                                       
+         DC    CL10'SWITCH'                                                     
+         DC    CL10'TEST'                                                       
+         DC    CL10'TRACE'                                                      
+         DC    CL10'UNLOCK'                                                     
+        END                                                                     
+//STEP12   EXEC PGM=IEV90,REGION=4096K,                                         
+//             PARM='LOAD,NODECK,NOLIST'                                        
+//SYSLIB   DD DSN=IMS310.OPTIONS,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIB,DISP=SHR                                        
+//         DD DSN=IMS310.GENLIBA,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIBB,DISP=SHR                                       
+//         DD DSN=SYS1.MACLIB,DISP=SHR                                          
+//         DD DSN=SYS1.AMODGEN,DISP=SHR                                         
+//SYSLIN   DD DISP=OLD,                                                         
+//      DSN=IMS310.OBJDSET(DFSISDBI)                                            
+//SYSPRINT DD  SYSOUT=A,                                                        
+//             DCB=(BLKSIZE=605),                                               
+//             SPACE=(605,(100,50),RLSE,,ROUND)                                 
+//SYSUT1   DD  UNIT=3390,DISP=(,DELETE),                                        
+//             SPACE=(CYL,(15,15))                                              
+//SYSIN    DD   *                                                               
+SDB0     TITLE 'DFSISDBI - SECURITY DIRECTORY BLOCKS (SDB).'                    
+DFSISDB0 CSECT                                                                  
+         ENTRY DFSISDB                                                          
+DFSISDB  DS    0D                                                               
+         DC    A(SMBL-DFSISDB)    OFFSET TO SMB LIST.                           
+         DC    A(DMDL-DFSISDB)    OFFSET TO DMD LIST.                           
+         DC    A(PSBL-DFSISDB)    OFFSET TO PSB LIST.                           
+SMBL     DC    A((SMBLE-SMBLL)/L'SMBLL,L'SMBLL)                                 
+SMBLL        DS    0CL9                                                         
+         DFSSMB SDB,ADDINV,0                                                    
+         DFSSMB SDB,ADDPART,0                                                   
+         DFSSMB SDB,CLOSE,0                                                     
+         DFSSMB SDB,DISBURSE,0                                                  
+         DFSSMB SDB,DLETINV,0                                                   
+         DFSSMB SDB,DLETPART,0                                                  
+         DFSSMB SDB,DSPALLI,0                                                   
+         DFSSMB SDB,DSPINV,0                                                    
+         DFSSMB SDB,FPSAMP1,1                                                   
+         DFSSMB SDB,FPSAMP2,0                                                   
+         DFSSMB SDB,IVTCV,0                                                     
+         DFSSMB SDB,IVTFD,1                                                     
+         DFSSMB SDB,IVTFM,1                                                     
+         DFSSMB SDB,IVTNO,0                                                     
+         DFSSMB SDB,IVTNV,0                                                     
+         DFSSMB SDB,PART,0                                                      
+         DFSSMB SDB,Q101,0                                                      
+         DFSSMB SDB,Q103,0                                                      
+         DFSSMB SDB,Q105,0                                                      
+         DFSSMB SDB,Q501,0                                                      
+         DFSSMB SDB,Q610,0                                                      
+         DFSSDB SMB                                                             
+SMBLE        EQU    *                                                           
+DMDL     DC    A((DMDLE-DMDLL)/L'DMDLL,L'DMDLL)                                 
+DMDLL        DS    0CL8                                                         
+         DFSDMD SDB,DBFSAMD1                                                    
+         DFSDMD SDB,DBFSAMD2                                                    
+         DFSDMD SDB,DBFSAMD3                                                    
+         DFSDMD SDB,DBFSAMD4                                                    
+         DFSDMD SDB,DI21PART                                                    
+         DFSDMD SDB,IVPDB1                                                      
+         DFSDMD SDB,IVPDB1I                                                     
+         DFSDMD SDB,IVPDB2                                                      
+         DFSDMD SDB,IVPDB3                                                      
+         DFSDMD SDB,IVPDB4                                                      
+         DFSSDB DMD                                                             
+DMDLE        EQU    *                                                           
+PSBL     DC    A((PSBLE-PSBLL)/L'PSBLL,L'PSBLL)                                 
+PSBLL        DS    0CL8                                                         
+         DFSPSBD SDB,DBF#FPU0                                                   
+         DFSPSBD SDB,DBFSAMP1                                                   
+         DFSPSBD SDB,DBFSAMP2                                                   
+         DFSPSBD SDB,DBFSAMP3                                                   
+         DFSPSBD SDB,DBFSAMP4                                                   
+         DFSPSBD SDB,DBFSAMP5                                                   
+         DFSPSBD SDB,DBFSAMP6                                                   
+         DFSPSBD SDB,DFHSAM04                                                   
+         DFSPSBD SDB,DFHSAM05                                                   
+         DFSPSBD SDB,DFHSAM14                                                   
+         DFSPSBD SDB,DFHSAM15                                                   
+         DFSPSBD SDB,DFHSAM24                                                   
+         DFSPSBD SDB,DFHSAM25                                                   
+         DFSPSBD SDB,DFSIVPA                                                    
+         DFSPSBD SDB,DFSIVPB                                                    
+         DFSPSBD SDB,DFSIVPC                                                    
+         DFSPSBD SDB,DFSIVP1                                                    
+         DFSPSBD SDB,DFSIVP2                                                    
+         DFSPSBD SDB,DFSIVP3                                                    
+         DFSPSBD SDB,DFSIVP4                                                    
+         DFSPSBD SDB,DFSIVP5                                                    
+         DFSPSBD SDB,DFSIVP6                                                    
+         DFSPSBD SDB,DFSIVP7                                                    
+         DFSPSBD SDB,DFSIVP8                                                    
+         DFSPSBD SDB,DFSIVP9                                                    
+         DFSPSBD SDB,DFSSAM01                                                   
+         DFSPSBD SDB,DFSSAM02                                                   
+         DFSPSBD SDB,DFSSAM03                                                   
+         DFSPSBD SDB,DFSSAM04                                                   
+         DFSPSBD SDB,DFSSAM05                                                   
+         DFSPSBD SDB,DFSSAM06                                                   
+         DFSPSBD SDB,DFSSAM07                                                   
+         DFSPSBD SDB,DFSSAM08                                                   
+         DFSPSBD SDB,DFSSAM09                                                   
+         DFSPSBD SDB,IM2Q101                                                    
+         DFSPSBD SDB,IM2Q103                                                    
+         DFSPSBD SDB,IM2Q105                                                    
+         DFSPSBD SDB,IM2Q501                                                    
+         DFSPSBD SDB,IM2Q610                                                    
+         DFSSDB PSB                                                             
+PSBLE        EQU    *                                                           
+         END                                                                    
+//STEP13   EXEC PGM=IEV90,REGION=4096K,                                         
+//             PARM='LOAD,NODECK,NOLIST'                                        
+//SYSLIB   DD DSN=IMS310.OPTIONS,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIB,DISP=SHR                                        
+//         DD DSN=IMS310.GENLIBA,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIBB,DISP=SHR                                       
+//         DD DSN=SYS1.MACLIB,DISP=SHR                                          
+//         DD DSN=SYS1.AMODGEN,DISP=SHR                                         
+//SYSLIN   DD DISP=OLD,                                                         
+//      DSN=IMS310.OBJDSET(DFSISDCI)                                            
+//SYSPRINT DD  SYSOUT=A,                                                        
+//             DCB=(BLKSIZE=605),                                               
+//             SPACE=(605,(100,50),RLSE,,ROUND)                                 
+//SYSUT1   DD  UNIT=3390,DISP=(,DELETE),                                        
+//             SPACE=(CYL,(15,15))                                              
+//SYSIN    DD   *                                                               
+SDC0     TITLE 'DFSISDCI - SECURITY DIRECTORY BLOCKS - DC (SDB).'               
+DFSISDC0 CSECT                                                                  
+         ENTRY DFSISDC                                                          
+DFSISDC  DS    0D                                                               
+         DC    A(CNTL-DFSISDC)    OFFSET TO CNT LIST.                           
+         DC    A(CVBL-DFSISDC)    OFFSET TO CVB LIST.                           
+         DC    AL1(12*0)    CTB EXTENSION.                                      
+         DC    AL3(CTBL-DFSISDC)  OFFSET TO CTB LIST.                           
+         DC    A(MASTER-DFSISDC)  OFFSET TO MASTER CNT.                         
+         DC    A((CTBL-DFSISDC)+(3*6)+8)     OFFSET MASTER CTB.                 
+         DC    A(VNML-DFSISDC)    OFFSET TO VTAM NODE LIST.                     
+CNTL     DC    A((CNTLE-CNTLL)/L'CNTLL,L'CNTLL)                                 
+CNTLL        DS    0CL8                                                         
+         DFSCNT SDB,DFSMTCNT                                                    
+         DFSCNT SDB,DFSRMCNT                                                    
+         DFSCNT SDB,DFSTCF                                                      
+         DFSCNT SDB,DFSTCFI                                                     
+         DFSCNT SDB,HM31T021                                                    
+MASTER   DFSCNT SDB,HM31T022                                                    
+         DFSCNT SDB,HOWARD                                                      
+         DFSCNT SDB,IVPPRT1                                                     
+         DFSCNT SDB,IVPSPL1                                                     
+         DFSCNT SDB,TPNS0001                                                    
+         DFSCNT SDB,USER1                                                       
+         DFSCNT SDB,USER2                                                       
+         DFSCNT SDB,WTOR                                                        
+         DFSSDB CNT                                                             
+CNTLE        EQU    *                                                           
+CVBL     DC    A((CVBLE-CVBLL)/L'CVBLL,L'CVBLL)                                 
+CVBLL        DS    0CL11                                                        
+         DC    CL10'ACTIVATE',X'03'                                             
+         DC    CL10'ASSIGN',X'03'                                               
+         DC    CL10'BROADCAST',X'01'                                            
+         DC    CL10'CANCEL',X'00'                                               
+         DC    CL10'CHANGE',X'03'                                               
+         DC    CL10'CHECKPOINT',X'03'                                           
+         DC    CL10'CLSDST',X'03'                                               
+         DC    CL10'COMPT',X'03'                                                
+         DC    CL10'DBDUMP',X'03'                                               
+         DC    CL10'DBRECOVERY',X'03'                                           
+         DC    CL10'DELETE',X'03'                                               
+         DC    CL10'DEQUEUE',X'03'                                              
+         DC    CL10'DISPLAY',X'03'                                              
+         DC    CL10'END',X'01'                                                  
+         DC    CL10'ERESTART',X'02'                                             
+         DC    CL10'EXCLUSIVE',X'01'                                            
+         DC    CL10'EXIT',X'01'                                                 
+         DC    CL10'FORMAT',X'01'                                               
+         DC    CL10'HOLD',X'00'                                                 
+         DC    CL10'IDLE',X'03'                                                 
+         DC    CL10'LOCK',X'01'                                                 
+         DC    CL10'LOG',X'01'                                                  
+         DC    CL10'LOOPTEST',X'01'                                             
+         DC    CL10'MODIFY',X'02'                                               
+         DC    CL10'NRESTART',X'02'                                             
+         DC    CL10'OPNDST',X'03'                                               
+         DC    CL10'PSTOP',X'03'                                                
+         DC    CL10'PURGE',X'03'                                                
+         DC    CL10'RCLSDST',X'00'                                              
+         DC    CL10'RCOMPT',X'00'                                               
+         DC    CL10'RDISPLAY',X'01'                                             
+         DC    CL10'RELEASE',X'00'                                              
+         DC    CL10'RESET',X'00'                                                
+         DC    CL10'RMCHANGE',X'03'                                             
+         DC    CL10'RMDELETE',X'03'                                             
+         DC    CL10'RMGENJCL',X'03'                                             
+         DC    CL10'RMINIT',X'03'                                               
+         DC    CL10'RMLIST',X'01'                                               
+         DC    CL10'RMNOTIFY',X'03'                                             
+         DC    CL10'RSTART',X'03'                                               
+         DC    CL10'SET',X'00'                                                  
+         DC    CL10'SMCOPY',X'03'                                               
+         DC    CL10'SSR',X'03'                                                  
+         DC    CL10'START',X'03'                                                
+         DC    CL10'STOP',X'03'                                                 
+         DC    CL10'SWITCH',X'03'                                               
+         DC    CL10'TEST',X'01'                                                 
+         DC    CL10'TRACE',X'03'                                                
+         DC    CL10'UNLOCK',X'01'                                               
+CVBLE        EQU    *                                                           
+         DS    0F                                                               
+CTBL     DC    A(8,4)                                                           
+         DC    AL3(1),XL1'E2'   PTERM 1 CONSOLE.                                
+         DC    AL3(2),XL1'00'     PTERM 2                                       
+         DC    AL3(3),XL1'00'     PTERM 3                                       
+         DC    AL3(4),XL1'E2'     PTERM 4                                       
+         DC    AL3(5),XL1'0'         PTERM 5                                    
+         DC    AL3(6),XL1'0'         PTERM 6                                    
+         DC    AL3(7),XL1'0'         PTERM 7                                    
+         DC    AL3(8),XL1'0'         PTERM 8                                    
+VNML     DC    A(4,8)                                                           
+         DC    CL8'HM31T022'   PTERM 5                                          
+         DC    CL8'USER1'   PTERM 6                                             
+         DC    CL8'USER2'   PTERM 7                                             
+         DC    CL8'TPNS0001'   PTERM 8                                          
+         END                                                                    
+//STEP14   EXEC PGM=IEV90,REGION=4096K,                                         
+//             PARM='LOAD,NODECK,NOLIST'                                        
+//SYSLIB   DD DSN=IMS310.OPTIONS,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIB,DISP=SHR                                        
+//         DD DSN=IMS310.GENLIBA,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIBB,DISP=SHR                                       
+//         DD DSN=SYS1.MACLIB,DISP=SHR                                          
+//         DD DSN=SYS1.AMODGEN,DISP=SHR                                         
+//SYSLIN   DD DISP=OLD,                                                         
+//      DSN=IMS310.OBJDSET(DFSSYS0I)                                            
+//SYSPRINT DD  SYSOUT=A,                                                        
+//             DCB=(BLKSIZE=605),                                               
+//             SPACE=(605,(100,50),RLSE,,ROUND)                                 
+//SYSUT1   DD  UNIT=3390,DISP=(,DELETE),                                        
+//             SPACE=(CYL,(15,15))                                              
+//SYSIN    DD   *                                                               
+SYS0 TITLE 'DFSISYS0 - CTL MODULE MSG QUEUE DCB''S.'                            
+ SPACE 1                                                                        
+         MSGDCB QCRBUFN=104,MSGBUFN=5,SHMSG=336,LGMSG=3360,            ,        
+               MSGBLK=6720,RDSLRL=4096,HOTRDS=0,DBC=0                           
+         END                                                                    
+//STEP15   EXEC PGM=IEV90,REGION=4096K,                                         
+//             PARM='LOAD,NODECK,NOLIST'                                        
+//SYSLIB   DD DSN=IMS310.OPTIONS,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIB,DISP=SHR                                        
+//         DD DSN=IMS310.GENLIBA,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIBB,DISP=SHR                                       
+//         DD DSN=SYS1.MACLIB,DISP=SHR                                          
+//         DD DSN=SYS1.AMODGEN,DISP=SHR                                         
+//SYSLIN   DD DISP=OLD,                                                         
+//      DSN=IMS310.OBJDSET(DFSFXC0I)                                            
+//SYSPRINT DD  SYSOUT=A,                                                        
+//             DCB=(BLKSIZE=605),                                               
+//             SPACE=(605,(100,50),RLSE,,ROUND)                                 
+//SYSUT1   DD  UNIT=3390,DISP=(,DELETE),                                        
+//             SPACE=(CYL,(15,15))                                              
+//SYSIN    DD   *                                                               
+XC00 TITLE 'DFSFXC00 - PI BLOCK GEN     '                                       
+DFSFXC00 XC00 TYPE=CSECT,SP=2,MIN=1,MAX=2,INC=1                                 
+         END                                                                    
+//STEP16   EXEC PGM=IEV90,REGION=4096K,                                         
+//             PARM='LOAD,NODECK,NOLIST'                                        
+//SYSLIB   DD DSN=IMS310.OPTIONS,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIB,DISP=SHR                                        
+//         DD DSN=IMS310.GENLIBA,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIBB,DISP=SHR                                       
+//         DD DSN=SYS1.MACLIB,DISP=SHR                                          
+//         DD DSN=SYS1.AMODGEN,DISP=SHR                                         
+//SYSLIN   DD DISP=OLD,                                                         
+//      DSN=IMS310.OBJDSET(DFSTCT0I)                                            
+//SYSPRINT DD  SYSOUT=A,                                                        
+//             DCB=(BLKSIZE=605),                                               
+//             SPACE=(605,(100,50),RLSE,,ROUND)                                 
+//SYSUT1   DD  UNIT=3390,DISP=(,DELETE),                                        
+//             SPACE=(CYL,(15,15))                                              
+//SYSIN    DD   *                                                               
+TCT0 TITLE 'DFSITCT0 - TRANSACTION CLASS TABLES.'                               
+         DFSTCT 16                                                              
+         END                                                                    
+//STEP17   EXEC PGM=IEV90,REGION=4096K,                                         
+//             PARM='LOAD,NODECK,NOLIST'                                        
+//SYSLIB   DD DSN=IMS310.OPTIONS,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIB,DISP=SHR                                        
+//         DD DSN=IMS310.GENLIBA,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIBB,DISP=SHR                                       
+//         DD DSN=SYS1.MACLIB,DISP=SHR                                          
+//         DD DSN=SYS1.AMODGEN,DISP=SHR                                         
+//SYSLIN   DD DISP=OLD,                                                         
+//      DSN=IMS310.OBJDSET(DFSVC000)                                            
+//SYSPRINT DD  SYSOUT=A,                                                        
+//             DCB=(BLKSIZE=605),                                               
+//             SPACE=(605,(100,50),RLSE,,ROUND)                                 
+//SYSUT1   DD  UNIT=3390,DISP=(,DELETE),                                        
+//             SPACE=(CYL,(15,15))                                              
+//SYSIN    DD   *                                                               
+         IMSRELSE                                                               
+         DFSGLBS  AOSLV=3831                                                    
+DFSVC000 CSECT                                                                  
+DFSVCS   SSCD  SECTYPE=CSECT,SVC=(,203),DBRC=(1,0),                    ,        
+               OSPS=22,IRLM=1,CMDCHAR=00,                              ,        
+               IMSID=IVP1,DESC=(7),                                    ,        
+               ROUTCDE=(2,7)                                                    
+         END                                                                    
+//STEP18   EXEC PGM=IEV90,REGION=4096K,                                         
+//             PARM='LOAD,NODECK,NOLIST'                                        
+//SYSLIB   DD DSN=IMS310.OPTIONS,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIB,DISP=SHR                                        
+//         DD DSN=IMS310.GENLIBA,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIBB,DISP=SHR                                       
+//         DD DSN=SYS1.MACLIB,DISP=SHR                                          
+//         DD DSN=SYS1.AMODGEN,DISP=SHR                                         
+//SYSLIN   DD DISP=OLD,                                                         
+//      DSN=IMS310.OBJDSET(DFSSCD0I)                                            
+//SYSPRINT DD  SYSOUT=A,                                                        
+//             DCB=(BLKSIZE=605),                                               
+//             SPACE=(605,(100,50),RLSE,,ROUND)                                 
+//SYSUT1   DD  UNIT=3390,DISP=(,DELETE),                                        
+//             SPACE=(CYL,(15,15))                                              
+//SYSIN    DD   *                                                               
+SCD0 TITLE 'DFSISCD0 - SYSTEM CONTENTS DIRECTORY.'                              
+        DFSGLBS PSB=39,DMB=10,SMB=21,TCT=16,                           ,        
+               MASTER=(4,1),RECANY=(5,3842),                           ,        
+               CTB=4,CDB=4,CTT=7,                                      ,        
+               CLB=(3,4,0),VTCB=1,                                     ,        
+               CNT=(13,0),SID=0,                                       ,        
+               LCB=(0,0,0,0),SES=0,SPQB=0,EDTNAME=,                    ,        
+               CXB=0,CIB=0,CRB=0,CVB=49,CTM=1,CTML=2,                  ,        
+               PST=(100,1),SAV=10,QUE=(1,100),                         ,        
+               SVC=(,203),                                             ,        
+               PSBP=24000,PSBWP=12000,DMBP=24000,DBASP=10000,          ,        
+               SASPSB1=4000,SASPSB2=20000,EPCBP=0,                     ,        
+               BUFNO=5,                                                ,        
+               COMMP=36832,GENP=72000,MFS=12000,                       ,        
+               DBRC=(1,1,0),IRLM=(1,1),IRLMNM=IRLM,                    ,        
+               MSGREQR=MRQPSB,                                         ,        
+               FDIR=256,                                               ,        
+               COMM=(1,0,1,0,1,2,0,0,1,0,0,1,0,0,0,0,0,0,0,0,1),       ,        
+               DEV=(0,1),FBP=24000,FRE=30,IOB=15,FESGBL=0,             ,        
+               CCB=(63,59,4,11476,80),                                 ,        
+               HOTGBL=(0,0,1,1),HIOPSZ=12288,                          ,        
+               RDSL=4096,AOSLV=3831,EDIT=NO,RET=0                               
+       ISCD    SECTYPE=CSECT,CPOPT=3000,PSYS=22,                       ,        
+               FPATH=(YES,1),                                          ,        
+               SINIT=(INIT,CLASSA,A),SUFFIX=I,                         ,        
+               DESC=(7),ID=IVP1,                                       ,        
+               RACFID=IMS,DCO=0,                                       ,        
+               PRDR=IVP31RD1,                                          ,        
+               CMDCHAR=00,                                             ,        
+               DBC=0,                                                  ,        
+               MCS=(2,7)                                                        
+         END                                                                    
+//STEP19   EXEC PGM=IEV90,REGION=4096K,                                         
+//             PARM='LOAD,NODECK,NOLIST'                                        
+//SYSLIB   DD DSN=IMS310.OPTIONS,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIB,DISP=SHR                                        
+//         DD DSN=IMS310.GENLIBA,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIBB,DISP=SHR                                       
+//         DD DSN=SYS1.MACLIB,DISP=SHR                                          
+//         DD DSN=SYS1.AMODGEN,DISP=SHR                                         
+//SYSLIN   DD DISP=OLD,                                                         
+//      DSN=IMS310.OBJDSET(DFSSCD1I)                                            
+//SYSPRINT DD  SYSOUT=A,                                                        
+//             DCB=(BLKSIZE=605),                                               
+//             SPACE=(605,(100,50),RLSE,,ROUND)                                 
+//SYSUT1   DD  UNIT=3390,DISP=(,DELETE),                                        
+//             SPACE=(CYL,(15,15))                                              
+//SYSIN    DD   *                                                               
+SCD1 TITLE 'DFSISCD1 - SYSTEM CONTENTS DIRECTORY MAP.'                          
+        DFSGLBS PSB=39,DMB=10,SMB=21,TCT=16,                           ,        
+               MASTER=(4,1),RECANY=(5,3842),                           ,        
+               CTB=4,CDB=4,CTT=7,                                      ,        
+               CLB=(3,4,0),VTCB=1,                                     ,        
+               CNT=(13,0),SID=0,                                       ,        
+               LCB=(0,0,0,0),SES=0,SPQB=0,EDTNAME=,                    ,        
+               CXB=0,CIB=0,CRB=0,CVB=49,CTM=1,CTML=2,                  ,        
+               PST=(100,1),SAV=10,QUE=(1,100),                         ,        
+               SVC=(,203),                                             ,        
+               PSBP=24000,PSBWP=12000,DMBP=24000,DBASP=10000,          ,        
+               SASPSB1=4000,SASPSB2=20000,EPCBP=0,                     ,        
+               BUFNO=5,                                                ,        
+               COMMP=36832,GENP=72000,MFS=12000,                       ,        
+               DBRC=(1,1,0),IRLM=(1,1),IRLMNM=IRLM,                    ,        
+               MSGREQR=MRQPSB,                                         ,        
+               FDIR=256,                                               ,        
+               COMM=(1,0,1,0,1,2,0,0,1,0,0,1,0,0,0,0,0,0,0,0,1),       ,        
+               DEV=(0,1),FBP=24000,FRE=30,IOB=15,FESGBL=0,             ,        
+               CCB=(63,59,4,11476,80),                                 ,        
+               HOTGBL=(0,0,1,1),HIOPSZ=12288,                          ,        
+               RDSL=4096,AOSLV=3831,EDIT=NO,RET=0                               
+         ISCD  SECTYPE=MAP,SUFFIX=I,                                   ,        
+               CMDCHAR=00,DBC=0                                                 
+         END                                                                    
+//STEP20   EXEC PGM=IEV90,REGION=4096K,                                         
+//             PARM='LOAD,NODECK,NOLIST'                                        
+//SYSLIB   DD DSN=IMS310.OPTIONS,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIB,DISP=SHR                                        
+//         DD DSN=IMS310.GENLIBA,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIBB,DISP=SHR                                       
+//         DD DSN=SYS1.MACLIB,DISP=SHR                                          
+//         DD DSN=SYS1.AMODGEN,DISP=SHR                                         
+//SYSLIN   DD DISP=OLD,                                                         
+//      DSN=IMS310.OBJDSET(DBFSCD0I)                                            
+//SYSPRINT DD  SYSOUT=A,                                                        
+//             DCB=(BLKSIZE=605),                                               
+//             SPACE=(605,(100,50),RLSE,,ROUND)                                 
+//SYSUT1   DD  UNIT=3390,DISP=(,DELETE),                                        
+//             SPACE=(CYL,(15,15))                                              
+//SYSIN    DD   *                                                               
+ESC0 TITLE 'DBFESCD0 - FAST PATH SCD EXTN.'                                     
+        DBFESCD SECTYPE=CSECT,DBFUIEN=DBFSUIX0,                        ,        
+               DBFNRCE=3,DBFXMIL=256,                                  ,        
+               DBFXLBL=4096,DBFOTHN=5,SUFFIX=I,                        ,        
+               DBFHASH=DBFLHSH0,HOTGBL=0,                              ,        
+               DBFSBAN=10,DBFTBAN=50,DBFBFLN=2048                               
+         END                                                                    
+//STEP21   EXEC PGM=IEV90,REGION=4096K,                                         
+//             PARM='LOAD,NODECK,NOLIST'                                        
+//SYSLIB   DD DSN=IMS310.OPTIONS,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIB,DISP=SHR                                        
+//         DD DSN=IMS310.GENLIBA,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIBB,DISP=SHR                                       
+//         DD DSN=SYS1.MACLIB,DISP=SHR                                          
+//         DD DSN=SYS1.AMODGEN,DISP=SHR                                         
+//SYSLIN   DD DISP=OLD,                                                         
+//      DSN=IMS310.OBJDSET(DBFSCD1I)                                            
+//SYSPRINT DD  SYSOUT=A,                                                        
+//             DCB=(BLKSIZE=605),                                               
+//             SPACE=(605,(100,50),RLSE,,ROUND)                                 
+//SYSUT1   DD  UNIT=3390,DISP=(,DELETE),                                        
+//             SPACE=(CYL,(15,15))                                              
+//SYSIN    DD   *                                                               
+ESC1 TITLE 'DBFESCD1  -  FAST PATH SCD EXTENSION MAP. '                         
+        DBFESCD SECTYPE=MAP,DBFUIEN=DBFSUIX0,SUFFIX=I,                 ,        
+               DBFHASH=DBFLHSH0,HOTGBL=0                                        
+         END                                                                    
+//STEP22   EXEC PGM=IEV90,REGION=4096K,                                         
+//             PARM='LOAD,NODECK,NOLIST'                                        
+//SYSLIB   DD DSN=IMS310.OPTIONS,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIB,DISP=SHR                                        
+//         DD DSN=IMS310.GENLIBA,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIBB,DISP=SHR                                       
+//         DD DSN=SYS1.MACLIB,DISP=SHR                                          
+//         DD DSN=SYS1.AMODGEN,DISP=SHR                                         
+//SYSLIN   DD DISP=OLD,                                                         
+//      DSN=IMS310.OBJDSET(DFSFRB0I)                                            
+//SYSPRINT DD  SYSOUT=A,                                                        
+//             DCB=(BLKSIZE=605),                                               
+//             SPACE=(605,(100,50),RLSE,,ROUND)                                 
+//SYSUT1   DD  UNIT=3390,DISP=(,DELETE),                                        
+//             SPACE=(CYL,(15,15))                                              
+//SYSIN    DD   *                                                               
+FRB0 TITLE 'DFSHFRB0  -  FAST RESTART BLOCK'                                    
+        DFSGLBS HOTCNTN=(4,1,2,5),                                     X        
+               HOTL1NAM=,HOTL2NAM=,                                    X        
+               HOTGBL=(0,0,1,1),                                       X        
+               PSTERM=0                                                         
+        DFSFRB SECTYPE=CSECT,SUFFIX=I,DBC=0                                     
+         END                                                                    
+//STEP23   EXEC PGM=IEV90,REGION=4096K,                                         
+//             PARM='LOAD,NODECK,NOLIST'                                        
+//SYSLIB   DD DSN=IMS310.OPTIONS,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIB,DISP=SHR                                        
+//         DD DSN=IMS310.GENLIBA,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIBB,DISP=SHR                                       
+//         DD DSN=SYS1.MACLIB,DISP=SHR                                          
+//         DD DSN=SYS1.AMODGEN,DISP=SHR                                         
+//SYSLIN   DD DISP=OLD,                                                         
+//      DSN=IMS310.OBJDSET(DFSFRB1I)                                            
+//SYSPRINT DD  SYSOUT=A,                                                        
+//             DCB=(BLKSIZE=605),                                               
+//             SPACE=(605,(100,50),RLSE,,ROUND)                                 
+//SYSUT1   DD  UNIT=3390,DISP=(,DELETE),                                        
+//             SPACE=(CYL,(15,15))                                              
+//SYSIN    DD   *                                                               
+FRB1 TITLE 'DFSHFRB0  -  FAST RESTART BLOCK MAP'                                
+        DFSGLBS HOTCNTN=(4,1,2,5),                                     X        
+               HOTL1NAM=,HOTL2NAM=,                                    X        
+               HOTGBL=(0,0,1,1),                                       X        
+               PSTERM=0                                                         
+        DFSFRB SECTYPE=MAP,SUFFIX=I,DBC=0                                       
+         END                                                                    
+//STEP24   EXEC PGM=IEV90,REGION=4096K,                                         
+//             PARM='LOAD,NODECK,NOLIST'                                        
+//SYSLIB   DD DSN=IMS310.OPTIONS,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIB,DISP=SHR                                        
+//         DD DSN=IMS310.GENLIBA,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIBB,DISP=SHR                                       
+//         DD DSN=SYS1.MACLIB,DISP=SHR                                          
+//         DD DSN=SYS1.AMODGEN,DISP=SHR                                         
+//SYSLIN   DD DISP=OLD,                                                         
+//      DSN=IMS310.OBJDSET(DFSFPGS0)                                            
+//SYSPRINT DD  SYSOUT=A,                                                        
+//             DCB=(BLKSIZE=605),                                               
+//             SPACE=(605,(100,50),RLSE,,ROUND)                                 
+//SYSUT1   DD  UNIT=3390,DISP=(,DELETE),                                        
+//             SPACE=(CYL,(15,15))                                              
+//SYSIN    DD DISP=SHR,                                                         
+//         DSN=IMS310.SVSOURCE(DFSFPGS0)                                        
+//STEP25   EXEC PGM=IEV90,REGION=4096K,                                         
+//             PARM='LOAD,NODECK,NOLIST'                                        
+//SYSLIB   DD DSN=IMS310.OPTIONS,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIB,DISP=SHR                                        
+//         DD DSN=IMS310.GENLIBA,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIBB,DISP=SHR                                       
+//         DD DSN=SYS1.MACLIB,DISP=SHR                                          
+//         DD DSN=SYS1.AMODGEN,DISP=SHR                                         
+//SYSLIN   DD DISP=OLD,                                                         
+//      DSN=IMS310.OBJDSET(DFSICVF0)                                            
+//SYSPRINT DD  SYSOUT=A,                                                        
+//             DCB=(BLKSIZE=605),                                               
+//             SPACE=(605,(100,50),RLSE,,ROUND)                                 
+//SYSUT1   DD  UNIT=3390,DISP=(,DELETE),                                        
+//             SPACE=(CYL,(15,15))                                              
+//SYSIN    DD DISP=SHR,                                                         
+//         DSN=IMS310.TMSOURCE(DFSICVF0)                                        
+//STEP26   EXEC PGM=IEV90,REGION=4096K,                                         
+//             PARM='LOAD,NODECK,NOLIST'                                        
+//SYSLIB   DD DSN=IMS310.OPTIONS,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIB,DISP=SHR                                        
+//         DD DSN=IMS310.GENLIBA,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIBB,DISP=SHR                                       
+//         DD DSN=SYS1.MACLIB,DISP=SHR                                          
+//         DD DSN=SYS1.AMODGEN,DISP=SHR                                         
+//SYSLIN   DD DISP=OLD,                                                         
+//      DSN=IMS310.OBJDSET(DFSCIOB0)                                            
+//SYSPRINT DD  SYSOUT=A,                                                        
+//             DCB=(BLKSIZE=605),                                               
+//             SPACE=(605,(100,50),RLSE,,ROUND)                                 
+//SYSUT1   DD  UNIT=3390,DISP=(,DELETE),                                        
+//             SPACE=(CYL,(15,15))                                              
+//SYSIN    DD DISP=SHR,                                                         
+//         DSN=IMS310.TMSOURCE(DFSCIOB0)                                        
+//STEP27   EXEC PGM=IEV90,REGION=4096K,                                         
+//             PARM='LOAD,NODECK,NOLIST'                                        
+//SYSLIB   DD DSN=IMS310.OPTIONS,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIB,DISP=SHR                                        
+//         DD DSN=IMS310.GENLIBA,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIBB,DISP=SHR                                       
+//         DD DSN=SYS1.MACLIB,DISP=SHR                                          
+//         DD DSN=SYS1.AMODGEN,DISP=SHR                                         
+//SYSLIN   DD DISP=OLD,                                                         
+//      DSN=IMS310.OBJDSET(DFSICIO0)                                            
+//SYSPRINT DD  SYSOUT=A,                                                        
+//             DCB=(BLKSIZE=605),                                               
+//             SPACE=(605,(100,50),RLSE,,ROUND)                                 
+//SYSUT1   DD  UNIT=3390,DISP=(,DELETE),                                        
+//             SPACE=(CYL,(15,15))                                              
+//SYSIN    DD DISP=SHR,                                                         
+//         DSN=IMS310.TMSOURCE(DFSICIO0)                                        
+//STEP28   EXEC PGM=IEV90,REGION=4096K,                                         
+//             PARM='LOAD,NODECK,NOLIST'                                        
+//SYSLIB   DD DSN=IMS310.OPTIONS,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIB,DISP=SHR                                        
+//         DD DSN=IMS310.GENLIBA,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIBB,DISP=SHR                                       
+//         DD DSN=SYS1.MACLIB,DISP=SHR                                          
+//         DD DSN=SYS1.AMODGEN,DISP=SHR                                         
+//SYSLIN   DD DISP=OLD,                                                         
+//      DSN=IMS310.OBJDSET(DFSIC440)                                            
+//SYSPRINT DD  SYSOUT=A,                                                        
+//             DCB=(BLKSIZE=605),                                               
+//             SPACE=(605,(100,50),RLSE,,ROUND)                                 
+//SYSUT1   DD  UNIT=3390,DISP=(,DELETE),                                        
+//             SPACE=(CYL,(15,15))                                              
+//SYSIN    DD DISP=SHR,                                                         
+//         DSN=IMS310.TMSOURCE(DFSIC440)                                        
+//STEP29   EXEC PGM=IEV90,REGION=4096K,                                         
+//             PARM='LOAD,NODECK,NOLIST'                                        
+//SYSLIB   DD DSN=IMS310.OPTIONS,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIB,DISP=SHR                                        
+//         DD DSN=IMS310.GENLIBA,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIBB,DISP=SHR                                       
+//         DD DSN=SYS1.MACLIB,DISP=SHR                                          
+//         DD DSN=SYS1.AMODGEN,DISP=SHR                                         
+//SYSLIN   DD DISP=OLD,                                                         
+//      DSN=IMS310.OBJDSET(DFSIC460)                                            
+//SYSPRINT DD  SYSOUT=A,                                                        
+//             DCB=(BLKSIZE=605),                                               
+//             SPACE=(605,(100,50),RLSE,,ROUND)                                 
+//SYSUT1   DD  UNIT=3390,DISP=(,DELETE),                                        
+//             SPACE=(CYL,(15,15))                                              
+//SYSIN    DD DISP=SHR,                                                         
+//         DSN=IMS310.TMSOURCE(DFSIC460)                                        
+//STEP30   EXEC PGM=IEV90,REGION=4096K,                                         
+//             PARM='LOAD,NODECK,NOLIST'                                        
+//SYSLIB   DD DSN=IMS310.OPTIONS,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIB,DISP=SHR                                        
+//         DD DSN=IMS310.GENLIBA,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIBB,DISP=SHR                                       
+//         DD DSN=SYS1.MACLIB,DISP=SHR                                          
+//         DD DSN=SYS1.AMODGEN,DISP=SHR                                         
+//SYSLIN   DD DISP=OLD,                                                         
+//      DSN=IMS310.OBJDSET(DFSCKWD0)                                            
+//SYSPRINT DD  SYSOUT=A,                                                        
+//             DCB=(BLKSIZE=605),                                               
+//             SPACE=(605,(100,50),RLSE,,ROUND)                                 
+//SYSUT1   DD  UNIT=3390,DISP=(,DELETE),                                        
+//             SPACE=(CYL,(15,15))                                              
+//SYSIN    DD DISP=SHR,                                                         
+//         DSN=IMS310.SVSOURCE(DFSCKWD0)                                        
+//STEP31   EXEC PGM=IEV90,REGION=4096K,                                         
+//             PARM='LOAD,NODECK,NOLIST'                                        
+//SYSLIB   DD DSN=IMS310.OPTIONS,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIB,DISP=SHR                                        
+//         DD DSN=IMS310.GENLIBA,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIBB,DISP=SHR                                       
+//         DD DSN=SYS1.MACLIB,DISP=SHR                                          
+//         DD DSN=SYS1.AMODGEN,DISP=SHR                                         
+//SYSLIN   DD DISP=OLD,                                                         
+//      DSN=IMS310.OBJDSET(DFSICLX0)                                            
+//SYSPRINT DD  SYSOUT=A,                                                        
+//             DCB=(BLKSIZE=605),                                               
+//             SPACE=(605,(100,50),RLSE,,ROUND)                                 
+//SYSUT1   DD  UNIT=3390,DISP=(,DELETE),                                        
+//             SPACE=(CYL,(15,15))                                              
+//SYSIN    DD DISP=SHR,                                                         
+//         DSN=IMS310.SVSOURCE(DFSICLX0)                                        
+//STEP32   EXEC PGM=IEV90,REGION=4096K,                                         
+//             PARM='LOAD,NODECK,NOLIST'                                        
+//SYSLIB   DD DSN=IMS310.OPTIONS,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIB,DISP=SHR                                        
+//         DD DSN=IMS310.GENLIBA,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIBB,DISP=SHR                                       
+//         DD DSN=SYS1.MACLIB,DISP=SHR                                          
+//         DD DSN=SYS1.AMODGEN,DISP=SHR                                         
+//SYSLIN   DD DISP=OLD,                                                         
+//      DSN=IMS310.OBJDSET(DFSICL40)                                            
+//SYSPRINT DD  SYSOUT=A,                                                        
+//             DCB=(BLKSIZE=605),                                               
+//             SPACE=(605,(100,50),RLSE,,ROUND)                                 
+//SYSUT1   DD  UNIT=3390,DISP=(,DELETE),                                        
+//             SPACE=(CYL,(15,15))                                              
+//SYSIN    DD DISP=SHR,                                                         
+//         DSN=IMS310.SVSOURCE(DFSICL40)                                        
+//STEP33   EXEC PGM=IEV90,REGION=4096K,                                         
+//             PARM='LOAD,NODECK,NOLIST'                                        
+//SYSLIB   DD DSN=IMS310.OPTIONS,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIB,DISP=SHR                                        
+//         DD DSN=IMS310.GENLIBA,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIBB,DISP=SHR                                       
+//         DD DSN=SYS1.MACLIB,DISP=SHR                                          
+//         DD DSN=SYS1.AMODGEN,DISP=SHR                                         
+//SYSLIN   DD DISP=OLD,                                                         
+//      DSN=IMS310.OBJDSET(DFSIC430)                                            
+//SYSPRINT DD  SYSOUT=A,                                                        
+//             DCB=(BLKSIZE=605),                                               
+//             SPACE=(605,(100,50),RLSE,,ROUND)                                 
+//SYSUT1   DD  UNIT=3390,DISP=(,DELETE),                                        
+//             SPACE=(CYL,(15,15))                                              
+//SYSIN    DD DISP=SHR,                                                         
+//         DSN=IMS310.SVSOURCE(DFSIC430)                                        
+//STEP34   EXEC PGM=IEV90,REGION=4096K,                                         
+//             PARM='LOAD,NODECK,NOLIST'                                        
+//SYSLIB   DD DSN=IMS310.OPTIONS,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIB,DISP=SHR                                        
+//         DD DSN=IMS310.GENLIBA,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIBB,DISP=SHR                                       
+//         DD DSN=SYS1.MACLIB,DISP=SHR                                          
+//         DD DSN=SYS1.AMODGEN,DISP=SHR                                         
+//SYSLIN   DD DISP=OLD,                                                         
+//      DSN=IMS310.OBJDSET(DFSIC450)                                            
+//SYSPRINT DD  SYSOUT=A,                                                        
+//             DCB=(BLKSIZE=605),                                               
+//             SPACE=(605,(100,50),RLSE,,ROUND)                                 
+//SYSUT1   DD  UNIT=3390,DISP=(,DELETE),                                        
+//             SPACE=(CYL,(15,15))                                              
+//SYSIN    DD DISP=SHR,                                                         
+//         DSN=IMS310.SVSOURCE(DFSIC450)                                        
+//STEP35   EXEC PGM=IEV90,REGION=4096K,                                         
+//             PARM='LOAD,NODECK,NOLIST'                                        
+//SYSLIB   DD DSN=IMS310.OPTIONS,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIB,DISP=SHR                                        
+//         DD DSN=IMS310.GENLIBA,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIBB,DISP=SHR                                       
+//         DD DSN=SYS1.MACLIB,DISP=SHR                                          
+//         DD DSN=SYS1.AMODGEN,DISP=SHR                                         
+//SYSLIN   DD DISP=OLD,                                                         
+//      DSN=IMS310.OBJDSET(DFSIC470)                                            
+//SYSPRINT DD  SYSOUT=A,                                                        
+//             DCB=(BLKSIZE=605),                                               
+//             SPACE=(605,(100,50),RLSE,,ROUND)                                 
+//SYSUT1   DD  UNIT=3390,DISP=(,DELETE),                                        
+//             SPACE=(CYL,(15,15))                                              
+//SYSIN    DD DISP=SHR,                                                         
+//         DSN=IMS310.SVSOURCE(DFSIC470)                                        
+//STEP36   EXEC PGM=IEV90,REGION=4096K,                                         
+//             PARM='LOAD,NODECK,NOLIST'                                        
+//SYSLIB   DD DSN=IMS310.OPTIONS,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIB,DISP=SHR                                        
+//         DD DSN=IMS310.GENLIBA,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIBB,DISP=SHR                                       
+//         DD DSN=SYS1.MACLIB,DISP=SHR                                          
+//         DD DSN=SYS1.AMODGEN,DISP=SHR                                         
+//SYSLIN   DD DISP=OLD,                                                         
+//      DSN=IMS310.OBJDSET(DFSSBMP0)                                            
+//SYSPRINT DD  SYSOUT=A,                                                        
+//             DCB=(BLKSIZE=605),                                               
+//             SPACE=(605,(100,50),RLSE,,ROUND)                                 
+//SYSUT1   DD  UNIT=3390,DISP=(,DELETE),                                        
+//             SPACE=(CYL,(15,15))                                              
+//SYSIN    DD DISP=SHR,                                                         
+//         DSN=IMS310.SVSOURCE(DFSSBMP0)                                        
+//STEP37   EXEC PGM=IEV90,REGION=4096K,                                         
+//             PARM='LOAD,NODECK,NOLIST'                                        
+//SYSLIB   DD DSN=IMS310.OPTIONS,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIB,DISP=SHR                                        
+//         DD DSN=IMS310.GENLIBA,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIBB,DISP=SHR                                       
+//         DD DSN=SYS1.MACLIB,DISP=SHR                                          
+//         DD DSN=SYS1.AMODGEN,DISP=SHR                                         
+//SYSLIN   DD DISP=OLD,                                                         
+//      DSN=IMS310.OBJDSET(DFSSMSC0)                                            
+//SYSPRINT DD  SYSOUT=A,                                                        
+//             DCB=(BLKSIZE=605),                                               
+//             SPACE=(605,(100,50),RLSE,,ROUND)                                 
+//SYSUT1   DD  UNIT=3390,DISP=(,DELETE),                                        
+//             SPACE=(CYL,(15,15))                                              
+//SYSIN    DD DISP=SHR,                                                         
+//         DSN=IMS310.SVSOURCE(DFSSMSC0)                                        
+//STEP38   EXEC PGM=IEV90,REGION=4096K,                                         
+//             PARM='LOAD,NODECK,NOLIST'                                        
+//SYSLIB   DD DSN=IMS310.OPTIONS,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIB,DISP=SHR                                        
+//         DD DSN=IMS310.GENLIBA,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIBB,DISP=SHR                                       
+//         DD DSN=SYS1.MACLIB,DISP=SHR                                          
+//         DD DSN=SYS1.AMODGEN,DISP=SHR                                         
+//SYSLIN   DD DISP=OLD,                                                         
+//      DSN=IMS310.OBJDSET(DFSCIOA0)                                            
+//SYSPRINT DD  SYSOUT=A,                                                        
+//             DCB=(BLKSIZE=605),                                               
+//             SPACE=(605,(100,50),RLSE,,ROUND)                                 
+//SYSUT1   DD  UNIT=3390,DISP=(,DELETE),                                        
+//             SPACE=(CYL,(15,15))                                              
+//SYSIN    DD DISP=SHR,                                                         
+//         DSN=IMS310.TMSOURCE(DFSCIOA0)                                        
+//STEP39   EXEC PGM=IEV90,REGION=4096K,                                         
+//             PARM='LOAD,NODECK,NOLIST'                                        
+//SYSLIB   DD DSN=IMS310.OPTIONS,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIB,DISP=SHR                                        
+//         DD DSN=IMS310.GENLIBA,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIBB,DISP=SHR                                       
+//         DD DSN=SYS1.MACLIB,DISP=SHR                                          
+//         DD DSN=SYS1.AMODGEN,DISP=SHR                                         
+//SYSLIN   DD DISP=OLD,                                                         
+//      DSN=IMS310.OBJDSET(DFSCVCL0)                                            
+//SYSPRINT DD  SYSOUT=A,                                                        
+//             DCB=(BLKSIZE=605),                                               
+//             SPACE=(605,(100,50),RLSE,,ROUND)                                 
+//SYSUT1   DD  UNIT=3390,DISP=(,DELETE),                                        
+//             SPACE=(CYL,(15,15))                                              
+//SYSIN    DD DISP=SHR,                                                         
+//         DSN=IMS310.TMSOURCE(DFSCVCL0)                                        
+//STEP40   EXEC PGM=IEV90,REGION=4096K,                                         
+//             PARM='LOAD,NODECK,NOLIST'                                        
+//SYSLIB   DD DSN=IMS310.OPTIONS,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIB,DISP=SHR                                        
+//         DD DSN=IMS310.GENLIBA,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIBB,DISP=SHR                                       
+//         DD DSN=SYS1.MACLIB,DISP=SHR                                          
+//         DD DSN=SYS1.AMODGEN,DISP=SHR                                         
+//SYSLIN   DD DISP=OLD,                                                         
+//      DSN=IMS310.OBJDSET(DFSCVCV0)                                            
+//SYSPRINT DD  SYSOUT=A,                                                        
+//             DCB=(BLKSIZE=605),                                               
+//             SPACE=(605,(100,50),RLSE,,ROUND)                                 
+//SYSUT1   DD  UNIT=3390,DISP=(,DELETE),                                        
+//             SPACE=(CYL,(15,15))                                              
+//SYSIN    DD DISP=SHR,                                                         
+//         DSN=IMS310.TMSOURCE(DFSCVCV0)                                        
+//STEP41   EXEC PGM=IEV90,REGION=4096K,                                         
+//             PARM='LOAD,NODECK,NOLIST'                                        
+//SYSLIB   DD DSN=IMS310.OPTIONS,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIB,DISP=SHR                                        
+//         DD DSN=IMS310.GENLIBA,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIBB,DISP=SHR                                       
+//         DD DSN=SYS1.MACLIB,DISP=SHR                                          
+//         DD DSN=SYS1.AMODGEN,DISP=SHR                                         
+//SYSLIN   DD DISP=OLD,                                                         
+//      DSN=IMS310.OBJDSET(DFSCVGD0)                                            
+//SYSPRINT DD  SYSOUT=A,                                                        
+//             DCB=(BLKSIZE=605),                                               
+//             SPACE=(605,(100,50),RLSE,,ROUND)                                 
+//SYSUT1   DD  UNIT=3390,DISP=(,DELETE),                                        
+//             SPACE=(CYL,(15,15))                                              
+//SYSIN    DD DISP=SHR,                                                         
+//         DSN=IMS310.TMSOURCE(DFSCVGD0)                                        
+//STEP42   EXEC PGM=IEV90,REGION=4096K,                                         
+//             PARM='LOAD,NODECK,NOLIST'                                        
+//SYSLIB   DD DSN=IMS310.OPTIONS,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIB,DISP=SHR                                        
+//         DD DSN=IMS310.GENLIBA,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIBB,DISP=SHR                                       
+//         DD DSN=SYS1.MACLIB,DISP=SHR                                          
+//         DD DSN=SYS1.AMODGEN,DISP=SHR                                         
+//SYSLIN   DD DISP=OLD,                                                         
+//      DSN=IMS310.OBJDSET(DFSCVEA0)                                            
+//SYSPRINT DD  SYSOUT=A,                                                        
+//             DCB=(BLKSIZE=605),                                               
+//             SPACE=(605,(100,50),RLSE,,ROUND)                                 
+//SYSUT1   DD  UNIT=3390,DISP=(,DELETE),                                        
+//             SPACE=(CYL,(15,15))                                              
+//SYSIN    DD DISP=SHR,                                                         
+//         DSN=IMS310.TMSOURCE(DFSCVEA0)                                        
+//STEP43   EXEC PGM=IEV90,REGION=4096K,                                         
+//             PARM='LOAD,NODECK,NOLIST'                                        
+//SYSLIB   DD DSN=IMS310.OPTIONS,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIB,DISP=SHR                                        
+//         DD DSN=IMS310.GENLIBA,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIBB,DISP=SHR                                       
+//         DD DSN=SYS1.MACLIB,DISP=SHR                                          
+//         DD DSN=SYS1.AMODGEN,DISP=SHR                                         
+//SYSLIN   DD DISP=OLD,                                                         
+//      DSN=IMS310.OBJDSET(DFSCVFR0)                                            
+//SYSPRINT DD  SYSOUT=A,                                                        
+//             DCB=(BLKSIZE=605),                                               
+//             SPACE=(605,(100,50),RLSE,,ROUND)                                 
+//SYSUT1   DD  UNIT=3390,DISP=(,DELETE),                                        
+//             SPACE=(CYL,(15,15))                                              
+//SYSIN    DD DISP=SHR,                                                         
+//         DSN=IMS310.TMSOURCE(DFSCVFR0)                                        
+//STEP44   EXEC PGM=IEV90,REGION=4096K,                                         
+//             PARM='LOAD,NODECK,NOLIST'                                        
+//SYSLIB   DD DSN=IMS310.OPTIONS,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIB,DISP=SHR                                        
+//         DD DSN=IMS310.GENLIBA,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIBB,DISP=SHR                                       
+//         DD DSN=SYS1.MACLIB,DISP=SHR                                          
+//         DD DSN=SYS1.AMODGEN,DISP=SHR                                         
+//SYSLIN   DD DISP=OLD,                                                         
+//      DSN=IMS310.OBJDSET(DFSCVGN0)                                            
+//SYSPRINT DD  SYSOUT=A,                                                        
+//             DCB=(BLKSIZE=605),                                               
+//             SPACE=(605,(100,50),RLSE,,ROUND)                                 
+//SYSUT1   DD  UNIT=3390,DISP=(,DELETE),                                        
+//             SPACE=(CYL,(15,15))                                              
+//SYSIN    DD DISP=SHR,                                                         
+//         DSN=IMS310.TMSOURCE(DFSCVGN0)                                        
+//STEP45   EXEC PGM=IEV90,REGION=4096K,                                         
+//             PARM='LOAD,NODECK,NOLIST'                                        
+//SYSLIB   DD DSN=IMS310.OPTIONS,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIB,DISP=SHR                                        
+//         DD DSN=IMS310.GENLIBA,DISP=SHR                                       
+//         DD DSN=IMS310.GENLIBB,DISP=SHR                                       
+//         DD DSN=SYS1.MACLIB,DISP=SHR                                          
+//         DD DSN=SYS1.AMODGEN,DISP=SHR                                         
+//SYSLIN   DD DISP=OLD,                                                         
+//      DSN=IMS310.OBJDSET(DFSCVRM0)                                            
+//SYSPRINT DD  SYSOUT=A,                                                        
+//             DCB=(BLKSIZE=605),                                               
+//             SPACE=(605,(100,50),RLSE,,ROUND)                                 
+//SYSUT1   DD  UNIT=3390,DISP=(,DELETE),                                        
+//             SPACE=(CYL,(15,15))                                              
+//SYSIN    DD DISP=SHR,                                                         
+//         DSN=IMS310.TMSOURCE(DFSCVRM0)                                        
+//IMSGEN03 JOB ,                                                                
+// IMS,TYPRUN=HOLD,                                                             
+// MSGCLASS=A                                                                   
+//STEP1 EXEC PGM=IEWL,                                                          
+//             REGION=900K,                                                     
+//             PARM='SIZE=(880K,64K),NCAL,LET,REUS,XREF,LIST'                   
+//SYSPRINT DD  SYSOUT=A,DCB=(RECFM=FBA,LRECL=121,BLKSIZE=605),                  
+//             SPACE=(605,(10,10),RLSE,,ROUND)                                  
+//SYSPUNCH DD DSN=IMS310.OBJDSET,DISP=SHR                                       
+//LOAD     DD DSN=IMS310.LOAD,DISP=SHR                                          
+//USERLIB  DD DSN=IMS310.LOAD,DISP=SHR                                          
+//SYSLMOD  DD DSN=IMS310.MODBLKS,DISP=SHR                                       
+//SYSUT1   DD UNIT=(3390,SEP=(SYSLMOD,SYSPUNCH)),                               
+//            SPACE=(CYL,(10,1))                                                
+//SYSLIN   DD *                                                                 
+  INCLUDE SYSPUNCH(DFSPDIRI)                                                    
+  MODE RMODE(ANY)                                                               
+  NAME DFSPDIRI(R)    DL/I CONTROL BLOCKS (PDIR)                                
+  INCLUDE SYSPUNCH(DFSDDIRI)                                                    
+  MODE RMODE(ANY)                                                               
+  NAME DFSDDIRI(R)    DL/I CONTROL BLOCKS (DDIR)                                
+  INCLUDE SYSPUNCH(DFSSMB0I)                                                    
+  MODE RMODE(ANY)                                                               
+  NAME DFSSMB0I(R)    DL/I CONTROL BLOCKS (SMB)                                 
+  INCLUDE SYSPUNCH(DFSRCTEI)                                                    
+  MODE RMODE(ANY)                                                               
+  NAME DFSRCTEI(R)    DL/I CONTROL BLOCKS (RCTE)                                
+  INCLUDE SYSPUNCH(DFSISDBI)                                                    
+  NAME DFSISDBI(R)    DB SECURITY BLOCKS MODULE                                 
+//STEP2 EXEC PGM=IEWL,                                                          
+//             REGION=900K,                                                     
+//             PARM='SIZE=(880K,64K),REUS,NCAL,LET,XREF,LIST'                   
+//SYSPRINT DD  SYSOUT=A,DCB=(RECFM=FBA,LRECL=121,BLKSIZE=605),                  
+//             SPACE=(605,(10,10),RLSE,,ROUND)                                  
+//SYSPUNCH DD DSN=IMS310.OBJDSET,DISP=SHR                                       
+//LOAD     DD DSN=IMS310.LOAD,DISP=SHR                                          
+//USERLIB  DD DSN=IMS310.LOAD,DISP=SHR                                          
+//SYSLMOD  DD DSN=IMS310.RESLIB,DISP=SHR                                        
+//SYSUT1   DD UNIT=(3390,SEP=(SYSLMOD,SYSPUNCH)),                               
+//            SPACE=(CYL,(10,1))                                                
+//SYSLIN   DD *                                                                 
+  INCLUDE SYSPUNCH(DFSCLV0I) VTAM TERM BLKS.                                    
+  PAGE    DFSCLV00    FORCE PAGE BOUNDARY.                                      
+  MODE AMODE(31),RMODE(ANY)                                                     
+  NAME DFSCLV0I(R) VTAM TERM CTL BLKS 0                                         
+//STEP3 EXEC PGM=IEWL,                                                          
+//             REGION=900K,                                                     
+//             PARM='SIZE=(880K,64K),NCAL,LET,REUS,XREF,LIST'                   
+//SYSPRINT DD  SYSOUT=A,DCB=(RECFM=FBA,LRECL=121,BLKSIZE=605),                  
+//             SPACE=(605,(10,10),RLSE,,ROUND)                                  
+//SYSPUNCH DD DSN=IMS310.OBJDSET,DISP=SHR                                       
+//LOAD     DD DSN=IMS310.LOAD,DISP=SHR                                          
+//USERLIB  DD DSN=IMS310.LOAD,DISP=SHR                                          
+//SYSLMOD  DD DSN=IMS310.RESLIB,DISP=SHR                                        
+//SYSUT1   DD UNIT=(3390,SEP=(SYSLMOD,SYSPUNCH)),                               
+//            SPACE=(CYL,(10,1))                                                
+//SYSLIN   DD *                                                                 
+  INCLUDE SYSPUNCH(DFSFXC0I)                                                    
+  MODE AMODE(31),RMODE(ANY)                                                     
+  NAME DFSFXC0I(R)  XC00 CSECT                                                  
+  INCLUDE SYSPUNCH(DFSSMULI)                                                    
+  NAME DFSSMULI(R) IMS COMMAND LIST                                             
+  INCLUDE SYSPUNCH(DFSSYS0I,DFSSCD0I)                                           
+  INCLUDE SYSPUNCH(DBFSCD0I)                                                    
+  INCLUDE SYSPUNCH(DFSFRB0I)                                                    
+  ENTRY DFSISCD                                                                 
+  NAME DFSBLK0I(R)      CONTROL BLOCKS MODULE 3.                                
+  INCLUDE SYSPUNCH(DFSISDCI)                                                    
+  NAME DFSISDCI(R)   DC SECURITY BLOCKS MODULE.                                 
+  INCLUDE SYSPUNCH(DFSUDT0I)                                                    
+  NAME DFSUDT0I(R)   DEVICE CHARACTERISTICS TABLE                               
+//IMSGEN04 JOB ,                                                                
+// IMS,TYPRUN=HOLD,                                                             
+// MSGCLASS=A                                                                   
+//STEP1 EXEC PGM=IEWL,                                                          
+//             REGION=900K,                                                     
+//             PARM='SIZE=(880K,64K),NCAL,LET,,XREF,LIST'                       
+//SYSPRINT DD  SYSOUT=A,DCB=(RECFM=FBA,LRECL=121,BLKSIZE=605),                  
+//             SPACE=(605,(10,10),RLSE,,ROUND)                                  
+//SYSPUNCH DD DSN=IMS310.OBJDSET,DISP=SHR                                       
+//LOAD     DD DSN=IMS310.LOAD,DISP=SHR                                          
+//USERLIB  DD DSN=IMS310.LOAD,DISP=SHR                                          
+//SYSLMOD  DD DSN=IMS310.RESLIB,DISP=SHR                                        
+//SYSUT1   DD UNIT=(3390,SEP=(SYSLMOD,SYSPUNCH)),                               
+//            SPACE=(CYL,(10,1))                                                
+//SYSLIN   DD *                                                                 
+  INCLUDE SYSPUNCH(DFSVC000)                                                    
+  NAME DFSVC000(R)      SECONDARY SCD MODULE.                                   
+  INCLUDE LOAD(DFSUPRT0)                                                        
+  NAME DFSUPRT0(R)     LOCAL SYSOUT UTILTIY.                                    
+//IMSGEN05 JOB ,                                                                
+// IMS,TYPRUN=HOLD,                                                             
+// MSGCLASS=A                                                                   
+//STEP1 EXEC PGM=IEWL,                                                          
+//             REGION=900K,                                                     
+//             PARM='SIZE=(880K,64K),NCAL,LET,,XREF,LIST'                       
+//SYSPRINT DD  SYSOUT=A,DCB=(RECFM=FBA,LRECL=121,BLKSIZE=605),                  
+//             SPACE=(605,(10,10),RLSE,,ROUND)                                  
+//SYSPUNCH DD DSN=IMS310.OBJDSET,DISP=SHR                                       
+//LOAD     DD DSN=IMS310.LOAD,DISP=SHR                                          
+//USERLIB  DD DSN=IMS310.LOAD,DISP=SHR                                          
+//SYSLMOD  DD DSN=IMS310.RESLIB,DISP=SHR                                        
+//SYSUT1   DD UNIT=(3390,SEP=(SYSLMOD,SYSPUNCH)),                               
+//            SPACE=(CYL,(10,1))                                                
+//SYSLIN   DD *                                                                 
+  ORDER DFSIOPL0,DFSNEP1I                                                       
+ INCLUDE SYSPUNCH(DFSOPL0I) (E)SCD OPTION LIST                                  
+  ORDER DFSNEP3I                                                                
+  ORDER DFSNEP5I                                                                
+   ORDER DFSICLL0                                                               
+   ORDER DFSICCB                                                                
+   ORDER DFSICTT0                                                               
+   ORDER DFSITRT0                                                               
+   ORDER DFSITCT                                                                
+   ORDER DFSICVB0                                                               
+  INCLUDE SYSPUNCH(DFSCLL0I,DFSCLL1I)                                           
+  INCLUDE SYSPUNCH(DFSTCT0I)                                                    
+  INCLUDE SYSPUNCH(DFSCVB0I)                                                    
+   ORDER DBFSUIX0                                                               
+ INCLUDE USERLIB(DBFSUIX0) USER SUPPLIED FAST PATH INPUT ROUTING EXIT           
+  ORDER DFSICIO0,DFSCIOH0,DFSCIOI0                                              
+  ORDER DFSCIOE0,DFSCIOF0,DFSCIOG0                                              
+ INCLUDE SYSPUNCH(DFSICIO0)   COMMUNICATIONS ANALYZER.                          
+  ORDER DBFHIEL0,DBFHRTR0,DBFHQMI0                                              
+  INCLUDE LOAD(DBFHIEL0)    FAST PATH INPUT LINKAGE.                            
+  INCLUDE LOAD(DBFHRTR0) FAST PATH COMM. OUTPUT ROUTER                          
+  INCLUDE LOAD(DBFHQMI0)    FAST PATH Q-MGR INTERFACE                           
+  ORDER DFSCIOA0                                                                
+  ORDER DFSHCLG0                                                                
+  ORDER DFSHCSW0                                                                
+  ORDER DFSHVIO0                                                                
+ INCLUDE SYSPUNCH(DFSCIOA0) VTAM RECEIVE ANY HANDLER.                           
+ INCLUDE LOAD(DFSHCLG0)     HARP SESS MISC LOG INTERF.                          
+ INCLUDE LOAD(DFSHCSW0)     HARP SESS SWITCH CONTROL.                           
+ INCLUDE LOAD(DFSHVIO0)     HARP SESSION VIO.                                   
+  ORDER DFSQBFM0                                                                
+  ORDER DFSQUEI0                                                                
+  ORDER DFSQMGR0                                                                
+  ORDER DFSQCP00                                                                
+  ORDER DFSQSPC0                                                                
+  ORDER DFSQLOG0                                                                
+  ORDER DFSQENQ0                                                                
+  ORDER DFSQMRT0                                                                
+  ORDER DFSDLA30                                                                
+  ORDER DBFDLA30                                                                
+  ORDER DFSCMD30                                                                
+  ORDER DFSICLB0                                                                
+  ORDER DFSICLF0                                                                
+  ORDER DFSIIDE0,DFSIIEN0                                                       
+  ORDER DFSSMBDQ,DFSSMBEQ,DFSICLR0,DFSCVLG0                                     
+  ORDER DFSICLS0                                                                
+  ORDER DFSICLT0                                                                
+  ORDER DFSICLX0                                                                
+  ORDER DFSICUR0,DFSCRS60                                                       
+  ORDER DFSFXC40                                                                
+  ORDER DFSSMSC0                                                                
+  ORDER DFSSMIC0                                                                
+  INCLUDE LOAD(DFSQBFM0)    QUEUE BUFFER MANAGER.                               
+  INCLUDE LOAD(DFSQUEI0)    QMGR AOI UE INTERFACE.                              
+  INCLUDE LOAD(DFSQMGR0)    QUEUE MANAGEMENT.                                   
+  INCLUDE LOAD(DFSQCP00)    QUEUE MGR CHKPT.                                    
+  INCLUDE LOAD(DFSQSPC0)    Q SPACE NOTIFY EXIT.                                
+  INCLUDE LOAD(DFSQLOG0)    QUEUE LOG BUILDER.                                  
+  INCLUDE LOAD(DFSQENQ0)  QMGR MULTI TCB INTERFACE                              
+  INCLUDE LOAD(DFSQMRT0)  QMGR AWE ROUTE                                        
+  INCLUDE LOAD(DFSDLA30)    DL/I TP ANALYZER.                                   
+  INCLUDE LOAD(DBFDLA30)    FP EXTN. DL/I TP ANALYZER                           
+  INCLUDE LOAD(DFSCMD30)   AOI CMD VALIDATION MODULE.                           
+  INCLUDE LOAD(DFSICLB0)    COMMUNICATIONS INPUT EDIT.                          
+  INCLUDE LOAD(DFSICLF0)    FIND DESTINATION MODULE.                            
+  INCLUDE LOAD(DFSIIDE0)    BLOCK DEQUEUE.                                      
+  INCLUDE LOAD(DFSIIEN0)    BLOCK ENQUEUE.                                      
+  INCLUDE LOAD(DFSIMBD0)    SMB DEQUEUE.                                        
+  INCLUDE LOAD(DFSIMBE0)    SMB ENQUEUE.                                        
+  INCLUDE LOAD(DFSICLR0)    MESSAGE ROUTER.                                     
+  INCLUDE LOAD(DFSCVLG0)    DC LOG CALL RTN.                                    
+  INCLUDE LOAD(DFSICLS0)    SECURITY CHECKER.                                   
+  INCLUDE LOAD(DFSICLT0)    MESSAGE TRANSLATOR.                                 
+ INCLUDE SYSPUNCH(DFSICLX0) RESET POLL ROUTINE.                                 
+  INCLUDE LOAD(DFSICUR0)    COMMUNICATION OUTPUT EDIT.                          
+  INCLUDE LOAD(DFSCRS60)    CANCEL ACTIVE I/O.                                  
+  INCLUDE LOAD(DFSFXC40)        SYNC POINT PROCESSOR.                           
+  INCLUDE SYSPUNCH(DFSSMSC0)   MESSAGE INITIATOR.                               
+  INCLUDE LOAD(DFSSMIC0)    MESSAGE TERMINATOR.                                 
+  ORDER DBFINTE0,DBFINTT0,DBFIBUF0                                              
+ INCLUDE LOAD(DBFINTE0)     FAST PATH DEP RGN CTL BLOCK INIT.                   
+  INCLUDE LOAD(DBFIBUF0)  FAST PATH BUFFER ADJUSTMENT                           
+  ORDER DFSSBMP0,DFSSCHP0,DFSSCHQ0,DFSSABNX                                     
+  INCLUDE SYSPUNCH(DFSSBMP0)  BMP INIT/TERM.                                    
+  INCLUDE LOAD(DFSSCHP0)    SCHEDULER POST PROCESSOR.                           
+  INCLUDE LOAD(DFSSCHQ0)    SCHEDULER SEQ Q PROCESSOR.                          
+  INCLUDE LOAD(DFSSABN0)  DEP. REG ABEND PROC.                                  
+  ORDER DFSCOFC0                                                                
+  INCLUDE LOAD(DFSCOFC0)    FORMAT OUTPUT CONTROL.                              
+  ORDER DFSCFEM0                                                                
+  INCLUDE LOAD(DFSCFEM0)    MASTER FORMAT CONTROL.                              
+  ORDER DFSCFE00,DFSCFEI0,DFSCFEP0,DFSCOMP0,DFSCFES0                            
+  ORDER DFSCFEQ0,DFSCFE80,DFSCFE90,DFSCFEA0                                     
+  ORDER DFSCFEL0,DFSCFEO0,DFSPCIB0                                              
+  ORDER DFSFPMM0,DFSIDDP0,DFSFPRF0,DFSFFET0,DFSFFRH0                            
+  ORDER DFSCFEX0,DFSME000,DFSME127                                              
+  INCLUDE LOAD(DFSCFE00) MFS 3270 DAT STREAM INPT SCAN                          
+  INCLUDE LOAD(DFSCFEI0)    MFS INPUT PROCESSOR.                                
+  INCLUDE LOAD(DFSPCIB0)    MFS BUILD PCIBS.                                    
+  INCLUDE LOAD(DFSCFEP0)    MFS PAGING ROUTINE.                                 
+  INCLUDE LOAD(DFSCOMP0)    MFS STRING SCAN/COMPRESS.                           
+  INCLUDE LOAD(DFSCFES0)    MFS SORT.                                           
+  INCLUDE LOAD(DFSCFEQ0)    MFS CLEAN-UP.                                       
+  INCLUDE LOAD(DFSCFE80)    MFS OUTPUT BUILD (LOAD 0).                          
+  INCLUDE LOAD(DFSCFE90)    MFS OUTPUT BUILD (LOAD 1).                          
+  INCLUDE LOAD(DFSCFEA0)    MFS OUTPUT LPAGE BUILD.                             
+  INCLUDE LOAD(DFSCFEO0)    MFS OUTPUT PROCESSOR.                               
+  INCLUDE LOAD(DFSFPMM0)    FORMAT POOL MANAGER.                                
+  INCLUDE LOAD(DFSIDDP0)    DD CARD                                             
+  INCLUDE LOAD(DFSFPRF0)    PRE-FETCH MODULE.                                   
+  INCLUDE LOAD(DFSFFET0)    IMMEDIATE FETCH MODULE.                             
+  INCLUDE LOAD(DFSFFRH0)    FETCH REQUEST MODULE.                               
+  INCLUDE LOAD(DFSFDSC0)    MFS DYN DIR SEARCH.                                 
+  INCLUDE LOAD(DFSFDIR0)    MFS XA DIRECTORIES BUILD.                           
+  INCLUDE SYSPUNCH(DFSFPGS0)  PGLOAD/PGRLSE SERVICES.                           
+  INCLUDE LOAD(DFSFHSH0)    MFS FORMAT HASH ROUTINE.                            
+  INCLUDE LOAD(DFSCFEX0)    MFS EXIT DIRECTORY.                                 
+  INCLUDE LOAD(DFSME000)    MFS FIELD EDIT EXIT.                                
+  INCLUDE LOAD(DFSME127)    MFS SEGMENT EDIT EXIT.                              
+  ORDER DFSCFRT0                                                                
+  INCLUDE LOAD(DFSCFRT0)    FORMAT TEST MODULE.                                 
+  ORDER DFSCFEZ0,DFSCFEZ1                                                       
+  INCLUDE LOAD(DFSCFEZ0)    TRACE EFFECTOR                                      
+  ORDER DFSPAGE0                                                                
+  INCLUDE LOAD(DFSPAGE0)    TERMINAL PAGING ROUTINE.                            
+  ORDER DFSTDDM0                                                                
+ INCLUDE LOAD(DFSTDDM0)     TCF DEVICE DEP. MOD.                                
+  ORDER DFSCVET0                                                                
+  INCLUDE LOAD(DFSCVET0)    3270 BTAM/VTAM/DIAL DISC.                           
+  ORDER DFSCD600                                                                
+  INCLUDE LOAD(DFSCD600)  VTAM 3270/SLU2 DDM E.P. 6                             
+  ORDER DFSDN150,DFSCSPI0                                                       
+  INCLUDE LOAD(DFSDN150)    LOCAL SYSIN/SYSOUT MODULE.                          
+  INCLUDE LOAD(DFSCSPI0)    SPOOL INIT                                          
+  ORDER DFSCVCO0                                                                
+  INCLUDE LOAD(DFSCVCO0)    RESPONSE OUTPUT INTERFACE.                          
+  ORDER DFSCVCI0,DFSCVCP0                                                       
+  ORDER DFSCVFC0,DFSCVFP0,DFSCVFQ0,DFSCVFS0,DFSCVFY0                            
+  INCLUDE LOAD(DFSCVCI0)    SENSE INTERPRETER.                                  
+  INCLUDE LOAD(DFSCVCP0)    RESET CTBAMULT.                                     
+  INCLUDE LOAD(DFSCVFC0)    OPERATION SETUP ROUTINE.                            
+  INCLUDE LOAD(DFSCVFP0)    PURGE CONTROL ROUTINE.                              
+  INCLUDE LOAD(DFSCVFQ0)    CHECK QUEUES ROUTINE.                               
+  INCLUDE LOAD(DFSCVFS0)    OUTPUT PREPARATION ROUTINE                          
+  INCLUDE LOAD(DFSCVFY0)    3600 CLEAR FLAGS/SETUP.                             
+  ORDER DFSCVEA0,DFSCVEN0                                                       
+  INCLUDE SYSPUNCH(DFSCVEA0)    LOGON COMPLETION.                               
+  INCLUDE LOAD(DFSCVEN0)    VTAM MESSAGE MODULE.                                
+  ORDER DFSDN190,DFSCVEB0,DFSCVEC0,DFSCVED0                                     
+  ORDER DFSCVEF0,DFSCVEG0,DFSCVEH0,DFSCVEI0,DFSCVEJ0                            
+  ORDER DFSCVEK0,DFSCVEL0,DFSCVEM0                                              
+  ORDER DFSCVEO0,DFSCVER0,DFSCVES0                                              
+  INCLUDE LOAD(DFSDN190)    3275/3277 VTAM DDM.                                 
+  INCLUDE LOAD(DFSCVEB0)    3270 VTAM WRITE COMPLETION                          
+  INCLUDE LOAD(DFSCVEC0)    3270 VTAM OUTPUT MSG SEND.                          
+  INCLUDE LOAD(DFSCVED0)    3270 VTAM COPY DETERMINE.                           
+  INCLUDE LOAD(DFSCVEF0)    3270 VTAM READ SETUP.                               
+  INCLUDE LOAD(DFSCVEG0)    3270 VTAM INPUT DATA PROC.                          
+  INCLUDE LOAD(DFSCVEH0)    3270 VTAM COPY ALLOCATION.                          
+  INCLUDE LOAD(DFSCVEI0)    3270 VTAM WAIT FOR COPY.                            
+  INCLUDE LOAD(DFSCVEJ0)    3270 VTAM VIDEO UNLOCK.                             
+  INCLUDE LOAD(DFSCVEK0)    3270 VTAM UNLOCK COMPLETE.                          
+  INCLUDE LOAD(DFSCVEL0)    3270 VTAM READ MODIFIED.                            
+  INCLUDE LOAD(DFSCVEM0)    3270 VTAM ERP ROUTER.                               
+  INCLUDE LOAD(DFSCVEO0)    3270 VTAM SENSE PRINT.                              
+  INCLUDE LOAD(DFSCVER0)    3270 VTAM ERROR CHECK EXIT                          
+  INCLUDE LOAD(DFSCVES0)    3270 VTAM COPY POST.                                
+  INCLUDE  LOAD(DFSSIMC0)  RESETSR COMPL.PROC                                   
+  ORDER DFSCVEP0                                                                
+  INCLUDE LOAD(DFSCVEP0)    3270 VTAM DISC DETERMINE.                           
+  ORDER DFSCESP0                                                                
+  INCLUDE LOAD(DFSCESP0)    LIST PROCESSOR.                                     
+  ORDER DFSCVCB0,DFSCVCC0,DFSCVCD0,DFSCVCE0                                     
+  ORDER DFSCVCF0,DFSCVCK0,DFSCVCL0,DFSCVCS0                                     
+  ORDER DFSCVCT0,DFSCVEE0                                                       
+  ORDER DFSCNXA0,CNXAISC,CNXAMSC,CNXAPOST                                       
+  ORDER DFSCNXA3,CNXATWO,DFSCNDC0                                               
+  ORDER DFSCVCV0                                                                
+  ORDER DFSCVCR0,DFSVBLK0                                                       
+ INCLUDE LOAD(DFSCVCB0)     VTAM BUFFER ACQUIRE/INIT.                           
+  INCLUDE LOAD(DFSCVCC0)    VTAM OUTPUT BRACKET RTN.                            
+  INCLUDE LOAD(DFSCVCD0)    VTAM SHUTDOWN ROUTINE.                              
+  INCLUDE LOAD(DFSCVCE0)    VTAM OUTBOUND CANCEL RTN.                           
+  INCLUDE LOAD(DFSCVCF0)    VTAM TERMINATION CLEANUP.                           
+  INCLUDE LOAD(DFSCVCK0)    VTAM RPL CHECK.                                     
+ INCLUDE SYSPUNCH(DFSCVCL0) VTAM OPNDST/CLSDST PROC.                            
+  INCLUDE LOAD(DFSCVCS0)    VTAM RPL STATUS PRINT.                              
+  INCLUDE LOAD(DFSCVCT0)    VTAM NODE TRACE/ABORT.                              
+  INCLUDE LOAD(DFSCVEE0)    VTAM WAIT-FOR-LOSTTERM.                             
+ INCLUDE LOAD(DFSCNXA0)     VTAM EXIT PROCESSOR.                                
+  INCLUDE SYSPUNCH(DFSCVCV0)    VTAM SIMLOG PROC.                               
+  INCLUDE LOAD(DFSCVCR0)    SEND COMMON ROUTER.                                 
+  INCLUDE LOAD(DFSVBLK0)    RPL/NIB BLOCKS.                                     
+  ORDER DFSCON00,DFSCON10,DFSCON20,DFSCONA0                                     
+  ORDER DFSCONP0,DFSCONM0,DFSCONG0,DFSCONE0                                     
+  INCLUDE LOAD(DFSCON00)    CONVERSATIONAL START RTN.                           
+  INCLUDE LOAD(DFSCON10)    CONV. INSERT SPA ROUTINE                            
+  INCLUDE LOAD(DFSCON20)    CONVERSATIONAL TERMINATE                            
+  INCLUDE LOAD(DFSCONA0)    CONVERSATIONAL SPA LOGGER                           
+  INCLUDE LOAD(DFSCONP0)    CONV. PACK SPA ROUTINE.                             
+  INCLUDE LOAD(DFSCONM0)    CONVERSATIONAL ANALYSIS                             
+  INCLUDE LOAD(DFSCONG0)    CONVERSATIONAL READ SPA .                           
+  INCLUDE LOAD(DFSCONE0)    CONVERSATIONAL EXIT.                                
+  ORDER DFSDNSC0,DFSICLP0                                                       
+  ORDER DFSICLC0                                                                
+  INCLUDE LOAD(DFSDNSC0)    SYSTEM CONSOLE DDM.                                 
+  INCLUDE LOAD(DFSICLP0)    COMMAND PROCESSOR.                                  
+  INCLUDE LOAD(DFSICLC0)    AOI COMMAND CONTROLLER.                             
+  ORDER DFSICLY0                                                                
+  INCLUDE LOAD(DFSICLY0)    /SMCOPY COMMAND MODULE                              
+  ORDER DFSICLZ0                                                                
+  ORDER DFSICL30                                                                
+  INCLUDE LOAD(DFSICLZ0)    /SIGN COMMAND MODULE                                
+  INCLUDE LOAD(DFSICL30)    COMMAND EDITOR.                                     
+  ORDER DFSCMTI0                                                                
+  ORDER DFSCLMO0,DFSCLMR0,DFSCLMR1                                              
+  ORDER DFSCLMA0,DFSC2170                                                       
+  ORDER DFSCMT00                                                                
+  ORDER DFSCMT10,DFSCMT20,DFSCMT30,DFSCMT40,DFSCMT50                            
+  ORDER DFSICLD0                                                                
+  ORDER DFSIDP00                                                                
+  ORDER DFSICLE0                                                                
+  INCLUDE LOAD(DFSCMTI0)    MASTER TERMINAL INTERFACE                           
+  INCLUDE LOAD(DFSCLMO0)    MESSAGE GENERATOR 1.                                
+  INCLUDE LOAD(DFSCLMR0)    MESSAGE GENERATOR 2.                                
+  INCLUDE LOAD(DFSCLMA0)    AOI MESSAGE GENERATOR.                              
+  INCLUDE LOAD(DFSC2170)    MESSAGE INITIATOR.                                  
+  INCLUDE LOAD(DFSCMT00)    MESSAGE GENERATOR TABLE 0.                          
+  INCLUDE LOAD(DFSCMT10)    MESSAGE GENERATOR TABLE 1.                          
+  INCLUDE LOAD(DFSCMT20)    MESSAGE GENERATOR TABLE 2.                          
+  INCLUDE LOAD(DFSCMT30)    MESSAGE GENERATOR TABLE 3.                          
+  INCLUDE LOAD(DFSCMT40)    MESSAGE GENERATOR TABLE 4.                          
+  INCLUDE LOAD(DFSCMT50)    MESSAGE GENERATOR TABLE 5.                          
+  INCLUDE LOAD(DFSICLD0)    DISPLAY PROCESSOR.                                  
+  INCLUDE LOAD(DFSIDP00)    DISPLAY CONTROLLER.                                 
+  INCLUDE LOAD(DFSREPS0)    QMGR REPOSITION CALL                                
+  INCLUDE LOAD(DFSICLE0)    SET/RESET COMMAND ROUTINE.                          
+  ORDER DFSICLQ0                                                                
+ INCLUDE LOAD(DFSICLQ0)     OPNDST/CLSDST COMMAND.                              
+  ORDER DFSICLK0                                                                
+  INCLUDE LOAD(DFSICLK0)    FORMAT COMMAND ROUTINE.                             
+  ORDER DFSICLU0                                                                
+  INCLUDE LOAD(DFSICLU0)    COMPT COMMAND.                                      
+  ORDER DFSICL10                                                                
+  ORDER DFSIC440                                                                
+  ORDER DFSIC450                                                                
+  ORDER DFSICL40                                                                
+  ORDER DFSIC460                                                                
+  ORDER DFSIC470                                                                
+  ORDER DFSIC410                                                                
+  ORDER DFSIC480                                                                
+  ORDER DFSIC420                                                                
+  ORDER DFSICL50,DFSICL70                                                       
+  ORDER DFSICL71                                                                
+  INCLUDE LOAD(DFSICL10)    BROADCAST COMMAND.                                  
+  INCLUDE SYSPUNCH(DFSICL40)  START COMMAND ROUTINE.                            
+  INCLUDE LOAD(DFSIC410)   /START SUBSYS CMD ROUTINE.                           
+  INCLUDE LOAD(DFSIC420)   /START STOP AUTOARCH/OLDS.                           
+  INCLUDE SYSPUNCH(DFSIC430)  KWDS TRAN,PROG,CLASS.                             
+  INCLUDE SYSPUNCH(DFSIC440)  KWDS LINE,LTERM,PTERM.                            
+  INCLUDE SYSPUNCH(DFSIC450)  KEYWORDS NODE,SUBPOOL.                            
+  INCLUDE SYSPUNCH(DFSIC460)  KWDS DC,LINK,MSPLINK.                             
+  INCLUDE SYSPUNCH(DFSIC470)  KEYWORD REGION.                                   
+  INCLUDE LOAD(DFSIC480)  /START STOP SB.                                       
+  INCLUDE LOAD(DFSICL50)    TEST/EXC/END COMMAND.                               
+  INCLUDE LOAD(DFSICL70)    ASSIGN COMMAND.                                     
+  ORDER DBFICL40,DBFHTMG0,DBFCDDA0,DBFCDDB0,DBFCDPL0                            
+  ORDER DBFPDHS0                                                                
+  ORDER DBFCDQB0,DBFCDRC0,DBFCDSR0                                              
+  ORDER DBFICL20,DBFCDPS0                                                       
+  ORDER DBFICLJ0                                                                
+  INCLUDE LOAD(DBFICL40)    FAST PATH START/STOP CMD                            
+  INCLUDE LOAD(DBFHTMG0)    FAST PATH ERROR MSG ROUTER                          
+  INCLUDE LOAD(DBFCDDA0)    FAST PATH /DIS DB                                   
+  INCLUDE LOAD(DBFCDDB0)    FAST PATH /DIS DBD                                  
+  INCLUDE LOAD(DBFCDPL0)    FAST PATH /DIS POOL                                 
+  INCLUDE LOAD(DBFPDHS0)                                                        
+  INCLUDE LOAD(DBFCDQB0)    FAST PATH /DIS Q BALG                               
+  INCLUDE LOAD(DBFCDRC0)    FAST PATH /DIS RTCODE                               
+  INCLUDE LOAD(DBFCDSR0)    FAST PATH /DIS STATUS RTC                           
+  INCLUDE LOAD(DBFICL20)    FAST PATH DFSICL20 EXTN                             
+  INCLUDE LOAD(DBFCDPS0)    FAST PATH /DIS PSB                                  
+  INCLUDE LOAD(DBFICLJ0)    FAST PATH DFSICLJ0 EXTN                             
+  ORDER DFSICLW0,DFSICA20                                                       
+  INCLUDE LOAD(DFSICLW0)    DBRC COMMAND PROCESSOR                              
+  INCLUDE LOAD(DFSICA20)    HOT STANDBY /SWITCH                                 
+  ORDER DFSICLI0                                                                
+  INCLUDE LOAD(DFSICLI0)    COMMAND NOTIFY ITASK                                
+  ORDER DFSICL90,DFSIDP10,DFSIDP20                                              
+  ORDER DFSIDP30,DFSIDP40                                                       
+  ORDER DFSIDP50,DFSIDPJ0                                                       
+  ORDER DFSIDP60,DFSIDP70,DFSIDPF0                                              
+  ORDER DFSIDPL0                                                                
+  ORDER DFSIDPG0,DFSIDPH0,DFSIDPK0                                              
+  INCLUDE LOAD(DFSICL90)    LOCK/UNLOCK COMMAND.                                
+  INCLUDE LOAD(DFSIDP10)    DISPLAY STATUS ROUTINE.                             
+  INCLUDE LOAD(DFSIDP20)    DISPLAY ACTIVE ROUTINE.                             
+  INCLUDE LOAD(DFSIDP30)    DISPLAY QUEUES ROUTINE.                             
+  INCLUDE LOAD(DFSIDP40)    DISPLAY TRAN & LTERM.                               
+  INCLUDE LOAD(DFSIDP50)    DISPLAY PGM & DATA BASE.                            
+  INCLUDE LOAD(DFSIDPJ0)    DISPLAY DATABASE BKERR.                             
+  INCLUDE LOAD(DFSIDP60)    DISPLAY LINE & PTERM.                               
+  INCLUDE LOAD(DFSIDP70)    DISPLAY ASSIGNMENT.                                 
+  INCLUDE LOAD(DFSIDPL0)    DISPLAY TIMEOVER.                                   
+  INCLUDE LOAD(DFSIDPF0)    DISPLAY SUBSYS ROUTINE.                             
+  INCLUDE LOAD(DFSIDPG0)    DISPLAY MODIFY                                      
+  INCLUDE LOAD(DFSIDPH0)    DISPLAY LOG PROCESSOR.                              
+  INCLUDE LOAD(DFSIDPK0)    DISPLAY TRACE PROCESSOR.                            
+  ORDER DFSIDP80                                                                
+  INCLUDE LOAD(DFSIDP80)    DISPLAY CONVERSATIONS.                              
+  ORDER DFSIDP90,DFSIDPA0                                                       
+  INCLUDE LOAD(DFSIDP90)    DISPLAY SHUTDOWN STATUS.                            
+  INCLUDE LOAD(DFSIDPA0)    DISPLAY POOL ROUTINE.                               
+  ORDER DFSIDPB0                                                                
+  INCLUDE LOAD(DFSIDPB0)    DISPLAY NODE COMMAND.                               
+  ORDER DFSCKWD0                                                                
+  INCLUDE SYSPUNCH(DFSCKWD0)  COMMAND KEYWORD TABLE.                            
+  ORDER DFSICLV0                                                                
+  ORDER DFSICV10                                                                
+  ORDER DFSICV20                                                                
+  ORDER DFSICV30                                                                
+  ORDER DFSICV40                                                                
+  ORDER DFSUNPK0                                                                
+  ORDER DFSMODE0,DFSMODS0                                                       
+  ORDER DFSICV50                                                                
+  ORDER DFSICV60                                                                
+  ORDER DFSICV70,DFSICV80,DFSICV90                                              
+  ORDER DFSRMDD0,DFSRMDM0,DFSRMPD0,DFSRMPS0                                     
+  ORDER DFSRMSM0                                                                
+  ORDER DFSCPDD0,DFSCPDM0,DFSCPPD0,DFSCPPS0                                     
+  ORDER DFSCPSM0                                                                
+  ORDER DFSICVA0,DFSRMS00,DFSICVD0                                              
+  ORDER DFSICVE0                                                                
+ ORDER DFSSMUP0,DFSICVF0                                                        
+  INCLUDE LOAD(DFSICLV0)    /MODIFY COMMAND CONTROLLER                          
+  INCLUDE LOAD(DFSICV10)    /MODIFY PREPARE                                     
+  INCLUDE LOAD(DFSICV20)    /MODIFY ABORT                                       
+  INCLUDE LOAD(DFSICV30)    /MODIFY COMMIT MODBLKS ACB                          
+  INCLUDE LOAD(DFSICV40)    /MODIFY PREPARE FMTLIB                              
+  INCLUDE LOAD(DFSUNPK0)    MFS GENERAL UNPACK SERVICE                          
+  INCLUDE LOAD(DFSMODE0)    ONLINE CHANG ENQ/DEQ RTN                            
+  INCLUDE LOAD(DFSMODS0)    ONLINE CHANGE MODSTAT INTF                          
+  INCLUDE LOAD(DFSICV50)    /MODIFY COMMIT - MFS                                
+  INCLUDE LOAD(DFSICV60)    /MODIFY PRE/CMT - SECURITY                          
+  INCLUDE LOAD(DFSICV70)    /MODIFY PREPARE BLK ANALZR                          
+  INCLUDE LOAD(DFSICV80)    /MODIFY MESSAGE RTN                                 
+  INCLUDE LOAD(DFSICV90)    ONLINE CHANGE RECOVERY                              
+  INCLUDE LOAD(DFSRMDD0)    DDIR RESOURCE MANAGER                               
+  INCLUDE LOAD(DFSRMDM0)    DMB RESOURCE MANAGER                                
+  INCLUDE LOAD(DFSRMPD0)    PDIR RESOURCE MANAGER                               
+  INCLUDE LOAD(DFSRMPS0)    PSB RESOURCE MANAGER                                
+  INCLUDE LOAD(DFSRMSM0)    SMB  RESOURCE MANAGER                               
+  INCLUDE LOAD(DFSCPDD0)    DDIR COMMIT PROCESSOR                               
+  INCLUDE LOAD(DFSCPDM0)    DMB COMMIT PROCESSOR                                
+  INCLUDE LOAD(DFSCPPD0)    PDIR COMMIT PROCESSOR                               
+  INCLUDE LOAD(DFSCPPS0)    PSB COMMIT PROCESSOR                                
+  INCLUDE LOAD(DFSCPSM0)    SMB COMMIT PROCESSOR                                
+  INCLUDE LOAD(DFSICVA0)    MODIFY COMMAND SYNTAX CHK                           
+  INCLUDE LOAD(DFSRMS00)    RESOURCE MANAGER SERVICES                           
+  INCLUDE LOAD(DFSICVD0)    SERIALIZATION CONTROL                               
+  INCLUDE LOAD(DFSICVE0)    /MODIFY - SECURITY                                  
+  INCLUDE LOAD(DFSSMUP0)    SECURITY                                            
+  INCLUDE SYSPUNCH(DFSICVF0) /MOD RACF                                          
+  ORDER DBFRMRC0,DBFCPRC0                                                       
+  INCLUDE LOAD(DBFRMRC0)    RCTE RESOURCE MANAGER                               
+  INCLUDE LOAD(DBFCPRC0)    RCTE COMMIT PROCESSOR                               
+  ORDER DFSICLH0                                                                
+  INCLUDE LOAD(DFSICLH0)    HOLD/EXIT/RELEASE COMMAND.                          
+  ORDER DFSICLN0                                                                
+  ORDER DFSIRD10                                                                
+  ORDER DFSCIOB0,DFSCPIN0                                                       
+  ORDER DFSICL20,DFSICL21                                                       
+  ORDER DFSICL60,DFSICL80                                                       
+  ORDER DFSICLG0,DFSICM00                                                       
+  ORDER DFSICLJ0                                                                
+  ORDER DFSICLM0                                                                
+  INCLUDE LOAD(DFSICLN0)    TRACE COMMAND ROUTINE.                              
+  INCLUDE LOAD(DFSIRD10)    RDISPLAY MASTER ROUTINE.                            
+ INCLUDE SYSPUNCH(DFSCIOB0) DC ERROR HANDLER.                                   
+  INCLUDE LOAD(DFSCPIN0)    TERMINAL INOPERABLE RTN                             
+  INCLUDE LOAD(DFSICL20)    CHECKPOINT/RESTART COMMAND                          
+  INCLUDE LOAD(DFSICL60)    CHANGE COMMAND ROUTINE.                             
+  INCLUDE LOAD(DFSICL80)    DELETE COMMAND ROUTINE.                             
+  INCLUDE LOAD(DFSICLG0)    IDLE COMMAND ROUTINE.                               
+  INCLUDE LOAD(DFSICM00)    /ACT COMMAND RTN.                                   
+  INCLUDE LOAD(DFSICLJ0)    DEQUEUE COMMAND ROUTINE.                            
+  INCLUDE LOAD(DFSICLM0)    /SSR CMD PROCESSOR.                                 
+  ORDER DFSQRST0                                                                
+  ORDER DFSQFIX0                                                                
+  INCLUDE LOAD(DFSQRST0)    QUEUE RESTART INTERFACE.                            
+  INCLUDE LOAD(DFSQFIX0) VALIDATE MSG QUEUES.                                   
+  ORDER DFSCSUB0                                                                
+  ORDER DFSSTOP0                                                                
+  INCLUDE LOAD(DFSCSUB0)    COMMUNICATIONS SUBRTNS.                             
+  INCLUDE LOAD(DFSSTOP0)    STOP REGION PROCESSOR.                              
+  ORDER DFSASLT0,DFSASLT1,CALSLOT                                               
+  INCLUDE LOAD(DFSASLT0)    VTCB TIMEOUT PROC                                   
+  ORDER DBFDBPV0,DBFCDAR0,DBFARDC0                                              
+  ORDER DBFARD10,DBFARD20,DBFARD30,DBFARD40                                     
+  ORDER DBFARD50                                                                
+  ORDER DBFCST00,DBFCSTS0,DBFICLI0,DBFDBFM0                                     
+  ORDER DBFNALC0,DBFLIRL0,DBFNCBS0                                              
+  ORDER DBFTRCO9,DBFATRM0                                                       
+  ORDER DBFACDI0,DBFTSIE9                                                       
+  ORDER DBFTAFC9,DBFTCOT9                                                       
+  ORDER DBFTSTS9,DBFTBLT9                                                       
+  INCLUDE LOAD(DBFDBPV0)  FPE MODULE                                            
+  INCLUDE LOAD(DBFCDAR0)  FPE MODULE                                            
+  INCLUDE LOAD(DBFARDC0)                                                        
+  INCLUDE LOAD(DBFARD10)                                                        
+  INCLUDE LOAD(DBFARD20)                                                        
+  INCLUDE LOAD(DBFARD30)                                                        
+  INCLUDE LOAD(DBFARD40)                                                        
+  INCLUDE LOAD(DBFARD50)                                                        
+  INCLUDE LOAD(DBFCST00)  FPE MODULE                                            
+  INCLUDE LOAD(DBFCSTS0)  FPE MODULE                                            
+  INCLUDE LOAD(DBFICLI0)  FPE MODULE                                            
+  INCLUDE LOAD(DBFDBFM0)  FMT MSDBDUMP DS/ALT                                   
+  INCLUDE LOAD(DBFNALC0)  FPE MODULE                                            
+  INCLUDE LOAD(DBFLIRL0)  FPE MODULE                                            
+  INCLUDE LOAD(DBFNCBS0)  FPE MODULE                                            
+  INCLUDE LOAD(DBFTRCO9)  FP TRACE COMND PRO.                                   
+  INCLUDE LOAD(DBFATRM0)  FP TERM THREAD                                        
+  INCLUDE LOAD(DBFACDI0) COPY DIAG INFO                                         
+  INCLUDE LOAD(DBFTSIE9) SET UP INIT ENV, FPT                                   
+  INCLUDE LOAD(DBFTAFC9)                                                        
+  INCLUDE LOAD(DBFTCOT9)                                                        
+  INCLUDE LOAD(DBFTSTS9)                                                        
+  INCLUDE LOAD(DBFTBLT9)                                                        
+  INCLUDE SYSPUNCH(DFSSCD1I) CTL BLKS MODULE.                                   
+  INCLUDE SYSPUNCH(DBFSCD1I) CTL BLKS MODULE.                                   
+ INCLUDE SYSPUNCH(DFSFRB1I) CTL BLKS MOD                                        
+  INCLUDE LOAD(DFSZZZ99)    INSURE NO UNRESOLVES.                               
+  ENTRY DFSIOPL0                                                                
+  NAME DFSVNUCI(R)   IMS ON-LINE VIRTUAL NUCLEUS.                               
+//IMSGEN06 JOB ,                                                                
+// IMS,TYPRUN=HOLD,                                                             
+// MSGCLASS=A                                                                   
+//JOBLIB DD DSN=IMS310.RESLIB,DISP=SHR                                          
+//S1 EXEC PGM=DFSUPAA0,REGION=360K,                                             
+// PARM='NOXREF,NOCOMP,NOSUBS,NODIAG,LINECNT=55,STOPRC=8,DEVCHAR=I'             
+//SYSLIB DD DSN=IMS310.GENLIBB,DISP=SHR                                         
+//       DD DSN=IMS310.GENLIBA,DISP=SHR                                         
+//REFIN DD DSN=IMS310.REFERAL,DISP=OLD                                          
+//REFOUT DD DSN=IMS310.REFERAL,DISP=OLD                                         
+//REFRD DD DSN=IMS310.REFERAL,DISP=OLD                                          
+//SYSTEXT DD DSN=&&TXTPASS,                                                     
+// UNIT=3390,SPACE=(CYL,(1,1)),DCB=BLKSIZE=800                                  
+//SYSPRINT DD SYSOUT=A,                                                         
+// DCB=(RECFM=FBA,LRECL=133,BLKSIZE=1330)                                       
+//SYSUDUMP DD SYSOUT=A                                                          
+//SEQBLKS DD DSN=&&BLKS,DISP=(NEW,PASS),                                        
+// UNIT=3390,SPACE=(CYL,(1,1))                                                  
+//SYSIN DD *                                                                    
+         COPY MFSSM1                                                            
+         COPY MFSSM2                                                            
+DEVICE   EQU   '(3270,2)'                                                       
+         COPY  MFSSM2A                                                          
+DEVICE   EQU   '3270-A02'                                                       
+         COPY  MFSSM2A                                                          
+         FMTEND                                                                 
+         COPY MFSSF1                                                            
+         COPY MFSSFA1                                                           
+         DEV   TYPE=3270-A02,FEAT=IGNORE,                              C        
+               DSCA=X'00C0',                         ERASE WITH WRITE  C        
+               PFK=(PFKIN,1='/FOR ',11=NEXTMSGP)     DEFINE PFKS                
+         DIV   TYPE=INOUT                                                       
+         DPAGE CURSOR=((3,2))                                                   
+OUTLINE  DFLD  POS=(1,2),LTH=131,ATTR=(PROT,NUM)                                
+IN1      DFLD  POS=(3,2),LTH=131                                                
+IN2      DFLD  POS=(5,2),LTH=131                                                
+         COPY MFSSF2                                                            
+         COPY MFSSFA2                                                           
+         DEV   TYPE=3270-A02,FEAT=IGNORE,                              C        
+               SYSMSG=OUTL01,                                          C        
+               DSCA=X'00C0',                         ERASE WITH WRITE  C        
+               PFK=(PFKIN,1='/FOR ',11=NEXTMSGP)     DEFINE PFKS                
+* ONLY 79 BYTES PER FIELD                                                       
+         DIV   TYPE=INOUT                                                       
+         DPAGE CURSOR=((1,2))                                                   
+IN1      DFLD   POS=(1,2,1),LTH=79                                              
+IN2      DFLD   POS=(2,2,1),LTH=79                                              
+OUTL01   DFLD   POS=(3,2,1),LTH=79,ATTR=(NUM,PROT)                              
+OUTL02   DFLD   POS=(4,2,1),LTH=79,ATTR=(NUM,PROT)                              
+OUTL03   DFLD   POS=(5,2,1),LTH=79,ATTR=(NUM,PROT)                              
+OUTL04   DFLD   POS=(6,2,1),LTH=79,ATTR=(NUM,PROT)                              
+OUTL05   DFLD   POS=(7,2,1),LTH=79,ATTR=(NUM,PROT)                              
+OUTL06   DFLD   POS=(8,2,1),LTH=79,ATTR=(NUM,PROT)                              
+OUTL07   DFLD   POS=(9,2,1),LTH=79,ATTR=(NUM,PROT)                              
+OUTL08   DFLD   POS=(10,2,1),LTH=79,ATTR=(NUM,PROT)                             
+OUTL09   DFLD   POS=(11,2,1),LTH=79,ATTR=(NUM,PROT)                             
+OUTL10   DFLD   POS=(12,2,1),LTH=79,ATTR=(NUM,PROT)                             
+OUTL11   DFLD   POS=(13,2,1),LTH=79,ATTR=(NUM,PROT)                             
+OUTL12   DFLD   POS=(14,2,1),LTH=79,ATTR=(NUM,PROT)                             
+OUTL13   DFLD   POS=(15,2,1),LTH=79,ATTR=(NUM,PROT)                             
+OUTL14   DFLD   POS=(16,2,1),LTH=79,ATTR=(NUM,PROT)                             
+OUTL15   DFLD   POS=(17,2,1),LTH=79,ATTR=(NUM,PROT)                             
+OUTL16   DFLD   POS=(18,2,1),LTH=79,ATTR=(NUM,PROT)                             
+OUTL17   DFLD   POS=(19,2,1),LTH=79,ATTR=(NUM,PROT)                             
+OUTL18   DFLD   POS=(20,2,1),LTH=79,ATTR=(NUM,PROT)                             
+OUTL19   DFLD   POS=(21,2,1),LTH=79,ATTR=(NUM,PROT)                             
+OUTL20   DFLD   POS=(22,2,1),LTH=79,ATTR=(NUM,PROT)                             
+OUTL21   DFLD   POS=(23,2,1),LTH=79,ATTR=(NUM,PROT)                             
+OUTL22   DFLD   POS=(24,2,1),LTH=79,ATTR=(NUM,PROT)                             
+         COPY MFSSF4                                                            
+         COPY MFSSFA4                                                           
+         DEV   TYPE=3270-A02,FEAT=IGNORE,                              C        
+               DSCA=X'00A0',                     ERASE ALL UNPROTECTED C        
+               SYSMSG=DF01,                                            C        
+               PFK=(PFKIN,1='/FOR ',11=NEXTMSGP)  PF KEYS                       
+         DIV   TYPE=INOUT                                                       
+         DPAGE CURSOR=((1,2))                                                   
+DF01     DFLD  POS=(1,2,1),LTH=131                                              
+DF02     DFLD  POS=(3,2,1),LTH=131                                              
+DF03     DFLD  POS=(5,2,1),LTH=131                                              
+DF04     DFLD  POS=(7,2,1),LTH=131                                              
+         COPY MFSSFEND                                                          
+//S2 EXEC PGM=DFSUNUB0,REGION=360K,                                             
+// COND=(8,LT,S1)                                                               
+//SEQBLKS DD DSN=&&BLKS,DISP=(OLD,DELETE)                                       
+//UTPRINT DD SYSOUT=A,DCB=(RECFM=FBA,LRECL=133,BLKSIZE=1330)                    
+//SYSUDUMP DD SYSOUT=A                                                          
+//FORMAT DD DSN=IMS310.FORMAT,DISP=OLD                                          
+//SYSPRINT DD SYSOUT=A                                                          
+//SYSUT3 DD UNIT=3390,SPACE=(CYL,(1,1))                                         
+//SYSUT4 DD UNIT=3390,SPACE=(CYL,(1,1))                                         
+//DUMMY DD DUMMY,DCB=BLKSIZE=80                                                 
+//S3 EXEC PGM=DFSUPAA0,REGION=360K,                                             
+// PARM='NOXREF,NOCOMP,NOSUBS,NODIAG,LINECNT=55,STOPRC=8,DEVCHAR=I'             
+//SYSLIB DD DSN=IMS310.GENLIBB,DISP=SHR                                         
+//       DD DSN=IMS310.GENLIBA,DISP=SHR                                         
+//REFIN DD DSN=IMS310.REFERAL,DISP=OLD                                          
+//REFOUT DD DSN=&&TEMPPDS,DCB=IMS310.REFERAL,                                   
+// SPACE=(CYL,(5,1,10)),UNIT=3390                                               
+//REFRD DD DSN=*.REFOUT,VOL=REF=*.REFOUT,DISP=(OLD,DELETE)                      
+//      DD DSN=IMS310.REFERAL,DISP=OLD                                          
+//SYSTEXT DD DSN=&&TXTPASS,                                                     
+// UNIT=3390,SPACE=(CYL,(1,1)),DCB=BLKSIZE=800                                  
+//SYSPRINT DD SYSOUT=A,                                                         
+// DCB=(RECFM=FBA,LRECL=133,BLKSIZE=1330)                                       
+//SYSUDUMP DD SYSOUT=A                                                          
+//SEQBLKS DD DSN=&&BLKS,DISP=(NEW,PASS),                                        
+// UNIT=3390,SPACE=(CYL,(1,1))                                                  
+//SYSIN DD *                                                                    
+         COPY MFSSM2                                                            
+DEVICE   EQU   '(3270,2)'                                                       
+         COPY  MFSSM2A                                                          
+DEVICE   EQU   '3270-A02'                                                       
+         COPY  MFSSM2A                                                          
+         FMTEND                                                                 
+         COPY MFSSF1                                                            
+         COPY MFSSFA1                                                           
+         DEV   TYPE=3270-A02,FEAT=IGNORE,                              C        
+               DSCA=X'00C0',                         ERASE WITH WRITE  C        
+               PFK=(PFKIN,1='/FOR ',11=NEXTMSGP)     DEFINE PFKS                
+         DIV   TYPE=INOUT                                                       
+         DPAGE CURSOR=((3,2))                                                   
+OUTLINE  DFLD  POS=(1,2),LTH=131,ATTR=(PROT,NUM)                                
+IN1      DFLD  POS=(3,2),LTH=131                                                
+IN2      DFLD  POS=(5,2),LTH=131                                                
+         COPY MFSSF2                                                            
+         COPY MFSSFA2                                                           
+         DEV   TYPE=3270-A02,FEAT=IGNORE,                              C        
+               SYSMSG=OUTL01,                                          C        
+               DSCA=X'00C0',                         ERASE WITH WRITE  C        
+               PFK=(PFKIN,1='/FOR ',11=NEXTMSGP)     DEFINE PFKS                
+* ONLY 79 BYTES PER FIELD                                                       
+         DIV   TYPE=INOUT                                                       
+         DPAGE CURSOR=((1,2))                                                   
+IN1      DFLD   POS=(1,2,1),LTH=79                                              
+IN2      DFLD   POS=(2,2,1),LTH=79                                              
+OUTL01   DFLD   POS=(3,2,1),LTH=79,ATTR=(NUM,PROT)                              
+OUTL02   DFLD   POS=(4,2,1),LTH=79,ATTR=(NUM,PROT)                              
+OUTL03   DFLD   POS=(5,2,1),LTH=79,ATTR=(NUM,PROT)                              
+OUTL04   DFLD   POS=(6,2,1),LTH=79,ATTR=(NUM,PROT)                              
+OUTL05   DFLD   POS=(7,2,1),LTH=79,ATTR=(NUM,PROT)                              
+OUTL06   DFLD   POS=(8,2,1),LTH=79,ATTR=(NUM,PROT)                              
+OUTL07   DFLD   POS=(9,2,1),LTH=79,ATTR=(NUM,PROT)                              
+OUTL08   DFLD   POS=(10,2,1),LTH=79,ATTR=(NUM,PROT)                             
+OUTL09   DFLD   POS=(11,2,1),LTH=79,ATTR=(NUM,PROT)                             
+OUTL10   DFLD   POS=(12,2,1),LTH=79,ATTR=(NUM,PROT)                             
+OUTL11   DFLD   POS=(13,2,1),LTH=79,ATTR=(NUM,PROT)                             
+OUTL12   DFLD   POS=(14,2,1),LTH=79,ATTR=(NUM,PROT)                             
+OUTL13   DFLD   POS=(15,2,1),LTH=79,ATTR=(NUM,PROT)                             
+OUTL14   DFLD   POS=(16,2,1),LTH=79,ATTR=(NUM,PROT)                             
+OUTL15   DFLD   POS=(17,2,1),LTH=79,ATTR=(NUM,PROT)                             
+OUTL16   DFLD   POS=(18,2,1),LTH=79,ATTR=(NUM,PROT)                             
+OUTL17   DFLD   POS=(19,2,1),LTH=79,ATTR=(NUM,PROT)                             
+OUTL18   DFLD   POS=(20,2,1),LTH=79,ATTR=(NUM,PROT)                             
+OUTL19   DFLD   POS=(21,2,1),LTH=79,ATTR=(NUM,PROT)                             
+OUTL20   DFLD   POS=(22,2,1),LTH=79,ATTR=(NUM,PROT)                             
+OUTL21   DFLD   POS=(23,2,1),LTH=79,ATTR=(NUM,PROT)                             
+OUTL22   DFLD   POS=(24,2,1),LTH=79,ATTR=(NUM,PROT)                             
+         COPY MFSSF4                                                            
+         COPY MFSSFA4                                                           
+         DEV   TYPE=3270-A02,FEAT=IGNORE,                              C        
+               DSCA=X'00A0',                     ERASE ALL UNPROTECTED C        
+               SYSMSG=DF01,                                            C        
+               PFK=(PFKIN,1='/FOR ',11=NEXTMSGP)  PF KEYS                       
+         DIV   TYPE=INOUT                                                       
+         DPAGE CURSOR=((1,2))                                                   
+DF01     DFLD  POS=(1,2,1),LTH=131                                              
+DF02     DFLD  POS=(3,2,1),LTH=131                                              
+DF03     DFLD  POS=(5,2,1),LTH=131                                              
+DF04     DFLD  POS=(7,2,1),LTH=131                                              
+         COPY MFSSFEND                                                          
+//S4 EXEC PGM=DFSUNUB0,REGION=360K,PARM='TEST',                                 
+// COND=(8,LT,S3)                                                               
+//SEQBLKS DD DSN=&&BLKS,DISP=(OLD,DELETE)                                       
+//UTPRINT DD SYSOUT=A,DCB=(RECFM=FBA,LRECL=133,BLKSIZE=1330)                    
+//SYSUDUMP DD SYSOUT=A                                                          
+//FORMAT DD DSN=IMS310.TFORMAT,DISP=OLD                                         

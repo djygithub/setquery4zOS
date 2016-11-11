@@ -1,0 +1,59 @@
+//PCI2Q101 JOB   0,YOUNG,MSGLEVEL=(1,1),                                00001000
+//         MSGCLASS=O,USER=DAVID,NOTIFY=DAVID                           00002000
+//**********************************************************************00003000
+//*  NAME = DSNTEJ5C                                                   *00004000
+//*                                                                    *00005000
+//*  DESCRIPTIVE NAME = DB2 SAMPLE APPLICATION                         *00006000
+//*                     PHASE 5                                        *00007000
+//*                     COBOL, CICS                                    *00008000
+//*                                                                    *00009000
+//*    COPYRIGHT = 5665-DB2 (C) COPYRIGHT IBM CORP 1982, 1989          *00010000
+//*    REFER TO COPYRIGHT INSTRUCTIONS FORM NUMBER G120-2083           *00020000
+//*                                                                    *00021000
+//*    STATUS = VERSION 2 RELEASE 2, LEVEL 0                           *00022000
+//*                                                                    *00023000
+//*  FUNCTION = THIS JCL PERFORMS THE PHASE 5 SETUP FOR THE SAMPLE     *00024000
+//*             APPLICATIONS AT SITES WITH COBOL.  IT PREPARES THE     *00025000
+//*             COBOL CICS PROGRAM.                                    *00026000
+//*                                                                    *00027000
+//*             RUN THIS JOB ANYTIME AFTER PHASE 2.                    *00028000
+//**********************************************************************00029000
+//*                                                                     00030000
+//JOBLIB  DD  DISP=SHR,                                                 00040000
+//            DSN=SYS1.DSNLOAD                                          00050000
+//        DD  DISP=SHR,                                                 00060000
+//            DSN=CICS321.SDFHLOAD                                      00070000
+//*       STEP  1: CREATE CICS LOGICAL MAP                              00080000
+//*        STEP  2: PREPARE CICS COBOL PROGRAMS                         00090000
+//DSNH     EXEC PGM=IKJEFT01,COND=(4,LT),DYNAMNBR=50,REGION=1024K       00100000
+//SYSTSPRT DD SYSOUT=*                                                  00110000
+//SYSTERM  DD SYSOUT=*                                                  00120000
+//SYSPRINT DD SYSOUT=*                                                  00130000
+//SYSUDUMP DD SYSOUT=*                                                  00140000
+//SYSPROC  DD DISP=SHR,                                                 00150000
+//            DSN=DAVID.SETQUERY.WORKLOAD                               00160000
+//SYSTSIN  DD *                                                         00170000
+  %DSNH INPUT('''DAVID.SETQUERY.WORKLOAD(CI2Q101)''') +                 00180000
+        PLIB('''DSN22X.SRCLIB.DATA''') +                                00190000
+        P2LIB('''DSN22X.DSNSAMP''') +                                   00200000
+        TERM(LEAVE) PRINT(LEAVE) SOURCE(YES) XREF(YES) +                00210000
+        HOST(COB2) RUN(CICS) BIND(NO) DELIM(APOST) +                    00211000
+        DBRMLIB('''DSN22X.DBRMLIB.DATA''')   +                          00212000
+        LLIB('''DSN22X.RUNLIB.LOAD''')   +                              00213000
+        COB2LOAD('''SYS1.COB2COMP(IGYCRCTL)''') +                       00214000
+        COPTION('''NODYNAM,NOTRUNC''') STDSQL(NO) +                     00215000
+        PCLOAD('''SYS1.DSNLOAD(DSNHPC)''') +                            00216000
+        XLIB('''SYS1.DSNLOAD''')    +                                   00217000
+        LOAD('''DSN22X.RUNLIB.LOAD''')                                  00218000
+//*                                                                     00263100
+//*        STEP  4: BIND THE PROGRAM                                    00263200
+//BIND     EXEC PGM=IKJEFT01,DYNAMNBR=20,COND=(4,LT)                    00263300
+//DBRMLIB  DD DISP=SHR,                                                 00263400
+//            DSN=DSN22X.DBRMLIB.DATA                                   00263500
+//SYSUDUMP DD SYSOUT=*                                                  00263600
+//SYSTSPRT DD SYSOUT=*                                                  00263700
+//SYSPRINT DD SYSOUT=*                                                  00263800
+//SYSTSIN  DD *                                                         00263900
+DSN SYSTEM(DSN)                                                         00264000
+BIND PLAN(CI2Q101) MEMBER(CI2Q101) ACT(REP) ISO(CS) EXPLAIN(YES) -      00265000
+ VALIDATE(BIND)                                                         00266000

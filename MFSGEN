@@ -1,0 +1,50 @@
+//MFSGEN   JOB (USER,ACCT,NUMBER),                                              
+//         'D J YOUNG',                                                         
+//         CLASS=A,MSGCLASS=X,MSGLEVEL=(1,1),                                   
+//         REGION=4M                                                            
+//MFSUTL   PROC RGN=360K,SOUT=A,SYS2=,                                  00000010
+//             SNODE='IMS310A',                                         00000020
+//             SOR=NOLIB,MBR=NOMBR,PXREF=NOXREF,                        00000030
+//             PCOMP=NOCOMP,PSUBS=NOSUBS,PDIAG=NODIAG,                  00000040
+//             COMPR=NOCOMPRESS,COMPR2=COMPRESS,                        00000050
+//             LN=55,SN=8,DEVCHAR=0,COMPR3=NOCOMPREND,                  00000060
+//             DIRUPDT=UPDATE                                           00000070
+//S1       EXEC PGM=DFSUPAA0,REGION=&RGN,                               00000080
+//  PARM=(&PXREF,&PCOMP,&PSUBS,&PDIAG,&COMPR,                           00000090
+//  'LINECNT=&LN,STOPRC=&SN,DEVCHAR=&DEVCHAR')                          00000100
+//STEPLIB  DD DSN=IMS310.&SYS2.RESLIB,DISP=SHR                          00000110
+//*SYSLIB - USER OPTION                                                 00000120
+//SYSIN    DD DISP=SHR,                                                 00000130
+//         DSN=DAVID.SETQUERY.WORKLOAD(&MBR)                            00000140
+//REFIN    DD DSN=IMS310A.&SYS2.REFERAL,DISP=OLD                        00000150
+//REFOUT   DD DSN=IMS310A.&SYS2.REFERAL,DISP=OLD                        00000160
+//REFRD    DD DSN=IMS310A.&SYS2.REFERAL,DISP=OLD                        00000170
+//SYSTEXT  DD DSN=&&TXTPASS,UNIT=3390,                                  00000180
+//            SPACE=(CYL,(1,1)),DCB=BLKSIZE=800                         00000190
+//SYSUT3   DD UNIT=3390,SPACE=(CYL,(1,1))                               00000200
+//SYSUT4   DD UNIT=3390,SPACE=(CYL,(1,1))                               00000210
+//DUMMY    DD DISP=SHR,                                                 00000220
+//         DSN=IMS310A.&SYS2.PROCLIB(REFCPY)                            00000230
+//UTPRINT  DD   SYSOUT=&SOUT                                            00000240
+//SYSPRINT DD   SYSOUT=&SOUT,DCB=(RECFM=FBA,LRECL=133,BLKSIZE=1330)     00000250
+//SYSUDUMP DD   SYSOUT=&SOUT                                            00000260
+//SEQBLKS  DD   DSN=&&BLKS,DISP=(NEW,PASS),                             00000270
+//             UNIT=3390,SPACE=(CYL,(1,1))                              00000280
+//S2       EXEC PGM=DFSUNUB0,REGION=&RGN,                               00000290
+//             PARM=(&COMPR2,&COMPR3,&DIRUPDT,                          00000300
+//             'DEVCHAR=&DEVCHAR'),COND=(8,LT,S1)                       00000310
+//STEPLIB  DD DSN=IMS310.&SYS2.RESLIB,DISP=SHR                          00000320
+//SEQBLKS  DD   DSN=&&BLKS,DISP=(OLD,DELETE)                            00000330
+//UTPRINT  DD   SYSOUT=&SOUT,DCB=(RECFM=FBA,LRECL=133,BLKSIZE=1330)     00000340
+//SYSUDUMP DD   SYSOUT=&SOUT                                            00000350
+//FORMAT   DD DSN=IMS310A.&SYS2.FORMAT,DISP=SHR                         00000360
+//DUMMY    DD DISP=SHR,                                                 00000370
+//         DSN=IMS310A.&SYS2.PROCLIB(FMTCPY)                            00000380
+//SYSPRINT DD   SYSOUT=&SOUT                                            00000390
+//SYSUT3   DD   UNIT=3390,SPACE=(CYL,(1,1))                             00000400
+//SYSUT4   DD   UNIT=3390,SPACE=(CYL,(1,1))                             00000410
+// PEND                                                                 00000410
+//DFSIVF1  EXEC PROC=MFSUTL,SOUT='*',                                           
+//         DEVCHAR=I,                                                           
+//         SNODE='IMS310A',                                                     
+//         SOR=IVSOURCE,MBR=SQMFS                                               
