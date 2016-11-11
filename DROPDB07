@@ -1,0 +1,4 @@
+-- DROP TABLESPACE DSNDB07.DSNTMP0A;                                            
+-- DROP TABLESPACE DSNDB07.DSNTMP0B;                                            
+ DROP STOGROUP DSNDB07A;                                                        
+ DROP STOGROUP DSNDB07B;                                                        

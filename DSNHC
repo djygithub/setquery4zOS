@@ -1,0 +1,785 @@
+  PROC 0  +                                                             00010000
+     ASMHLIB('''SYS1.MACLIB''') +                                       00020000
+     ASMHLOAD('''SYS1.LINKLIB(IEV90)''') +                              00030000
+     ASMLIB('''SYS1.MACLIB''') +                                        00040000
+     ASMLOAD('''SYS1.LINKLIB(IEUASM)''') +                              00050000
+     ATTACH(BATCH) +                                                    00060000
+     CLIB(NONE) +                                                       00070000
+     CCLOAD('''EDC.V1R1M0.SEDCCOMP(EDCCOMP)''') +                       00080000
+     CCLLIB('''EDC.V1R1M0.SEDCBASE''') +                                00090000
+     CCPLIB('''PLI.V2R2M0.SIBMBASE''') +                                00100000
+     CCMSGS('''EDC.V1R1M0.SEDCMSGS(EDCMSGE)''') +                       00110000
+     CCSLIB('''EDC.V1R1M0.SEDCHDRS''') +                                00120000
+     COBLOAD('''SYS1.LINKLIB(IKFCBL00)''') +                            00130000
+     COB2LOAD('''SYS1.COB2COMP(IGYCRCTL)''') +                          00140000
+     CONTROL(NONE) +                                                    00150000
+     COPTION(NONE) +                                                    00160000
+     C2LIB(NONE) +                                                      00170000
+     C3LIB(NONE) +                                                      00180000
+     C4LIB(NONE) +                                                      00190000
+     DELIMIT(DEFAULT) +                                                 00200000
+     FLAG(I) +                                                          00210000
+     FORTLOAD('''SYS1.LINKLIB(FORTVS)''') +                             00220000
+     HOST(COBOL) +                                                      00230000
+     LINECOUNT(60) +                                                    00240000
+     MACIN(NONE) +                                                      00250000
+     OUTNAME(TEMP) +                                                    00260000
+     PLILOAD('''SYS1.LINKLIB(IEL0AA)''') +                              00270000
+     PRINT(NONE) +                                                      00280000
+     PSECSPAC(20) +                                                     00290000
+     PSPACE(20) +                                                       00300000
+     SOURCE(NO) +                                                       00310000
+     SPACEUN(TRACK) +                                                   00320000
+     TERM(TERM) +                                                       00330000
+     WORKUNIT(DEFAULT) +                                                00340000
+     WSECSPAC(20) +                                                     00350000
+     WSPACE(20) +                                                       00360000
+     XREF(NO)                                                           00370000
+  /*******************************************************************/ 00380000
+  /* MODULE NAME = DSNHC                                             */ 00390000
+  /* DESCRIPTIVE NAME = COMPILER INVOCATION FOR DSNH CLIST           */ 00400000
+  /*   COPYRIGHT = 5665-DB2 (C) COPYRIGHT IBM CORP 1982, 1989        */ 00410000
+  /*   REFER TO COPYRIGHT INSTRUCTIONS FORM NUMBER G120-2083         */ 00420000
+  /*                                                                 */ 00430000
+  /*   STATUS = VERSION 2 RELEASE 2, LEVEL 0                         */ 00440000
+  /* FUNCTION    = THE DSNHC CLIST ALLOWS ONE TO REQUEST             */ 00450000
+  /*               A COMPILATION.                                    */ 00460000
+  /* NOTES       =                                                   */ 00470000
+  /*    DEPENDENCIES = NONE                                          */ 00480000
+  /*    RESTRICTIONS = 1) THE OUTNAME PARAMETER IS USED TO           */ 00490000
+  /*                      GENERATE SEVERAL DATA SET NAMES,           */ 00500000
+  /*                      SO IT MUST NOT CONTAIN SPECIAL             */ 00510000
+  /*                      CHARACTERS.                                */ 00520000
+  /*                   3) NONE IS A RESERVED NAME FOR MACIN,         */ 00530000
+  /*                      CLIB, C2LIB, C3LIB, C4LIB,                 */ 00540000
+  /*                      COPTION, TERM, AND PRINT PARMS.            */ 00550000
+  /*                      LEAVE AND TERM ARE ALSO RESERVED           */ 00560000
+  /*                      FOR PRINT AND TERM PARMS.                  */ 00570000
+  /*                      DEFAULT IS RESERVED FOR DELIMIT            */ 00580000
+  /*                      AND WORKUNIT PARMS.                        */ 00590000
+  /*                   4) THE BUF AND SIZE PARAMETERS                */ 00600000
+  /*                      PASSED TO THE COBOL COMPILER,              */ 00610000
+  /*                      MAY NEED TO BE CHANGED.                    */ 00620000
+  /*                   5) THE PRINT PARAMETER IS USED TO             */ 00630000
+  /*                      GENERATE SEVERAL DATA SET NAMES,           */ 00640000
+  /*                      SO IT MUST NOT CONTAIN SPECIAL             */ 00650000
+  /*                      CHARACTERS.                                */ 00660000
+  /* MODULE TYPE = CLIST OR TSO COMMAND PROCEDURE                    */ 00670000
+  /* ENTRY POINT = DSNHC                                             */ 00680000
+  /*    PURPOSE      = THE DSNH CLIST INVOKES COMPILERS FOR          */ 00690000
+  /*                   VARIOUS HOST LANGUAGES.                       */ 00700000
+  /*    LINKAGE      = INVOCATION FROM DSNH CLIST.                   */ 00710000
+  /*    INPUT        = PARAMETERS PASSED ON DSNH INVOCATION.         */ 00720000
+  /*                   INPUT SOURCE DATA SET                         */ 00730000
+  /*                   OPTIONAL INPUT LIBRARIES                      */ 00740000
+  /*    OUTPUT       = OBJECT MODULES FROM COMPILE/ASSEMBLE          */ 00750000
+  /*                   PRINT LISTINGS ON TERMINAL/DATA SET           */ 00760000
+  /* EXIT-NORMAL = REQUESTED FUNCTIONS PERFORMED                     */ 00770000
+  /* EXIT-ERROR  = RETURN CODES PASSED FROM PROCESSORS               */ 00780000
+  /*    RETURN CODE  = SEE COMPILER RETURN CODES.                    */ 00790000
+  /*    MESSAGE ID   = NONE                                          */ 00800000
+  /*    ABEND CODES  = THIS CLIST ISSUES NO ABENDS, BUT              */ 00810000
+  /*                   INVOKED FUNCTIONS MAY ABEND, CAUSING          */ 00820000
+  /*                   ABEND MESSAGES.                               */ 00830000
+  /*    ERROR MESSAGES =                                             */ 00840000
+  /*                 = DSNH751I DSNHC ERROR IN &KEYWORD              */ 00850000
+  /*                            VALUE &VAL                           */ 00860000
+  /*                 = DSNH754I DSNHC OUTNAME PARAMETER              */ 00870000
+  /*                            &OUTNAME MUST NOT                    */ 00880000
+  /*                            CONTAIN SPECIAL CHARACTERS           */ 00890000
+  /*                 = DSNH756I DSNHC PRINT PARAMETER                */ 00900000
+  /*                            &PRINT MUST NOT CONTAIN              */ 00910000
+  /*                            SPECIAL CHARACTERS                   */ 00920000
+  /*                 = DSNH759I DSNHC TERMINATING, CLIST             */ 00930000
+  /*                            CHECKING RC = &ERROR                 */ 00940000
+  /*    ATTENTION HANDLING = NONE, TO ALLOW INVOKING FUNC-           */ 00950000
+  /*                         TIONS TO HANDLE ATTENTIONS.             */ 00960000
+  /* EXTERNAL REFERENCES =                                           */ 00970000
+  /*    ROUTINES/SERVICES =                                          */ 00980000
+  /*       ALLOCATE  = TSO ALLOCATION COMMAND                        */ 00990000
+  /*       CALL      = TSO PROGRAM INVOCATION                        */ 01000000
+  /*       DELETE    = TSO DATA SET DELETION                         */ 01010000
+  /*       FORTVS    = VS FORTRAN COMPILER                           */ 01020000
+  /*       FREE      = TSO UNALLOCATION COMMAND                      */ 01030000
+  /*       IEL0AA    = PLI    COMPILER                               */ 01040000
+  /*       IEUASM    = ASSEMBLER XF                                  */ 01050000
+  /*       IEV90     = ASSEMBLER H                                   */ 01060000
+  /*       IGYCRCTL  = VS COBOL II COMPILER                          */ 01070000
+  /*       IKFCBL00  = COBOL  COMPILER                               */ 01080000
+  /*    DDNAMES AND ATTRIBUTES                                       */ 01090000
+  /*       REQUIRED  = SYSGO    FOR ASSEMBLER XF OUTPUT              */ 01100000
+  /*                 = SYSIN    FOR COMPILER INPUT                   */ 01110000
+  /*                 = SYSLIN   FOR COMPILER OUTPUT                  */ 01120000
+  /*       OPTIONAL  = SYSPRINT FOR COMPILER LISTINGS                */ 01130000
+  /*                 = SYSPUNCH FOR COMPILER DECK OUTPUT             */ 01140000
+  /*                            USED ON PL/I MACRO PASS ONLY         */ 01150000
+  /*                 = SYSTERM  FOR COMPILER ERROR MSGS              */ 01160000
+  /*                 = SYSUT1   FOR COMPILER WORK FILE               */ 01170000
+  /*                 = SYSUT2   FOR COMPILER WORK FILE               */ 01180000
+  /*                 = SYSUT3   FOR COMPILER WORK FILE               */ 01190000
+  /*                 = SYSUT4   FOR COMPILER WORK FILE               */ 01200000
+  /*                 = SYSUT5   FOR COMPILER WORK FILE               */ 01210000
+  /*                 = SYSUT6   FOR COMPILER WORK FILE               */ 01220000
+  /*                 = SYSUT7   FOR COMPILER WORK FILE               */ 01230000
+  /*                 = SYSUT8   FOR COMPILER WORK FILE               */ 01240000
+  /*                 = SYSUT9   FOR COMPILER WORK FILE               */ 01250000
+  /*                 = SYSMSGS  C COMPILER MESSAGES FILE             */ 01260000
+  /*                 = SYSCPRT  C COMPILER WORK FILE                 */ 01270000
+  /*                 = SYSUT10  C COMPILER WORK FILE                 */ 01280000
+  /*                 = SYSLIB   FOR COMPILER INCLUDES                */ 01290000
+  /*                 =          C COMPILER HEADERS                   */ 01300000
+  /*                 = DSNHFBA  ATTRIBUTE FOR PRINT LIST             */ 01310000
+  /*                 = DSNHVBA  ATTRIBUTE FOR PRINT LIST             */ 01320000
+  /*    DATA SETS    =                                               */ 01330000
+  /*       REQUIRED  = MACIN DEFAULT IS NONE, NAME OF DATA           */ 01340000
+  /*                       SET FOR MACRO PASS INPUT.                 */ 01350000
+  /*                       NONE INDICATES THIS IS NOT MACRO.         */ 01360000
+  /*                 = OUTNAME.SUFF, OUTNAME DEFAULT IS TEMP         */ 01370000
+  /*                       SUFF IS ASM, PLI, COBOL, OR               */ 01380000
+  /*                       FORTRAN, DEPENDING ON HOST LANG.          */ 01390000
+  /*                       NAME OF SOURCE INPUT DATA SET             */ 01400000
+  /*                       FOR COMPILER. SHR                         */ 01410000
+  /*       OPTIONAL  = ASMHLIB, SOURCE INCLUDE AND MACRO             */ 01420000
+  /*                       LIBRARY FOR ASSEMBLER H.  SHR.            */ 01430000
+  /*                 = ASMHLOAD, ASSEMBLER H PROGRAM LOAD            */ 01440000
+  /*                       MODULE NAME.            SHR.              */ 01450000
+  /*                 = ASMLIB, SOURCE INCLUDE AND MACRO              */ 01460000
+  /*                       LIBRARY FOR ASSEMBLER.  SHR.              */ 01470000
+  /*                 = ASMLOAD, ASSEMBLER PROGRAM LOAD               */ 01480000
+  /*                       MODULE NAME.            SHR.              */ 01490000
+  /*                 = CLIB, USER SPECIFIED NAME, COMPILER           */ 01500000
+  /*                       SOURCE LIBRARY FOR INCLUDES, SHR.         */ 01510000
+  /*                       SAME FOR C2LIB, C3LIB, C4LIB.             */ 01520000
+  /*                 = CCLLIB, C PROGRAM LINKAGE EDITOR   (SYSLIB)   */ 01530000
+  /*                       LIBRARY FOR INCLUDES    SHR               */ 01540000
+  /*                 = CCPLIB, C PROGRAM LINKAGE EDITOR   (SYSLIB)   */ 01550000
+  /*                       LIBRARY FOR INCLUDES    SHR               */ 01560000
+  /*                 = CCLOAD, C COMPILER PROGRAM         (EXECUTE)  */ 01570000
+  /*                       LOAD MODULE NAME.       SHR.              */ 01580000
+  /*                 = CCMSGS, C COMPILER MESSAGES  SHR.  (SYSMSGS)  */ 01590000
+  /*                 = CCSLIB, C COMPILER HEADERS   SHR.  (SYSLIB)   */ 01600000
+  /*                 = COBLOAD, VS COBOL COMPILER PROGRAM            */ 01610000
+  /*                       LOAD MODULE NAME.       SHR.              */ 01620000
+  /*                 = COB2LOAD, VS COBOL II COMPILER PROG           */ 01630000
+  /*                       LOAD MODULE NAME.       SHR.              */ 01640000
+  /*                 = FORTLOAD, VS FORTRAN COMPILER PROGRAM         */ 01650000
+  /*                       LOAD MODULE NAME.       SHR.              */ 01660000
+  /*                 = OUTNAME.DECK, OUTPUT FROM COMPILER            */ 01670000
+  /*                       MACRO PASS AND INPUT TO                   */ 01680000
+  /*                       PRECOMPILER (PLI ONLY)                    */ 01690000
+  /*                 = OUTNAME.OBJ, OUTPUT FROM COMPILER,            */ 01700000
+  /*                       INPUT TO LINKAGE EDITOR. OLD/NEW          */ 01710000
+  /*                 = PLILOAD, PL/I OPTIMIZING COMPILER             */ 01720000
+  /*                       PROGRAM LOAD MODULE NAME. SHR.            */ 01730000
+  /*                 = PRINT.LIST, SYSPRINT OF COMPILERS.            */ 01740000
+  /*                       DEFAULT IS NONE (NO PRINT), MAY           */ 01750000
+  /*                       BE TERM (TERMINAL) OR                     */ 01760000
+  /*                       DATA SET NAME ABOVE, OLD/NEW              */ 01770000
+  /*                 = TERM.LIST, SYSTERM, ERROR, SUMMARY            */ 01780000
+  /*                       OF COMPILE.  DEFAULT IS TERM              */ 01790000
+  /*                       (TERMINAL OUTPUT), MAY ALSO BE            */ 01800000
+  /*                        LEAVE OR NONE.    OLD/NEW                */ 01810000
+  /* CHANGE ACTIVITY =                                               */ 01820000
+  /*  11/14/86 - TRUNCATED COMPILER OPTS                     @BA04697*/ 01830000
+  /*  11/18/86 - ADD &WORKU FOR TEMP DATASET @BA04731/KBF0038/KCF1141*/ 01840000
+  /*  11/11/87 - ADD C LANGUAGE SUPPORT                      R3TU157H*/ 01850000
+  /*  12/17/87 - ADD C LANGUAGE CMSGS PARM                    KCL2013*/ 01860000
+  /*  06/03/88 - MESSAGE DSNH751I ISSUED IN ERROR             KZF0921*/ 01870000
+  /*  10/25/88 - CHANGES TO C LANGUAGE SUPPORT                KZW0283*/ 01880000
+  /*  10/27/88 - SYSCPRT AND SYSOUT WALL MESSAGES AND DCBS    KZW0290*/ 01890000
+  /*  10/28/88 - OUTNAME..OBJ NOT ALLOCATED                   KZW0291*/ 01900000
+  /*  11/01/88 - SET SYSUT10 = SYSCPRT FOR C OPTION 'PPONLY'  KZW0295*/ 01910000
+  /*  03/10/89 - INCORRECT LRECL FOR COB2 SYSPRINT   KZF2160/@BA37636*/ 01920000
+  /* PSEUDOCODE      =                                               */ 01930000
+  /*       INITIALIZATION, CHECK KEYWORDS                            */ 01940000
+  /*       CHECK NAMES PASSED,                                       */ 01950000
+  /*       SET NAMES FOR LATER                                       */ 01960000
+  /*       PERFORM PARAMETER INITIALIZATION                          */ 01970000
+  /*       IF HOST IS ASSEMBLER THEN SET UP REQUIREMENTS             */ 01980000
+  /*       IF HOST IS ASSEMBLER H THEN SET UP REQUIREMENTS           */ 01990000
+  /*       IF HOST IS COBOL THEN SET UP REQUIREMENTS                 */ 02000000
+  /*       IF HOST IS VS COBOL II THEN SET UP REQUIREMENTS           */ 02010000
+  /*       IF HOST IS FORTRAN THEN SET UP REQUIREMENTS               */ 02020000
+  /*       IF HOST IS C THEN SET UP REQUIREMENTS                     */ 02030000
+  /*       IF HOST IS PLI THEN SET UP REQUIREMENTS                   */ 02040000
+  /*       ALLOCATE DATA SETS FOR A COMPILE                          */ 02050000
+  /*       CALL THE COMPILER                                         */ 02060000
+  /*       FREE THE DATA SETS FROM COMPILE                           */ 02070000
+  /*******************************************************************/ 02080000
+  /* CLIST TO INVOKE COMPILERS FOR DB2 PROGRAM PREPARATION           */ 02090000
+  /*       INITIALIZATION, CHECK KEYWORDS                            */ 02100000
+  /*          SET THE CONTROL TRACING OPTIONS FOR THE CLIST          */ 02110000
+  SET &ERROR = 0                                /* FLAG FOR ERROR    */ 02120000
+  SET &M751 = &STR(DSNH751I DSNHC ERROR IN)     /* ERROR MSG TXT     */ 02130000
+  SET &M759 = &STR(DSNH759I DSNHC TERMINATING,) /* ERRMSG TXT        */ 02140000
+  /*          IF TRACE PARM IS NOT NONE                              */ 02150000
+  IF &SUBSTR(1,&CONTROL) ^= N THEN           /* NOT 'NONE' SO        */+02160000
+    DO                                       /* SET UP FOR TRACING   */ 02170000
+      IF &SUBSTR(1,&CONTROL) = L THEN        /* IS IT LIST?          */+02180000
+        CONTROL LIST                         /* TURN ON TRACING      */ 02190000
+      ELSE                                                             +02200000
+        DO                                   /* IS IT CONLIST?       */ 02210000
+          IF &SUBSTR(1,&CONTROL) = C THEN                              +02220000
+            CONTROL LIST CONLIST             /* TURN ON TRACING      */ 02230000
+          ELSE                                                         +02240000
+            DO                               /* IS IT SYMLIST?       */ 02250000
+              IF &SUBSTR(1,&CONTROL) = S THEN                          +02260000
+                CONTROL LIST CONLIST SYMLIST /* TURN ON TRACING      */ 02270000
+              ELSE                           /* NONE OF THE ABOVE    */+02280000
+                DO                           /* NOTE THE ERROR, MSG  */ 02290000
+                  SET &ERROR = 8             /* REMEMBER THE ERROR   */ 02300000
+                  WRITE &M751 CONTROL VALUE &CONTROL                    02310000
+                END                                                     02320000
+            END                                                         02330000
+        END                                                             02340000
+    END                                                                 02350000
+  /*          CHECK ATTACH KEYWORD                          */          02360000
+  IF &SUBSTR(1,&ATTACH)= B THEN/* IF ATTACH IS BATCH THEN   */ +        02370000
+    SET &ATTACH = BATCH        /* BE SURE KEYWORD IS EXACT  */          02380000
+  ELSE                         /* CHECK OTHER ATTACHES      */ +        02390000
+    DO                         /* CHECK IMS AND CICS        */          02400000
+      IF &SUBSTR(1,&ATTACH) = I THEN /* IF IMS ATTACH PKG   */ +        02410000
+        SET &ATTACH = IMS      /* BE SURE KEYWORD IS EXACT  */          02420000
+      ELSE                     /* CHECK CICS ATTACH         */ +        02430000
+        IF &SUBSTR(1,&ATTACH) = C THEN /* IF CICS ATTACH PKG*/ +        02440000
+          SET &ATTACH = CICS   /* BE SURE KEYWORD IS EXACT  */          02450000
+        ELSE                   /* THIS IS AN ERROR          */ +        02460000
+          DO                   /* ISSUE THE ERROR MESSAGE   */          02470000
+            SET &ERROR = 8     /* REMEMBER THE ERROR        */          02480000
+            WRITE &M751 ATTACH VALUE &ATTACH                            02490000
+          END                  /* OF ERROR SETTING          */          02500000
+    END                        /* OF IMS, CICS, ERROR ATTACH*/          02510000
+  /*          CHECK SOURCE  KEYWORD                         */          02520000
+  IF &SUBSTR(1,&SOURCE )= Y THEN /* IF SOURCE  IS YES THEN  */ +        02530000
+    SET &SOURCE  = YES         /* BE SURE KEYWORD IS EXACT  */          02540000
+  ELSE                         /* CHECK NO SOURCE           */ +        02550000
+    IF &SUBSTR(1,&SOURCE )= N THEN /* IF SOURCE  IS NO  THEN*/ +        02560000
+      SET &SOURCE  = NO        /* BE SURE KEYWORD IS EXACT  */          02570000
+    ELSE                       /* THIS IS AN ERROR          */ +        02580000
+      DO                       /* ISSUE THE ERROR MESSAGE   */          02590000
+        SET &ERROR = 8         /* REMEMBER THE ERROR        */          02600000
+        WRITE &M751 SOURCE VALUE &SOURCE                                02610000
+      END                      /* OF ERROR SETTING          */          02620000
+  /*          CHECK XREF    KEYWORD                         */          02630000
+  IF &SUBSTR(1,&XREF)= Y THEN  /* IF XREF IS YES THEN       */ +        02640000
+    SET &XREF    = YES         /* BE SURE KEYWORD IS EXACT  */          02650000
+  ELSE                         /* CHECK NO XREF             */ +        02660000
+    IF &SUBSTR(1,&XREF   )= N THEN /* IF XREF    IS NO  THEN*/ +        02670000
+      SET &XREF    = NO        /* BE SURE KEYWORD IS EXACT  */          02680000
+    ELSE                       /* THIS IS AN ERROR          */ +        02690000
+      DO                       /* ISSUE THE ERROR MESSAGE   */          02700000
+        SET &ERROR = 8         /* REMEMBER THE ERROR        */          02710000
+        WRITE &M751 XREF VALUE &XREF                                    02720000
+      END                      /* OF ERROR SETTING          */          02730000
+  /*          CHECK DELIMIT KEYWORD                         */          02740000
+  IF &SUBSTR(1,&DELIMIT)= D THEN /* IF DELIMIT IS DEFAULT   */ +        02750000
+    SET &DELIMIT = DEFAULT     /* BE SURE KEYWORD IS EXACT  */          02760000
+  ELSE                         /* CHECK OTHER PASS'S        */ +        02770000
+    IF &SUBSTR(1,&DELIMIT)= A THEN /* IF DELIMIT IS APOST   */ +        02780000
+      SET &DELIMIT = APOST     /* BE SURE KEYWORD IS EXACT  */          02790000
+    ELSE                       /* CHECK NO DELIMIT          */ +        02800000
+      IF &SUBSTR(1,&DELIMIT)= Q THEN /* IF DELIMIT IS QUOTE */ +        02810000
+        SET &DELIMIT = QUOTE   /* BE SURE KEYWORD IS EXACT  */          02820000
+      ELSE                     /* THIS IS AN ERROR          */ +        02830000
+        DO                     /* ISSUE THE ERROR MESSAGE   */          02840000
+          SET &ERROR = 8       /* REMEMBER THE ERROR        */          02850000
+          WRITE &M751 DELIMIT VALUE &DELIMIT                            02860000
+        END                    /* OF ERROR SETTING          */          02870000
+  /*          CHECK SPACEUN KEYWORD                         */          02880000
+  IF &SUBSTR(1,&SPACEUN)= T THEN /* IF SPACEUN IS TRACK     */ +        02890000
+    SET &SPACEUN = TRACK       /* BE SURE KEYWORD IS EXACT  */          02900000
+  ELSE                         /* CHECK NO SPACEUN          */ +        02910000
+    IF &SUBSTR(1,&SPACEUN)= C THEN /* IF SPACEUN IS CYL     */ +        02920000
+      SET &SPACEUN = CYL       /* BE SURE KEYWORD IS EXACT  */          02930000
+    ELSE                       /* THIS IS AN ERROR          */ +        02940000
+      DO                       /* ISSUE THE ERROR MESSAGE   */          02950000
+        SET &ERROR = 8         /* REMEMBER THE ERROR        */          02960000
+        WRITE &M751 SPACEUN VALUE &SPACEUN                              02970000
+      END                      /* OF ERROR SETTING          */          02980000
+  /* CHECK HOST    KEYWORD                                  */          02990000
+  IF &HOST = C THEN            /* IF HOST IS C LANGUAGE     */ +        03000000
+      SET &HOST = C            /* NOP                       */          03010000
+  ELSE                         /* CHECK OTHER HOSTS         */ +        03020000
+    IF &HOST = COB2 THEN       /* IF VS COBOL II            */ +        03030000
+      SET &HOST = COB2         /* NOP                       */          03040000
+  ELSE                         /* CHECK OTHER HOSTS         */ +        03050000
+    IF &HOST = COBO THEN       /* IF OS/VS COBOL            */ +        03060000
+      SET &HOST = COBOL        /* BE SURE KEYWORD IS EXACT  */          03070000
+  ELSE                         /* CHECK OTHER HOSTS         */ +        03080000
+    IF &HOST = COBOL THEN      /* IF OS/VS COBOL            */ +        03090000
+      SET &HOST = COBOL        /* NOP                       */          03100000
+  ELSE                         /* CHECK OTHER HOSTS         */ +        03110000
+    IF &SUBSTR(1,&HOST) = P THEN  /* IF HOST IS PLI         */ +        03120000
+      SET &HOST = PLI          /* BE SURE KEYWORD IS EXACT  */          03130000
+  ELSE                         /* CHECK ASM HOST            */ +        03140000
+    IF &SUBSTR(1,&HOST)= A THEN/* IF HOST IS ASM            */ +        03150000
+      IF &STR(&HOST) NE ASMH THEN /* HOST IS NOT ASMH       */ +        03160000
+        SET &HOST = ASM        /* BE SURE KEYWORD IS EXACT  */          03170000
+      ELSE                     /* NOT ASM OR ASMH    KCE2001*/          03180000
+  ELSE                         /* CHECK FORTRAN HOST        */ +        03190000
+    IF &SUBSTR(1,&HOST)= F THEN   /* IF HOST IS FORTRAN     */ +        03200000
+      SET &HOST = FORTRAN      /* MAKE KEYWORD EXACT        */          03210000
+  ELSE                         /* THIS IS AN ERROR          */ +        03220000
+    DO                         /* ISSUE THE ERROR MESSAGE   */          03230000
+      SET &ERROR = 8            /* REMEMBER THE ERROR       */          03240000
+      WRITE &M751 HOST VALUE &HOST                                      03250000
+    END                        /* OF ERROR SETTING          */          03260000
+  SET &SUFF = &HOST            /* SET THE PROPER SUFFIX     */          03270000
+  IF &HOST = COB2 THEN         /* IF HOST IS COB2           */ +        03280000
+    SET &SUFF = COBOL          /* SET THE PROPER SUFFIX     */          03290000
+  IF &HOST = ASMH THEN         /* IF HOST IS ASMH           */ +        03300000
+    SET &SUFF = ASM            /* SET THE PROPER SUFFIX     */          03310000
+  /*          CHECK COPTION KEYWORD                         */          03320000
+  IF &COPTION = NONE THEN      /* IF COPTION IS NONE        */ +        03330000
+    SET &COPTION =             /* REMOVE ALL TEXT           */          03340000
+  /*          CHECK FLAG    KEYWORD                         */          03350000
+  IF &FLAG ^= I AND            /* IF FLAG ISN'T INFORMATION */ +        03360000
+     &FLAG ^= W AND            /* IF FLAG ISN'T WARNING     */ +        03370000
+     &FLAG ^= E AND            /* IF FLAG ISN'T ERROR       */ +        03380000
+     &FLAG ^= S THEN           /* IF FLAG ISN'T SEVERE      */ +        03390000
+    DO                         /* ISSUE THE ERROR MESSAGE   */          03400000
+      SET &ERROR = 8           /* REMEMBER THE ERROR        */          03410000
+      WRITE &M751 FLAG VALUE &FLAG                                      03420000
+    END                        /* OF ERROR SETTING          */          03430000
+  SET &FLAGB = &FLAG           /* SET UP THE BIND FLAG      */          03440000
+  IF &FLAG = S THEN            /* IF FLAG IS SEVERE         */ +        03450000
+    SET &FLAGB = E             /* SET UP THE BIND FLAG      */          03460000
+  /*          BE SURE OUTNAME HAS NO SPECIAL CHARACTERS     */          03470000
+  SET &J = 1                   /* INIT THE INDEX            */          03480000
+  DO WHILE &J LE &LENGTH(&STR(&OUTNAME)) /* LOOK AT INPUT   */ +        03490000
+     AND &ERROR = 0            /* FIND AN ERROR             */          03500000
+    IF &SUBSTR(&J,&OUTNAME) NE &STR(.) AND /* PERIOD IS OK  */ +        03510000
+      &SUBSTR(&J,&OUTNAME) NE &STR($) AND /* DOLLAR IS OK   */ +        03520000
+      &SUBSTR(&J,&OUTNAME) NE &STR(#) AND /* POUND IS OK    */ +        03530000
+      &SUBSTR(&J,&OUTNAME) NE &STR(@) AND /* AT SIGN IS OK  */ +        03540000
+      &SUBSTR(&J,&OUTNAME) < &STR(A) THEN /* OTHERWISE NOT  */ +        03550000
+      DO                       /* YES, NOTE THE END         */          03560000
+        SET &ERROR = 8         /* YES, NOTE THE ERROR       */          03570000
+        SET &TEMP = &STR(MUST NOT CONTAIN SPECIAL CHARACTERS)           03580000
+        WRITE DSNH754I DSNHC OUTNAME PARAMETER &OUTNAME &TEMP           03590000
+      END                      /* YES, NOTE THE END         */          03600000
+    SET &J = &J + 1            /* BUMP THE SUBSCRIPT        */          03610000
+  END                          /* START  OF MEMBER IS SET   */          03620000
+  /*          BE SURE PRINT   HAS NO SPECIAL CHARACTERS     */          03630000
+  SET &J = 1                   /* INIT THE INDEX            */          03640000
+  DO WHILE &J LE &LENGTH(&STR(&PRINT)) /* LOOK AT PRINT     */ +        03650000
+     AND &ERROR = 0            /* FIND AN ERROR             */          03660000
+    IF &SUBSTR(&J,&PRINT) NE &STR(.) AND /* PERIOD IS OK    */ +        03670000
+      &SUBSTR(&J,&PRINT) NE &STR($) AND /* DOLLAR IS OK     */ +        03680000
+      &SUBSTR(&J,&PRINT) NE &STR(#) AND /* POUND IS OK      */ +        03690000
+      &SUBSTR(&J,&PRINT) NE &STR(@) AND /* AT SIGN IS OK    */ +        03700000
+      &SUBSTR(&J,&PRINT) < &STR(A) THEN /* OTHERWISE NOT    */ +        03710000
+      DO                       /* YES, NOTE THE END         */          03720000
+        SET &ERROR = 8         /* YES, NOTE THE ERROR       */          03730000
+        SET &TEMP = &STR(MUST NOT CONTAIN SPECIAL CHARACTERS)           03740000
+        WRITE DSNH756I DSNHC PRINT PARAMETER &PRINT &TEMP               03750000
+      END                      /* YES, NOTE THE END         */          03760000
+    SET &J = &J + 1            /* BUMP THE SUBSCRIPT        */          03770000
+  END                          /* LOOK AT PRINT NAME        */          03780000
+  /*       SET NAMES FOR LATER                              */          03790000
+    SET &WORKU =                                                        03800000
+    IF &WORKUNIT NE DEFAULT THEN /* NO A DEFAULT WORK SPACE */ +        03810000
+       SET &WORKU = &STR(UNIT(&WORKUNIT)) /* SET UNIT PARM  */          03820000
+  /* CHECK FOR PRIOR ERRORS, TERMINATE IF FOUND             */          03830000
+  IF &ERROR GE  8      THEN    /* IF MAX RET CODE EXCEEDED  */ +        03840000
+    DO                         /* ISSUE MESSAGE AND EXIT    */          03850000
+      WRITE &M759 CLIST CHECKING RC = &ERROR                            03860000
+      EXIT CODE(&ERROR)        /* EXIT FROM CLIST           */          03870000
+    END                        /* OF ERROR HANDLING         */          03880000
+  /*       SET HOST LANGUAGE DEFAULTS, COMMON PROCESSING    */          03890000
+  SET &SYSLIN = SYSLIN         /* SET SYSLIN DDNAME         */          03900000
+  SET &SYSUTN = 1              /* NUMBER OF SYSUTN FILES    */          03910000
+                               /* SET DEFAULT COMPILE PARMS */          03920000
+  SET &CPARM  = &STR(LINECOUNT(&LINECOUNT))                             03930000
+  IF &MACIN  EQ NONE THEN      /* IF NO MACRO PASS INPUT    */ +        03940000
+    SET &CPARM = &STR(&CPARM,OBJECT,NODECK) /* ADD OPTIONS  */          03950000
+  ELSE SET &CPARM = &STR(&CPARM,NOBJ,M,MD,NSYN)                         03960000
+  IF &TERM NE NONE THEN        /* IF TERMINAL MSG REQUESTED */ +        03970000
+    SET &CPARM = &STR(&CPARM,TERM) /* ADD TO COMPILE        */          03980000
+  ELSE SET &CPARM = &STR(&CPARM,NOTERM) /* ADD PARM         */          03990000
+  /**********************************************************/          04000000
+  /* IF HOST IS ASSEMBLER XF THEN GET READY                 */          04010000
+  /**********************************************************/          04020000
+  IF &HOST = ASM THEN          /* HOST IS ASSEMBLER         */ +        04030000
+    DO                         /* SET ASSEMBLER XF OPTIONS  */          04040000
+      SET &SYSLIN = SYSGO      /* SET SYSLIN DDNAME         */          04050000
+      SET &COMP   = &STR(&ASMLOAD) /* PGM                   */          04060000
+      SET &SYSUTN = 3          /* SET NUMBER OF WORK FILES  */          04070000
+      IF &XREF   = YES THEN    /* IF XREF WAS REQUESTED     */ +        04080000
+        SET &CPARM = &STR(&CPARM,XREF) /* ADD TO COMPILE    */          04090000
+      ELSE SET &CPARM = &STR(&CPARM,NOXREF) /* ADD PARM     */          04100000
+    END                        /* OF ASSEMBLER REQUIREMENTS */          04110000
+  /**********************************************************/          04120000
+  /* IF HOST IS ASSEMBLER H THEN GET READY                  */          04130000
+  /**********************************************************/          04140000
+  IF &HOST = ASMH THEN         /* HOST IS ASSEMBLER H       */ +        04150000
+    DO                         /* SET ASSEMBLER H OPTIONS   */          04160000
+      SET &COMP   = &STR(&ASMHLOAD) /* PGM NAME             */          04170000
+      IF &XREF   = YES THEN    /* IF XREF WAS REQUESTED     */ +        04180000
+        SET &CPARM = &STR(&CPARM,XREF) /* ADD TO COMPILE    */          04190000
+      ELSE SET &CPARM = &STR(&CPARM,NOXREF) /* ADD PARM     */          04200000
+    END                        /* OF ASSEMBLER H OPTIONS    */          04210000
+  /**********************************************************/          04220000
+  /* IF HOST IS COBOL THEN SET COBOL REQUIREMENTS           */          04230000
+  /**********************************************************/          04240000
+  IF &HOST = COBOL THEN    /* HOST IS COBOL                 */ +        04250000
+    DO       /* SET UP PARMS FOR COBOL PROGRAM AND          */          04260000
+      SET &CPARM  = &STR(CNT(&LINECOUNT)) /* BEGIN PARM     */          04270000
+      IF &XREF   = YES THEN    /* IF XREF WAS REQUESTED     */ +        04280000
+        SET &CPARM = &STR(&CPARM,SXR) /* ADD TO COMPILE     */          04290000
+      ELSE SET &CPARM = &STR(&CPARM,NOSXR) /* ADD PARM      */          04300000
+      SET &CFLAG = LAGW       /* PRESET THE FLAG            */          04310000
+      IF &FLAG = E OR &FLAG = S THEN /* EQUIV TO FLAGE      */ +        04320000
+        SET &CFLAG = LAG /* ERRORS NOTED ONLY               */          04330000
+      ELSE SET &CFLAG = LAGW /* NOTE WARNINGS AS WELL       */          04340000
+      IF &DELIMIT EQ DEFAULT THEN /* DELIMIT IS DEFAULT     */ +        04350000
+        SET &DELIMIT = QUO /* SET TO CLIST DEFAULT          */          04360000
+      ELSE IF &DELIMIT EQ APOST THEN /* DELIMIT IS APOST    */ +        04370000
+          SET &DELIMIT = APO      /* SET TO APOST           */          04380000
+        ELSE SET &DELIMIT = QUO   /* SET TO QUOTE           */          04390000
+      SET &CPARM = &STR(&CPARM,&CFLAG,&DELIMIT,LOA,+                    04400000
+          BUF(64000),SIZ(256000))  /* ALL COMPILE PARMS     */          04410000
+      SET &COMP   = &STR(&COBLOAD) /* PGM NAME              */          04420000
+      SET &SYSUTN = 4          /* SET NUMBER OF WORK FILES  */          04430000
+      IF &SOURCE  = YES THEN       /* IF SOURCE REQUEST     */ +        04440000
+        SET &CPARM = &STR(&CPARM,SOU)   /* ADD TO COMPILE   */          04450000
+      ELSE SET &CPARM = &STR(&CPARM,NOSOU)   /* ADD PARM    */          04460000
+      IF &TERM    = YES THEN       /* IF TERM REQUEST       */ +        04470000
+        SET &CPARM = &STR(&CPARM,TER)      /* ADD TO COMP   */          04480000
+      ELSE SET &CPARM = &STR(&CPARM,NOTER)  /* ADD PARM     */          04490000
+    END                        /* COBOL PARMS ARE SET       */          04500000
+  /**********************************************************/          04510000
+  /* IF HOST IS VS COBOL II THEN SET COBOL II REQUIREMENTS  */          04520000
+  /**********************************************************/          04530000
+  IF &HOST = COB2 THEN     /* HOST IS VS COBOL II           */ +        04540000
+    DO                     /* VS COBOL II DIFFERENCES       */          04550000
+      SET &CPARM  = &STR(LC(&LINECOUNT))     /* PARM        */          04560000
+      IF &XREF   = YES THEN     /* IF XREF WAS REQUESTED    */ +        04570000
+        SET &CPARM = &STR(&CPARM,X)     /* ADD TO COMPILE   */          04580000
+      ELSE SET &CPARM = &STR(&CPARM,NOX)     /* ADD PARM    */          04590000
+      IF &DELIMIT EQ DEFAULT THEN     /* DELIM IS DEFAULT   */ +        04600000
+        SET &DELIMIT = Q       /* SET TO CLIST DEFAULT      */          04610000
+      ELSE IF &DELIMIT EQ APOST THEN     /* DEL IS APOST    */ +        04620000
+          SET &DELIMIT = APOST     /* SET TO APOST          */          04630000
+        ELSE SET &DELIMIT = Q      /* SET TO QUOTE          */          04640000
+      SET &CPARM = &STR(&CPARM,F(&FLAG),&DELIMIT,+                      04650000
+          OBJ,NOD)             /* ALL COMPILE PARMS         */          04660000
+      SET &COMP   = &STR(&COB2LOAD)     /* PGM NAME         */          04670000
+      SET &SYSUTN = 7        /* SET NUMBER OF WORK FILES    */          04680000
+                 /*  TEST FOR SOURCE AND TERM OPTIONS       */          04690000
+      IF &SOURCE  = YES THEN       /* IF SOURCE REQUEST     */ +        04700000
+        SET &CPARM = &STR(&CPARM,S)     /* ADD TO COMPILE   */          04710000
+      ELSE SET &CPARM = &STR(&CPARM,NOS)     /* ADD PARM    */          04720000
+      IF &TERM    = YES THEN       /* IF TERM REQUEST       */ +        04730000
+        SET &CPARM = &STR(&CPARM,TERM)     /* ADD TO COMP   */          04740000
+      ELSE SET &CPARM = &STR(&CPARM,NOTERM)  /* ADD PARM    */          04750000
+    END                    /* VS COBOL II DIFFERENCES       */          04760000
+          /* ALL COBOL COMPILER PARMS ARE SETUP             */          04770000
+  /**********************************************************/          04780000
+  /* IF HOST IS FORTRAN THEN SET FORTRAN REQUIREMENTS       */          04790000
+  /**********************************************************/          04800000
+  IF &HOST = FORTRAN THEN      /* HOST IS FORTRAN           */ +        04810000
+    DO                         /* SET VS FORTRAN OPTIONS    */          04820000
+      SET &COMP = &STR(&FORTLOAD) /* PGM NAME               */          04830000
+      IF &XREF  = YES THEN     /* IF XREF WAS REQUESTED     */ +        04840000
+        SET &CPARM = &STR(&CPARM,X) /* ADD TO COMPILE       */          04850000
+      ELSE SET &CPARM = &STR(&CPARM,NOX)    /* ADD PARM     */          04860000
+      IF &SOURCE = YES THEN    /* IF SOURCE WAS REQUESTED   */ +        04870000
+        SET &CPARM = &STR(&CPARM,S)    /* ADD TO COMPILE    */          04880000
+      ELSE SET &CPARM = &STR(&CPARM,NOS NOSF)      /*       */          04890000
+      SET &SYSUTN = 0          /* SET NUMBER OF WORK FILES  */          04900000
+    END                        /* OF VS FORTRAN  OPTIONS    */          04910000
+  /**********************************************************/          04920000
+  /* IF HOST IS C THEN SET C REQUIREMENTS                   */          04930000
+  /**********************************************************/          04940000
+  IF &HOST = C THEN               /* IF HOST IS C THEN      */ +        04950000
+    DO                            /* SET C OPTIONS          */          04960000
+      SET &COMP   = &STR(&CCLOAD) /* C COMPILER LOAD MODULE */          04970000
+      SET &SYSUTN = 9             /* NUMBER OF WORK FILES   */          04980000
+      SET &CPARM =                /* RESET TO NULL STRING   */          04990000
+      IF &SOURCE = YES THEN       /* SOURCE REQUESTED       */ +        05000000
+        IF &CPARM =               /* NO CURRENT PARMS       */ +        05010000
+          THEN SET &CPARM = &STR(SO)  /* SET TO SOURCE      */          05020000
+          ELSE SET &CPARM = &STR(&CPARM,SO) /* ADD SOURCE   */          05030000
+      ELSE                        /* SOURCE NOT REQUESTED   */ +        05040000
+        IF &CPARM =               /* NO CURRENT PARMS       */ +        05050000
+          THEN SET &CPARM = &STR(NOSO) /* SET TO NOSOURCE   */          05060000
+          ELSE SET &CPARM = &STR(&CPARM,NOSO) /*ADD NOSOURCE*/          05070000
+      IF &XREF = YES THEN         /* XREF REQUESTED         */ +        05080000
+        IF &CPARM =               /* NO CURRENT PARMS       */ +        05090000
+          THEN SET &CPARM = &STR(XR)  /* SET TO XREF        */          05100000
+          ELSE SET &CPARM = &STR(&CPARM,XR) /* ADD XREF     */          05110000
+      ELSE                        /* XREF NOT REQUESTED     */ +        05120000
+        IF &CPARM =               /* NO CURRENT PARMS       */ +        05130000
+          THEN SET &CPARM = &STR(NOXR) /* SET TO NOXREF     */          05140000
+          ELSE SET &CPARM = &STR(&CPARM,NOXR) /* ADD NOXREF */          05150000
+      IF &TERM EQ NONE THEN       /* NOTERM REQUESTED, AND  */ +        05160000
+        IF &CPARM =               /* NO CURRENT PARMS       */ +        05170000
+          THEN SET &CPARM = &STR(NOTERM) /* SET NOTERM      */          05180000
+          ELSE SET &CPARM = &STR(&CPARM,NOTERM) /*ADD NOTERM*/          05190000
+      ELSE                        /* TERM REQUESTED         */ +        05200000
+        IF &CPARM =               /* NO CURRENT PARMS       */ +        05210000
+          THEN SET &CPARM = &STR(TERM) /* SET TO TERM       */          05220000
+          ELSE SET &CPARM = &STR(&CPARM,TERM) /* ADD TERM   */          05230000
+      ALLOCATE DDNAME(SYSMSGS) SHR REUSE +                              05240000
+               DSNAME(&CCMSGS)    /* COMPILER'S MSG LIBRARY */          05250000
+      /*----------------------------------------------------*/          05260000
+      /* ALLOCATE SYSCPRT                                   */          05270000
+      /*----------------------------------------------------*/          05280000
+      IF &PRINT NE NONE AND        /* IF PRINT REQUESTED    */ +        05290000
+         &PRINT NE LEAVE THEN      /* AND NOT DATE SET      */ +        05300000
+        DO                         /* ALLOCATE DATA SET     */          05310000
+          IF &PRINT = TERM THEN    /* IF TERM SPECIFIED     */ +        05320000
+            DO                     /* ALLOCATE TO TERMINAL  */          05330000
+              /*--------------------------------------------*/          05340000
+              /* ALLOCATE SYSCPRT AND SYSUT10 TO TERMINAL   */          05350000
+              /*--------------------------------------------*/          05360000
+              ALLOCATE DDNAME(SYSCPRT) DA(*) /* TERM ALLOC  */          05370000
+              ALLOCATE DDNAME(SYSUT10) DA(*) /* TERM ALLOC  */          05380000
+            END                    /* ALLOCATION COMPLETE   */          05390000
+          ELSE                     /* ALLOCATE A DATA SET   */ +        05400000
+            DO                     /* DELETE, THEN ALLOC    */          05410000
+              /*--------------------------------------------*/          05420000
+              /* ALLOCATE SYSCPRT AND SYSUT10 TO SAME       */          05430000
+              /* SYSCPRT.LIST DATA SET                      */          05440000
+              /*--------------------------------------------*/          05450000
+              IF &CONTROL = NONE THEN /* IF NO MSGS WANTED  */ +        05460000
+                CONTROL NOMSG      /* SUPPRESS MESSAGES     */          05470000
+              DELETE &PRINT..SYSCPRT.LIST /* DELETE DATA SET*/          05480000
+              FREE DDNAME(SYSCPRT) /* BE SURE DDNAME FREE   */          05490000
+              FREE DDNAME(SYSUT10) /* BE SURE DDNAME FREE   */          05500000
+              FREE ATTR(DSNHVBA)   /* FREE ATTRIBUTE        */          05510000
+              CONTROL MSG          /* ALLOW MESSAGES        */          05520000
+              /*--------------------------------------------*/          05530000
+              /* ALLOCATE SYSCPRT DATA SET TO SYSCPRT.LIST  */          05540000
+              /*--------------------------------------------*/          05550000
+              ATTR DSNHVBA RECFM(V B A) LRECL(121) +                    05560000
+                BLKSIZE(3630)                                           05570000
+              ALLOCATE DDNAME(SYSCPRT) +                                05580000
+                DSNAME(&PRINT..SYSCPRT.LIST) +                          05590000
+                NEW SPACE(&PSPACE &PSECSPAC) &SPACEUN &WORKU +          05600000
+                USING(DSNHVBA)                                          05610000
+              FREE ATTR(DSNHVBA)   /* FREE ATTRIBUTE        */          05620000
+              /*--------------------------------------------*/          05630000
+              /* ALLOCATE SYSUT10 DATA SET TO SYSCPRT.LIST  */          05640000
+              /*--------------------------------------------*/          05650000
+              ALLOCATE DDNAME(SYSUT10) +                                05660000
+                DSNAME(&PRINT..SYSCPRT.LIST)                            05670000
+            END                    /* DELETE, THEN ALLOC    */          05680000
+        END                        /* ALLOCATE COMPLETE     */          05690000
+      IF &PRINT EQ NONE THEN       /* IF BYPASS PRINT THEN  */ +        05700000
+        DO                         /* ALLOCATE TO DUMMY     */          05710000
+          /*------------------------------------------------*/          05720000
+          /* ALLOCATE SYSCPRT AND SYSUT10 TO DUMMY          */          05730000
+          /*------------------------------------------------*/          05740000
+          ALLOCATE DDNAME(SYSCPRT) DUMMY /* ALLOCATE DUMMY  */          05750000
+          ALLOCATE DDNAME(SYSUT10) DUMMY /* ALLOCATE DUMMY  */          05760000
+        END                        /* ALLOCATION COMPLETE   */          05770000
+    END                           /* C OPTIONS COMPLETE     */          05780000
+  ELSE                                                                  05790000
+  /**********************************************************/          05800000
+  /* IF HOST IS PLI THEN SET PLI REQUIREMENTS               */          05810000
+  /**********************************************************/          05820000
+  IF &HOST = PLI THEN          /* HOST IS PLI THEN          */ +        05830000
+    DO                         /* SET PLI OPTIONS           */          05840000
+      SET &COMP   = &STR(&PLILOAD) /* PGM NAME              */          05850000
+      SET &CPARM  = &STR(LC(&LINECOUNT))  /* LINECOUNT      */          05860000
+      IF &MACIN  EQ NONE THEN  /* IF NO MACRO PASS INPUT    */ +        05870000
+        SET &CPARM = &STR(&CPARM,OBJ,ND) /* ADD OPTIONS     */          05880000
+      ELSE SET &CPARM = &STR(&CPARM,NOBJ,M,MD,NSYN) /*      */          05890000
+      IF &TERM NE NONE THEN  /* IF TERMINAL MSG REQUESTED   */ +        05900000
+        SET &CPARM = &STR(&CPARM,TERM) /* ADD TO COMPILE    */          05910000
+      ELSE SET &CPARM = &STR(&CPARM,NTERM)  /* ADD PARM     */          05920000
+      IF &XREF   = YES THEN    /* IF XREF WAS REQUESTED     */ +        05930000
+        SET &CPARM = &STR(&CPARM,X)  /* ADD TO COMPILE      */          05940000
+      ELSE SET &CPARM = &STR(&CPARM,NX)   /* ADD PARM       */          05950000
+      IF &SOURCE = YES THEN    /* IF SOURCE WAS REQUESTED   */ +        05960000
+        SET &CPARM = &STR(&CPARM,S)    /* ADD TO COMPILE    */          05970000
+      ELSE SET &CPARM = &STR(&CPARM,NS)     /* ADD PARM     */          05980000
+  /**********************************************************/          05990000
+  /* IF HOST LANGUAGE IS PLI AND MACRO PHASE NEEDED THEN    */          06000000
+  /* ALLOCATE SYSPUNCH                                      */          06010000
+  /**********************************************************/          06020000
+      IF  &MACIN NE NONE  THEN /* MACRO PASS REQUESTED      */ +        06030000
+        DO                     /* INVOKE PLI PREPROCESSOR   */          06040000
+          IF &CONTROL = NONE THEN /* IF NO MSGS WANTED THEN */ +        06050000
+            CONTROL NOMSG      /* AVOID DELETE MESSAGES     */          06060000
+          FREE DDNAME(SYSPUNCH) /* BE SURE DDNAME IS FREE   */          06070000
+          DELETE &OUTNAME..DECK /* DELETE PLI OUTPUT DATA   */          06080000
+          CONTROL MSG          /* ALLOW MESSAGES AGAIN      */          06090000
+          ALLOCATE DD(SYSPUNCH) NEW BLKSIZE(3200) REUSE        +        06100000
+                   &SPACEUN SPACE(&WSPACE,&WSECSPAC) &WORKU    +        06110000
+                   DSNAME(&OUTNAME..DECK) /* SYSPUNCH OUTPUT*/          06120000
+        END                    /* OF PLI PREPROCESS INVOCATN*/          06130000
+    END                        /* SET PLI OPTIONS           */          06140000
+  /**********************************************************/          06150000
+  /* ALLOCATE DATA SETS FOR A COMPILE                       */          06160000
+  /**********************************************************/          06170000
+  /* ALLOCATE SYSIN                                         */          06180000
+  /**********************************************************/          06190000
+  IF &MACIN EQ NONE THEN       /* IF NOT A MACRO PASS       */ +        06200000
+     ALLOCATE DDNAME(SYSIN) SHR REUSE                          +        06210000
+           DSNAME(&OUTNAME..&SUFF) /* SYSIN FOR COMPILE     */          06220000
+  ELSE                         /* THIS IS A MACRO PASS      */ +        06230000
+     ALLOCATE DDNAME(SYSIN) SHR REUSE                          +        06240000
+           DSNAME(&MACIN)      /* SYSIN FOR MACRO PASS      */          06250000
+  /**********************************************************/          06260000
+  /* ALLOCATE THE SYSLIB IF REQUESTED                       */          06270000
+  /**********************************************************/          06280000
+  SET &CONL =                                                           06290000
+  IF &CLIB  NE NONE THEN SET &CONL = &STR(&CLIB)                        06300000
+  IF &C2LIB NE NONE THEN SET &CONL = &STR(&CONL &C2LIB)                 06310000
+  IF &C3LIB NE NONE THEN SET &CONL = &STR(&CONL &C3LIB)                 06320000
+  IF &C4LIB NE NONE THEN SET &CONL = &STR(&CONL &C4LIB)                 06330000
+  IF &HOST EQ ASM THEN         /* IF THIS IS ASM            */ +        06340000
+     SET &CONL = &STR(&CONL &ASMLIB) /* SET THE DEFAULT LIB */          06350000
+  IF &HOST EQ ASMH THEN        /* IF THIS IS ASMH           */ +        06360000
+     SET &CONL = &STR(&CONL &ASMHLIB) /* SET THE DEFAULT LIB*/          06370000
+  IF &HOST EQ C THEN           /* IF THIS IS 'C' LANGUAGE   */ +        06380000
+     SET &CONL = &STR(&CONL &CCSLIB) /* SET THE DEFAULT LIB */          06390000
+  IF &CONL NE      THEN        /* IF ALLOCATION REQUESTED   */ +        06400000
+    ALLOCATE DDNAME(SYSLIB) DSNAME(&CONL) SHR REUSE                     06410000
+  /**********************************************************/          06420000
+  /* FREE SYSPRINT AND SYSTERM                              */          06430000
+  /**********************************************************/          06440000
+  IF &CONTROL = NONE THEN      /* IF NO MSGS WANTED THEN    */ +        06450000
+    CONTROL NOMSG              /* AVOID FREE MESSAGES       */          06460000
+  IF &PRINT NE LEAVE THEN      /* IF ALLOCATION REQUESTED   */ +        06470000
+    FREE DDNAME(SYSPRINT)      /* FREE THE DDNAME           */          06480000
+  IF &TERM  NE LEAVE THEN      /* IF ALLOCATION REQUESTED   */ +        06490000
+    FREE DDNAME(SYSTERM)       /* FREE THE DDNAME           */          06500000
+  CONTROL MSG                  /* ALLOW MESSAGES AGAIN      */          06510000
+  /**********************************************************/          06520000
+  /* ALLOCATE SYSPRINT IF REQUESTED                         */          06530000
+  /**********************************************************/          06540000
+  IF &PRINT NE NONE AND        /* IF ALLOCATION REQUESTED   */ +        06550000
+     &PRINT NE LEAVE THEN      /* IF ALLOCATION REQUESTED   */ +        06560000
+    DO                         /* ALLOCATE DATA SET (OLD)   */          06570000
+      IF &PRINT = TERM THEN    /* IF TERM OUTPUT RQSTD      */ +        06580000
+        ALLOCATE DDNAME(SYSPRINT) DA(*) /* DO TERM ALLOC    */          06590000
+      ELSE                     /* ALLOCATE A DATA SET       */ +        06600000
+        DO                     /* DELETE, THEN ALLOC DATA   */          06610000
+          IF &CONTROL = NONE THEN /* IF NO MSGS WANTED THEN */ +        06620000
+            CONTROL NOMSG      /* AVOID DELETE MESSAGES     */          06630000
+          DELETE &PRINT..LIST  /* DELETE OUTPUT DATA SET    */          06640000
+          FREE DDNAME(SYSPRINT)/* BE SURE DDNAME IS FREE    */          06650000
+          FREE ATTR(DSNHFBA)   /* FREE ATTRIBUTE            */          06660000
+          CONTROL MSG          /* ALLOW MESSAGES AGAIN      */          06670000
+          IF &HOST = COB2 THEN /* COB2 NEEDS DIFF LRECL @BA37636*/ +    06680000
+            DO                 /* AND BLKSIZE           @BA37636*/      06690000
+              ATTR DSNHFBA RECFM(F B A) LRECL(133) BLKSIZE(3990)        06700000
+              ALLOCATE DDNAME(SYSPRINT) DSNAME(&PRINT..LIST) NEW   +    06710000
+                SPACE(&PSPACE &PSECSPAC) &SPACEUN USING(DSNHFBA)   +    06720000
+                &WORKU             /*                   @BA04731*/      06730000
+              FREE ATTR(DSNHFBA)   /* FREE ATTRIBUTE            */      06740000
+            END                /*                       @BA37636*/      06750000
+          ELSE                 /* SET REGULAR LRECL     @BA37636*/ +    06760000
+            DO                 /* AND BLKSIZE           @BA37636*/      06770000
+              ATTR DSNHFBA RECFM(F B A) LRECL(121) BLKSIZE(3630)        06780000
+              ALLOCATE DDNAME(SYSPRINT) DSNAME(&PRINT..LIST) NEW   +    06790000
+                SPACE(&PSPACE &PSECSPAC) &SPACEUN USING(DSNHFBA)   +    06800000
+                &WORKU             /*                   @BA04731*/      06810000
+              FREE ATTR(DSNHFBA)   /* FREE ATTRIBUTE            */      06820000
+            END                /*                       @BA37636*/      06830000
+        END                    /* DELETE, THEN ALLOC DATA   */          06840000
+    END                        /* SYSPRINT IS ALLOCATED     */          06850000
+  IF &PRINT EQ NONE THEN       /* IF NO SYSPRINT            */ +        06860000
+     ALLOCATE DDNAME(SYSPRINT) DUMMY /* ALLOCATE            */          06870000
+  /**********************************************************/          06880000
+  /* ALLOCATE SYSTERM IF REQUESTED                          */          06890000
+  /**********************************************************/          06900000
+  IF &TERM NE NONE AND         /* IF ALLOCATION REQUESTED   */ +        06910000
+     &TERM NE LEAVE THEN       /* IF ALLOCATION REQUESTED   */ +        06920000
+    DO                         /* ALLOCATE A DATA SET (OLD) */          06930000
+      IF &TERM = TERM THEN     /* IF TERMINAL OUTPUT REQSTD */ +        06940000
+        ALLOCATE DDNAME(SYSTERM) DA(*) /* DO TERM ALLOC     */          06950000
+      ELSE                     /* ALLOCATE A DATA SET       */ +        06960000
+        DO                     /* DELETE, THEN ALLOC DATA   */          06970000
+          IF &CONTROL = NONE THEN /* IF NO MSGS WANTED THEN */ +        06980000
+            CONTROL NOMSG      /* AVOID DELETE MESSAGES     */          06990000
+          DELETE &TERM..LIST   /* DELETE OUTPUT DATA SET    */          07000000
+          FREE DDNAME(SYSTERM) /* BE SURE DDNAME IS FREE    */          07010000
+          CONTROL MSG          /* ALLOW MESSAGES AGAIN      */          07020000
+          ALLOCATE DDNAME(SYSTERM) DSNAME(&TERM..LIST)         +        07030000
+            SPACE(&PSPACE &PSECSPAC) &SPACEUN NEW &WORKU                07040000
+        END                    /* DELETE, THEN ALLOC DATA   */          07050000
+    END                        /* SYSTERM IS ALLOCATED      */          07060000
+  IF &TERM  EQ NONE THEN       /* IF NO SYSTERM             */ +        07070000
+     ALLOCATE DDNAME(SYSTERM) DUMMY /* ALLOCATE             */          07080000
+  /**********************************************************/          07090000
+  /* ALLOCATE SYSUTN FILES                                  */          07100000
+  /**********************************************************/          07110000
+  SET &WORK = 1                /* INITIALIZE WORK FILE COUNT*/          07120000
+  DO WHILE &WORK LE &SYSUTN    /* DO FOR EACH WORK FILE     */          07130000
+    ALLOCATE DD(SYSUT&WORK) NEW &WORKU &SPACEUN REUSE          +        07140000
+             SPACE(&WSPACE,&WSECSPAC) /* ALLOC WORK FILE    */          07150000
+    SET &WORK = &WORK + 1      /* INCREMENT WORK FILE COUNT */          07160000
+  END                          /* ALLOCATE WORK FILES       */          07170000
+  /**********************************************************/          07180000
+  /* ALLOCATE SYSLIN OR SYSGO                               */          07190000
+  /**********************************************************/          07200000
+  IF &CONTROL = NONE THEN      /* IF NO MSGS WANTED THEN    */ +        07210000
+    CONTROL NOMSG              /* AVOID FREE MESSAGES       */          07220000
+  DELETE (&OUTNAME..OBJ)       /* DELETE OUTPUT DATA SET    */          07230000
+  FREE DDNAME(&SYSLIN)         /* AND FREE THE FILE         */          07240000
+  CONTROL MSG                  /* ALLOW MESSAGES AGAIN      */          07250000
+  IF &HOST = C THEN            /* 'C' LANGUAGE - NEED DCBS  */ +        07260000
+    ALLOCATE DD(&SYSLIN) NEW &WORKU REUSE                      +        07270000
+             RECFM(F B) LRECL(80) BLKSIZE(3200)                +        07280000
+             &SPACEUN SPACE(&WSPACE,&WSECSPAC)                 +        07290000
+             DSNAME(&OUTNAME..OBJ)                                      07300000
+  ELSE                         /* NOT 'C' LANGUAGE          */ +        07310000
+    ALLOCATE DD(&SYSLIN) NEW BLKSIZE(3200) &WORKU REUSE        +        07320000
+             &SPACEUN SPACE(&WSPACE,&WSECSPAC)                 +        07330000
+             DSNAME(&OUTNAME..OBJ)                                      07340000
+  /**********************************************************/          07350000
+  /* INVOKE COMPILER                                        */          07360000
+  /**********************************************************/          07370000
+  IF &STR(&COPTION) NE   THEN  /* IF OPTIONS ARE NOT BLANK  */ +        07380000
+    IF &SUBSTR(1,&COPTION) = &STR(') THEN /* QUOTED?        */ +        07390000
+      DO                       /* REMOVE THE QUOTES NOW     */          07400000
+        SET &COPT = &SUBSTR(2:&LENGTH(&COPTION)-1,&COPTION)             07410000
+        IF &CPARM =            /* NO CURRENT PARMS          */ +        07420000
+          THEN SET &CPARM = &STR(&COPT)      /* SET PARMS   */          07430000
+          ELSE SET &CPARM = &STR(&CPARM,&COPT) /* ADD PARMS */          07440000
+      END                      /* REMOVE THE QUOTES NOW     */          07450000
+    ELSE SET &CPARM = &STR(&CPARM,&COPTION) /* ADD THEM     */          07460000
+  CALL &COMP '&CPARM'          /* CALL COMPILER PROGRAM     */          07470000
+  SET &ERROR = &LASTCC         /* SAVE THE RETURN CODE      */          07480000
+  /**********************************************************/          07490000
+  /* FREE THE DDNAMES OR FILES USED IN PRECOMPILE           */          07500000
+  /**********************************************************/          07510000
+  IF &CONTROL = NONE THEN      /* IF NO MSGS WANTED THEN    */ +        07520000
+    CONTROL NOMSG              /* AVOID FREE MESSAGES       */          07530000
+  FREE DDNAME(SYSIN,&SYSLIN)   /* FREE FILES (DDNAMES)      */          07540000
+  IF  &MACIN NE NONE  THEN     /* MACRO PASS REQUESTED      */ +        07550000
+    FREE DDNAME(SYSPUNCH)      /* FREE FILES (DDNAMES)      */          07560000
+  IF &CONL NE      THEN        /* IF ALLOCATION REQUESTED   */ +        07570000
+    FREE DDNAME(SYSLIB)        /* FREE FILES (DDNAMES)      */          07580000
+  /**********************************************************/          07590000
+  /* FREE SYSUTN FILES                                      */          07600000
+  /**********************************************************/          07610000
+  SET &WORK = 1                /* INITIALIZE WORK FILE COUNT*/          07620000
+  DO WHILE &WORK LE &SYSUTN    /* DO FOR EACH WORK FILE     */          07630000
+    FREE DDNAME(SYSUT&WORK)    /* FREE THE WORK FILE        */          07640000
+    SET &WORK = &WORK + 1      /* INCREMENT WORK FILE COUNT */          07650000
+  END                          /* FREE     WORK FILES       */          07660000
+  /**********************************************************/          07670000
+  /* FREE SYSPRINT, SYSTERM AND 'C' DATA SETS               */          07680000
+  /**********************************************************/          07690000
+  IF &PRINT NE LEAVE THEN      /* IF ALLOCATION REQUESTED   */ +        07700000
+    FREE DDNAME(SYSPRINT)      /* FREE THE DDNAME           */          07710000
+  IF &HOST = C THEN            /* IF C LANGUAGE FREE SPECIAL*/ +        07720000
+    DO                         /* C DATA SETS               */          07730000
+      IF &PRINT NE LEAVE THEN  /* IF ALLOCATION REQUESTED   */ +        07740000
+        FREE DDNAME(SYSCPRT)   /* FREE THE DDNAME           */          07750000
+      FREE DDNAME(SYSMSGS)     /* FREE SYSMSGS              */          07760000
+      FREE DDNAME(SYSUT10)     /* FREE SYSUT10              */          07770000
+    END                                                                 07780000
+  IF &TERM  NE LEAVE THEN      /* IF ALLOCATION REQUESTED   */ +        07790000
+    FREE DDNAME(SYSTERM)       /* FREE THE DDNAME           */          07800000
+  CONTROL MSG                  /* ALLOW MESSAGES AGAIN      */          07810000
+  EXIT CODE(&ERROR)            /* RETURN PROVIDING A CODE   */          07820000
+  END                          /* OF DSNHC CLIST            */          07830000
+                                                                        07840000
+                                                                        07850000

@@ -1,0 +1,21 @@
+//DELSQ2   JOB (USER,ACCT,NUMBER),                                              
+//         'D J YOUNG',                                                         
+//         CLASS=A,MSGCLASS=X,MSGLEVEL=(1,1),                                   
+//         REGION=4M                                                            
+//SCRATCH  EXEC PGM=IDCAMS                                                      
+//SYSPRINT DD SYSOUT=*                                                          
+//SYSIN    DD *                                                                 
+  DELETE DSN310.DSNDBC.SQ2DB.SQ2I01.I0001.A001 NOSCRATCH CLUSTER                
+  DELETE DSN310.DSNDBC.SQ2DB.SQ2I02.I0001.A001 NOSCRATCH CLUSTER                
+  DELETE DSN310.DSNDBC.SQ2DB.SQ2I03.I0001.A001 NOSCRATCH CLUSTER                
+  DELETE DSN310.DSNDBC.SQ2DB.SQ2I04.I0001.A001 NOSCRATCH CLUSTER                
+  DELETE DSN310.DSNDBC.SQ2DB.SQ2I05.I0001.A001 NOSCRATCH CLUSTER                
+  DELETE DSN310.DSNDBC.SQ2DB.SQ2I06.I0001.A001 NOSCRATCH CLUSTER                
+  DELETE DSN310.DSNDBC.SQ2DB.SQ2I07.I0001.A001 NOSCRATCH CLUSTER                
+  DELETE DSN310.DSNDBC.SQ2DB.SQ2I08.I0001.A001 NOSCRATCH CLUSTER                
+  DELETE DSN310.DSNDBC.SQ2DB.SQ2I09.I0001.A001 NOSCRATCH CLUSTER                
+  DELETE DSN310.DSNDBC.SQ2DB.SQ2I10.I0001.A001 NOSCRATCH CLUSTER                
+  DELETE DSN310.DSNDBC.SQ2DB.SQ2I11.I0001.A001 NOSCRATCH CLUSTER                
+  DELETE DSN310.DSNDBC.SQ2DB.SQ2I12.I0001.A001 NOSCRATCH CLUSTER                
+  DELETE DSN310.DSNDBC.SQ2DB.SQ2I13.I0001.A001 NOSCRATCH CLUSTER                
+  DELETE DSN310.DSNDBC.SQ2DB.SQ2TS.I0001.A001 NOSCRATCH CLUSTER                 

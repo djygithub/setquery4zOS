@@ -1,0 +1,162 @@
+       IDENTIFICATION DIVISION.                                         00010000
+      *------------------------                                         00012000
+       PROGRAM-ID. DSN8CC1.                                             00014000
+                                                                        00016000
+      ********** DSN8CC1 - SQL 1 MAINLINE FOR CICS - COBOL ************ 00018000
+      *                                                               * 00020000
+      * MODULE NAME = DSN8CC1                                         * 00030000
+      *                                                               * 00040000
+      * DESCRIPTIVE NAME = DB2  SAMPLE APPLICATION                    * 00050000
+      *                    SQL 1 MAINLINE                             * 00060000
+      *                    CICS                                       * 00070000
+      *                    COBOL                                      * 00080000
+      *                                                               * 00090000
+      *COPYRIGHT = 5665-DB2 (C) COPYRIGHT IBM CORP 1982, 1989         * 00100000
+      *REFER TO COPYRIGHT INSTRUCTIONS FORM NUMBER G120-2083          * 00110000
+      *                                                               * 00120000
+      *STATUS = VERSION 2 RELEASE 2, LEVEL 0                          * 00130000
+      *                                                               * 00140000
+      * FUNCTION = THIS MODULE PERFORMS THE INCLUDES TO BRING IN THE  * 00150000
+      *            SQL TABLE DCLS AND DCLGEN STRUCTURES AS WELL AS    * 00160000
+      *            THE PARAMETER AREA.                                * 00170000
+      *                                                               * 00180000
+      * NOTES =                                                       * 00190000
+      *   DEPENDENCIES = CALLED BY DSN8CC0, CALLS DSN8CC2(CICS LINKS).* 00200000
+      *   RESTRICTIONS = NONE                                         * 00210000
+      *                                                               * 00220000
+      *                                                               * 00230000
+      * MODULE TYPE =                                                 * 00240000
+      *    PROCESSOR   = DB2 PRECOMPILER,CICS TRANSLATOR,COBOL COMPILER 00250000
+      *    MODULE SIZE = SEE LINK_EDIT                                * 00260000
+      *    ATTRIBUTES  = REUSABLE                                     * 00270000
+      *                                                               * 00280000
+      * ENTRY POINT =  DSN8CC1                                        * 00290000
+      *    PURPOSE = SEE FUNCTION                                     * 00300000
+      *    LINKAGE = INCLUDED BY MODULE DSN8MC1                       * 00310000
+      *                                                               * 00320000
+      *    INPUT  = PARAMETERS EXPLICITLY PASSED TO THIS FUNCTION:    * 00330000
+      *                                                               * 00340000
+      *            SYMBOLIC LABEL/NAME = NONE                         * 00350000
+      *            DESCRIPTION = NONE                                 * 00360000
+      *                                                               * 00370000
+      *    OUTPUT  = PARAMETERS EXPLICITLY RETURNED:                  * 00380000
+      *                                                               * 00390000
+      *             SYMBOLIC LABEL/NAME = NONE                        * 00400000
+      *             DESCRIPTION = NONE                                * 00410000
+      *                                                               * 00420000
+      * EXIT-NORMAL = DSN8CC0                                         * 00430000
+      *                                                               * 00440000
+      * EXIT-ERROR = DSN8CC0                                          * 00450000
+      *                                                               * 00460000
+      *     RETURN CODE = NONE                                        * 00470000
+      *                                                               * 00480000
+      *     ABEND CODES = NONE                                        * 00490000
+      *                                                               * 00500000
+      *     ERROR-MESSAGES =  NONE                                    * 00510000
+      *                                                               * 00520000
+      * EXTERNAL REFERENCES =                                         * 00530000
+      *   ROUTINES/SERVICES =  DSN8CC2                                * 00540000
+      *                                                               * 00550000
+      *   DATA-AREAS =                                                * 00560000
+      *       DSN8MCCA          - COBOL STRUCTURE FOR DFHCOMMAREA     * 00570000
+      *       DSN8MCCS          - VCONA TABLE DCL AND PCONA DCLGEN    * 00580000
+      *       DSN8MCC2          - COMMON AREA PART 2                  * 00590000
+      *       DSN8MCOV          - VOPTVAL TABLE DCL & POPTVAL DCLGEN  * 00600000
+      *       DSN8MCVO          - FINDS VALID OPTIONS FOR ACTION,     * 00610000
+      *                           OBJECT, SEARCH CRITERIA             * 00620000
+      *       DSN8MC1           - SQL1 COMMON MODULE FOR IMS AND CICS * 00630000
+      *       DSN8MC3 - DSN8MC5 - VALIDATION MODULES CALLED BY DSN8MC0* 00640000
+      *       DSN8MCXX          - SQL ERROR HANDLER                   * 00650000
+      *                                                               * 00660000
+      *   CONTROL-BLOCKS =                                            * 00670000
+      *       SQLCA             - SQL COMMUNICATION AREA              * 00680000
+      *                                                               * 00690000
+      * TABLES = NONE                                                 * 00700000
+      *                                                               * 00710000
+      * CHANGE-ACTIVITY = NONE                                        * 00720000
+      *                                                               * 00730000
+      *                                                               * 00740000
+      *  *PSEUDOCODE*                                                 * 00750000
+      *                                                               * 00760000
+      *     PROCEDURE                                                 * 00770000
+      *      INCLUDE DECLARATIONS.                                    * 00780000
+      *      INCLUDE DSN8MC1.                                         * 00790000
+      *      INCLUDE ERROR HANDLER.                                   * 00800000
+      *                                                               * 00810000
+      *      CC1EXIT: ( REFERENCED BY DSN8MC1 )                       * 00820000
+      *        EXEC CICS RETURN.                                      * 00830000
+      *                                                               * 00840000
+      *      CC1CALL: ( REFERENCED BY DSN8MC1 )                       * 00850000
+      *          EXEC CICS LINK PROGRAM('DSN8CC2')                    * 00860000
+      *                            COMMAREA(DFHCOMMAREA).             * 00870000
+      *         GO TO MC1SAVE.  (LABEL IN DSN8MC1)                    * 00880000
+      *                                                               * 00890000
+      *      INCLUDE VALIDATION MODULES.                              * 00900000
+      *                                                               * 00910000
+      *     END.                                                      * 00920000
+      ***************************************************************** 00930000
+       ENVIRONMENT DIVISION.                                            00980000
+      *------------------------                                         00990000
+                                                                        01000000
+       DATA DIVISION.                                                   01010000
+      *------------------------                                         01020000
+       WORKING-STORAGE SECTION.                                         01030000
+      ***************************************************************** 01040000
+      *      * DECLARE FIELD PASSED TO MESSAGE ROUTINE                * 01050000
+      *      * DECLARE CONVERSATION STATUS                            * 01060000
+      *      * DECLARE MESSAGE TEXT                                   * 01070000
+      *      * DECLARE OPTION VALIDATION                              * 01080000
+      *      * DECLARE COMMON AREA AND COMMON AREA PART 2             * 01090000
+      ***************************************************************** 01100000
+        01 MSGCODE                PIC X(04).                            01110000
+                                                                        01120000
+        01 OUTMSG                 PIC X(69).                            01130000
+                                                                        01140000
+           EXEC SQL INCLUDE DSN8MCCS END-EXEC.                          01150000
+           EXEC SQL INCLUDE DSN8MCOV END-EXEC.                          01160000
+           EXEC SQL INCLUDE SQLCA    END-EXEC.                          01170000
+           EXEC SQL INCLUDE DSN8MCC2 END-EXEC.                          01180000
+                                                                        01190000
+       LINKAGE SECTION.                                                 01200000
+       01  DFHCOMMAREA.                                                 01210000
+           EXEC SQL INCLUDE DSN8MCCA END-EXEC.                          01220000
+                                                                        01230000
+       PROCEDURE DIVISION.                                              01240000
+      *------------------------                                         01250000
+                                                                        01260000
+      ********************************************************          01270000
+      *  SQL RETURN CODE HANDLING                            *          01280000
+      ********************************************************          01290000
+           EXEC SQL WHENEVER SQLERROR GO TO DB-ERROR END-EXEC           01300000
+           EXEC SQL WHENEVER SQLWARNING GO TO DB-ERROR END-EXEC.        01310000
+                                                                        01320000
+                                                                        01330000
+           MOVE 'DSN8CC1' TO MAJOR IN DSN8-MODULE-NAME.                 01340000
+                                                                        01350000
+      ***********************************************************       01360000
+      *  FIND VALID OPTIONS FOR ACTION, OBJECT, SEARCH CRITERION*       01370000
+      *  RETRIEVE CONVERSATION, VALIDATE, CALL SQL2             *       01380000
+      ***********************************************************       01390000
+                                                                        01400000
+           EXEC SQL INCLUDE DSN8MCVO END-EXEC.                          01410000
+           EXEC SQL INCLUDE DSN8MC1 END-EXEC.                           01420000
+                                                                        01430000
+      *                                          **RETURN               01440000
+       CC1-EXIT.                                                        01450000
+           EXEC CICS RETURN END-EXEC.                                   01460000
+                                                                        01470000
+      ***********************************************************       01480000
+      *  VALIDATE ACTION, OBJECT, SEARCH CRITERIA               *       01490000
+      *  HANDLE ERRORS                                          *       01500000
+      ***********************************************************       01510000
+                                                                        01520000
+       CC1-CALL.                                                        01530000
+           EXEC CICS LINK PROGRAM('DSN8CC2') COMMAREA(DFHCOMMAREA)      01540000
+                    LENGTH(3000) END-EXEC.                              01550000
+           GO TO MC1-SAVE.                                              01560000
+           EXEC SQL INCLUDE DSN8MC3 END-EXEC.                           01570000
+           EXEC SQL INCLUDE DSN8MC4 END-EXEC.                           01580000
+           EXEC SQL INCLUDE DSN8MC5 END-EXEC.                           01590000
+           EXEC SQL INCLUDE DSN8MCXX END-EXEC.                          01600000
+           GOBACK.                                                      01610000
+                                                                        01611000

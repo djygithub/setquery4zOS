@@ -1,0 +1,10 @@
+//EXPORTA  JOB   1,SDILJP,MSGLEVEL=(1,1),                                       
+//         REGION=400K,MSGCLASS=X                                               
+//EXPORT   EXEC  PGM=IDCAMS                                                     
+//SYSPRINT DD    SYSOUT=*                                                       
+//RECEIVE  DD DSN=DAVID.EXPORT.TEST,UNIT=3390,VOL=SER=CICS41,                   
+//         DISP=(,KEEP),SPACE=(CYL,(10,10))                                     
+//SYSIN    DD    *                                                              
+   EXPORT-                                                                      
+           CICS410.CICS.FILEA001 OUTFILE(RECEIVE)                               
+/*                                                                              

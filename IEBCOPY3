@@ -1,0 +1,28 @@
+//PPOM31   JOB (0,75),'D J YOUNG',MSGCLASS=Q                                    
+//S1    EXEC PGM=IEBCOPY,REGION=4M                                              
+//SYSPRINT DD SYSOUT=*                                                          
+//INPUT2   DD DISP=OLD,DSN=FRANK.PPOM31.STUFF                                   
+//OUTPUT2  DD DSN=FRANK.PPOM31.STUFF,DISP=(,PASS),UNIT=EF0,                     
+//         LABEL=(1,SL)                                                         
+//SYSUT3 DD UNIT=SYSDA,SPACE=(CYL,(1,1))                                        
+//SYSUT4 DD UNIT=SYSDA,SPACE=(CYL,(1,1))                                        
+//SYSIN  DD *                                                                   
+    COPY INDD=INPUT2,OUTDD=OUTPUT2                                              
+//S2    EXEC PGM=IEBCOPY,REGION=4M                                              
+//SYSPRINT DD SYSOUT=*                                                          
+//INPUT2   DD DISP=OLD,DSN=FRANK.DB2SMF31.STUFF                                 
+//OUTPUT2  DD DSN=FRANK.DB2SMF31.STUFF,DISP=(,PASS),UNIT=EF0,                   
+//         LABEL=(2,SL)                                                         
+//SYSUT3 DD UNIT=SYSDA,SPACE=(CYL,(1,1))                                        
+//SYSUT4 DD UNIT=SYSDA,SPACE=(CYL,(1,1))                                        
+//SYSIN  DD *                                                                   
+    COPY INDD=INPUT2,OUTDD=OUTPUT2                                              
+//S3    EXEC PGM=IEBCOPY,REGION=4M                                              
+//SYSPRINT DD SYSOUT=*                                                          
+//INPUT2   DD DISP=OLD,DSN=DAVID.DB2SMF23.STUFF                                 
+//OUTPUT2  DD DSN=FRANK.DB2SMF23.STUFF,DISP=(,KEEP),UNIT=EF0,                   
+//         LABEL=(3,SL)                                                         
+//SYSUT3 DD UNIT=SYSDA,SPACE=(CYL,(1,1))                                        
+//SYSUT4 DD UNIT=SYSDA,SPACE=(CYL,(1,1))                                        
+//SYSIN  DD *                                                                   
+    COPY INDD=INPUT2,OUTDD=OUTPUT2                                              

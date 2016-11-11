@@ -1,0 +1,7 @@
+//GTFPRINT JOB (RWM,T),'DUMP',MSGCLASS=O                                00010061
+//DEFVSAM EXEC PGM=IDCAMS                                                       
+//SYSPRINT DD  SYSOUT=*                                                         
+//TEMP     DD  DSN=DB2310.GTF,DISP=SHR,UNIT=3390,VOL=SER=DB2310                 
+//SYSIN    DD  *                                                                
+ PRINT  INFILE(TEMP)                                                            
+/*                                                                              

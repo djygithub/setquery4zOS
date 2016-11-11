@@ -1,0 +1,7 @@
+//DUMPSMF2 JOB (RWM,T),'DUMP',MSGCLASS=O                                00010099
+//*UTPIT OUTPUT DEST=PRT5                                               00011005
+//IEFPROC  EXEC PGM=IFASMFDP,REGION=512K                                00012000
+//SYSPRINT DD  SYSOUT=*                                                 00013000
+//DUMPOUT DD DISP=(NEW,KEEP),DSN=MV51RS.AUG01951.SMFDATA,               00014099
+//    VOL=SER=MV51RS,UNIT=3390,SPACE=(CYL,(5,5))                        00015099
+//DUMPIN DD DISP=OLD,DSN=SYS1.MAN1                                      00015199

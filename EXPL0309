@@ -1,0 +1,522 @@
+---------+---------+---------+---------+---------+---------+---------+---------+
+ SELECT QUERYNO, QBLOCKNO, APPLNAME, PROGNAME, PLANNO, METHOD, CREATOR,         
+    TNAME FROM PLAN_TABLE WHERE QUERYNO BETWEEN 309 AND 316                     
+    ORDER BY QUERYNO;                                                           
+---------+---------+---------+---------+---------+---------+---------+---------+
+    QUERYNO  QBLOCKNO  APPLNAME  PROGNAME  PLANNO  METHOD  CREATOR   TNAME      
+---------+---------+---------+---------+---------+---------+---------+---------+
+        309         1            DSNESM68       1       0  DAVID     SQ10       
+        309         1            DSNESM68       1       0  DAVID     SQ10       
+        309         1            DSNESM68       1       0  DAVID     SQ10       
+        309         1            DSNESM68       1       0  DAVID     SQ10       
+        309         1            DSNESM68       1       0  DAVID     SQ10       
+        309         1            DSNESM68       1       0  DAVID     SQ10       
+        309         1            DSNESM68       1       0  DAVID     SQ10       
+        309         1            DSNESM68       1       0  DAVID     SQ10       
+        309         1            DSNESM68       1       0  DAVID     SQ10       
+        309         1            DSNESM68       1       0  DAVID     SQ10       
+        309         1            DSNESM68       1       0  DAVID     SQ10       
+        309         1            DSNESM68       1       0  DAVID     SQ10       
+        310         1            DSNESM68       1       0  DAVID     SQ10       
+        310         1            DSNESM68       1       0  DAVID     SQ10       
+        310         1            DSNESM68       1       0  DAVID     SQ10       
+        310         1            DSNESM68       1       0  DAVID     SQ10       
+        310         1            DSNESM68       1       0  DAVID     SQ10       
+        310         1            DSNESM68       1       0  DAVID     SQ10       
+        310         1            DSNESM68       1       0  DAVID     SQ10       
+        310         1            DSNESM68       1       0  DAVID     SQ10       
+        310         1            DSNESM68       1       0  DAVID     SQ10       
+        310         1            DSNESM68       1       0  DAVID     SQ10       
+        310         1            DSNESM68       1       0  DAVID     SQ10       
+        310         1            DSNESM68       1       0  DAVID     SQ10       
+        311         1            DSNESM68       1       0  DAVID     SQ10       
+        311         1            DSNESM68       1       0  DAVID     SQ10       
+        311         1            DSNESM68       1       0  DAVID     SQ10       
+        311         1            DSNESM68       1       0  DAVID     SQ10       
+        311         1            DSNESM68       1       0  DAVID     SQ10       
+        311         1            DSNESM68       1       0  DAVID     SQ10       
+        311         1            DSNESM68       1       0  DAVID     SQ10       
+        311         1            DSNESM68       1       0  DAVID     SQ10       
+        311         1            DSNESM68       1       0  DAVID     SQ10       
+        311         1            DSNESM68       1       0  DAVID     SQ10       
+        311         1            DSNESM68       1       0  DAVID     SQ10       
+        311         1            DSNESM68       1       0  DAVID     SQ10       
+        312         1            DSNESM68       1       0  DAVID     SQ10       
+        312         1            DSNESM68       1       0  DAVID     SQ10       
+        312         1            DSNESM68       1       0  DAVID     SQ10       
+        312         1            DSNESM68       1       0  DAVID     SQ10       
+        312         1            DSNESM68       1       0  DAVID     SQ10       
+        312         1            DSNESM68       1       0  DAVID     SQ10       
+        312         1            DSNESM68       1       0  DAVID     SQ10       
+        312         1            DSNESM68       1       0  DAVID     SQ10       
+        312         1            DSNESM68       1       0  DAVID     SQ10       
+        312         1            DSNESM68       1       0  DAVID     SQ10       
+        312         1            DSNESM68       1       0  DAVID     SQ10       
+        312         1            DSNESM68       1       0  DAVID     SQ10       
+        313         1            DSNESM68       1       0  DAVID     SQ10       
+        313         1            DSNESM68       1       0  DAVID     SQ10       
+        313         1            DSNESM68       1       0  DAVID     SQ10       
+        313         1            DSNESM68       1       0  DAVID     SQ10       
+        313         1            DSNESM68       1       0  DAVID     SQ10       
+    QUERYNO  QBLOCKNO  APPLNAME  PROGNAME  PLANNO  METHOD  CREATOR   TNAME      
+---------+---------+---------+---------+---------+---------+---------+---------+
+        313         1            DSNESM68       1       0  DAVID     SQ10       
+        313         1            DSNESM68       1       0  DAVID     SQ10       
+        313         1            DSNESM68       1       0  DAVID     SQ10       
+        313         1            DSNESM68       1       0  DAVID     SQ10       
+        313         1            DSNESM68       1       0  DAVID     SQ10       
+        313         1            DSNESM68       1       0  DAVID     SQ10       
+        313         1            DSNESM68       1       0  DAVID     SQ10       
+        314         1            DSNESM68       1       0  DAVID     SQ10       
+        314         1            DSNESM68       1       0  DAVID     SQ10       
+        314         1            DSNESM68       1       0  DAVID     SQ10       
+        314         1            DSNESM68       1       0  DAVID     SQ10       
+        314         1            DSNESM68       1       0  DAVID     SQ10       
+        314         1            DSNESM68       1       0  DAVID     SQ10       
+        314         1            DSNESM68       1       0  DAVID     SQ10       
+        314         1            DSNESM68       1       0  DAVID     SQ10       
+        314         1            DSNESM68       1       0  DAVID     SQ10       
+        314         1            DSNESM68       1       0  DAVID     SQ10       
+        315         1            DSNESM68       1       0  DAVID     SQ10       
+        315         1            DSNESM68       1       0  DAVID     SQ10       
+        315         1            DSNESM68       1       0  DAVID     SQ10       
+        315         1            DSNESM68       1       0  DAVID     SQ10       
+        315         1            DSNESM68       1       0  DAVID     SQ10       
+        315         1            DSNESM68       1       0  DAVID     SQ10       
+        315         1            DSNESM68       1       0  DAVID     SQ10       
+        315         1            DSNESM68       1       0  DAVID     SQ10       
+        315         1            DSNESM68       1       0  DAVID     SQ10       
+        315         1            DSNESM68       1       0  DAVID     SQ10       
+        316         1            DSNESM68       1       0  DAVID     SQ10       
+        316         1            DSNESM68       1       0  DAVID     SQ10       
+        316         1            DSNESM68       1       0  DAVID     SQ10       
+        316         1            DSNESM68       1       0  DAVID     SQ10       
+        316         1            DSNESM68       1       0  DAVID     SQ10       
+        316         1            DSNESM68       1       0  DAVID     SQ10       
+        316         1            DSNESM68       1       0  DAVID     SQ10       
+        316         1            DSNESM68       1       0  DAVID     SQ10       
+        316         1            DSNESM68       1       0  DAVID     SQ10       
+        316         1            DSNESM68       1       0  DAVID     SQ10       
+DSNE610I NUMBER OF ROWS DISPLAYED IS 90                                         
+DSNE616I STATEMENT EXECUTION WAS SUCCESSFUL, SQLCODE IS 100                     
+---------+---------+---------+---------+---------+---------+---------+---------+
+ SELECT QUERYNO,  TABNO, ACCESSTYPE, MATCHCOLS,  ACCESSNAME,                    
+    INDEXONLY                                                                   
+    FROM PLAN_TABLE WHERE QUERYNO BETWEEN 309 AND 316                           
+    ORDER BY QUERYNO;                                                           
+---------+---------+---------+---------+---------+---------+---------+---------+
+    QUERYNO   TABNO  ACCESSTYPE  MATCHCOLS  ACCESSNAME          INDEXONLY       
+---------+---------+---------+---------+---------+---------+---------+---------+
+        309       1  M                   0                      N               
+        309       1  MX                  1  SQ10IN04            Y               
+        309       1  MX                  1  SQ10IN01            Y               
+        309       1  MI                  0                      N               
+        309       1  MX                  1  SQ10IN01            Y               
+        309       1  MU                  0                      N               
+        309       1  MX                  1  SQ10IN01            Y               
+        309       1  MU                  0                      N               
+        309       1  MX                  1  SQ10IN01            Y               
+        309       1  MU                  0                      N               
+        309       1  MX                  1  SQ10IN01            Y               
+    QUERYNO   TABNO  ACCESSTYPE  MATCHCOLS  ACCESSNAME          INDEXONLY       
+---------+---------+---------+---------+---------+---------+---------+---------+
+        309       1  MU                  0                      N               
+        310       1  M                   0                      N               
+        310       1  MX                  1  SQ10IN06            Y               
+        310       1  MX                  1  SQ10IN01            Y               
+        310       1  MI                  0                      N               
+        310       1  MX                  1  SQ10IN01            Y               
+        310       1  MU                  0                      N               
+        310       1  MX                  1  SQ10IN01            Y               
+        310       1  MU                  0                      N               
+        310       1  MX                  1  SQ10IN01            Y               
+        310       1  MU                  0                      N               
+        310       1  MX                  1  SQ10IN01            Y               
+        310       1  MU                  0                      N               
+        311       1  M                   0                      N               
+        311       1  MX                  1  SQ10IN07            Y               
+        311       1  MX                  1  SQ10IN01            Y               
+        311       1  MI                  0                      N               
+        311       1  MX                  1  SQ10IN01            Y               
+        311       1  MU                  0                      N               
+        311       1  MX                  1  SQ10IN01            Y               
+        311       1  MU                  0                      N               
+        311       1  MX                  1  SQ10IN01            Y               
+        311       1  MU                  0                      N               
+        311       1  MX                  1  SQ10IN01            Y               
+        311       1  MU                  0                      N               
+        312       1  M                   0                      N               
+        312       1  MX                  1  SQ10IN08            Y               
+        312       1  MX                  1  SQ10IN01            Y               
+        312       1  MI                  0                      N               
+        312       1  MX                  1  SQ10IN01            Y               
+        312       1  MU                  0                      N               
+        312       1  MX                  1  SQ10IN01            Y               
+        312       1  MU                  0                      N               
+        312       1  MX                  1  SQ10IN01            Y               
+        312       1  MU                  0                      N               
+        312       1  MX                  1  SQ10IN01            Y               
+        312       1  MU                  0                      N               
+        313       1  M                   0                      N               
+        313       1  MX                  1  SQ10IN01            Y               
+        313       1  MX                  1  SQ10IN09            Y               
+        313       1  MI                  0                      N               
+        313       1  MX                  1  SQ10IN01            Y               
+        313       1  MU                  0                      N               
+        313       1  MX                  1  SQ10IN01            Y               
+        313       1  MU                  0                      N               
+        313       1  MX                  1  SQ10IN01            Y               
+        313       1  MU                  0                      N               
+        313       1  MX                  1  SQ10IN01            Y               
+        313       1  MU                  0                      N               
+        314       1  M                   0                      N               
+        314       1  MX                  1  SQ10IN01            Y               
+        314       1  MX                  1  SQ10IN01            Y               
+        314       1  MU                  0                      N               
+        314       1  MX                  1  SQ10IN01            Y               
+        314       1  MU                  0                      N               
+        314       1  MX                  1  SQ10IN01            Y               
+        314       1  MU                  0                      N               
+        314       1  MX                  1  SQ10IN01            Y               
+    QUERYNO   TABNO  ACCESSTYPE  MATCHCOLS  ACCESSNAME          INDEXONLY       
+---------+---------+---------+---------+---------+---------+---------+---------+
+        314       1  MU                  0                      N               
+        315       1  M                   0                      N               
+        315       1  MX                  1  SQ10IN01            Y               
+        315       1  MX                  1  SQ10IN01            Y               
+        315       1  MU                  0                      N               
+        315       1  MX                  1  SQ10IN01            Y               
+        315       1  MU                  0                      N               
+        315       1  MX                  1  SQ10IN01            Y               
+        315       1  MU                  0                      N               
+        315       1  MX                  1  SQ10IN01            Y               
+        315       1  MU                  0                      N               
+        316       1  M                   0                      N               
+        316       1  MX                  1  SQ10IN01            Y               
+        316       1  MX                  1  SQ10IN01            Y               
+        316       1  MU                  0                      N               
+        316       1  MX                  1  SQ10IN01            Y               
+        316       1  MU                  0                      N               
+        316       1  MX                  1  SQ10IN01            Y               
+        316       1  MU                  0                      N               
+        316       1  MX                  1  SQ10IN01            Y               
+        316       1  MU                  0                      N               
+DSNE610I NUMBER OF ROWS DISPLAYED IS 90                                         
+DSNE616I STATEMENT EXECUTION WAS SUCCESSFUL, SQLCODE IS 100                     
+---------+---------+---------+---------+---------+---------+---------+---------+
+ SELECT QUERYNO,  SORTN_UNIQ, SORTN_JOIN, SORTN_ORDERBY, SORTN_GROUPBY          
+    FROM PLAN_TABLE WHERE QUERYNO BETWEEN 309 AND 316                           
+    ORDER BY QUERYNO;                                                           
+---------+---------+---------+---------+---------+---------+---------+---------+
+    QUERYNO  SORTN_UNIQ  SORTN_JOIN  SORTN_ORDERBY  SORTN_GROUPBY               
+---------+---------+---------+---------+---------+---------+---------+---------+
+        309  N           N           N              N                           
+        309  N           N           N              N                           
+        309  N           N           N              N                           
+        309  N           N           N              N                           
+        309  N           N           N              N                           
+        309  N           N           N              N                           
+        309  N           N           N              N                           
+        309  N           N           N              N                           
+        309  N           N           N              N                           
+        309  N           N           N              N                           
+        309  N           N           N              N                           
+        309  N           N           N              N                           
+        310  N           N           N              N                           
+        310  N           N           N              N                           
+        310  N           N           N              N                           
+        310  N           N           N              N                           
+        310  N           N           N              N                           
+        310  N           N           N              N                           
+        310  N           N           N              N                           
+        310  N           N           N              N                           
+        310  N           N           N              N                           
+        310  N           N           N              N                           
+        310  N           N           N              N                           
+        310  N           N           N              N                           
+        311  N           N           N              N                           
+        311  N           N           N              N                           
+        311  N           N           N              N                           
+        311  N           N           N              N                           
+    QUERYNO  SORTN_UNIQ  SORTN_JOIN  SORTN_ORDERBY  SORTN_GROUPBY               
+---------+---------+---------+---------+---------+---------+---------+---------+
+        311  N           N           N              N                           
+        311  N           N           N              N                           
+        311  N           N           N              N                           
+        311  N           N           N              N                           
+        311  N           N           N              N                           
+        311  N           N           N              N                           
+        311  N           N           N              N                           
+        311  N           N           N              N                           
+        312  N           N           N              N                           
+        312  N           N           N              N                           
+        312  N           N           N              N                           
+        312  N           N           N              N                           
+        312  N           N           N              N                           
+        312  N           N           N              N                           
+        312  N           N           N              N                           
+        312  N           N           N              N                           
+        312  N           N           N              N                           
+        312  N           N           N              N                           
+        312  N           N           N              N                           
+        312  N           N           N              N                           
+        313  N           N           N              N                           
+        313  N           N           N              N                           
+        313  N           N           N              N                           
+        313  N           N           N              N                           
+        313  N           N           N              N                           
+        313  N           N           N              N                           
+        313  N           N           N              N                           
+        313  N           N           N              N                           
+        313  N           N           N              N                           
+        313  N           N           N              N                           
+        313  N           N           N              N                           
+        313  N           N           N              N                           
+        314  N           N           N              N                           
+        314  N           N           N              N                           
+        314  N           N           N              N                           
+        314  N           N           N              N                           
+        314  N           N           N              N                           
+        314  N           N           N              N                           
+        314  N           N           N              N                           
+        314  N           N           N              N                           
+        314  N           N           N              N                           
+        314  N           N           N              N                           
+        315  N           N           N              N                           
+        315  N           N           N              N                           
+        315  N           N           N              N                           
+        315  N           N           N              N                           
+        315  N           N           N              N                           
+        315  N           N           N              N                           
+        315  N           N           N              N                           
+        315  N           N           N              N                           
+        315  N           N           N              N                           
+        315  N           N           N              N                           
+        316  N           N           N              N                           
+        316  N           N           N              N                           
+        316  N           N           N              N                           
+        316  N           N           N              N                           
+        316  N           N           N              N                           
+        316  N           N           N              N                           
+    QUERYNO  SORTN_UNIQ  SORTN_JOIN  SORTN_ORDERBY  SORTN_GROUPBY               
+---------+---------+---------+---------+---------+---------+---------+---------+
+        316  N           N           N              N                           
+        316  N           N           N              N                           
+        316  N           N           N              N                           
+        316  N           N           N              N                           
+DSNE610I NUMBER OF ROWS DISPLAYED IS 90                                         
+DSNE616I STATEMENT EXECUTION WAS SUCCESSFUL, SQLCODE IS 100                     
+---------+---------+---------+---------+---------+---------+---------+---------+
+ SELECT QUERYNO,  SORTC_UNIQ, SORTC_JOIN, SORTC_ORDERBY, SORTC_GROUPBY          
+    FROM PLAN_TABLE WHERE QUERYNO BETWEEN 309 AND 316                           
+    ORDER BY QUERYNO;                                                           
+---------+---------+---------+---------+---------+---------+---------+---------+
+    QUERYNO  SORTC_UNIQ  SORTC_JOIN  SORTC_ORDERBY  SORTC_GROUPBY               
+---------+---------+---------+---------+---------+---------+---------+---------+
+        309  N           N           N              N                           
+        309  N           N           N              N                           
+        309  N           N           N              N                           
+        309  N           N           N              N                           
+        309  N           N           N              N                           
+        309  N           N           N              N                           
+        309  N           N           N              N                           
+        309  N           N           N              N                           
+        309  N           N           N              N                           
+        309  N           N           N              N                           
+        309  N           N           N              N                           
+        309  N           N           N              N                           
+        310  N           N           N              N                           
+        310  N           N           N              N                           
+        310  N           N           N              N                           
+        310  N           N           N              N                           
+        310  N           N           N              N                           
+        310  N           N           N              N                           
+        310  N           N           N              N                           
+        310  N           N           N              N                           
+        310  N           N           N              N                           
+        310  N           N           N              N                           
+        310  N           N           N              N                           
+        310  N           N           N              N                           
+        311  N           N           N              N                           
+        311  N           N           N              N                           
+        311  N           N           N              N                           
+        311  N           N           N              N                           
+        311  N           N           N              N                           
+        311  N           N           N              N                           
+        311  N           N           N              N                           
+        311  N           N           N              N                           
+        311  N           N           N              N                           
+        311  N           N           N              N                           
+        311  N           N           N              N                           
+        311  N           N           N              N                           
+        312  N           N           N              N                           
+        312  N           N           N              N                           
+        312  N           N           N              N                           
+        312  N           N           N              N                           
+        312  N           N           N              N                           
+        312  N           N           N              N                           
+        312  N           N           N              N                           
+        312  N           N           N              N                           
+        312  N           N           N              N                           
+    QUERYNO  SORTC_UNIQ  SORTC_JOIN  SORTC_ORDERBY  SORTC_GROUPBY               
+---------+---------+---------+---------+---------+---------+---------+---------+
+        312  N           N           N              N                           
+        312  N           N           N              N                           
+        312  N           N           N              N                           
+        313  N           N           N              N                           
+        313  N           N           N              N                           
+        313  N           N           N              N                           
+        313  N           N           N              N                           
+        313  N           N           N              N                           
+        313  N           N           N              N                           
+        313  N           N           N              N                           
+        313  N           N           N              N                           
+        313  N           N           N              N                           
+        313  N           N           N              N                           
+        313  N           N           N              N                           
+        313  N           N           N              N                           
+        314  N           N           N              N                           
+        314  N           N           N              N                           
+        314  N           N           N              N                           
+        314  N           N           N              N                           
+        314  N           N           N              N                           
+        314  N           N           N              N                           
+        314  N           N           N              N                           
+        314  N           N           N              N                           
+        314  N           N           N              N                           
+        314  N           N           N              N                           
+        315  N           N           N              N                           
+        315  N           N           N              N                           
+        315  N           N           N              N                           
+        315  N           N           N              N                           
+        315  N           N           N              N                           
+        315  N           N           N              N                           
+        315  N           N           N              N                           
+        315  N           N           N              N                           
+        315  N           N           N              N                           
+        315  N           N           N              N                           
+        316  N           N           N              N                           
+        316  N           N           N              N                           
+        316  N           N           N              N                           
+        316  N           N           N              N                           
+        316  N           N           N              N                           
+        316  N           N           N              N                           
+        316  N           N           N              N                           
+        316  N           N           N              N                           
+        316  N           N           N              N                           
+        316  N           N           N              N                           
+DSNE610I NUMBER OF ROWS DISPLAYED IS 90                                         
+DSNE616I STATEMENT EXECUTION WAS SUCCESSFUL, SQLCODE IS 100                     
+---------+---------+---------+---------+---------+---------+---------+---------+
+ SELECT QUERYNO,  TSLOCKMODE, TIMESTAMP, PREFETCH, COLUMN_FN_EVAL,              
+    MIXOPSEQ                                                                    
+    FROM PLAN_TABLE WHERE QUERYNO BETWEEN 309 AND 316                           
+    ORDER BY QUERYNO;                                                           
+---------+---------+---------+---------+---------+---------+---------+---------+
+    QUERYNO  TSLOCKMODE  TIMESTAMP         PREFETCH  COLUMN_FN_EVAL  MIXOPSEQ   
+---------+---------+---------+---------+---------+---------+---------+---------+
+        309   IS         1991020215424877  L         R                      0   
+        309   IS         1991020215424877                                   1   
+        309   IS         1991020215424877  S                                2   
+    QUERYNO  TSLOCKMODE  TIMESTAMP         PREFETCH  COLUMN_FN_EVAL  MIXOPSEQ   
+---------+---------+---------+---------+---------+---------+---------+---------+
+        309   IS         1991020215424877                                   3   
+        309   IS         1991020215424877  S                                4   
+        309   IS         1991020215424877                                   5   
+        309   IS         1991020215424877  S                                6   
+        309   IS         1991020215424877                                   7   
+        309   IS         1991020215424877  S                                8   
+        309   IS         1991020215424877                                   9   
+        309   IS         1991020215424877  S                               10   
+        309   IS         1991020215424877                                  11   
+        310   IS         1991020215424886  L         R                      0   
+        310   IS         1991020215424886                                   1   
+        310   IS         1991020215424886  S                                2   
+        310   IS         1991020215424886                                   3   
+        310   IS         1991020215424886  S                                4   
+        310   IS         1991020215424886                                   5   
+        310   IS         1991020215424886  S                                6   
+        310   IS         1991020215424886                                   7   
+        310   IS         1991020215424886  S                                8   
+        310   IS         1991020215424886                                   9   
+        310   IS         1991020215424886  S                               10   
+        310   IS         1991020215424886                                  11   
+        311   IS         1991020215424893  L         R                      0   
+        311   IS         1991020215424893                                   1   
+        311   IS         1991020215424893  S                                2   
+        311   IS         1991020215424893                                   3   
+        311   IS         1991020215424893  S                                4   
+        311   IS         1991020215424893                                   5   
+        311   IS         1991020215424893  S                                6   
+        311   IS         1991020215424893                                   7   
+        311   IS         1991020215424893  S                                8   
+        311   IS         1991020215424893                                   9   
+        311   IS         1991020215424893  S                               10   
+        311   IS         1991020215424893                                  11   
+        312   IS         1991020215424898  L         R                      0   
+        312   IS         1991020215424898  S                                1   
+        312   IS         1991020215424898  S                                2   
+        312   IS         1991020215424898                                   3   
+        312   IS         1991020215424898  S                                4   
+        312   IS         1991020215424898                                   5   
+        312   IS         1991020215424898  S                                6   
+        312   IS         1991020215424898                                   7   
+        312   IS         1991020215424898  S                                8   
+        312   IS         1991020215424898                                   9   
+        312   IS         1991020215424898  S                               10   
+        312   IS         1991020215424898                                  11   
+        313   IS         1991020215424905  L         R                      0   
+        313   IS         1991020215424905  S                                1   
+        313   IS         1991020215424905  S                                2   
+        313   IS         1991020215424905                                   3   
+        313   IS         1991020215424905  S                                4   
+        313   IS         1991020215424905                                   5   
+        313   IS         1991020215424905  S                                6   
+        313   IS         1991020215424905                                   7   
+        313   IS         1991020215424905  S                                8   
+        313   IS         1991020215424905                                   9   
+        313   IS         1991020215424905  S                               10   
+        313   IS         1991020215424905                                  11   
+        314   IS         1991020215424911  L         R                      0   
+    QUERYNO  TSLOCKMODE  TIMESTAMP         PREFETCH  COLUMN_FN_EVAL  MIXOPSEQ   
+---------+---------+---------+---------+---------+---------+---------+---------+
+        314   IS         1991020215424911  S                                1   
+        314   IS         1991020215424911  S                                2   
+        314   IS         1991020215424911                                   3   
+        314   IS         1991020215424911  S                                4   
+        314   IS         1991020215424911                                   5   
+        314   IS         1991020215424911  S                                6   
+        314   IS         1991020215424911                                   7   
+        314   IS         1991020215424911  S                                8   
+        314   IS         1991020215424911                                   9   
+        315   IS         1991020215424918  L         R                      0   
+        315   IS         1991020215424918  S                                1   
+        315   IS         1991020215424918  S                                2   
+        315   IS         1991020215424918                                   3   
+        315   IS         1991020215424918  S                                4   
+        315   IS         1991020215424918                                   5   
+        315   IS         1991020215424918  S                                6   
+        315   IS         1991020215424918                                   7   
+        315   IS         1991020215424918  S                                8   
+        315   IS         1991020215424918                                   9   
+        316   IS         1991020215424923  L         R                      0   
+        316   IS         1991020215424923  S                                1   
+        316   IS         1991020215424923  S                                2   
+        316   IS         1991020215424923                                   3   
+        316   IS         1991020215424923  S                                4   
+        316   IS         1991020215424923                                   5   
+        316   IS         1991020215424923  S                                6   
+        316   IS         1991020215424923                                   7   
+        316   IS         1991020215424923  S                                8   
+        316   IS         1991020215424923                                   9   
+DSNE610I NUMBER OF ROWS DISPLAYED IS 90                                         
+DSNE616I STATEMENT EXECUTION WAS SUCCESSFUL, SQLCODE IS 100                     
+---------+---------+---------+---------+---------+---------+---------+---------+
+---------+---------+---------+---------+---------+---------+---------+---------+
+DSNE617I COMMIT PERFORMED, SQLCODE IS 0                                         
+DSNE616I STATEMENT EXECUTION WAS SUCCESSFUL, SQLCODE IS 0                       
+---------+---------+---------+---------+---------+---------+---------+---------+
+DSNE601I SQL STATEMENTS ASSUMED TO BE BETWEEN COLUMNS 1 AND 72                  
+DSNE620I NUMBER OF SQL STATEMENTS PROCESSED IS 5                                
+DSNE621I NUMBER OF INPUT RECORDS READ IS 17                                     
+DSNE622I NUMBER OF OUTPUT RECORDS WRITTEN IS 522                                

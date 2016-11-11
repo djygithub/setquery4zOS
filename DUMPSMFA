@@ -1,0 +1,8 @@
+//DUMPSMF  JOB (RWM,T),'DUMP',MSGCLASS=O                                00010000
+//*UTPIT OUTPUT DEST=PRT5                                               00011000
+//IEFPROC  EXEC PGM=IFASMFDP,REGION=512K                                00012000
+//SYSPRINT DD  SYSOUT=*                                                 00013000
+//DUMPOUT DD DISP=(NEW,KEEP),DSN=MV43RS.MAR15951.SMFDATA,               00014000
+//    VOL=SER=MV43RS,UNIT=3390,SPACE=(CYL,(150,150))                    00015000
+//DUMPIN DD DISP=OLD,DSN=MV43RS.MAR15951.SMFDATA,UNIT=3390,             00016000
+//   VOL=SER=MV43PS                                                     00017000

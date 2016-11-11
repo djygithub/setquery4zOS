@@ -1,0 +1,12 @@
+-- ****************************************************************** --        
+--                                                                    --        
+--  DATABASE SQ10DB TABLE DAVID.SQ10                               --           
+--       2,500,000 ROWS                                               --        
+--     224 BYTES PER ROW                                              --        
+--                                                                    --        
+--                                                                    --        
+--                                                                    --        
+-- ****************************************************************** --        
+ DROP TABLESPACE SQ10TSDB.SQ10TSTS;                                             
+ DROP DATABASE SQ10TSDB;                                                        
+ DROP STOGROUP SQ10TEST;                                                        

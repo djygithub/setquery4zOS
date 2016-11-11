@@ -1,0 +1,137 @@
+//DSNTIJUZ JOB (330RWM00),'D J YOUNG',MSGCLASS=X                        00001000
+//* *************************************************************** */  00002000
+//*    COPYRIGHT = 5665-DB2 (C) COPYRIGHT IBM CORP 1982, 1989       */  00003000
+//*    REFER TO COPYRIGHT INSTRUCTIONS FORM NUMBER G120-2083        */  00004000
+//*                                                                 */  00005000
+//*    STATUS = VERSION 2 RELEASE 2, LEVEL 0                        */  00006000
+//*        DSNTIJUZ - INSTALL JOBSTREAM FOR DSNZPARM UPDATES        */  00007000
+//*                   SOME OF THE FOLLOWING STEPS MAY BE REMOVED BY */  00008000
+//*                   THE INSTALL CLIST JCL EDITING IF NOT NEEDED.  */  00009000
+//*                                                                 */  00010000
+//*        IN ORDER TO MODIFY YOUR DSNZPARM MEMBER, YOU MUST RUN    */  00020000
+//*        THE DB2 INSTALLATION CLIST IN UPDATE MODE.  DO NOT "ZAP" */  00030000
+//*        DSNZPARM; DO NOT MANUALLY EDIT THE DSN6XXXX MACRO        */  00040000
+//*        INVOCATIONS IN DSNTIJUZ.  RUNNING THE CLIST IN UPDATE    */  00050000
+//*        MODE ENSURES THAT YOU WILL NOT LOSE THE CHANGES YOU MAKE */  00060000
+//*        WHEN YOU MIGRATE TO A NEWER RELEASE OF DB2.              */  00070000
+//*                                                                 */  00080000
+//*        DSNTIZA  STEP  ASSEMBLE DSN6.... MACROS, CREATE DSNZPARM */  00090000
+//*        DSNTIZL  STEP  LINK EDIT DSNZPARM                        */  00100000
+//*        DSNTLOG  STEP  UPDATE PASSWORDS                          */  00110000
+//*        DSNTIZP  STEP  ASSEMBLE DSNHDECP DATA-ONLY LOAD MODULE   */  00120000
+//*        DSNTIZQ  STEP  LINK EDIT DSNHDECP LOAD MODULE            */  00130000
+//*        DSNTIMQ  STEP  SMP/E PROCESSING FOR DSNHDECP             */  00140000
+//*                                                                 */  00150000
+//* *************************************************************** */  00160000
+//DSNTIZA EXEC PGM=IEV90,PARM='OBJECT,NODECK'                           00170000
+//SYSLIB   DD  DISP=SHR,                                                00180000
+//         DSN=DSN22X.DSNMACS                                           00190000
+//         DD  DISP=SHR,                                                00200000
+//         DSN=SYS1.MACLIB                                              00210000
+//SYSLIN   DD  DSN=&&LOADSET(DSNTILMM),DISP=(NEW,PASS),                 00220000
+//             UNIT=3390,                                               00230000
+//             SPACE=(800,(50,50,2)),DCB=(BLKSIZE=800)                  00240000
+//SYSPRINT DD  SYSOUT=*                                                 00250000
+//SYSUDUMP DD  SYSOUT=*                                                 00260000
+//SYSUT1   DD  UNIT=3390,SPACE=(800,(50,50),,,ROUND)                    00270000
+//SYSUT2   DD  UNIT=3390,SPACE=(800,(50,50),,,ROUND)                    00280000
+//SYSUT3   DD  UNIT=3390,SPACE=(800,(50,50),,,ROUND)                    00290000
+//SYSIN    DD  *                                                        00300000
+    DSN6ENV    MVS=XA                                                   00310000
+    DSN6SPRM   RESTART,                                                X00320000
+               ALL,                                                    X00330000
+               AUTH=NO,                                                X00340000
+               BUFFER=(BP0(1000,1000),                                 X00350000
+               BP1(0,0),                                               X00360000
+               BP2(0,0),                                               X00370000
+               BP32K(12,12)),                                          X00380000
+               CATALOG=DSNC220,                                        X00390000
+               DECDIV3=NO,                                             X00400000
+               DEFLTID=DAVID,                                          X00410000
+               DSMAX=1000,                                             X00420000
+               EDMPOOL=8000,                                           X00430000
+               IRLMAUT=YES,                                            X00440000
+               IRLMPRC=IRLMPROC,                                       X00450000
+               IRLMSID=IRLM,                                           X00460000
+               IRLMRWT=300,                                            X00470000
+               IRLMSWT=300,                                            X00480000
+               NUMLKTS=0,                                              X00490000
+               NUMLKUS=0,                                              X00500000
+               RECALL=YES,                                             X00510000
+               RECALLD=120,                                            X00520000
+               SYSADM=DAVID,                                           X00530000
+               SYSADM2=NASUSR1,                                        X00540000
+               SYSOPR1=SYSOPR,                                         X00550000
+               SYSOPR2=DAVID                                            00560000
+    DSN6ARVP   ALCUNIT=BLK,                                            X00570000
+               ARCWRTC=(1,3,4),                                        X00580000
+               ARCWTOR=YES,                                            X00590000
+               ARCPFX1=DSNC220.ARCHLOG1,                               X00600000
+               ARCPFX2=DSNC220.ARCHLOG2,                               X00610000
+               ARCRETN=9999,                                           X00620000
+               BLKSIZE=28672,                                          X00630000
+               CATALOG=NO,                                             X00640000
+               MSVGP=,                                                 X00650000
+               MSVGP2=,                                                X00660000
+               PRIQTY=1234,                                            X00670000
+               PROTECT=NO,                                             X00680000
+               SECQTY=154,                                             X00690000
+               UNIT=CTAPE                                               00700000
+    DSN6LOGP   INBUFF=28,                                              X00710000
+               MAXALLC=3,                                              X00720000
+               MAXARCH=500,                                            X00730000
+               OUTBUFF=400,                                            X00740000
+               TWOACTV=NO,                                             X00750000
+               TWOARCH=YES,                                            X00760000
+               WRTHRSH=20                                               00770000
+    DSN6SYSP   AUDITST=NO,                                             X00780000
+               CTHREAD=100,                                            X00790000
+               IDBACK=20,                                              X00800000
+               IDFORE=100,                                             X00810000
+               LOGLOAD=200,                                            X00820000
+               MAXDBAT=0,                                              X00830000
+               MON=(1,2,3),                                            X00840000
+               MONSIZE=8192,                                           X00850000
+               RLF=NO,                                                 X00860000
+               RLFTBL=01,                                              X00870000
+               RLFERR=NOLIMIT,                                         X00880000
+               RLFAUTH=SYSIBM,                                         X00890000
+               ROUTCDE=(1),                                            X00900000
+               SMFACCT=(1),                                            X00910000
+               SMFSTAT=YES,                                            X00920000
+               STATIME=1,                                              X00930000
+               TRACSTR=NO,                                             X00940000
+               TRACTBL=16                                               00950000
+    DSN6FAC    DDF=NO,                                                 X00960000
+               RLFERRD=NOLIMIT                                          00970000
+    END                                                                 00980000
+//                                                                      00981000
+//********************************************************************* 00990000
+//* LINK EDIT THE NEW DSNZPARM MEMBER.  PUT LOAD MODULE IN DSNLOAD.   * 01000000
+//********************************************************************* 01010000
+//DSNTIZL EXEC PGM=IEWL,PARM='LIST,XREF,LET,RENT',                      01020000
+//             COND=(4,LT)                                              01030000
+//DSNALOAD DD  DISP=SHR,                                                01040000
+//         DSN=SYS1.DSNLOAD                                             01050000
+//         DD  DISP=SHR,                                                01060000
+//         DSN=DSN22X.DSNALOAD                                          01070000
+//SYSPUNCH DD  DSN=&&LOADSET(DSNTILMM),DISP=(OLD,DELETE)                01080000
+//SYSLMOD  DD  DISP=SHR,                                                01090000
+//         DSN=SYS1.DSNEXIT                                             01100000
+//SYSPRINT DD  SYSOUT=*                                                 01110000
+//SYSUDUMP DD  SYSOUT=*                                                 01120000
+//SYSUT1   DD  UNIT=3390,SPACE=(1024,(50,50))                           01130000
+//SYSLIN   DD  *                                                        01140000
+   INCLUDE SYSPUNCH(DSNTILMM)                                           01150000
+   INCLUDE DSNALOAD(DSNZPARM)                                           01160000
+   ORDER DSNAA                                                          01170000
+   INCLUDE DSNALOAD(DSNAA)                                              01180000
+   INCLUDE DSNALOAD(DSNFSYSP)                                           01190000
+   INCLUDE DSNALOAD(DSNJARVP)                                           01200000
+   INCLUDE DSNALOAD(DSNJLOGP)                                           01210000
+   INCLUDE DSNALOAD(DSNTSPRM)                                           01220000
+   INCLUDE DSNALOAD(DSNVDIR1)                                           01230000
+   INCLUDE DSNALOAD(DSNZMSTR)                                           01240000
+   INCLUDE DSNALOAD(DSN3DIR1)                                           01250000
+   ENTRY   DSNZMSTR                                                     01260000
+   NAME    DSNZPARM(R)                                                  01270000

@@ -1,0 +1,46 @@
+-- ****************************************************************** --        
+--                                                                    --        
+--  DATABASE EXPLANDB TABLE DAVID.PLAN_TABLE                          --        
+--                                                                    --        
+-- ****************************************************************** --        
+ CREATE STOGROUP EXPLANSG VOLUMES (CICS33) VCAT DSN310;                         
+ CREATE DATABASE EXPLANDB STOGROUP EXPLANSG;                                    
+ CREATE TABLESPACE EXPLANTS                                                     
+     IN EXPLANDB                                                                
+     BUFFERPOOL BP0                                                             
+     USING STOGROUP EXPLANSG                                                    
+      PRIQTY 1000                                                               
+      SECQTY 100                                                                
+     ERASE NO                                                                   
+     LOCKSIZE PAGE                                                              
+     CLOSE NO;                                                                  
+ CREATE TABLE DAVID.PLAN_TABLE                                                  
+     (QUERYNO           INTEGER NOT NULL,                                       
+      QBLOCKNO          SMALLINT NOT NULL,                                      
+      APPLNAME          CHAR(8) NOT NULL,                                       
+      PROGNAME          CHAR(8) NOT NULL,                                       
+      PLANNO           SMALLINT NOT NULL,                                       
+      METHOD           SMALLINT NOT NULL,                                       
+      CREATOR           CHAR(8) NOT NULL,                                       
+      TNAME            CHAR(18) NOT NULL,                                       
+      TABNO            SMALLINT NOT NULL,                                       
+      ACCESSTYPE        CHAR(2)  NOT NULL,                                      
+      MATCHCOLS         SMALLINT NOT NULL,                                      
+      ACCESSCREATOR     CHAR(8) NOT NULL,                                       
+      ACCESSNAME       CHAR(18) NOT NULL,                                       
+      INDEXONLY        CHAR(1)  NOT NULL,                                       
+      SORTN_UNIQ       CHAR(1)  NOT NULL,                                       
+      SORTN_JOIN       CHAR(1)  NOT NULL,                                       
+      SORTN_ORDERBY    CHAR(1)  NOT NULL,                                       
+      SORTN_GROUPBY    CHAR(1)  NOT NULL,                                       
+      SORTC_UNIQ       CHAR(1)  NOT NULL,                                       
+      SORTC_JOIN       CHAR(1)  NOT NULL,                                       
+      SORTC_ORDERBY    CHAR(1)  NOT NULL,                                       
+      SORTC_GROUPBY    CHAR(1)  NOT NULL,                                       
+      TSLOCKMODE       CHAR(3)  NOT NULL,                                       
+      TIMESTAMP        CHAR(16) NOT NULL,                                       
+      REMARKS     VARCHAR(254)  NOT NULL,                                       
+      PREFETCH         CHAR(1)  NOT NULL WITH DEFAULT,                          
+      COLUMN_FN_EVAL   CHAR(1)  NOT NULL WITH DEFAULT,                          
+      MIXOPSEQ         SMALLINT NOT NULL WITH DEFAULT)                          
+      IN EXPLANDB.EXPLANTS;                                                     

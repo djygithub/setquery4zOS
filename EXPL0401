@@ -1,0 +1,96 @@
+---------+---------+---------+---------+---------+---------+---------+---------+
+ SELECT QUERYNO, QBLOCKNO, APPLNAME, PROGNAME, PLANNO, METHOD, CREATOR,         
+    TNAME FROM PLAN_TABLE WHERE QUERYNO BETWEEN 401 AND 408                     
+    ORDER BY QUERYNO;                                                           
+---------+---------+---------+---------+---------+---------+---------+---------+
+    QUERYNO  QBLOCKNO  APPLNAME  PROGNAME  PLANNO  METHOD  CREATOR   TNAME      
+---------+---------+---------+---------+---------+---------+---------+---------+
+        401         1            DSNESM68       1       0  DAVID     SQ10       
+        402         1            DSNESM68       1       0  DAVID     SQ10       
+        403         1            DSNESM68       1       0  DAVID     SQ10       
+        404         1            DSNESM68       1       0  DAVID     SQ10       
+        405         1            DSNESM68       1       0  DAVID     SQ10       
+        406         1            DSNESM68       1       0  DAVID     SQ10       
+        407         1            DSNESM68       1       0  DAVID     SQ10       
+        408         1            DSNESM68       1       0  DAVID     SQ10       
+DSNE610I NUMBER OF ROWS DISPLAYED IS 8                                          
+DSNE616I STATEMENT EXECUTION WAS SUCCESSFUL, SQLCODE IS 100                     
+---------+---------+---------+---------+---------+---------+---------+---------+
+ SELECT QUERYNO,  TABNO, ACCESSTYPE, MATCHCOLS,  ACCESSNAME,                    
+    INDEXONLY                                                                   
+    FROM PLAN_TABLE WHERE QUERYNO BETWEEN 401 AND 408                           
+    ORDER BY QUERYNO;                                                           
+---------+---------+---------+---------+---------+---------+---------+---------+
+    QUERYNO   TABNO  ACCESSTYPE  MATCHCOLS  ACCESSNAME          INDEXONLY       
+---------+---------+---------+---------+---------+---------+---------+---------+
+        401       1  R                   0                      N               
+        402       1  R                   0                      N               
+        403       1  R                   0                      N               
+        404       1  R                   0                      N               
+        405       1  R                   0                      N               
+        406       1  R                   0                      N               
+        407       1  R                   0                      N               
+        408       1  I                   1  SQ10IN09            N               
+DSNE610I NUMBER OF ROWS DISPLAYED IS 8                                          
+DSNE616I STATEMENT EXECUTION WAS SUCCESSFUL, SQLCODE IS 100                     
+---------+---------+---------+---------+---------+---------+---------+---------+
+ SELECT QUERYNO,  SORTN_UNIQ, SORTN_JOIN, SORTN_ORDERBY, SORTN_GROUPBY          
+    FROM PLAN_TABLE WHERE QUERYNO BETWEEN 401 AND 408                           
+    ORDER BY QUERYNO;                                                           
+---------+---------+---------+---------+---------+---------+---------+---------+
+    QUERYNO  SORTN_UNIQ  SORTN_JOIN  SORTN_ORDERBY  SORTN_GROUPBY               
+---------+---------+---------+---------+---------+---------+---------+---------+
+        401  N           N           N              N                           
+        402  N           N           N              N                           
+        403  N           N           N              N                           
+        404  N           N           N              N                           
+        405  N           N           N              N                           
+        406  N           N           N              N                           
+        407  N           N           N              N                           
+        408  N           N           N              N                           
+DSNE610I NUMBER OF ROWS DISPLAYED IS 8                                          
+DSNE616I STATEMENT EXECUTION WAS SUCCESSFUL, SQLCODE IS 100                     
+---------+---------+---------+---------+---------+---------+---------+---------+
+ SELECT QUERYNO,  SORTC_UNIQ, SORTC_JOIN, SORTC_ORDERBY, SORTC_GROUPBY          
+    FROM PLAN_TABLE WHERE QUERYNO BETWEEN 401 AND 408                           
+    ORDER BY QUERYNO;                                                           
+---------+---------+---------+---------+---------+---------+---------+---------+
+    QUERYNO  SORTC_UNIQ  SORTC_JOIN  SORTC_ORDERBY  SORTC_GROUPBY               
+---------+---------+---------+---------+---------+---------+---------+---------+
+        401  N           N           N              N                           
+        402  N           N           N              N                           
+        403  N           N           N              N                           
+        404  N           N           N              N                           
+        405  N           N           N              N                           
+        406  N           N           N              N                           
+        407  N           N           N              N                           
+        408  N           N           N              N                           
+DSNE610I NUMBER OF ROWS DISPLAYED IS 8                                          
+DSNE616I STATEMENT EXECUTION WAS SUCCESSFUL, SQLCODE IS 100                     
+---------+---------+---------+---------+---------+---------+---------+---------+
+ SELECT QUERYNO,  TSLOCKMODE, TIMESTAMP, PREFETCH, COLUMN_FN_EVAL,              
+    MIXOPSEQ                                                                    
+    FROM PLAN_TABLE WHERE QUERYNO BETWEEN 401 AND 408                           
+    ORDER BY QUERYNO;                                                           
+---------+---------+---------+---------+---------+---------+---------+---------+
+    QUERYNO  TSLOCKMODE  TIMESTAMP         PREFETCH  COLUMN_FN_EVAL  MIXOPSEQ   
+---------+---------+---------+---------+---------+---------+---------+---------+
+        401    S         1991020215564244  S         R                      0   
+        402    S         1991020215564252  S         R                      0   
+        403    S         1991020215564257  S         R                      0   
+        404    S         1991020215564262  S         R                      0   
+        405    S         1991020215564267  S         R                      0   
+        406    S         1991020215564273  S         R                      0   
+        407    S         1991020215564278  S         R                      0   
+        408   IS         1991020215564284  L         R                      0   
+DSNE610I NUMBER OF ROWS DISPLAYED IS 8                                          
+DSNE616I STATEMENT EXECUTION WAS SUCCESSFUL, SQLCODE IS 100                     
+---------+---------+---------+---------+---------+---------+---------+---------+
+---------+---------+---------+---------+---------+---------+---------+---------+
+DSNE617I COMMIT PERFORMED, SQLCODE IS 0                                         
+DSNE616I STATEMENT EXECUTION WAS SUCCESSFUL, SQLCODE IS 0                       
+---------+---------+---------+---------+---------+---------+---------+---------+
+DSNE601I SQL STATEMENTS ASSUMED TO BE BETWEEN COLUMNS 1 AND 72                  
+DSNE620I NUMBER OF SQL STATEMENTS PROCESSED IS 5                                
+DSNE621I NUMBER OF INPUT RECORDS READ IS 17                                     
+DSNE622I NUMBER OF OUTPUT RECORDS WRITTEN IS 96                                 

@@ -1,0 +1,1 @@
+ DELETE FROM PLAN_TABLE WHERE PROGNAME ^= '12345678';                           

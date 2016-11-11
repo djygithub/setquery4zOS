@@ -1,0 +1,172 @@
+//IV3E301J JOB (USER,ACCT,NUMBER),                                              
+//         'D J YOUNG',                                                         
+//         CLASS=A,MSGCLASS=X,MSGLEVEL=(1,1),                                   
+//         REGION=4M                                                            
+//*                                                                             
+/*JOBPARM PROCLIB=PROC99                                                        
+//*                                                                             
+//*                                                                             
+//*                                                                             
+//*********************************************************************         
+//* INSTALL/IVP IMS 3.1                                                         
+//*                                                                             
+//* SKELETON: DFSIXSE6                                                          
+//*                                                                             
+//* FUNCTION: CREATE DYNAMIC ALLOCATION MEMBERS                                 
+//*********************************************************************         
+//*                                                                             
+//*********************************************************************         
+//*         THIS PRODUCT CONTAINS "RESTRICTED MATERIALS OF IBM".      *         
+//*                                                                   *         
+//*         5665-408 (C) COPYRIGHT IBM CORP. 1974, 1988.              *         
+//*         LICENSED MATERIALS - PROPERTY OF IBM.                     *         
+//*         ALL RIGHTS RESERVED.                                      *         
+//*                                                                   *         
+//*         U.S. GOVERNMENT USERS RESTRICTED RIGHTS -                 *         
+//*         USE, DUPLICATION, OR DISCLOSURE RESTRICTED BY             *         
+//*         GSA ADP SCHEDULE CONTRACT WITH IBM CORP.                  *         
+//*                                                                   *         
+//*         REFER TO COPYRIGHT INSTRUCTIONS FORM NUMBER G120-2083.    *         
+//*********************************************************************         
+//*                                                                             
+//STEP01   EXEC PROC=IMSDALOC,SOUT='*'                                          
+//ASSEM.SYSIN DD *                                                              
+*                                                                               
+* START                                                                         
+*                                                                               
+  DFSMDA TYPE=INITIAL                                                           
+*                                                                               
+* IVP DATA BASES                                                                
+*                                                                               
+* HIDAM/OSAM                                                                    
+*                                                                               
+  DFSMDA TYPE=DATABASE,DBNAME=IVPDB1                                            
+  DFSMDA TYPE=DATASET,DDNAME=DFSIVD1,                                  X        
+               DSNAME=IMS310A.DFSIVD1,                                 X        
+               DISP=SHR                                                         
+*                                                                               
+* HIDAM/OSAM INDEX                                                              
+*                                                                               
+  DFSMDA TYPE=DATABASE,DBNAME=IVPDB1I                                           
+  DFSMDA TYPE=DATASET,DDNAME=DFSIVD1I,                                 X        
+               DSNAME=IMS310A.DFSIVD1I,                                X        
+               DISP=SHR,INDEX=NINCORE                                           
+*                                                                               
+* HDAM/VSAM                                                                     
+*                                                                               
+  DFSMDA TYPE=DATABASE,DBNAME=IVPDB2                                            
+  DFSMDA TYPE=DATASET,DDNAME=DFSIVD2,                                  X        
+               DSNAME=IMS310A.DFSIVD2,                                 X        
+               DISP=SHR                                                         
+*                                                                               
+* DEDB                                                                          
+*                                                                               
+*      AREA DFSIVD3A                                                            
+*                                                                               
+  DFSMDA TYPE=FPDEDB,DBNAME=IVPDB3                                              
+  DFSMDA TYPE=DATASET,DDNAME=DFSIVD31,                                 X        
+               DSNAME=IMS310A.DFSIVD31,                                X        
+               DISP=SHR                                                         
+  DFSMDA TYPE=FPDEDB,DBNAME=IVPDB3                                              
+  DFSMDA TYPE=DATASET,DDNAME=DFSIVD32,                                 X        
+               DSNAME=IMS310A.DFSIVD32,                                X        
+               DISP=SHR                                                         
+*                                                                               
+*      AREA DFSIVD3B                                                            
+*                                                                               
+  DFSMDA TYPE=FPDEDB,DBNAME=IVPDB3                                              
+  DFSMDA TYPE=DATASET,DDNAME=DFSIVD33,                                 X        
+               DSNAME=IMS310A.DFSIVD33,                                X        
+               DISP=SHR                                                         
+  DFSMDA TYPE=FPDEDB,DBNAME=IVPDB3                                              
+  DFSMDA TYPE=DATASET,DDNAME=DFSIVD34,                                 X        
+               DSNAME=IMS310A.DFSIVD34,                                X        
+               DISP=SHR                                                         
+*                                                                               
+* IMS SAMPLE APPLICATION DATA BASE                                              
+*                                                                               
+* HISAM/VSAM                                                                    
+*                                                                               
+  DFSMDA TYPE=DATABASE,DBNAME=DI21PART                                          
+  DFSMDA TYPE=DATASET,DDNAME=DI21PART,                                 X        
+               DSNAME=IMS310A.DI21PART,                                X        
+               DISP=SHR                                                         
+  DFSMDA TYPE=DATASET,DDNAME=DI21PARO,                                 X        
+               DSNAME=IMS310A.DI21PARO,                                X        
+               DISP=SHR                                                         
+*                                                                               
+* FAST PATH SAMPLE APPLICATION - DEDB                                           
+*                                                                               
+  DFSMDA TYPE=FPDEDB,DBNAME=DBFSAMD3                                            
+  DFSMDA TYPE=DATASET,DDNAME=CUSDB,                                    X        
+               DSNAME=IMS310A.CUSDB,                                   X        
+               DISP=SHR                                                         
+*                                                                               
+* FAST PATH SAMPLE APPLICATION - HDAM/VSAM                                      
+*                                                                               
+  DFSMDA TYPE=DATABASE,DBNAME=DBFSAMD4                                          
+  DFSMDA TYPE=DATASET,DDNAME=LOAN,                                     X        
+               DSNAME=IMS310A.LOAN,                                    X        
+               DISP=SHR                                                         
+*                                                                               
+* DBRC RECONS                                                                   
+*                                                                               
+  DFSMDA TYPE=RECON,DDNAME=RECON1,                                     X        
+               DSNAME=IMS310A.RECON1                                            
+  DFSMDA TYPE=RECON,DDNAME=RECON2,                                     X        
+               DSNAME=IMS310A.RECON2                                            
+  DFSMDA TYPE=RECON,DDNAME=RECON3,                                     X        
+               DSNAME=IMS310A.RECON3                                            
+*                                                                               
+* OLDS                                                                          
+*                                                                               
+  DFSMDA TYPE=OLDS,DDNAME=DFSOLP00,                                    X        
+               DSNAME=IMS310A.OLP00                                             
+  DFSMDA TYPE=OLDS,DDNAME=DFSOLS00,                                    X        
+               DSNAME=IMS310A.OLS00                                             
+  DFSMDA TYPE=OLDS,DDNAME=DFSOLP01,                                    X        
+               DSNAME=IMS310A.OLP01                                             
+  DFSMDA TYPE=OLDS,DDNAME=DFSOLS01,                                    X        
+               DSNAME=IMS310A.OLS01                                             
+  DFSMDA TYPE=OLDS,DDNAME=DFSOLP02,                                    X        
+               DSNAME=IMS310A.OLP02                                             
+  DFSMDA TYPE=OLDS,DDNAME=DFSOLS02,                                    X        
+               DSNAME=IMS310A.OLS02                                             
+  DFSMDA TYPE=OLDS,DDNAME=DFSOLP03,                                    X        
+               DSNAME=IMS310A.OLP03                                             
+  DFSMDA TYPE=OLDS,DDNAME=DFSOLS03,                                    X        
+               DSNAME=IMS310A.OLS03                                             
+  DFSMDA TYPE=OLDS,DDNAME=DFSOLP04,                                    X        
+               DSNAME=IMS310A.OLP04                                             
+  DFSMDA TYPE=OLDS,DDNAME=DFSOLS04,                                    X        
+               DSNAME=IMS310A.OLS04                                             
+  DFSMDA TYPE=OLDS,DDNAME=DFSOLP05,                                    X        
+               DSNAME=IMS310A.OLP05                                             
+  DFSMDA TYPE=OLDS,DDNAME=DFSOLS05,                                    X        
+               DSNAME=IMS310A.OLS05                                             
+  DFSMDA TYPE=OLDS,DDNAME=DFSOLP99,                                    X        
+               DSNAME=IMS310A.OLP99                                             
+  DFSMDA TYPE=OLDS,DDNAME=DFSOLS99,                                    X        
+               DSNAME=IMS310A.OLS99                                             
+*                                                                               
+* WADS                                                                          
+*                                                                               
+  DFSMDA TYPE=WADS,DDNAME=DFSWADS0,                                    X        
+               DSNAME=IMS310A.WADS0                                             
+  DFSMDA TYPE=WADS,DDNAME=DFSWADS1,                                    X        
+               DSNAME=IMS310A.WADS1                                             
+  DFSMDA TYPE=WADS,DDNAME=DFSWADS8,                                    X        
+               DSNAME=IMS310A.WADS8                                             
+  DFSMDA TYPE=WADS,DDNAME=DFSWADS9,                                    X        
+               DSNAME=IMS310A.WADS9                                             
+*                                                                               
+* IMSLOGR (SLDS)                                                                
+*                                                                               
+  DFSMDA TYPE=SLDS,UNIT=3390,DDNAME=IMSLOGR                                     
+*                                                                               
+* END                                                                           
+*                                                                               
+  DFSMDA TYPE=FINAL                                                             
+          END                                                                   
+/*                                                                              
+//*                                                                             

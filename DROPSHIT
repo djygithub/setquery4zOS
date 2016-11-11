@@ -1,0 +1,37 @@
+-- ****************************************************************** --        
+--                                                                    --        
+--                                                                    --        
+-- ****************************************************************** --        
+ DROP TABLESPACE SQ5CXDB.SQ5C0TS;                                               
+ DROP TABLESPACE SQ5CXDB.SQ5C1TS;                                               
+ DROP TABLESPACE SQ5CXDB.SQ5C2TS;                                               
+ DROP TABLESPACE SQ5CXDB.SQ5C3TS;                                               
+ DROP TABLESPACE SQ5CXDB.SQ5C4TS;                                               
+ DROP TABLESPACE SQ5CXDB.SQ5C5TS;                                               
+ DROP TABLESPACE SQ5CXDB.SQ5C6TS;                                               
+ DROP TABLESPACE SQ5CXDB.SQ5C7TS;                                               
+ DROP TABLESPACE SQ5CXDB.SQ5C8TS;                                               
+ DROP TABLESPACE SQ5CXDB.SQ5C9TS;                                               
+ DROP TABLESPACE SQ5CXDB.SQ5CATS;                                               
+ DROP TABLESPACE SQ5CXDB.SQ5CBTS;                                               
+ DROP TABLESPACE SQ5CXDB.SQ5CCTS;                                               
+ DROP TABLESPACE SQ5CXDB.SQ5CDTS;                                               
+ DROP TABLESPACE SQ5CXDB.SQ5CETS;                                               
+ DROP TABLESPACE SQ5CXDB.SQ5CFTS;                                               
+ DROP DATABASE SQ5CXDB;                                                         
+ DROP STOGROUP SQ1005C0;                                                        
+ DROP STOGROUP SQ1005C1;                                                        
+ DROP STOGROUP SQ1005C2;                                                        
+ DROP STOGROUP SQ1005C3;                                                        
+ DROP STOGROUP SQ1005C4;                                                        
+ DROP STOGROUP SQ1005C5;                                                        
+ DROP STOGROUP SQ1005C6;                                                        
+ DROP STOGROUP SQ1005C7;                                                        
+ DROP STOGROUP SQ1005C8;                                                        
+ DROP STOGROUP SQ1005C9;                                                        
+ DROP STOGROUP SQ1005CA;                                                        
+ DROP STOGROUP SQ1005CB;                                                        
+ DROP STOGROUP SQ1005CC;                                                        
+ DROP STOGROUP SQ1005CD;                                                        
+ DROP STOGROUP SQ1005CE;                                                        
+ DROP STOGROUP SQ1005CF;                                                        

@@ -1,0 +1,106 @@
+---------+---------+---------+---------+---------+---------+---------+---------+
+ SELECT QUERYNO, QBLOCKNO, APPLNAME, PROGNAME, PLANNO, METHOD, CREATOR,         
+    TNAME FROM PLAN_TABLE WHERE QUERYNO BETWEEN 606 AND 610                     
+    ORDER BY QUERYNO;                                                           
+---------+---------+---------+---------+---------+---------+---------+---------+
+    QUERYNO  QBLOCKNO  APPLNAME  PROGNAME  PLANNO  METHOD  CREATOR   TNAME      
+---------+---------+---------+---------+---------+---------+---------+---------+
+        606         1            DSNESM68       1       0  DAVID     SQ10       
+        606         1            DSNESM68       2       1  DAVID     SQ10       
+        607         1            DSNESM68       1       0  DAVID     SQ10       
+        607         1            DSNESM68       2       1  DAVID     SQ10       
+        608         1            DSNESM68       1       0  DAVID     SQ10       
+        608         1            DSNESM68       2       1  DAVID     SQ10       
+        609         1            DSNESM68       1       0  DAVID     SQ10       
+        609         1            DSNESM68       2       1  DAVID     SQ10       
+        610         1            DSNESM68       1       0  DAVID     SQ10       
+        610         1            DSNESM68       2       2  DAVID     SQ10       
+DSNE610I NUMBER OF ROWS DISPLAYED IS 10                                         
+DSNE616I STATEMENT EXECUTION WAS SUCCESSFUL, SQLCODE IS 100                     
+---------+---------+---------+---------+---------+---------+---------+---------+
+ SELECT QUERYNO,  TABNO, ACCESSTYPE, MATCHCOLS,  ACCESSNAME,                    
+    INDEXONLY                                                                   
+    FROM PLAN_TABLE WHERE QUERYNO BETWEEN 606 AND 610                           
+    ORDER BY QUERYNO;                                                           
+---------+---------+---------+---------+---------+---------+---------+---------+
+    QUERYNO   TABNO  ACCESSTYPE  MATCHCOLS  ACCESSNAME          INDEXONLY       
+---------+---------+---------+---------+---------+---------+---------+---------+
+        606       1  I                   1  SQ10IN04            N               
+        606       2  I                   1  SQ10IN02            N               
+        607       1  I                   1  SQ10IN05            N               
+        607       2  I                   1  SQ10IN02            N               
+        608       1  I                   1  SQ10IN06            N               
+        608       2  I                   1  SQ10IN02            N               
+        609       1  I                   1  SQ10IN07            N               
+        609       2  I                   1  SQ10IN02            N               
+        610       1  I                   1  SQ10IN08            N               
+        610       2  I                   1  SQ10IN09            N               
+DSNE610I NUMBER OF ROWS DISPLAYED IS 10                                         
+DSNE616I STATEMENT EXECUTION WAS SUCCESSFUL, SQLCODE IS 100                     
+---------+---------+---------+---------+---------+---------+---------+---------+
+ SELECT QUERYNO,  SORTN_UNIQ, SORTN_JOIN, SORTN_ORDERBY, SORTN_GROUPBY          
+    FROM PLAN_TABLE WHERE QUERYNO BETWEEN 606 AND 610                           
+    ORDER BY QUERYNO;                                                           
+---------+---------+---------+---------+---------+---------+---------+---------+
+    QUERYNO  SORTN_UNIQ  SORTN_JOIN  SORTN_ORDERBY  SORTN_GROUPBY               
+---------+---------+---------+---------+---------+---------+---------+---------+
+        606  N           N           N              N                           
+        606  N           N           N              N                           
+        607  N           N           N              N                           
+        607  N           N           N              N                           
+        608  N           N           N              N                           
+        608  N           N           N              N                           
+        609  N           N           N              N                           
+        609  N           N           N              N                           
+        610  N           N           N              N                           
+        610  N           Y           N              N                           
+DSNE610I NUMBER OF ROWS DISPLAYED IS 10                                         
+DSNE616I STATEMENT EXECUTION WAS SUCCESSFUL, SQLCODE IS 100                     
+---------+---------+---------+---------+---------+---------+---------+---------+
+ SELECT QUERYNO,  SORTC_UNIQ, SORTC_JOIN, SORTC_ORDERBY, SORTC_GROUPBY          
+    FROM PLAN_TABLE WHERE QUERYNO BETWEEN 606 AND 610                           
+    ORDER BY QUERYNO;                                                           
+---------+---------+---------+---------+---------+---------+---------+---------+
+    QUERYNO  SORTC_UNIQ  SORTC_JOIN  SORTC_ORDERBY  SORTC_GROUPBY               
+---------+---------+---------+---------+---------+---------+---------+---------+
+        606  N           N           N              N                           
+        606  N           N           N              N                           
+        607  N           N           N              N                           
+        607  N           N           N              N                           
+        608  N           N           N              N                           
+        608  N           N           N              N                           
+        609  N           N           N              N                           
+        609  N           N           N              N                           
+        610  N           N           N              N                           
+        610  N           Y           N              N                           
+DSNE610I NUMBER OF ROWS DISPLAYED IS 10                                         
+DSNE616I STATEMENT EXECUTION WAS SUCCESSFUL, SQLCODE IS 100                     
+---------+---------+---------+---------+---------+---------+---------+---------+
+ SELECT QUERYNO,  TSLOCKMODE, TIMESTAMP, PREFETCH, COLUMN_FN_EVAL,              
+    MIXOPSEQ                                                                    
+    FROM PLAN_TABLE WHERE QUERYNO BETWEEN 606 AND 610                           
+    ORDER BY QUERYNO;                                                           
+---------+---------+---------+---------+---------+---------+---------+---------+
+    QUERYNO  TSLOCKMODE  TIMESTAMP         PREFETCH  COLUMN_FN_EVAL  MIXOPSEQ   
+---------+---------+---------+---------+---------+---------+---------+---------+
+        606   IS         1991020216540349  L                                0   
+        606   IS         1991020216540349  L                                0   
+        607   IS         1991020216540357  L                                0   
+        607   IS         1991020216540357  L                                0   
+        608   IS         1991020216540362  L                                0   
+        608   IS         1991020216540362  L                                0   
+        609   IS         1991020216540366  L                                0   
+        609   IS         1991020216540366  L                                0   
+        610   IS         1991020216540373  L                                0   
+        610   IS         1991020216540373  L                                0   
+DSNE610I NUMBER OF ROWS DISPLAYED IS 10                                         
+DSNE616I STATEMENT EXECUTION WAS SUCCESSFUL, SQLCODE IS 100                     
+---------+---------+---------+---------+---------+---------+---------+---------+
+---------+---------+---------+---------+---------+---------+---------+---------+
+DSNE617I COMMIT PERFORMED, SQLCODE IS 0                                         
+DSNE616I STATEMENT EXECUTION WAS SUCCESSFUL, SQLCODE IS 0                       
+---------+---------+---------+---------+---------+---------+---------+---------+
+DSNE601I SQL STATEMENTS ASSUMED TO BE BETWEEN COLUMNS 1 AND 72                  
+DSNE620I NUMBER OF SQL STATEMENTS PROCESSED IS 5                                
+DSNE621I NUMBER OF INPUT RECORDS READ IS 17                                     
+DSNE622I NUMBER OF OUTPUT RECORDS WRITTEN IS 106                                

@@ -1,0 +1,466 @@
+       IDENTIFICATION DIVISION.                                         00010000
+      *------------------------                                         00012000
+       PROGRAM-ID. DSN8CC0.                                             00014000
+                                                                        00016000
+      **** DSN8CC0 - SUBSYSTEM INTERFACE MODULE FOR CICS/VS - COBOL *** 00018000
+      *                                                                 00020000
+      *   MODULE NAME = DSN8CC0                                         00030000
+      *                                                                 00040000
+      *   DESCRIPTIVE NAME = DB2  SAMPLE APPLICATION                    00050000
+      *                      SUBSYSTEM INTERFACE MODULE                 00060000
+      *                      CICS                                       00070000
+      *                      COBOL                                      00080000
+      *                                                                 00090000
+      *                                                                 00100000
+      *COPYRIGHT = 5665-DB2 (C) COPYRIGHT IBM CORP 1982, 1989           00110000
+      *REFER TO COPYRIGHT INSTRUCTIONS FORM NUMBER G120-2083            00120000
+      *                                                                 00130000
+      *STATUS = VERSION 2 RELEASE 2, LEVEL 0                            00140000
+      *                                                                 00150000
+      *   FUNCTION =  THIS MODULE ISSUES CICS RECEIVE MAP TO RETRIEVE   00160000
+      *               INPUT, CALLS DSN8CC1, AND ISSUE CICS SEND MAP     00170000
+      *               AFTER RETURNING.                                  00180000
+      *                                                                 00190000
+      *   NOTES =                                                       00200000
+      *       1. THIS IS A CICS PSEUDO CONVERSATION PROGRAM WHICH       00210000
+      *          INITIALIZES ITSELF WHEN A TERMINAL OPERATOR ENTERS     00220000
+      *          INPUT AFTER VIEWING THE SCREEN SENT BY PREVIOUS        00230000
+      *          ITERATIONS OF THE PROGRAM.                             00240000
+      *                                                                 00250000
+      *      DEPENDENCIES = TWO CICS MAPS(DSECTS) ARE REQUIRED:         00260000
+      *                              DSN8MCMG AND DSN8MCMD              00270000
+      *                     MODULE  DSN8CC1 IS REQUIRED.                00280000
+      *                     DCLGEN STRUCTURE DSN8MCCS IS REQUIRED       00290000
+      *                     INCLUDED COBOL STRUCTURE DSN8MCCA IS        00300000
+      *                     REQUIRED.                                   00310000
+      *                                                                 00320000
+      *      RESTRICTIONS = NONE                                        00330000
+      *                                                                 00340000
+      *                                                                 00350000
+      *   MODULE TYPE =                                                 00360000
+      *      PROCESSOR   = DB2 PRECOMPILER,CICS TRANSLATOR,COBOL COMPIL 00370000
+      *      MODULE SIZE = SEE LINK-EDIT                                00380000
+      *      ATTRIBUTES  = REUSABLE                                     00390000
+      *                                                                 00400000
+      *   ENTRY POINT = DSN8CC0                                         00410000
+      *      PURPOSE = SEE FUNCTION                                     00420000
+      *      LINKAGE = CICS/OS/VS ENTRY                                 00430000
+      *                                                                 00440000
+      *      INPUT = PARAMETERS EXPLICITLY PASSED TO THIS FUNCTION:     00450000
+      *                                                                 00460000
+      *             SYMBOLIC LABEL/NAME = DSN8CCGI                      00470000
+      *             DESCRIPTION = CICS/OS/VS BMS MAP FOR GENERAL INPUT  00480000
+      *                                                                 00490000
+      *             SYMBOLIC LABEL/NAME = DSN8CCDI                      00500000
+      *             DESCRIPTION = CICS/OS/VS BMS MAP FOR DETAIL INPUT   00510000
+      *                                                                 00520000
+      *      OUTPUT = PARAMETERS EXPLICITLY RETURNED:                   00530000
+      *                                                                 00540000
+      *             SYMBOLIC LABEL/NAME = DSN8CCGO                      00550000
+      *             DESCRIPTION = CICS/OS/VS BMS MAP FOR GENERAL OUTPUT 00560000
+      *                                                                 00570000
+      *             SYMBOLIC LABEL/NAME = DSN8CCDO                      00580000
+      *             DESCRIPTION = CICS/OS/VS BMS MAP FOR DETAIL OUTPUT  00590000
+      *                                                                 00600000
+      *                                                                 00610000
+      *   EXIT-NORMAL = CICS RETURN TRANSID                             00620000
+      *                                                                 00630000
+      *   EXIT-ERROR = SQL ERROR FOR SQL ERRORS                         00640000
+      *                CICS ABEND FOR CICS PROBLEMS                     00650000
+      *                                                                 00660000
+      *      RETURN CODE = NONE                                         00670000
+      *                                                                 00680000
+      *      ABEND CODES = LSCR - LOGICAL SCREEN SET INCORRECTLY        00690000
+      *                                                                 00700000
+      *      ERROR-MESSAGES = NONE                                      00710000
+      *                                                                 00720000
+      *                                                                 00730000
+      *   EXTERNAL REFERENCES = COMMON CICS REQUIREMENTS                00740000
+      *     ROUTINES/SERVICES =                                         00750000
+      *         CICS/VS SERVICES                                        00760000
+      *         DSN8CC1            - SQL 1 MAINLINE CODE                00770000
+      *                                                                 00780000
+      *     DATA-AREAS  =                                               00790000
+      *         DSN8MCCA           - PARAMETER TO BE PASSED TO DSN8CC1  00800000
+      *                               COMMON AREA                       00810000
+      *         DSN8MCCS           - DECLARE CONVERSATION STATUS        00820000
+      *         DSN8MCC2           - COMMON AREA PART 2                 00830000
+      *         DSN8MCMD           - CICS/OS/VS COBOL MAP, ORGANIZATION 00840000
+      *         DSN8MCMG           - CICS/OS/VS COBOL MAP, ORGANIZATION 00850000
+      *                                                                 00860000
+      *     CONTROL-BLOCKS =                                            00870000
+      *         SQLCA               - SQL COMMUNICATION AREA            00880000
+      *                                                                 00890000
+      *   TABLES =  NONE                                                00900000
+      *                                                                 00910000
+      *   CHANGE-ACTIVITY =  NONE                                       00920000
+      *                                                                 00930000
+      *                                                                 00940000
+      *  *PSEUDOCODE*                                                   00950000
+      *                                                                 00960000
+      *     PROCEDURE                                                   00970000
+      *     DECLARATIONS.                                               00980000
+      *        ALLOCATE COBOL WORK AREA FOR COMMAREA.                   00990000
+      *        PUT MODULE NAME 'DSN8CC0' IN AREA USED BY ERROR-HANDLER. 01000000
+      *        PUT CICS EIBTRMID IN PCONVSTA.CONVID TO BE PASSED TO     01010000
+      *        DSN8CC1.                                                 01020000
+      *        RETRIEVE LASTCR FROM VCONA USING THE CONVID TO DETERMINE 01030000
+      *        WHICH OF THE TWO BMS MAPS SHOULD BE USED TO MAP IN DATA. 01040000
+      *                                                                 01050000
+      *                                                                 01060000
+      *     IF RETRIEVAL OF MAPS IS SUCCESSFUL, THEN DO;                01070000
+      *        EXEC CICS RECEIVE MAP ACCORDING TO SPECIFIED LASTSCR     01080000
+      *                                                                 01090000
+      *        IF MAPFAIL CONDITION IS RAISED* THEN DO;                 01100000
+      *                COMPARM.PFKIN = '00'                             01110000
+      *                GO TO CC0SEND                                    01120000
+      *        END                                                      01130000
+      *                                                                 01140000
+      *        ELSE                                                     01150000
+      *                PUT DATA FROM MAP INTO COMPARM **                01160000
+      *                                                                 01170000
+      *     ELSE                                                        01180000
+      *                IT IS A NEW CONVERSATION                         01190000
+      *                AND NO EXEC CICS RECEIVE MAP IS ISSUED.          01200000
+      *                                                                 01210000
+      *     CC0SEND:                                                    01220000
+      *     EXEC CICS LINK PROGRAM('DSN8CC1') COMMAREA(COMMAREA).       01230000
+      *     UPON RETURN FROM DSN8CC1, EXEC CICS SEND MAP ACCORDING TO   01240000
+      *          THE TYPE SPECIFIED IN PCONVSTA.LASTSCR.                01250000
+      *     EXEC CICS RETURN TRANSID(D8CS).                             01260000
+      *                                                                 01270000
+      *   END.                                                          01280000
+      *                                                                 01290000
+      *    *    I.E. LAST CONVERSATION EXISTS, BUT OPERATOR HAD ENTERED 01300000
+      *         DATA FROM A CLEARED SCREEN OR HAD ERASED ALL DATA ON A  01310000
+      *         FORMATTED SCREEN AND PRESSED ENTER                      01320000
+      *                                                                 01330000
+      *    **   COMPARM.PFKIN = PF KEY ACTUALLY USED I.E. '01' FOR      01340000
+      *           PF1 ..                                                01350000
+      *---------------------------------------------------------------**01360000
+                                                                        01370000
+                                                                        01380000
+       ENVIRONMENT DIVISION.                                            01430000
+      *---------------------                                            01440000
+                                                                        01450000
+       DATA DIVISION.                                                   01460000
+      *--------------                                                   01470000
+       WORKING-STORAGE SECTION.                                         01480000
+       77   FOUND           PIC  S99.                                   01490000
+            EXEC SQL INCLUDE SQLCA    END-EXEC.                         01500000
+            EXEC SQL INCLUDE DSN8MCC2 END-EXEC.                         01510000
+       01   COMMAREA.                                                   01520000
+            EXEC SQL INCLUDE DSN8MCCA END-EXEC.                         01530000
+            EXEC SQL INCLUDE DSN8MCCS END-EXEC.                         01540000
+            EXEC SQL INCLUDE DSN8MCMG END-EXEC.                         01550000
+            EXEC SQL INCLUDE DSN8MCMD END-EXEC.                         01560000
+      *****************************************************************-01570000
+      *     MAPD REDEFINES THE COBOL STRUCTURE ASSOCIATED WITH THE      01580000
+      *     CICS MAP DSN8CCD.                                           01590000
+      *****************************************************************-01600000
+       01   MAPD REDEFINES DSN8CCDI.                                    01610000
+            02  FILLER      PIC X(387).                                 01620000
+            02  SUBMAP      OCCURS 15 TIMES.                            01630000
+              03 COL1LEN    PIC S9(4) COMP.                             01640000
+              03 COL1ATTR   PIC X(1).                                   01650000
+              03 COL1DATA   PIC X(37).                                  01660000
+              03 COL2LEN    PIC S9(4) COMP.                             01670000
+              03 COL2ATTR   PIC X(1).                                   01680000
+              03 COL2DATA   PIC X(40).                                  01690000
+      *****************************************************************-01700000
+      *     PFKEYS IS AN ARRAY OF 24 ELEMENTS REPRESENTING THE DIFFERENT01710000
+      *     PFKEYS AS THEY WOULD BE REPRESENTED IN EIBAID.              01720000
+      *****************************************************************-01730000
+       01   PFKEYS-DUMB.                                                01740000
+         02 PFKEYS-ALL      PIC  X(24) VALUE '123456789:#@ABCDEFGHI›.<'.01750000
+         02 PFKEYS  REDEFINES PFKEYS-ALL PIC X(1)  OCCURS 24 TIMES.     01760000
+      *****************************************************************-01770000
+      *     PFK IS AN ARRAY OF 12 TWO-BYTE CHARS REPRESENTING THE PFKEYS01780000
+      *     ALLOWED AS INPUT TO DSN8CC1 AND DSN8CC2 ETC.                01790000
+      *****************************************************************-01800000
+       01   PFK-DUMB.                                                   01810000
+         02 PFK-ALL         PIC  X(24) VALUE '010203040506070809101112'.01820000
+         02 PFK     REDEFINES PFK-ALL    PIC X(2)  OCCURS 12 TIMES.     01830000
+                                                                        01840000
+                                                                        01850000
+       PROCEDURE DIVISION.                                              01860000
+      *------------------                                               01870000
+      *****************************************************************-01880000
+      *     SQL RETURN CODE HANDLING                                    01890000
+      *****************************************************************-01900000
+           EXEC SQL WHENEVER SQLERROR GO TO DB-ERROR END-EXEC           01910000
+           EXEC SQL WHENEVER SQLWARNING GO TO DB-ERROR END-EXEC.        01920000
+                                                                        01930000
+      *****************************************************************-01940000
+      *     ALLOCATE COBOL WORK AREA / INITIALIZE VARIABLES             01950000
+      *****************************************************************-01960000
+           MOVE SPACES TO COMMAREA.                                     01970000
+           MOVE 'DSN8CC0' TO MAJOR IN DSN8-MODULE-NAME.                 01980000
+           MOVE 'O'       TO MAJSYS IN OUTAREA.                         01990000
+           MOVE '0'       TO EXITCODE.                                  02000000
+           MOVE EIBTRMID TO CICSID OF PCONVSTA.                         02010000
+           MOVE CONVID OF PCONVSTA TO SAVE-CONVID.                      02020000
+                                                                        02030000
+      *****************************************************************-02040000
+      *    TRY TO RETRIEVE LAST CONVERSATION. IF SUCCESSFUL, USE THE    02050000
+      *    LAST SCREEN SPECIFIED TO RECEIVE INPUT FROM TERMINAL.        02060000
+      *****************************************************************-02070000
+                                                                        02080000
+           EXEC SQL SELECT LASTSCR                                      02090000
+                    INTO   :PCONA.LASTSCR                               02100000
+                    FROM   VCONA                                        02110000
+                    WHERE  CONVID = :SAVE-CONVID END-EXEC.              02120000
+                                                                        02130000
+      *****************************************************************-02140000
+      *    IF LAST CONVERSATION DOES NOT EXIST, THEN DO NOT ATTEMPT TO  02150000
+      *    RECEIVE INPUT MAP. GO DIRECTLY TO VALIDATION MODULES         02160000
+      *    TO GET TITLE ETC. FOR OUTPUT MAP.                            02170000
+      *****************************************************************-02180000
+                                                                        02190000
+           IF SQLCODE = +100 THEN                                       02200000
+                    GO TO CC0SEND.                                      02210000
+                                                                        02220000
+      *****************************************************************-02230000
+      *    IF LAST CONVERSATION EXISTS, BUT OPERATOR HAS ENTERED DATA  N02240000
+      *    FROM A CLEARED SCREEN OR HAD ERASED ALL DATA ON A FORMATTED N02250000
+      *    SCREEN AND PRESSED ENTER THEN .......                       N02260000
+      *    MOVE DATA INTO CORRESPONDING FIELDS IN INAREA AND GO TO      02270000
+      *    VALIDATION MODULES.                                          02280000
+      *****************************************************************-02290000
+           EXEC CICS HANDLE CONDITION MAPFAIL (CC0SEND) END-EXEC.       02300000
+                                                                        02310000
+           IF LASTSCR OF PCONA  NOT = 'DSN8002 ' THEN                   02320000
+             GO TO CC0-LABEL1.                                          02330000
+                                                                        02340000
+      *                                             **DSN8002           02350000
+      *                                             **DETAIL MAP        02360000
+      *                                             **MOVE DATA INTO    02370000
+      *                                             **INPUT FIELDS      02380000
+                                                                        02390000
+             EXEC CICS RECEIVE MAP ('DSN8CCD') MAPSET ('DSN8CCD')       02400000
+                  END-EXEC.                                             02410000
+             IF BMAJSYSL NOT = 0 THEN MOVE BMAJSYSI TO MAJSYS OF INAREA 02420000
+                               ELSE MOVE 'O'      TO MAJSYS OF INAREA.  02430000
+             IF BACTIONL NOT = 0 THEN MOVE BACTIONI TO ACTION OF INAREA 02440000
+                               ELSE MOVE SPACES   TO ACTION OF INAREA.  02450000
+             IF BOBJECTL NOT = 0 THEN MOVE BOBJECTI TO OBJECT OF INAREA 02460000
+                               ELSE MOVE SPACES   TO OBJECT OF INAREA.  02470000
+             IF BSEARCHL NOT = 0 THEN MOVE BSEARCHI TO SRCH   OF INAREA 02480000
+                               ELSE MOVE SPACES   TO SRCH   OF INAREA.  02490000
+             IF BDATAL   NOT = 0 THEN MOVE BDATAI   TO DATAIN OF INAREA 02500000
+                               ELSE MOVE SPACES   TO DATAIN OF INAREA.  02510000
+             MOVE 1 TO I.                                               02520000
+                                                                        02530000
+      *                                      **GO TO VALIDATION MODULES 02540000
+                                                                        02550000
+             GO TO CC0-LABELX.                                          02560000
+                                                                        02570000
+      *                                          **ERROR ON LASTSCREEN? 02580000
+                                                                        02590000
+       CC0-LABEL1.                                                      02600000
+           IF LASTSCR OF PCONA NOT = 'DSN8001 ' THEN                    02610000
+             EXEC CICS ABEND ABCODE ('LSCR') END-EXEC                   02620000
+             GOBACK.                                                    02630000
+                                                                        02640000
+      *                                          **USING LAST SCREEN    02650000
+      *                                          **SPECIFIED TO RECEIVE 02660000
+      *                                          **INPUT FROM TERMINAL  02670000
+                                                                        02680000
+           EXEC CICS RECEIVE MAP ('DSN8CCG') MAPSET('DSN8CCG') END-EXEC.02690000
+                                                                        02700000
+      *****************************************************************-02710000
+      *    IF DATA IS RECEIVED FOR A FIELD, THEN MOVE THE DATA INTO THE 02720000
+      *    CORRESPONDING FIELD IN INAREA, OTHERWISE MOVE BLANKS.        02730000
+      *****************************************************************-02740000
+                                                                        02750000
+           IF AMAJSYSL NOT = 0 THEN MOVE AMAJSYSI TO MAJSYS OF INAREA   02760000
+                               ELSE MOVE 'O'      TO MAJSYS OF INAREA.  02770000
+           IF AACTIONL NOT = 0 THEN MOVE AACTIONI TO ACTION OF INAREA   02780000
+                               ELSE MOVE SPACES   TO ACTION OF INAREA.  02790000
+           IF AOBJECTL NOT = 0 THEN MOVE AOBJECTI TO OBJECT OF INAREA   02800000
+                               ELSE MOVE SPACES   TO OBJECT OF INAREA.  02810000
+           IF ASEARCHL NOT = 0 THEN MOVE ASEARCHI TO SRCH   OF INAREA   02820000
+                               ELSE MOVE SPACES   TO SRCH   OF INAREA.  02830000
+           IF ADATAL   NOT = 0 THEN MOVE ADATAI   TO DATAIN OF INAREA   02840000
+                               ELSE MOVE SPACES   TO DATAIN OF INAREA.  02850000
+           GO TO CC0-LABEL3.                                            02860000
+                                                                        02870000
+       CC0-LABELX.                                                      02880000
+             IF COL2LEN(I) NOT = 0 THEN MOVE COL2DATA(I) TO TRANDATA(I) 02890000
+                                 ELSE MOVE SPACES   TO TRANDATA(I).     02900000
+             ADD 1 TO I.                                                02910000
+                                                                        02920000
+      *                                    ** CC0-LABELX LOOP           02930000
+       CC0-LOOPX.                                                       02940000
+             PERFORM CC0-LABELX UNTIL I > 15.                           02950000
+                                                                        02960000
+       CC0-LABEL3.                                                      02970000
+             MOVE 1 TO I.                                               02980000
+             MOVE 0 TO FOUND.                                           02990000
+                                                                        03000000
+      *****************************************************************-03010000
+      *    CONVERT THE PFKEY INFO IN EIBAID TO THE FORM ACCEPTED        03020000
+      *    BY DSN8CC1 AND DSN8CC2 EG. PF1 = '01' AND PF13 = '01'.       03030000
+      *****************************************************************-03040000
+       CC0-LABEL4.                                                      03050000
+                                                                        03060000
+      *                                           **PF KEYS 1-12        03070000
+                                                                        03080000
+           IF PFKEYS(I) = EIBAID THEN MOVE 1 TO FOUND                   03090000
+               ELSE ADD 1 TO I.                                         03100000
+                                                                        03110000
+      *                                           ** CC0-LABEL4 LOOP    03120000
+       CC0-LOOP4.                                                       03130000
+           PERFORM CC0-LABEL4 UNTIL                                     03140000
+             I > 24 OR FOUND = 1.                                       03150000
+                                                                        03160000
+      *                                           **PF KEYS > 12        03170000
+       CC0-LABEL5.                                                      03180000
+           IF I >  12 THEN SUBTRACT 12 FROM I.                          03190000
+           IF FOUND = 1 THEN                                            03200000
+             MOVE PFK(I) TO PFKIN OF INAREA                             03210000
+           ELSE MOVE SPACES TO PFKIN OF INAREA.                         03220000
+           GO TO CC0-LABEL6.                                            03230000
+                                                                        03240000
+      **************************************************************** -03250000
+      *    GO TO DSN8CC1, GET DCLGEN STRUCTURES AND TABLE DCL           03260000
+      *****************************************************************-03270000
+                                                                        03280000
+       CC0SEND.                                                         03290000
+           MOVE SPACES TO INAREA.                                       03300000
+           MOVE '00' TO PFKIN OF INAREA.                                03310000
+                                                                        03320000
+       CC0-LABEL6.                                                      03330000
+           MOVE 'O' TO MAJSYS IN INAREA.                                03340000
+           EXEC CICS LINK PROGRAM ('DSN8CC1') COMMAREA(COMMAREA)        03350000
+               LENGTH(3000) END-EXEC.                                   03360000
+           GO TO CC0-NORMAL.                                            03370000
+           EXEC SQL INCLUDE DSN8MCXX END-EXEC.                          03380000
+                                                                        03390000
+      **************************************************************** -03400000
+      *    AFTER RETURN FROM DSN8CC1, MOVE DATA TO OUTPUT MAP AREA AND  03410000
+      *    SEND MAP ACCORDING TO MAP SPECIFIED IN LASTSCR OF PCONVSTA.  03420000
+      *****************************************************************-03430000
+       CC0-NORMAL.                                                      03440000
+           IF LASTSCR OF PCONVSTA = 'DSN8002 ' THEN GO TO CC0-LABEL9.   03450000
+                                                                        03460000
+      *                                          **MOVE DATA INTO       03470000
+      *                                          **OUTPUT FIELDS        03480000
+           MOVE HTITLE OF OUTAREA  TO ATITLEO.                          03490000
+           MOVE MAJSYS OF OUTAREA TO AMAJSYSO.                          03500000
+           MOVE ACTION OF OUTAREA TO AACTIONO.                          03510000
+           MOVE OBJECT OF OUTAREA TO AOBJECTO.                          03520000
+           MOVE SRCH   OF OUTAREA TO ASEARCHO.                          03530000
+           MOVE DATAOUT           TO ADATAO.                            03540000
+           MOVE MSG    OF OUTAREA TO AMSGO.                             03550000
+           MOVE DESC2  OF OUTAREA TO ADESCL2O.                          03560000
+           MOVE DESC3  OF OUTAREA TO ADESCL3O.                          03570000
+           MOVE DESC4  OF OUTAREA TO ADESCL4O.                          03580000
+           MOVE PFKTEXT OF OUTAREA TO APFKEYO.                          03590000
+           MOVE 1 TO I.                                                 03600000
+                                                                        03610000
+      *                                         **SEND MAP ACCORDING TO 03620000
+      *                                         **PREVIOUS SCREEN       03630000
+       CC0-LABEL7.                                                      03640000
+           MOVE LINE0(I) TO ALINEO(I).                                  03650000
+           ADD 1 TO I.                                                  03660000
+                                                                        03670000
+      *                                         **CC0-LABEL7 LOOP       03680000
+       CC0-LOOP7.                                                       03690000
+           PERFORM CC0-LABEL7 UNTIL                                     03700000
+               I > 15.                                                  03710000
+                                                                        03720000
+      *****************************************************************-03730000
+      *    CREATES A DYNAMIC CURSOR                                     03740000
+      *****************************************************************-03750000
+                                                                        03760000
+      *                                         **SET CURSOR POSITION   03770000
+       CC0-LABEL8.                                                      03780000
+           MOVE ZEROES TO CURSOR-VALUE.                                 03790000
+           IF AACTIONO = SPACES THEN MOVE +179 TO CURSOR-VALUE          03800000
+           ELSE IF AOBJECTO = SPACES THEN MOVE +259 TO CURSOR-VALUE     03810000
+           ELSE IF ASEARCHO = SPACES THEN MOVE +339 TO CURSOR-VALUE     03820000
+           ELSE IF ADATAO = SPACES OR AACTIONO = 'D' OR 'E' THEN        03830000
+           MOVE +419 TO CURSOR-VALUE.                                   03840000
+                                                                        03850000
+      *                                               **SEND OUTPUT MAP 03860000
+                                                                        03870000
+           IF CURSOR-VALUE = ZEROES THEN                                03880000
+             EXEC CICS SEND MAP('DSN8CCG') MAPSET('DSN8CCG') END-EXEC   03890000
+           ELSE                                                         03900000
+             EXEC CICS SEND MAP('DSN8CCG') MAPSET('DSN8CCG') ERASE      03910000
+             CURSOR(CURSOR-VALUE) END-EXEC.                             03920000
+                                                                        03930000
+      *                                                **FINISHED?      03940000
+                                                                        03950000
+           IF EXITCODE = '1' THEN GO TO CC0-LABEL12.                    03960000
+           EXEC CICS RETURN TRANSID('D8CS') END-EXEC.                   03970000
+                                                                        03980000
+      *****************************************************************-03990000
+      *    MOVES DATA FROM OUTPUT MAP AREA TO                           04000000
+      *    RECEIVE MAP ACCORDING TO MAP SPECIFIED IN LASTSCR OF PCONVST 04010000
+      *****************************************************************-04020000
+                                                                        04030000
+      *                                        **MOVE DATA              04040000
+      *                                        **FROM OUTPUT FIELDS     04050000
+       CC0-LABEL9.                                                      04060000
+           MOVE HTITLE OF OUTAREA TO BTITLEO.                           04070000
+           MOVE MAJSYS OF OUTAREA TO BMAJSYSO.                          04080000
+           MOVE ACTION OF OUTAREA TO BACTIONO.                          04090000
+           MOVE OBJECT OF OUTAREA TO BOBJECTO.                          04100000
+           MOVE SRCH   OF OUTAREA TO BSEARCHO.                          04110000
+           MOVE DATAOUT           TO BDATAO.                            04120000
+           MOVE MSG    OF OUTAREA TO BMSGO.                             04130000
+           MOVE DESC2  OF OUTAREA TO BDESCL2O.                          04140000
+           MOVE DESC3  OF OUTAREA TO BDESCL3O.                          04150000
+           MOVE DESC4  OF OUTAREA TO BDESCL4O.                          04160000
+           MOVE PFKTEXT OF OUTAREA TO BPFKEYO.                          04170000
+           MOVE 1 TO I.                                                 04180000
+      *                                        **RECEIVE MAP ACCORDING  04190000
+      *                                           **TO PREVIOUS SCREEN  04200000
+                                                                        04210000
+       CC0-LABEL10.                                                     04220000
+           MOVE FIELD1(I)  TO COL1DATA(I) .                             04230000
+      *                          ** CHECK FOR ATTRIBUTE OF X'C0C1'      04240000
+           IF ATTR(I) = -16191 THEN MOVE -1 TO COL2LEN(I).              04250000
+           MOVE ATTR2(I)   TO COL2ATTR(I) .                             04260000
+           MOVE FIELD2(I)  TO COL2DATA(I) .                             04270000
+           ADD 1 TO I.                                                  04280000
+                                                                        04290000
+      *                          ** CC0-LABEL10 LOOP                    04300000
+       CC0-LOOP10.                                                      04310000
+           PERFORM CC0-LABEL10 UNTIL                                    04320000
+              I > 15.                                                   04330000
+                                                                        04340000
+       CC0-LABEL11.                                                     04350000
+      *****************************************************************-04360000
+      *    CREATES A DYNAMIC CURSOR                                     04370000
+      *****************************************************************-04380000
+                                                                        04390000
+      *                                         **SET CURSOR POSITION   04400000
+           MOVE ZEROES TO CURSOR-VALUE.                                 04410000
+           IF BACTIONO = SPACES THEN MOVE +179 TO CURSOR-VALUE          04420000
+           ELSE IF BOBJECTO = SPACES THEN MOVE +259 TO CURSOR-VALUE     04430000
+           ELSE IF BSEARCHO = SPACES THEN MOVE +339 TO CURSOR-VALUE     04440000
+           ELSE IF BDATAO = SPACES OR BACTIONO = 'D' OR 'E' THEN        04450000
+           MOVE +419 TO CURSOR-VALUE.                                   04460000
+                                                                        04470000
+      *                                              **SEND INPUT MAP   04480000
+                                                                        04490000
+           IF CURSOR-VALUE = ZEROES THEN                                04500000
+               EXEC CICS SEND MAP('DSN8CCD') MAPSET('DSN8CCD') END-EXEC 04510000
+           ELSE                                                         04520000
+               EXEC CICS SEND MAP('DSN8CCD') MAPSET('DSN8CCD') ERASE    04530000
+               CURSOR(CURSOR-VALUE) END-EXEC.                           04540000
+                                                                        04550000
+      *                                                **FINISHED?      04560000
+           IF EXITCODE = '1' THEN GO TO CC0-LABEL12.                    04570000
+           EXEC CICS RETURN TRANSID('D8CS') END-EXEC.                   04580000
+           GOBACK.                                                      04590000
+                                                                        04600000
+                                                                        04610000
+      *                                               **RETURN          04620000
+       CC0-LABEL12.                                                     04630000
+           EXEC CICS RETURN END-EXEC.                                   04640000
+           GOBACK.                                                      04650000
+                                                                        04651000

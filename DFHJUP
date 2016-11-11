@@ -1,0 +1,23 @@
+//DFHJUP   JOB   (0,75),                                                        
+//         'YOUNG   ',                                        /*OPER*/          
+//         CLASS=A,                                           /*JCLAS*/         
+//         MSGLEVEL=(1,1),                                                      
+//         MSGCLASS=Q,                                                          
+//         NOTIFY=DAVID,                                                        
+//         TIME=30,                                                             
+//         USER=JOE                                           /*RACF*/          
+//*                                                           /*JCTRL*/         
+//PRNTSTAT EXEC PGM=DFHJUP,REGION=0M                                            
+//STEPLIB  DD DSN=CICS321.SDFHLOAD,DISP=SHR                                     
+//*        DD DSN=CICSVS.LOADLIB1,DISP=SHR                                      
+//*                                                                             
+//SYSUT1 DD DSN=CICS321.DFHJ01A,DISP=SHR                                        
+//SYSPRINT DD SYSOUT=*                                                          
+//SYSUDUMP DD SYSOUT=*                                                          
+//SYSABEND DD SYSOUT=*                                                          
+//SYSOUT   DD SYSOUT=*                                                          
+//SYSIN DD *                                                                    
+OPTION PRINT                                                                    
+END                                                                             
+/*                                                                              
+//*                                                                             

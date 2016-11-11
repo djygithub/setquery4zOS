@@ -1,0 +1,72 @@
+ CREATE STOGROUP DSNDB075 VOLUMES (VOLBA0) VCAT DSNC220;                        
+ CREATE STOGROUP DSNDB076 VOLUMES (VOLBA1) VCAT DSNC220;                        
+ CREATE STOGROUP DSNDB077 VOLUMES (VOLBA2) VCAT DSNC220;                        
+ CREATE STOGROUP DSNDB078 VOLUMES (VOLBA3) VCAT DSNC220;                        
+ CREATE TABLESPACE DSNTMP05                                                     
+        IN DSNDB07                                                              
+        BUFFERPOOL BP0                                                          
+        USING STOGROUP DSNDB075                                                 
+        PRIQTY 1500000                                                          
+        SECQTY 10000                                                            
+        ERASE NO                                                                
+        CLOSE NO;                                                               
+ CREATE TABLESPACE DSNTMP06                                                     
+        IN DSNDB07                                                              
+        BUFFERPOOL BP0                                                          
+        USING STOGROUP DSNDB076                                                 
+        PRIQTY 1500000                                                          
+        SECQTY 10000                                                            
+        ERASE NO                                                                
+        CLOSE NO;                                                               
+ CREATE TABLESPACE DSNTMP07                                                     
+        IN DSNDB07                                                              
+        BUFFERPOOL BP0                                                          
+        USING STOGROUP DSNDB077                                                 
+        PRIQTY 1500000                                                          
+        SECQTY 10000                                                            
+        ERASE NO                                                                
+        CLOSE NO;                                                               
+ CREATE TABLESPACE DSNTMP08                                                     
+        IN DSNDB07                                                              
+        BUFFERPOOL BP0                                                          
+        USING STOGROUP DSNDB078                                                 
+        PRIQTY 1500000                                                          
+        SECQTY 10000                                                            
+        ERASE NO                                                                
+        CLOSE NO;                                                               
+ CREATE STOGROUP DSNDB079 VOLUMES (VOLC04) VCAT DSNC220;                        
+ CREATE STOGROUP DSNDB07A VOLUMES (VOLC05) VCAT DSNC220;                        
+ CREATE STOGROUP DSNDB07B VOLUMES (VOLC06) VCAT DSNC220;                        
+ CREATE STOGROUP DSNDB07C VOLUMES (VOLC07) VCAT DSNC220;                        
+ CREATE TABLESPACE DSNTMP09                                                     
+        IN DSNDB07                                                              
+        BUFFERPOOL BP0                                                          
+        USING STOGROUP DSNDB079                                                 
+        PRIQTY 1500000                                                          
+        SECQTY 10000                                                            
+        ERASE NO                                                                
+        CLOSE NO;                                                               
+ CREATE TABLESPACE DSNTMP0A                                                     
+        IN DSNDB07                                                              
+        BUFFERPOOL BP0                                                          
+        USING STOGROUP DSNDB07A                                                 
+        PRIQTY 1500000                                                          
+        SECQTY 10000                                                            
+        ERASE NO                                                                
+        CLOSE NO;                                                               
+ CREATE TABLESPACE DSNTMP0B                                                     
+        IN DSNDB07                                                              
+        BUFFERPOOL BP0                                                          
+        USING STOGROUP DSNDB07B                                                 
+        PRIQTY 1500000                                                          
+        SECQTY 10000                                                            
+        ERASE NO                                                                
+        CLOSE NO;                                                               
+ CREATE TABLESPACE DSNTMP0C                                                     
+        IN DSNDB07                                                              
+        BUFFERPOOL BP0                                                          
+        USING STOGROUP DSNDB07C                                                 
+        PRIQTY 1500000                                                          
+        SECQTY 10000                                                            
+        ERASE NO                                                                
+        CLOSE NO;                                                               

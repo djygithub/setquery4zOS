@@ -1,0 +1,10 @@
+//PPOM23   JOB   0,YOUNG,MSGLEVEL=(1,1),                                        
+//         MSGCLASS=Q                                                           
+//IEBPTPCH EXEC  PGM=IEBPTPCH                                                   
+//SYSPRINT DD    SYSOUT=*                                                       
+//SYSUT1   DD    DSN=DAVID.PPOM23.STUFF,DISP=SHR                                
+//SYSUT2   DD    SYSOUT=*,DCB=LRECL=133,COPIES=3                                
+//SYSIN    DD    *                                                              
+   PRINT   TYPORG=PO,MAXFLDS=1                                                  
+   RECORD  FIELD=(80)                                                           
+//                                                                              

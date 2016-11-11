@@ -1,0 +1,6 @@
+//DEFFILES JOB 'CHAO     ',CHAO,MSGCLASS=X,NOTIFY=CHAO,MSGLEVEL=(1,1)   00010000
+//DELETE    EXEC PGM=IDCAMS,REGION=1M                                   00020000
+//SYSPRINT DD SYSOUT=*                                                  00030000
+//SYSIN    DD *                                                         00040000
+ DELETE DAVID.CICS.FILEA001                                             00050000
+ SET MAXCC=0                                                            00060000

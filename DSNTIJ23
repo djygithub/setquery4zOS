@@ -1,0 +1,211 @@
+//DSNTIJ23 JOB   0,YOUNG,MSGLEVEL=(1,1),                                00001006
+//         MSGCLASS=O                                                   00002006
+//*********************************************************************/00010000
+//* JOB NAME = DSNTIJSU                                               */00012000
+//*                                                                   */00014000
+//* DESCRIPTIVE NAME = INSTALLATION JOB STREAM                        */00016000
+//*                                                                   */00019000
+//*    COPYRIGHT = 5665-DB2 (C) COPYRIGHT IBM CORP 1982, 1991         */00022000
+//*    SEE COPYRIGHT INSTRUCTIONS                                     */00024000
+//*    LICENSED MATERIALS - PROPERTY OF IBM                           */00026000
+//*                                                                   */00028000
+//*    STATUS = VERSION 2 RELEASE 3, LEVEL 0                          */00031000
+//*                                                                   */00034000
+//* FUNCTION =                                                        */00036000
+//*   LINKEDIT JCL FOR DB2 CICS ATTACH LOAD MODULES WHICH INCLUDE     */00038000
+//*   CICS LOAD MODULES.  THE CICS STUBS USED BY THE DB2 CICS         */00040000
+//*   ATTACH ARE NOT SHIPPED WITH DB2.  THIS JOB WILL INCLUDE         */00042000
+//*   THEM FROM THE CICS LOAD LIBRARY.  IF A CICS LEVEL OF 3.1.1      */00044000
+//*   OR ABOVE IS SPECIFIED, THE LOADCSD STEP WILL ALSO LOAD          */00044600
+//*   THE CICS CSD WITH DB2-SUPPLIED ENTRIES.                         */00045300
+//*                                                                   */00046000
+//* **** WARNING **** THE LOADCSD STEP WILL DELETE AND RE-ADD         */00046300
+//*   THE CICS GROUP SPECIFIED ON THE CICS INSTALLATION PANEL.        */00046600
+//*   PLEASE ENSURE THAT THIS GROUP CONTAINS ONLY DB2 SUPPLIED        */00046900
+//*   ENTRIES PRIOR TO EXECUTING THIS JOB.                            */00047200
+//*                                                                   */00047600
+//* DEPENDENCIES =                                                    */00048000
+//*   DFHEAI MUST BE THE FIRST CSECT IN THE COMMAND LEVEL CICS        */00050000
+//*   MODULES DSNCEXT1, DSNCEXT2, DSNCMSG0, DSNCSTRT, DSNCSTOP,       */00052000
+//*   DSNCCOM1 AND DSNCCOM2.                                          */00058000
+//*                                                                   */00064000
+//* NOTES =                                                           */00067000
+//*   THIS JOB WILL RESOLVE EXTERNAL REFERENCES THAT WERE NOT         */00070000
+//*   RESOLVED BY THE LINKEDIT DURING THE SMP APPLY                   */00073000
+//*                                                                   */00076000
+//* PSEUDOCODE =                                                      */00079000
+//*   DSNTIN   PROC      FOR INITIALIZING TABLESPACES                 */00082000
+//*   DSNTLOG  STEP      INVOKES CHANGE LOG TO NOTE LOGS              */00085000
+//*   DSNTU..  STEPS     INITIALIZE CATALOG AND DIRECTORY             */00088000
+//*                      DATA BASES FROM DSNSAMP DATA.                */00091000
+//*********************************************************************/00094000
+//*                                                                     00097000
+//SSRENT EXEC PGM=IEWL,                                                 00100000
+//        REGION=1024K,                                                 00110000
+//     PARM='SIZE=(900K,124K),XREF,LET,RENT,NCAL,AMODE=24,RMODE=24'     00120000
+//SYSPRINT DD SYSOUT=*                                                  00130000
+//DSNALOAD DD DISP=SHR,UNIT=3390,VOL=SER=DB25CD,                        00133000
+//            DSN=DSN230.DSNALOAD                                       00136000
+//DSNLOAD  DD DISP=SHR,UNIT=3390,VOL=SER=DB25CD,                        00140000
+//            DSN=DSN230.DSNLOAD                                        00150000
+//*  DLOADLIB IS USED FOR DFHEAI AND DFHEAI0 CICS MODULES               00160000
+//DLOADLIB DD DISP=SHR,                                                 00170000
+//            DSN=CICS321.SDFHLOAD                                      00180000
+//SYSLMOD  DD DISP=SHR,                                                 00190000
+//            DSN=SYS1.DSN230.DSNLOAD                                   00200000
+//SYSUT1   DD UNIT=SYSDA,SPACE=(CYL,(1,1))                              00210000
+//SYSLIN   DD  *                                                        00220000
+ ORDER DFHEAI,DFHEAI0,DSNCCOM1,DSNCCMDP,DSNAA                           00230000
+ INCLUDE DLOADLIB(DFHEAI)                                               00250000
+ INCLUDE DLOADLIB(DFHEAI0)                                              00260000
+ INCLUDE DSNLOAD(DSNCCOM1)                                              00265000
+ ENTRY DSNCCOM1                                                         00270000
+ NAME DSNCCOM1(R)                                                       00280000
+ ORDER DFHEAI,DFHEAI0,DSNCCOM2,DSNAA                                    00281000
+ INCLUDE DLOADLIB(DFHEAI)                                               00282000
+ INCLUDE DLOADLIB(DFHEAI0)                                              00283000
+ INCLUDE DSNLOAD(DSNCCOM2)                                              00284000
+ ENTRY DSNCCOM2                                                         00286000
+ NAME DSNCCOM2(R)                                                       00288000
+ ORDER DFHEAI,DFHEAI0,DSNCEXT1,DSNAA                                    00290000
+ INCLUDE DLOADLIB(DFHEAI)                                               00292000
+ INCLUDE DLOADLIB(DFHEAI0)                                              00293000
+ INCLUDE DSNLOAD(DSNCEXT1)                                              00293500
+ ENTRY DSNCEXT1                                                         00294000
+ NAME DSNCEXT1(R)                                                       00296000
+ ORDER DFHEAI,DFHEAI0,DSNCEXT2,DSNAA,DSNARIB                            00298000
+ INCLUDE DLOADLIB(DFHEAI)                                               00310000
+ INCLUDE DLOADLIB(DFHEAI0)                                              00320000
+ INCLUDE DSNLOAD(DSNCEXT2)                                              00325000
+ ENTRY DSNCEXT2                                                         00330000
+ NAME DSNCEXT2(R)                                                       00340000
+ ORDER DFHEAI,DFHEAI0,DSNCMSG0,DSNAA                                    00350000
+ INCLUDE DLOADLIB(DFHEAI)                                               00370000
+ INCLUDE DLOADLIB(DFHEAI0)                                              00380000
+ INCLUDE DSNLOAD(DSNCMSG0)                                              00385000
+ ENTRY DSNCMSG0                                                         00390000
+ NAME DSNCMSG0(R)                                                       00400000
+ ORDER DFHEAI,DFHEAI0,DSNCSTOP,DSNAA                                    00410000
+ INCLUDE DLOADLIB(DFHEAI)                                               00430000
+ INCLUDE DLOADLIB(DFHEAI0)                                              00440000
+ INCLUDE DSNLOAD(DSNCSTOP)                                              00445000
+ ENTRY DSNCSTOP                                                         00450000
+ NAME DSNCSTOP(R)                                                       00460000
+ ORDER DFHEAI,DFHEAI0,DSNCSTRT,DSNAA                                    00470000
+ INCLUDE DLOADLIB(DFHEAI)                                               00490000
+ INCLUDE DLOADLIB(DFHEAI0)                                              00500000
+ INCLUDE DSNLOAD(DSNCSTRT)                                              00505000
+ ENTRY DSNCSTRT                                                         00510000
+ NAME DSNCSTRT(R)                                                       00520000
+ ORDER DFHEAI,DFHEAI0,DSNCUEXT,DSNAA                                    00521000
+ INCLUDE DLOADLIB(DFHEAI)                                               00523000
+ INCLUDE DLOADLIB(DFHEAI0)                                              00524000
+ INCLUDE DSNLOAD(DSNCUEXT)                                              00525000
+ ENTRY DSNCUEXT                                                         00526000
+ NAME DSNCUEXT(R)                                                       00528000
+ ORDER DFHEAI,DFHEAI0,DSNCEDF1,DSNAA                                    00531000
+ MODE AMODE(31),RMODE(ANY)                                              00532000
+ INCLUDE DLOADLIB(DFHEAI)                                               00534000
+ INCLUDE DLOADLIB(DFHEAI0)                                              00535000
+ INCLUDE DSNALOAD(DSNCEDF1)                                             00536000
+ INCLUDE DSNALOAD(DSNAA)                                                00536500
+ ENTRY DSNCEDF1                                                         00537000
+ NAME DSNCEDF1(R)                                                       00538000
+ ORDER DFHEAI,DFHEAI0,DSNCEDON,DSNAA                                    00539000
+ MODE AMODE(31),RMODE(ANY)                                              00540000
+ INCLUDE DLOADLIB(DFHEAI)                                               00542000
+ INCLUDE DLOADLIB(DFHEAI0)                                              00543000
+ INCLUDE DSNALOAD(DSNCEDON)                                             00544000
+ INCLUDE DSNALOAD(DSNAA)                                                00544500
+ ENTRY DSNCEDON                                                         00545000
+ NAME DSNCEDON(R)                                                       00546000
+ INCLUDE DLOADLIB(DFHEAI)                                               00546160
+ INCLUDE DLOADLIB(DFHEAI0)                                              00546220
+ INCLUDE DSNALOAD(DSNCSM31)                                             00546240
+ INCLUDE DSNALOAD(DSNAA)                                                00546260
+ ENTRY DSNCSM31                                                         00546280
+ ORDER DFHEAI,DFHEAI0,DSNCSM31,DSNAA                                    00546340
+ MODE AMODE(31) RMODE(ANY)                                              00546400
+ NAME DSNCSM31(R)                                                       00546460
+ INCLUDE DLOADLIB(DFHEAI)                                               00546480
+ INCLUDE DLOADLIB(DFHEAI0)                                              00546500
+ INCLUDE DSNALOAD(DSNCSM21)                                             00546520
+ INCLUDE DSNALOAD(DSNAA)                                                00546580
+ ENTRY DSNCSM21                                                         00546760
+ ORDER DFHEAI,DFHEAI0,DSNCSM21,DSNAA                                    00546820
+ MODE AMODE(31) RMODE(24)                                               00546880
+ NAME DSNCSM21(R)                                                       00546940
+//                                                                      00547000
+//********************************************************************* 00548000
+//*        LOAD CICS CSD FILE WITH DB2 DEFINITIONS                      00549000
+//*        MINIMUM CICS ENVIRONMENT --> CICS/ESA 3.1.1                  00550000
+//********************************************************************* 00551000
+//                                                                      00552000
+//LOADCSD  EXEC  PGM=DFHCSDUP,REGION=300K                               00552000
+//STEPLIB  DD DISP=SHR,DSN=CICS170.LOADLIB                              00553000
+//DFHCSD   DD DISP=SHR,DSN=CICS170.DFHCSD                               00554000
+//SYSPRINT DD SYSOUT=*                                                  00555000
+//SYSIN    DD *                                                         00556000
+**********************************************************************  00557000
+**********(DB2 CICS ATTACHMENT FACILITY DEFINITIONS)******************  00558000
+**********************************************************************  00559000
+DELETE GROUP(DB2)                                                       00560000
+ADD    GROUP(DB2) LIST(DSNLIST)                                         00561000
+*                                                                       00562000
+DEFINE TRANSACTION(-DIS) GROUP(DB2) PROGRAM(DSNCCOM1) TWASIZE(1068)     00563000
+DEFINE TRANSACTION(-ERR) GROUP(DB2) PROGRAM(DSNCCOM1) TWASIZE(1068)     00564000
+DEFINE TRANSACTION(-REC) GROUP(DB2) PROGRAM(DSNCCOM1) TWASIZE(1068)     00565000
+DEFINE TRANSACTION(-STA) GROUP(DB2) PROGRAM(DSNCCOM1) TWASIZE(1068)     00566000
+DEFINE TRANSACTION(-STO) GROUP(DB2) PROGRAM(DSNCCOM1) TWASIZE(1068)     00567000
+DEFINE TRANSACTION(DISC) GROUP(DB2) PROGRAM(DSNCCOM1) TWASIZE(1068)     00568000
+DEFINE TRANSACTION(DISP) GROUP(DB2) PROGRAM(DSNCCOM1) TWASIZE(1068)     00569000
+DEFINE TRANSACTION(DSNC) GROUP(DB2) PROGRAM(DSNCCOM1) TWASIZE(1068)     00570000
+DEFINE TRANSACTION(GOOP) GROUP(DB2) PROGRAM(DSNCCOM1) TWASIZE(1068)     00571000
+DEFINE TRANSACTION(MODI) GROUP(DB2) PROGRAM(DSNCCOM1) TWASIZE(1068)     00572000
+DEFINE TRANSACTION(STOP) GROUP(DB2) PROGRAM(DSNCCOM1) TWASIZE(1068)     00573000
+DEFINE TRANSACTION(STRT) GROUP(DB2) PROGRAM(DSNCCOM1) TWASIZE(1068)     00574000
+*                                                                       00575000
+DEFINE PROGRAM(DSNCCOM1) GROUP(DB2) LANGUAGE(ASSEMBLER) CEDF(NO)        00576000
+DEFINE PROGRAM(DSNCCOM2) GROUP(DB2) LANGUAGE(ASSEMBLER) CEDF(NO)        00576500
+DEFINE PROGRAM(DSNCEDF1) GROUP(DB2) LANGUAGE(ASSEMBLER) CEDF(NO)        00577000
+DEFINE PROGRAM(DSNCEDON) GROUP(DB2) LANGUAGE(ASSEMBLER) CEDF(NO)        00578000
+DEFINE PROGRAM(DSNCEXT1) GROUP(DB2) LANGUAGE(ASSEMBLER) CEDF(NO)        00579000
+DEFINE PROGRAM(DSNCEXT2) GROUP(DB2) LANGUAGE(ASSEMBLER) CEDF(NO)        00580000
+DEFINE PROGRAM(DSNCMSG0) GROUP(DB2) LANGUAGE(ASSEMBLER) CEDF(NO)        00581000
+DEFINE PROGRAM(DSNCSTOP) GROUP(DB2) LANGUAGE(ASSEMBLER) CEDF(NO)        00582000
+DEFINE PROGRAM(DSNCSTRT) GROUP(DB2) LANGUAGE(ASSEMBLER) CEDF(NO)        00583000
+DEFINE PROGRAM(DSNCUEXT) GROUP(DB2) LANGUAGE(ASSEMBLER) CEDF(NO)        00584000
+DEFINE PROGRAM(DSNCSM21) GROUP(DB2) LANGUAGE(ASSEMBLER) CEDF(NO)        00584300
+DEFINE PROGRAM(DSNCSM31) GROUP(DB2) LANGUAGE(ASSEMBLER) CEDF(NO)        00584600
+*                                                                       00585000
+**********************************************************************  00586000
+**********(DB2 CICS SAMPLE APPLICATION DEFINITIONS)*******************  00587000
+**********************************************************************  00588000
+DEFINE TRANSACTION(D8CS) GROUP(DB2) PROGRAM(DSN8CC0)                    00589000
+DEFINE TRANSACTION(D8PP) GROUP(DB2) PROGRAM(DSN8CP6)                    00590000
+DEFINE TRANSACTION(D8PS) GROUP(DB2) PROGRAM(DSN8CP0)                    00591000
+DEFINE TRANSACTION(D8PT) GROUP(DB2) PROGRAM(DSN8CP3)                    00592000
+DEFINE TRANSACTION(D8PU) GROUP(DB2) PROGRAM(DSN8CP3)                    00593000
+*                                                                       00594000
+DEFINE MAPSET(DSN8CCD) GROUP(DB2)                                       00595000
+DEFINE MAPSET(DSN8CCG) GROUP(DB2)                                       00596000
+DEFINE MAPSET(DSN8CPD) GROUP(DB2)                                       00597000
+DEFINE MAPSET(DSN8CPE) GROUP(DB2)                                       00598000
+DEFINE MAPSET(DSN8CPF) GROUP(DB2)                                       00599000
+DEFINE MAPSET(DSN8CPG) GROUP(DB2)                                       00600000
+DEFINE MAPSET(DSN8CPL) GROUP(DB2)                                       00601000
+DEFINE MAPSET(DSN8CPN) GROUP(DB2)                                       00602000
+DEFINE MAPSET(DSN8CPU) GROUP(DB2)                                       00603000
+*                                                                       00604000
+DEFINE PROGRAM(DSN8CC0) GROUP(DB2) LANGUAGE(COBOL)                      00605000
+DEFINE PROGRAM(DSN8CC1) GROUP(DB2) LANGUAGE(COBOL)                      00606000
+DEFINE PROGRAM(DSN8CC2) GROUP(DB2) LANGUAGE(COBOL)                      00607000
+DEFINE PROGRAM(DSN8CP0) GROUP(DB2) LANGUAGE(PLI)                        00608000
+DEFINE PROGRAM(DSN8CP1) GROUP(DB2) LANGUAGE(PLI)                        00609000
+DEFINE PROGRAM(DSN8CP2) GROUP(DB2) LANGUAGE(PLI)                        00610000
+DEFINE PROGRAM(DSN8CP3) GROUP(DB2) LANGUAGE(PLI)                        00611000
+DEFINE PROGRAM(DSN8CP6) GROUP(DB2) LANGUAGE(PLI)                        00612000
+DEFINE PROGRAM(DSN8CP7) GROUP(DB2) LANGUAGE(PLI)                        00613000
+DEFINE PROGRAM(DSN8CP8) GROUP(DB2) LANGUAGE(PLI)                        00614000
+*********************************************************************** 00615000
+/*                                                                      00616000

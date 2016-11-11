@@ -1,0 +1,286 @@
+//DFHDEFDS JOB 'CHAO     ',CHAO,MSGCLASS=X,NOTIFY=CHAO,MSGLEVEL=(1,1)   00001000
+//*                                                                     00002000
+//* THIS JOB DELETES AND RECREATES                                      00003000
+//* CICS SYSTEM DATA SETS                                               00004000
+//*                                                                     00005000
+//*  STEPS:                                                             00006000
+//*  . DELETE AND DEFINE                                                00007000
+//*      - DELETE/DEFINE THE CLUSTERS FOR:                              00008000
+//*          . A CICS GLOBAL CATALOG                                    00009000
+//*               - CICS321.CICS.DFHGCD                                 00010000
+//*          . A CICS LOCAL CATALOG                                     00011000
+//*               - CICS321.CICS.DFHLCD                                 00012000
+//*          . A TEMPORARY STORAGE DATA SET                             00013000
+//*               - CICS321.CNTL.CICS.DFHTEMP                           00014000
+//*          . AN INTRA TRANSIENT DATA SET                              00015000
+//*               - CICS321.CNTL.CICS.DFHINTRA                          00016000
+//*          . A RESTART DATASET                                        00017000
+//*               - CICS321.CICS.DFHRSD                                 00018000
+//*          . A JOURNAL ARCHIVE DATASET                                00019000
+//*               - CICS321.CICS.DFHJACD                                00020000
+//*          . A SAMPLE PROGRAM FILE                                    00021000
+//*               - CICS321.CICS.FILEA                                  00022000
+//*          . A XRF CONTROL DATASET                                    00023000
+//*               - CICS321.CNTL.CICS.DFHXRCTL                          00024000
+//*          . A XRF MESSAGE DATASET                                    00025000
+//*               - CICS321.CNTL.CICS.DFHXRMSG                          00026000
+//*      - DELETE STEP ALSO DELETES                                     00027000
+//*          . THE TRACE, DUMP AND JOURNAL DATASETS FOR THIS REGION     00028000
+//*                                                                     00029000
+//*  . INITGCD                                                          00030000
+//*      - INITIALIZE A CICS GLOBAL CATALOG DATASET                     00031000
+//*                                                                     00032000
+//*  . INITLCD                                                          00033000
+//*      - INITIALIZE A CICS LOCAL CATALOG DATASET                      00034000
+//*                                                                     00035000
+//*  . INITRSD                                                          00036000
+//*      - INITIALIZE CICS RESTART DATASET                              00037000
+//*                                                                     00038000
+//*  . DEFTRACE                                                         00039000
+//*      - CREATE THE TRACE DATASETS FOR THIS REGION                    00040000
+//*                                                                     00041000
+//*  . DEFDUMP                                                          00042000
+//*      - CREATE THE DUMP DATASETS FOR THIS REGION                     00043000
+//*  . DELJNLS                                                          00044000
+//*      - DELETE THE SYSTEM JOURNAL DATASETS                           00045000
+//*  . FRMTJ01A, FRMTJ01B, FRMTJ01X                                     00046000
+//*      - CREATE AND FORMAT THE SYSTEM JOURNAL DATASETS                00047000
+//*                                                                     00048000
+//*  . LOADFILE                                                         00049000
+//*      - LOAD SAMPLE DATA                                             00050000
+//*          - INTO CICS321.CICS.FILEA                                  00051000
+//*                                                                     00052000
+//*                                                                     00053000
+//*  IMPORTANT:                                                         00054000
+//*                                                                     00055000
+//*    USE THE DFHISTAR JOB IN THE INSTLIB LIBRARY TO CREATE            00056000
+//*    A DATASET DEFINITION JOB FOR EACH CICS REGION                    00057000
+//*       - USE THE DSINFO PARAMETER ON THE INPUT                       00058000
+//*         TO THE DFHINST CLIST TO SPECIFY                             00059000
+//*           . THE HIGH-LEVEL-QUALIFIER(S) OF THE DATASETS             00060000
+//*           . THE SERIAL NUMBER OF THE VOLUME TO BE USED              00061000
+//*           . THE UNIT TYPE OF THIS VOLUME                            00062000
+//*           . THE REGION IDENTIFIERS (2 TOKENS)                       00063000
+//*                                                                     00064000
+//*  THE HIGH-LEVEL-QUALIFIER(S) OF THE DATASETS: CICS321               00065000
+//*  THE VOLUME SERIAL                            CICS32                00066000
+//*  THE UNIT TYPE                                3390                  00067000
+//*  THE REGION IDENTIFIER                                              00068000
+//*                                                                     00069000
+//*                                                                     00070000
+//*                                                                     00080000
+//DELETE    EXEC PGM=IDCAMS,REGION=1M                                   00090000
+//SYSPRINT DD SYSOUT=*                                                  00100000
+//SYSIN    DD *                                                         00110000
+ DELETE CICS321.CICS.DFHGCD                                             00111000
+ DELETE CICS321.CICS.DFHLCD                                             00112000
+ DELETE CICS321.CNTL.CICS.DFHTEMP                                       00113000
+ DELETE CICS321.CNTL.CICS.DFHINTRA                                      00114000
+ DELETE CICS321.CICS.DFHRSD                                             00115000
+ DELETE CICS321.CICS.DFHJACD                                            00116000
+ DELETE CICS321.CICS.FILEA                                              00117000
+ DELETE CICS321.CNTL.CICS.DFHXRCTL                                      00118000
+ DELETE CICS321.CNTL.CICS.DFHXRMSG                                      00119000
+ DELETE CICS321.CICS.DFHDMPA NONVSAM                                    00120000
+ DELETE CICS321.CICS.DFHDMPB NONVSAM                                    00121000
+ DELETE CICS321.CICS.DFHAUXT NONVSAM                                    00122000
+ DELETE CICS321.CICS.DFHBUXT NONVSAM                                    00123000
+ DELETE CICS321.CICS.DFHJ01A NONVSAM                                    00124000
+ DELETE CICS321.CICS.DFHJ01B NONVSAM                                    00125000
+ DELETE CICS321.CICS.DFHJ01X NONVSAM                                    00126000
+ SET MAXCC=0                                                            00127000
+/*                                                                      00128000
+//DEFINE    EXEC PGM=IDCAMS,REGION=1M                                   00129000
+//SYSPRINT DD SYSOUT=*                                                  00130000
+//SYSIN    DD *                                                         00131000
+ /*                              */                                     00132000
+ /* DEFINE A CICS GLOBAL CATALOG */                                     00133000
+ /*                              */                                     00134000
+ DEFINE CLUSTER(NAME(CICS321.CICS.DFHGCD)-                              00135000
+          INDEXED -                                                     00136000
+          CYL(1 1)-                                                     00137000
+          SHR(2)-                                                       00138000
+          FREESPACE(10 10)-                                             00139000
+          REUSE -                                                       00140000
+          VOLUMES(CICS32)) -                                            00141000
+        DATA(NAME(CICS321.CICS.DFHGCD.DATA)-                            00142000
+          CISZ(8192)-                                                   00143000
+          KEYS(28 0)) -                                                 00144000
+       INDEX(NAME(CICS321.CICS.DFHGCD.INDEX)-                           00145000
+          IMBED -                                                       00146000
+          REPLICATE)                                                    00147000
+ /*                             */                                      00148000
+ /* DEFINE A CICS LOCAL CATALOG */                                      00149000
+ /*                             */                                      00150000
+ DEFINE CLUSTER(NAME(CICS321.CICS.DFHLCD)-                              00151000
+          INDEXED -                                                     00152000
+          TRK(5 1)-                                                     00153000
+          SHR(2)-                                                       00154000
+          FREESPACE(10 10)-                                             00155000
+          REUSE -                                                       00156000
+          VOLUMES(CICS32)) -                                            00157000
+        DATA(NAME(CICS321.CICS.DFHLCD.DATA)-                            00158000
+          KEYS(28 0)-                                                   00159000
+          RECORDSIZE(45 75)-                                            00160000
+          CISZ(2048)) -                                                 00161000
+       INDEX(NAME(CICS321.CICS.DFHLCD.INDEX)-                           00162000
+          IMBED -                                                       00163000
+          REPLICATE)                                                    00164000
+ /*                                  */                                 00165000
+ /* DEFINE TEMPORARY STORAGE DATASET */                                 00166000
+ /*                                  */                                 00167000
+ DEFINE CLUSTER(NAME(CICS321.CNTL.CICS.DFHTEMP)-                        00168000
+          RECORDSIZE(4089,4089)-                                        00169000
+          REC(200)-                                                     00170000
+          NIXD -                                                        00171000
+          CISZ(4096)-                                                   00172000
+          SHR(2 3)-                                                     00173000
+          VOLUMES(CICS32)) -                                            00174000
+        DATA(NAME(CICS321.CNTL.CICS.DFHTEMP.DATA)-                      00175000
+          UNIQUE)                                                       00176000
+ /*                           */                                        00177000
+ /* DEFINE AN INTRA-PARTITION */                                        00178000
+ /* TRANSIENT DATASET         */                                        00179000
+ /*                           */                                        00180000
+ DEFINE CLUSTER(NAME(CICS321.CNTL.CICS.DFHINTRA)-                       00181000
+          RECORDSIZE(4089,4089)-                                        00182000
+          REC(100)-                                                     00183000
+          NIXD -                                                        00184000
+          CISZ(4096)-                                                   00185000
+          SHR(2 3)-                                                     00186000
+          VOLUMES(CICS32)) -                                            00187000
+        DATA(NAME(CICS321.CNTL.CICS.DFHINTRA.DATA)-                     00188000
+          UNIQUE)                                                       00189000
+ /*                          */                                         00190000
+ /* DEFINE A RESTART DATASET */                                         00191000
+ /*                          */                                         00192000
+ DEFINE CLUSTER(NAME(CICS321.CICS.DFHRSD) -                             00193000
+          KEYS(22 0)-                                                   00194000
+          INDEXED -                                                     00195000
+          RECORDSIZE(400 2000)-                                         00196000
+          REC(100 100)-                                                 00197000
+          CISZ(2048)-                                                   00198000
+          SHR(2)-                                                       00199000
+          VOLUMES(CICS32)) -                                            00200000
+        DATA(NAME(CICS321.CICS.DFHRSD.DATA)-                            00201000
+          UNIQUE)-                                                      00202000
+       INDEX(NAME(CICS321.CICS.DFHRSD.INDEX)-                           00203000
+          UNIQUE)                                                       00204000
+ /*                                  */                                 00205000
+ /* DEFINE A JOURNAL ARCHIVE DATASET */                                 00206000
+ /*                                  */                                 00207000
+ DEFINE CLUSTER(NAME(CICS321.CICS.DFHJACD)-                             00208000
+          NUMBERED -                                                    00209000
+          REC(199)-                                                     00210000
+          RECORDSIZE(505 505)-                                          00211000
+          CISZ(512)-                                                    00212000
+          SHR(4)-                                                       00213000
+          VOLUMES(CICS32)) -                                            00214000
+        DATA(NAME(CICS321.CICS.DFHJACD.DATA))                           00215000
+ /*                                  */                                 00216000
+ /* DEFINE A FILEA DATASET           */                                 00217000
+ /*                                  */                                 00218000
+ DEFINE CLUSTER(NAME(CICS321.CICS.FILEA)-                               00219000
+          REC(80)-                                                      00220000
+          IXD -                                                         00221000
+          VOLUMES(CICS32)) -                                            00222000
+         DATA(NAME(CICS321.CICS.FILEA.DATA)-                            00223000
+         RECSZ(80 80)-                                                  00224000
+         UNIQUE -                                                       00225000
+         KEYS(6 1)) -                                                   00226000
+        INDEX(NAME(CICS321.CICS.FILEA.INDEX)-                           00227000
+          UNIQUE -                                                      00228000
+          SHR(2 3))                                                     00229000
+ /*                                  */                                 00230000
+ /* DEFINE THE XRF DATASETS          */                                 00231000
+ /*                                  */                                 00232000
+ DEFINE CLUSTER(NAME(CICS321.CNTL.CICS.DFHXRCTL)-                       00233000
+          TRACKS(1)-                                                    00234000
+          NIXD -                                                        00235000
+          SPEED -                                                       00236000
+          VOLUMES(CICS32)) -                                            00237000
+        DATA(NAME(CICS321.CNTL.CICS.DFHXRCTL.DATA)-                     00238000
+          CISZ(4096)-                                                   00239000
+          SHR(3,3))                                                     00240000
+ DEFINE CLUSTER(NAME(CICS321.CNTL.CICS.DFHXRMSG)-                       00241000
+          CYLINDERS(2)-                                                 00242000
+          SPEED -                                                       00243000
+          NIXD -                                                        00244000
+          VOLUMES(CICS32)) -                                            00245000
+        DATA(NAME(CICS321.CNTL.CICS.DFHXRMSG.DATA)-                     00246000
+          CISZ(4096)-                                                   00247000
+          SHR(3,3))                                                     00248000
+/*                                                                      00249000
+//*                                                                     00250000
+//INITGCD   EXEC PGM=IDCAMS,REGION=1M                                   00251000
+//SYSPRINT  DD SYSOUT=*                                                 00252000
+//GCDREC    DD *                                                        00253000
+                                                                        00254000
+/*                                                                      00255000
+//GCD DD DSN=CICS321.CICS.DFHGCD,DISP=SHR                               00256000
+//SYSIN     DD *                                                        00257000
+ REPRO INFILE(GCDREC) OUTFILE(GCD)                                      00258000
+/*                                                                      00259000
+//*                                                                     00260000
+//INITLCD   EXEC PGM=DFHCCUTL                                           00261000
+//STEPLIB   DD DSN=CICS321.SDFHLOAD,DISP=SHR                            00262000
+//SYSPRINT  DD SYSOUT=*                                                 00263000
+//SYSUDUMP  DD SYSOUT=*                                                 00264000
+//DFHLCD    DD DSN=CICS321.CICS.DFHLCD,DISP=SHR                         00265000
+//*                                                                     00266000
+//*                                                                     00267000
+//INITRSD   EXEC PGM=IDCAMS,REGION=1M                                   00268000
+//SYSPRINT  DD SYSOUT=*                                                 00269000
+//RSD DD DSN=CICS321.CICS.DFHRSD,DISP=SHR                               00270000
+//SYSIN     DD *                                                        00271000
+ REPRO INFILE(RSDREC) OUTFILE(RSD)                                      00272000
+/*                                                                      00273000
+//RSDREC    DD *                                                        00274000
+                                                                        00275000
+/*                                                                      00276000
+//*                                                                     00277000
+//DEFTRACE EXEC PGM=IEFBR14                                             00278000
+//DD1      DD DISP=(NEW,CATLG,DELETE),                                  00279000
+// DSN=CICS321.CICS.DFHAUXT,                                            00280000
+// SPACE=(CYL,(1)),UNIT=3390,VOL=SER=CICS32,                            00281000
+// DCB=(BLKSIZE=4096,RECFM=F,LRECL=4096)                                00282000
+//DD2      DD DISP=(NEW,CATLG,DELETE),                                  00283000
+// DSN=CICS321.CICS.DFHBUXT,                                            00284000
+// SPACE=(CYL,(1)),UNIT=3390,VOL=SER=CICS32,                            00285000
+// DCB=(BLKSIZE=4096,RECFM=F,LRECL=4096)                                00286000
+//*                                                                     00287000
+//DEFDUMP  EXEC PGM=IEFBR14                                             00288000
+//DD1   DD DISP=(NEW,CATLG,DELETE),                                     00289000
+// SPACE=(CYL,(5)),UNIT=3390,VOL=SER=CICS32,                            00290000
+// DSN=CICS321.CICS.DFHDMPA                                             00291000
+//DD2   DD DISP=(NEW,CATLG,DELETE),                                     00292000
+// SPACE=(CYL,(5)),UNIT=3390,VOL=SER=CICS32,                            00293000
+// DSN=CICS321.CICS.DFHDMPB                                             00294000
+//*                                                                     00295000
+//FRMTJ01A EXEC PGM=DFHJCJFP                                            00296000
+//STEPLIB  DD DSN=CICS321.SDFHLOAD,DISP=SHR                             00297000
+//JOURNAL  DD DISP=(NEW,CATLG,DELETE),SPACE=(TRK,(4),,CONTIG),          00298000
+// UNIT=3390,VOL=SER=CICS32,                                            00299000
+// DSN=CICS321.CICS.DFHJ01A                                             00300000
+//*                                                                     00301000
+//FRMTJ01B EXEC PGM=DFHJCJFP                                            00302000
+//STEPLIB  DD DSN=CICS321.SDFHLOAD,DISP=SHR                             00303000
+//JOURNAL  DD DISP=(NEW,CATLG,DELETE),SPACE=(TRK,(4),,CONTIG),          00304000
+// UNIT=3390,VOL=SER=CICS32,                                            00305000
+// DSN=CICS321.CICS.DFHJ01B                                             00306000
+//*                                                                     00307000
+//FRMTJ01X EXEC PGM=DFHJCJFP                                            00308000
+//STEPLIB  DD DSN=CICS321.SDFHLOAD,DISP=SHR                             00309000
+//JOURNAL  DD DISP=(NEW,CATLG,DELETE),SPACE=(TRK,(4),,CONTIG),          00310000
+// UNIT=3390,VOL=SER=CICS32,                                            00311000
+// DSN=CICS321.CICS.DFHJ01X                                             00312000
+//*                                                                     00313000
+//* LOAD VSAM DATA FILE                                                 00314000
+//*                                                                     00315000
+//LOADFILE EXEC PGM=DFH$LDSP                                            00316000
+//STEPLIB  DD DSN=CICS321.SDFHLOAD,DISP=SHR                             00317000
+//FILEA    DD DISP=SHR,                                                 00318000
+// DSN=CICS321.CICS.FILEA                                               00319000
+//SYSOUT   DD SYSOUT=*                                                  00320000
+//SYSIN    DD DISP=SHR,                                                 00321000
+// DSN=CICS321.SDFHSAMP(DFH$FAIN)                                       00322000

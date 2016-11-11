@@ -1,0 +1,18 @@
+//DB2GTF  JOB (330DJY00),'D J YOUNG ',MSGCLASS=P,NOTIFY=DAVID           00010037
+//*     SAMPLE IEBGENER                                                 00020000
+//*                                                                     00030000
+//STEP1   EXEC PGM=IEBGENER                                             00040000
+//SYSPRINT  DD SYSOUT=*                                                 00050000
+//SYSIN     DD DUMMY                                                    00060000
+//SYSUT1 DD DSN=SYS1.PROCLIB(GTFDJY),DISP=SHR                           00070037
+//SYSUT2    DD SYSOUT=*                                                 00080012
+//STEP1   EXEC PGM=IEBGENER                                             00090037
+//SYSPRINT  DD SYSOUT=*                                                 00100037
+//SYSIN     DD DUMMY                                                    00110037
+//SYSUT1 DD DSN=SYS1.PARMLIB(GTFFE3),DISP=SHR                           00120037
+//SYSUT2    DD SYSOUT=*                                                 00130037
+//STEP1   EXEC PGM=IEBGENER                                             00140037
+//SYSPRINT  DD SYSOUT=*                                                 00150037
+//SYSIN     DD DUMMY                                                    00160037
+//SYSUT1 DD DSN=DAVID.SETQUERY.WORKLOAD(IEBTAPE),DISP=SHR               00170037
+//SYSUT2    DD SYSOUT=*                                                 00180037

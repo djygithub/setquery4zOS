@@ -1,0 +1,16 @@
+PROC 0 +                                                                        
+   FTLOAD('''DAVID.FTTSO.LOAD(FTTSO)''')                                        
+   CONTROL NOPROMPT,NOLIST,NOSYMLIST,NOMSG,NOFLUSH                              
+   ERROR DO                                                                     
+      SET ECODE=&LASTCC                                                         
+      ERROR OFF                                                                 
+      GOTO ERRPROC                                                              
+      END                                                                       
+   CALL &FTLOAD '/&SYSPREF'                                                     
+   SET ECODE=&LASTCC                                                            
+ERRPROC:         +                                                              
+   IF &SUBSTR(1,&ECODE) EQ S THEN +                                             
+      WRITE *** PROGRAM TERMINATED WITH ABEND CODE &ECODE ***                   
+   ELSE IF &ECODE NE 0 THEN +                                                   
+      WRITE *** PROGRAM TERMINATED WITH ERROR CODE &ECODE ***                   
+   EXIT                                                                         

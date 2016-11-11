@@ -1,0 +1,160 @@
+//IV3H101J JOB (USER,ACCT,NUMBER),                                              
+//         'D J YOUNG',                                                         
+//         CLASS=A,MSGCLASS=X,MSGLEVEL=(1,1),                                   
+//         REGION=4M                                                            
+//*                                                                             
+//*                                                                             
+//*                                                                             
+//*********************************************************************         
+//* INSTALL/IVP IMS 3.1                                                         
+//*                                                                             
+//* SKELETON: DFSIXSH0                                                          
+//*                                                                             
+//* FUNCTION: ALLOCATE DATA SETS NEEDED FOR THE DB/DC SYSTEM IVP                
+//*********************************************************************         
+//*                                                                             
+//*********************************************************************         
+//*         THIS PRODUCT CONTAINS "RESTRICTED MATERIALS OF IBM".      *         
+//*                                                                   *         
+//*         5665-408 (C) COPYRIGHT IBM CORP. 1974, 1988.              *         
+//*         LICENSED MATERIALS - PROPERTY OF IBM.                     *         
+//*         ALL RIGHTS RESERVED.                                      *         
+//*                                                                   *         
+//*         U.S. GOVERNMENT USERS RESTRICTED RIGHTS -                 *         
+//*         USE, DUPLICATION, OR DISCLOSURE RESTRICTED BY             *         
+//*         GSA ADP SCHEDULE CONTRACT WITH IBM CORP.                  *         
+//*                                                                   *         
+//*         REFER TO COPYRIGHT INSTRUCTIONS FORM NUMBER G120-2083.    *         
+//*********************************************************************         
+//*                                                                             
+//*                                                                             
+//* HIDAM/OSAM DATA BASE                                                        
+//*                                                                             
+//* SCRATCH NON-VSAM DATA SETS                                                  
+//*                                                                             
+//SCRATCH  EXEC PGM=IEHPROGM                                                    
+//SYSPRINT DD SYSOUT=*                                                          
+//IVPWRK   DD DISP=OLD,UNIT=3390,VOL=SER=IMS310                                 
+//SYSIN    DD *                                                                 
+  UNCATLG DSNAME=IMS310A.DFSIVD1                                                
+  SCRATCH DSNAME=IMS310A.DFSIVD1,                                      X        
+               VOL=3390=IMS310                                                  
+//SCRATCH  EXEC PGM=IDCAMS                                                      
+//SYSPRINT DD SYSOUT=*                                                          
+//SYSIN    DD *                                                                 
+  DELETE IMS310A.DFSIVD1I CLUSTER                                               
+//*                                                                             
+//SCRATCH  EXEC PGM=IDCAMS                                                      
+//SYSPRINT DD SYSOUT=*                                                          
+//SYSIN    DD *                                                                 
+  DELETE IMS310A.DFSIVD2 CLUSTER                                                
+//*                                                                             
+//SCRATCH  EXEC PGM=IDCAMS                                                      
+//SYSPRINT DD SYSOUT=*                                                          
+//SYSIN    DD *                                                                 
+  DELETE IMS310A.DFSIVD31 CLUSTER                                               
+  DELETE IMS310A.DFSIVD32 CLUSTER                                               
+  DELETE IMS310A.DFSIVD33 CLUSTER                                               
+  DELETE IMS310A.DFSIVD34 CLUSTER                                               
+//*                                                                             
+//SCRATCH  EXEC PGM=IDCAMS                                                      
+//SYSPRINT DD SYSOUT=*                                                          
+//SYSIN    DD *                                                                 
+  DELETE IMS310A.DI21PART CLUSTER                                               
+  DELETE IMS310A.DI21PARO CLUSTER                                               
+//*                                                                             
+//SCRATCH  EXEC PGM=IDCAMS                                                      
+//SYSPRINT DD SYSOUT=*                                                          
+//SYSIN    DD *                                                                 
+  DELETE IMS310A.CUSDB CLUSTER                                                  
+//*                                                                             
+//SCRATCH  EXEC PGM=IDCAMS                                                      
+//SYSPRINT DD SYSOUT=*                                                          
+//SYSIN    DD *                                                                 
+  DELETE IMS310A.LOAN  CLUSTER                                                  
+//*                                                                             
+//SCRATCH  EXEC PGM=IEHPROGM                                                    
+//SYSPRINT DD SYSOUT=*                                                          
+//IVPWRK   DD DISP=OLD,UNIT=3390,VOL=SER=IMS310                                 
+//SYSIN    DD *                                                                 
+  UNCATLG DSNAME=IMS310A.MSDBINIT                                               
+  SCRATCH DSNAME=IMS310A.MSDBINIT,                                     X        
+               VOL=3390=IMS310                                                  
+//SCRATCH  EXEC PGM=IDCAMS                                                      
+//SYSPRINT DD SYSOUT=*                                                          
+//SYSIN    DD *                                                                 
+  DELETE IMS310A.RECON1 CLUSTER                                                 
+  DELETE IMS310A.RECON2 CLUSTER                                                 
+  DELETE IMS310A.RECON3 CLUSTER                                                 
+//*                                                                             
+//ALLOCATE EXEC PGM=IDCAMS                                                      
+//SYSPRINT DD SYSOUT=*                                                          
+//SYSIN    DD *                                                                 
+  DEFINE CLUSTER(                                -                              
+                 NAME(IMS310A.RECON1)         -                                 
+                 FREESPACE(20 20)                -                              
+                 INDEXED                         -                              
+                 KEYS(24 0)                      -                              
+                 RECORDSIZE(4086 32600)          -                              
+                 SHAREOPTIONS(3 3)               -                              
+                 RECOVERY                        -                              
+                 NOERASE                         -                              
+                 SPANNED                         -                              
+                 NOREUSE                         -                              
+                 UNORDERED                       -                              
+                 UNIQUE                          -                              
+                 VOLUMES(CICS32)              -                                 
+                 CYL(3 1)  -                                                    
+                )                                -                              
+            DATA(                                -                              
+                 NAME(IMS310A.RECON1.DATA)    -                                 
+                )                                -                              
+           INDEX(                                -                              
+                 NAME(IMS310A.RECON1.INDX)    -                                 
+                )                                                               
+  DEFINE CLUSTER(                                -                              
+                 NAME(IMS310A.RECON2)         -                                 
+                 FREESPACE(20 20)                -                              
+                 INDEXED                         -                              
+                 KEYS(24 0)                      -                              
+                 RECORDSIZE(4086 32600)          -                              
+                 SHAREOPTIONS(3 3)               -                              
+                 RECOVERY                        -                              
+                 NOERASE                         -                              
+                 SPANNED                         -                              
+                 NOREUSE                         -                              
+                 UNORDERED                       -                              
+                 UNIQUE                          -                              
+                 VOLUMES(CICS32)              -                                 
+                 CYL(3 1)  -                                                    
+                )                                -                              
+            DATA(                                -                              
+                 NAME(IMS310A.RECON2.DATA)    -                                 
+                )                                -                              
+           INDEX(                                -                              
+                 NAME(IMS310A.RECON2.INDX)    -                                 
+                )                                                               
+  DEFINE CLUSTER(                                -                              
+                 NAME(IMS310A.RECON3)         -                                 
+                 FREESPACE(20 20)                -                              
+                 INDEXED                         -                              
+                 KEYS(24 0)                      -                              
+                 RECORDSIZE(4086 32600)          -                              
+                 SHAREOPTIONS(3 3)               -                              
+                 RECOVERY                        -                              
+                 NOERASE                         -                              
+                 SPANNED                         -                              
+                 NOREUSE                         -                              
+                 UNORDERED                       -                              
+                 UNIQUE                          -                              
+                 VOLUMES(CICS32)              -                                 
+                 CYL(3 1)  -                                                    
+                )                                -                              
+            DATA(                                -                              
+                 NAME(IMS310A.RECON3.DATA)    -                                 
+                )                                -                              
+           INDEX(                                -                              
+                 NAME(IMS310A.RECON3.INDX)    -                                 
+                )                                                               
+//*                                                                             
+//*                                                                             

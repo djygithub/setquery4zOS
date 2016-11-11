@@ -1,0 +1,18 @@
+ --   DROP INDEX DAVID.SQ1I01;     --                                           
+ --   DROP INDEX DAVID.SQ1I02;     --                                           
+ --   DROP INDEX DAVID.SQ1I03;     --                                           
+ --   DROP INDEX DAVID.SQ1I04;     --                                           
+ --   DROP INDEX DAVID.SQ1I05;     --                                           
+ --   DROP INDEX DAVID.SQ1I06;     --                                           
+ --   DROP INDEX DAVID.SQ1I07;     --                                           
+ --   DROP INDEX DAVID.SQ1I08;     --                                           
+ --   DROP INDEX DAVID.SQ1I09;     --                                           
+ --   DROP INDEX DAVID.SQ1I10;     --                                           
+ --   DROP INDEX DAVID.SQ1I11;     --                                           
+ --   DROP INDEX DAVID.SQ1I12;     --                                           
+ --   DROP INDEX DAVID.SQ1I13;     --                                           
+ --   DROP TABLE DAVID.SQ1;       --                                            
+      DROP TABLESPACE SQ2DB.SQ2TS;                                              
+      DROP DATABASE SQ2DB;                                                      
+    DROP STOGROUP RADC40S3;                                                     
+    DROP STOGROUP RADC40S4;                                                     

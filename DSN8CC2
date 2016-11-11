@@ -1,0 +1,398 @@
+       IDENTIFICATION DIVISION.                                         00010000
+      *------------------------                                         00012000
+       PROGRAM-ID. DSN8CC2.                                             00014000
+                                                                        00016000
+      ************* DSN8CC2 - COMMON MODULE FOR CICS - COBOL*********** 00018000
+      *                                                               * 00020000
+      *   MODULE NAME = DSN8CC2                                       * 00030000
+      *                                                               * 00040000
+      *   DESCRIPTIVE NAME = DB2  SAMPLE APPLICATION                  * 00050000
+      *                      SQL 2 COMMON MODULE                      * 00060000
+      *                      CICS                                     * 00070000
+      *                      COBOL                                    * 00080000
+      *                                                               * 00090000
+      *                                                               * 00100000
+      *COPYRIGHT = 5665-DB2 (C) COPYRIGHT IBM CORP 1982, 1989         * 00110000
+      *REFER TO COPYRIGHT INSTRUCTIONS FORM NUMBER G120-2083          * 00120000
+      *                                                               * 00130000
+      *STATUS = VERSION 2 RELEASE 2, LEVEL 0                          * 00140000
+      *                                                               * 00150000
+      *   FUNCTION = ROUTER FOR SECONDARY SELECTION AND/OR            * 00160000
+      *                         DETAIL PROCESSING                     * 00170000
+      *              CALLS SECONDARY SELECTION MODULES                * 00180000
+      *                    DSN8MCA DSN8MCM                            * 00190000
+      *              CALLS DETAIL MODULES                             * 00200000
+      *                    DSN8MCD DSN8MCE DSN8MCF                    * 00210000
+      *                    DSN8MCT DSN8MCV DSN8MCW DSN8MCX DSN8MCZ    * 00220000
+      *              CALLED BY DSN8MC1 (SQL1)                         * 00230000
+      *                                                               * 00240000
+      *   NOTES =  NONE                                               * 00250000
+      *                                                               * 00260000
+      *                                                               * 00270000
+      *   MODULE TYPE =                                               * 00280000
+      *      PROCESSOR   = DB2 PRECOMPILER, CICS TRANSLATOR,          * 00290000
+      *                    VS COBOL                                   * 00300000
+      *      MODULE SIZE = SEE LINKEDIT                               * 00310000
+      *      ATTRIBUTES  = REUSABLE                                   * 00320000
+      *                                                               * 00330000
+      *   ENTRY POINT = DSN8CC2                                       * 00340000
+      *      PURPOSE = SEE FUNCTION                                   * 00350000
+      *      LINKAGE = NONE                                           * 00360000
+      *      INPUT   =                                                * 00370000
+      *                                                               * 00380000
+      *                SYMBOLIC LABEL/NAME = COMMPTR                  * 00390000
+      *                DESCRIPTION         = POINTER TO COMMAREA      * 00400000
+      *                                      (COMMUNICATION AREA)     * 00410000
+      *                                                               * 00420000
+      *      OUTPUT  =                                                * 00430000
+      *                                                               * 00440000
+      *                SYMBOLIC LABEL/NAME = COMMPTR                  * 00450000
+      *                DESCRIPTION         = POINTER TO COMMAREA      * 00460000
+      *                                      (COMMUNICATION AREA)     * 00470000
+      *                                                               * 00480000
+      *   EXIT-NORMAL =  RETURN CODE 0 NORMAL COMPLETION              * 00490000
+      *                                                               * 00500000
+      *   EXIT-ERROR =                                                * 00510000
+      *            IF SQLERROR OR SQLWARNING, SQL WHENEVER CONDITION  * 00520000
+      *            SPECIFIED IN DSN8CC2 WILL BE RAISED AND PROGRAM    * 00530000
+      *            WILL GO TO THE LABEL DB-ERROR.                     * 00540000
+      *                                                               * 00550000
+      *                                                               * 00560000
+      *      RETURN CODE = NONE                                       * 00570000
+      *                                                               * 00580000
+      *                                                               * 00590000
+      *      ABEND CODES = NONE                                       * 00600000
+      *                                                               * 00610000
+      *      ERROR-MESSAGES =                                         * 00620000
+      *         DSN8062E-AN OBJECT WAS NOT SELECTED                   * 00630000
+      *         DSN8066E-UNSUPPORTED PFK OR LOGIC ERROR               * 00650000
+      *         DSN8072E-INVALID SELECTION ON SECONDARY SCREEN        * 00660000
+      *                                                               * 00670000
+      *   EXTERNAL REFERENCES = NONE                                  * 00680000
+      *      ROUTINES/SERVICES = 10 MODULES LISTED ABOVE              * 00690000
+      *         DSN8MCG    -   ERROR MESSAGE ROUTINE                  * 00700000
+      *                                                               * 00710000
+      *      DATA-AREAS =                                             * 00720000
+      *         DSN8MCA    -   SECONDARY SELECTION FOR ORGANIZATION   * 00730000
+      *         DSN8MCAD   -   DECLARE ADMINISTRATION DETAIL          * 00740000
+      *         DSN8MCAE   -   CURSOR EMPLOYEE LIST                   * 00750000
+      *         DSN8MCAL   -   CURSOR ADMINISTRATION LIST             * 00760000
+      *         DSN8MCA2   -   DECLARE ADMINISTRATION DETAIL          * 00770000
+      *         DSN8MCCA   -   COMMON AREA                            * 00780000
+      *         DSN8MCC2   -   COMMON AREA PART 2                     * 00790000
+      *         DSN8MCD    -   DEPARTMENT STRUCTURE DETAIL            * 00800000
+      *         DSN8MCDA   -   CURSOR ADMINISTRATION DETAIL           * 00810000
+      *         DSN8MCDH   -   CURSOR FOR DISPLAY TEXT FROM           * 00820000
+      *                        TDSPTXT TABLE                          * 00830000
+      *         DSN8MCDM   -   DECLARE DEPARTMENT MANAGER             * 00840000
+      *         DSN8MCDP   -   DECLARE DEPARTMENT                     * 00850000
+      *         DSN8MCDT   -   DECLARE DISPLAY TEXT                   * 00860000
+      *         DSN8MCE    -   DEPARTMENT DETAIL                      * 00870000
+      *         DSN8MCEM   -   DECLARE EMPLOYEE                       * 00880000
+      *         DSN8MCF    -   EMPLOYEE   DETAIL                      * 00890000
+      *         DSN8MCOV   -   DECLARE OPTION VALIDATION              * 00900000
+      *         DSN8MCXX   -   ERROR HANDLER                          * 00910000
+      *                                                               * 00920000
+      *      CONTROL-BLOCKS =                                         * 00930000
+      *         SQLCA      -   SQL COMMUNICATION AREA                 * 00940000
+      *                                                               * 00950000
+      *   TABLES = NONE                                               * 00960000
+      *                                                               * 00970000
+      *   CHANGE-ACTIVITY =                                           * 00980000
+      *   - ADD NEW VARIABLES FOR REFERENTIAL INTEGRITY          V2R1 * 00985000
+      *                                                               * 00990000
+      *  *PSEUDOCODE*                                                 * 01010000
+      *                                                               * 01020000
+      * THIS MODULE DETERMINES WHICH SECONDARY SELECTION AND/OR       * 01030000
+      * DETAIL MODULE(S) ARE TO BE CALLED IN THE CICS/COBOL           * 01040000
+      * ENVIRONMENT.                                                  * 01050000
+      *                                                               * 01060000
+      * WHAT HAS HAPPENED SO FAR?.............THE SUBSYSTEM           * 01070000
+      * DEPENDENT MODULE (IMS,CICS,TSO) OR (SQL 0) HAS                * 01080000
+      * READ THE INPUT SCREEN, FORMATTED THE INPUT AND PASSED CONTROL * 01090000
+      * TO SQL 1. SQL 1 PERFORMS VALIDATION ON THE SYSTEM DEPENDENT   * 01100000
+      * FIELDS (MAJOR SYSTEM, ACTION, OBJECT, SEARCH CRITERIA). IF    * 01110000
+      * ALL SYSTEM FIELDS ARE VALID SQL 1 PASSED CONTROL TO THIS      * 01120000
+      * MODULE. PASSED PARAMETERS CONSIST ONLY OF A POINTER WHICH     * 01130000
+      * POINTS TO A COMMUNICATION CONTROL AREA USED TO COMMUNICATE    * 01140000
+      * BETWEEN SQL 0 , SQL 1, SQL 2 AND THE SECONDARY SELECTION      * 01150000
+      * AND DETAIL MODULES.                                           * 01160000
+      *                                                               * 01170000
+      *WHAT IS INCLUDED IN THIS MODULE?.............                  * 01180000
+      * ALL SECONDARY SELECTION AND DETAIL MODULES ARE 'INCLUDED'.    * 01190000
+      * ALL VARIABLES KNOWN IN THIS PROCEDURE ARE KNOWN IN THE        * 01200000
+      * SUB PROCEDURES. ALL SQL CURSOR DEFINITIONS AND                * 01210000
+      * SQL 'INCLUDES' ARE DONE IN THIS PROCEDURE. BECAUSE OF THE     * 01220000
+      * RESTRICTION THAT CURSOR HOST VARIABLES MUST BE DECLARED BEFORE* 01230000
+      * THE CURSOR DEFINITION ALL CURSOR HOST VARIABLES ARE DECLARED  * 01240000
+      * IN THIS PROCEDURE.                                            * 01250000
+      *                                                               * 01260000
+      * PROCEDURE                                                     * 01270000
+      *    IF ANSWER TO DETAIL SCREEN AND DETAIL PROCESSOR            * 01280000
+      *    IS NOT WILLING TO ACCEPT AN ANSWER THEN                    * 01290000
+      *                    NEW REQUEST*                               * 01300000
+      *                                                               * 01310000
+      *    ELSE                                                       * 01320000
+      *           IF ANSWER TO A SECONDARY SELECTION THEN             * 01330000
+      *                    DETERMINE IF NEW REQUEST.                  * 01340000
+      *                                                               * 01350000
+      *                                                               * 01360000
+      *                                                               * 01370000
+      *    CASE (NEW REQUEST)                                         * 01380000
+      *                                                               * 01390000
+      *           SUBCASE ('ADD')                                     * 01400000
+      *                   DETAIL PROCESSOR                            * 01410000
+      *                   RETURN TO SQL 1                             * 01420000
+      *           ENDSUB                                              * 01430000
+      *                                                               * 01440000
+      *           SUBCASE ('ERASE','DISPLAY','UPDATE')                * 01450000
+      *                   CALL SECONDARY SELECTION                    * 01460000
+      *                   IF # OF POSSIBLE CHOICES IS ^= 1 THEN       * 01470000
+      *                          RETURN TO SQL 1                      * 01480000
+      *                   ELSE                                        * 01490000
+      *                          CALL THE DETAIL PROCESSOR            * 01500000
+      *                          RETURN TO SQL 1                      * 01510000
+      *           ENDSUB                                              * 01520000
+      *                                                               * 01530000
+      *    ENDCASE                                                    * 01540000
+      *                                                               * 01550000
+      *    IF ANSWER TO SECONDARY SELECTION AND A SELECTION HAS       * 01560000
+      *    ACTUALLY BEEN MADE THEN                                    * 01570000
+      *                IF IT IS A VALID SELECTION NUMBER THEN         * 01580000
+      *                      CALL DETAIL PROCESSOR                    * 01590000
+      *                      RETURN TO SQL 1                          * 01600000
+      *                END                                            * 01610000
+      *                                                               * 01620000
+      *                ELSE                                           * 01630000
+      *                      PRINT ERROR MSG                          * 01640000
+      *                      RETURN TO SQL 1                          * 01650000
+      *                END.                                           * 01660000
+      *                                                               * 01670000
+      *    IF ANSWER TO SECONDARY SELECTION THEN                      * 01680000
+      *             CALL SECONDARY SELECTION                          * 01690000
+      *             RETURN TO SQL 1                                   * 01700000
+      *    END.                                                       * 01710000
+      *                                                               * 01720000
+      *    IF ANSWER TO DETAIL THEN                                   * 01730000
+      *             CALL DETAIL PROCESSOR                             * 01740000
+      *             RETURN TO SQL 1                                   * 01750000
+      *    END.                                                       * 01760000
+      *                                                               * 01770000
+      *    RETURN TO SQL 1.                                           * 01780000
+      *                                                               * 01790000
+      * END.                                                          * 01800000
+      *                                                               * 01810000
+      *   *EXAMPLE- A ROW IS SUCCESSFULLY ADDED, THE OPERATOR RECEIVES* 01820000
+      *    THE SUCCESSFULLY ADDED MESSAGE AND JUST HITS ENTER.        * 01830000
+      *---------------------------------------------------------------* 01840000
+                                                                        01850000
+                                                                        01860000
+       ENVIRONMENT DIVISION.                                            01910000
+      *---------------------                                            01920000
+                                                                        01930000
+       DATA DIVISION.                                                   01940000
+      *-------------                                                    01950000
+       WORKING-STORAGE SECTION.                                         01960000
+                                                                        01970000
+      ***************************************                           01980000
+      *  FIELDS SENT TO MESSAGE ROUTINE     *                           01990000
+      ***************************************                           02000000
+        01 MSGCODE                PIC X(04).                            02010000
+                                                                        02020000
+        01 OUTMSG                 PIC X(69).                            02030000
+                                                                        02040000
+      ***************************************                           02041000
+      *  NULL INDICATOR                     *                           02042000
+      ***************************************                           02043000
+        01 NULLIND1               PIC S9(4) COMP-4.                     02044000
+        01 NULLIND2               PIC S9(4) COMP-4.                     02046000
+                                                                        02048000
+           EXEC SQL INCLUDE SQLCA END-EXEC.                             02050000
+                                                                        02055000
+           EXEC SQL INCLUDE DSN8MCC2 END-EXEC.                          02060000
+           EXEC SQL INCLUDE DSN8MCDP END-EXEC.                          02070000
+           EXEC SQL INCLUDE DSN8MCEM END-EXEC.                          02080000
+           EXEC SQL INCLUDE DSN8MCDM END-EXEC.                          02090000
+           EXEC SQL INCLUDE DSN8MCAD END-EXEC.                          02100000
+           EXEC SQL INCLUDE DSN8MCA2 END-EXEC.                          02110000
+           EXEC SQL INCLUDE DSN8MCOV END-EXEC.                          02120000
+           EXEC SQL INCLUDE DSN8MCDT END-EXEC.                          02130000
+                                                                        02140000
+        01  CONSTRAINTS.                                                02141000
+            03  PARM-LENGTH       PIC S9(4) COMP-4.                     02142000
+            03  REF-CONSTRAINT    PIC X(08).                            02143000
+            03  FILLER            PIC X(62).                            02144000
+        01  MGRNO-CONSTRAINT      PIC X(08)  VALUE 'RDE     '.          02146000
+                                                                        02148000
+       LINKAGE SECTION.                                                 02150000
+       01  DFHCOMMAREA.                                                 02160000
+           EXEC SQL INCLUDE DSN8MCCA END-EXEC.                          02170000
+                                                                        02180000
+                                                                        02190000
+       PROCEDURE DIVISION.                                              02200000
+      *------------------                                               02210000
+           EXEC SQL INCLUDE DSN8MCAE END-EXEC.                          02220000
+           EXEC SQL INCLUDE DSN8MCAL END-EXEC.                          02230000
+           EXEC SQL INCLUDE DSN8MCDH END-EXEC.                          02240000
+           EXEC SQL INCLUDE DSN8MCDA END-EXEC.                          02250000
+                                                                        02260000
+      ***********************************************************       02270000
+      *  SQL RETURN CODE HANDLING                               *       02280000
+      ***********************************************************       02290000
+           EXEC SQL WHENEVER SQLERROR   GO TO DB-ERROR END-EXEC         02300000
+           EXEC SQL WHENEVER SQLWARNING GO TO DB-ERROR END-EXEC.        02310000
+                                                                        02320000
+      ***********************************************************       02330000
+      *  INITIALIZATIONS                                        *       02340000
+      ***********************************************************       02350000
+           MOVE 'DSN8CC2' TO MAJOR.                                     02360000
+           MOVE  SPACES   TO MINOR.                                     02370000
+                                                                        02380000
+      ***********************************************************       02390000
+      *  DETERMINES WHETHER NEW REQUEST OR NOT                  *       02400000
+      ***********************************************************       02410000
+       IC200B.                                                          02420000
+                                                                        02430000
+           IF PREV OF PCONVSTA = ' ' THEN                               02440000
+              MOVE 'Y' TO NEWREQ OF COMPARM.                            02450000
+                                                                        02460000
+           IF NEWREQ OF COMPARM = 'N' AND PREV OF PCONVSTA = 'S'        02470000
+              AND DATA01 NOT = ' '                                      02480000
+              AND PFKIN  NOT = '08'                                     02490000
+              THEN MOVE 'Y' TO NEWREQ OF COMPARM.                       02500000
+                                                                        02510000
+           IF NEWREQ OF COMPARM NOT = 'Y' THEN                          02520000
+              GO TO IC2010.                                             02530000
+                                                                        02540000
+      ***********************************************************       02550000
+      *  IF NEW REQUEST AND ACTION IS 'ADD' THEN                *       02560000
+      *       CALL DETAIL PROCESSOR                             *       02570000
+      *  ELSE CALL SECONDARY SELECTION                          *       02580000
+      ***********************************************************       02590000
+           IF ACTION OF INAREA = 'A' THEN                               02600000
+      *                                      **DETAIL PROCESSOR         02610000
+              GO TO DETAIL0.                                            02620000
+      *                                      **SECONDARY SELECTION      02630000
+           PERFORM SECSEL THRU END-SECSEL.                              02640000
+      *                                       **IF NO. OF CHOICES = 1   02650000
+      *                                       **GO TO DETAIL PROCESSOR  02660000
+           IF MAXSEL = 1 THEN                                           02670000
+              GO TO DETAIL0.                                            02680000
+           GO TO EXITO.                                                 02690000
+      ***********************************************************       02700000
+      *  DETERMINES IF VALID SELECTION NUMBER                   *       02710000
+      ***********************************************************       02720000
+       IC2010.                                                          02730000
+      *                                     **VALID SELECTION NO. GIVEN 02740000
+           IF PREV OF PCONVSTA NOT = 'S' OR                             02750000
+              MAXSEL < 1 OR                                             02760000
+              PFKIN  = '08' OR                                          02770000
+              DATA2 = DATO2 THEN                                        02780000
+              GO TO IC201.                                              02790000
+                                                                        02800000
+      *                                        **DETAIL SELECTION GIVEN 02810000
+           IF DAT1 NUMERIC AND DAT2 = ' ' THEN                          02820000
+              MOVE DAT1 TO DAT2                                         02830000
+              MOVE '0' TO DAT1.                                         02840000
+           IF DATA2 NUMERIC                                             02850000
+              AND DATA2 > '00' AND DATA2 NOT > MAXSEL THEN              02860000
+              MOVE 'Y' TO NEWREQ OF COMPARM                             02870000
+              GO TO DETAIL0.                                            02880000
+      *                                      **INVALID SELECTION NO.    02890000
+      *                                      **PRINT ERROR MESSAGE      02900000
+           MOVE '072E' TO MSGCODE.                                      02910000
+           CALL 'DSN8MCG' USING MAJOR MSGCODE OUTMSG.                   02920000
+           MOVE OUTMSG TO MSG OF OUTAREA.                               02930000
+           GO TO EXITO.                                                 02940000
+                                                                        02950000
+      ***********************************************************       02960000
+      *  DETERMINES WHETHER SECONDARY SELECTION OR DETAIL       *       02970000
+      ***********************************************************       02980000
+       IC201.                                                           02990000
+      *                                           **SECONDARY SELECTION 03000000
+           IF PREV OF PCONVSTA = 'S' THEN                               03010000
+              PERFORM SECSEL THRU END-SECSEL                            03020000
+              GO TO EXITO                                               03030000
+           ELSE                                                         03040000
+                                                                        03050000
+      *                                           **DETAIL PROCESSOR    03060000
+              IF PREV OF PCONVSTA = 'D' THEN GO TO DETAIL0.             03070000
+                                                                        03080000
+      *                                           **LOGIC ERROR         03090000
+      *                                           **PRINT ERROR MESSAGE 03100000
+           MOVE '066E' TO MSGCODE.                                      03110000
+           CALL 'DSN8MCG' USING MAJOR MSGCODE OUTMSG.                   03120000
+           MOVE OUTMSG TO MSG OF OUTAREA.                               03130000
+           GO TO EXITO.                                                 03140000
+                                                                        03150000
+      *                                           **HANDLES ERRORS      03160000
+           EXEC SQL INCLUDE DSN8MCXX END-EXEC.                          03170000
+           GO TO EXITO.                                                 03180000
+                                                                        03190000
+      ***********************************************************       03200000
+      *  CALLS SECONDARY SELECTION AND RETURNS TO SQL 1         *       03210000
+      ***********************************************************       03220000
+       SECSEL.                                                          03230000
+           MOVE 'DSN8001' TO LASTSCR IN PCONVSTA.                       03240000
+      *                                          **ADMINISTRATIVE       03250000
+      *                                          **DEPARTMENT STRUCTURE 03260000
+           IF OBJECT OF INAREA = 'DS' THEN                              03270000
+              PERFORM DSN8MCA THRU END-DSN8MCA                          03280000
+           ELSE                                                         03290000
+      *                                         **INDIVIDUAL DEPARTMENT 03300000
+      *                                         **PROCESSING            03310000
+              IF OBJECT OF INAREA = 'DE' THEN                           03320000
+                 PERFORM DSN8MCA THRU END-DSN8MCA                       03330000
+              ELSE                                                      03340000
+      *                                         **INDIVIDUAL EMPLOYEE   03350000
+      *                                         **PROCESSING            03360000
+                 IF OBJECT OF INAREA = 'EM' THEN                        03370000
+                    PERFORM DSN8MCA THRU END-DSN8MCA                    03380000
+                 ELSE                                                   03390000
+                                                                        03400000
+      *                                        **ERROR MESSAGE          03410000
+      *                                        **MISSING SECONDARY SEL  03420000
+                    MOVE '062E' TO MSGCODE                              03430000
+                    CALL 'DSN8MCG' USING MAJOR MSGCODE OUTMSG           03440000
+                    MOVE OUTMSG TO MSG OF OUTAREA                       03450000
+                    GO TO EXITO.                                        03460000
+       END-SECSEL.                                                      03470000
+                                                                        03480000
+      ***********************************************************       03490000
+      *  CALLS DETAIL PROCESSOR AND RETURNS TO SQL 1            *       03500000
+      ***********************************************************       03510000
+       DETAIL0.                                                         03520000
+           MOVE 'DSN8002' TO LASTSCR IN PCONVSTA.                       03530000
+      *                                         **ADMINISTRATIVE        03540000
+      *                                         **DEPARTMENT STRUCTURE  03550000
+           IF OBJECT OF INAREA = 'DS' THEN                              03560000
+              PERFORM DSN8MCD THRU END-DSN8MCD                          03570000
+           ELSE                                                         03580000
+      *                                         **INDIVIDUAL DEPARTMENT 03590000
+      *                                         **PROCESSING            03600000
+              IF OBJECT OF INAREA = 'DE' THEN                           03610000
+                 PERFORM DSN8MCE THRU END-DSN8MCE                       03620000
+              ELSE                                                      03630000
+      *                                         **INDIVIDUAL EMPLOYEE   03640000
+      *                                         **PROCESSING            03650000
+                 IF OBJECT OF INAREA = 'EM' THEN                        03660000
+                    PERFORM DSN8MCF THRU END-DSN8MCF                    03670000
+                 ELSE                                                   03680000
+                                                                        03690000
+      *                                        **ERROR MESSAGE          03700000
+      *                                        **MISSING DETAIL MODULE  03710000
+                    MOVE '062E' TO MSGCODE                              03720000
+                    CALL 'DSN8MCG' USING MAJOR MSGCODE OUTMSG           03730000
+                    MOVE OUTMSG TO MSG OF OUTAREA.                      03740000
+           GO TO EXITO.                                                 03750000
+                                                                        03760000
+      *                                         **RETURNS TO SQL 1      03770000
+       EXITO.                                                           03780000
+           EXEC CICS RETURN END-EXEC.                                   03790000
+                                                                        03800000
+           EXEC SQL INCLUDE DSN8MCA END-EXEC.                           03810000
+           EXEC SQL INCLUDE DSN8MCD END-EXEC.                           03820000
+           EXEC SQL INCLUDE DSN8MCE END-EXEC.                           03830000
+           EXEC SQL INCLUDE DSN8MCF END-EXEC.                           03840000
+           GOBACK.                                                      03850000
+                                                                        03851000

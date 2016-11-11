@@ -1,0 +1,14 @@
+//DUMPSMF  JOB (RWM,T),'DUMP',MSGCLASS=O                                00010000
+//*UTPIT OUTPUT DEST=PRT5                                               00011000
+//SEP19933 EXEC PGM=IFASMFDP,REGION=512K                                00030000
+//SYSPRINT DD  SYSOUT=*                                                 00040000
+//DUMPOUT DD DISP=(NEW,KEEP),DSN=SEP19933.SMFDATA,                      00050000
+//    UNIT=EF8,LABEL=(1,SL)                                             00060002
+//DUMPIN DD DISP=OLD,DSN=DB25CE.SEP19933.SMFDATA,UNIT=3390,             00070000
+//  VOL=SER=DB25CE                                                      00080000
+//SEP19935 EXEC PGM=IFASMFDP,REGION=512K                                00090000
+//SYSPRINT DD  SYSOUT=*                                                 00100000
+//DUMPOUT DD DISP=(NEW,KEEP),DSN=SEP19935.SMFDATA,                      00110000
+//    UNIT=EF8,LABEL=(1,SL)                                             00120002
+//DUMPIN DD DISP=OLD,DSN=DB25CE.SEP19935.SMFDATA,UNIT=3390,             00130000
+//  VOL=SER=DB25CE                                                      00140000

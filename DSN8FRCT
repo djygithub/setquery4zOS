@@ -1,0 +1,94 @@
+**********************************************************************  00010000
+*                                                                    *  00020000
+*   MODULE NAME = DSN8FRCT                                           *  00030000
+*                                                                    *  00040000
+*   DESCRIPTIVE NAME = CICS RCT ADDITIONAL ENTRIES FOR THE SAMPLE.   *  00050000
+*                                                                    *  00060000
+*      COPYRIGHT = 5665-DB2 (C) COPYRIGHT IBM CORP 1982, 1989        *  00070000
+*      REFER TO COPYRIGHT INSTRUCTIONS FORM NUMBER G120-2083         *  00080000
+*                                                                    *  00090000
+*      STATUS = VERSION 2 RELEASE 2, LEVEL 0                         *  00100000
+*                                                                    *  00110000
+*   FUNCTION =                                                       *  00120000
+*      THE CICS RCT ADDITIONS ARE NEEDED FOR THE DB2 SAMPLE PROGRAMS *  00130000
+*                                                                    *  00140000
+*   NOTES =                                                          *  00150000
+*      DEPENDENCIES = NONE                                           *  00160000
+*                                                                    *  00170000
+*      RESTRICTIONS = NONE                                           *  00180000
+*                                                                    *  00190000
+*      REGISTER CONVENTIONS = NONE, NO EXECUTABLE CODE               *  00200000
+*                                                                    *  00210000
+*   MODULE TYPE = PROCEDURE                                          *  00220000
+*                                                                    *  00230000
+*      PROCESSOR =  ASSEMBLER XF OR H                                *  00240000
+*                                                                    *  00250000
+*      MODULE SIZE = SEE ASSEMBLER LISTING                           *  00260000
+*                                                                    *  00270000
+*      ATTRIBUTES = REUSABLE                                         *  00280000
+*                                                                    *  00290000
+*   ENTRY POINT = NONE                                               *  00300000
+*                                                                    *  00310000
+*      PURPOSE = SEE FUNCTION                                        *  00320000
+*                                                                    *  00330000
+*      LINKAGE = NONE                                                *  00340000
+*                                                                    *  00350000
+*      INPUT = NONE                                                  *  00360000
+*                                                                    *  00370000
+*      OUTPUT = NONE                                                 *  00380000
+*                                                                    *  00390000
+*                                                                    *  00400000
+*   EXIT-NORMAL = NONE                                               *  00410000
+*                                                                    *  00420000
+*   EXIT-ERROR = NONE                                                *  00430000
+*                                                                    *  00440000
+*      RETURN CODE = NONE                                            *  00450000
+*         REASON CODE = NONE                                         *  00460000
+*                                                                    *  00470000
+*      ABEND CODES = NONE                                            *  00480000
+*                                                                    *  00490000
+*      ERROR-MESSAGES = NONE                                         *  00500000
+*                                                                    *  00510000
+*   EXTERNAL REFERENCES =                                            *  00520000
+*      ROUTINES/SERVICES = NONE                                      *  00530000
+*                                                                    *  00540000
+*      DATA-AREAS = NONE                                             *  00550000
+*                                                                    *  00560000
+*      CONTROL-BLOCKS = NONE                                         *  00570000
+*                                                                    *  00580000
+*      MACROS         =                                              *  00590000
+*         DSNCRCT             - DB2/CICS RESOURCE CONTROL TABLE      *  00600000
+*                                                                    *  00610000
+*   TABLES = NONE                                                    *  00620000
+*                                                                    *  00630000
+*   CHANGE-ACTIVITY =                                                *  00640000
+*      NONE                                                          *  00650000
+*                                                                    *  00660000
+*   PSEUDOCODE      =                                                *  00670000
+*                                                                    *  00680000
+*      THIS MODULE CONTAINS NO EXECUTABLE CODE.                      *  00690000
+*                                                                    *  00700000
+**********************************************************************  00710000
+         EJECT                                                          00720000
+         DSNCRCT TYPE=INIT,SUFFIX=0                                     00730001
+         DSNCRCT TYPE=POOL,                                            X00740000
+               THRDM=5,THRDA=5,PLAN=DSN8CC22,THRDS=5                    00750003
+*                                                                       00760000
+*        DEFINE THE PLI SAMPLE TRANSACTION                              00770000
+*                                                                       00780000
+   DSNCRCT TYPE=ENTRY,TXID=D8PS,THRDM=1,THRDA=1,PLAN=DSN8CP22           00790002
+         DSNCRCT TYPE=ENTRY,TXID=D8PP,THRDM=1,THRDA=1,PLAN=DSN8CQ22     00800000
+*                                                                       00810000
+*        DEFINE THE COBOL SAMPLE TRANSACTION                            00820000
+*                                                                       00830000
+ DSNCRCT TYPE=ENTRY,TXID=D8CS,THRDM=1,THRDA=1,PLAN=DSN8CC22,THRDS=1     00840002
+ DSNCRCT TYPE=ENTRY,TXID=SQLA,THRDM=1,THRDA=1,PLAN=DJYSQL0,THRDS=1      00841004
+ DSNCRCT TYPE=ENTRY,TXID=Q101,THRDM=1,THRDA=1,PLAN=CI2Q101,THRDS=1      00842005
+*                                                                       00850000
+*        DEFINE THE PLI PHONE  TRANSACTION                              00860000
+*                                                                       00870000
+         DSNCRCT TYPE=ENTRY,TXID=D8PT,THRDM=1,THRDA=1,PLAN=DSN8CH22     00880000
+*                D8PU TRANSACTION USED INTERNALLY                       00890000
+         DSNCRCT TYPE=ENTRY,TXID=D8PU,THRDM=1,THRDA=1,PLAN=DSN8CH22     00900000
+         DSNCRCT TYPE=FINAL                                             00910000
+         END                                                            00920000

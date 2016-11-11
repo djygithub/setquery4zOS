@@ -1,0 +1,48 @@
+ --   DROP INDEX DAVID.SQ1I01;     --                                           
+ --   DROP INDEX DAVID.SQ1I02;     --                                           
+ --   DROP INDEX DAVID.SQ1I03;     --                                           
+ --   DROP INDEX DAVID.SQ1I04;     --                                           
+ --   DROP INDEX DAVID.SQ1I05;     --                                           
+ --   DROP INDEX DAVID.SQ1I06;     --                                           
+ --   DROP INDEX DAVID.SQ1I07;     --                                           
+ --   DROP INDEX DAVID.SQ1I08;     --                                           
+ --   DROP INDEX DAVID.SQ1I09;     --                                           
+ --   DROP INDEX DAVID.SQ1I10;     --                                           
+ --   DROP INDEX DAVID.SQ1I11;     --                                           
+ --   DROP INDEX DAVID.SQ1I12;     --                                           
+ --   DROP INDEX DAVID.SQ1I13;     --                                           
+ --   DROP TABLE DAVID.SQ1;       --                                            
+ DROP TABLESPACE SQ1DB.SQ1TS;                                                   
+ DROP DATABASE SQ1DB;                                                           
+ DROP STOGROUP DB26C0SG;                                                        
+ DROP STOGROUP DB26C1SG;                                                        
+ DROP STOGROUP DB26C2SG;                                                        
+ DROP STOGROUP DB26C3SG;                                                        
+ DROP STOGROUP DB26C4SG;                                                        
+ DROP STOGROUP DB26C5SG;                                                        
+ DROP STOGROUP DB26C6SG;                                                        
+ DROP STOGROUP DB26C7SG;                                                        
+ DROP STOGROUP DB26C8SG;                                                        
+ DROP STOGROUP DB26C9SG;                                                        
+ DROP STOGROUP DB26CASG;                                                        
+ DROP STOGROUP DB26CBSG;                                                        
+ DROP STOGROUP DB26CCSG;                                                        
+ DROP STOGROUP DB26CDSG;                                                        
+ DROP STOGROUP DB26CESG;                                                        
+ DROP STOGROUP DB26CFSG;                                                        
+ DROP STOGROUP DB2140SG;                                                        
+ DROP STOGROUP DB2141SG;                                                        
+ DROP STOGROUP DB2142SG;                                                        
+ DROP STOGROUP DB2143SG;                                                        
+ DROP STOGROUP DB2144SG;                                                        
+ DROP STOGROUP DB2145SG;                                                        
+ DROP STOGROUP DB2146SG;                                                        
+ DROP STOGROUP DB2147SG;                                                        
+ DROP STOGROUP DB2148SG;                                                        
+ DROP STOGROUP DB2149SG;                                                        
+ DROP STOGROUP DB214ASG;                                                        
+ DROP STOGROUP DB214BSG;                                                        
+ DROP STOGROUP DB214CSG;                                                        
+ DROP STOGROUP DB214DSG;                                                        
+ DROP STOGROUP DB214ESG;                                                        
+ DROP STOGROUP DB214FSG;                                                        

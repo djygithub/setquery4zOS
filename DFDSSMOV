@@ -1,0 +1,23 @@
+//DFDSSMOV JOB (D3330RWM,ROOM),'D J YOUNG',MSGCLASS=O                           
+//S1      EXEC PGM=ADRDSSU,REGION=4096K                                         
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=VOL8DB                                    
+//DASD2 DD DISP=SHR,UNIT=3390,VOL=SER=DJYSMF                                    
+//*  VOL=SER=(001878,001872)                                                    
+//SYSPRINT DD SYSOUT=*                                                          
+ COPY DATASET(INCLUDE(DB25CE.**)) -                                             
+      INDDNAME(DASD1),OUTDDNAME(DASD2) -                                        
+      DELETE                                                                    
+ COPY DATASET(INCLUDE(DAVID.**)) -                                              
+      INDDNAME(DASD1),OUTDDNAME(DASD2) -                                        
+      DELETE                                                                    
+ COPY DATASET(INCLUDE(DJYSMF.**)) -                                             
+      INDDNAME(DASD1),OUTDDNAME(DASD2) -                                        
+      DELETE                                                                    
+ COPY DATASET(INCLUDE(DJY1.**)) -                                               
+      INDDNAME(DASD1),OUTDDNAME(DASD2) -                                        
+      DELETE                                                                    
+//*                                                                             

@@ -1,0 +1,155 @@
+//DSNTEJ5C JOB   0,YOUNG,MSGLEVEL=(1,1),                                00001000
+//         MSGCLASS=O                                                   00002000
+//**********************************************************************00003000
+//*  NAME = DSNTEJ5C                                                   *00004000
+//*                                                                    *00005000
+//*  DESCRIPTIVE NAME = DB2 SAMPLE APPLICATION                         *00006000
+//*                     PHASE 5                                        *00007000
+//*                     COBOL, CICS                                    *00008000
+//*                                                                    *00009000
+//*    COPYRIGHT = 5665-DB2 (C) COPYRIGHT IBM CORP 1982, 1989          *00010000
+//*    REFER TO COPYRIGHT INSTRUCTIONS FORM NUMBER G120-2083           *00020000
+//*                                                                    *00021000
+//*    STATUS = VERSION 2 RELEASE 2, LEVEL 0                           *00022000
+//*                                                                    *00023000
+//*  FUNCTION = THIS JCL PERFORMS THE PHASE 5 SETUP FOR THE SAMPLE     *00024000
+//*             APPLICATIONS AT SITES WITH COBOL.  IT PREPARES THE     *00025000
+//*             COBOL CICS PROGRAM.                                    *00026000
+//*                                                                    *00027000
+//*             RUN THIS JOB ANYTIME AFTER PHASE 2.                    *00028000
+//**********************************************************************00029000
+//*                                                                     00030000
+//JOBLIB  DD  DISP=SHR,                                                 00040000
+//            DSN=SYS1.DSNLOAD                                          00050000
+//        DD  DISP=SHR,                                                 00060000
+//            DSN=CICSVS.LOADLIB                                        00070000
+//*       STEP  1: CREATE CICS LOGICAL MAP                              00080000
+//MAPG    EXEC DFHASMVS,PARM='DECK,NOOBJECT,SYSPARM(DSECT)',            00090000
+//             OUTC='*',MOD=TEMP                                        00100000
+//SYSIN    DD  DISP=SHR,                                                00110000
+//             DSN=DSN22X.DSNSAMP(DSN8CCG)                              00120000
+//SYSPUNCH DD  DISP=OLD,                                                00130000
+//             DSN=DSNDJY.SRCLIB.DATAS(DSN8MCMG)                        00140000
+//*                                                                     00150000
+//*        STEP  2: CREATE CICS LOGICAL MAP                             00160000
+//MAPD    EXEC DFHASMVS,PARM='DECK,NOOBJECT,SYSPARM(DSECT)',            00170000
+//             COND=(4,LT),OUTC='*',MOD=TEMP                            00180000
+//SYSPUNCH DD  DISP=OLD,                                                00190000
+//             DSN=DSNDJY.SRCLIB.DATAS(DSN8MCMD)                        00200000
+//SYSIN    DD  DISP=SHR,                                                00210000
+//             DSN=DSN22X.DSNSAMP(DSN8CCD)                              00211000
+//*                                                                     00212000
+//*        STEP  3: PREPARE CICS COBOL PROGRAMS                         00213000
+//DSNH     EXEC PGM=IKJEFT01,COND=(4,LT),DYNAMNBR=50,REGION=1024K       00214000
+//SYSTSPRT DD SYSOUT=*                                                  00215000
+//SYSTERM  DD SYSOUT=*                                                  00216000
+//SYSPRINT DD SYSOUT=*                                                  00217000
+//SYSUDUMP DD SYSOUT=*                                                  00218000
+//SYSPROC  DD DISP=SHR,                                                 00219000
+//            DSN=DAVID.SETQUERY.WORKLOAD                               00220000
+//SYSTSIN  DD *                                                         00230000
+  %DSNH INPUT('''DSN22X.DSNSAMP(DSN8CC0)''') +                          00240000
+        PLIB('''DSNDJY.SRCLIB.DATAS''') +                               00250000
+        P2LIB('''DSN22X.DSNSAMP''') +                                   00251000
+        TERM(LEAVE) PRINT(LEAVE) SOURCE(NO) XREF(NO) +                  00260000
+        HOST(COB2) RUN(CICS) BIND(NO) DELIM(APOST) +                    00270000
+        DBRMLIB('''DSNDJY.DBRMLIB.DATA''')   +                          00280000
+        LLIB('''SYS1.COB2CICS''')   +                                   00290000
+        L2LIB('''DSNDJY.RUNLIB.LOAD''')   +                             00291001
+        COB2LOAD('''SYS1.COB2COMP(IGYCRCTL)''') +                       00300000
+        COPTION('''NODYNAM,NOTRUNC''') STDSQL(NO) +                     00310000
+        PCLOAD('''SYS1.DSNLOAD(DSNHPC)''') +                            00320000
+        XLIB('''SYS1.DSNLOAD''')    +                                   00330000
+        LOAD('''DSNDJY.RUNLIB.LOAD''')                                  00340000
+  %DSNH INPUT('''DSN22X.DSNSAMP(DSN8CC1)''') +                          00350000
+        PLIB('''DSNDJY.SRCLIB.DATAS''') +                               00351000
+        P2LIB('''DSN22X.DSNSAMP''') +                                   00360000
+        TERM(LEAVE) PRINT(LEAVE) SOURCE(NO) XREF(NO) +                  00370000
+        HOST(COB2) RUN(CICS) BIND(NO) DELIM(APOST) +                    00380000
+        DBRMLIB('''DSNDJY.DBRMLIB.DATA''')   +                          00390000
+        LLIB('''SYS1.COB2CICS''')   +                                   00400000
+        L2LIB('''DSNDJY.RUNLIB.LOAD''')   +                             00401001
+        COB2LOAD('''SYS1.COB2COMP(IGYCRCTL)''') +                       00410000
+        COPTION('''NODYNAM,NOTRUNC''') STDSQL(NO) +                     00420000
+        PCLOAD('''SYS1.DSNLOAD(DSNHPC)''') +                            00430000
+        XLIB('''SYS1.DSNLOAD''')    +                                   00440000
+        LOAD('''DSNDJY.RUNLIB.LOAD''')                                  00450000
+  %DSNH INPUT('''DSN22X.DSNSAMP(DSN8CC2)''') +                          00460000
+        PLIB('''DSNDJY.SRCLIB.DATAS''') +                               00461000
+        P2LIB('''DSN22X.DSNSAMP''') +                                   00470000
+        TERM(LEAVE) PRINT(LEAVE) SOURCE(NO) XREF(NO) +                  00480000
+        HOST(COB2) RUN(CICS) BIND(NO) DELIM(APOST) +                    00490000
+        DBRMLIB('''DSNDJY.DBRMLIB.DATA''')   +                          00500000
+        LLIB('''SYS1.COB2CICS''')   +                                   00510000
+        L2LIB('''DSNDJY.RUNLIB.LOAD''')   +                             00511001
+        COB2LOAD('''SYS1.COB2COMP(IGYCRCTL)''') +                       00520000
+        COPTION('''NODYNAM,NOTRUNC''') STDSQL(NO) +                     00530000
+        PCLOAD('''SYS1.DSNLOAD(DSNHPC)''') +                            00540000
+        XLIB('''SYS1.DSNLOAD''') +                                      00550000
+        LOAD('''DSNDJY.RUNLIB.LOAD''')                                  00560000
+//*                                                                     00570000
+//*        STEP  4: BIND THE PROGRAM                                    00580000
+//BIND     EXEC PGM=IKJEFT01,DYNAMNBR=20,COND=(4,LT)                    00590000
+//DBRMLIB  DD DISP=SHR,                                                 00600000
+//            DSN=DSNDJY.DBRMLIB.DATA                                   00610000
+//SYSUDUMP DD SYSOUT=*                                                  00620000
+//SYSTSPRT DD SYSOUT=*                                                  00630000
+//SYSPRINT DD SYSOUT=*                                                  00640000
+//SYSIN    DD *                                                         00650000
+   GRANT BIND, EXECUTE ON PLAN DSN8CC22 TO PUBLIC;                      00660000
+//SYSTSIN  DD *                                                         00670000
+DSN SYSTEM(DSN)                                                         00680000
+BIND PLAN(DSN8CC22) MEMBER(DSN8CC0,DSN8CC1,DSN8CC2) ACT(REP) ISO(CS)    00690000
+END                                                                     00720000
+//*                                                                     00730000
+//*        STEP  5: CREATE THE CICS BMS PHYSICAL MAP                    00740000
+//MAPGP    EXEC DFHASMVS,COND=(4,LT),OUTC='*',MOD=TEMP                  00750000
+//SYSPUNCH DD DSN=&&TEMP,UNIT=SYSDA,DISP=(,PASS),                       00760000
+//         DCB=(RECFM=F,BLKSIZE=80),SPACE=(1024,(100,10))               00770000
+//SYSIN    DD DISP=SHR,                                                 00780000
+//            DSN=DSN22X.DSNSAMP(DSN8CCG)                               00790000
+//*                                                                     00800000
+//*        STEP  6: LINKEDIT THE CICS BMS PHYSICAL MAP                  00810000
+//MAPGL    EXEC PGM=IEWL,PARM='LIST,LET,XREF',COND=(4,LT)               00820000
+//SYSUT1   DD UNIT=SYSDA,SPACE=(1024,(100,10))                          00830000
+//SYSLMOD  DD DISP=SHR,                                                 00840000
+//            DSN=DSNDJY.RUNLIB.LOAD                                    00850000
+//SYSPRINT DD SYSOUT=*                                                  00860000
+//SYSUDUMP DD SYSOUT=*                                                  00870000
+//SYSLIN   DD DSN=&&TEMP,DISP=(OLD,DELETE)                              00880000
+//         DD *                                                         00890000
+ NAME DSN8CCG(R)                                                        00900000
+//*                                                                     00910000
+//*        STEP  7: CREATE THE CICS BMS PHYSICAL MAP                    00920000
+//MAPDP    EXEC DFHASMVS,COND=(4,LT),OUTC='*',MOD=TEMP                  00930000
+//SYSPUNCH DD DSN=&&TEMP,UNIT=SYSDA,DISP=(,PASS),                       00940000
+//         DCB=(RECFM=F,BLKSIZE=80),SPACE=(1024,(100,10))               00950000
+//SYSIN    DD DISP=SHR,                                                 00960000
+//            DSN=DSN22X.DSNSAMP(DSN8CCD)                               00970000
+//*                                                                     00980000
+//*        STEP  8: LINKEDIT THE CICS BMS PHYSICAL MAP                  00990000
+//MAPDL    EXEC PGM=IEWL,PARM='LIST,LET,XREF',COND=(4,LT)               01000000
+//SYSUT1   DD UNIT=SYSDA,SPACE=(1024,(100,10))                          01010000
+//SYSLMOD  DD DISP=SHR,                                                 01020000
+//            DSN=DSNDJY.RUNLIB.LOAD                                    01030000
+//SYSPRINT DD SYSOUT=*                                                  01040000
+//SYSUDUMP DD SYSOUT=*                                                  01050000
+//SYSLIN   DD DSN=&&TEMP,DISP=(OLD,DELETE)                              01060000
+//         DD *                                                         01070000
+ NAME DSN8CCD(R)                                                        01080000
+//*                                                                     01090000
+//*        ALL SUBSEQUENT STEPS ARE ONLY PROVIDED IN PART.              01100000
+//*        THE DATA FOR THE CICS GEN MUST BE INCLUDED                   01110000
+//*        WITH OTHER INSTALLATION PPT, PCT, AND RCT                    01120000
+//*        INFORMATION.                                                 01130000
+//*                                                                     01140000
+//*PCT      EXEC DFHAUPLK,COND=(4,LT)                                   01150000
+//*ASSEM.SYSUT1 DD DISP=SHR,                                            01160000
+//*        DSN=DSN22X.DSNSAMP(DSN8FPCT)                                 01170000
+//*PPT      EXEC DFHAUPLK,COND=(4,LT)                                   01180000
+//*ASSEM.SYSUT1 DD DISP=SHR,                                            01190000
+//*        DSN=DSN22X.DSNSAMP(DSN8FPPT)                                 01200000
+//*RCT      EXEC DFHAUPLK,COND=(4,LT)                                   01210000
+//*ASSEM.SYSUT1 DD DISP=SHR,                                            01220000
+//*        DSN=DSN22X.DSNSAMP(DSN8FRCT)                                 01230000
+//*                                                                     01240000

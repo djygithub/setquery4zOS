@@ -1,0 +1,247 @@
+**********************************************************************  00010000
+*                                                                    *  00020000
+*   MODULE NAME = DSN8CCD                                            *  00030000
+*                                                                    *  00040000
+*   DESCRIPTIVE NAME = CICS COBOL BMS MAP FOR SAMPLE PROGRAM, DETAIL *  00050000
+*                                                                    *  00060000
+*     COPYRIGHT = 5740-XYR (C) COPYRIGHT IBM CORP 1982, 1985         *  00070000
+*     REFER TO COPYRIGHT INSTRUCTIONS FORM NUMBER G120-2083          *  00080000
+*                                                                    *  00090000
+*     STATUS = RELEASE 2, LEVEL 0                                    *  00100000
+*                                                                    *  00110000
+*   FUNCTION =                                                       *  00120000
+*      PROVIDES THE CICS COBOL BMS MAP FOR THE DETAIL SCREENS OF     *  00130000
+*      THE SAMPLE APPLICATION.                                       *  00140000
+*                                                                    *  00150000
+*   NOTES =                                                          *  00160000
+*      DEPENDENCIES = NONE                                           *  00170000
+*                                                                    *  00180000
+*      RESTRICTIONS = NONE                                           *  00190000
+*                                                                    *  00200000
+*      REGISTER CONVENTIONS = NONE, NO EXECUTABLE CODE               *  00210000
+*                                                                    *  00220000
+*   MODULE TYPE = PROCEDURE                                          *  00230000
+*                                                                    *  00240000
+*      PROCESSOR =  ASSEMBLER XF OR H                                *  00250000
+*                                                                    *  00260000
+*      MODULE SIZE = SEE ASSEMBLER LISTING                           *  00270000
+*                                                                    *  00280000
+*      ATTRIBUTES = REUSABLE                                         *  00290000
+*                                                                    *  00300000
+*   ENTRY POINT = DSN8CCD                                            *  00310000
+*                                                                    *  00320000
+*      PURPOSE = SEE FUNCTION                                        *  00330000
+*                                                                    *  00340000
+*      LINKAGE = NONE                                                *  00350000
+*                                                                    *  00360000
+*      INPUT = NONE                                                  *  00370000
+*                                                                    *  00380000
+*      OUTPUT = NONE                                                 *  00390000
+*                                                                    *  00400000
+*                                                                    *  00410000
+*   EXIT-NORMAL = NONE                                               *  00420000
+*                                                                    *  00430000
+*   EXIT-ERROR = NONE                                                *  00440000
+*                                                                    *  00450000
+*      RETURN CODE = NONE                                            *  00460000
+*         REASON CODE = NONE                                         *  00470000
+*                                                                    *  00480000
+*      ABEND CODES = NONE                                            *  00490000
+*                                                                    *  00500000
+*      ERROR-MESSAGES = NONE                                         *  00510000
+*                                                                    *  00520000
+*   EXTERNAL REFERENCES =                                            *  00530000
+*      ROUTINES/SERVICES = NONE                                      *  00540000
+*                                                                    *  00550000
+*      DATA-AREAS = NONE                                             *  00560000
+*                                                                    *  00570000
+*      CONTROL-BLOCKS = NONE                                         *  00580000
+*                                                                    *  00590000
+*      MACROS         =                                              *  00600000
+*         DFHMDF              - CICS BMS MAP FIELD DESCRIPTION       *  00610000
+*         DFHMDI              - CICS BMS MAP SCREEN DESCRIPTION      *  00620000
+*         DFHMSD              - CICS BMS MAP DESCRIPTION             *  00630000
+*                                                                    *  00640000
+*   TABLES = NONE                                                    *  00650000
+*                                                                    *  00660000
+*   CHANGE-ACTIVITY =                                                *  00670000
+*      NONE                                                          *  00680000
+*                                                                    *  00690000
+*   PSEUDOCODE      =                                                *  00700000
+*                                                                    *  00710000
+*      THIS MODULE CONTAINS NO EXECUTABLE CODE.                      *  00720000
+*                                                                    *  00730000
+**********************************************************************  00740000
+         EJECT                                                          00750000
+DSN8CCD DFHMSD TYPE=MAP,                                               X00760000
+               MODE=INOUT,                                             X00770000
+               LANG=COBOL,                                             X00780000
+               TERM=3270-2,                                            X00790000
+               CTRL=(FREEKB),                                          X00800000
+               STORAGE=AUTO,                                           X00810000
+               TIOAPFX=YES                                              00820000
+DSN8CCD DFHMDI SIZE=(24,80),                                           X00830000
+               LINE=1,                                                 X00840000
+               COLUMN=1                                                 00850000
+BTITLE  DFHMDF POS=(1,15),                                             X00860000
+               ATTRB=PROT,                                             X00870000
+               LENGTH=50                                                00880000
+        DFHMDF POS=(2,1),                                              X00890000
+               ATTRB=PROT,                                             X00900000
+               INITIAL='MAJOR SYSTEM ...:',                            X00910000
+               LENGTH=17                                                00920000
+BMAJSYS DFHMDF POS=(2,19),                                             X00930000
+               ATTRB=(PROT,BRT,FSET),                                  X00940000
+               INITIAL='O',                                            X00950000
+               LENGTH=1                                                 00960000
+        DFHMDF POS=(2,21),                                             X00970000
+               ATTRB=ASKIP,                                            X00980000
+               LENGTH=1                                                 00990000
+        DFHMDF POS=(2,30),                                             X01000000
+               ATTRB=PROT,                                             X01010000
+               INITIAL='ORGANIZATION',                                 X01020000
+               LENGTH=50                                                01030000
+        DFHMDF POS=(3,1),                                              X01040000
+               ATTRB=PROT,                                             X01050000
+               INITIAL='ACTION .........:',                            X01060000
+               LENGTH=17                                                01070000
+BACTION DFHMDF POS=(3,19),                                             X01080000
+               ATTRB=(UNPROT,BRT,IC,FSET),                             X01090000
+               LENGTH=1                                                 01100000
+        DFHMDF POS=(3,21),                                             X01110000
+               ATTRB=ASKIP,                                            X01120000
+               LENGTH=1                                                 01130000
+BDESCL2 DFHMDF POS=(3,30),                                             X01140000
+               ATTRB=PROT,                                             X01150000
+               LENGTH=50                                                01160000
+        DFHMDF POS=(4,1),                                              X01170000
+               ATTRB=PROT,                                             X01180000
+               INITIAL='OBJECT .........:',                            X01190000
+               LENGTH=17                                                01200000
+BOBJECT DFHMDF POS=(4,19),                                             X01210000
+               ATTRB=(UNPROT,BRT,FSET),                                X01220000
+               LENGTH=2                                                 01230000
+        DFHMDF POS=(4,22),                                             X01240000
+               ATTRB=ASKIP,                                            X01250000
+               LENGTH=1                                                 01260000
+BDESCL3 DFHMDF POS=(4,30),                                             X01270000
+               ATTRB=PROT,                                             X01280000
+               LENGTH=50                                                01290000
+        DFHMDF POS=(5,1),                                              X01300000
+               ATTRB=PROT,                                             X01310000
+               INITIAL='SEARCH CRITERIA :',                            X01320000
+               LENGTH=17                                                01330000
+BSEARCH DFHMDF POS=(5,19),                                             X01340000
+               ATTRB=(UNPROT,BRT,FSET),                                X01350000
+               LENGTH=2                                                 01360000
+        DFHMDF POS=(5,22),                                             X01370000
+               ATTRB=ASKIP,                                            X01380000
+               LENGTH=1                                                 01390000
+BDESCL4 DFHMDF POS=(5,30),                                             X01400000
+               ATTRB=PROT,                                             X01410000
+               LENGTH=50                                                01420000
+        DFHMDF POS=(6,1),                                              X01430000
+               ATTRB=PROT,                                             X01440000
+               INITIAL='DATA ...........:',                            X01450000
+               LENGTH=17                                                01460000
+BDATA   DFHMDF POS=(6,19),                                             X01470000
+               ATTRB=(UNPROT,BRT,FSET),                                X01480000
+               LENGTH=60                                                01490000
+BMSG    DFHMDF POS=(7,1),                                              X01500000
+               ATTRB=(PROT,BRT),                                       X01510000
+               LENGTH=79                                                01520000
+LINE1F1 DFHMDF POS=(9,1),                                              X01530000
+               ATTRB=PROT,                                             X01540000
+               LENGTH=37                                                01550000
+LINE1F2 DFHMDF POS=(9,40),                                             X01560000
+               ATTRB=(UNPROT,FSET),                                    X01570000
+               LENGTH=40                                                01580000
+LINE2F1 DFHMDF POS=(10,1),                                             X01590000
+               ATTRB=PROT,                                             X01600000
+               LENGTH=37                                                01610000
+LINE2F2 DFHMDF POS=(10,40),                                            X01620000
+               ATTRB=(UNPROT,FSET),                                    X01630000
+               LENGTH=40                                                01640000
+LINE3F1 DFHMDF POS=(11,1),                                             X01650000
+               ATTRB=PROT,                                             X01660000
+               LENGTH=37                                                01670000
+LINE3F2 DFHMDF POS=(11,40),                                            X01680000
+               ATTRB=(UNPROT,FSET),                                    X01690000
+               LENGTH=40                                                01700000
+LINE4F1 DFHMDF POS=(12,1),                                             X01710000
+               ATTRB=PROT,                                             X01720000
+               LENGTH=37                                                01730000
+LINE4F2 DFHMDF POS=(12,40),                                            X01740000
+               ATTRB=(UNPROT,FSET),                                    X01750000
+               LENGTH=40                                                01760000
+LINE5F1 DFHMDF POS=(13,1),                                             X01770000
+               ATTRB=PROT,                                             X01780000
+               LENGTH=37                                                01790000
+LINE5F2 DFHMDF POS=(13,40),                                            X01800000
+               ATTRB=(UNPROT,FSET),                                    X01810000
+               LENGTH=40                                                01820000
+LINE6F1 DFHMDF POS=(14,1),                                             X01830000
+               ATTRB=PROT,                                             X01840000
+               LENGTH=37                                                01850000
+LINE6F2 DFHMDF POS=(14,40),                                            X01860000
+               ATTRB=(UNPROT,FSET),                                    X01870000
+               LENGTH=40                                                01880000
+LINE7F1 DFHMDF POS=(15,1),                                             X01890000
+               ATTRB=PROT,                                             X01900000
+               LENGTH=37                                                01910000
+LINE7F2 DFHMDF POS=(15,40),                                            X01920000
+               ATTRB=(UNPROT,FSET),                                    X01930000
+               LENGTH=40                                                01940000
+LINE8F1 DFHMDF POS=(16,1),                                             X01950000
+               ATTRB=PROT,                                             X01960000
+               LENGTH=37                                                01970000
+LINE8F2 DFHMDF POS=(16,40),                                            X01980000
+               ATTRB=(UNPROT,FSET),                                    X01990000
+               LENGTH=40                                                02000000
+LINE9F1 DFHMDF POS=(17,1),                                             X02010000
+               ATTRB=PROT,                                             X02020000
+               LENGTH=37                                                02030000
+LINE9F2 DFHMDF POS=(17,40),                                            X02040000
+               ATTRB=(UNPROT,FSET),                                    X02050000
+               LENGTH=40                                                02060000
+LINEAF1 DFHMDF POS=(18,1),                                             X02070000
+               ATTRB=PROT,                                             X02080000
+               LENGTH=37                                                02090000
+LINEAF2 DFHMDF POS=(18,40),                                            X02100000
+               ATTRB=(UNPROT,FSET),                                    X02110000
+               LENGTH=40                                                02120000
+LINEBF1 DFHMDF POS=(19,1),                                             X02130000
+               ATTRB=PROT,                                             X02140000
+               LENGTH=37                                                02150000
+LINEBF2 DFHMDF POS=(19,40),                                            X02160000
+               ATTRB=(UNPROT,FSET),                                    X02170000
+               LENGTH=40                                                02180000
+LINECF1 DFHMDF POS=(20,1),                                             X02190000
+               ATTRB=PROT,                                             X02200000
+               LENGTH=37                                                02210000
+LINECF2 DFHMDF POS=(20,40),                                            X02220000
+               ATTRB=(UNPROT,FSET),                                    X02230000
+               LENGTH=40                                                02240000
+LINEDF1 DFHMDF POS=(21,1),                                             X02250000
+               ATTRB=PROT,                                             X02260000
+               LENGTH=37                                                02270000
+LINEDF2 DFHMDF POS=(21,40),                                            X02280000
+               ATTRB=(UNPROT,FSET),                                    X02290000
+               LENGTH=40                                                02300000
+LINEEF1 DFHMDF POS=(22,1),                                             X02310000
+               ATTRB=PROT,                                             X02320000
+               LENGTH=37                                                02330000
+LINEEF2 DFHMDF POS=(22,40),                                            X02340000
+               ATTRB=(UNPROT,FSET),                                    X02350000
+               LENGTH=40                                                02360000
+LINEFF1 DFHMDF POS=(23,1),                                             X02370000
+               ATTRB=PROT,                                             X02380000
+               LENGTH=37                                                02390000
+LINEFF2 DFHMDF POS=(23,40),                                            X02400000
+               ATTRB=(UNPROT,FSET),                                    X02410000
+               LENGTH=40                                                02420000
+BPFKEY  DFHMDF POS=(24,1),                                             X02430000
+               ATTRB=PROT,                                             X02440000
+               LENGTH=79                                                02450000
+        DFHMSD TYPE=FINAL                                               02460000
+        END                                                             02470000

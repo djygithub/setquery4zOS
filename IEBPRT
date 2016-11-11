@@ -1,0 +1,8 @@
+//PPOM23   JOB (330DJY00),'D J YOUNG ',MSGCLASS=Q,NOTIFY=DAVID          00010001
+//*     SAMPLE IEBGENER                                                 00020000
+//*                                                                     00030000
+//STEP1   EXEC PGM=IEBGENER                                             00040000
+//SYSPRINT  DD SYSOUT=*                                                 00050000
+//SYSIN     DD DUMMY                                                    00060000
+//SYSUT1 DD DSN=DAVID.DB2MON.OUTPIT,DISP=SHR                            00070001
+//SYSUT2 DD SYSOUT=*,COPIES=3                                           00072002

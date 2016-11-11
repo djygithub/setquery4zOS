@@ -1,0 +1,9 @@
+//COPYREPL JOB (0,75),'D J YOUNG',MSGCLASS=Q                                    
+//S1    EXEC PGM=IEBCOPY,REGION=4M                                              
+//SYSPRINT DD SYSOUT=*                                                          
+//INPUT2   DD DISP=SHR,DSN=SYS1.LINKLIB,UNIT=3390,VOL=SER=MV43RS                
+//OUTPUT2  DD DSN=SYS1.LINKLIB,DISP=SHR,UNIT=3390,VOL=SER=MV43PS                
+//SYSUT3 DD UNIT=SYSDA,SPACE=(CYL,(50,51))                                      
+//SYSUT4 DD UNIT=SYSDA,SPACE=(CYL,(51,51))                                      
+//SYSIN  DD *                                                                   
+    COPY INDD=((INPUT2,R)),OUTDD=OUTPUT2                                        

@@ -1,0 +1,8 @@
+//DSN1COMP JOB (D3330RWM,ROOM),'D J YOUNG',MSGCLASS=X,REGION=0M         00001000
+//COMPIT EXEC PGM=DSN1COMP,REGION=0M,                                   00430000
+//      PARM='32K,DETAIL,SHOWTREE'                                      00440001
+//STEPLIB  DD DISP=SHR,                                                 00491000
+//            DSN=SYS1.DSN310.SDSNLOAD                                  00500000
+//SYSPRINT DD SYSOUT=*                                                  00510000
+//SYSABEND DD SYSOUT=*                                                  00511000
+//SYSUT1   DD DSN=DSN310.DSNDBD.SQ5DB.SQ5TS.I0001.A001,DISP=SHR         00520000

@@ -1,0 +1,82 @@
+//DFCIDB23 JOB   0,YOUNG,MSGLEVEL=(1,1),                                00001001
+//         MSGCLASS=O                                                   00002001
+//LOADCSD  EXEC  PGM=DFHCSDUP,REGION=0K                                 00552000
+//STEPLIB  DD DISP=SHR,DSN=CICS321.SDFHLOAD                             00553000
+//DFHCSD   DD DISP=SHR,DSN=CICS321.DFHCSD                               00554000
+//SYSPRINT DD SYSOUT=*                                                  00555000
+//SYSIN    DD *                                                         00556000
+**********************************************************************  00557000
+**********(DB2 CICS ATTACHMENT FACILITY DEFINITIONS)******************  00558000
+**********************************************************************  00559000
+DELETE GROUP(DB2)                                                       00560000
+ADD    GROUP(DB2) LIST(TLIST)                                           00561000
+*                                                                       00562000
+DEFINE TRANSACTION(-DIS) GROUP(DB2) PROGRAM(DSNCCOM1) TWASIZE(1200)     00563004
+TASKDATALOC(BELOW)                                                      00563102
+DEFINE TRANSACTION(-ERR) GROUP(DB2) PROGRAM(DSNCCOM1) TWASIZE(1200)     00564004
+TASKDATALOC(BELOW)                                                      00564102
+DEFINE TRANSACTION(-REC) GROUP(DB2) PROGRAM(DSNCCOM1) TWASIZE(1200)     00565004
+TASKDATALOC(BELOW)                                                      00565102
+DEFINE TRANSACTION(-STA) GROUP(DB2) PROGRAM(DSNCCOM1) TWASIZE(1200)     00566004
+TASKDATALOC(BELOW)                                                      00566102
+DEFINE TRANSACTION(-STO) GROUP(DB2) PROGRAM(DSNCCOM1) TWASIZE(1200)     00567004
+TASKDATALOC(BELOW)                                                      00567102
+DEFINE TRANSACTION(DISC) GROUP(DB2) PROGRAM(DSNCCOM1) TWASIZE(1200)     00568004
+TASKDATALOC(BELOW)                                                      00568102
+DEFINE TRANSACTION(DISP) GROUP(DB2) PROGRAM(DSNCCOM1) TWASIZE(1200)     00569004
+TASKDATALOC(BELOW)                                                      00569102
+DEFINE TRANSACTION(DSNC) GROUP(DB2) PROGRAM(DSNCCOM1) TWASIZE(1200)     00570004
+TASKDATALOC(BELOW)                                                      00570102
+DEFINE TRANSACTION(GOOP) GROUP(DB2) PROGRAM(DSNCCOM1) TWASIZE(1200)     00571004
+TASKDATALOC(BELOW)                                                      00571102
+DEFINE TRANSACTION(MODI) GROUP(DB2) PROGRAM(DSNCCOM1) TWASIZE(1200)     00572004
+TASKDATALOC(BELOW)                                                      00572102
+DEFINE TRANSACTION(STOP) GROUP(DB2) PROGRAM(DSNCCOM1) TWASIZE(1200)     00573004
+TASKDATALOC(BELOW)                                                      00573102
+DEFINE TRANSACTION(STRT) GROUP(DB2) PROGRAM(DSNCCOM1) TWASIZE(1200)     00574004
+TASKDATALOC(BELOW)                                                      00574102
+*                                                                       00575000
+DEFINE PROGRAM(DSNCCOM1) GROUP(DB2) LANGUAGE(ASSEMBLER) CEDF(NO)        00576000
+DEFINE PROGRAM(DSNCCOM2) GROUP(DB2) LANGUAGE(ASSEMBLER) CEDF(NO)        00576500
+DEFINE PROGRAM(DSNCEDF1) GROUP(DB2) LANGUAGE(ASSEMBLER) CEDF(NO)        00577000
+DEFINE PROGRAM(DSNCEDON) GROUP(DB2) LANGUAGE(ASSEMBLER) CEDF(NO)        00578000
+DEFINE PROGRAM(DSNCEXT1) GROUP(DB2) LANGUAGE(ASSEMBLER) CEDF(NO)        00579000
+DEFINE PROGRAM(DSNCEXT2) GROUP(DB2) LANGUAGE(ASSEMBLER) CEDF(NO)        00580000
+DEFINE PROGRAM(DSNCMSG0) GROUP(DB2) LANGUAGE(ASSEMBLER) CEDF(NO)        00581000
+DEFINE PROGRAM(DSNCSTOP) GROUP(DB2) LANGUAGE(ASSEMBLER) CEDF(NO)        00582000
+DEFINE PROGRAM(DSNCSTRT) GROUP(DB2) LANGUAGE(ASSEMBLER) CEDF(NO)        00583000
+DEFINE PROGRAM(DSNCUEXT) GROUP(DB2) LANGUAGE(ASSEMBLER) CEDF(NO)        00584000
+DEFINE PROGRAM(DSNCSM31) GROUP(DB2) LANGUAGE(ASSEMBLER) CEDF(NO)        00584600
+*                                                                       00585000
+**********************************************************************  00586000
+**********(DB2 CICS SAMPLE APPLICATION DEFINITIONS)*******************  00587000
+**********************************************************************  00588000
+DEFINE TRANSACTION(D8CS) GROUP(DB2) PROGRAM(DSN8CC0)                    00589000
+DEFINE TRANSACTION(D8PP) GROUP(DB2) PROGRAM(DSN8CP6)                    00590000
+DEFINE TRANSACTION(D8PS) GROUP(DB2) PROGRAM(DSN8CP0)                    00591000
+DEFINE TRANSACTION(D8PT) GROUP(DB2) PROGRAM(DSN8CP3)                    00592000
+DEFINE TRANSACTION(D8PU) GROUP(DB2) PROGRAM(DSN8CP3)                    00593000
+*                                                                       00594000
+DEFINE MAPSET(DSN8CCD) GROUP(DB2)                                       00595000
+DEFINE MAPSET(DSN8CCG) GROUP(DB2)                                       00596000
+DEFINE MAPSET(DSN8CPD) GROUP(DB2)                                       00597000
+DEFINE MAPSET(DSN8CPE) GROUP(DB2)                                       00598000
+DEFINE MAPSET(DSN8CPF) GROUP(DB2)                                       00599000
+DEFINE MAPSET(DSN8CPG) GROUP(DB2)                                       00600000
+DEFINE MAPSET(DSN8CPL) GROUP(DB2)                                       00601000
+DEFINE MAPSET(DSN8CPN) GROUP(DB2)                                       00602000
+DEFINE MAPSET(DSN8CPU) GROUP(DB2)                                       00603000
+*                                                                       00604000
+DEFINE PROGRAM(DSN8CC0) GROUP(DB2) LANGUAGE(COBOL)                      00605000
+DEFINE PROGRAM(DSN8CC1) GROUP(DB2) LANGUAGE(COBOL)                      00606000
+DEFINE PROGRAM(DSN8CC2) GROUP(DB2) LANGUAGE(COBOL)                      00607000
+DEFINE PROGRAM(DSN8CP0) GROUP(DB2) LANGUAGE(PLI)                        00608000
+DEFINE PROGRAM(DSN8CP1) GROUP(DB2) LANGUAGE(PLI)                        00609000
+DEFINE PROGRAM(DSN8CP2) GROUP(DB2) LANGUAGE(PLI)                        00610000
+DEFINE PROGRAM(DSN8CP3) GROUP(DB2) LANGUAGE(PLI)                        00611000
+DEFINE PROGRAM(DSN8CP6) GROUP(DB2) LANGUAGE(PLI)                        00612000
+DEFINE PROGRAM(DSN8CP7) GROUP(DB2) LANGUAGE(PLI)                        00613000
+DEFINE PROGRAM(DSN8CP8) GROUP(DB2) LANGUAGE(PLI)                        00614000
+LIST LIST(TLIST) OBJECTS                                                00614101
+*********************************************************************** 00615000
+/*                                                                      00616000

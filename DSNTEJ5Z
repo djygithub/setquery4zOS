@@ -1,0 +1,88 @@
+//DSNTEJ5Z JOB   0,YOUNG,MSGLEVEL=(1,1),                                00001002
+//         MSGCLASS=O                                                   00002000
+//**********************************************************************00003000
+//*  NAME = DSNTEJ5C                                                   *00004000
+//*                                                                    *00005000
+//*  DESCRIPTIVE NAME = DB2 SAMPLE APPLICATION                         *00006000
+//*                     PHASE 5                                        *00007000
+//*                     COBOL, CICS                                    *00008000
+//*                                                                    *00009000
+//*    COPYRIGHT = 5665-DB2 (C) COPYRIGHT IBM CORP 1982, 1989          *00010000
+//*    REFER TO COPYRIGHT INSTRUCTIONS FORM NUMBER G120-2083           *00020000
+//*                                                                    *00021000
+//*    STATUS = VERSION 2 RELEASE 2, LEVEL 0                           *00022000
+//*                                                                    *00023000
+//*  FUNCTION = THIS JCL PERFORMS THE PHASE 5 SETUP FOR THE SAMPLE     *00024000
+//*             APPLICATIONS AT SITES WITH COBOL.  IT PREPARES THE     *00025000
+//*             COBOL CICS PROGRAM.                                    *00026000
+//*                                                                    *00027000
+//*             RUN THIS JOB ANYTIME AFTER PHASE 2.                    *00028000
+//**********************************************************************00029000
+//*                                                                     00030000
+//JOBLIB  DD  DISP=SHR,                                                 00040000
+//            DSN=SYS1.DSNLOAD                                          00050000
+//        DD  DISP=SHR,                                                 00060000
+//            DSN=CICSVS.LOADLIB                                        00070000
+//*       STEP  1: CREATE CICS LOGICAL MAP                              00080000
+//MAPG    EXEC DFHASMVS,PARM='DECK,NOOBJECT,SYSPARM(DSECT)',            00090000
+//             OUTC='*',MOD=TEMP                                        00100000
+//SYSIN    DD  DISP=SHR,                                                00110000
+//             DSN=DAVID.SETQUERY.WORKLOAD(DJYSQLA)                     00120000
+//SYSPUNCH DD  DISP=OLD,                                                00130000
+//             DSN=DSNDJY.SRCLIB.DATAS(DJYMSQLA)                        00140000
+//*                                                                     00150000
+//*                                                                     00212000
+//*        STEP  2: PREPARE CICS COBOL PROGRAMS                         00213000
+//DSNH     EXEC PGM=IKJEFT01,COND=(4,LT),DYNAMNBR=50,REGION=1024K       00214000
+//SYSTSPRT DD SYSOUT=*                                                  00215000
+//SYSTERM  DD SYSOUT=*                                                  00216000
+//SYSPRINT DD SYSOUT=*                                                  00217000
+//SYSUDUMP DD SYSOUT=*                                                  00218000
+//SYSPROC  DD DISP=SHR,                                                 00219000
+//            DSN=DAVID.SETQUERY.WORKLOAD                               00220000
+//SYSTSIN  DD *                                                         00230000
+  %DSNH INPUT('''DAVID.SETQUERY.WORKLOAD(DJYSQL0)''') +                 00240000
+        PLIB('''DSNDJY.SRCLIB.DATAS''') +                               00250000
+        P2LIB('''DSN22X.DSNSAMP''') +                                   00251000
+        TERM(LEAVE) PRINT(LEAVE) SOURCE(YES) XREF(YES) +                00252001
+        HOST(COB2) RUN(CICS) BIND(NO) DELIM(APOST) +                    00253000
+        DBRMLIB('''DSNDJY.DBRMLIB.DATA''')   +                          00254000
+        LLIB('''DSNDJY.RUNLIB.LOAD''')   +                              00255000
+        COB2LOAD('''SYS1.COB2COMP(IGYCRCTL)''') +                       00256000
+        COPTION('''NODYNAM,NOTRUNC''') STDSQL(NO) +                     00257000
+        PCLOAD('''SYS1.DSNLOAD(DSNHPC)''') +                            00258000
+        XLIB('''SYS1.DSNLOAD''')    +                                   00259000
+        LOAD('''DSNDJY.RUNLIB.LOAD''')                                  00260000
+//*                                                                     00510000
+//*        STEP  4: BIND THE PROGRAM                                    00520000
+//BIND     EXEC PGM=IKJEFT01,DYNAMNBR=20,COND=(4,LT)                    00530000
+//DBRMLIB  DD DISP=SHR,                                                 00540000
+//            DSN=DSNDJY.DBRMLIB.DATA                                   00550000
+//SYSUDUMP DD SYSOUT=*                                                  00560000
+//SYSTSPRT DD SYSOUT=*                                                  00570000
+//SYSPRINT DD SYSOUT=*                                                  00580000
+//SYSIN    DD *                                                         00590000
+   GRANT BIND, EXECUTE ON PLAN DSN8CC22 TO PUBLIC;                      00600000
+//SYSTSIN  DD *                                                         00610000
+DSN SYSTEM(DSN)                                                         00620000
+BIND PLAN(DJYSQL0) MEMBER(DJYSQL0) ACT(REP) ISO(CS)                     00630000
+END                                                                     00640000
+//*                                                                     00650000
+//*        STEP  5: CREATE THE CICS BMS PHYSICAL MAP                    00660000
+//MAPGP    EXEC DFHASMVS,COND=(4,LT),OUTC='*',MOD=TEMP                  00670000
+//SYSPUNCH DD DSN=&&TEMP,UNIT=SYSDA,DISP=(,PASS),                       00680000
+//         DCB=(RECFM=F,BLKSIZE=80),SPACE=(1024,(100,10))               00690000
+//SYSIN    DD DISP=SHR,                                                 00700000
+//            DSN=DAVID.SETQUERY.WORKLOAD(DJYSQLA)                      00710000
+//*                                                                     00720000
+//*        STEP  6: LINKEDIT THE CICS BMS PHYSICAL MAP                  00730000
+//MAPGL    EXEC PGM=IEWL,PARM='LIST,LET,XREF',COND=(4,LT)               00740000
+//SYSUT1   DD UNIT=SYSDA,SPACE=(1024,(100,10))                          00750000
+//SYSLMOD  DD DISP=SHR,                                                 00760000
+//            DSN=DSNDJY.RUNLIB.LOAD                                    00770000
+//SYSPRINT DD SYSOUT=*                                                  00780000
+//SYSUDUMP DD SYSOUT=*                                                  00790000
+//SYSLIN   DD DSN=&&TEMP,DISP=(OLD,DELETE)                              00800000
+//         DD *                                                         00810000
+ NAME DJYSQLA(R)                                                        00820000
+//*                                                                     00830000

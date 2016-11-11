@@ -1,0 +1,16 @@
+//IEBCOPC  JOB (0,75),'D J YOUNG',MSGCLASS=Q                                    
+//S1    EXEC PGM=IEBCOPY,REGION=4M                                              
+//SYSPRINT DD SYSOUT=*                                                          
+//INPUT2   DD DISP=SHR,DSN=HSQ4201.F2,UNIT=EEB,VOL=SER=SQ4201,                  
+//        LABEL=(3,SL)                                                          
+//OUTPUT2  DD DSN=EDC.V1R2M0.CINSTALL,DISP=(,CATLG,DELETE),                     
+//        SPACE=(3120,(21,10,5)),DCB=(RECFM=FB,LRECL=80,BLKSIZE=3120),          
+//        UNIT=3390,VOL=SER=MV43DL                                              
+//SYSUT3 DD UNIT=SYSDA,SPACE=(CYL,(1,1))                                        
+//SYSUT4 DD UNIT=SYSDA,SPACE=(CYL,(1,1))                                        
+//SYSIN  DD *                                                                   
+    COPY INDD=INPUT2,OUTDD=OUTPUT2                                              
+    SELECT MEMBER=(EDCCALLO,EDCCAPRC,EDCCRECV,EDCCRECN)                         
+    SELECT MEMBER=(EDCCAPLY,EDCCDDDF,EDCCACPT,EDCCSAMP)                         
+    SELECT MEMBER=(EDCCPROD,EDCCPROE,EDCCSMPA,EDCCSMPI)                         
+    SELECT MEMBER=(EDCDLINK,EDCCMODC,LCCMOD1)                                   

@@ -1,0 +1,101 @@
+---------+---------+---------+---------+---------+---------+---------+---------+
+ SELECT QUERYNO, QBLOCKNO, APPLNAME, PROGNAME, PLANNO, METHOD, CREATOR,         
+    TNAME FROM PLAN_TABLE WHERE QUERYNO BETWEEN 201 AND 209                     
+    ORDER BY QUERYNO;                                                           
+---------+---------+---------+---------+---------+---------+---------+---------+
+    QUERYNO  QBLOCKNO  APPLNAME  PROGNAME  PLANNO  METHOD  CREATOR   TNAME      
+---------+---------+---------+---------+---------+---------+---------+---------+
+        201         1            DSNESM68       1       0  DAVID     SQ10       
+        202         1            DSNESM68       1       0  DAVID     SQ10       
+        203         1            DSNESM68       1       0  DAVID     SQ10       
+        204         1            DSNESM68       1       0  DAVID     SQ10       
+        205         1            DSNESM68       1       0  DAVID     SQ10       
+        206         1            DSNESM68       1       0  DAVID     SQ10       
+        207         1            DSNESM68       1       0  DAVID     SQ10       
+        208         1            DSNESM68       1       0  DAVID     SQ10       
+        209         1            DSNESM68       1       0  DAVID     SQ10       
+DSNE610I NUMBER OF ROWS DISPLAYED IS 9                                          
+DSNE616I STATEMENT EXECUTION WAS SUCCESSFUL, SQLCODE IS 100                     
+---------+---------+---------+---------+---------+---------+---------+---------+
+ SELECT QUERYNO,  TABNO, ACCESSTYPE, MATCHCOLS,  ACCESSNAME,                    
+    INDEXONLY                                                                   
+    FROM PLAN_TABLE WHERE QUERYNO BETWEEN 201 AND 209                           
+    ORDER BY QUERYNO;                                                           
+---------+---------+---------+---------+---------+---------+---------+---------+
+    QUERYNO   TABNO  ACCESSTYPE  MATCHCOLS  ACCESSNAME          INDEXONLY       
+---------+---------+---------+---------+---------+---------+---------+---------+
+        201       1  I                   1  SQ10IN01            N               
+        202       1  I                   1  SQ10IN04            N               
+        203       1  I                   1  SQ10IN06            N               
+        204       1  I                   1  SQ10IN07            N               
+        205       1  I                   1  SQ10IN08            N               
+        206       1  I                   1  SQ10IN09            N               
+        207       1  R                   0                      N               
+        208       1  R                   0                      N               
+        209       1  R                   0                      N               
+DSNE610I NUMBER OF ROWS DISPLAYED IS 9                                          
+DSNE616I STATEMENT EXECUTION WAS SUCCESSFUL, SQLCODE IS 100                     
+---------+---------+---------+---------+---------+---------+---------+---------+
+ SELECT QUERYNO,  SORTN_UNIQ, SORTN_JOIN, SORTN_ORDERBY, SORTN_GROUPBY          
+    FROM PLAN_TABLE WHERE QUERYNO BETWEEN 201 AND 209                           
+    ORDER BY QUERYNO;                                                           
+---------+---------+---------+---------+---------+---------+---------+---------+
+    QUERYNO  SORTN_UNIQ  SORTN_JOIN  SORTN_ORDERBY  SORTN_GROUPBY               
+---------+---------+---------+---------+---------+---------+---------+---------+
+        201  N           N           N              N                           
+        202  N           N           N              N                           
+        203  N           N           N              N                           
+        204  N           N           N              N                           
+        205  N           N           N              N                           
+        206  N           N           N              N                           
+        207  N           N           N              N                           
+        208  N           N           N              N                           
+        209  N           N           N              N                           
+DSNE610I NUMBER OF ROWS DISPLAYED IS 9                                          
+DSNE616I STATEMENT EXECUTION WAS SUCCESSFUL, SQLCODE IS 100                     
+---------+---------+---------+---------+---------+---------+---------+---------+
+ SELECT QUERYNO,  SORTC_UNIQ, SORTC_JOIN, SORTC_ORDERBY, SORTC_GROUPBY          
+    FROM PLAN_TABLE WHERE QUERYNO BETWEEN 201 AND 209                           
+    ORDER BY QUERYNO;                                                           
+---------+---------+---------+---------+---------+---------+---------+---------+
+    QUERYNO  SORTC_UNIQ  SORTC_JOIN  SORTC_ORDERBY  SORTC_GROUPBY               
+---------+---------+---------+---------+---------+---------+---------+---------+
+        201  N           N           N              N                           
+        202  N           N           N              N                           
+        203  N           N           N              N                           
+        204  N           N           N              N                           
+        205  N           N           N              N                           
+        206  N           N           N              N                           
+        207  N           N           N              N                           
+        208  N           N           N              N                           
+        209  N           N           N              N                           
+DSNE610I NUMBER OF ROWS DISPLAYED IS 9                                          
+DSNE616I STATEMENT EXECUTION WAS SUCCESSFUL, SQLCODE IS 100                     
+---------+---------+---------+---------+---------+---------+---------+---------+
+ SELECT QUERYNO,  TSLOCKMODE, TIMESTAMP, PREFETCH, COLUMN_FN_EVAL,              
+    MIXOPSEQ                                                                    
+    FROM PLAN_TABLE WHERE QUERYNO BETWEEN 201 AND 209                           
+    ORDER BY QUERYNO;                                                           
+---------+---------+---------+---------+---------+---------+---------+---------+
+    QUERYNO  TSLOCKMODE  TIMESTAMP         PREFETCH  COLUMN_FN_EVAL  MIXOPSEQ   
+---------+---------+---------+---------+---------+---------+---------+---------+
+        201   IS         1991020215133228            R                      0   
+        202   IS         1991020215133234  L         R                      0   
+        203   IS         1991020215133239  L         R                      0   
+        204   IS         1991020215133242  L         R                      0   
+        205   IS         1991020215133246  L         R                      0   
+        206   IS         1991020215133252  L         R                      0   
+        207    S         1991020215133257  S         R                      0   
+        208    S         1991020215133263  S         R                      0   
+        209    S         1991020215133266  S         R                      0   
+DSNE610I NUMBER OF ROWS DISPLAYED IS 9                                          
+DSNE616I STATEMENT EXECUTION WAS SUCCESSFUL, SQLCODE IS 100                     
+---------+---------+---------+---------+---------+---------+---------+---------+
+---------+---------+---------+---------+---------+---------+---------+---------+
+DSNE617I COMMIT PERFORMED, SQLCODE IS 0                                         
+DSNE616I STATEMENT EXECUTION WAS SUCCESSFUL, SQLCODE IS 0                       
+---------+---------+---------+---------+---------+---------+---------+---------+
+DSNE601I SQL STATEMENTS ASSUMED TO BE BETWEEN COLUMNS 1 AND 72                  
+DSNE620I NUMBER OF SQL STATEMENTS PROCESSED IS 5                                
+DSNE621I NUMBER OF INPUT RECORDS READ IS 17                                     
+DSNE622I NUMBER OF OUTPUT RECORDS WRITTEN IS 101                                

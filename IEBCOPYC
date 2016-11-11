@@ -1,0 +1,16 @@
+//IEBCOPYC JOB (0,75),'D J YOUNG',MSGCLASS=Q                                    
+//S1    EXEC PGM=IEBCOPY,REGION=4M                                              
+//SYSPRINT DD SYSOUT=*                                                          
+//INPUT2   DD DISP=SHR,DSN=HMWL310.F1,UNIT=EEB,VOL=SER=MWL310,                  
+//        LABEL=(2,SL)                                                          
+//OUTPUT2  DD DSN=CEE.V1R3M0.INSTALL,DISP=(,CATLG,DELETE),                      
+//        SPACE=(TRK,(10,2,5)),UNIT=3390,VOL=SER=MV43DL                         
+//SYSUT3 DD UNIT=SYSDA,SPACE=(CYL,(1,1))                                        
+//SYSUT4 DD UNIT=SYSDA,SPACE=(CYL,(1,1))                                        
+//SYSIN  DD *                                                                   
+    COPY INDD=INPUT2,OUTDD=OUTPUT2                                              
+    SELECT MEMBER=(CEEWSMPA,CEEWSMPI,CEEWALOC,CEEWDDDF)                         
+    SELECT MEMBER=(CEEWPROE,CEEWPROD,CEEWAPRC,CEEWRECV)                         
+    SELECT MEMBER=(CEEWRECN,CEEWAPLY,CEEWIVP1,CEEWIVP2)                         
+    SELECT MEMBER=(CEEWIVP3,CEEWIVP4,CEEWIVP5,CEEWIVP6)                         
+    SELECT MEMBER=(CEEWACPT,CEEWPRNT,CEEWDELE)                                  

@@ -1,0 +1,134 @@
+//DSNTIJ26 JOB   0,YOUNG,MSGLEVEL=(1,1),                                00001002
+//         MSGCLASS=O                                                   00002001
+//*********************************************************************/00003002
+//* JOB NAME = DSNTIJSU                                               */00004002
+//*                                                                   */00005002
+//* DESCRIPTIVE NAME = INSTALLATION JOB STREAM                        */00006002
+//*                                                                   */00007002
+//*    COPYRIGHT = 5665-DB2 (C) COPYRIGHT IBM CORP 1982, 1991         */00008002
+//*    SEE COPYRIGHT INSTRUCTIONS                                     */00009002
+//*    LICENSED MATERIALS - PROPERTY OF IBM                           */00010002
+//*                                                                   */00020002
+//*    STATUS = VERSION 2 RELEASE 3, LEVEL 0                          */00030002
+//*                                                                   */00040002
+//* FUNCTION =                                                        */00050002
+//*   LINKEDIT JCL FOR DB2 CICS ATTACH LOAD MODULES WHICH INCLUDE     */00060002
+//*   CICS LOAD MODULES.  THE CICS STUBS USED BY THE DB2 CICS         */00070002
+//*   ATTACH ARE NOT SHIPPED WITH DB2.  THIS JOB WILL INCLUDE         */00080002
+//*   THEM FROM THE CICS LOAD LIBRARY.  IF A CICS LEVEL OF 3.1.1      */00090002
+//*   OR ABOVE IS SPECIFIED, THE LOADCSD STEP WILL ALSO LOAD          */00100002
+//*   THE CICS CSD WITH DB2-SUPPLIED ENTRIES.                         */00110002
+//*                                                                   */00120002
+//* **** WARNING **** THE LOADCSD STEP WILL DELETE AND RE-ADD         */00130002
+//*   THE CICS GROUP SPECIFIED ON THE CICS INSTALLATION PANEL.        */00140002
+//*   PLEASE ENSURE THAT THIS GROUP CONTAINS ONLY DB2 SUPPLIED        */00150002
+//*   ENTRIES PRIOR TO EXECUTING THIS JOB.                            */00160002
+//*                                                                   */00170002
+//* DEPENDENCIES =                                                    */00180002
+//*   DFHEAI MUST BE THE FIRST CSECT IN THE COMMAND LEVEL CICS        */00190002
+//*   MODULES DSNCEXT1, DSNCEXT2, DSNCMSG0, DSNCSTRT, DSNCSTOP,       */00200002
+//*   DSNCCOM1 AND DSNCCOM2.                                          */00210002
+//*                                                                   */00220002
+//* NOTES =                                                           */00230002
+//*   THIS JOB WILL RESOLVE EXTERNAL REFERENCES THAT WERE NOT         */00240002
+//*   RESOLVED BY THE LINKEDIT DURING THE SMP APPLY                   */00250002
+//*                                                                   */00260002
+//* PSEUDOCODE =                                                      */00270002
+//*   DSNTIN   PROC      FOR INITIALIZING TABLESPACES                 */00280002
+//*   DSNTLOG  STEP      INVOKES CHANGE LOG TO NOTE LOGS              */00290002
+//*   DSNTU..  STEPS     INITIALIZE CATALOG AND DIRECTORY             */00300002
+//*                      DATA BASES FROM DSNSAMP DATA.                */00310002
+//*********************************************************************/00320002
+//*                                                                     00330002
+//SSRENT EXEC PGM=IEWL,                                                 00340002
+//        REGION=1024K,                                                 00350002
+//     PARM='SIZE=(900K,124K),XREF,LET,RENT,NCAL,AMODE=24,RMODE=24'     00360002
+//SYSPRINT DD SYSOUT=*                                                  00370002
+//DSNALOAD DD DISP=SHR,                                                 00380002
+//            DSN=DSN230.DSNALOAD                                       00390002
+//DSNLOAD  DD DISP=SHR,                                                 00400002
+//            DSN=DSN230.DSNLOAD                                        00410002
+//*  DLOADLIB IS USED FOR DFHEAI AND DFHEAI0 CICS MODULES               00420002
+//DLOADLIB DD DISP=SHR,                                                 00430002
+//            DSN=CICS321.SDFHLOAD                                      00440003
+//SYSLMOD  DD DISP=SHR,                                                 00450002
+//            DSN=DSN230.DSNLOAD                                        00460002
+//SYSUT1   DD UNIT=3390,SPACE=(CYL,(1,1))                               00470002
+//SYSLIN   DD  *                                                        00480002
+ ORDER DFHEAI,DFHEAI0,DSNCCOM1,DSNCCMDP,DSNAA                           00490002
+ INCLUDE DLOADLIB(DFHEAI)                                               00500002
+ INCLUDE DLOADLIB(DFHEAI0)                                              00510002
+ INCLUDE DSNLOAD(DSNCCOM1)                                              00520002
+ ENTRY DSNCCOM1                                                         00530002
+ NAME DSNCCOM1(R)                                                       00540002
+ ORDER DFHEAI,DFHEAI0,DSNCCOM2,DSNAA                                    00550002
+ INCLUDE DLOADLIB(DFHEAI)                                               00560002
+ INCLUDE DLOADLIB(DFHEAI0)                                              00570002
+ INCLUDE DSNLOAD(DSNCCOM2)                                              00580002
+ ENTRY DSNCCOM2                                                         00590002
+ NAME DSNCCOM2(R)                                                       00600002
+ ORDER DFHEAI,DFHEAI0,DSNCEXT1,DSNAA                                    00610002
+ INCLUDE DLOADLIB(DFHEAI)                                               00620002
+ INCLUDE DLOADLIB(DFHEAI0)                                              00630002
+ INCLUDE DSNLOAD(DSNCEXT1)                                              00640002
+ ENTRY DSNCEXT1                                                         00650002
+ NAME DSNCEXT1(R)                                                       00660002
+ ORDER DFHEAI,DFHEAI0,DSNCEXT2,DSNAA,DSNARIB                            00670002
+ INCLUDE DLOADLIB(DFHEAI)                                               00680002
+ INCLUDE DLOADLIB(DFHEAI0)                                              00690002
+ INCLUDE DSNLOAD(DSNCEXT2)                                              00700002
+ ENTRY DSNCEXT2                                                         00710002
+ NAME DSNCEXT2(R)                                                       00720002
+ ORDER DFHEAI,DFHEAI0,DSNCMSG0,DSNAA                                    00730002
+ INCLUDE DLOADLIB(DFHEAI)                                               00740002
+ INCLUDE DLOADLIB(DFHEAI0)                                              00750002
+ INCLUDE DSNLOAD(DSNCMSG0)                                              00760002
+ ENTRY DSNCMSG0                                                         00770002
+ NAME DSNCMSG0(R)                                                       00780002
+ ORDER DFHEAI,DFHEAI0,DSNCSTOP,DSNAA                                    00790002
+ INCLUDE DLOADLIB(DFHEAI)                                               00800002
+ INCLUDE DLOADLIB(DFHEAI0)                                              00810002
+ INCLUDE DSNLOAD(DSNCSTOP)                                              00820002
+ ENTRY DSNCSTOP                                                         00830002
+ NAME DSNCSTOP(R)                                                       00840002
+ ORDER DFHEAI,DFHEAI0,DSNCSTRT,DSNAA                                    00850002
+ INCLUDE DLOADLIB(DFHEAI)                                               00860002
+ INCLUDE DLOADLIB(DFHEAI0)                                              00870002
+ INCLUDE DSNLOAD(DSNCSTRT)                                              00880002
+ ENTRY DSNCSTRT                                                         00890002
+ NAME DSNCSTRT(R)                                                       00900002
+ ORDER DFHEAI,DFHEAI0,DSNCUEXT,DSNAA                                    00910002
+ INCLUDE DLOADLIB(DFHEAI)                                               00920002
+ INCLUDE DLOADLIB(DFHEAI0)                                              00930002
+ INCLUDE DSNLOAD(DSNCUEXT)                                              00940002
+ ENTRY DSNCUEXT                                                         00950002
+ NAME DSNCUEXT(R)                                                       00960002
+ ORDER DFHEAI,DFHEAI0,DSNCEDF1,DSNAA                                    00970002
+ MODE AMODE(31),RMODE(24)                                               00980002
+ INCLUDE DLOADLIB(DFHEAI)                                               00990002
+ INCLUDE DLOADLIB(DFHEAI0)                                              01000002
+ INCLUDE DSNLOAD(DSNCEDF1)                                              01010002
+ ENTRY DSNCEDF1                                                         01020002
+ NAME DSNCEDF1(R)                                                       01030002
+ ORDER DFHEAI,DFHEAI0,DSNCEDON,DSNAA                                    01040002
+ MODE AMODE(31),RMODE(24)                                               01050002
+ INCLUDE DLOADLIB(DFHEAI)                                               01060002
+ INCLUDE DLOADLIB(DFHEAI0)                                              01070002
+ INCLUDE DSNLOAD(DSNCEDON)                                              01080002
+ ENTRY DSNCEDON                                                         01090002
+ NAME DSNCEDON(R)                                                       01100002
+ INCLUDE DLOADLIB(DFHEAI)                                               01110002
+ INCLUDE DLOADLIB(DFHEAI0)                                              01120002
+ INCLUDE DSNLOAD(DSNCSM31)                                              01130002
+ ENTRY DSNCSM31                                                         01140002
+ ORDER DFHEAI,DFHEAI0,DSNCSM31,DSNAA                                    01150002
+ MODE AMODE(31),RMODE(24)                                               01160002
+ NAME DSNCSM31(R)                                                       01170002
+ INCLUDE DLOADLIB(DFHEAI)                                               01180002
+ INCLUDE DLOADLIB(DFHEAI0)                                              01190002
+ INCLUDE DSNLOAD(DSNCSM21)                                              01200002
+ ENTRY DSNCSM21                                                         01210002
+ ORDER DFHEAI,DFHEAI0,DSNCSM21,DSNAA                                    01220002
+ MODE AMODE(31),RMODE(24)                                               01230002
+ NAME DSNCSM21(R)                                                       01240002
+//                                                                      01250002

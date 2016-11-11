@@ -1,0 +1,72 @@
+ --   DROP INDEX DAVID.SQ100I01;   --                                           
+ --   DROP INDEX DAVID.SQ100I02;   --                                           
+ --   DROP INDEX DAVID.SQ100I03;   --                                           
+ --   DROP INDEX DAVID.SQ100I04;   --                                           
+ --   DROP INDEX DAVID.SQ100I05;   --                                           
+ --   DROP INDEX DAVID.SQ100I06;   --                                           
+ --   DROP INDEX DAVID.SQ100I07;   --                                           
+ --   DROP INDEX DAVID.SQ100I08;   --                                           
+ --   DROP INDEX DAVID.SQ100I09;   --                                           
+ --   DROP INDEX DAVID.SQ100I10;   --                                           
+ --   DROP INDEX DAVID.SQ100I11;   --                                           
+ --   DROP INDEX DAVID.SQ100I12;   --                                           
+ --   DROP INDEX DAVID.SQ100I13;   --                                           
+ --   DROP TABLE DAVID.SQ100;     --                                            
+ DROP TABLESPACE SQ100DB.SQ100TS;                                               
+ DROP DATABASE SQ100DB;                                                         
+ DROP STOGROUP SQ100P01;                                                        
+ DROP STOGROUP SQ100P02;                                                        
+ DROP STOGROUP SQ100P03;                                                        
+ DROP STOGROUP SQ100P04;                                                        
+ DROP STOGROUP SQ100P05;                                                        
+ DROP STOGROUP SQ100P06;                                                        
+ DROP STOGROUP SQ100P07;                                                        
+ DROP STOGROUP SQ100P08;                                                        
+ DROP STOGROUP SQ100P09;                                                        
+ DROP STOGROUP SQ100P10;                                                        
+ DROP STOGROUP SQ100P11;                                                        
+ DROP STOGROUP SQ100P12;                                                        
+ DROP STOGROUP SQ100P13;                                                        
+ DROP STOGROUP SQ100P14;                                                        
+ DROP STOGROUP SQ100P15;                                                        
+ DROP STOGROUP SQ100P16;                                                        
+ DROP STOGROUP SQ100P17;                                                        
+ DROP STOGROUP SQ100P18;                                                        
+ DROP STOGROUP SQ100P19;                                                        
+ DROP STOGROUP SQ100P20;                                                        
+ DROP STOGROUP SQ100P21;                                                        
+ DROP STOGROUP SQ100P22;                                                        
+ DROP STOGROUP SQ100P23;                                                        
+ DROP STOGROUP SQ100P24;                                                        
+ DROP STOGROUP SQ100P25;                                                        
+ DROP STOGROUP SQ100P26;                                                        
+ DROP STOGROUP SQ100P27;                                                        
+ DROP STOGROUP SQ100P28;                                                        
+ DROP STOGROUP SQ100P29;                                                        
+ DROP STOGROUP SQ100P30;                                                        
+ DROP STOGROUP SQ100P31;                                                        
+ DROP STOGROUP SQ100P32;                                                        
+ DROP STOGROUP SQ100P33;                                                        
+ DROP STOGROUP SQ100P34;                                                        
+ DROP STOGROUP SQ100P35;                                                        
+ DROP STOGROUP SQ100P36;                                                        
+ DROP STOGROUP SQ100P37;                                                        
+ DROP STOGROUP SQ100P38;                                                        
+ DROP STOGROUP SQ100P39;                                                        
+ DROP STOGROUP SQ100P40;                                                        
+ DROP STOGROUP SQ100I1A;                                                        
+ DROP STOGROUP SQ100I1B;                                                        
+ DROP STOGROUP SQ100I1C;                                                        
+ DROP STOGROUP SQ100I1D;                                                        
+ DROP STOGROUP SQ100I02;                                                        
+ DROP STOGROUP SQ100I03;                                                        
+ DROP STOGROUP SQ100I04;                                                        
+ DROP STOGROUP SQ100I05;                                                        
+ DROP STOGROUP SQ100I06;                                                        
+ DROP STOGROUP SQ100I07;                                                        
+ DROP STOGROUP SQ100I08;                                                        
+ DROP STOGROUP SQ100I09;                                                        
+ DROP STOGROUP SQ100I10;                                                        
+ DROP STOGROUP SQ100I11;                                                        
+ DROP STOGROUP SQ100I12;                                                        
+ DROP STOGROUP SQ100I13;                                                        

@@ -1,0 +1,7 @@
+//DSN1COPY JOB (AAA),'D J YOUNG',MSGCLASS=X,TIME=1440,USER=DAVID,               
+//         REGION=0K                                                            
+//DOIT     EXEC PGM=DSN1COPY,PARM='CHECK'                                       
+//STEPLIB  DD DSN=SYS1.DSNLOAD,DISP=SHR                                         
+//SYSPRINT DD SYSOUT=*                                                          
+//SYSUT1 DD DSN=DSNC220.DSNDJY.SQ1DB.SQ1I01.I0001.A001,DISP=OLD                 
+//SYSUT2 DD DSN=DSNC220.DSNDBC.SQ1DB.SQ1I01.I0001.A001,DISP=OLD                 

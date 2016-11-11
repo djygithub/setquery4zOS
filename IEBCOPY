@@ -1,0 +1,35 @@
+//BKSTUFF  JOB (0,75),'D J YOUNG',MSGCLASS=X                                    
+//S1    EXEC PGM=IEBCOPY,REGION=4M                                              
+//SYSPRINT DD SYSOUT=*                                                          
+//I1       DD DSN=IODRIVER.CNTLLIB,DISP=(NEW,KEEP),                             
+//         VOL=(,RETAIN,SER=IODRVR),                                            
+//         DCB=TRTCH=NOCOMP,                                                    
+//         UNIT=EE0,LABEL=(1,NL)                                                
+//I2       DD DSN=IODRIVER.SASLIB,DISP=(NEW,KEEP),                              
+//         VOL=(,RETAIN,SER=IODRVR),                                            
+//         DCB=TRTCH=NOCOMP,                                                    
+//         UNIT=EE0,LABEL=(2,NL)                                                
+//I3       DD DSN=IODRIVER.JCLSAMP,DISP=(NEW,KEEP),                             
+//         VOL=(,RETAIN,SER=IODRVR),                                            
+//         DCB=TRTCH=NOCOMP,                                                    
+//         UNIT=EE0,LABEL=(3,NL)                                                
+//I4       DD DSN=IODRIVER.LOADLIB,DISP=(NEW,KEEP),                             
+//         VOL=(,RETAIN,SER=IODRVR),                                            
+//         DCB=TRTCH=NOCOMP,                                                    
+//         UNIT=EE0,LABEL=(4,NL)                                                
+//D1       DD DSN=DAVID.IOPAT.CNTLLIB,UNIT=3390,VOL=SER=DB2IMS,                 
+//         DISP=(OLD,KEEP),SPACE=(CYL,(5,1,20))                                 
+//D2       DD DSN=DAVID.IOPAT.SASLIB,UNIT=3390,VOL=SER=DB2IMS,                  
+//         DISP=(OLD,KEEP),SPACE=(CYL,(5,1,20))                                 
+//D3       DD DSN=DAVID.IOPAT.JCLSAMP,UNIT=3390,VOL=SER=DB2IMS,                 
+//         DISP=(OLD,KEEP),SPACE=(CYL,(5,1,20))                                 
+//D4       DD DSN=DAVID.IOPAT.LOADLIB,UNIT=3390,VOL=SER=DB2IMS,                 
+//         DISP=(OLD,KEEP),SPACE=(CYL,(5,1,20))                                 
+//SYSUT3 DD UNIT=SYSDA,SPACE=(CYL,(1,1))                                        
+//SYSUT4 DD UNIT=SYSDA,SPACE=(CYL,(1,1))                                        
+//SYSIN  DD *                                                                   
+    COPY INDD=D1,OUTDD=I1                                                       
+    COPY INDD=D2,OUTDD=I2                                                       
+    COPY INDD=D3,OUTDD=I3                                                       
+    COPY INDD=D4,OUTDD=I4                                                       
+//                                                                              

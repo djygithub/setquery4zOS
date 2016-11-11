@@ -1,0 +1,72 @@
+//DSNTIJSZ JOB   0,YOUNG,MSGLEVEL=(1,1),                                00001000
+//         MSGCLASS=O                                                   00002000
+//*                                                                     00003000
+//*    COPYRIGHT = 5665-DB2 (C) COPYRIGHT IBM CORP 1982, 1989           00004000
+//*    REFER TO COPYRIGHT INSTRUCTIONS FORM NUMBER G120-2083            00005000
+//*                                                                     00006000
+//*    STATUS = VERSION 2 RELEASE 2, LEVEL 0                            00007000
+//*                                                                     00008000
+//* DOC:    LINKEDIT JCL FOR DB2 CICS ATTACH LOAD MODULES WHICH         00009000
+//*           INCLUDE CICS LOAD MODULES.                                00010000
+//*         DFHEAI MUST BE THE FIRST CSECT IN THE COMMAND               00020000
+//*           LEVEL CICS MODULES DSNCEXT1, DSNCEXT2, DSNCMSG0,          00021000
+//*           DSNCSTRT,DSNCSTOP, AND DSNCCOM1.                          00022000
+//*         THE STATEMENTS MUST BE IDENTICAL TO THE JCLIN FOR           00023000
+//*           THESE MODULES (MEMBER HIX2220).                           00024000
+//*                                                                     00025000
+//SSRENT EXEC PGM=IEWL,                                                 00026000
+//        REGION=1024K,                                                 00027000
+//     PARM='SIZE=(900K,124K),XREF,LET,RENT,NCAL,AMODE=24,RMODE=24'     00028000
+//SYSPRINT DD SYSOUT=*                                                  00029000
+//DSNLOAD  DD DISP=SHR,                                                 00030000
+//            DSN=SYS1.DSNLOAD                                          00040000
+//*  DLOADLIB IS USED FOR DFHEAI AND DFHEAI0 CICS MODULES               00050000
+//DLOADLIB DD DISP=SHR,                                                 00060000
+//            DSN=CICS321.SDFHLOAD                                      00070000
+//SYSLMOD  DD DISP=SHR,                                                 00080000
+//            DSN=SYS1.DSNEXIT                                          00090000
+//SYSUT1   DD UNIT=3390,SPACE=(CYL,(1,1))                               00100000
+//SYSLIN   DD  *                                                        00110000
+ ORDER DFHEAI,DFHEAI0,DSNCCOM1,DSNCCMDP,DSNAA                           00120000
+ INCLUDE DSNLOAD(DSNCCOM1)                                              00130000
+ INCLUDE DLOADLIB(DFHEAI)                                               00140000
+ INCLUDE DLOADLIB(DFHEAI0)                                              00150000
+ ENTRY DSNCCOM1                                                         00160000
+ NAME DSNCCOM1(R)                                                       00170000
+ ORDER DFHEAI,DFHEAI0,DSNCEXT1,DSNAA                                    00180000
+ INCLUDE DSNLOAD(DSNCEXT1)                                              00190000
+ INCLUDE DLOADLIB(DFHEAI)                                               00200000
+ INCLUDE DLOADLIB(DFHEAI0)                                              00210000
+ ENTRY DSNCEXT1                                                         00220000
+ NAME DSNCEXT1(R)                                                       00230000
+ ORDER DFHEAI,DFHEAI0,DSNCEXT2,DSNAA,DSNARIB                            00240000
+ INCLUDE DSNLOAD(DSNCEXT2)                                              00250000
+ INCLUDE DLOADLIB(DFHEAI)                                               00260000
+ INCLUDE DLOADLIB(DFHEAI0)                                              00270000
+ ENTRY DSNCEXT2                                                         00280000
+ NAME DSNCEXT2(R)                                                       00290000
+ ORDER DFHEAI,DFHEAI0,DSNCMSG0,DSNAA                                    00291000
+ INCLUDE DSNLOAD(DSNCMSG0)                                              00292000
+ INCLUDE DLOADLIB(DFHEAI)                                               00293000
+ INCLUDE DLOADLIB(DFHEAI0)                                              00294000
+ ENTRY DSNCMSG0                                                         00295000
+ NAME DSNCMSG0(R)                                                       00296000
+ ORDER DFHEAI,DFHEAI0,DSNCSTOP,DSNAA                                    00297000
+ INCLUDE DSNLOAD(DSNCSTOP)                                              00298000
+ INCLUDE DLOADLIB(DFHEAI)                                               00299000
+ INCLUDE DLOADLIB(DFHEAI0)                                              00300000
+ ENTRY DSNCSTOP                                                         00310000
+ NAME DSNCSTOP(R)                                                       00320000
+ ORDER DFHEAI,DFHEAI0,DSNCSTRT,DSNAA                                    00330000
+ INCLUDE DSNLOAD(DSNCSTRT)                                              00340000
+ INCLUDE DLOADLIB(DFHEAI)                                               00350000
+ INCLUDE DLOADLIB(DFHEAI0)                                              00360000
+ ENTRY DSNCSTRT                                                         00370000
+ NAME DSNCSTRT(R)                                                       00380000
+ ORDER DFHEAI,DFHEAI0,DSNCUEXT,DSNAA                                    00390000
+ INCLUDE DSNLOAD(DSNCUEXT)                                              00400000
+ INCLUDE DLOADLIB(DFHEAI)                                               00410000
+ INCLUDE DLOADLIB(DFHEAI0)                                              00420000
+ ENTRY DSNCUEXT                                                         00430000
+ NAME DSNCUEXT(R)                                                       00440000
+//*                                                                     00450000
