@@ -1,0 +1,111 @@
+//RSDB2D21 JOB (D3330RWM,ROOM),'D J YOUNG',MSGCLASS=X                           
+//RSDB2D21 EXEC PGM=ADRDSSU,REGION=4096K                                        
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=DB2D21                                    
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=EF1,DSN=DSS.BACKUP.VDB2D21,                 
+// LABEL=(1,SL),VOL=SER=001936                                                  
+//SYSPRINT DD SYSOUT=*                                                          
+ REST INDDNAME(TAPE1),OUTDDNAME(DASD1)                                          
+//*                                                                             
+//RSDB2D22 EXEC PGM=ADRDSSU,REGION=4096K                                        
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=DB2D22                                    
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=EF1,DSN=DSS.BACKUP.VDB2D22,                 
+// LABEL=(1,SL),VOL=SER=000522                                                  
+//SYSPRINT DD SYSOUT=*                                                          
+ REST INDDNAME(TAPE1),OUTDDNAME(DASD1)                                          
+//*                                                                             
+//RSDB2D23 EXEC PGM=ADRDSSU,REGION=4096K                                        
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=DB2D23                                    
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=EF1,DSN=DSS.BACKUP.VDB2D23,                 
+// LABEL=(1,SL),VOL=SER=001357                                                  
+//SYSPRINT DD SYSOUT=*                                                          
+ REST INDDNAME(TAPE1),OUTDDNAME(DASD1)                                          
+//*                                                                             
+//RSDB2D24 EXEC PGM=ADRDSSU,REGION=4096K                                        
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=DB2D24                                    
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=EF1,DSN=DSS.BACKUP.VDB2D24,                 
+// LABEL=(1,SL),VOL=SER=001935                                                  
+//SYSPRINT DD SYSOUT=*                                                          
+ REST INDDNAME(TAPE1),OUTDDNAME(DASD1)                                          
+//*                                                                             
+//RSDB2D25 EXEC PGM=ADRDSSU,REGION=4096K                                        
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=DB2D25                                    
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=EF1,DSN=DSS.BACKUP.VDB2D25,                 
+// LABEL=(1,SL),VOL=SER=001959                                                  
+//SYSPRINT DD SYSOUT=*                                                          
+ REST INDDNAME(TAPE1),OUTDDNAME(DASD1)                                          
+//*                                                                             
+//RSDB2D26 EXEC PGM=ADRDSSU,REGION=4096K                                        
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=DB2D26                                    
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=EF1,DSN=DSS.BACKUP.VDB2D26,                 
+// LABEL=(1,SL),VOL=SER=001960                                                  
+//SYSPRINT DD SYSOUT=*                                                          
+ REST INDDNAME(TAPE1),OUTDDNAME(DASD1)                                          
+//*                                                                             
+//RSDB2D27 EXEC PGM=ADRDSSU,REGION=4096K                                        
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=DB2D27                                    
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=EF1,DSN=DSS.BACKUP.VDB2D27,                 
+// LABEL=(1,SL),VOL=SER=001963                                                  
+//SYSPRINT DD SYSOUT=*                                                          
+ REST INDDNAME(TAPE1),OUTDDNAME(DASD1)                                          
+//*                                                                             
+//RSDB2D28 EXEC PGM=ADRDSSU,REGION=4096K                                        
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=DB2D28                                    
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=EF1,DSN=DSS.BACKUP.VDB2D28,                 
+// LABEL=(1,SL),VOL=SER=000523                                                  
+//SYSPRINT DD SYSOUT=*                                                          
+ REST INDDNAME(TAPE1),OUTDDNAME(DASD1)                                          
+//*                                                                             
+//RSDB2D29 EXEC PGM=ADRDSSU,REGION=4096K                                        
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=DB2D29                                    
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=EF1,DSN=DSS.BACKUP.VDB2D29,                 
+// LABEL=(1,SL),VOL=SER=001920                                                  
+//SYSPRINT DD SYSOUT=*                                                          
+ REST INDDNAME(TAPE1),OUTDDNAME(DASD1)                                          
+//*                                                                             
+//RSDB2D30 EXEC PGM=ADRDSSU,REGION=4096K                                        
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=DB2D30                                    
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=EF1,DSN=DSS.BACKUP.VDB2D30,                 
+// LABEL=(1,SL),VOL=SER=001958                                                  
+//SYSPRINT DD SYSOUT=*                                                          
+ REST INDDNAME(TAPE1),OUTDDNAME(DASD1)                                          
+//*                                                                             

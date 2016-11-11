@@ -1,0 +1,158 @@
+//REBIND   JOB   0,YOUNG,MSGLEVEL=(1,1),                                00001000
+//         MSGCLASS=O,USER=DAVID,NOTIFY=DAVID                           00002000
+//JOBLIB  DD  DISP=SHR,                                                 00040000
+//            DSN=SYS1.DSNLOAD                                          00050000
+//        DD  DISP=SHR,                                                 00060000
+//            DSN=CICS321.SDFHLOAD                                      00070000
+//BIND     EXEC PGM=IKJEFT01,DYNAMNBR=20,COND=(4,LT)                    00263300
+//DBRMLIB  DD DISP=SHR,                                                 00263400
+//            DSN=DSN22X.DBRMLIB.DATA                                   00263500
+//SYSUDUMP DD SYSOUT=*                                                  00263600
+//SYSTSPRT DD SYSOUT=*                                                  00263700
+//SYSPRINT DD SYSOUT=*                                                  00263800
+//SYSTSIN  DD *                                                         00263900
+DSN SYSTEM(ASY)                                                         00264004
+BIND PLAN(IM2Q101) MEMBER(IM2Q101) ACT(REP) ISO(CS) EXPLAIN(YES) -      00265003
+ VALIDATE(BIND)                                                         00265102
+BIND PLAN(IM2Q102) MEMBER(IM2Q102) ACT(REP) ISO(CS) EXPLAIN(YES) -      00266003
+ VALIDATE(BIND)                                                         00266102
+BIND PLAN(IM2Q103) MEMBER(IM2Q103) ACT(REP) ISO(CS) EXPLAIN(YES) -      00267003
+ VALIDATE(BIND)                                                         00267102
+BIND PLAN(IM2Q104) MEMBER(IM2Q104) ACT(REP) ISO(CS) EXPLAIN(YES) -      00268003
+ VALIDATE(BIND)                                                         00268102
+BIND PLAN(IM2Q105) MEMBER(IM2Q105) ACT(REP) ISO(CS) EXPLAIN(YES) -      00269003
+ VALIDATE(BIND)                                                         00269102
+BIND PLAN(IM2Q106) MEMBER(IM2Q106) ACT(REP) ISO(CS) EXPLAIN(YES) -      00270003
+ VALIDATE(BIND)                                                         00271002
+BIND PLAN(IM2Q107) MEMBER(IM2Q107) ACT(REP) ISO(CS) EXPLAIN(YES) -      00280003
+ VALIDATE(BIND)                                                         00281002
+BIND PLAN(IM2Q108) MEMBER(IM2Q108) ACT(REP) ISO(CS) EXPLAIN(YES) -      00290003
+ VALIDATE(BIND)                                                         00291002
+BIND PLAN(IM2Q109) MEMBER(IM2Q109) ACT(REP) ISO(CS) EXPLAIN(YES) -      00300003
+ VALIDATE(BIND)                                                         00301002
+BIND PLAN(IM2Q110) MEMBER(IM2Q110) ACT(REP) ISO(CS) EXPLAIN(YES) -      00310003
+ VALIDATE(BIND)                                                         00320002
+BIND PLAN(IM2Q201) MEMBER(IM2Q201) ACT(REP) ISO(CS) EXPLAIN(YES) -      00333503
+ VALIDATE(BIND)                                                         00333602
+BIND PLAN(IM2Q202) MEMBER(IM2Q202) ACT(REP) ISO(CS) EXPLAIN(YES) -      00333703
+ VALIDATE(BIND)                                                         00333802
+BIND PLAN(IM2Q203) MEMBER(IM2Q203) ACT(REP) ISO(CS) EXPLAIN(YES) -      00333903
+ VALIDATE(BIND)                                                         00334002
+BIND PLAN(IM2Q204) MEMBER(IM2Q204) ACT(REP) ISO(CS) EXPLAIN(YES) -      00334103
+ VALIDATE(BIND)                                                         00334202
+BIND PLAN(IM2Q205) MEMBER(IM2Q205) ACT(REP) ISO(CS) EXPLAIN(YES) -      00334303
+ VALIDATE(BIND)                                                         00334402
+BIND PLAN(IM2Q206) MEMBER(IM2Q206) ACT(REP) ISO(CS) EXPLAIN(YES) -      00334503
+ VALIDATE(BIND)                                                         00334602
+BIND PLAN(IM2Q207) MEMBER(IM2Q207) ACT(REP) ISO(CS) EXPLAIN(YES) -      00334703
+ VALIDATE(BIND)                                                         00334802
+BIND PLAN(IM2Q208) MEMBER(IM2Q208) ACT(REP) ISO(CS) EXPLAIN(YES) -      00334903
+ VALIDATE(BIND)                                                         00335002
+BIND PLAN(IM2Q209) MEMBER(IM2Q209) ACT(REP) ISO(CS) EXPLAIN(YES) -      00336003
+ VALIDATE(BIND)                                                         00337002
+BIND PLAN(IM2Q210) MEMBER(IM2Q210) ACT(REP) ISO(CS) EXPLAIN(YES) -      00349703
+ VALIDATE(BIND)                                                         00349802
+BIND PLAN(IM2Q211) MEMBER(IM2Q211) ACT(REP) ISO(CS) EXPLAIN(YES) -      00349903
+ VALIDATE(BIND)                                                         00350002
+BIND PLAN(IM2Q212) MEMBER(IM2Q212) ACT(REP) ISO(CS) EXPLAIN(YES) -      00350103
+ VALIDATE(BIND)                                                         00350202
+BIND PLAN(IM2Q213) MEMBER(IM2Q213) ACT(REP) ISO(CS) EXPLAIN(YES) -      00350303
+ VALIDATE(BIND)                                                         00350402
+BIND PLAN(IM2Q214) MEMBER(IM2Q214) ACT(REP) ISO(CS) EXPLAIN(YES) -      00350503
+ VALIDATE(BIND)                                                         00350602
+BIND PLAN(IM2Q215) MEMBER(IM2Q215) ACT(REP) ISO(CS) EXPLAIN(YES) -      00350703
+ VALIDATE(BIND)                                                         00350802
+BIND PLAN(IM2Q216) MEMBER(IM2Q216) ACT(REP) ISO(CS) EXPLAIN(YES) -      00350903
+ VALIDATE(BIND)                                                         00351002
+BIND PLAN(IM2Q217) MEMBER(IM2Q217) ACT(REP) ISO(CS) EXPLAIN(YES) -      00351103
+ VALIDATE(BIND)                                                         00351202
+BIND PLAN(IM2Q218) MEMBER(IM2Q218) ACT(REP) ISO(CS) EXPLAIN(YES) -      00352003
+ VALIDATE(BIND)                                                         00353002
+BIND PLAN(IM2Q301) MEMBER(IM2Q301) ACT(REP) ISO(CS) EXPLAIN(YES) -      00364703
+ VALIDATE(BIND)                                                         00364802
+BIND PLAN(IM2Q302) MEMBER(IM2Q302) ACT(REP) ISO(CS) EXPLAIN(YES) -      00364903
+ VALIDATE(BIND)                                                         00365002
+BIND PLAN(IM2Q303) MEMBER(IM2Q303) ACT(REP) ISO(CS) EXPLAIN(YES) -      00365103
+ VALIDATE(BIND)                                                         00365202
+BIND PLAN(IM2Q304) MEMBER(IM2Q304) ACT(REP) ISO(CS) EXPLAIN(YES) -      00365303
+ VALIDATE(BIND)                                                         00365402
+BIND PLAN(IM2Q305) MEMBER(IM2Q305) ACT(REP) ISO(CS) EXPLAIN(YES) -      00365503
+ VALIDATE(BIND)                                                         00365602
+BIND PLAN(IM2Q306) MEMBER(IM2Q306) ACT(REP) ISO(CS) EXPLAIN(YES) -      00365703
+ VALIDATE(BIND)                                                         00365802
+BIND PLAN(IM2Q307) MEMBER(IM2Q307) ACT(REP) ISO(CS) EXPLAIN(YES) -      00365903
+ VALIDATE(BIND)                                                         00366002
+BIND PLAN(IM2Q308) MEMBER(IM2Q308) ACT(REP) ISO(CS) EXPLAIN(YES) -      00367003
+ VALIDATE(BIND)                                                         00368002
+BIND PLAN(IM2Q309) MEMBER(IM2Q309) ACT(REP) ISO(CS) EXPLAIN(YES) -      00379603
+ VALIDATE(BIND)                                                         00379702
+BIND PLAN(IM2Q310) MEMBER(IM2Q310) ACT(REP) ISO(CS) EXPLAIN(YES) -      00379803
+ VALIDATE(BIND)                                                         00379902
+BIND PLAN(IM2Q311) MEMBER(IM2Q311) ACT(REP) ISO(CS) EXPLAIN(YES) -      00380003
+ VALIDATE(BIND)                                                         00380102
+BIND PLAN(IM2Q312) MEMBER(IM2Q312) ACT(REP) ISO(CS) EXPLAIN(YES) -      00380203
+ VALIDATE(BIND)                                                         00380302
+BIND PLAN(IM2Q313) MEMBER(IM2Q313) ACT(REP) ISO(CS) EXPLAIN(YES) -      00380403
+ VALIDATE(BIND)                                                         00380502
+BIND PLAN(IM2Q314) MEMBER(IM2Q314) ACT(REP) ISO(CS) EXPLAIN(YES) -      00380603
+ VALIDATE(BIND)                                                         00380702
+BIND PLAN(IM2Q315) MEMBER(IM2Q315) ACT(REP) ISO(CS) EXPLAIN(YES) -      00380803
+ VALIDATE(BIND)                                                         00380902
+BIND PLAN(IM2Q316) MEMBER(IM2Q316) ACT(REP) ISO(CS) EXPLAIN(YES) -      00381003
+ VALIDATE(BIND)                                                         00382002
+BIND PLAN(IM2Q401) MEMBER(IM2Q401) ACT(REP) ISO(CS) EXPLAIN(YES) -      00394503
+ VALIDATE(BIND)                                                         00394602
+BIND PLAN(IM2Q402) MEMBER(IM2Q402) ACT(REP) ISO(CS) EXPLAIN(YES) -      00394703
+ VALIDATE(BIND)                                                         00394802
+BIND PLAN(IM2Q403) MEMBER(IM2Q403) ACT(REP) ISO(CS) EXPLAIN(YES) -      00394903
+ VALIDATE(BIND)                                                         00395002
+BIND PLAN(IM2Q404) MEMBER(IM2Q404) ACT(REP) ISO(CS) EXPLAIN(YES) -      00395103
+ VALIDATE(BIND)                                                         00395202
+BIND PLAN(IM2Q405) MEMBER(IM2Q405) ACT(REP) ISO(CS) EXPLAIN(YES) -      00395303
+ VALIDATE(BIND)                                                         00395402
+BIND PLAN(IM2Q406) MEMBER(IM2Q406) ACT(REP) ISO(CS) EXPLAIN(YES) -      00395503
+ VALIDATE(BIND)                                                         00395602
+BIND PLAN(IM2Q407) MEMBER(IM2Q407) ACT(REP) ISO(CS) EXPLAIN(YES) -      00395703
+ VALIDATE(BIND)                                                         00395802
+BIND PLAN(IM2Q408) MEMBER(IM2Q408) ACT(REP) ISO(CS) EXPLAIN(YES) -      00395903
+ VALIDATE(BIND)                                                         00396002
+BIND PLAN(IM2Q409) MEMBER(IM2Q409) ACT(REP) ISO(CS) EXPLAIN(YES) -      00407003
+ VALIDATE(BIND)                                                         00407102
+BIND PLAN(IM2Q410) MEMBER(IM2Q410) ACT(REP) ISO(CS) EXPLAIN(YES) -      00407203
+ VALIDATE(BIND)                                                         00407302
+BIND PLAN(IM2Q411) MEMBER(IM2Q411) ACT(REP) ISO(CS) EXPLAIN(YES) -      00407403
+ VALIDATE(BIND)                                                         00407502
+BIND PLAN(IM2Q412) MEMBER(IM2Q412) ACT(REP) ISO(CS) EXPLAIN(YES) -      00407603
+ VALIDATE(BIND)                                                         00407702
+BIND PLAN(IM2Q413) MEMBER(IM2Q413) ACT(REP) ISO(CS) EXPLAIN(YES) -      00407803
+ VALIDATE(BIND)                                                         00407902
+BIND PLAN(IM2Q414) MEMBER(IM2Q414) ACT(REP) ISO(CS) EXPLAIN(YES) -      00408003
+ VALIDATE(BIND)                                                         00409002
+BIND PLAN(IM2Q501) MEMBER(IM2Q501) ACT(REP) ISO(CS) EXPLAIN(YES) -      00415703
+ VALIDATE(BIND)                                                         00415802
+BIND PLAN(IM2Q502) MEMBER(IM2Q502) ACT(REP) ISO(CS) EXPLAIN(YES) -      00415903
+ VALIDATE(BIND)                                                         00416002
+BIND PLAN(IM2Q503) MEMBER(IM2Q503) ACT(REP) ISO(CS) EXPLAIN(YES) -      00417003
+ VALIDATE(BIND)                                                         00418002
+BIND PLAN(IM2Q601) MEMBER(IM2Q601) ACT(REP) ISO(CS) EXPLAIN(YES) -      00432503
+ VALIDATE(BIND)                                                         00432602
+BIND PLAN(IM2Q602) MEMBER(IM2Q602) ACT(REP) ISO(CS) EXPLAIN(YES) -      00432703
+ VALIDATE(BIND)                                                         00432802
+BIND PLAN(IM2Q603) MEMBER(IM2Q603) ACT(REP) ISO(CS) EXPLAIN(YES) -      00432903
+ VALIDATE(BIND)                                                         00433002
+BIND PLAN(IM2Q604) MEMBER(IM2Q604) ACT(REP) ISO(CS) EXPLAIN(YES) -      00433103
+ VALIDATE(BIND)                                                         00433202
+BIND PLAN(IM2Q605) MEMBER(IM2Q605) ACT(REP) ISO(CS) EXPLAIN(YES) -      00433303
+ VALIDATE(BIND)                                                         00433402
+BIND PLAN(IM2Q606) MEMBER(IM2Q606) ACT(REP) ISO(CS) EXPLAIN(YES) -      00433503
+ VALIDATE(BIND)                                                         00433602
+BIND PLAN(IM2Q607) MEMBER(IM2Q607) ACT(REP) ISO(CS) EXPLAIN(YES) -      00433703
+ VALIDATE(BIND)                                                         00433802
+BIND PLAN(IM2Q608) MEMBER(IM2Q608) ACT(REP) ISO(CS) EXPLAIN(YES) -      00433903
+ VALIDATE(BIND)                                                         00434002
+BIND PLAN(IM2Q609) MEMBER(IM2Q609) ACT(REP) ISO(CS) EXPLAIN(YES) -      00434103
+ VALIDATE(BIND)                                                         00434202
+BIND PLAN(IM2Q610) MEMBER(IM2Q610) ACT(REP) ISO(CS) EXPLAIN(YES) -      00434303
+ VALIDATE(BIND)                                                         00434402
+END                                                                     00434501
+//*                                                                     00435001

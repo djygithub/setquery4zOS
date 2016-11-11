@@ -1,0 +1,234 @@
+//RCTPOOL  JOB   0,YOUNG,MSGLEVEL=(1,1),                                00001000
+//         MSGCLASS=O                                                   00002000
+//*                                                                     00003000
+//*        ALL SUBSEQUENT STEPS ARE ONLY PROVIDED IN PART.              00004000
+//*        THE DATA FOR THE CICS GEN MUST BE INCLUDED                   00005000
+//*        WITH OTHER INSTALLATION PPT, PCT, AND RCT                    00006000
+//*        INFORMATION.                                                 00007000
+//*                                                                     00008000
+//CICAUPLK PROC OUTC='X',                                               00009000
+//             REG=6144K,                                               00010000
+//             WORK=SYSALLDA                                            00020000
+//*                                                                     00030000
+//* LIB: CICRS1.CICSVS.IPO1.PROCLIB(CICAUPLK)                           00040000
+//* GDE: CBIPO CICS INSTALLATION                                        00050000
+//* DOC: THIS PROCEDURE IS USED TO GENERATE CICS/ESA TABLES.            00060000
+//*      THE FOLLOWING JCL SHOULD BE USED                               00070000
+//*                                                                     00080000
+//*      //TABLEASM EXEC CICAUPLK                                       00090000
+//*      //ASSEM.SYSUT1 DD *                                            00100000
+//*         .                                                           00110000
+//*         . TABLE GENERATION MACROS                                   00120000
+//*         .                                                           00130000
+//*      /*                                                             00140000
+//*                                                                     00150000
+//ASSEM   EXEC PGM=IEBGENER,REGION=&REG                                 00160000
+//SYSPRINT DD  SYSOUT=&OUTC                                             00170000
+//SYSIN    DD  DUMMY                                                    00180000
+//SYSUT2   DD  DSN=&&TEMPPDS(MACROS),                                   00190000
+//             UNIT=&WORK,DISP=(,PASS),                                 00200000
+//             DCB=(RECFM=FB,LRECL=80,BLKSIZE=400),                     00210000
+//             SPACE=(400,(200,100,5))                                  00220000
+//ASM     EXEC PGM=IEV90,                                               00230000
+//             PARM='SYSPARM(INITIAL),DECK,NOOBJECT',                   00240000
+//             REGION=&REG,                                             00250000
+//             COND=(3,LT,ASSEM)                                        00260000
+//SYSLIB   DD  DSN=CICS321.SDFHMAC,DISP=SHR                             00270000
+//         DD  DSN=SYS1.MACLIB,DISP=SHR                                 00280000
+//         DD  DSN=DSN22X.DSNMACS,DISP=SHR                              00281000
+//*        DD  DSN=CICRS1.CICSVS.SAMPLIB,DISP=SHR                       00282000
+//SYSUT1   DD  UNIT=&WORK,SPACE=(1700,(400,400))                        00283000
+//SYSUT2   DD  UNIT=&WORK,SPACE=(1700,(400,400))                        00284000
+//SYSUT3   DD  UNIT=&WORK,SPACE=(1700,(400,400))                        00285000
+//SYSPUNCH DD  DSN=&&OBJMOD,                                            00286000
+//             DISP=(,PASS),UNIT=&WORK,                                 00287000
+//             DCB=(RECFM=FB,LRECL=80,BLKSIZE=400),                     00288000
+//             SPACE=(400,(100,100))                                    00289000
+//SYSPRINT DD  SYSOUT=&OUTC                                             00290000
+//SYSIN    DD  DSN=&&TEMPPDS(MACROS),                                   00300000
+//             DISP=(OLD,PASS)                                          00310000
+//BLDMBR  EXEC PGM=IEBUPDTE,PARM=NEW,REGION=&REG,                       00320000
+//             COND=((3,LT,ASSEM),(7,LT,ASM))                           00330000
+//SYSPRINT DD  DUMMY                                                    00340000
+//SYSUT2   DD  DSN=&&TEMPPDS,DISP=(OLD,PASS)                            00350000
+//SYSIN    DD  DSN=&&OBJMOD,DISP=(OLD,DELETE)                           00360000
+//LNKEDT  EXEC PGM=IEWL,                                                00370000
+//             PARM='LIST,XREF,LET,NCAL',                               00380000
+//             REGION=&REG,                                             00390000
+//             COND=((3,LT,ASSEM),(7,LT,ASM),                           00400000
+//             (3,LT,BLDMBR))                                           00410000
+//SYSUT1   DD  UNIT=&WORK,SPACE=(1024,(100,50))                         00420000
+//SYSPRINT DD  SYSOUT=&OUTC                                             00430000
+//SYSLMOD  DD  DSN=SYS1.SDFHAUTH,DISP=SHR                               00440000
+//SYSPUNCH DD  DSN=&&TEMPPDS,DISP=(OLD,PASS)                            00450000
+//SYSLIN   DD  DSN=&&TEMPPDS(LNKCTL),                                   00460000
+//             DISP=(OLD,PASS),VOL=REF=*.SYSPUNCH                       00470000
+// PEND                                                                 00480000
+//RCT      EXEC CICAUPLK,COND=(4,LT)                                    00490000
+//ASSEM.SYSUT1 DD *                                                     00500000
+         EJECT                                                          00510000
+         DSNCRCT TYPE=INIT,SUFFIX=0,THRDMAX=80,SIGNID=DAVID,SUBID=DSN, X00520000
+               AUTH=(TERM)                                              00530000
+         DSNCRCT TYPE=POOL,                                            X00540000
+               THRDM=10,THRDA=10,PLAN=DSN8CC22,THRDS=10                 00550000
+*                                                                       00560000
+*        DEFINE THE PLI SAMPLE TRANSACTION                              00570000
+*                                                                       00580000
+   DSNCRCT TYPE=ENTRY,TXID=D8PS,THRDM=1,THRDA=1,PLAN=DSN8CP22           00590000
+         DSNCRCT TYPE=ENTRY,TXID=D8PP,THRDM=1,THRDA=1,PLAN=DSN8CQ22     00600000
+*                                                                       00610000
+*        DEFINE THE COBOL SAMPLE TRANSACTION                            00620000
+*                                                                       00630000
+ DSNCRCT TYPE=ENTRY,TXID=D8CS,THRDM=1,THRDA=1,PLAN=DSN8CC22             00640000
+ DSNCRCT TYPE=ENTRY,TXID=SQLA,THRDM=1,THRDA=1,PLAN=DJYSQL0              00650000
+ DSNCRCT TYPE=ENTRY,TXID=Q101,PLAN=CI2Q101,THRDS=0,TWAIT=POOL,THRDM=1, X00660000
+               AUTH=(TERM)                                              00670000
+ DSNCRCT TYPE=ENTRY,TXID=Q102,PLAN=CI2Q102,THRDS=0,TWAIT=POOL,THRDM=1, X00680000
+               AUTH=(TERM)                                              00690000
+ DSNCRCT TYPE=ENTRY,TXID=Q103,PLAN=CI2Q103,THRDS=0,TWAIT=POOL,THRDM=1, X00691000
+               AUTH=(TERM)                                              00692000
+ DSNCRCT TYPE=ENTRY,TXID=Q104,PLAN=CI2Q104,THRDS=0,TWAIT=POOL,THRDM=1, X00693000
+               AUTH=(TERM)                                              00694000
+ DSNCRCT TYPE=ENTRY,TXID=Q105,PLAN=CI2Q105,THRDS=0,TWAIT=POOL,THRDM=1, X00695000
+               AUTH=(TERM)                                              00696000
+ DSNCRCT TYPE=ENTRY,TXID=Q106,PLAN=CI2Q106,THRDS=0,TWAIT=POOL,THRDM=1, X00697000
+               AUTH=(TERM)                                              00698000
+ DSNCRCT TYPE=ENTRY,TXID=Q107,PLAN=CI2Q107,THRDS=0,TWAIT=POOL,THRDM=1, X00699000
+               AUTH=(TERM)                                              00699100
+ DSNCRCT TYPE=ENTRY,TXID=Q108,PLAN=CI2Q108,THRDS=0,TWAIT=POOL,THRDM=1, X00699200
+               AUTH=(TERM)                                              00699300
+ DSNCRCT TYPE=ENTRY,TXID=Q109,PLAN=CI2Q109,THRDS=0,TWAIT=POOL,THRDM=1, X00699400
+               AUTH=(TERM)                                              00699500
+ DSNCRCT TYPE=ENTRY,TXID=Q110,PLAN=CI2Q110,THRDS=0,TWAIT=POOL,THRDM=1, X00699600
+               AUTH=(TERM)                                              00699700
+ DSNCRCT TYPE=ENTRY,TXID=Q201,PLAN=CI2Q201,THRDS=0,TWAIT=POOL,THRDM=1, X00699800
+               AUTH=(TERM)                                              00699900
+ DSNCRCT TYPE=ENTRY,TXID=Q202,PLAN=CI2Q202,THRDS=0,TWAIT=POOL,THRDM=1, X00700000
+               AUTH=(TERM)                                              00700100
+ DSNCRCT TYPE=ENTRY,TXID=Q203,PLAN=CI2Q203,THRDS=0,TWAIT=POOL,THRDM=1, X00700200
+               AUTH=(TERM)                                              00700300
+ DSNCRCT TYPE=ENTRY,TXID=Q204,PLAN=CI2Q204,THRDS=0,TWAIT=POOL,THRDM=1, X00700400
+               AUTH=(TERM)                                              00700500
+ DSNCRCT TYPE=ENTRY,TXID=Q205,PLAN=CI2Q205,THRDS=0,TWAIT=POOL,THRDM=1, X00700600
+               AUTH=(TERM)                                              00700700
+ DSNCRCT TYPE=ENTRY,TXID=Q206,PLAN=CI2Q206,THRDS=0,TWAIT=POOL,THRDM=1, X00700800
+               AUTH=(TERM)                                              00700900
+ DSNCRCT TYPE=ENTRY,TXID=Q207,PLAN=CI2Q207,THRDS=0,TWAIT=POOL,THRDM=1, X00701000
+               AUTH=(TERM)                                              00701100
+ DSNCRCT TYPE=ENTRY,TXID=Q208,PLAN=CI2Q208,THRDS=0,TWAIT=POOL,THRDM=1, X00701200
+               AUTH=(TERM)                                              00701300
+ DSNCRCT TYPE=ENTRY,TXID=Q209,PLAN=CI2Q209,THRDS=0,TWAIT=POOL,THRDM=1, X00701400
+               AUTH=(TERM)                                              00701500
+ DSNCRCT TYPE=ENTRY,TXID=Q210,PLAN=CI2Q210,THRDS=0,TWAIT=POOL,THRDM=1, X00701600
+               AUTH=(TERM)                                              00701700
+ DSNCRCT TYPE=ENTRY,TXID=Q211,PLAN=CI2Q211,THRDS=0,TWAIT=POOL,THRDM=1, X00701800
+               AUTH=(TERM)                                              00701900
+ DSNCRCT TYPE=ENTRY,TXID=Q212,PLAN=CI2Q212,THRDS=0,TWAIT=POOL,THRDM=1, X00702000
+               AUTH=(TERM)                                              00702100
+ DSNCRCT TYPE=ENTRY,TXID=Q213,PLAN=CI2Q213,THRDS=0,TWAIT=POOL,THRDM=1, X00702200
+               AUTH=(TERM)                                              00702300
+ DSNCRCT TYPE=ENTRY,TXID=Q214,PLAN=CI2Q214,THRDS=0,TWAIT=POOL,THRDM=1, X00702400
+               AUTH=(TERM)                                              00702500
+ DSNCRCT TYPE=ENTRY,TXID=Q215,PLAN=CI2Q215,THRDS=0,TWAIT=POOL,THRDM=1, X00702600
+               AUTH=(TERM)                                              00702700
+ DSNCRCT TYPE=ENTRY,TXID=Q216,PLAN=CI2Q216,THRDS=0,TWAIT=POOL,THRDM=1, X00702800
+               AUTH=(TERM)                                              00702900
+ DSNCRCT TYPE=ENTRY,TXID=Q217,PLAN=CI2Q217,THRDS=0,TWAIT=POOL,THRDM=1, X00703000
+               AUTH=(TERM)                                              00703100
+ DSNCRCT TYPE=ENTRY,TXID=Q218,PLAN=CI2Q218,THRDS=0,TWAIT=POOL,THRDM=1, X00703200
+               AUTH=(TERM)                                              00703300
+ DSNCRCT TYPE=ENTRY,TXID=Q301,PLAN=CI2Q301,THRDS=0,TWAIT=POOL,THRDM=1, X00703400
+               AUTH=(TERM)                                              00703500
+ DSNCRCT TYPE=ENTRY,TXID=Q302,PLAN=CI2Q302,THRDS=0,TWAIT=POOL,THRDM=1, X00703600
+               AUTH=(TERM)                                              00703700
+ DSNCRCT TYPE=ENTRY,TXID=Q303,PLAN=CI2Q303,THRDS=0,TWAIT=POOL,THRDM=1, X00703800
+               AUTH=(TERM)                                              00703900
+ DSNCRCT TYPE=ENTRY,TXID=Q304,PLAN=CI2Q304,THRDS=0,TWAIT=POOL,THRDM=1, X00704000
+               AUTH=(TERM)                                              00704100
+ DSNCRCT TYPE=ENTRY,TXID=Q305,PLAN=CI2Q305,THRDS=0,TWAIT=POOL,THRDM=1, X00704200
+               AUTH=(TERM)                                              00704300
+ DSNCRCT TYPE=ENTRY,TXID=Q306,PLAN=CI2Q306,THRDS=0,TWAIT=POOL,THRDM=1, X00704400
+               AUTH=(TERM)                                              00704500
+ DSNCRCT TYPE=ENTRY,TXID=Q307,PLAN=CI2Q307,THRDS=0,TWAIT=POOL,THRDM=1, X00704600
+               AUTH=(TERM)                                              00704700
+ DSNCRCT TYPE=ENTRY,TXID=Q308,PLAN=CI2Q308,THRDS=0,TWAIT=POOL,THRDM=1, X00704800
+               AUTH=(TERM)                                              00704900
+ DSNCRCT TYPE=ENTRY,TXID=Q309,PLAN=CI2Q309,THRDS=0,TWAIT=POOL,THRDM=1, X00705000
+               AUTH=(TERM)                                              00705100
+ DSNCRCT TYPE=ENTRY,TXID=Q310,PLAN=CI2Q310,THRDS=0,TWAIT=POOL,THRDM=1, X00705200
+               AUTH=(TERM)                                              00705300
+ DSNCRCT TYPE=ENTRY,TXID=Q311,PLAN=CI2Q311,THRDS=0,TWAIT=POOL,THRDM=1, X00705400
+               AUTH=(TERM)                                              00705500
+ DSNCRCT TYPE=ENTRY,TXID=Q312,PLAN=CI2Q312,THRDS=0,TWAIT=POOL,THRDM=1, X00705600
+               AUTH=(TERM)                                              00705700
+ DSNCRCT TYPE=ENTRY,TXID=Q313,PLAN=CI2Q313,THRDS=0,TWAIT=POOL,THRDM=1, X00705800
+               AUTH=(TERM)                                              00705900
+ DSNCRCT TYPE=ENTRY,TXID=Q314,PLAN=CI2Q314,THRDS=0,TWAIT=POOL,THRDM=1, X00706000
+               AUTH=(TERM)                                              00706100
+ DSNCRCT TYPE=ENTRY,TXID=Q315,PLAN=CI2Q315,THRDS=0,TWAIT=POOL,THRDM=1, X00706200
+               AUTH=(TERM)                                              00706300
+ DSNCRCT TYPE=ENTRY,TXID=Q316,PLAN=CI2Q316,THRDS=0,TWAIT=POOL,THRDM=1, X00706400
+               AUTH=(TERM)                                              00706500
+ DSNCRCT TYPE=ENTRY,TXID=Q401,PLAN=CI2Q401,THRDS=0,TWAIT=POOL,THRDM=1, X00706600
+               AUTH=(TERM)                                              00706700
+ DSNCRCT TYPE=ENTRY,TXID=Q402,PLAN=CI2Q402,THRDS=0,TWAIT=POOL,THRDM=1, X00706800
+               AUTH=(TERM)                                              00706900
+ DSNCRCT TYPE=ENTRY,TXID=Q403,PLAN=CI2Q403,THRDS=0,TWAIT=POOL,THRDM=1, X00707000
+               AUTH=(TERM)                                              00707100
+ DSNCRCT TYPE=ENTRY,TXID=Q404,PLAN=CI2Q404,THRDS=0,TWAIT=POOL,THRDM=1, X00707200
+               AUTH=(TERM)                                              00707300
+ DSNCRCT TYPE=ENTRY,TXID=Q405,PLAN=CI2Q405,THRDS=0,TWAIT=POOL,THRDM=1, X00707400
+               AUTH=(TERM)                                              00707500
+ DSNCRCT TYPE=ENTRY,TXID=Q406,PLAN=CI2Q406,THRDS=0,TWAIT=POOL,THRDM=1, X00707600
+               AUTH=(TERM)                                              00707700
+ DSNCRCT TYPE=ENTRY,TXID=Q407,PLAN=CI2Q407,THRDS=0,TWAIT=POOL,THRDM=1, X00707800
+               AUTH=(TERM)                                              00707900
+ DSNCRCT TYPE=ENTRY,TXID=Q408,PLAN=CI2Q408,THRDS=0,TWAIT=POOL,THRDM=1, X00708000
+               AUTH=(TERM)                                              00708100
+ DSNCRCT TYPE=ENTRY,TXID=Q409,PLAN=CI2Q409,THRDS=0,TWAIT=POOL,THRDM=1, X00708200
+               AUTH=(TERM)                                              00708300
+ DSNCRCT TYPE=ENTRY,TXID=Q410,PLAN=CI2Q410,THRDS=0,TWAIT=POOL,THRDM=1, X00708400
+               AUTH=(TERM)                                              00708500
+ DSNCRCT TYPE=ENTRY,TXID=Q411,PLAN=CI2Q411,THRDS=0,TWAIT=POOL,THRDM=1, X00708600
+               AUTH=(TERM)                                              00708700
+ DSNCRCT TYPE=ENTRY,TXID=Q412,PLAN=CI2Q412,THRDS=0,TWAIT=POOL,THRDM=1, X00708800
+               AUTH=(TERM)                                              00708900
+ DSNCRCT TYPE=ENTRY,TXID=Q413,PLAN=CI2Q413,THRDS=0,TWAIT=POOL,THRDM=1, X00709000
+               AUTH=(TERM)                                              00709100
+ DSNCRCT TYPE=ENTRY,TXID=Q414,PLAN=CI2Q414,THRDS=0,TWAIT=POOL,THRDM=1, X00709200
+               AUTH=(TERM)                                              00709300
+ DSNCRCT TYPE=ENTRY,TXID=Q501,PLAN=CI2Q501,THRDS=0,TWAIT=POOL,THRDM=1, X00709400
+               AUTH=(TERM)                                              00709500
+ DSNCRCT TYPE=ENTRY,TXID=Q502,PLAN=CI2Q502,THRDS=0,TWAIT=POOL,THRDM=1, X00709600
+               AUTH=(TERM)                                              00709700
+ DSNCRCT TYPE=ENTRY,TXID=Q503,PLAN=CI2Q503,THRDS=0,TWAIT=POOL,THRDM=1, X00709800
+               AUTH=(TERM)                                              00709900
+ DSNCRCT TYPE=ENTRY,TXID=Q601,PLAN=CI2Q601,THRDS=0,TWAIT=POOL,THRDM=1, X00710000
+               AUTH=(TERM)                                              00710100
+ DSNCRCT TYPE=ENTRY,TXID=Q602,PLAN=CI2Q602,THRDS=0,TWAIT=POOL,THRDM=1, X00710200
+               AUTH=(TERM)                                              00710300
+ DSNCRCT TYPE=ENTRY,TXID=Q603,PLAN=CI2Q603,THRDS=0,TWAIT=POOL,THRDM=1, X00710400
+               AUTH=(TERM)                                              00710500
+ DSNCRCT TYPE=ENTRY,TXID=Q604,PLAN=CI2Q604,THRDS=0,TWAIT=POOL,THRDM=1, X00710600
+               AUTH=(TERM)                                              00710700
+ DSNCRCT TYPE=ENTRY,TXID=Q605,PLAN=CI2Q605,THRDS=0,TWAIT=POOL,THRDM=1, X00710800
+               AUTH=(TERM)                                              00710900
+ DSNCRCT TYPE=ENTRY,TXID=Q606,PLAN=CI2Q606,THRDS=0,TWAIT=POOL,THRDM=1, X00711000
+               AUTH=(TERM)                                              00711100
+ DSNCRCT TYPE=ENTRY,TXID=Q607,PLAN=CI2Q607,THRDS=0,TWAIT=POOL,THRDM=1, X00711200
+               AUTH=(TERM)                                              00711300
+ DSNCRCT TYPE=ENTRY,TXID=Q608,PLAN=CI2Q608,THRDS=0,TWAIT=POOL,THRDM=1, X00711400
+               AUTH=(TERM)                                              00711500
+ DSNCRCT TYPE=ENTRY,TXID=Q609,PLAN=CI2Q609,THRDS=0,TWAIT=POOL,THRDM=1, X00711600
+               AUTH=(TERM)                                              00711700
+ DSNCRCT TYPE=ENTRY,TXID=Q610,PLAN=CI2Q610,THRDS=0,TWAIT=POOL,THRDM=1, X00711800
+               AUTH=(TERM)                                              00711900
+*                                                                       00712000
+*        DEFINE THE PLI PHONE  TRANSACTION                              00712100
+*                                                                       00712200
+         DSNCRCT TYPE=ENTRY,TXID=D8PT,THRDM=1,THRDA=1,PLAN=DSN8CH22     00712300
+*                D8PU TRANSACTION USED INTERNALLY                       00712400
+         DSNCRCT TYPE=ENTRY,TXID=D8PU,THRDM=1,THRDA=1,PLAN=DSN8CH22     00712500
+         DSNCRCT TYPE=FINAL                                             00712600
+         END                                                            00712700
+//                                                                      00712800

@@ -1,0 +1,233 @@
+//DSNRCT   JOB   0,YOUNG,MSGLEVEL=(1,1),                                00001000
+//         MSGCLASS=O                                                   00002000
+//*                                                                     00003000
+//*        ALL SUBSEQUENT STEPS ARE ONLY PROVIDED IN PART.              00004000
+//*        THE DATA FOR THE CICS GEN MUST BE INCLUDED                   00005000
+//*        WITH OTHER INSTALLATION PPT, PCT, AND RCT                    00006000
+//*        INFORMATION.                                                 00007000
+//*                                                                     00008000
+//CICAUPLK PROC OUTC='X',                                               00009000
+//             REG=6144K,                                               00010000
+//             WORK=SYSALLDA                                            00020000
+//*                                                                     00030000
+//* LIB: CICRS1.CICSVS.IPO1.PROCLIB(CICAUPLK)                           00040000
+//* GDE: CBIPO CICS INSTALLATION                                        00050000
+//* DOC: THIS PROCEDURE IS USED TO GENERATE CICS/ESA TABLES.            00060000
+//*      THE FOLLOWING JCL SHOULD BE USED                               00070000
+//*                                                                     00080000
+//*      //TABLEASM EXEC CICAUPLK                                       00090000
+//*      //ASSEM.SYSUT1 DD *                                            00100000
+//*         .                                                           00110000
+//*         . TABLE GENERATION MACROS                                   00120000
+//*         .                                                           00130000
+//*      /*                                                             00140000
+//*                                                                     00150000
+//ASSEM   EXEC PGM=IEBGENER,REGION=&REG                                 00160000
+//SYSPRINT DD  SYSOUT=&OUTC                                             00170000
+//SYSIN    DD  DUMMY                                                    00180000
+//SYSUT2   DD  DSN=&&TEMPPDS(MACROS),                                   00190000
+//             UNIT=&WORK,DISP=(,PASS),                                 00200000
+//             DCB=(RECFM=FB,LRECL=80,BLKSIZE=400),                     00210000
+//             SPACE=(400,(200,100,5))                                  00220000
+//ASM     EXEC PGM=IEV90,                                               00230000
+//             PARM='SYSPARM(INITIAL),DECK,NOOBJECT',                   00240000
+//             REGION=&REG,                                             00250000
+//             COND=(3,LT,ASSEM)                                        00260000
+//SYSLIB   DD  DSN=CICS321.SDFHMAC,DISP=SHR                             00270002
+//         DD  DSN=SYS1.MACLIB,DISP=SHR                                 00280000
+//         DD  DSN=DSN22X.DSNMACS,DISP=SHR                              00281000
+//*        DD  DSN=CICRS1.CICSVS.SAMPLIB,DISP=SHR                       00282000
+//SYSUT1   DD  UNIT=&WORK,SPACE=(1700,(400,400))                        00283000
+//SYSUT2   DD  UNIT=&WORK,SPACE=(1700,(400,400))                        00284000
+//SYSUT3   DD  UNIT=&WORK,SPACE=(1700,(400,400))                        00285000
+//SYSPUNCH DD  DSN=&&OBJMOD,                                            00286000
+//             DISP=(,PASS),UNIT=&WORK,                                 00287000
+//             DCB=(RECFM=FB,LRECL=80,BLKSIZE=400),                     00288000
+//             SPACE=(400,(100,100))                                    00289000
+//SYSPRINT DD  SYSOUT=&OUTC                                             00290000
+//SYSIN    DD  DSN=&&TEMPPDS(MACROS),                                   00300000
+//             DISP=(OLD,PASS)                                          00310000
+//BLDMBR  EXEC PGM=IEBUPDTE,PARM=NEW,REGION=&REG,                       00320000
+//             COND=((3,LT,ASSEM),(7,LT,ASM))                           00330000
+//SYSPRINT DD  DUMMY                                                    00340000
+//SYSUT2   DD  DSN=&&TEMPPDS,DISP=(OLD,PASS)                            00350000
+//SYSIN    DD  DSN=&&OBJMOD,DISP=(OLD,DELETE)                           00360000
+//LNKEDT  EXEC PGM=IEWL,                                                00370000
+//             PARM='LIST,XREF,LET,NCAL',                               00380000
+//             REGION=&REG,                                             00390000
+//             COND=((3,LT,ASSEM),(7,LT,ASM),                           00400000
+//             (3,LT,BLDMBR))                                           00410000
+//SYSUT1   DD  UNIT=&WORK,SPACE=(1024,(100,50))                         00420000
+//SYSPRINT DD  SYSOUT=&OUTC                                             00430000
+//SYSLMOD  DD  DSN=SYS1.SDFHAUTH,DISP=SHR                               00440004
+//SYSPUNCH DD  DSN=&&TEMPPDS,DISP=(OLD,PASS)                            00450000
+//SYSLIN   DD  DSN=&&TEMPPDS(LNKCTL),                                   00460000
+//             DISP=(OLD,PASS),VOL=REF=*.SYSPUNCH                       00470000
+// PEND                                                                 00480000
+//RCT      EXEC CICAUPLK,COND=(4,LT)                                    00490000
+//ASSEM.SYSUT1 DD *                                                     00500000
+**********************************************************************  00510000
+*                                                                    *  00520000
+*   MODULE NAME = DSN8FRCT                                           *  00530000
+*                                                                    *  00540000
+*   DESCRIPTIVE NAME = CICS RCT ADDITIONAL ENTRIES FOR THE SAMPLE.   *  00550000
+*                                                                    *  00560000
+*      COPYRIGHT = 5665-DB2 (C) COPYRIGHT IBM CORP 1982, 1989        *  00570000
+*      REFER TO COPYRIGHT INSTRUCTIONS FORM NUMBER G120-2083         *  00580000
+*                                                                    *  00590000
+*      STATUS = VERSION 2 RELEASE 2, LEVEL 0                         *  00600000
+*                                                                    *  00610000
+*   FUNCTION =                                                       *  00620000
+*      THE CICS RCT ADDITIONS ARE NEEDED FOR THE DB2 SAMPLE PROGRAMS *  00630000
+*                                                                    *  00640000
+*   NOTES =                                                          *  00650000
+*      DEPENDENCIES = NONE                                           *  00651000
+*                                                                    *  00652000
+*      RESTRICTIONS = NONE                                           *  00653000
+*                                                                    *  00654000
+*      REGISTER CONVENTIONS = NONE, NO EXECUTABLE CODE               *  00655000
+*                                                                    *  00656000
+*   MODULE TYPE = PROCEDURE                                          *  00657000
+*                                                                    *  00658000
+*      PROCESSOR =  ASSEMBLER XF OR H                                *  00659000
+*                                                                    *  00660000
+*      MODULE SIZE = SEE ASSEMBLER LISTING                           *  00661000
+*                                                                    *  00662000
+*      ATTRIBUTES = REUSABLE                                         *  00663000
+*                                                                    *  00664000
+*   ENTRY POINT = NONE                                               *  00665000
+*                                                                    *  00666000
+*      PURPOSE = SEE FUNCTION                                        *  00667000
+*                                                                    *  00668000
+*      LINKAGE = NONE                                                *  00669000
+*                                                                    *  00669100
+*      INPUT = NONE                                                  *  00669200
+*                                                                    *  00669300
+*      OUTPUT = NONE                                                 *  00669400
+*                                                                    *  00669500
+*                                                                    *  00669600
+*   EXIT-NORMAL = NONE                                               *  00669700
+*                                                                    *  00669800
+*   EXIT-ERROR = NONE                                                *  00669900
+*                                                                    *  00670000
+*      RETURN CODE = NONE                                            *  00671000
+*         REASON CODE = NONE                                         *  00672000
+*                                                                    *  00673000
+*      ABEND CODES = NONE                                            *  00674000
+*                                                                    *  00675000
+*      ERROR-MESSAGES = NONE                                         *  00676000
+*                                                                    *  00677000
+*   EXTERNAL REFERENCES =                                            *  00678000
+*      ROUTINES/SERVICES = NONE                                      *  00679000
+*                                                                    *  00679100
+*      DATA-AREAS = NONE                                             *  00679200
+*                                                                    *  00679300
+*      CONTROL-BLOCKS = NONE                                         *  00679400
+*                                                                    *  00679500
+*      MACROS         =                                              *  00679600
+*         DSNCRCT             - DB2/CICS RESOURCE CONTROL TABLE      *  00679700
+*                                                                    *  00679800
+*   TABLES = NONE                                                    *  00679900
+*                                                                    *  00680000
+*   CHANGE-ACTIVITY =                                                *  00681000
+*      NONE                                                          *  00682000
+*                                                                    *  00683000
+*   PSEUDOCODE      =                                                *  00684000
+*                                                                    *  00685000
+*      THIS MODULE CONTAINS NO EXECUTABLE CODE.                      *  00686000
+*                                                                    *  00687000
+**********************************************************************  00688000
+         EJECT                                                          00689000
+         DSNCRCT TYPE=INIT,SUFFIX=0,THRDMAX=99                          00689100
+         DSNCRCT TYPE=POOL,                                            X00689200
+               THRDM=71,THRDA=71,PLAN=DSN8CC22,THRDS=71                 00689300
+*                                                                       00689400
+*        DEFINE THE PLI SAMPLE TRANSACTION                              00689500
+*                                                                       00689600
+   DSNCRCT TYPE=ENTRY,TXID=D8PS,THRDM=1,THRDA=1,PLAN=DSN8CP22           00689700
+         DSNCRCT TYPE=ENTRY,TXID=D8PP,THRDM=1,THRDA=1,PLAN=DSN8CQ22     00689800
+*                                                                       00689900
+*        DEFINE THE COBOL SAMPLE TRANSACTION                            00690000
+*                                                                       00691000
+ DSNCRCT TYPE=ENTRY,TXID=D8CS,THRDM=1,THRDA=1,PLAN=DSN8CC22             00692000
+ DSNCRCT TYPE=ENTRY,TXID=SQLA,THRDM=1,THRDA=1,PLAN=DJYSQL0              00693000
+ DSNCRCT TYPE=ENTRY,TXID=Q101,PLAN=CI2Q101,THRDS=0,TWAIT=POOL,THRDM=1   00694000
+ DSNCRCT TYPE=ENTRY,TXID=Q102,PLAN=CI2Q102,THRDS=0,TWAIT=POOL,THRDM=1   00695000
+ DSNCRCT TYPE=ENTRY,TXID=Q103,PLAN=CI2Q103,THRDS=0,TWAIT=POOL,THRDM=1   00696000
+ DSNCRCT TYPE=ENTRY,TXID=Q104,PLAN=CI2Q104,THRDS=0,TWAIT=POOL,THRDM=1   00697000
+ DSNCRCT TYPE=ENTRY,TXID=Q105,PLAN=CI2Q105,THRDS=0,TWAIT=POOL,THRDM=1   00698000
+ DSNCRCT TYPE=ENTRY,TXID=Q106,PLAN=CI2Q106,THRDS=0,TWAIT=POOL,THRDM=1   00699000
+ DSNCRCT TYPE=ENTRY,TXID=Q107,PLAN=CI2Q107,THRDS=0,TWAIT=POOL,THRDM=1   00699100
+ DSNCRCT TYPE=ENTRY,TXID=Q108,PLAN=CI2Q108,THRDS=0,TWAIT=POOL,THRDM=1   00699200
+ DSNCRCT TYPE=ENTRY,TXID=Q109,PLAN=CI2Q109,THRDS=0,TWAIT=POOL,THRDM=1   00699300
+ DSNCRCT TYPE=ENTRY,TXID=Q110,PLAN=CI2Q110,THRDS=0,TWAIT=POOL,THRDM=1   00699400
+ DSNCRCT TYPE=ENTRY,TXID=Q201,PLAN=CI2Q201,THRDS=0,TWAIT=POOL,THRDM=1   00699501
+ DSNCRCT TYPE=ENTRY,TXID=Q202,PLAN=CI2Q202,THRDS=0,TWAIT=POOL,THRDM=1   00699601
+ DSNCRCT TYPE=ENTRY,TXID=Q203,PLAN=CI2Q203,THRDS=0,TWAIT=POOL,THRDM=1   00699701
+ DSNCRCT TYPE=ENTRY,TXID=Q204,PLAN=CI2Q204,THRDS=0,TWAIT=POOL,THRDM=1   00699801
+ DSNCRCT TYPE=ENTRY,TXID=Q205,PLAN=CI2Q205,THRDS=0,TWAIT=POOL,THRDM=1   00699901
+ DSNCRCT TYPE=ENTRY,TXID=Q206,PLAN=CI2Q206,THRDS=0,TWAIT=POOL,THRDM=1   00700001
+ DSNCRCT TYPE=ENTRY,TXID=Q207,PLAN=CI2Q207,THRDS=0,TWAIT=POOL,THRDM=1   00700101
+ DSNCRCT TYPE=ENTRY,TXID=Q208,PLAN=CI2Q208,THRDS=0,TWAIT=POOL,THRDM=1   00700201
+ DSNCRCT TYPE=ENTRY,TXID=Q209,PLAN=CI2Q209,THRDS=0,TWAIT=POOL,THRDM=1   00700301
+ DSNCRCT TYPE=ENTRY,TXID=Q210,PLAN=CI2Q210,THRDS=0,TWAIT=POOL,THRDM=1   00700401
+ DSNCRCT TYPE=ENTRY,TXID=Q211,PLAN=CI2Q211,THRDS=0,TWAIT=POOL,THRDM=1   00700501
+ DSNCRCT TYPE=ENTRY,TXID=Q212,PLAN=CI2Q212,THRDS=0,TWAIT=POOL,THRDM=1   00700601
+ DSNCRCT TYPE=ENTRY,TXID=Q213,PLAN=CI2Q213,THRDS=0,TWAIT=POOL,THRDM=1   00700701
+ DSNCRCT TYPE=ENTRY,TXID=Q214,PLAN=CI2Q214,THRDS=0,TWAIT=POOL,THRDM=1   00700801
+ DSNCRCT TYPE=ENTRY,TXID=Q215,PLAN=CI2Q215,THRDS=0,TWAIT=POOL,THRDM=1   00700901
+ DSNCRCT TYPE=ENTRY,TXID=Q216,PLAN=CI2Q216,THRDS=0,TWAIT=POOL,THRDM=1   00701001
+ DSNCRCT TYPE=ENTRY,TXID=Q217,PLAN=CI2Q217,THRDS=0,TWAIT=POOL,THRDM=1   00701101
+ DSNCRCT TYPE=ENTRY,TXID=Q218,PLAN=CI2Q218,THRDS=0,TWAIT=POOL,THRDM=1   00701201
+ DSNCRCT TYPE=ENTRY,TXID=Q301,PLAN=CI2Q301,THRDS=0,TWAIT=POOL,THRDM=1   00701301
+ DSNCRCT TYPE=ENTRY,TXID=Q302,PLAN=CI2Q302,THRDS=0,TWAIT=POOL,THRDM=1   00701401
+ DSNCRCT TYPE=ENTRY,TXID=Q303,PLAN=CI2Q303,THRDS=0,TWAIT=POOL,THRDM=1   00701501
+ DSNCRCT TYPE=ENTRY,TXID=Q304,PLAN=CI2Q304,THRDS=0,TWAIT=POOL,THRDM=1   00701601
+ DSNCRCT TYPE=ENTRY,TXID=Q305,PLAN=CI2Q305,THRDS=0,TWAIT=POOL,THRDM=1   00701701
+ DSNCRCT TYPE=ENTRY,TXID=Q306,PLAN=CI2Q306,THRDS=0,TWAIT=POOL,THRDM=1   00701801
+ DSNCRCT TYPE=ENTRY,TXID=Q307,PLAN=CI2Q307,THRDS=0,TWAIT=POOL,THRDM=1   00701901
+ DSNCRCT TYPE=ENTRY,TXID=Q308,PLAN=CI2Q308,THRDS=0,TWAIT=POOL,THRDM=1   00702001
+ DSNCRCT TYPE=ENTRY,TXID=Q309,PLAN=CI2Q309,THRDS=0,TWAIT=POOL,THRDM=1   00702101
+ DSNCRCT TYPE=ENTRY,TXID=Q310,PLAN=CI2Q310,THRDS=0,TWAIT=POOL,THRDM=1   00702201
+ DSNCRCT TYPE=ENTRY,TXID=Q311,PLAN=CI2Q311,THRDS=0,TWAIT=POOL,THRDM=1   00702301
+ DSNCRCT TYPE=ENTRY,TXID=Q312,PLAN=CI2Q312,THRDS=0,TWAIT=POOL,THRDM=1   00702401
+ DSNCRCT TYPE=ENTRY,TXID=Q313,PLAN=CI2Q313,THRDS=0,TWAIT=POOL,THRDM=1   00702501
+ DSNCRCT TYPE=ENTRY,TXID=Q314,PLAN=CI2Q314,THRDS=0,TWAIT=POOL,THRDM=1   00702601
+ DSNCRCT TYPE=ENTRY,TXID=Q315,PLAN=CI2Q315,THRDS=0,TWAIT=POOL,THRDM=1   00702701
+ DSNCRCT TYPE=ENTRY,TXID=Q316,PLAN=CI2Q316,THRDS=0,TWAIT=POOL,THRDM=1   00702801
+ DSNCRCT TYPE=ENTRY,TXID=Q401,PLAN=CI2Q401,THRDS=0,TWAIT=POOL,THRDM=1   00702901
+ DSNCRCT TYPE=ENTRY,TXID=Q402,PLAN=CI2Q402,THRDS=0,TWAIT=POOL,THRDM=1   00703001
+ DSNCRCT TYPE=ENTRY,TXID=Q403,PLAN=CI2Q403,THRDS=0,TWAIT=POOL,THRDM=1   00703101
+ DSNCRCT TYPE=ENTRY,TXID=Q404,PLAN=CI2Q404,THRDS=0,TWAIT=POOL,THRDM=1   00703201
+ DSNCRCT TYPE=ENTRY,TXID=Q405,PLAN=CI2Q405,THRDS=0,TWAIT=POOL,THRDM=1   00703301
+ DSNCRCT TYPE=ENTRY,TXID=Q406,PLAN=CI2Q406,THRDS=0,TWAIT=POOL,THRDM=1   00703401
+ DSNCRCT TYPE=ENTRY,TXID=Q407,PLAN=CI2Q407,THRDS=0,TWAIT=POOL,THRDM=1   00703501
+ DSNCRCT TYPE=ENTRY,TXID=Q408,PLAN=CI2Q408,THRDS=0,TWAIT=POOL,THRDM=1   00703601
+ DSNCRCT TYPE=ENTRY,TXID=Q409,PLAN=CI2Q409,THRDS=0,TWAIT=POOL,THRDM=1   00703701
+ DSNCRCT TYPE=ENTRY,TXID=Q410,PLAN=CI2Q410,THRDS=0,TWAIT=POOL,THRDM=1   00703801
+ DSNCRCT TYPE=ENTRY,TXID=Q411,PLAN=CI2Q411,THRDS=0,TWAIT=POOL,THRDM=1   00703901
+ DSNCRCT TYPE=ENTRY,TXID=Q412,PLAN=CI2Q412,THRDS=0,TWAIT=POOL,THRDM=1   00704001
+ DSNCRCT TYPE=ENTRY,TXID=Q413,PLAN=CI2Q413,THRDS=0,TWAIT=POOL,THRDM=1   00704101
+ DSNCRCT TYPE=ENTRY,TXID=Q414,PLAN=CI2Q414,THRDS=0,TWAIT=POOL,THRDM=1   00704201
+ DSNCRCT TYPE=ENTRY,TXID=Q501,PLAN=CI2Q501,THRDS=0,TWAIT=POOL,THRDM=1   00704301
+ DSNCRCT TYPE=ENTRY,TXID=Q502,PLAN=CI2Q502,THRDS=0,TWAIT=POOL,THRDM=1   00704401
+ DSNCRCT TYPE=ENTRY,TXID=Q503,PLAN=CI2Q503,THRDS=0,TWAIT=POOL,THRDM=1   00704501
+ DSNCRCT TYPE=ENTRY,TXID=Q601,PLAN=CI2Q601,THRDS=0,TWAIT=POOL,THRDM=1   00704601
+ DSNCRCT TYPE=ENTRY,TXID=Q602,PLAN=CI2Q602,THRDS=0,TWAIT=POOL,THRDM=1   00704701
+ DSNCRCT TYPE=ENTRY,TXID=Q603,PLAN=CI2Q603,THRDS=0,TWAIT=POOL,THRDM=1   00704801
+ DSNCRCT TYPE=ENTRY,TXID=Q604,PLAN=CI2Q604,THRDS=0,TWAIT=POOL,THRDM=1   00704901
+ DSNCRCT TYPE=ENTRY,TXID=Q605,PLAN=CI2Q605,THRDS=0,TWAIT=POOL,THRDM=1   00705001
+ DSNCRCT TYPE=ENTRY,TXID=Q606,PLAN=CI2Q606,THRDS=0,TWAIT=POOL,THRDM=1   00705101
+ DSNCRCT TYPE=ENTRY,TXID=Q607,PLAN=CI2Q607,THRDS=0,TWAIT=POOL,THRDM=1   00705201
+ DSNCRCT TYPE=ENTRY,TXID=Q608,PLAN=CI2Q608,THRDS=0,TWAIT=POOL,THRDM=1   00705301
+ DSNCRCT TYPE=ENTRY,TXID=Q609,PLAN=CI2Q609,THRDS=0,TWAIT=POOL,THRDM=1   00705401
+ DSNCRCT TYPE=ENTRY,TXID=Q610,PLAN=CI2Q610,THRDS=0,TWAIT=POOL,THRDM=1   00705501
+*                                                                       00705600
+*        DEFINE THE PLI PHONE  TRANSACTION                              00705700
+*                                                                       00705800
+         DSNCRCT TYPE=ENTRY,TXID=D8PT,THRDM=1,THRDA=1,PLAN=DSN8CH22     00705900
+*                D8PU TRANSACTION USED INTERNALLY                       00706000
+         DSNCRCT TYPE=ENTRY,TXID=D8PU,THRDM=1,THRDA=1,PLAN=DSN8CH22     00706100
+         DSNCRCT TYPE=FINAL                                             00706200
+         END                                                            00706300
+//                                                                      00707000

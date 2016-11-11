@@ -1,0 +1,233 @@
+-- Q101 --                                                                      
+SELECT COUNT(*) FROM DAVID.SQ2 WHERE K250K = 2;                                 
+SELECT COUNT(*) FROM DAVID.SQ2 WHERE K100K = 2;                                 
+SELECT COUNT(*) FROM DAVID.SQ2 WHERE K10K = 2;                                  
+SELECT COUNT(*) FROM DAVID.SQ2 WHERE K1K = 2;                                   
+SELECT COUNT(*) FROM DAVID.SQ2 WHERE K100 = 2;                                  
+SELECT COUNT(*) FROM DAVID.SQ2 WHERE K25 = 2;                                   
+SELECT COUNT(*) FROM DAVID.SQ2 WHERE K10 = 2;                                   
+SELECT COUNT(*) FROM DAVID.SQ2 WHERE K5 = 2;                                    
+SELECT COUNT(*) FROM DAVID.SQ2 WHERE K4 = 2;                                    
+SELECT COUNT(*) FROM DAVID.SQ2 WHERE K2 = 2;                                    
+-- Q201 --                                                                      
+SELECT COUNT(*) FROM DAVID.SQ2 WHERE K2 = 2                                     
+AND KSEQ=3;                                                                     
+SELECT COUNT(*) FROM DAVID.SQ2 WHERE K2 = 2                                     
+AND K100K = 3;                                                                  
+SELECT COUNT(*) FROM DAVID.SQ2 WHERE K2 = 2                                     
+AND K10K = 3;                                                                   
+SELECT COUNT(*) FROM DAVID.SQ2 WHERE K2 = 2                                     
+AND K1K = 3;                                                                    
+SELECT COUNT(*) FROM DAVID.SQ2 WHERE K2 = 2                                     
+AND K100 = 3;                                                                   
+SELECT COUNT(*) FROM DAVID.SQ2 WHERE K2 = 2                                     
+AND K25 = 3;                                                                    
+SELECT COUNT(*) FROM DAVID.SQ2 WHERE K2 = 2                                     
+AND K10 = 3;                                                                    
+SELECT COUNT(*) FROM DAVID.SQ2 WHERE K2 = 2                                     
+AND K5 = 3;                                                                     
+SELECT COUNT(*) FROM DAVID.SQ2 WHERE K2 = 2                                     
+AND K4 = 3;                                                                     
+SELECT COUNT(*) FROM DAVID.SQ2 WHERE K2 = 2                                     
+AND KSEQ <> 3;                                                                  
+SELECT COUNT(*) FROM DAVID.SQ2 WHERE K2 = 2                                     
+AND K100K <> 3;                                                                 
+SELECT COUNT(*) FROM DAVID.SQ2 WHERE K2 = 2                                     
+AND K10K <> 3;                                                                  
+SELECT COUNT(*) FROM DAVID.SQ2 WHERE K2 = 2                                     
+AND K1K <> 3;                                                                   
+SELECT COUNT(*) FROM DAVID.SQ2 WHERE K2 = 2                                     
+AND K100 <> 3;                                                                  
+SELECT COUNT(*) FROM DAVID.SQ2 WHERE K2 = 2                                     
+AND K25 <> 3;                                                                   
+SELECT COUNT(*) FROM DAVID.SQ2 WHERE K2 = 2                                     
+AND K10 <> 3;                                                                   
+SELECT COUNT(*) FROM DAVID.SQ2 WHERE K2 = 2                                     
+AND K5 <> 3;                                                                    
+SELECT COUNT(*) FROM DAVID.SQ2 WHERE K2 = 2                                     
+AND K4 <> 3;                                                                    
+-- Q301 --                                                                      
+SELECT SUM(K1K) FROM DAVID.SQ2                                                  
+  WHERE K100K = 3;                                                              
+SELECT SUM(K1K) FROM DAVID.SQ2                                                  
+  WHERE K10K = 3;                                                               
+SELECT SUM(K1K) FROM DAVID.SQ2                                                  
+  WHERE K1K = 3;                                                                
+SELECT SUM(K1K) FROM DAVID.SQ2                                                  
+  WHERE K100 = 3;                                                               
+SELECT SUM(K1K) FROM DAVID.SQ2                                                  
+  WHERE K25 = 3;                                                                
+SELECT SUM(K1K) FROM DAVID.SQ2                                                  
+  WHERE K10 = 3;                                                                
+SELECT SUM(K1K) FROM DAVID.SQ2                                                  
+  WHERE K5 = 3;                                                                 
+SELECT SUM(K1K) FROM DAVID.SQ2                                                  
+  WHERE K4 = 3;                                                                 
+SELECT SUM(K1K) FROM DAVID.SQ2                                                  
+  WHERE (KSEQ BETWEEN 0 AND 25000                                               
+         OR KSEQ BETWEEN 50000 AND 75000                                        
+         OR KSEQ BETWEEN 100000 AND 125000                                      
+         OR KSEQ BETWEEN 150000 AND 175000                                      
+         OR KSEQ BETWEEN 200000 AND 225000)                                     
+        AND K100K = 3;                                                          
+SELECT SUM(K1K) FROM DAVID.SQ2                                                  
+  WHERE (KSEQ BETWEEN 0 AND 25000                                               
+         OR KSEQ BETWEEN 50000 AND 75000                                        
+         OR KSEQ BETWEEN 100000 AND 125000                                      
+         OR KSEQ BETWEEN 150000 AND 175000                                      
+         OR KSEQ BETWEEN 200000 AND 225000)                                     
+        AND K10K = 3;                                                           
+SELECT SUM(K1K) FROM DAVID.SQ2                                                  
+  WHERE (KSEQ BETWEEN 0 AND 25000                                               
+         OR KSEQ BETWEEN 50000 AND 75000                                        
+         OR KSEQ BETWEEN 100000 AND 125000                                      
+         OR KSEQ BETWEEN 150000 AND 175000                                      
+         OR KSEQ BETWEEN 200000 AND 225000)                                     
+        AND K1K = 3;                                                            
+SELECT SUM(K1K) FROM DAVID.SQ2                                                  
+  WHERE (KSEQ BETWEEN 0 AND 25000                                               
+         OR KSEQ BETWEEN 50000 AND 75000                                        
+         OR KSEQ BETWEEN 100000 AND 125000                                      
+         OR KSEQ BETWEEN 150000 AND 175000                                      
+         OR KSEQ BETWEEN 200000 AND 225000)                                     
+        AND K100 = 3;                                                           
+SELECT SUM(K1K) FROM DAVID.SQ2                                                  
+  WHERE (KSEQ BETWEEN 0 AND 25000                                               
+         OR KSEQ BETWEEN 50000 AND 75000                                        
+         OR KSEQ BETWEEN 100000 AND 125000                                      
+         OR KSEQ BETWEEN 150000 AND 175000                                      
+         OR KSEQ BETWEEN 200000 AND 225000)                                     
+        AND K25 = 3;                                                            
+SELECT SUM(K1K) FROM DAVID.SQ2                                                  
+  WHERE (KSEQ BETWEEN 0 AND 25000                                               
+         OR KSEQ BETWEEN 50000 AND 75000                                        
+         OR KSEQ BETWEEN 100000 AND 125000                                      
+         OR KSEQ BETWEEN 150000 AND 175000                                      
+         OR KSEQ BETWEEN 200000 AND 225000)                                     
+        AND K10 = 3;                                                            
+SELECT SUM(K1K) FROM DAVID.SQ2                                                  
+  WHERE (KSEQ BETWEEN 0 AND 25000                                               
+         OR KSEQ BETWEEN 50000 AND 75000                                        
+         OR KSEQ BETWEEN 100000 AND 125000                                      
+         OR KSEQ BETWEEN 150000 AND 175000                                      
+         OR KSEQ BETWEEN 200000 AND 225000)                                     
+        AND K5 = 3;                                                             
+SELECT SUM(K1K) FROM DAVID.SQ2                                                  
+  WHERE (KSEQ BETWEEN 0 AND 25000                                               
+         OR KSEQ BETWEEN 50000 AND 75000                                        
+         OR KSEQ BETWEEN 100000 AND 125000                                      
+         OR KSEQ BETWEEN 150000 AND 175000                                      
+         OR KSEQ BETWEEN 200000 AND 225000)                                     
+        AND K4 = 3;                                                             
+-- Q401 --                                                                      
+SELECT KSEQ, K500K FROM DAVID.SQ2                                               
+   WHERE K2 = 1                                                                 
+   AND K100 > 80                                                                
+   AND K10K BETWEEN 2000 AND 3000;                                              
+SELECT KSEQ, K500K FROM DAVID.SQ2                                               
+   WHERE  K100 > 80                                                             
+   AND K10K BETWEEN 2000 AND 3000                                               
+   AND K5 = 3;                                                                  
+SELECT KSEQ, K500K FROM DAVID.SQ2                                               
+   WHERE K10K BETWEEN 2000 AND 3000                                             
+   AND K5 = 3                                                                   
+   AND (K25 = 11 OR K25 = 9);                                                   
+SELECT KSEQ, K500K FROM DAVID.SQ2                                               
+   WHERE  K5 = 3                                                                
+   AND (K25 = 11 OR K25 = 9)                                                    
+   AND K4 = 3;                                                                  
+SELECT KSEQ, K500K FROM DAVID.SQ2                                               
+   WHERE (K25 = 11 OR K25 = 9)                                                  
+   AND K4 = 3                                                                   
+   AND K100 < 41;                                                               
+SELECT KSEQ, K500K FROM DAVID.SQ2                                               
+   WHERE K4 = 3                                                                 
+   AND K100 < 41                                                                
+   AND K1K BETWEEN 850 AND 950;                                                 
+SELECT KSEQ, K500K FROM DAVID.SQ2                                               
+   WHERE K100 < 41                                                              
+   AND K1K BETWEEN 850 AND 950                                                  
+   AND K10 = 7;                                                                 
+SELECT KSEQ, K500K FROM DAVID.SQ2                                               
+   WHERE K1K BETWEEN 850 AND 950                                                
+   AND K10 = 7                                                                  
+   AND K25 BETWEEN 3 AND 4;                                                     
+SELECT KSEQ, K500K FROM DAVID.SQ2                                               
+   WHERE K2 = 1                                                                 
+   AND K100 > 80                                                                
+   AND K10K BETWEEN 2000 AND 3000                                               
+   AND K5 = 3                                                                   
+   AND (K25 = 11 OR K25 = 9);                                                   
+SELECT KSEQ, K500K FROM DAVID.SQ2                                               
+   WHERE K100 > 80                                                              
+   AND K10K BETWEEN 2000 AND 3000                                               
+   AND K5 = 3                                                                   
+   AND (K25 = 11 OR K25 = 9)                                                    
+   AND K4 = 3;                                                                  
+SELECT KSEQ, K500K FROM DAVID.SQ2                                               
+   WHERE K10K BETWEEN 2000 AND 3000                                             
+   AND K5 = 3                                                                   
+   AND (K25 = 11 OR K25 = 9)                                                    
+   AND K4 = 3                                                                   
+   AND K100 < 41;                                                               
+SELECT KSEQ, K500K FROM DAVID.SQ2                                               
+   WHERE K5 = 3                                                                 
+   AND (K25 = 11 OR K25 = 9)                                                    
+   AND K4 = 3                                                                   
+   AND K100 < 41                                                                
+   AND K1K BETWEEN 850 AND 950;                                                 
+SELECT KSEQ, K500K FROM DAVID.SQ2                                               
+   WHERE (K25 = 11 OR K25 = 9)                                                  
+   AND K4 = 3                                                                   
+   AND K100 < 41                                                                
+   AND K1K BETWEEN 850 AND 950                                                  
+   AND K10 = 7;                                                                 
+SELECT KSEQ, K500K FROM DAVID.SQ2                                               
+   WHERE K4 = 3                                                                 
+   AND K100 < 41                                                                
+   AND K1K BETWEEN 850 AND 950                                                  
+   AND K10 = 7                                                                  
+   AND K1K BETWEEN 3 AND 4;                                                     
+-- Q501 --                                                                      
+SELECT K2, K100, COUNT(*) FROM DAVID.SQ2                                        
+ GROUP BY K2, K100;                                                             
+SELECT K4, K25, COUNT(*) FROM DAVID.SQ2                                         
+ GROUP BY K4, K25;                                                              
+SELECT K10, K25, COUNT(*) FROM DAVID.SQ2                                        
+ GROUP BY K10, K25;                                                             
+-- Q601 --                                                                      
+SELECT COUNT(*) FROM DAVID.SQ2 T1, DAVID.SQ2 T2                                 
+ WHERE T1.K100K = 49                                                            
+ AND T1.K250K = T2.K500K;                                                       
+SELECT COUNT(*) FROM DAVID.SQ2 T1, DAVID.SQ2 T2                                 
+ WHERE T1.K40K = 49                                                             
+ AND T1.K250K = T2.K500K;                                                       
+SELECT COUNT(*) FROM DAVID.SQ2 T1, DAVID.SQ2 T2                                 
+ WHERE T1.K10K = 49                                                             
+ AND T1.K250K = T2.K500K;                                                       
+SELECT COUNT(*) FROM DAVID.SQ2 T1, DAVID.SQ2 T2                                 
+ WHERE T1.K1K = 49                                                              
+ AND T1.K250K = T2.K500K;                                                       
+SELECT COUNT(*) FROM DAVID.SQ2 T1, DAVID.SQ2 T2                                 
+ WHERE T1.K100 = 49                                                             
+ AND T1.K250K = T2.K500K;                                                       
+SELECT COUNT(*) FROM DAVID.SQ2 T1, DAVID.SQ2 T2                                 
+ WHERE T1.K100K = 49                                                            
+ AND T1.K250K = T2.K500K                                                        
+ AND T2.K25 =19;                                                                
+SELECT COUNT(*) FROM DAVID.SQ2 T1, DAVID.SQ2 T2                                 
+ WHERE T1.K40K = 49                                                             
+ AND T1.K250K = T2.K500K                                                        
+ AND T2.K25 =19;                                                                
+SELECT COUNT(*) FROM DAVID.SQ2 T1, DAVID.SQ2 T2                                 
+ WHERE T1.K10K = 49                                                             
+ AND T1.K250K = T2.K500K                                                        
+ AND T2.K25 =19;                                                                
+SELECT COUNT(*) FROM DAVID.SQ2 T1, DAVID.SQ2 T2                                 
+ WHERE T1.K1K = 49                                                              
+ AND T1.K250K = T2.K500K                                                        
+ AND T2.K25 =19;                                                                
+SELECT COUNT(*) FROM DAVID.SQ2 T1, DAVID.SQ2 T2                                 
+ WHERE T1.K100 = 49                                                             
+ AND T1.K250K = T2.K500K                                                        
+ AND T2.K25 =19;                                                                

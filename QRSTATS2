@@ -1,0 +1,24 @@
+SELECT DBNAME, TSNAME, CARD, NPAGES, PCTPAGES                                   
+ FROM SYSIBM.SYSTABLES WHERE NAME = 'SQ1';                                      
+SELECT  TBNAME,                                                                 
+        HIGH2KEY, LOW2KEY, COLCARD, NAME FROM SYSIBM.SYSCOLUMNS                 
+ WHERE TBNAME = 'SQ1';                                                          
+SELECT   NAME, CLUSTERED,                                                       
+ FULLKEYCARD, NLEAF, NLEVELS,                                                   
+ CLUSTERRATIO FROM SYSIBM.SYSINDEXES WHERE TBNAME = 'SQ1'                       
+  ORDER BY NAME;                                                                
+ SELECT DBNAME,                                                                 
+        NACTIVE FROM SYSIBM.SYSTABLESPACE WHERE DBNAME = 'SQ1DB';               
+ SELECT DBNAME,                                                                 
+ CARD, NEARINDREF, FARINDREF, PERCACTIVE, PERCDROP                              
+ FROM SYSIBM.SYSTABLEPART WHERE DBNAME = 'SQ1DB';                               
+ SELECT IXNAME, CARD, NEAROFFPOS, FAROFFPOS, LEAFDIST                           
+ FROM SYSIBM.SYSINDEXPART                                                       
+ WHERE IXNAME IN ('SQ1I01', 'SQ1I02', 'SQ1I03', 'SQ1I04',                       
+                  'SQ1I05', 'SQ1I06', 'SQ1I07', 'SQ1I08',                       
+                  'SQ1I09', 'SQ1I10', 'SQ1I11', 'SQ1I12',                       
+                  'SQ1I13') ORDER BY IXNAME;                                    
+ SELECT NAME, COLNO, EXITPARML, EXITPARM                                        
+ FROM SYSIBM.SYSFIELDS                                                          
+ WHERE TBNAME = 'SQ1'                                                           
+ ORDER BY COLNO, EXITPARML;                                                     

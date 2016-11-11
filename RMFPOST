@@ -1,0 +1,19 @@
+//OCT14941 JOB (RWM,T),'DUMP',CLASS=A,MSGCLASS=O                                
+//U100    EXEC PGM=ERBRMFPP,REGION=4096K                                        
+//MFPINPUT  DD DSN=DJYSMF.OCT14941.SMFDATA,DISP=SHR,UNIT=3390,                  
+//          VOL=SER=DJYSMF                                                      
+//SYSIN DD *                                                                    
+SYSOUT(P)                                                                       
+RTOD(0734,0747)                                                                 
+STOD(0734,0747)                                                                 
+DINTV(2359)                                                                     
+NOEXITS                                                                         
+MAXPLEN(55)                                                                     
+NOEXITS                                                                         
+MAXPLEN(55)                                                                     
+REPORTS(CPU,CHAN,DEVICE(DASD),PAGESP,PAGING,IOQ,VSTOR(D))                       
+REPORTS(WKLD(PERIOD,GROUP,NORANGE,OBJ,DOMAIN,NOSYSTEM,NOTIME))                  
+REPORTS(DEVICE(COMM))                                                           
+REPORTS(DEVICE(TAPE))                                                           
+SUMMARY(INT,TOT)                                                                
+/*                                                                              

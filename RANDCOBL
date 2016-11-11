@@ -1,0 +1,156 @@
+       ID DIVISION.                                                             
+       PROGRAM-ID. RANDCOBL.                                                    
+       AUTHOR. D J YOUNG.                                                       
+       ENVIRONMENT DIVISION.                                                    
+       INPUT-OUTPUT SECTION.                                                    
+       FILE-CONTROL.                                                            
+           SELECT OUTPUT-FILE ASSIGN TO UT-S-OUTPUT.                            
+       DATA DIVISION.                                                           
+       FILE SECTION.                                                            
+       FD  OUTPUT-FILE                                                          
+           BLOCK CONTAINS 0 RECORDS                                             
+           RECORD CONTAINS 200 CHARACTERS                                       
+           RECORDING MODE F                                                     
+           LABEL RECORDS ARE STANDARD.                                          
+       01  OUTPUT-RECORD        PIC X(200).                                     
+       WORKING-STORAGE SECTION.                                                 
+       77  ABEND-CODE           PIC S9(4) COMP.                                 
+       77  TIMER-CONSTANT       PIC S9(10) COMP VALUE +4096000000.              
+       01  OUTPUT-BUFFER.                                                       
+           05  KSEQ             PIC S9(9) COMP.                                 
+           05  KIN1             PIC S9(9) COMP.                                 
+           05  KIN2             PIC S9(9) COMP.                                 
+           05  KIN3             PIC S9(9) COMP.                                 
+           05  KIN4             PIC S9(9) COMP.                                 
+           05  KIN5             PIC S9(9) COMP.                                 
+           05  KIN6             PIC S9(9) COMP.                                 
+           05  KIN7             PIC S9(9) COMP.                                 
+           05  KIN8             PIC S9(9) COMP.                                 
+           05  KIN9             PIC S9(9) COMP.                                 
+           05  KIN10            PIC S9(9) COMP.                                 
+           05  KIN11            PIC S9(9) COMP.                                 
+           05  KIN12            PIC S9(9) COMP.                                 
+           05  REST             PIC X(148) VALUE ALL 'A'.                       
+       01  INDEXED-FIELD-DIVISORS.                                              
+           05  KIN1-VAL         PIC S9(9) COMP VALUE .5.                        
+           05  KIN2-VAL         PIC S9(9) COMP VALUE .25.                       
+           05  KIN3-VAL         PIC S9(9) COMP VALUE .10.                       
+           05  KIN4-VAL         PIC S9(9) COMP VALUE .04.                       
+           05  KIN5-VAL         PIC S9(9) COMP VALUE .01.                       
+           05  KIN6-VAL         PIC S9(9) COMP VALUE .001.                      
+           05  KIN7-VAL         PIC S9(9) COMP VALUE .0001.                     
+           05  KIN8-VAL         PIC S9(9) COMP VALUE .00025.                    
+           05  KIN9-VAL         PIC S9(9) COMP VALUE .00001.                    
+           05  KIN10-VAL        PIC S9(9) COMP VALUE .000005.                   
+           05  KIN11-VAL        PIC S9(9) COMP VALUE .000004.                   
+           05  KIN12-VAL        PIC S9(9) COMP VALUE .000002.                   
+       01  RANDASM-PARMS.                                                       
+           05  LOWER-BOUND      PIC S9(9) COMP VALUE 1.                         
+           05  UPPER-BOUND      PIC S9(9) COMP VALUE 200.                       
+           05  RANGE2           PIC S9(9) COMP VALUE 404.                       
+           05  SEED             PIC S9(9) COMP.                                 
+       LINKAGE SECTION.                                                         
+       01  INPUT-PARMS.                                                         
+           05  PARM-LENGTH      PIC S9(3) COMP.                                 
+           05  STARTING-KSEQ    PIC 9(9).                                       
+           05  FILLER           PIC X.                                          
+           05  ENDING-KSEQ      PIC 9(9).                                       
+           05  FILLER           PIC X.                                          
+           05  TOTAL-ROWS       PIC 9(9).                                       
+       PROCEDURE DIVISION.                                                      
+       MAIN-ROUTINE.                                                            
+      *(1)                                                                      
+           OPEN OUTPUT OUTPUT-FILE.                                             
+      *(2)                                                                      
+           MOVE STARTING-KSEQ TO SEED.                                          
+           MOVE STARTING-KSEQ TO KSEQ.                                          
+      *(3)                                                                      
+           CALL 'RANDASM' USING LOWER-BOUND,                                    
+                                UPPER-BOUND,                                    
+                                RANGE2,                                         
+                                KIN1,                                           
+                                SEED.                                           
+      *(4)                                                                      
+           PERFORM COMPUTE-AND-WRITE UNTIL KSEQ > ENDING-KSEQ.                  
+      *(5)                                                                      
+           CLOSE OUTPUT-FILE.                                                   
+           GOBACK.                                                              
+      ******************************************************************        
+      *                                                                         
+      *                                                                         
+      ******************************************************************        
+      GET-AND-WRITE.                                                            
+          COMPUTE UPPER-BOUND = TOTAL-ROWS * KIN1-VAL.                          
+          COMPUTE RANGE2 = 2 * (UPPER-BOUND - LOWER-BOUND + 1).                 
+          CALL 'RANDASM' USING LOWER-BOUND,                                     
+                               UPPER-BOUND,                                     
+                               RANGE2,                                          
+                               KIN1.                                            
+          COMPUTE UPPER-BOUND = TOTAL-ROWS * KIN2-VAL.                          
+          COMPUTE RANGE2 = 2 * (UPPER-BOUND - LOWER-BOUND + 1).                 
+          CALL 'RANDASM' USING LOWER-BOUND,                                     
+                               UPPER-BOUND,                                     
+                               RANGE2,                                          
+                               KIN2.                                            
+          COMPUTE UPPER-BOUND = TOTAL-ROWS * KIN3-VAL.                          
+          COMPUTE RANGE2 = 2 * (UPPER-BOUND - LOWER-BOUND + 1).                 
+          CALL 'RANDASM' USING LOWER-BOUND,                                     
+                               UPPER-BOUND,                                     
+                               RANGE2,                                          
+                               KIN3.                                            
+          COMPUTE UPPER-BOUND = TOTAL-ROWS * KIN4-VAL.                          
+          COMPUTE RANGE2 = 2 * (UPPER-BOUND - LOWER-BOUND + 1).                 
+          CALL 'RANDASM' USING LOWER-BOUND,                                     
+                               UPPER-BOUND,                                     
+                               RANGE2,                                          
+                               KIN4.                                            
+          COMPUTE UPPER-BOUND = TOTAL-ROWS * KIN5-VAL.                          
+          COMPUTE RANGE2 = 2 * (UPPER-BOUND - LOWER-BOUND + 1).                 
+          CALL 'RANDASM' USING LOWER-BOUND,                                     
+                               UPPER-BOUND,                                     
+                               RANGE2,                                          
+                               KIN5.                                            
+          COMPUTE UPPER-BOUND = TOTAL-ROWS * KIN6-VAL.                          
+          COMPUTE RANGE2 = 2 * (UPPER-BOUND - LOWER-BOUND + 1).                 
+          CALL 'RANDASM' USING LOWER-BOUND,                                     
+                               UPPER-BOUND,                                     
+                               RANGE2,                                          
+                               KIN6.                                            
+          COMPUTE UPPER-BOUND = TOTAL-ROWS * KIN7-VAL.                          
+          COMPUTE RANGE2 = 2 * (UPPER-BOUND - LOWER-BOUND + 1).                 
+          CALL 'RANDASM' USING LOWER-BOUND,                                     
+                               UPPER-BOUND,                                     
+                               RANGE2,                                          
+                               KIN7.                                            
+          COMPUTE UPPER-BOUND = TOTAL-ROWS * KIN8-VAL.                          
+          COMPUTE RANGE2 = 2 * (UPPER-BOUND - LOWER-BOUND + 1).                 
+          CALL 'RANDASM' USING LOWER-BOUND,                                     
+                               UPPER-BOUND,                                     
+                               RANGE2,                                          
+                               KIN8.                                            
+          COMPUTE UPPER-BOUND = TOTAL-ROWS * KIN9-VAL.                          
+          COMPUTE RANGE2 = 2 * (UPPER-BOUND - LOWER-BOUND + 1).                 
+          CALL 'RANDASM' USING LOWER-BOUND,                                     
+                               UPPER-BOUND,                                     
+                               RANGE2,                                          
+                               KIN9.                                            
+          COMPUTE UPPER-BOUND = TOTAL-ROWS * KIN10-VAL.                         
+          COMPUTE RANGE2 = 2 * (UPPER-BOUND - LOWER-BOUND + 1).                 
+          CALL 'RANDASM' USING LOWER-BOUND,                                     
+                               UPPER-BOUND,                                     
+                               RANGE2,                                          
+                               KIN10.                                           
+          COMPUTE UPPER-BOUND = TOTAL-ROWS * KIN11-VAL.                         
+          COMPUTE RANGE2 = 2 * (UPPER-BOUND - LOWER-BOUND + 1).                 
+          CALL 'RANDASM' USING LOWER-BOUND,                                     
+                               UPPER-BOUND,                                     
+                               RANGE2,                                          
+                               KIN11.                                           
+          COMPUTE UPPER-BOUND = TOTAL-ROWS * KIN12-VAL.                         
+          COMPUTE RANGE2 = 2 * (UPPER-BOUND - LOWER-BOUND + 1).                 
+          CALL 'RANDASM' USING LOWER-BOUND,                                     
+                               UPPER-BOUND,                                     
+                               RANGE2,                                          
+                               KIN12.                                           
+          WRITE OUTPUT-RECORD FROM OUTPUT-BUFFER.                               
+          ADD 1 TO KSEQ.                                                        

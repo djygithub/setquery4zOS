@@ -1,0 +1,12 @@
+  Q601TRAN: MSGUTBL                                                             
+  'Q601';'Q602';'Q603';'Q604';'Q605';'Q606';'Q607';'Q608';'Q609';'Q610'         
+  ENDUTBL                                                                       
+Q601: MSGTXT                                                                    
+Q601DATA='000000001000001000'                                                   
+DO FOREVER                                                                      
+    TRANSMIT USING CLEAR AND WAIT UNTIL ONIN                                    
+    Q6TN=UTBL(Q601TRAN,'R')                                                     
+   TYPE Q6TN||Q601DATA                                                          
+   TRANSMIT USING ENTER AND WAIT UNTIL ONIN                                     
+END                                                                             
+ENDTXT                                                                          

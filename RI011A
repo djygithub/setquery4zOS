@@ -1,0 +1,21 @@
+//RSDB2I11 JOB (D3330RWM,ROOM),'D J YOUNG',MSGCLASS=X                           
+//RSDB2I11 EXEC PGM=ADRDSSU,REGION=4096K                                        
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=DB2I11                                    
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=3480,DSN=DSS.BACKUP.VDB2I11,                
+//         VOL=SER=(000783,002374,000449,000363,002643)                         
+//SYSPRINT DD SYSOUT=*                                                          
+ REST INDDNAME(TAPE1),OUTDDNAME(DASD1)                                          
+//RSDB2I12 EXEC PGM=ADRDSSU,REGION=4096K                                        
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=DB2I12                                    
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=3480,DSN=DSS.BACKUP.VDB2I12,                
+//         VOL=SER=(002660,002658,001764,002642)                                
+//SYSPRINT DD SYSOUT=*                                                          
+ REST INDDNAME(TAPE1),OUTDDNAME(DASD1)                                          

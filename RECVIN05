@@ -1,0 +1,51 @@
+//RECVINDX JOB (AAA),'D J YOUNG',MSGCLASS=X,TIME=1440,USER=DAVID,               
+//         REGION=0K                                                            
+//DSNUPROC PROC LIB='SYS1.DSNLOAD',                                             
+//         SYSTEM=DSN,                                                          
+//         SIZE=1024K,UID='',UTPROC=''                                          
+//*        SIZE=1024K,UID='',UTPROC='RESTART'                                   
+//DSNUPROC EXEC PGM=DSNUTILB,REGION=&SIZE,                                      
+//         PARM=(&SYSTEM,'&UID','&UTPROC')                                      
+//STEPLIB  DD DSN=&LIB,DISP=SHR                                                 
+//SYSPRINT DD SYSOUT=*                                                          
+//UTPRINT  DD SYSOUT=*                                                          
+//SYSUDUMP DD SYSOUT=*                                                          
+//    PEND                                                                      
+//UTIL EXEC DSNUPROC,SYSTEM=DSN,UID='LOADDB',UTPROC=''                          
+//*                                                                             
+//**********************************************                                
+//*                                                                             
+//*  GENERATING JCL FOR THE LOAD UTILITY                                        
+//*  DATE:  11/04/87          TIME:  05:03:15                                   
+//*                                                                             
+//**********************************************                                
+//*                                                                             
+//DSNUPROC.SORTWK01 DD DSN=&&SORT1,                                             
+//     DISP=(,DELETE),DCB=BLKSIZE=15400,                                        
+//     SPACE=(CYL,(500,100),,,ROUND),                                           
+//     UNIT=SYSDA,VOL=SER=DB2S02                                                
+//DSNUPROC.SORTWK02 DD DSN=&&SORT2,                                             
+//     DISP=(,DELETE),DCB=BLKSIZE=15400,                                        
+//     SPACE=(CYL,(500,100),,,ROUND),                                           
+//     UNIT=SYSDA,VOL=SER=AMW000                                                
+//DSNUPROC.SORTWK03 DD DSN=&&SORT3,                                             
+//     DISP=(,DELETE),DCB=BLKSIZE=15400,                                        
+//     SPACE=(CYL,(500,100),,,ROUND),                                           
+//     UNIT=SYSDA,VOL=SER=MV4DLB                                                
+//DSNUPROC.SORTWK04 DD DSN=&&SORT4,                                             
+//     DISP=(,DELETE),DCB=BLKSIZE=15400,                                        
+//     SPACE=(CYL,(500,100),,,ROUND),                                           
+//     UNIT=SYSDA,VOL=SER=MV4RS1                                                
+//DSNUPROC.SYSUT1 DD DSN=&&SYSUT1,                                              
+//     DISP=(,DELETE),DCB=BLKSIZE=15400,                                        
+//     SPACE=(CYL,(1000,50),,,ROUND),                                           
+//     UNIT=SYSDA,VOL=SER=DB2S01                                                
+//DSNUPROC.SORTOUT DD DSN=&&SORTOT,                                             
+//     DISP=(,DELETE),DCB=BLKSIZE=15400,                                        
+//     SPACE=(CYL,(1000,50),,,ROUND),                                           
+//     UNIT=SYSDA,VOL=SER=MV4CAT                                                
+//DSNUPROC.MYDD1 DD DSN=DAVID.RANDOM.OUTPUT,DISP=SHR                            
+//DSNUPROC.SYSMAP DD  DSN=&&SYSMAP,UNIT=SYSDA,DISP=(NEW,DELETE,DELETE),         
+// SPACE=(CYL,(50,50)),DCB=BLKSIZE=15400,VOL=SER=MV4RS1                         
+//DSNUPROC.SYSIN    DD  *                                                       
+ RECOVER INDEX ALL TABLESPACE SQ10DB.SQ10TS                             00010000

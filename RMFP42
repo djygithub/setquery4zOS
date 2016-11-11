@@ -1,0 +1,20 @@
+//FBI00003 JOB (RWM,T),'DUMP',CLASS=A,MSGCLASS=O                        00010000
+//U50     EXEC PGM=ERBRMFPP,REGION=4096K                                00020000
+//STEPLIB DD DSN=SYS42.LINKLIB,DISP=SHR                                 00021001
+//MFPINPUT  DD DSN=DB25CF.FBI00003.SMFDATA,DISP=SHR,UNIT=3390,          00022000
+//          VOL=SER=DB25CF                                              00023000
+//SYSIN DD *                                                            00024000
+SYSOUT(Q)                                                               00025000
+RTOD(1039,1054)                                                         00026000
+STOD(1039,1054)                                                         00027000
+DINTV(2359)                                                             00028000
+NOEXITS                                                                 00029000
+MAXPLEN(55)                                                             00030000
+NOEXITS                                                                 00040000
+MAXPLEN(55)                                                             00050000
+REPORTS(CPU,CHAN,DEVICE(DASD),PAGESP,PAGING,IOQ,VSTOR(D))               00060000
+REPORTS(WKLD(PERIOD,GROUP,NORANGE,OBJ,DOMAIN,NOSYSTEM,NOTIME))          00070000
+REPORTS(DEVICE(COMM))                                                   00080000
+REPORTS(DEVICE(TAPE))                                                   00090000
+SUMMARY(INT,TOT)                                                        00100000
+/*                                                                      00110000

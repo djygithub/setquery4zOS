@@ -1,0 +1,136 @@
+//JUN04921 JOB (RWM,T),'DUMP',CLASS=A,MSGCLASS=O                                
+//U800    EXEC PGM=ERBRMFPP,REGION=4096K                                        
+//STEPLIB DD DSN=SYS1.LINKLIB,UNIT=3390,VOL=SER=MV4RS1,DISP=SHR                 
+//MFPINPUT  DD DSN=DB25CF.JUN03922.SMFDATA,DISP=SHR,UNIT=3390,                  
+//          VOL=SER=DB25CF                                                      
+//SYSIN DD *                                                                    
+SYSOUT(Q)                                                                       
+RTOD(0755,0805)                                                                 
+STOD(0755,0805)                                                                 
+DINTV(2359)                                                                     
+NOEXITS                                                                         
+MAXPLEN(55)                                                                     
+NOEXITS                                                                         
+MAXPLEN(55)                                                                     
+REPORTS(CPU,CHAN,DEVICE(DASD),PAGESP,PAGING,IOQ,VSTOR(D))                       
+REPORTS(WKLD(PERIOD,GROUP,NORANGE,OBJ,DOMAIN,NOSYSTEM,NOTIME))                  
+REPORTS(DEVICE(COMM))                                                           
+REPORTS(DEVICE(TAPE))                                                           
+SUMMARY(INT,TOT)                                                                
+/*                                                                              
+//U900    EXEC PGM=ERBRMFPP,REGION=4096K                                        
+//STEPLIB DD DSN=SYS1.LINKLIB,UNIT=3390,VOL=SER=MV4RS1,DISP=SHR                 
+//MFPINPUT  DD DSN=DB25CF.JUN03922.SMFDATA,DISP=SHR,UNIT=3390,                  
+//          VOL=SER=DB25CF                                                      
+//SYSIN DD *                                                                    
+SYSOUT(Q)                                                                       
+RTOD(0810,0820)                                                                 
+STOD(0810,0820)                                                                 
+DINTV(2359)                                                                     
+NOEXITS                                                                         
+MAXPLEN(55)                                                                     
+NOEXITS                                                                         
+MAXPLEN(55)                                                                     
+REPORTS(CPU,CHAN,DEVICE(DASD),PAGESP,PAGING,IOQ,VSTOR(D))                       
+REPORTS(WKLD(PERIOD,GROUP,NORANGE,OBJ,DOMAIN,NOSYSTEM,NOTIME))                  
+REPORTS(DEVICE(COMM))                                                           
+REPORTS(DEVICE(TAPE))                                                           
+SUMMARY(INT,TOT)                                                                
+//                                                                              
+/*                                                                              
+//U1000   EXEC PGM=ERBRMFPP,REGION=4096K                                        
+//STEPLIB DD DSN=SYS1.LINKLIB,UNIT=3390,VOL=SER=MV4RS1,DISP=SHR                 
+//MFPINPUT  DD DSN=DB25CF.JUN04921.SMFDATA,DISP=SHR,UNIT=3390,                  
+//          VOL=SER=DB25CF                                                      
+//SYSIN DD *                                                                    
+SYSOUT(Q)                                                                       
+RTOD(1436,1446)                                                                 
+STOD(1436,1446)                                                                 
+DINTV(2359)                                                                     
+NOEXITS                                                                         
+MAXPLEN(55)                                                                     
+NOEXITS                                                                         
+MAXPLEN(55)                                                                     
+REPORTS(CPU,CHAN,DEVICE(DASD),PAGESP,PAGING,IOQ,VSTOR(D))                       
+REPORTS(WKLD(PERIOD,GROUP,NORANGE,OBJ,DOMAIN,NOSYSTEM,NOTIME))                  
+REPORTS(DEVICE(COMM))                                                           
+REPORTS(DEVICE(TAPE))                                                           
+SUMMARY(INT,TOT)                                                                
+/*                                                                              
+//U700    EXEC PGM=ERBRMFPP,REGION=4096K                                        
+//STEPLIB DD DSN=SYS1.LINKLIB,UNIT=3390,VOL=SER=MV4RS1,DISP=SHR                 
+//MFPINPUT  DD DSN=DB25CF.JUN04921.SMFDATA,DISP=SHR,UNIT=3390,                  
+//          VOL=SER=DB25CF                                                      
+//SYSIN DD *                                                                    
+SYSOUT(Q)                                                                       
+RTOD(1451,1501)                                                                 
+STOD(1451,1501)                                                                 
+DINTV(2359)                                                                     
+NOEXITS                                                                         
+MAXPLEN(55)                                                                     
+NOEXITS                                                                         
+MAXPLEN(55)                                                                     
+REPORTS(CPU,CHAN,DEVICE(DASD),PAGESP,PAGING,IOQ,VSTOR(D))                       
+REPORTS(WKLD(PERIOD,GROUP,NORANGE,OBJ,DOMAIN,NOSYSTEM,NOTIME))                  
+REPORTS(DEVICE(COMM))                                                           
+REPORTS(DEVICE(TAPE))                                                           
+SUMMARY(INT,TOT)                                                                
+/*                                                                              
+//U800    EXEC PGM=ERBRMFPP,REGION=4096K                                        
+//STEPLIB DD DSN=SYS1.LINKLIB,UNIT=3390,VOL=SER=MV4RS1,DISP=SHR                 
+//MFPINPUT  DD DSN=DB25CF.JUN04921.SMFDATA,DISP=SHR,UNIT=3390,                  
+//          VOL=SER=DB25CF                                                      
+//SYSIN DD *                                                                    
+SYSOUT(Q)                                                                       
+RTOD(1506,1516)                                                                 
+STOD(1506,1516)                                                                 
+DINTV(2359)                                                                     
+NOEXITS                                                                         
+MAXPLEN(55)                                                                     
+NOEXITS                                                                         
+MAXPLEN(55)                                                                     
+REPORTS(CPU,CHAN,DEVICE(DASD),PAGESP,PAGING,IOQ,VSTOR(D))                       
+REPORTS(WKLD(PERIOD,GROUP,NORANGE,OBJ,DOMAIN,NOSYSTEM,NOTIME))                  
+REPORTS(DEVICE(COMM))                                                           
+REPORTS(DEVICE(TAPE))                                                           
+SUMMARY(INT,TOT)                                                                
+/*                                                                              
+//                                                                              
+//U900    EXEC PGM=ERBRMFPP,REGION=4096K                                        
+//STEPLIB DD DSN=SYS1.LINKLIB,UNIT=3390,VOL=SER=MV4RS1,DISP=SHR                 
+//MFPINPUT  DD DSN=DB25CF.JUN04921.SMFDATA,DISP=SHR,UNIT=3390,                  
+//          VOL=SER=DB25CF                                                      
+//SYSIN DD *                                                                    
+SYSOUT(Q)                                                                       
+RTOD(1521,1610)                                                                 
+STOD(1521,1610)                                                                 
+DINTV(2359)                                                                     
+NOEXITS                                                                         
+MAXPLEN(55)                                                                     
+NOEXITS                                                                         
+MAXPLEN(55)                                                                     
+REPORTS(CPU,CHAN,DEVICE(DASD),PAGESP,PAGING,IOQ,VSTOR(D))                       
+REPORTS(WKLD(PERIOD,GROUP,NORANGE,OBJ,DOMAIN,NOSYSTEM,NOTIME))                  
+REPORTS(DEVICE(COMM))                                                           
+REPORTS(DEVICE(TAPE))                                                           
+SUMMARY(INT,TOT)                                                                
+/*                                                                              
+//U1000   EXEC PGM=ERBRMFPP,REGION=4096K                                        
+//STEPLIB DD DSN=SYS1.LINKLIB,UNIT=3390,VOL=SER=MV4RS1,DISP=SHR                 
+//MFPINPUT  DD DSN=DB25CF.JUN04921.SMFDATA,DISP=SHR,UNIT=3390,                  
+//          VOL=SER=DB25CF                                                      
+//SYSIN DD *                                                                    
+SYSOUT(Q)                                                                       
+RTOD(1536,1625)                                                                 
+STOD(1536,1625)                                                                 
+DINTV(2359)                                                                     
+NOEXITS                                                                         
+MAXPLEN(55)                                                                     
+NOEXITS                                                                         
+MAXPLEN(55)                                                                     
+REPORTS(CPU,CHAN,DEVICE(DASD),PAGESP,PAGING,IOQ,VSTOR(D))                       
+REPORTS(WKLD(PERIOD,GROUP,NORANGE,OBJ,DOMAIN,NOSYSTEM,NOTIME))                  
+REPORTS(DEVICE(COMM))                                                           
+REPORTS(DEVICE(TAPE))                                                           
+SUMMARY(INT,TOT)                                                                
+/*                                                                              

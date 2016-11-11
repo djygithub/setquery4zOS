@@ -1,0 +1,20 @@
+SELECT DBNAME, TSNAME, CARD, NPAGES, PCTPAGES                                   
+ FROM SYSIBM.SYSTABLES WHERE NAME = 'SQ100';                                    
+SELECT  TBNAME,                                                                 
+        HIGH2KEY, LOW2KEY, COLCARD, NAME FROM SYSIBM.SYSCOLUMNS                 
+ WHERE TBNAME = 'SQ100';                                                        
+SELECT   NAME, CLUSTERED,                                                       
+ FULLKEYCARD, NLEAF, NLEVELS,                                                   
+ CLUSTERRATIO FROM SYSIBM.SYSINDEXES WHERE TBNAME = 'SQ100'                     
+  ORDER BY NAME;                                                                
+ SELECT DBNAME,                                                                 
+        NACTIVE FROM SYSIBM.SYSTABLESPACE WHERE DBNAME = 'SQ100DB';             
+ SELECT DBNAME,                                                                 
+ CARD, NEARINDREF, FARINDREF, PERCACTIVE, PERCDROP                              
+ FROM SYSIBM.SYSTABLEPART WHERE DBNAME = 'SQ100DB';                             
+ SELECT IXNAME, CARD, NEAROFFPOS, FAROFFPOS, LEAFDIST                           
+ FROM SYSIBM.SYSINDEXPART                                                       
+ WHERE IXNAME IN ('SQ100I01', 'SQ100I02', 'SQ100I03', 'SQ100I04',               
+                  'SQ100I05', 'SQ100I06', 'SQ100I07', 'SQ100I08',               
+                  'SQ100I09', 'SQ100I10', 'SQ100I11', 'SQ100I12',               
+                  'SQ100I13') ORDER BY IXNAME;                                  

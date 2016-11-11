@@ -1,0 +1,234 @@
+//RCTENTRY JOB   0,YOUNG,MSGLEVEL=(1,1),                                        
+//         MSGCLASS=O                                                           
+//*                                                                             
+//*        ALL SUBSEQUENT STEPS ARE ONLY PROVIDED IN PART.                      
+//*        THE DATA FOR THE CICS GEN MUST BE INCLUDED                           
+//*        WITH OTHER INSTALLATION PPT, PCT, AND RCT                            
+//*        INFORMATION.                                                         
+//*                                                                             
+//CICAUPLK PROC OUTC='X',                                                       
+//             REG=6144K,                                                       
+//             WORK=3390                                                        
+//*                                                                             
+//* LIB: CICRS1.CICSVS.IPO1.PROCLIB(CICAUPLK)                                   
+//* GDE: CBIPO CICS INSTALLATION                                                
+//* DOC: THIS PROCEDURE IS USED TO GENERATE CICS/ESA TABLES.                    
+//*      THE FOLLOWING JCL SHOULD BE USED                                       
+//*                                                                             
+//*      //TABLEASM EXEC CICAUPLK                                               
+//*      //ASSEM.SYSUT1 DD *                                                    
+//*         .                                                                   
+//*         . TABLE GENERATION MACROS                                           
+//*         .                                                                   
+//*      /*                                                                     
+//*                                                                             
+//ASSEM   EXEC PGM=IEBGENER,REGION=&REG                                         
+//SYSPRINT DD  SYSOUT=&OUTC                                                     
+//SYSIN    DD  DUMMY                                                            
+//SYSUT2   DD  DSN=&&TEMPPDS(MACROS),                                           
+//             UNIT=&WORK,DISP=(,PASS),                                         
+//             DCB=(RECFM=FB,LRECL=80,BLKSIZE=400),                             
+//             SPACE=(400,(200,100,5))                                          
+//ASM     EXEC PGM=IEV90,                                                       
+//             PARM='SYSPARM(INITIAL),DECK,NOOBJECT',                           
+//             REGION=&REG,                                                     
+//             COND=(3,LT,ASSEM)                                                
+//SYSLIB   DD  DSN=CICS321.SDFHMAC,DISP=SHR                                     
+//         DD  DSN=SYS1.MACLIB,DISP=SHR                                         
+//         DD  DSN=DSN22X.DSNMACS,DISP=SHR                                      
+//*        DD  DSN=CICRS1.CICSVS.SAMPLIB,DISP=SHR                               
+//SYSUT1   DD  UNIT=&WORK,SPACE=(1700,(400,400))                                
+//SYSUT2   DD  UNIT=&WORK,SPACE=(1700,(400,400))                                
+//SYSUT3   DD  UNIT=&WORK,SPACE=(1700,(400,400))                                
+//SYSPUNCH DD  DSN=&&OBJMOD,                                                    
+//             DISP=(,PASS),UNIT=&WORK,                                         
+//             DCB=(RECFM=FB,LRECL=80,BLKSIZE=400),                             
+//             SPACE=(400,(100,100))                                            
+//SYSPRINT DD  SYSOUT=&OUTC                                                     
+//SYSIN    DD  DSN=&&TEMPPDS(MACROS),                                           
+//             DISP=(OLD,PASS)                                                  
+//BLDMBR  EXEC PGM=IEBUPDTE,PARM=NEW,REGION=&REG,                               
+//             COND=((3,LT,ASSEM),(7,LT,ASM))                                   
+//SYSPRINT DD  DUMMY                                                            
+//SYSUT2   DD  DSN=&&TEMPPDS,DISP=(OLD,PASS)                                    
+//SYSIN    DD  DSN=&&OBJMOD,DISP=(OLD,DELETE)                                   
+//LNKEDT  EXEC PGM=IEWL,                                                        
+//             PARM='LIST,XREF,LET,NCAL',                                       
+//             REGION=&REG,                                                     
+//             COND=((3,LT,ASSEM),(7,LT,ASM),                                   
+//             (3,LT,BLDMBR))                                                   
+//SYSUT1   DD  UNIT=&WORK,SPACE=(1024,(100,50))                                 
+//SYSPRINT DD  SYSOUT=&OUTC                                                     
+//SYSLMOD  DD  DSN=SYS1.SDFHAUTH,DISP=SHR                                       
+//SYSPUNCH DD  DSN=&&TEMPPDS,DISP=(OLD,PASS)                                    
+//SYSLIN   DD  DSN=&&TEMPPDS(LNKCTL),                                           
+//             DISP=(OLD,PASS),VOL=REF=*.SYSPUNCH                               
+// PEND                                                                         
+//RCT      EXEC CICAUPLK,COND=(4,LT)                                            
+//ASSEM.SYSUT1 DD *                                                             
+         EJECT                                                                  
+         DSNCRCT TYPE=INIT,SUFFIX=0,THRDMAX=80,SIGNID=DAVID,SUBID=DSN, X        
+               AUTH=(TERM)                                                      
+         DSNCRCT TYPE=POOL,                                            X        
+               THRDM=3,THRDA=3,PLAN=DSN8CC22,THRDS=3                            
+*                                                                               
+*        DEFINE THE PLI SAMPLE TRANSACTION                                      
+*                                                                               
+   DSNCRCT TYPE=ENTRY,TXID=D8PS,THRDM=1,THRDA=1,PLAN=DSN8CP22                   
+         DSNCRCT TYPE=ENTRY,TXID=D8PP,THRDM=1,THRDA=1,PLAN=DSN8CQ22             
+*                                                                               
+*        DEFINE THE COBOL SAMPLE TRANSACTION                                    
+*                                                                               
+ DSNCRCT TYPE=ENTRY,TXID=D8CS,THRDM=1,THRDA=1,PLAN=DSN8CC22                     
+ DSNCRCT TYPE=ENTRY,TXID=SQLA,THRDM=1,THRDA=1,PLAN=DJYSQL0                      
+ DSNCRCT TYPE=ENTRY,TXID=Q101,PLAN=CI2Q101,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q102,PLAN=CI2Q102,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q103,PLAN=CI2Q103,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q104,PLAN=CI2Q104,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q105,PLAN=CI2Q105,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q106,PLAN=CI2Q106,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q107,PLAN=CI2Q107,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q108,PLAN=CI2Q108,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q109,PLAN=CI2Q109,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q110,PLAN=CI2Q110,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q201,PLAN=CI2Q201,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q202,PLAN=CI2Q202,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q203,PLAN=CI2Q203,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q204,PLAN=CI2Q204,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q205,PLAN=CI2Q205,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q206,PLAN=CI2Q206,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q207,PLAN=CI2Q207,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q208,PLAN=CI2Q208,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q209,PLAN=CI2Q209,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q210,PLAN=CI2Q210,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q211,PLAN=CI2Q211,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q212,PLAN=CI2Q212,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q213,PLAN=CI2Q213,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q214,PLAN=CI2Q214,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q215,PLAN=CI2Q215,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q216,PLAN=CI2Q216,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q217,PLAN=CI2Q217,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q218,PLAN=CI2Q218,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q301,PLAN=CI2Q301,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q302,PLAN=CI2Q302,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q303,PLAN=CI2Q303,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q304,PLAN=CI2Q304,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q305,PLAN=CI2Q305,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q306,PLAN=CI2Q306,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q307,PLAN=CI2Q307,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q308,PLAN=CI2Q308,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q309,PLAN=CI2Q309,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q310,PLAN=CI2Q310,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q311,PLAN=CI2Q311,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q312,PLAN=CI2Q312,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q313,PLAN=CI2Q313,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q314,PLAN=CI2Q314,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q315,PLAN=CI2Q315,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q316,PLAN=CI2Q316,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q401,PLAN=CI2Q401,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q402,PLAN=CI2Q402,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q403,PLAN=CI2Q403,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q404,PLAN=CI2Q404,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q405,PLAN=CI2Q405,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q406,PLAN=CI2Q406,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q407,PLAN=CI2Q407,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q408,PLAN=CI2Q408,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q409,PLAN=CI2Q409,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q410,PLAN=CI2Q410,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q411,PLAN=CI2Q411,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q412,PLAN=CI2Q412,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q413,PLAN=CI2Q413,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q414,PLAN=CI2Q414,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q501,PLAN=CI2Q501,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q502,PLAN=CI2Q502,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q503,PLAN=CI2Q503,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q601,PLAN=CI2Q601,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q602,PLAN=CI2Q602,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q603,PLAN=CI2Q603,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q604,PLAN=CI2Q604,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q605,PLAN=CI2Q605,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q606,PLAN=CI2Q606,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q607,PLAN=CI2Q607,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q608,PLAN=CI2Q608,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q609,PLAN=CI2Q609,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+ DSNCRCT TYPE=ENTRY,TXID=Q610,PLAN=CI2Q610,THRDA=1,THRDM=1,THRDS=1,    X        
+               AUTH=(TERM)                                                      
+*                                                                               
+*        DEFINE THE PLI PHONE  TRANSACTION                                      
+*                                                                               
+         DSNCRCT TYPE=ENTRY,TXID=D8PT,THRDM=1,THRDA=1,PLAN=DSN8CH22             
+*                D8PU TRANSACTION USED INTERNALLY                               
+         DSNCRCT TYPE=ENTRY,TXID=D8PU,THRDM=1,THRDA=1,PLAN=DSN8CH22             
+         DSNCRCT TYPE=FINAL                                                     
+         END                                                                    
+//                                                                              

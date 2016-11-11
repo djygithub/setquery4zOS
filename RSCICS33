@@ -1,0 +1,12 @@
+//RSDB2IMS JOB (D3330RWM,ROOM),'D J YOUNG',MSGCLASS=O,TIME=1440                 
+//S1      EXEC PGM=ADRDSSU,REGION=4096K                                         
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=CICS33                                    
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=EE8,DSN=DSS.BACKUP.VCICS33,                 
+//      VOL=SER=(002799,002798)                                                 
+//SYSPRINT DD SYSOUT=*                                                          
+ REST INDDNAME(TAPE1),OUTDDNAME(DASD1) COPYVOLID                                
+//*                                                                             

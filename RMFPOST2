@@ -1,0 +1,73 @@
+//JUL12954 JOB (RWM,T),'DUMP',CLASS=A,MSGCLASS=Q                                
+//LOAD    EXEC PGM=ERBRMFPP,REGION=4096K                                        
+//MFPINPUT  DD DSN=MV43RS.JUL12954.SMFDATA,DISP=SHR,UNIT=3390,                  
+//          VOL=SER=MV43RS                                                      
+//SYSIN DD *                                                                    
+SYSOUT(P)                                                                       
+RTOD(1410,1415)                                                                 
+STOD(1410,1415)                                                                 
+DINTV(2359)                                                                     
+NOEXITS                                                                         
+MAXPLEN(55)                                                                     
+NOEXITS                                                                         
+MAXPLEN(55)                                                                     
+REPORTS(CPU,CHAN,DEVICE(DASD),PAGESP,PAGING,IOQ,VSTOR(D))                       
+REPORTS(WKLD(PERIOD,GROUP,NORANGE,OBJ,DOMAIN,NOSYSTEM,NOTIME))                  
+REPORTS(DEVICE(COMM))                                                           
+REPORTS(DEVICE(TAPE))                                                           
+SUMMARY(INT,TOT)                                                                
+/*                                                                              
+//RUNSTAT EXEC PGM=ERBRMFPP,REGION=4096K                                        
+//MFPINPUT  DD DSN=MV43RS.JUL12954.SMFDATA,DISP=SHR,UNIT=3390,                  
+//          VOL=SER=MV43RS                                                      
+//SYSIN DD *                                                                    
+SYSOUT(P)                                                                       
+RTOD(1416,1419)                                                                 
+STOD(1416,1419)                                                                 
+DINTV(2359)                                                                     
+NOEXITS                                                                         
+MAXPLEN(55)                                                                     
+NOEXITS                                                                         
+MAXPLEN(55)                                                                     
+REPORTS(CPU,CHAN,DEVICE(DASD),PAGESP,PAGING,IOQ,VSTOR(D))                       
+REPORTS(WKLD(PERIOD,GROUP,NORANGE,OBJ,DOMAIN,NOSYSTEM,NOTIME))                  
+REPORTS(DEVICE(COMM))                                                           
+REPORTS(DEVICE(TAPE))                                                           
+SUMMARY(INT,TOT)                                                                
+/*                                                                              
+//BSCAN   EXEC PGM=ERBRMFPP,REGION=4096K                                        
+//MFPINPUT  DD DSN=MV43RS.JUL12954.SMFDATA,DISP=SHR,UNIT=3390,                  
+//          VOL=SER=MV43RS                                                      
+//SYSIN DD *                                                                    
+SYSOUT(P)                                                                       
+RTOD(1420,1423)                                                                 
+STOD(1420,1423)                                                                 
+DINTV(2359)                                                                     
+NOEXITS                                                                         
+MAXPLEN(55)                                                                     
+NOEXITS                                                                         
+MAXPLEN(55)                                                                     
+REPORTS(CPU,CHAN,DEVICE(DASD),PAGESP,PAGING,IOQ,VSTOR(D))                       
+REPORTS(WKLD(PERIOD,GROUP,NORANGE,OBJ,DOMAIN,NOSYSTEM,NOTIME))                  
+REPORTS(DEVICE(COMM))                                                           
+REPORTS(DEVICE(TAPE))                                                           
+SUMMARY(INT,TOT)                                                                
+/*                                                                              
+//QALL    EXEC PGM=ERBRMFPP,REGION=4096K                                        
+//MFPINPUT  DD DSN=MV43RS.JUL12954.SMFDATA,DISP=SHR,UNIT=3390,                  
+//          VOL=SER=MV43RS                                                      
+//SYSIN DD *                                                                    
+SYSOUT(P)                                                                       
+RTOD(1424,2204)                                                                 
+STOD(1424,2204)                                                                 
+DINTV(2359)                                                                     
+NOEXITS                                                                         
+MAXPLEN(55)                                                                     
+NOEXITS                                                                         
+MAXPLEN(55)                                                                     
+REPORTS(CPU,CHAN,DEVICE(DASD),PAGESP,PAGING,IOQ,VSTOR(D))                       
+REPORTS(WKLD(PERIOD,GROUP,NORANGE,OBJ,DOMAIN,NOSYSTEM,NOTIME))                  
+REPORTS(DEVICE(COMM))                                                           
+REPORTS(DEVICE(TAPE))                                                           
+SUMMARY(INT,TOT)                                                                
+/*                                                                              

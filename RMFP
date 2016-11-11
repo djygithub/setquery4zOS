@@ -1,0 +1,18 @@
+//JUN30941 JOB (RWM,T),'DUMP',CLASS=A,MSGCLASS=O                                
+//        EXEC PGM=ERBRMFPP,REGION=4096K                                        
+//MFPINPUT  DD DSN=DB2310.JUN30941.SMFDATA,DISP=SHR,UNIT=3390,                  
+//          VOL=SER=DB2310                                                      
+//SYSIN DD *                                                                    
+SYSOUT(P)                                                                       
+RTOD(0000,2359)                                                                 
+STOD(0000,2359)                                                                 
+DINTV(2359)                                                                     
+NOEXITS                                                                         
+MAXPLEN(55)                                                                     
+NOEXITS                                                                         
+REPORTS(CPU,CHAN,DEVICE(DASD),PAGESP,PAGING,IOQ,VSTOR(D))                       
+REPORTS(WKLD(PERIOD,GROUP,NORANGE,OBJ,DOMAIN,NOSYSTEM,NOTIME))                  
+REPORTS(DEVICE(COMM))                                                           
+REPORTS(DEVICE(TAPE))                                                           
+SUMMARY(INT,TOT)                                                                
+/*                                                                              

@@ -1,0 +1,74 @@
+//QCFBATCH JOB (330RWM00,),'D J YOUNG',MSGCLASS=P,REGION=4096K,         00000100
+//       USER=DAVID                                                     00000200
+//*                                                                     00000400
+//**********************************************************************00000500
+//*  Q U E R Y   C O S T I N G  F A C I L I T Y   :   Q  C  F   ( R )  *00000600
+//**********************************************************************00000700
+//*                                                                     00000800
+//* STEP 0: DELETE THE PREVIOUS RUN'S PERMANENT REPORTS, IF NECESSARY   00000900
+//*                                                                     00001000
+//QCFSTEP0 EXEC PGM=IEFBR14                                             00001100
+//GOAWAY1  DD DSN=DAVID.QCFREP.SQL,DISP=(MOD,DELETE)                    00001200
+//GOAWAY2  DD DSN=DAVID.QTRACE.SQL,DISP=(MOD,DELETE)                    00001300
+//*                                                                     00001400
+//* IN NORMAL RUNS, THESE MIGHT BE RENAMED, SAVED OR NOT CREATED AT ALL.00001500
+//*                                                                     00001600
+//**********************************************************************00001700
+//* STEP 1: PARSER SCANS THE SQL LIBRARY OF CHOICE (QCFIN) FOR STMTS   *00001800
+//*         AND REGISTERS THE QCFUSER; EXPLAIN READS THE PLAN_TABLE'S  *00001900
+//*         RECORDS AND LOOKS UP THE TABLES & INDEXES IN THE CATALOG.  *00002000
+//**********************************************************************00002100
+//*                                                                     00002200
+//QCFSTEP1 EXEC PGM=QCFSCN,COND=(4,LT)                                  00002300
+//STEPLIB  DD DSN=SYS1.QCF.LOAD.V1R0,DISP=SHR                           00002400
+//         DD DSN=SYS1.V2R3M0.SIBMBASE,DISP=SHR                         00002600
+//         DD DSN=SYS1.V2R3M0.SIBMLINK,DISP=SHR                         00002700
+//         DD DSN=SYS1.V2R3M0.PLIBASE,DISP=SHR                          00002800
+//         DD DSN=SYS1.V2R3M0.PLILINK,DISP=SHR                          00002900
+//         DD DSN=SYS1.DSN230.DSNLOAD,DISP=SHR                          00003000
+//SYSPRINT DD SYSOUT=*                                                  00003100
+//QCFPARM  DD DSN=SYS1.QCF.QCFPARM.V1R0,DISP=SHR                        00003200
+//QCFCNTL  DD DSN=SYS1.QCF.QCFCNTL.V1R0,DISP=SHR                        00003300
+//*CFIN    DD DSN=SYS1.QCF.SQL.V1R0(TESTQCF),DISP=SHR                   00003401
+//*CFIN    DD DSN=SYS1.QCF.DBRM.V1R0(QCF4QMF),DISP=SHR                  00003500
+//QCFIN    DD DSN=DAVID.SETQUERY.WORKLOAD(TESTQCF1),DISP=SHR            00003601
+//QCFOUT   DD DSN=&&QCFOUT,DISP=(NEW,PASS),UNIT=3390,                   00003700
+//       SPACE=(TRK,(5,1),RLSE),DCB=(LRECL=80,RECFM=FB,BLKSIZE=9040)    00003800
+//QCFPAS   DD DSN=&&QCFPAS,DISP=(NEW,PASS),UNIT=3390,                   00003900
+//       SPACE=(TRK,(5,1),RLSE),DCB=(LRECL=114,RECFM=FB,BLKSIZE=5928)   00004000
+//QCFSEP   DD DSN=&&QCFSEP,DISP=(NEW,PASS),UNIT=3390,                   00004100
+//       SPACE=(TRK,(1,1),RLSE),DCB=(LRECL=206,RECFM=FB,BLKSIZE=9270)   00004200
+//QCFREL   DD DSN=&&QCFREL,DISP=(NEW,PASS),UNIT=3390,                   00004300
+//       SPACE=(TRK,(1,1),RLSE),DCB=(LRECL=83,RECFM=FB,BLKSIZE=11869)   00004400
+//SYSPRINT DD SYSOUT=*,DCB=LRECL=133                                    00004500
+//*                                                                     00004600
+//**********************************************************************00004700
+//*  STEP 2: COMPUTE RESOURCE CONSUMPTION AND PRODUCE QCF COST REPORT  *00004800
+//**********************************************************************00004900
+//*                                                                     00005000
+//QCFSTEP2 EXEC PGM=QCFRES                                              00005100
+//STEPLIB  DD DSN=SYS1.QCF.LOAD.V1R0,DISP=SHR                           00005200
+//         DD DSN=SYS1.V2R3M0.SIBMBASE,DISP=SHR                         00005300
+//         DD DSN=SYS1.V2R3M0.SIBMLINK,DISP=SHR                         00005400
+//         DD DSN=SYS1.V2R3M0.PLIBASE,DISP=SHR                          00005500
+//         DD DSN=SYS1.V2R3M0.PLILINK,DISP=SHR                          00005600
+//         DD DSN=SYS1.DSN230.DSNLOAD,DISP=SHR                          00005700
+//QCFPARM  DD DSN=SYS1.QCF.QCFPARM.V1R0,DISP=SHR                        00005800
+//QCFCNTL  DD DSN=SYS1.QCF.QCFCNTL.V1R0,DISP=SHR                        00005900
+//QCFPAS   DD DSN=*.QCFSTEP1.QCFPAS,DISP=(OLD,DELETE)                   00006000
+//QCFSEP   DD DSN=*.QCFSTEP1.QCFSEP,DISP=(OLD,DELETE)                   00006100
+//QCFREL   DD DSN=*.QCFSTEP1.QCFREL,DISP=(OLD,DELETE)                   00006200
+//QCFOUT   DD DSN=*.QCFSTEP1.QCFOUT,DISP=(OLD,DELETE)                   00006300
+//SYSPRINT DD SYSOUT=*,DCB=LRECL=133                                    00006400
+//*                                                                     00006500
+//* QCFREP IS YOUR EXPLAIN REPORT: YOU MAY WISH TO NAME IT SO THAT      00006600
+//* YOU CAN RECOGNIZE WHICH INPUT SQL PRODUCED THIS PARTICULAR REPORT.  00006700
+//*                                                                     00006800
+//* QTRACE IS YOUR DETAILED TRACE REPORT: WRITTEN WHEN "ALL" REPORTS    00006900
+//* ARE REQUESTED.  BOTH REPORTS ARE OPTIONAL.                          00007000
+//*                                                                     00007100
+//QCFREP   DD DSN=DAVID.QCFREP.SQL,DISP=(,CATLG,DELETE),UNIT=3390,      00007200
+//      SPACE=(CYL,(10,5),RLSE),DCB=(LRECL=133,RECFM=FBA,BLKSIZE=1330)  00007300
+//QTRACE   DD DSN=DAVID.QTRACE.SQL,DISP=(,CATLG,DELETE),UNIT=3390,      00007400
+//     SPACE=(CYL,(10,5),RLSE),DCB=(LRECL=120,RECFM=FB,BLKSIZE=7080)    00007500
+//*                                                                     00008000

@@ -1,0 +1,13 @@
+  Q401TRAN: MSGUTBL                                                             
+  'Q401';'Q402';'Q403';'Q404';'Q405';'Q406';'Q407';'Q408';'Q409';'Q410'         
+  'Q411';'Q412';'Q413';'Q414'                                                   
+  ENDUTBL                                                                       
+Q401: MSGTXT                                                                    
+Q401DATA='000000001000001000'                                                   
+DO FOREVER                                                                      
+    TRANSMIT USING CLEAR AND WAIT UNTIL ONIN                                    
+    Q4TN=UTBL(Q401TRAN,'R')                                                     
+   TYPE Q4TN||Q401DATA                                                          
+   TRANSMIT USING ENTER AND WAIT UNTIL ONIN                                     
+END                                                                             
+ENDTXT                                                                          

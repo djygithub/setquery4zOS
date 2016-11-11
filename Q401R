@@ -1,0 +1,32 @@
+  Q401TRAN: MSGUTBL                                                             
+  'Q40100001'                                                                   
+  'Q40200001'                                                                   
+  'Q40300001'                                                                   
+  'Q40400001'                                                                   
+  'Q40500001'                                                                   
+  'Q40600001'                                                                   
+  'Q40700001'                                                                   
+  'Q40800001'                                                                   
+  'Q40900001'                                                                   
+  'Q41000001'                                                                   
+  'Q41100001'                                                                   
+  'Q41200001'                                                                   
+  'Q41300001'                                                                   
+  'Q41400001'                                                                   
+  ENDUTBL                                                                       
+Q401R: MSGTXT                                                                   
+Q4FIRST='000000001'                                                             
+Q4LAST='000000001'                                                              
+DO FOREVER                                                                      
+    Q4BT=UTBL(Q401TRAN,'R')                                                     
+    Q4TRAN=SUBSTR(Q4BT,1,4)                                                     
+    Q4ROES=SUBSTR(Q4BT,5,5)                                                     
+    Q4ROWS=E2D (Q4ROES,5)                                                       
+    Q4RAND=RANDOM('RN',1)                                                       
+    Q4FIRST=CHAR(Q4RAND,5)                                                      
+    Q4RAND=Q4RAND+Q4ROWS                                                        
+    Q4LAST=CHAR(Q4RAND,5)                                                       
+   TYPE Q4TRAN||Q4FIRST||'0000'||Q4LAST||'0000'                                 
+   TRANSMIT USING ENTER                                                         
+END                                                                             
+ENDTXT                                                                          

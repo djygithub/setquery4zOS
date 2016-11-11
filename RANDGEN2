@@ -1,0 +1,9 @@
+//RANDGEN2 JOB (330DJY00),'D J YOUNG ',MSGCLASS=O,NOTIFY=DICK           00001008
+//DOIT EXEC PGM=RANDCOB2,PARM='000000001,001000000,001000000'           00170005
+//STEPLIB  DD  DSNAME=DAVID.DB2SMF.PGMLIB,                              00170005
+//             DISP=SHR                                                 00180003
+//OUTPUT   DD  DSN=DAVID.X1.DATA,DISP=(,KEEP),UNIT=3390,                00190005
+//    DCB=(BLKSIZE=23940,RECFM=FB,LRECL=252),                           00190005
+//    VOL=SER=DB25CF,SPACE=(CYL,(300,50))                               00190005
+//SYSUDUMP DD  SYSOUT=*                                                 00190005
+//SYSABOUT DD  SYSOUT=*                                                 00190005

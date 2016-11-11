@@ -1,0 +1,12 @@
+//RSDB25CD JOB (D3330RWM,ROOM),'D J YOUNG',MSGCLASS=O,TIME=1440                 
+//S1      EXEC PGM=ADRDSSU,REGION=4096K                                         
+//**********************************************************************        
+//****************   USE DF/DSS TO BACKUP        ***********************        
+//****************   DATABASE VOLUME             ***********************        
+//**********************************************************************        
+//DASD1 DD DISP=SHR,UNIT=3390,VOL=SER=DJY4AA                                    
+//TAPE1 DD DISP=(,KEEP,DELETE),UNIT=EE1,DSN=DSS.BACKUP.VDB25CD,                 
+//      VOL=SER=(001397,001758)                                                 
+//SYSPRINT DD SYSOUT=*                                                          
+ REST INDDNAME(TAPE1),OUTDDNAME(DASD1) COPYVOLID                                
+//*                                                                             

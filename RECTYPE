@@ -1,0 +1,150 @@
+R0       EQU   0                                                                
+R1       EQU   1                                                                
+R2       EQU   2                                                                
+R3       EQU   3                                                                
+R4       EQU   4                                                                
+R5       EQU   5                                                                
+R6       EQU   6                                                                
+R7       EQU   7                                                                
+R8       EQU   8                                                                
+R9       EQU   9                                                                
+R10      EQU   10                                                               
+R11      EQU   11                                                               
+R12      EQU   12                                                               
+R13      EQU   13                                                               
+R14      EQU   14                                                               
+R15      EQU   15                                                               
+*                                                                               
+$SM10X   DSECT                                                                  
+SM10XFLG DS    X                   SYSTEM ID                                    
+SM10XRTY DS    X                   RECORD TYPE                                  
+SM10XTME DS    XL4                 TIME SMF MOVED RECORD                        
+SM10XDTE DS    XL4                 DATE SMF MOVED RECORD                        
+SM10XSID DS    XL4                 SYSTEM ID                                    
+SM10XSSI DS    XL4                 SUBSYSTEM ID                                 
+SM10XSTF DS    X                   RESERVED                                     
+SM10XRI  DS    C                   RESERVED                                     
+SM10XBUF DS    XL4                 RESERVED                                     
+SM10XEND DS    0C                  START OF SELF DEFINING SECTIONS              
+         ORG   SM10XSTF            REDEFINE FOR CICS 110                        
+SMFSTSTY DS    XL2                 RECORD SUBTYPE X'0002' FOR STATS             
+SMFSTTRN DS    XL2                 NUMBER OF TRIPLETS                           
+         DS    XL2                 RESERVED                                     
+SMFSTAPS DS    XL4                 OFFSET TO PRODUCT SECTION                    
+SMFSTLPS DS    XL2                 LENGTH OF PRODUCT SECTION                    
+SMFSTNPS DS    XL2                 NUMBER OF PRODUCT SECTIONS                   
+SMFSTASS DS    XL4                 OFFSET TO DATA SECTION                       
+SMFSTASL DS    XL2                 LENGTH OF DATA SECTION                       
+SMFSTASN DS    XL2                 NUMBER OF DATA SECTIONS                      
+*        SMF PRODUCT SECTION                                                    
+SMFSTRVN DS    XL2                 RECORD VERSION                               
+*        = C'31' FOR RELEASE 3.1                                                
+SMFSTPRN DS    CL8                 PRODUCT NAME (GENERIC APPLID)                
+SMFSTSPN DS    CL8                 PRODUCT NAME (SPECIFIC APPLID)               
+SMFSTMFL DS    XL2                 RECORD MAINTENANCE INDICATOR                 
+         DS    XL2                 RESERVED                                     
+         DS    XL2                 RESERVED                                     
+SMFSTDTK DS    XL4                 DOMAIN TOKEN                                 
+SMFSTDID DS    CL2                 DOMAIN ID                                    
+SMFSTRQT DS    CL3                 USS/EOD/REQ/INT STATISTICS TYPE              
+SMFSTICD DS    CL3                 YES IF INCOMPLETE DATA RECORDED              
+SMFSTDAT DS    CL6                 COLLECTION DATE MMDDYY                       
+SMFSTCLT DS    CL6                 COLLECTION TIME HHMMSS                       
+         DS    XL2                 RESERVED                                     
+SMFSTINT DS    CL6                 INTERVAL HHMMSS                              
+SMFSTINO DS    XL4                 INTERVAL NUMBER                              
+SMFSTRTK DS    XL8                 REQUEST TOKEN                                
+*                                                                               
+         DSNDQWIW DSECT=YES,SUBTYPE=ALL                                         
+**********************************************************************          
+*                                                                               
+*     PROGRAM NAME - RECTYPE                                                    
+*                                                                               
+*     FUNCTION     - DETERMINE THE TYPE OF SMF RECORD, AND WHETHER              
+*                    IT SHOULD BE PROCESSED BY DB2SMF                           
+*                                                                               
+*     INPUT        - UPON ENTRY R1 POINTS AT THE FOLLOWING PARMS                
+*                    P1 - SMF RECORD                                            
+*                    P2 - 8 BYTE SMF RECORD FLAG, SET BY THIS                   
+*                         PROGRAM                                               
+*                                                                               
+*     REGISTERS    - R1 --> CALLER PARMLIST                                     
+*                    R3 --> SMF RECORD SUPPLIED BY DB2SMF                       
+*                    R4 --> SMF RECORD FLAG                                     
+*                           = SYSTEM   - DB2 SYSTEM STATS                       
+*                           = DATABASE - DB2 DATABASE STATS                     
+*                           = ACCOUNT  - DB2 ACCOUNTING RECORD                  
+*                           = ZPARM    - DB2 START UP STATS                     
+*                           = CICSEOD  - CICS SHUTDOWN STATISTICS               
+*                                                                               
+*     OUTPUT       - SMF RECORD IDENTIFIER WILL BE SET TO INDICATE              
+*                    THE TYPE OF SMF RECORD                                     
+*                                                                               
+*     MACROS       - NONE                                                       
+*                                                                               
+*                                                                               
+**********************************************************************          
+RECTYPE   CSECT                                                                 
+          STM   R14,R12,12(R13)                                                 
+          BAL   R14,80(R15)                                                     
+          DC    18F'-1'                                                         
+          ST    R13,4(R14)                                                      
+          ST    R14,8(R13)                                                      
+          LR    R13,R14                                                         
+          USING RECTYPE+8,R13                                                   
+*(1)                                                                            
+          LM    R3,R4,0(R1)          GET ADDRESSES OF PARMS                     
+          USING $SM10X,R3            R3--> SMF RECORD                           
+*                                    R4--> SMF RECORD FLAG                      
+*(2)                                                                            
+          CLI   SM10XRTY,X'64'       EQUAL TO 100?                              
+          BE    SM100SET             IF SO SET FLAG AND EXIT                    
+          CLI   SM10XRTY,X'65'       EQUAL TO 101?                              
+          BE    SM101SET             IF SO SET FLAG AND EXIT                    
+          CLI   SM10XRTY,X'66'       EQUAL TO 102?                              
+          BE    SM102SET             IF SO SET FLAG AND EXIT                    
+          CLI   SM10XRTY,X'6E'       EQUAL TO 110?                              
+          BE    SM110SET             IF SO SET FLAG AND EXIT                    
+          MVC   0(8,R4),=CL8'NOGOOD' DON'T PROCESS THIS RECORD                  
+          B     EXIT                 TAKE A HIKE                                
+*(3)                                                                            
+SM100SET  L     R5,SM10XEND          GET START OF SELF DEFINE SECT              
+          S     R5,=F'4'             DECREMENT BY 4                             
+          LA    R6,0(R3,R5)          POINT AT STANDARD HEADER                   
+          USING QWHS,R6              ESTABLISH ADDRESSABILITY                   
+          CLC   QWHSIID,=XL2'0001'   SYSTEM STATISTICS?                         
+          BE    SYSSET               IF SO SET FLAG AND EXIT                    
+          CLC   QWHSIID,=XL2'0002'   DATABASE STATISTICS?                       
+          BE    DBSET                IF SO SET FLAG AND EXIT                    
+          MVC   0(8,R4),=CL8'NOGOOD' DON'T PROCESS THIS RECORD                  
+          B     EXIT                 GET OUT                                    
+SYSSET    MVC   0(8,R4),=CL8'SYSTEM' SET SYSTEM STATISTICS FLAG                 
+          B     EXIT                 GET OUT                                    
+DBSET     MVC   0(8,R4),=CL8'DATABASE' SET DATABASE STATISTICS FLAG             
+          B     EXIT                 GET OUT                                    
+*(4)                                                                            
+SM101SET  MVC   0(8,R4),=CL8'ACCOUNT' SET ACCOUNTING FLAG                       
+          B     EXIT                                                            
+*(5)                                                                            
+SM102SET  L     R5,SM10XEND          GET START OF SELF DEFINE SECT              
+          S     R5,=F'4'             DECREMENT BY 4                             
+          LA    R6,0(R3,R5)          POINT AT STANDARD HEADER                   
+          USING QWHS,R6              ESTABLISH ADDRESSABILITY                   
+          CLC   QWHSIID,=XL2'006A'   SYSTEM STATISTICS?                         
+          BE    ZPARMSET             BRANCH AND SET FLAG                        
+          MVC   0(8,R4),=CL8'NOGOOD' DON'T PROCESS THIS RECORD                  
+          B     EXIT                 GET OUT                                    
+SM110SET  CLC   SMFSTSTY,=XL2'0002'  CICS STATISTICS?                           
+          BNE   SM110NGD                                                        
+          CLC   SMFSTRQT,=CL3'EOD'   EOD?                                       
+          BNE   SM110NGD                                                        
+          MVC   0(8,R4),=CL8'CICSEOD'                                           
+          B     EXIT                                                            
+SM110NGD  MVC   0(8,R4),=CL8'NOGOOD'                                            
+          B     EXIT                                                            
+ZPARMSET  MVC   0(8,R4),=CL8'ZPARM'  SET ZPARM FLAG                             
+EXIT      L     R13,4(R13)           RESTORE SAVEAREA POINTER                   
+          LM    R14,R12,12(R13)      RESTORE RETURN ADDRESS                     
+          BR    R14                                                             
+          LTORG                                                                 
+          END                                                                   

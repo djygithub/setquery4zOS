@@ -1,0 +1,351 @@
+//REDOLOGS JOB (USER,ACCT,NUMBER),                                              
+//         'D J YOUNG',                                                         
+//         CLASS=A,MSGCLASS=X,MSGLEVEL=(1,1),                                   
+//         REGION=4M                                                            
+//*                                                                             
+//*                                                                             
+//*                                                                             
+//*********************************************************************         
+//* INSTALL/IVP IMS 3.1                                               *         
+//*                                                                   *         
+//* SKELETON: DFSIXSE0                                                *         
+//*                                                                   *         
+//* FUNCTION: ALLOCATE THE SYSTEM APPLICATION AND EXECUTION DATA SETS *         
+//*********************************************************************         
+//*                                                                             
+//*********************************************************************         
+//*         THIS PRODUCT CONTAINS "RESTRICTED MATERIALS OF IBM".      *         
+//*                                                                   *         
+//*         5665-408 (C) COPYRIGHT IBM CORP. 1974, 1988.              *         
+//*         LICENSED MATERIALS - PROPERTY OF IBM.                     *         
+//*         ALL RIGHTS RESERVED.                                      *         
+//*                                                                   *         
+//*         U.S. GOVERNMENT USERS RESTRICTED RIGHTS -                 *         
+//*         USE, DUPLICATION, OR DISCLOSURE RESTRICTED BY             *         
+//*         GSA ADP SCHEDULE CONTRACT WITH IBM CORP.                  *         
+//*                                                                   *         
+//*         REFER TO COPYRIGHT INSTRUCTIONS FORM NUMBER G120-2083.    *         
+//*********************************************************************         
+//*                                                                             
+//* SCRATCH THE DATA SETS IF THEY ALREADY EXIST                                 
+//*                                                                             
+//SCRATCH  EXEC PGM=IEHPROGM                                                    
+//SYSPRINT DD SYSOUT=*                                                          
+//IVPSYS   DD DISP=OLD,UNIT=3390,VOL=SER=CICS32                                 
+//IVPEX1   DD DISP=OLD,UNIT=3390,VOL=SER=CICS32                                 
+//IVPEX2   DD DISP=OLD,UNIT=3390,VOL=SER=CICS32                                 
+//SYSIN    DD *                                                                 
+  UNCATLG DSNAME=IMS310A.RDS                                                    
+  SCRATCH DSNAME=IMS310A.RDS,                                          X        
+               VOL=3390=CICS32                                                  
+  UNCATLG DSNAME=IMS310A.OLP00                                                  
+  SCRATCH DSNAME=IMS310A.OLP00,                                        X        
+               VOL=3390=DB25CE                                                  
+  UNCATLG DSNAME=IMS310A.OLS00                                                  
+  SCRATCH DSNAME=IMS310A.OLS00,                                        X        
+               VOL=3390=CICS32                                                  
+  UNCATLG DSNAME=IMS310A.OLP01                                                  
+  SCRATCH DSNAME=IMS310A.OLP01,                                        X        
+               VOL=3390=CICS32                                                  
+  UNCATLG DSNAME=IMS310A.OLS01                                                  
+  SCRATCH DSNAME=IMS310A.OLS01,                                        X        
+               VOL=3390=CICS32                                                  
+  UNCATLG DSNAME=IMS310A.OLP02                                                  
+  SCRATCH DSNAME=IMS310A.OLP02,                                        X        
+               VOL=3390=CICS32                                                  
+  UNCATLG DSNAME=IMS310A.OLS02                                                  
+  SCRATCH DSNAME=IMS310A.OLS02,                                        X        
+               VOL=3390=CICS32                                                  
+  UNCATLG DSNAME=IMS310A.OLP03                                                  
+  SCRATCH DSNAME=IMS310A.OLP03,                                        X        
+               VOL=3390=CICS32                                                  
+  UNCATLG DSNAME=IMS310A.OLS03                                                  
+  SCRATCH DSNAME=IMS310A.OLS03,                                        X        
+               VOL=3390=CICS32                                                  
+  UNCATLG DSNAME=IMS310A.OLP04                                                  
+  SCRATCH DSNAME=IMS310A.OLP04,                                        X        
+               VOL=3390=CICS32                                                  
+  UNCATLG DSNAME=IMS310A.OLS04                                                  
+  SCRATCH DSNAME=IMS310A.OLS04,                                        X        
+               VOL=3390=CICS32                                                  
+  UNCATLG DSNAME=IMS310A.OLP05                                                  
+  SCRATCH DSNAME=IMS310A.OLP05,                                        X        
+               VOL=3390=CICS32                                                  
+  UNCATLG DSNAME=IMS310A.OLS05                                                  
+  SCRATCH DSNAME=IMS310A.OLS05,                                        X        
+               VOL=3390=CICS32                                                  
+  UNCATLG DSNAME=IMS310A.OLP99                                                  
+  SCRATCH DSNAME=IMS310A.OLP99,                                        X        
+               VOL=3390=CICS32                                                  
+  UNCATLG DSNAME=IMS310A.OLS99                                                  
+  SCRATCH DSNAME=IMS310A.OLS99,                                        X        
+               VOL=3390=CICS32                                                  
+  UNCATLG DSNAME=IMS310A.WADS0                                                  
+  SCRATCH DSNAME=IMS310A.WADS0,                                        X        
+               VOL=3390=CICS32                                                  
+  UNCATLG DSNAME=IMS310A.WADS1                                                  
+  SCRATCH DSNAME=IMS310A.WADS1,                                        X        
+               VOL=3390=CICS32                                                  
+  UNCATLG DSNAME=IMS310A.WADS8                                                  
+  SCRATCH DSNAME=IMS310A.WADS8,                                        X        
+               VOL=3390=CICS32                                                  
+  UNCATLG DSNAME=IMS310A.WADS9                                                  
+  SCRATCH DSNAME=IMS310A.WADS9,                                        X        
+               VOL=3390=CICS32                                                  
+//*                                                                             
+//* ALLOCATE NEW DATA SETS                                                      
+//*                                                                             
+//ALLOCATE EXEC PGM=IEFBR14                                                     
+//*                                                                             
+//IMSRDS   DD  DSN=IMS310A.RDS,                                                 
+//             DISP=(NEW,CATLG,DELETE),                                         
+//             UNIT=3390,                                                       
+//             VOL=SER=CICS32,                                                  
+//             DCB=DSORG=PS,                                                    
+//             SPACE=(TRK,(5),,CONTIG)                                          
+//DFSOLP00 DD  DSN=IMS310A.OLP00,                                               
+//             DISP=(NEW,CATLG,DELETE),                                         
+//             UNIT=3390,                                                       
+//             VOL=SER=DB25CE,                                                  
+//             DCB=(RECFM=VB,LRECL=22524,BLKSIZE=22528),                        
+//             SPACE=(CYL,(1000),,CONTIG)                                       
+//*                                                                             
+//DFSOLS00 DD  DSN=IMS310A.OLS00,                                               
+//             DISP=(NEW,CATLG,DELETE),                                         
+//             UNIT=3390,                                                       
+//             VOL=SER=CICS32,                                                  
+//             DCB=(RECFM=VB,LRECL=22524,BLKSIZE=22528),                        
+//             SPACE=(CYL,(100),,CONTIG)                                        
+//*                                                                             
+//DFSOLP01 DD  DSN=IMS310A.OLP01,                                               
+//             DISP=(NEW,CATLG,DELETE),                                         
+//             UNIT=3390,                                                       
+//             VOL=SER=CICS32,                                                  
+//             DCB=(RECFM=VB,LRECL=22524,BLKSIZE=22528),                        
+//             SPACE=(CYL,(100),,CONTIG)                                        
+//*                                                                             
+//DFSOLS01 DD  DSN=IMS310A.OLS01,                                               
+//             DISP=(NEW,CATLG,DELETE),                                         
+//             UNIT=3390,                                                       
+//             VOL=SER=CICS32,                                                  
+//             DCB=(RECFM=VB,LRECL=22524,BLKSIZE=22528),                        
+//             SPACE=(CYL,(100),,CONTIG)                                        
+//*                                                                             
+//DFSOLP02 DD  DSN=IMS310A.OLP02,                                               
+//             DISP=(NEW,CATLG,DELETE),                                         
+//             UNIT=3390,                                                       
+//             VOL=SER=CICS32,                                                  
+//             DCB=(RECFM=VB,LRECL=22524,BLKSIZE=22528),                        
+//             SPACE=(CYL,(100),,CONTIG)                                        
+//*                                                                             
+//DFSOLS02 DD  DSN=IMS310A.OLS02,                                               
+//             DISP=(NEW,CATLG,DELETE),                                         
+//             UNIT=3390,                                                       
+//             VOL=SER=CICS32,                                                  
+//             DCB=(RECFM=VB,LRECL=22524,BLKSIZE=22528),                        
+//             SPACE=(CYL,(100),,CONTIG)                                        
+//*                                                                             
+//DFSOLP03 DD  DSN=IMS310A.OLP03,                                               
+//             DISP=(NEW,CATLG,DELETE),                                         
+//             UNIT=3390,                                                       
+//             VOL=SER=CICS32,                                                  
+//             DCB=(RECFM=VB,LRECL=22524,BLKSIZE=22528),                        
+//             SPACE=(CYL,(100),,CONTIG)                                        
+//*                                                                             
+//DFSOLS03 DD  DSN=IMS310A.OLS03,                                               
+//             DISP=(NEW,CATLG,DELETE),                                         
+//             UNIT=3390,                                                       
+//             VOL=SER=CICS32,                                                  
+//             DCB=(RECFM=VB,LRECL=22524,BLKSIZE=22528),                        
+//             SPACE=(CYL,(100),,CONTIG)                                        
+//*                                                                             
+//DFSOLP04 DD  DSN=IMS310A.OLP04,                                               
+//             DISP=(NEW,CATLG,DELETE),                                         
+//             UNIT=3390,                                                       
+//             VOL=SER=CICS32,                                                  
+//             DCB=(RECFM=VB,LRECL=22524,BLKSIZE=22528),                        
+//             SPACE=(CYL,(100),,CONTIG)                                        
+//*                                                                             
+//DFSOLS04 DD  DSN=IMS310A.OLS04,                                               
+//             DISP=(NEW,CATLG,DELETE),                                         
+//             UNIT=3390,                                                       
+//             VOL=SER=CICS32,                                                  
+//             DCB=(RECFM=VB,LRECL=22524,BLKSIZE=22528),                        
+//             SPACE=(CYL,(100),,CONTIG)                                        
+//*                                                                             
+//DFSOLP05 DD  DSN=IMS310A.OLP05,                                               
+//             DISP=(NEW,CATLG,DELETE),                                         
+//             UNIT=3390,                                                       
+//             VOL=SER=CICS32,                                                  
+//             DCB=(RECFM=VB,LRECL=22524,BLKSIZE=22528),                        
+//             SPACE=(CYL,(100),,CONTIG)                                        
+//*                                                                             
+//DFSOLS05 DD  DSN=IMS310A.OLS05,                                               
+//             DISP=(NEW,CATLG,DELETE),                                         
+//             UNIT=3390,                                                       
+//             VOL=SER=CICS32,                                                  
+//             DCB=(RECFM=VB,LRECL=22524,BLKSIZE=22528),                        
+//             SPACE=(CYL,(100),,CONTIG)                                        
+//*                                                                             
+//DFSOLP99 DD  DSN=IMS310A.OLP99,                                               
+//             DISP=(NEW,CATLG,DELETE),                                         
+//             UNIT=3390,                                                       
+//             VOL=SER=CICS32,                                                  
+//             DCB=(RECFM=VB,LRECL=22524,BLKSIZE=22528),                        
+//             SPACE=(CYL,(100),,CONTIG)                                        
+//*                                                                             
+//DFSOLS99 DD  DSN=IMS310A.OLS99,                                               
+//             DISP=(NEW,CATLG,DELETE),                                         
+//             UNIT=3390,                                                       
+//             VOL=SER=CICS32,                                                  
+//             DCB=(RECFM=VB,LRECL=22524,BLKSIZE=22528),                        
+//             SPACE=(CYL,(100),,CONTIG)                                        
+//*                                                                             
+//DFSWADS0 DD  DSN=IMS310A.WADS0,                                               
+//             DISP=(NEW,CATLG,DELETE),                                         
+//             UNIT=3390,                                                       
+//             VOL=SER=CICS32,                                                  
+//             DCB=(RECFM=F,BLKSIZE=02080,KEYLEN=1,DSORG=PS),                   
+//             SPACE=(TRK,(60),,CONTIG)                                         
+//*                                                                             
+//DFSWADS1 DD  DSN=IMS310A.WADS1,                                               
+//             DISP=(NEW,CATLG,DELETE),                                         
+//             UNIT=3390,                                                       
+//             VOL=SER=CICS32,                                                  
+//             DCB=(RECFM=F,BLKSIZE=02080,KEYLEN=1,DSORG=PS),                   
+//             SPACE=(TRK,(60),,CONTIG)                                         
+//*                                                                             
+//DFSWADS8 DD  DSN=IMS310A.WADS8,                                               
+//             DISP=(NEW,CATLG,DELETE),                                         
+//             UNIT=3390,                                                       
+//             VOL=SER=CICS32,                                                  
+//             DCB=(RECFM=F,BLKSIZE=02080,KEYLEN=1,DSORG=PS),                   
+//             SPACE=(TRK,(60),,CONTIG)                                         
+//*                                                                             
+//DFSWADS9 DD  DSN=IMS310A.WADS9,                                               
+//             DISP=(NEW,CATLG,DELETE),                                         
+//             UNIT=3390,                                                       
+//             VOL=SER=CICS32,                                                  
+//             DCB=(RECFM=F,BLKSIZE=02080,KEYLEN=1,DSORG=PS),                   
+//             SPACE=(TRK,(60),,CONTIG)                                         
+//*                                                                             
+//*                                                                             
+//*                                                                             
+//*********************************************************************         
+//* INSTALL/IVP IMS 3.1                                                         
+//*                                                                             
+//* SKELETON: DFSIXSH1                                                          
+//*                                                                             
+//* FUNCTION: INITIALIZE DBRC RECON AND REGISTER DATA BASES                     
+//*********************************************************************         
+//*                                                                             
+//*********************************************************************         
+//*         THIS PRODUCT CONTAINS "RESTRICTED MATERIALS OF IBM".      *         
+//*                                                                   *         
+//*         5665-408 (C) COPYRIGHT IBM CORP. 1974, 1988.              *         
+//*         LICENSED MATERIALS - PROPERTY OF IBM.                     *         
+//*         ALL RIGHTS RESERVED.                                      *         
+//*                                                                   *         
+//*         U.S. GOVERNMENT USERS RESTRICTED RIGHTS -                 *         
+//*         USE, DUPLICATION, OR DISCLOSURE RESTRICTED BY             *         
+//*         GSA ADP SCHEDULE CONTRACT WITH IBM CORP.                  *         
+//*                                                                   *         
+//*         REFER TO COPYRIGHT INSTRUCTIONS FORM NUMBER G120-2083.    *         
+//*********************************************************************         
+//*                                                                             
+//*********************************************************************         
+//DBRC     PROC                                                                 
+//*                                                                             
+//D        EXEC PGM=DSPURX00                                                    
+//STEPLIB  DD DISP=SHR,DSN=IMS310.RESLIB                                        
+//SYSPRINT DD SYSOUT=*                                                          
+//SYSUDUMP DD SYSOUT=*                                                          
+//IMS      DD DISP=SHR,DSN=IMS310A.DBDLIB                                       
+//JCLPDS   DD DISP=SHR,DSN=IMS310A.PROCLIB                                      
+//JCLOUT   DD SYSOUT=(A,INTRDR)                                                 
+//        PEND                                                                  
+//*********************************************************************         
+//*                                                                             
+//SCRATCH  EXEC PGM=IDCAMS                                                      
+//SYSPRINT DD SYSOUT=*                                                          
+//SYSIN    DD *                                                                 
+  DELETE IMS310A.RECON1 CLUSTER                                                 
+  DELETE IMS310A.RECON2 CLUSTER                                                 
+  DELETE IMS310A.RECON3 CLUSTER                                                 
+//*                                                                             
+//ALLOCATE EXEC PGM=IDCAMS                                                      
+//SYSPRINT DD SYSOUT=*                                                          
+//SYSIN    DD *                                                                 
+  DEFINE CLUSTER(                                -                              
+                 NAME(IMS310A.RECON1)         -                                 
+                 FREESPACE(20 20)                -                              
+                 INDEXED                         -                              
+                 KEYS(24 0)                      -                              
+                 RECORDSIZE(4086 32600)          -                              
+                 SHAREOPTIONS(3 3)               -                              
+                 RECOVERY                        -                              
+                 NOERASE                         -                              
+                 SPANNED                         -                              
+                 NOREUSE                         -                              
+                 UNORDERED                       -                              
+                 UNIQUE                          -                              
+                 VOLUMES(CICS32)              -                                 
+                 CYL(3 1)  -                                                    
+                )                                -                              
+            DATA(                                -                              
+                 NAME(IMS310A.RECON1.DATA)    -                                 
+                )                                -                              
+           INDEX(                                -                              
+                 NAME(IMS310A.RECON1.INDX)    -                                 
+                )                                                               
+  DEFINE CLUSTER(                                -                              
+                 NAME(IMS310A.RECON2)         -                                 
+                 FREESPACE(20 20)                -                              
+                 INDEXED                         -                              
+                 KEYS(24 0)                      -                              
+                 RECORDSIZE(4086 32600)          -                              
+                 SHAREOPTIONS(3 3)               -                              
+                 RECOVERY                        -                              
+                 NOERASE                         -                              
+                 SPANNED                         -                              
+                 NOREUSE                         -                              
+                 UNORDERED                       -                              
+                 UNIQUE                          -                              
+                 VOLUMES(CICS32)              -                                 
+                 CYL(3 1)  -                                                    
+                )                                -                              
+            DATA(                                -                              
+                 NAME(IMS310A.RECON2.DATA)    -                                 
+                )                                -                              
+           INDEX(                                -                              
+                 NAME(IMS310A.RECON2.INDX)    -                                 
+                )                                                               
+  DEFINE CLUSTER(                                -                              
+                 NAME(IMS310A.RECON3)         -                                 
+                 FREESPACE(20 20)                -                              
+                 INDEXED                         -                              
+                 KEYS(24 0)                      -                              
+                 RECORDSIZE(4086 32600)          -                              
+                 SHAREOPTIONS(3 3)               -                              
+                 RECOVERY                        -                              
+                 NOERASE                         -                              
+                 SPANNED                         -                              
+                 NOREUSE                         -                              
+                 UNORDERED                       -                              
+                 UNIQUE                          -                              
+                 VOLUMES(CICS32)              -                                 
+                 CYL(3 1)  -                                                    
+                )                                -                              
+            DATA(                                -                              
+                 NAME(IMS310A.RECON3.DATA)    -                                 
+                )                                -                              
+           INDEX(                                -                              
+                 NAME(IMS310A.RECON3.INDX)    -                                 
+                )                                                               
+//*                                                                             
+//*                                                                             
+//INITRCON EXEC PROC=DBRC                                                       
+//D.SYSIN  DD *                                                                 
+  INIT.RECON SSID(IVP1)                     -                                   
+             FORCER CHECK17 SHARECTL NONEW  -                                   
+             DASDUNIT(3390) TAPEUNIT(3480)                                      

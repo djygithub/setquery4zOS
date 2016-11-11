@@ -1,0 +1,12 @@
+  Q501TRAN: MSGUTBL                                                             
+  'Q501';'Q502';'Q503'                                                          
+  ENDUTBL                                                                       
+Q501: MSGTXT                                                                    
+Q501DATA='000000001000001000'                                                   
+DO FOREVER                                                                      
+    TRANSMIT USING CLEAR AND WAIT UNTIL ONIN                                    
+    Q5TN=UTBL(Q501TRAN,'R')                                                     
+   TYPE Q5TN||Q501DATA                                                          
+   TRANSMIT USING ENTER AND WAIT UNTIL ONIN                                     
+END                                                                             
+ENDTXT                                                                          
