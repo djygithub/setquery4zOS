@@ -1,0 +1,525 @@
+//PRPIQ301 JOB (330RWM00,),MSGCLASS=Y                                           
+//*                                                                             
+//COB2UCL PROC                                                                  
+//*                   PROC FOR COBOL II - COMPILE AND LINK                      
+//COB2     EXEC  PGM=IGYCRCTL,PARM='OBJECT,APOST',REGION=1024K                  
+//STEPLIB  DD DSN=SYS1.COB2COMP,DISP=SHR                                        
+//SYSIN DD DSN=DB2IMS.TEMP.COBOL,DISP=SHR                                       
+//SYSTERM  DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSLIN   DD  DSNAME=&&LOADSET,UNIT=3390,DISP=(MOD,PASS),                      
+//             SPACE=(TRK,(3,3))                                                
+//SYSUT1   DD  UNIT=3390,SPACE=(CYL,(1,1))                                      
+//SYSUT2   DD  UNIT=3390,SPACE=(CYL,(1,1))                                      
+//SYSUT3   DD  UNIT=3390,SPACE=(CYL,(1,1))                                      
+//SYSUT4   DD  UNIT=3390,SPACE=(CYL,(1,1))                                      
+//SYSUT5   DD  UNIT=3390,SPACE=(CYL,(1,1))                                      
+//SYSUT6   DD  UNIT=3390,SPACE=(CYL,(1,1))                                      
+//SYSUT7   DD  UNIT=3390,SPACE=(CYL,(1,1))                                      
+//LKED     EXEC  PGM=IEWL,PARM='LIST,XREF,MAP',COND=(5,LT,COB2),                
+//             REGION=1024K                                                     
+//SYSLIN   DD  DSNAME=&&LOADSET,DISP=(OLD,DELETE)                               
+//         DD  DDNAME=SYSIN                                                     
+//SYSLMOD  DD  DSNAME=DSN22X.RUNLIB.LOAD(&LODMOD),DISP=SHR                      
+//SYSLIB   DD  DSNAME=SYS1.COB2LIB,DISP=SHR                                     
+//         DD  DSNAME=SYS1.DSNLOAD,DISP=SHR                                     
+//         DD  DSNAME=IMS310.RESLIB,DISP=SHR                                    
+//SYSUT1   DD  UNIT=3390,SPACE=(CYL,(1,1))                                      
+//SYSPRINT DD  SYSOUT=*                                                         
+// PEND                                                                         
+//TMP01    EXEC PGM=IKJEFT01,DYNAMNBR=20                                        
+//SYSTSPRT DD SYSOUT=*,DCB=BLKSIZE=2420                                         
+//SYSTSIN  DD *                                                                 
+PROFILE    PREFIX(DB2IMS)                                                       
+ALLOC      DD(SYSPROC) DSN('DAVID.SETQUERY.WORKLOAD') SHR                       
+%DSNH BIND(NO) COMPILE(NO) CONTROL(NONE)-                                       
+ DBRMLIB('''DSN22X.DBRMLIB.DATA(IM2Q301)''')-                                   
+ DECIMAL(PERIOD) DELIMIT(APOST)-                                                
+ HOST(COB2) INPUT('''DAVID.SETQUERY.WORKLOAD(IM2Q301)''')-                      
+ LINECOUNT(60) LINK(NO)-                                                        
+ OUTNAME(TEMP) MACRO(NO)-                                                       
+ -                                                                              
+ PRECOMP(YES) PRINT(TEMP) RUN(NO)-                                              
+ SYSTEM(DSN) SQLDELIM(APOST) TERM(TERM)-                                        
+ /* THIS LINE NEEDED TO END THE DSNH INPUT */                                   
+//*                                                                             
+//SURF2SQL EXEC PROC=COB2UCL,LODMOD=IM2Q301                                     
+//*        STEP  4: BIND THE PROGRAM                                    00263200
+//BIND     EXEC PGM=IKJEFT01,DYNAMNBR=20,COND=(4,LT)                    00263300
+//STEPLIB  DD DSN=SYS1.DSNLOAD,DISP=SHR                                 00263400
+//DBRMLIB  DD DISP=SHR,                                                 00263400
+//            DSN=DSN22X.DBRMLIB.DATA                                   00263500
+//SYSUDUMP DD SYSOUT=*                                                  00263600
+//SYSTSPRT DD SYSOUT=*                                                  00263700
+//SYSPRINT DD SYSOUT=*                                                  00263800
+//SYSTSIN  DD *                                                         00263900
+DSN SYSTEM(DSN)                                                         00264000
+BIND PLAN(IM2Q301) MEMBER(IM2Q301) ACT(REP) ISO(CS) EXPLAIN(YES) -      00265000
+ VALIDATE(BIND)                                                                 
+END                                                                     00320000
+//*                                                                     00330000
+//TMP02    EXEC PGM=IKJEFT01,DYNAMNBR=20                                        
+//SYSTSPRT DD SYSOUT=*,DCB=BLKSIZE=2420                                         
+//SYSTSIN  DD *                                                                 
+PROFILE    PREFIX(DB2IMS)                                                       
+ALLOC      DD(SYSPROC) DSN('DAVID.SETQUERY.WORKLOAD') SHR                       
+%DSNH BIND(NO) COMPILE(NO) CONTROL(NONE)-                                       
+ DBRMLIB('''DSN22X.DBRMLIB.DATA(IM2Q302)''')-                                   
+ DECIMAL(PERIOD) DELIMIT(APOST)-                                                
+ HOST(COB2) INPUT('''DAVID.SETQUERY.WORKLOAD(IM2Q302)''')-                      
+ LINECOUNT(60) LINK(NO)-                                                        
+ OUTNAME(TEMP) MACRO(NO)-                                                       
+ -                                                                              
+ PRECOMP(YES) PRINT(TEMP) RUN(NO)-                                              
+ SYSTEM(DSN) SQLDELIM(APOST) TERM(TERM)-                                        
+ /* THIS LINE NEEDED TO END THE DSNH INPUT */                                   
+//*                                                                             
+//SURF2SQL EXEC PROC=COB2UCL,LODMOD=IM2Q302                                     
+//*        STEP  4: BIND THE PROGRAM                                    00263200
+//BIND     EXEC PGM=IKJEFT01,DYNAMNBR=20,COND=(4,LT)                    00263300
+//STEPLIB  DD DSN=SYS1.DSNLOAD,DISP=SHR                                 00263400
+//DBRMLIB  DD DISP=SHR,                                                 00263400
+//            DSN=DSN22X.DBRMLIB.DATA                                   00263500
+//SYSUDUMP DD SYSOUT=*                                                  00263600
+//SYSTSPRT DD SYSOUT=*                                                  00263700
+//SYSPRINT DD SYSOUT=*                                                  00263800
+//SYSTSIN  DD *                                                         00263900
+DSN SYSTEM(DSN)                                                         00264000
+BIND PLAN(IM2Q302) MEMBER(IM2Q302) ACT(REP) ISO(CS) EXPLAIN(YES) -      00265000
+ VALIDATE(BIND)                                                                 
+END                                                                     00320000
+//*                                                                     00330000
+//TMP03    EXEC PGM=IKJEFT01,DYNAMNBR=20                                        
+//SYSTSPRT DD SYSOUT=*,DCB=BLKSIZE=2420                                         
+//SYSTSIN  DD *                                                                 
+PROFILE    PREFIX(DB2IMS)                                                       
+ALLOC      DD(SYSPROC) DSN('DAVID.SETQUERY.WORKLOAD') SHR                       
+%DSNH BIND(NO) COMPILE(NO) CONTROL(NONE)-                                       
+ DBRMLIB('''DSN22X.DBRMLIB.DATA(IM2Q303)''')-                                   
+ DECIMAL(PERIOD) DELIMIT(APOST)-                                                
+ HOST(COB2) INPUT('''DAVID.SETQUERY.WORKLOAD(IM2Q303)''')-                      
+ LINECOUNT(60) LINK(NO)-                                                        
+ OUTNAME(TEMP) MACRO(NO)-                                                       
+ -                                                                              
+ PRECOMP(YES) PRINT(TEMP) RUN(NO)-                                              
+ SYSTEM(DSN) SQLDELIM(APOST) TERM(TERM)-                                        
+ /* THIS LINE NEEDED TO END THE DSNH INPUT */                                   
+//*                                                                             
+//SURF2SQL EXEC PROC=COB2UCL,LODMOD=IM2Q303                                     
+//*        STEP  4: BIND THE PROGRAM                                    00263200
+//BIND     EXEC PGM=IKJEFT01,DYNAMNBR=20,COND=(4,LT)                    00263300
+//STEPLIB  DD DSN=SYS1.DSNLOAD,DISP=SHR                                 00263400
+//DBRMLIB  DD DISP=SHR,                                                 00263400
+//            DSN=DSN22X.DBRMLIB.DATA                                   00263500
+//SYSUDUMP DD SYSOUT=*                                                  00263600
+//SYSTSPRT DD SYSOUT=*                                                  00263700
+//SYSPRINT DD SYSOUT=*                                                  00263800
+//SYSTSIN  DD *                                                         00263900
+DSN SYSTEM(DSN)                                                         00264000
+BIND PLAN(IM2Q303) MEMBER(IM2Q303) ACT(REP) ISO(CS) EXPLAIN(YES) -      00265000
+ VALIDATE(BIND)                                                                 
+END                                                                     00320000
+//*                                                                     00330000
+//TMP04    EXEC PGM=IKJEFT01,DYNAMNBR=20                                        
+//SYSTSPRT DD SYSOUT=*,DCB=BLKSIZE=2420                                         
+//SYSTSIN  DD *                                                                 
+PROFILE    PREFIX(DB2IMS)                                                       
+ALLOC      DD(SYSPROC) DSN('DAVID.SETQUERY.WORKLOAD') SHR                       
+%DSNH BIND(NO) COMPILE(NO) CONTROL(NONE)-                                       
+ DBRMLIB('''DSN22X.DBRMLIB.DATA(IM2Q304)''')-                                   
+ DECIMAL(PERIOD) DELIMIT(APOST)-                                                
+ HOST(COB2) INPUT('''DAVID.SETQUERY.WORKLOAD(IM2Q304)''')-                      
+ LINECOUNT(60) LINK(NO)-                                                        
+ OUTNAME(TEMP) MACRO(NO)-                                                       
+ -                                                                              
+ PRECOMP(YES) PRINT(TEMP) RUN(NO)-                                              
+ SYSTEM(DSN) SQLDELIM(APOST) TERM(TERM)-                                        
+ /* THIS LINE NEEDED TO END THE DSNH INPUT */                                   
+//*                                                                             
+//SURF2SQL EXEC PROC=COB2UCL,LODMOD=IM2Q304                                     
+//*        STEP  4: BIND THE PROGRAM                                    00263200
+//BIND     EXEC PGM=IKJEFT01,DYNAMNBR=20,COND=(4,LT)                    00263300
+//STEPLIB  DD DSN=SYS1.DSNLOAD,DISP=SHR                                 00263400
+//DBRMLIB  DD DISP=SHR,                                                 00263400
+//            DSN=DSN22X.DBRMLIB.DATA                                   00263500
+//SYSUDUMP DD SYSOUT=*                                                  00263600
+//SYSTSPRT DD SYSOUT=*                                                  00263700
+//SYSPRINT DD SYSOUT=*                                                  00263800
+//SYSTSIN  DD *                                                         00263900
+DSN SYSTEM(DSN)                                                         00264000
+BIND PLAN(IM2Q304) MEMBER(IM2Q304) ACT(REP) ISO(CS) EXPLAIN(YES) -      00265000
+ VALIDATE(BIND)                                                                 
+END                                                                     00320000
+//*                                                                     00330000
+//TMP05    EXEC PGM=IKJEFT01,DYNAMNBR=20                                        
+//SYSTSPRT DD SYSOUT=*,DCB=BLKSIZE=2420                                         
+//SYSTSIN  DD *                                                                 
+PROFILE    PREFIX(DB2IMS)                                                       
+ALLOC      DD(SYSPROC) DSN('DAVID.SETQUERY.WORKLOAD') SHR                       
+%DSNH BIND(NO) COMPILE(NO) CONTROL(NONE)-                                       
+ DBRMLIB('''DSN22X.DBRMLIB.DATA(IM2Q305)''')-                                   
+ DECIMAL(PERIOD) DELIMIT(APOST)-                                                
+ HOST(COB2) INPUT('''DAVID.SETQUERY.WORKLOAD(IM2Q305)''')-                      
+ LINECOUNT(60) LINK(NO)-                                                        
+ OUTNAME(TEMP) MACRO(NO)-                                                       
+ -                                                                              
+ PRECOMP(YES) PRINT(TEMP) RUN(NO)-                                              
+ SYSTEM(DSN) SQLDELIM(APOST) TERM(TERM)-                                        
+ /* THIS LINE NEEDED TO END THE DSNH INPUT */                                   
+//*                                                                             
+//SURF2SQL EXEC PROC=COB2UCL,LODMOD=IM2Q305                                     
+//*        STEP  4: BIND THE PROGRAM                                    00263200
+//BIND     EXEC PGM=IKJEFT01,DYNAMNBR=20,COND=(4,LT)                    00263300
+//STEPLIB  DD DSN=SYS1.DSNLOAD,DISP=SHR                                 00263400
+//DBRMLIB  DD DISP=SHR,                                                 00263400
+//            DSN=DSN22X.DBRMLIB.DATA                                   00263500
+//SYSUDUMP DD SYSOUT=*                                                  00263600
+//SYSTSPRT DD SYSOUT=*                                                  00263700
+//SYSPRINT DD SYSOUT=*                                                  00263800
+//SYSTSIN  DD *                                                         00263900
+DSN SYSTEM(DSN)                                                         00264000
+BIND PLAN(IM2Q305) MEMBER(IM2Q305) ACT(REP) ISO(CS) EXPLAIN(YES) -      00265000
+ VALIDATE(BIND)                                                                 
+END                                                                     00320000
+//*                                                                     00330000
+//TMP06    EXEC PGM=IKJEFT01,DYNAMNBR=20                                        
+//SYSTSPRT DD SYSOUT=*,DCB=BLKSIZE=2420                                         
+//SYSTSIN  DD *                                                                 
+PROFILE    PREFIX(DB2IMS)                                                       
+ALLOC      DD(SYSPROC) DSN('DAVID.SETQUERY.WORKLOAD') SHR                       
+%DSNH BIND(NO) COMPILE(NO) CONTROL(NONE)-                                       
+ DBRMLIB('''DSN22X.DBRMLIB.DATA(IM2Q306)''')-                                   
+ DECIMAL(PERIOD) DELIMIT(APOST)-                                                
+ HOST(COB2) INPUT('''DAVID.SETQUERY.WORKLOAD(IM2Q306)''')-                      
+ LINECOUNT(60) LINK(NO)-                                                        
+ OUTNAME(TEMP) MACRO(NO)-                                                       
+ -                                                                              
+ PRECOMP(YES) PRINT(TEMP) RUN(NO)-                                              
+ SYSTEM(DSN) SQLDELIM(APOST) TERM(TERM)-                                        
+ /* THIS LINE NEEDED TO END THE DSNH INPUT */                                   
+//*                                                                             
+//SURF2SQL EXEC PROC=COB2UCL,LODMOD=IM2Q306                                     
+//*        STEP  4: BIND THE PROGRAM                                    00263200
+//BIND     EXEC PGM=IKJEFT01,DYNAMNBR=20,COND=(4,LT)                    00263300
+//STEPLIB  DD DSN=SYS1.DSNLOAD,DISP=SHR                                 00263400
+//DBRMLIB  DD DISP=SHR,                                                 00263400
+//            DSN=DSN22X.DBRMLIB.DATA                                   00263500
+//SYSUDUMP DD SYSOUT=*                                                  00263600
+//SYSTSPRT DD SYSOUT=*                                                  00263700
+//SYSPRINT DD SYSOUT=*                                                  00263800
+//SYSTSIN  DD *                                                         00263900
+DSN SYSTEM(DSN)                                                         00264000
+BIND PLAN(IM2Q306) MEMBER(IM2Q306) ACT(REP) ISO(CS) EXPLAIN(YES) -      00265000
+ VALIDATE(BIND)                                                                 
+END                                                                     00320000
+//*                                                                     00330000
+//TMP07    EXEC PGM=IKJEFT01,DYNAMNBR=20                                        
+//SYSTSPRT DD SYSOUT=*,DCB=BLKSIZE=2420                                         
+//SYSTSIN  DD *                                                                 
+PROFILE    PREFIX(DB2IMS)                                                       
+ALLOC      DD(SYSPROC) DSN('DAVID.SETQUERY.WORKLOAD') SHR                       
+%DSNH BIND(NO) COMPILE(NO) CONTROL(NONE)-                                       
+ DBRMLIB('''DSN22X.DBRMLIB.DATA(IM2Q307)''')-                                   
+ DECIMAL(PERIOD) DELIMIT(APOST)-                                                
+ HOST(COB2) INPUT('''DAVID.SETQUERY.WORKLOAD(IM2Q307)''')-                      
+ LINECOUNT(60) LINK(NO)-                                                        
+ OUTNAME(TEMP) MACRO(NO)-                                                       
+ -                                                                              
+ PRECOMP(YES) PRINT(TEMP) RUN(NO)-                                              
+ SYSTEM(DSN) SQLDELIM(APOST) TERM(TERM)-                                        
+ /* THIS LINE NEEDED TO END THE DSNH INPUT */                                   
+//*                                                                             
+//SURF2SQL EXEC PROC=COB2UCL,LODMOD=IM2Q307                                     
+//*        STEP  4: BIND THE PROGRAM                                    00263200
+//BIND     EXEC PGM=IKJEFT01,DYNAMNBR=20,COND=(4,LT)                    00263300
+//STEPLIB  DD DSN=SYS1.DSNLOAD,DISP=SHR                                 00263400
+//DBRMLIB  DD DISP=SHR,                                                 00263400
+//            DSN=DSN22X.DBRMLIB.DATA                                   00263500
+//SYSUDUMP DD SYSOUT=*                                                  00263600
+//SYSTSPRT DD SYSOUT=*                                                  00263700
+//SYSPRINT DD SYSOUT=*                                                  00263800
+//SYSTSIN  DD *                                                         00263900
+DSN SYSTEM(DSN)                                                         00264000
+BIND PLAN(IM2Q307) MEMBER(IM2Q307) ACT(REP) ISO(CS) EXPLAIN(YES) -      00265000
+ VALIDATE(BIND)                                                                 
+END                                                                     00320000
+//*                                                                     00330000
+//TMP08    EXEC PGM=IKJEFT01,DYNAMNBR=20                                        
+//SYSTSPRT DD SYSOUT=*,DCB=BLKSIZE=2420                                         
+//SYSTSIN  DD *                                                                 
+PROFILE    PREFIX(DB2IMS)                                                       
+ALLOC      DD(SYSPROC) DSN('DAVID.SETQUERY.WORKLOAD') SHR                       
+%DSNH BIND(NO) COMPILE(NO) CONTROL(NONE)-                                       
+ DBRMLIB('''DSN22X.DBRMLIB.DATA(IM2Q308)''')-                                   
+ DECIMAL(PERIOD) DELIMIT(APOST)-                                                
+ HOST(COB2) INPUT('''DAVID.SETQUERY.WORKLOAD(IM2Q308)''')-                      
+ LINECOUNT(60) LINK(NO)-                                                        
+ OUTNAME(TEMP) MACRO(NO)-                                                       
+ -                                                                              
+ PRECOMP(YES) PRINT(TEMP) RUN(NO)-                                              
+ SYSTEM(DSN) SQLDELIM(APOST) TERM(TERM)-                                        
+ /* THIS LINE NEEDED TO END THE DSNH INPUT */                                   
+//*                                                                             
+//SURF2SQL EXEC PROC=COB2UCL,LODMOD=IM2Q308                                     
+//*        STEP  4: BIND THE PROGRAM                                    00263200
+//BIND     EXEC PGM=IKJEFT01,DYNAMNBR=20,COND=(4,LT)                    00263300
+//STEPLIB  DD DSN=SYS1.DSNLOAD,DISP=SHR                                 00263400
+//DBRMLIB  DD DISP=SHR,                                                 00263400
+//            DSN=DSN22X.DBRMLIB.DATA                                   00263500
+//SYSUDUMP DD SYSOUT=*                                                  00263600
+//SYSTSPRT DD SYSOUT=*                                                  00263700
+//SYSPRINT DD SYSOUT=*                                                  00263800
+//SYSTSIN  DD *                                                         00263900
+DSN SYSTEM(DSN)                                                         00264000
+BIND PLAN(IM2Q308) MEMBER(IM2Q308) ACT(REP) ISO(CS) EXPLAIN(YES) -      00265000
+ VALIDATE(BIND)                                                                 
+END                                                                     00320000
+//*                                                                     00330000
+//TMP09    EXEC PGM=IKJEFT01,DYNAMNBR=20                                        
+//SYSTSPRT DD SYSOUT=*,DCB=BLKSIZE=2420                                         
+//SYSTSIN  DD *                                                                 
+PROFILE    PREFIX(DB2IMS)                                                       
+ALLOC      DD(SYSPROC) DSN('DAVID.SETQUERY.WORKLOAD') SHR                       
+%DSNH BIND(NO) COMPILE(NO) CONTROL(NONE)-                                       
+ DBRMLIB('''DSN22X.DBRMLIB.DATA(IM2Q309)''')-                                   
+ DECIMAL(PERIOD) DELIMIT(APOST)-                                                
+ HOST(COB2) INPUT('''DAVID.SETQUERY.WORKLOAD(IM2Q309)''')-                      
+ LINECOUNT(60) LINK(NO)-                                                        
+ OUTNAME(TEMP) MACRO(NO)-                                                       
+ -                                                                              
+ PRECOMP(YES) PRINT(TEMP) RUN(NO)-                                              
+ SYSTEM(DSN) SQLDELIM(APOST) TERM(TERM)-                                        
+ /* THIS LINE NEEDED TO END THE DSNH INPUT */                                   
+//*                                                                             
+//SURF2SQL EXEC PROC=COB2UCL,LODMOD=IM2Q309                                     
+//*        STEP  4: BIND THE PROGRAM                                    00263200
+//BIND     EXEC PGM=IKJEFT01,DYNAMNBR=20,COND=(4,LT)                    00263300
+//STEPLIB  DD DSN=SYS1.DSNLOAD,DISP=SHR                                 00263400
+//DBRMLIB  DD DISP=SHR,                                                 00263400
+//            DSN=DSN22X.DBRMLIB.DATA                                   00263500
+//SYSUDUMP DD SYSOUT=*                                                  00263600
+//SYSTSPRT DD SYSOUT=*                                                  00263700
+//SYSPRINT DD SYSOUT=*                                                  00263800
+//SYSTSIN  DD *                                                         00263900
+DSN SYSTEM(DSN)                                                         00264000
+BIND PLAN(IM2Q309) MEMBER(IM2Q309) ACT(REP) ISO(CS) EXPLAIN(YES) -      00265000
+ VALIDATE(BIND)                                                                 
+END                                                                     00320000
+//*                                                                     00330000
+//TMP10    EXEC PGM=IKJEFT01,DYNAMNBR=20                                        
+//SYSTSPRT DD SYSOUT=*,DCB=BLKSIZE=2420                                         
+//SYSTSIN  DD *                                                                 
+PROFILE    PREFIX(DB2IMS)                                                       
+ALLOC      DD(SYSPROC) DSN('DAVID.SETQUERY.WORKLOAD') SHR                       
+%DSNH BIND(NO) COMPILE(NO) CONTROL(NONE)-                                       
+ DBRMLIB('''DSN22X.DBRMLIB.DATA(IM2Q310)''')-                                   
+ DECIMAL(PERIOD) DELIMIT(APOST)-                                                
+ HOST(COB2) INPUT('''DAVID.SETQUERY.WORKLOAD(IM2Q310)''')-                      
+ LINECOUNT(60) LINK(NO)-                                                        
+ OUTNAME(TEMP) MACRO(NO)-                                                       
+ -                                                                              
+ PRECOMP(YES) PRINT(TEMP) RUN(NO)-                                              
+ SYSTEM(DSN) SQLDELIM(APOST) TERM(TERM)-                                        
+ /* THIS LINE NEEDED TO END THE DSNH INPUT */                                   
+//*                                                                             
+//SURF2SQL EXEC PROC=COB2UCL,LODMOD=IM2Q310                                     
+//*        STEP  4: BIND THE PROGRAM                                    00263200
+//BIND     EXEC PGM=IKJEFT01,DYNAMNBR=20,COND=(4,LT)                    00263300
+//STEPLIB  DD DSN=SYS1.DSNLOAD,DISP=SHR                                 00263400
+//DBRMLIB  DD DISP=SHR,                                                 00263400
+//            DSN=DSN22X.DBRMLIB.DATA                                   00263500
+//SYSUDUMP DD SYSOUT=*                                                  00263600
+//SYSTSPRT DD SYSOUT=*                                                  00263700
+//SYSPRINT DD SYSOUT=*                                                  00263800
+//SYSTSIN  DD *                                                         00263900
+DSN SYSTEM(DSN)                                                         00264000
+BIND PLAN(IM2Q310) MEMBER(IM2Q310) ACT(REP) ISO(CS) EXPLAIN(YES) -      00265000
+ VALIDATE(BIND)                                                                 
+END                                                                     00320000
+//*                                                                     00330000
+//TMP01    EXEC PGM=IKJEFT01,DYNAMNBR=20                                        
+//SYSTSPRT DD SYSOUT=*,DCB=BLKSIZE=2420                                         
+//SYSTSIN  DD *                                                                 
+PROFILE    PREFIX(DB2IMS)                                                       
+ALLOC      DD(SYSPROC) DSN('DAVID.SETQUERY.WORKLOAD') SHR                       
+%DSNH BIND(NO) COMPILE(NO) CONTROL(NONE)-                                       
+ DBRMLIB('''DSN22X.DBRMLIB.DATA(IM2Q311)''')-                                   
+ DECIMAL(PERIOD) DELIMIT(APOST)-                                                
+ HOST(COB2) INPUT('''DAVID.SETQUERY.WORKLOAD(IM2Q311)''')-                      
+ LINECOUNT(60) LINK(NO)-                                                        
+ OUTNAME(TEMP) MACRO(NO)-                                                       
+ -                                                                              
+ PRECOMP(YES) PRINT(TEMP) RUN(NO)-                                              
+ SYSTEM(DSN) SQLDELIM(APOST) TERM(TERM)-                                        
+ /* THIS LINE NEEDED TO END THE DSNH INPUT */                                   
+//*                                                                             
+//SURF2SQL EXEC PROC=COB2UCL,LODMOD=IM2Q311                                     
+//*        STEP  4: BIND THE PROGRAM                                    00263200
+//BIND     EXEC PGM=IKJEFT01,DYNAMNBR=20,COND=(4,LT)                    00263300
+//STEPLIB  DD DSN=SYS1.DSNLOAD,DISP=SHR                                 00263400
+//DBRMLIB  DD DISP=SHR,                                                 00263400
+//            DSN=DSN22X.DBRMLIB.DATA                                   00263500
+//SYSUDUMP DD SYSOUT=*                                                  00263600
+//SYSTSPRT DD SYSOUT=*                                                  00263700
+//SYSPRINT DD SYSOUT=*                                                  00263800
+//SYSTSIN  DD *                                                         00263900
+DSN SYSTEM(DSN)                                                         00264000
+BIND PLAN(IM2Q311) MEMBER(IM2Q311) ACT(REP) ISO(CS) EXPLAIN(YES) -      00265000
+ VALIDATE(BIND)                                                                 
+END                                                                     00320000
+//*                                                                     00330000
+//TMP02    EXEC PGM=IKJEFT01,DYNAMNBR=20                                        
+//SYSTSPRT DD SYSOUT=*,DCB=BLKSIZE=2420                                         
+//SYSTSIN  DD *                                                                 
+PROFILE    PREFIX(DB2IMS)                                                       
+ALLOC      DD(SYSPROC) DSN('DAVID.SETQUERY.WORKLOAD') SHR                       
+%DSNH BIND(NO) COMPILE(NO) CONTROL(NONE)-                                       
+ DBRMLIB('''DSN22X.DBRMLIB.DATA(IM2Q312)''')-                                   
+ DECIMAL(PERIOD) DELIMIT(APOST)-                                                
+ HOST(COB2) INPUT('''DAVID.SETQUERY.WORKLOAD(IM2Q312)''')-                      
+ LINECOUNT(60) LINK(NO)-                                                        
+ OUTNAME(TEMP) MACRO(NO)-                                                       
+ -                                                                              
+ PRECOMP(YES) PRINT(TEMP) RUN(NO)-                                              
+ SYSTEM(DSN) SQLDELIM(APOST) TERM(TERM)-                                        
+ /* THIS LINE NEEDED TO END THE DSNH INPUT */                                   
+//*                                                                             
+//SURF2SQL EXEC PROC=COB2UCL,LODMOD=IM2Q312                                     
+//*        STEP  4: BIND THE PROGRAM                                    00263200
+//BIND     EXEC PGM=IKJEFT01,DYNAMNBR=20,COND=(4,LT)                    00263300
+//STEPLIB  DD DSN=SYS1.DSNLOAD,DISP=SHR                                 00263400
+//DBRMLIB  DD DISP=SHR,                                                 00263400
+//            DSN=DSN22X.DBRMLIB.DATA                                   00263500
+//SYSUDUMP DD SYSOUT=*                                                  00263600
+//SYSTSPRT DD SYSOUT=*                                                  00263700
+//SYSPRINT DD SYSOUT=*                                                  00263800
+//SYSTSIN  DD *                                                         00263900
+DSN SYSTEM(DSN)                                                         00264000
+BIND PLAN(IM2Q312) MEMBER(IM2Q312) ACT(REP) ISO(CS) EXPLAIN(YES) -      00265000
+ VALIDATE(BIND)                                                                 
+END                                                                     00320000
+//*                                                                     00330000
+//TMP03    EXEC PGM=IKJEFT01,DYNAMNBR=20                                        
+//SYSTSPRT DD SYSOUT=*,DCB=BLKSIZE=2420                                         
+//SYSTSIN  DD *                                                                 
+PROFILE    PREFIX(DB2IMS)                                                       
+ALLOC      DD(SYSPROC) DSN('DAVID.SETQUERY.WORKLOAD') SHR                       
+%DSNH BIND(NO) COMPILE(NO) CONTROL(NONE)-                                       
+ DBRMLIB('''DSN22X.DBRMLIB.DATA(IM2Q313)''')-                                   
+ DECIMAL(PERIOD) DELIMIT(APOST)-                                                
+ HOST(COB2) INPUT('''DAVID.SETQUERY.WORKLOAD(IM2Q313)''')-                      
+ LINECOUNT(60) LINK(NO)-                                                        
+ OUTNAME(TEMP) MACRO(NO)-                                                       
+ -                                                                              
+ PRECOMP(YES) PRINT(TEMP) RUN(NO)-                                              
+ SYSTEM(DSN) SQLDELIM(APOST) TERM(TERM)-                                        
+ /* THIS LINE NEEDED TO END THE DSNH INPUT */                                   
+//*                                                                             
+//SURF2SQL EXEC PROC=COB2UCL,LODMOD=IM2Q313                                     
+//*        STEP  4: BIND THE PROGRAM                                    00263200
+//BIND     EXEC PGM=IKJEFT01,DYNAMNBR=20,COND=(4,LT)                    00263300
+//STEPLIB  DD DSN=SYS1.DSNLOAD,DISP=SHR                                 00263400
+//DBRMLIB  DD DISP=SHR,                                                 00263400
+//            DSN=DSN22X.DBRMLIB.DATA                                   00263500
+//SYSUDUMP DD SYSOUT=*                                                  00263600
+//SYSTSPRT DD SYSOUT=*                                                  00263700
+//SYSPRINT DD SYSOUT=*                                                  00263800
+//SYSTSIN  DD *                                                         00263900
+DSN SYSTEM(DSN)                                                         00264000
+BIND PLAN(IM2Q313) MEMBER(IM2Q313) ACT(REP) ISO(CS) EXPLAIN(YES) -      00265000
+ VALIDATE(BIND)                                                                 
+END                                                                     00320000
+//*                                                                     00330000
+//TMP04    EXEC PGM=IKJEFT01,DYNAMNBR=20                                        
+//SYSTSPRT DD SYSOUT=*,DCB=BLKSIZE=2420                                         
+//SYSTSIN  DD *                                                                 
+PROFILE    PREFIX(DB2IMS)                                                       
+ALLOC      DD(SYSPROC) DSN('DAVID.SETQUERY.WORKLOAD') SHR                       
+%DSNH BIND(NO) COMPILE(NO) CONTROL(NONE)-                                       
+ DBRMLIB('''DSN22X.DBRMLIB.DATA(IM2Q314)''')-                                   
+ DECIMAL(PERIOD) DELIMIT(APOST)-                                                
+ HOST(COB2) INPUT('''DAVID.SETQUERY.WORKLOAD(IM2Q314)''')-                      
+ LINECOUNT(60) LINK(NO)-                                                        
+ OUTNAME(TEMP) MACRO(NO)-                                                       
+ -                                                                              
+ PRECOMP(YES) PRINT(TEMP) RUN(NO)-                                              
+ SYSTEM(DSN) SQLDELIM(APOST) TERM(TERM)-                                        
+ /* THIS LINE NEEDED TO END THE DSNH INPUT */                                   
+//*                                                                             
+//SURF2SQL EXEC PROC=COB2UCL,LODMOD=IM2Q314                                     
+//*        STEP  4: BIND THE PROGRAM                                    00263200
+//BIND     EXEC PGM=IKJEFT01,DYNAMNBR=20,COND=(4,LT)                    00263300
+//STEPLIB  DD DSN=SYS1.DSNLOAD,DISP=SHR                                 00263400
+//DBRMLIB  DD DISP=SHR,                                                 00263400
+//            DSN=DSN22X.DBRMLIB.DATA                                   00263500
+//SYSUDUMP DD SYSOUT=*                                                  00263600
+//SYSTSPRT DD SYSOUT=*                                                  00263700
+//SYSPRINT DD SYSOUT=*                                                  00263800
+//SYSTSIN  DD *                                                         00263900
+DSN SYSTEM(DSN)                                                         00264000
+BIND PLAN(IM2Q314) MEMBER(IM2Q314) ACT(REP) ISO(CS) EXPLAIN(YES) -      00265000
+ VALIDATE(BIND)                                                                 
+END                                                                     00320000
+//*                                                                     00330000
+//TMP05    EXEC PGM=IKJEFT01,DYNAMNBR=20                                        
+//SYSTSPRT DD SYSOUT=*,DCB=BLKSIZE=2420                                         
+//SYSTSIN  DD *                                                                 
+PROFILE    PREFIX(DB2IMS)                                                       
+ALLOC      DD(SYSPROC) DSN('DAVID.SETQUERY.WORKLOAD') SHR                       
+%DSNH BIND(NO) COMPILE(NO) CONTROL(NONE)-                                       
+ DBRMLIB('''DSN22X.DBRMLIB.DATA(IM2Q315)''')-                                   
+ DECIMAL(PERIOD) DELIMIT(APOST)-                                                
+ HOST(COB2) INPUT('''DAVID.SETQUERY.WORKLOAD(IM2Q315)''')-                      
+ LINECOUNT(60) LINK(NO)-                                                        
+ OUTNAME(TEMP) MACRO(NO)-                                                       
+ -                                                                              
+ PRECOMP(YES) PRINT(TEMP) RUN(NO)-                                              
+ SYSTEM(DSN) SQLDELIM(APOST) TERM(TERM)-                                        
+ /* THIS LINE NEEDED TO END THE DSNH INPUT */                                   
+//*                                                                             
+//SURF2SQL EXEC PROC=COB2UCL,LODMOD=IM2Q315                                     
+//*        STEP  4: BIND THE PROGRAM                                    00263200
+//BIND     EXEC PGM=IKJEFT01,DYNAMNBR=20,COND=(4,LT)                    00263300
+//STEPLIB  DD DSN=SYS1.DSNLOAD,DISP=SHR                                 00263400
+//DBRMLIB  DD DISP=SHR,                                                 00263400
+//            DSN=DSN22X.DBRMLIB.DATA                                   00263500
+//SYSUDUMP DD SYSOUT=*                                                  00263600
+//SYSTSPRT DD SYSOUT=*                                                  00263700
+//SYSPRINT DD SYSOUT=*                                                  00263800
+//SYSTSIN  DD *                                                         00263900
+DSN SYSTEM(DSN)                                                         00264000
+BIND PLAN(IM2Q315) MEMBER(IM2Q315) ACT(REP) ISO(CS) EXPLAIN(YES) -      00265000
+ VALIDATE(BIND)                                                                 
+END                                                                     00320000
+//*                                                                     00330000
+//TMP06    EXEC PGM=IKJEFT01,DYNAMNBR=20                                        
+//SYSTSPRT DD SYSOUT=*,DCB=BLKSIZE=2420                                         
+//SYSTSIN  DD *                                                                 
+PROFILE    PREFIX(DB2IMS)                                                       
+ALLOC      DD(SYSPROC) DSN('DAVID.SETQUERY.WORKLOAD') SHR                       
+%DSNH BIND(NO) COMPILE(NO) CONTROL(NONE)-                                       
+ DBRMLIB('''DSN22X.DBRMLIB.DATA(IM2Q316)''')-                                   
+ DECIMAL(PERIOD) DELIMIT(APOST)-                                                
+ HOST(COB2) INPUT('''DAVID.SETQUERY.WORKLOAD(IM2Q316)''')-                      
+ LINECOUNT(60) LINK(NO)-                                                        
+ OUTNAME(TEMP) MACRO(NO)-                                                       
+ -                                                                              
+ PRECOMP(YES) PRINT(TEMP) RUN(NO)-                                              
+ SYSTEM(DSN) SQLDELIM(APOST) TERM(TERM)-                                        
+ /* THIS LINE NEEDED TO END THE DSNH INPUT */                                   
+//*                                                                             
+//SURF2SQL EXEC PROC=COB2UCL,LODMOD=IM2Q316                                     
+//*        STEP  4: BIND THE PROGRAM                                    00263200
+//BIND     EXEC PGM=IKJEFT01,DYNAMNBR=20,COND=(4,LT)                    00263300
+//STEPLIB  DD DSN=SYS1.DSNLOAD,DISP=SHR                                 00263400
+//DBRMLIB  DD DISP=SHR,                                                 00263400
+//            DSN=DSN22X.DBRMLIB.DATA                                   00263500
+//SYSUDUMP DD SYSOUT=*                                                  00263600
+//SYSTSPRT DD SYSOUT=*                                                  00263700
+//SYSPRINT DD SYSOUT=*                                                  00263800
+//SYSTSIN  DD *                                                         00263900
+DSN SYSTEM(DSN)                                                         00264000
+BIND PLAN(IM2Q316) MEMBER(IM2Q316) ACT(REP) ISO(CS) EXPLAIN(YES) -      00265000
+ VALIDATE(BIND)                                                                 
+END                                                                     00320000
+//*                                                                     00330000

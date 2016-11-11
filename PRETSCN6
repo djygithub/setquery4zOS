@@ -1,0 +1,67 @@
+//PRETSCAN JOB (330DJY00),'D J YOUNG ',MSGCLASS=O,NOTIFY=DAVID,                 
+//         USER=DAVID                                                           
+//JOBLIB   DD DSN=SYS1.DSN310.SDSNLOAD,DISP=SHR                                 
+//COB2UCL PROC                                                                  
+//*   PROC FOR COBOL II - COMPILE AND LINK                                      
+//COB2 EXEC PGM=IGYCRCTL,PARM='OBJECT,LIB,APOST,LIST',REGION=1024K              
+//STEPLIB  DD  DSNAME=SYS1.COB2COMP,DISP=SHR                                    
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSLIN   DD  DSNAME=&&LOADSET,UNIT=3390,DISP=(MOD,PASS),                      
+//             SPACE=(TRK,(3,3))                                                
+//SYSUT1   DD  UNIT=3390,SPACE=(CYL,(1,1))                                      
+//SYSUT2   DD  UNIT=3390,SPACE=(CYL,(1,1))                                      
+//SYSUT3   DD  UNIT=3390,SPACE=(CYL,(1,1))                                      
+//SYSUT4   DD  UNIT=3390,SPACE=(CYL,(1,1))                                      
+//SYSUT5   DD  UNIT=3390,SPACE=(CYL,(1,1))                                      
+//SYSUT6   DD  UNIT=3390,SPACE=(CYL,(1,1))                                      
+//SYSUT7   DD  UNIT=3390,SPACE=(CYL,(1,1))                                      
+//LKED   EXEC  PGM=IEWL,PARM='LIST,XREF,LET,NCAL',COND=(5,LT,COB2),             
+//             REGION=512K                                                      
+//SYSLIN   DD  DSNAME=&&LOADSET,DISP=(OLD,DELETE)                               
+//SYSLIB   DD  DSNAME=SYS1.COB2LIB,DISP=SHR                                     
+//SYSUT1   DD  UNIT=3390,SPACE=(CYL,(1,1))                                      
+//SYSPRINT DD  SYSOUT=*                                                         
+// PEND                                                                         
+//TMP01    EXEC PGM=IKJEFT01,DYNAMNBR=20,REGION=4096K                           
+//SYSTSPRT DD SYSOUT=*,DCB=BLKSIZE=2420                                         
+//SYSTSIN  DD *                                                                 
+PROFILE    PREFIX(DAVID)                                                        
+ALLOC      DD(SYSPROC) DSN('SYS1.DSN310.SDSNCLST') SHR                          
+%DSNH BIND(NO) COMPILE(NO) CONTROL(NONE)-                                       
+ DBRMLIB('''DSN310.DBRMLIB.DATA(BTBLSCN6)''')-                                  
+ DECIMAL(PERIOD) DELIMIT(APOST)-                                                
+ HOST(COB2) INPUT('''DAVID.SETQUERY.WORKLOAD(BTBLSCN6)''')-                     
+ LINECOUNT(60) LINK(NO)-                                                        
+ OUTNAME(TEMP) MACRO(NO)-                                                       
+ -                                                                              
+ PRECOMP(YES) PRINT(TEMP) RUN(NO)-                                              
+ SYSTEM(DSN) SQLDELIM(APOST) TERM(TERM)-                                        
+ /* THIS LINE NEEDED TO END THE DSNH INPUT */                                   
+//DOIT EXEC COB2UCL,COND=(4,LT)                                                 
+//COB2.SYSIN DD DSN=DAVID.TEMP.COBOL,DISP=SHR                                   
+//LKED.SYSLMOD  DD  DSNAME=DSN310.SRCLIB.DATA(BTBLSCN6),                        
+//             DISP=SHR                                                         
+//BIND    EXEC PGM=IKJEFT01,DYNAMNBR=20,COND=(4,LT)                     00308000
+//SYSTSPRT DD  SYSOUT=*                                                 00309000
+//SYSPRINT DD  SYSOUT=*                                                 00310000
+//SYSUDUMP DD  SYSOUT=*                                                 00320000
+//SYSTSIN  DD  *                                                        00330000
+  ALLOC F(SYSPROC) DA('SYS1.DSN310.SDSNCLST') SHR                       00340000
+  DSN SYSTEM(DB3)                                                       00350000
+  BIND PLAN(BTBLSCN6) MEM(BTBLSCN6) EXPLAIN(YES) -                      00370000
+             ACT(REP) ISOLATION(CS) VALIDATE(BIND) -                    00370000
+       LIB('DSN310.DBRMLIB.DATA')                                       00380000
+//LINKEDIT EXEC PGM=IEWL,                                                       
+//             PARM='XREF,LIST',                                                
+//             TIME=(,10),COND=(4,LT)                                           
+//SYSLIB   DD  DSN=DSN310.SRCLIB.DATA,DISP=SHR                                  
+//         DD  DSN=SYS1.DSN310.SDSNLOAD,DISP=SHR                                
+//         DD  DSN=SYS1.COB2LIB,DISP=SHR                                        
+//SYSUT1   DD  UNIT=3390,                                                       
+//             SPACE=(CYL,(1,1))                                                
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSLMOD  DD  DSN=DSN310.RUNLIB.LOAD,DISP=SHR                                  
+//SYSLIN   DD  DDNAME=SYSIN                                                     
+//SYSIN    DD  *                                                                
+  INCLUDE SYSLIB(BTBLSCN6)                                                      
+  NAME    BTBLSCN6(R)                                                           

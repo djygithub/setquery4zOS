@@ -1,0 +1,13 @@
+  Q301TRAN: MSGUTBL                                                             
+  'Q301';'Q302';'Q303';'Q304';'Q305';'Q306';'Q307';'Q308';'Q309';'Q310'         
+  'Q311';'Q312'                                                                 
+  ENDUTBL                                                                       
+Q301: MSGTXT                                                                    
+Q301DATA='000000001000010000'                                                   
+DO FOREVER                                                                      
+    TRANSMIT USING CLEAR AND WAIT UNTIL ONIN                                    
+    Q3TN=UTBL(Q301TRAN,'R')                                                     
+   TYPE Q3TN||Q301DATA                                                          
+   TRANSMIT USING ENTER AND WAIT UNTIL ONIN                                     
+END                                                                             
+ENDTXT                                                                          

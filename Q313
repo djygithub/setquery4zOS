@@ -1,0 +1,12 @@
+  Q313TRAN: MSGUTBL                                                             
+  'Q313';'Q314';'Q315';'Q316'                                                   
+  ENDUTBL                                                                       
+Q313: MSGTXT                                                                    
+Q313DATA='000000001000010000'                                                   
+DO FOREVER                                                                      
+    TRANSMIT USING CLEAR AND WAIT UNTIL ONIN                                    
+    Q313TN=UTBL(Q313TRAN,'R')                                                   
+   TYPE Q313TN||Q313DATA                                                        
+   TRANSMIT USING ENTER AND WAIT UNTIL ONIN                                     
+END                                                                             
+ENDTXT                                                                          

@@ -1,0 +1,36 @@
+  Q201TRAN: MSGUTBL                                                             
+  'Q20100001'                                                                   
+  'Q20200001'                                                                   
+  'Q20300001'                                                                   
+  'Q20400001'                                                                   
+  'Q20500001'                                                                   
+  'Q20600001'                                                                   
+  'Q20700001'                                                                   
+  'Q20800001'                                                                   
+  'Q20900001'                                                                   
+  'Q21000001'                                                                   
+  'Q21100001'                                                                   
+  'Q21200001'                                                                   
+  'Q21300001'                                                                   
+  'Q21400001'                                                                   
+  'Q21500001'                                                                   
+  'Q21600001'                                                                   
+  'Q21700001'                                                                   
+  'Q21800001'                                                                   
+  ENDUTBL                                                                       
+Q201R: MSGTXT                                                                   
+Q2FIRST='000000001'                                                             
+Q2LAST='000000001'                                                              
+DO FOREVER                                                                      
+    Q2BT=UTBL(Q201TRAN,'R')                                                     
+    Q2TRAN=SUBSTR(Q2BT,1,4)                                                     
+    Q2ROES=SUBSTR(Q2BT,5,5)                                                     
+    Q2ROWS=E2D (Q2ROES,5)                                                       
+    Q2RAND=RANDOM('RN',1)                                                       
+    Q2FIRST=CHAR(Q2RAND,5)                                                      
+    Q2RAND=Q2RAND+Q2ROWS                                                        
+    Q2LAST=CHAR(Q2RAND,5)                                                       
+   TYPE Q2TRAN||Q2FIRST||'0000'||Q2LAST||'0000'                                 
+   TRANSMIT USING ENTER                                                         
+END                                                                             
+ENDTXT                                                                          

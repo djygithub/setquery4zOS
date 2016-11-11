@@ -1,0 +1,47 @@
+//PRPIQ101 JOB (330RWM00,),MSGCLASS=Y                                           
+//*                                                                             
+//COB2UCL PROC                                                                  
+//*                   PROC FOR COBOL II - COMPILE AND LINK                      
+//COB2     EXEC  PGM=IGYCRCTL,PARM='OBJECT,APOST',REGION=1024K                  
+//STEPLIB  DD DSN=SYS1.COB2COMP,DISP=SHR                                        
+//SYSIN DD DSN=DB2IMS.TEMP.COBOL,DISP=SHR                                       
+//SYSTERM  DD  SYSOUT=*                                                         
+//SYSPRINT DD  SYSOUT=*                                                         
+//SYSLIN   DD  DSNAME=&&LOADSET,UNIT=3390,DISP=(MOD,PASS),                      
+//             SPACE=(TRK,(3,3))                                                
+//SYSUT1   DD  UNIT=3390,SPACE=(CYL,(1,1))                                      
+//SYSUT2   DD  UNIT=3390,SPACE=(CYL,(1,1))                                      
+//SYSUT3   DD  UNIT=3390,SPACE=(CYL,(1,1))                                      
+//SYSUT4   DD  UNIT=3390,SPACE=(CYL,(1,1))                                      
+//SYSUT5   DD  UNIT=3390,SPACE=(CYL,(1,1))                                      
+//SYSUT6   DD  UNIT=3390,SPACE=(CYL,(1,1))                                      
+//SYSUT7   DD  UNIT=3390,SPACE=(CYL,(1,1))                                      
+//LKED     EXEC  PGM=IEWL,PARM='LIST,XREF,MAP',COND=(5,LT,COB2),                
+//             REGION=1024K                                                     
+//SYSLIN   DD  DSNAME=&&LOADSET,DISP=(OLD,DELETE)                               
+//         DD  DDNAME=SYSIN                                                     
+//SYSLMOD  DD  DSNAME=DSN22X.RUNLIB.LOAD(&LODMOD),DISP=SHR                      
+//SYSLIB   DD  DSNAME=SYS1.COB2LIB,DISP=SHR                                     
+//         DD  DSNAME=SYS1.DSNLOAD,DISP=SHR                                     
+//         DD  DSNAME=IMS310.RESLIB,DISP=SHR                                    
+//SYSUT1   DD  UNIT=3390,SPACE=(CYL,(1,1))                                      
+//SYSPRINT DD  SYSOUT=*                                                         
+// PEND                                                                         
+//TMP01    EXEC PGM=IKJEFT01,DYNAMNBR=20                                        
+//SYSTSPRT DD SYSOUT=*,DCB=BLKSIZE=2420                                         
+//SYSTSIN  DD *                                                                 
+PROFILE    PREFIX(DB2IMS)                                                       
+ALLOC      DD(SYSPROC) DSN('DAVID.SETQUERY.WORKLOAD') SHR                       
+%DSNH BIND(NO) COMPILE(NO) CONTROL(NONE)-                                       
+ DBRMLIB('''DSN22X.DBRMLIB.DATA(IM2Q101)''')-                                   
+ DECIMAL(PERIOD) DELIMIT(APOST)-                                                
+ HOST(COB2) INPUT('''DAVID.SETQUERY.WORKLOAD(IM2Q101)''')-                      
+ LINECOUNT(60) LINK(NO)-                                                        
+ OUTNAME(TEMP) MACRO(NO)-                                                       
+ -                                                                              
+ PRECOMP(YES) PRINT(TEMP) RUN(NO)-                                              
+ SYSTEM(DSN) SQLDELIM(APOST) TERM(TERM)-                                        
+ /* THIS LINE NEEDED TO END THE DSNH INPUT */                                   
+//*                                                                             
+//SURF2SQL EXEC PROC=COB2UCL,LODMOD=IM2Q101                                     
+//*        STEP  4: BIND THE PROGRAM                                    00263200

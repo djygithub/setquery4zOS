@@ -1,0 +1,7 @@
+//PRNTVSAM JOB 12345,CHI,CLASS=A,MSGCLASS=X                             00010000
+//IDCAMS EXEC PGM=IDCAMS                                                00020000
+//SYSPRINT DD SYSOUT=*,OUTLIM=900000                                    00030002
+//DD1  DD DSN=DSN310.DSNDBD.SQ4DB.SQ4TS.I0001.A001,DISP=SHR             00031001
+//SYSIN    DD *                                                         00040000
+ PRINT IFILE(DD1)                                                       00053000
+/*  TOKEY(X'000026E4E8F0F7F5F1F2') -                                    00054000

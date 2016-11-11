@@ -1,0 +1,13 @@
+  Q201TRAN: MSGUTBL                                                             
+  'Q201';'Q202';'Q203';'Q204';'Q205';'Q206';'Q207';'Q208';'Q209';'Q210'         
+  'Q211';'Q212';'Q213';'Q214';'Q215';'Q216';'Q217';'Q218'                       
+  ENDUTBL                                                                       
+Q201: MSGTXT                                                                    
+Q201DATA='000000001000010000'                                                   
+DO FOREVER                                                                      
+    TRANSMIT USING CLEAR AND WAIT UNTIL ONIN                                    
+    Q2TN=UTBL(Q201TRAN,'R')                                                     
+   TYPE Q2TN||Q201DATA                                                          
+   TRANSMIT USING ENTER AND WAIT UNTIL ONIN                                     
+END                                                                             
+ENDTXT                                                                          

@@ -1,0 +1,23 @@
+  Q313TRAN: MSGUTBL                                                             
+  'Q31300001'                                                                   
+  'Q31400001'                                                                   
+  'Q31500001'                                                                   
+  'Q31600001'                                                                   
+  ENDUTBL                                                                       
+Q313R: MSGTXT                                                                   
+Q3FIRST='000000001'                                                             
+Q3LAST='000000001'                                                              
+DO FOREVER                                                                      
+    TRANSMIT USING CLEAR AND WAIT UNTIL ONIN                                    
+    Q3BT=UTBL(Q313TRAN,'R')                                                     
+    Q3TRAN=SUBSTR(Q3BT,1,4)                                                     
+    Q3ROES=SUBSTR(Q3BT,5,5)                                                     
+    Q3ROWS=E2D (Q3ROES,5)                                                       
+    Q3RAND=RANDOM(0,100)                                                        
+    Q3FIRST=CHAR(Q3RAND,5)                                                      
+    Q3RAND=Q3RAND+Q3ROWS                                                        
+    Q3LAST=CHAR(Q3RAND,5)                                                       
+   TYPE Q3TRAN||Q3FIRST||'0000'||Q3LAST||'0000'                                 
+   TRANSMIT USING ENTER AND WAIT UNTIL ONIN                                     
+END                                                                             
+ENDTXT                                                                          

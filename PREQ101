@@ -1,0 +1,187 @@
+//PREQ101 JOB   0,YOUNG,MSGLEVEL=(1,1),                                 00001008
+//         MSGCLASS=Q,USER=DAVID,NOTIFY=DAVID                           00002006
+//**********************************************************************00003004
+//*  NAME = DSNTEJ5C                                                   *00004004
+//*                                                                    *00005004
+//*  DESCRIPTIVE NAME = DB2 SAMPLE APPLICATION                         *00006004
+//*                     PHASE 5                                        *00007004
+//*                     COBOL, CICS                                    *00008004
+//*                                                                    *00009004
+//*    COPYRIGHT = 5665-DB2 (C) COPYRIGHT IBM CORP 1982, 1989          *00010004
+//*    REFER TO COPYRIGHT INSTRUCTIONS FORM NUMBER G120-2083           *00020004
+//*                                                                    *00021004
+//*    STATUS = VERSION 2 RELEASE 2, LEVEL 0                           *00022004
+//*                                                                    *00023004
+//*  FUNCTION = THIS JCL PERFORMS THE PHASE 5 SETUP FOR THE SAMPLE     *00024004
+//*             APPLICATIONS AT SITES WITH COBOL.  IT PREPARES THE     *00025004
+//*             COBOL CICS PROGRAM.                                    *00026004
+//*                                                                    *00027004
+//*             RUN THIS JOB ANYTIME AFTER PHASE 2.                    *00028004
+//**********************************************************************00029004
+//*                                                                     00030004
+//JOBLIB  DD  DISP=SHR,                                                 00040004
+//            DSN=DSN230.DSNLOAD                                        00050007
+//        DD  DISP=SHR,                                                 00060004
+//            DSN=CICS321.SDFHLOAD                                      00070004
+//*       STEP  1: CREATE CICS LOGICAL MAP                              00080004
+//*        STEP  2: PREPARE CICS COBOL PROGRAMS                         00090004
+//DSNH     EXEC PGM=IKJEFT01,COND=(4,LT),DYNAMNBR=50,REGION=1024K       00100004
+//SYSTSPRT DD SYSOUT=*                                                  00110004
+//SYSTERM  DD SYSOUT=*                                                  00120004
+//SYSPRINT DD SYSOUT=*                                                  00130004
+//SYSUDUMP DD SYSOUT=*                                                  00140004
+//SYSPROC  DD DISP=SHR,                                                 00150004
+//            DSN=DAVID.SETQUERY.WORKLOAD                               00160004
+//SYSTSIN  DD *                                                         00170004
+  %DSNH INPUT('''DAVID.SETQUERY.WORKLOAD(CI2Q101)''') +                 00180004
+        PLIB('''DSN230.SRCLIB.DATA''') +                                00190005
+        P2LIB('''DSN230.NEW.DSNSAMP''') +                               00200005
+        TERM(LEAVE) PRINT(LEAVE) SOURCE(YES) XREF(YES) +                00210004
+        HOST(COB2) RUN(CICS) BIND(NO) DELIM(APOST) +                    00211004
+        DBRMLIB('''DSN230.DBRMLIB.DATA''')   +                          00212005
+        LLIB('''DSN230.RUNLIB.LOAD''')   +                              00213005
+        COB2LOAD('''SYS1.COB2COMP(IGYCRCTL)''') +                       00214004
+        COPTION('''NODYNAM,NOTRUNC''') STDSQL(NO) +                     00215004
+        PCLOAD('''DSN230.DSNLOAD(DSNHPC)''') +                          00216007
+        XLIB('''DSN230.DSNLOAD''') +                                    00217007
+        LOAD('''DSN230.RUNLIB.LOAD''')                                  00218005
+  %DSNH INPUT('''DAVID.SETQUERY.WORKLOAD(CI2Q102)''') +                 00219004
+        PLIB('''DSN230.SRCLIB.DATA''') +                                00220005
+        P2LIB('''DSN230.NEW.DSNSAMP''') +                               00230005
+        TERM(LEAVE) PRINT(LEAVE) SOURCE(YES) XREF(YES) +                00240004
+        HOST(COB2) RUN(CICS) BIND(NO) DELIM(APOST) +                    00250004
+        DBRMLIB('''DSN230.DBRMLIB.DATA''')   +                          00251005
+        LLIB('''DSN230.RUNLIB.LOAD''')   +                              00252005
+        COB2LOAD('''SYS1.COB2COMP(IGYCRCTL)''') +                       00253004
+        COPTION('''NODYNAM,NOTRUNC''') STDSQL(NO) +                     00253104
+        PCLOAD('''DSN230.DSNLOAD(DSNHPC)''') +                          00253207
+        XLIB('''DSN230.DSNLOAD''') +                                    00253307
+        LOAD('''DSN230.RUNLIB.LOAD''')                                  00253405
+  %DSNH INPUT('''DAVID.SETQUERY.WORKLOAD(CI2Q103)''') +                 00253504
+        PLIB('''DSN230.SRCLIB.DATA''') +                                00253605
+        P2LIB('''DSN230.NEW.DSNSAMP''') +                               00253705
+        TERM(LEAVE) PRINT(LEAVE) SOURCE(YES) XREF(YES) +                00253804
+        HOST(COB2) RUN(CICS) BIND(NO) DELIM(APOST) +                    00253904
+        DBRMLIB('''DSN230.DBRMLIB.DATA''')   +                          00254005
+        LLIB('''DSN230.RUNLIB.LOAD''')   +                              00254105
+        COB2LOAD('''SYS1.COB2COMP(IGYCRCTL)''') +                       00254204
+        COPTION('''NODYNAM,NOTRUNC''') STDSQL(NO) +                     00254304
+        PCLOAD('''DSN230.DSNLOAD(DSNHPC)''') +                          00254407
+        XLIB('''DSN230.DSNLOAD''') +                                    00254507
+        LOAD('''DSN230.RUNLIB.LOAD''')                                  00254605
+  %DSNH INPUT('''DAVID.SETQUERY.WORKLOAD(CI2Q104)''') +                 00254704
+        PLIB('''DSN230.SRCLIB.DATA''') +                                00254805
+        P2LIB('''DSN230.NEW.DSNSAMP''') +                               00254905
+        TERM(LEAVE) PRINT(LEAVE) SOURCE(YES) XREF(YES) +                00255004
+        HOST(COB2) RUN(CICS) BIND(NO) DELIM(APOST) +                    00255104
+        DBRMLIB('''DSN230.DBRMLIB.DATA''')   +                          00255205
+        LLIB('''DSN230.RUNLIB.LOAD''')   +                              00255305
+        COB2LOAD('''SYS1.COB2COMP(IGYCRCTL)''') +                       00255404
+        COPTION('''NODYNAM,NOTRUNC''') STDSQL(NO) +                     00255504
+        PCLOAD('''DSN230.DSNLOAD(DSNHPC)''') +                          00255607
+        XLIB('''DSN230.DSNLOAD''') +                                    00255707
+        LOAD('''DSN230.RUNLIB.LOAD''')                                  00255805
+  %DSNH INPUT('''DAVID.SETQUERY.WORKLOAD(CI2Q105)''') +                 00255904
+        PLIB('''DSN230.SRCLIB.DATA''') +                                00256005
+        P2LIB('''DSN230.NEW.DSNSAMP''') +                               00256105
+        TERM(LEAVE) PRINT(LEAVE) SOURCE(YES) XREF(YES) +                00256204
+        HOST(COB2) RUN(CICS) BIND(NO) DELIM(APOST) +                    00256304
+        DBRMLIB('''DSN230.DBRMLIB.DATA''')   +                          00256405
+        LLIB('''DSN230.RUNLIB.LOAD''')   +                              00256505
+        COB2LOAD('''SYS1.COB2COMP(IGYCRCTL)''') +                       00256604
+        COPTION('''NODYNAM,NOTRUNC''') STDSQL(NO) +                     00256704
+        PCLOAD('''DSN230.DSNLOAD(DSNHPC)''') +                          00256807
+        XLIB('''DSN230.DSNLOAD''') +                                    00256907
+        LOAD('''DSN230.RUNLIB.LOAD''')                                  00257005
+  %DSNH INPUT('''DAVID.SETQUERY.WORKLOAD(CI2Q106)''') +                 00257104
+        PLIB('''DSN230.SRCLIB.DATA''') +                                00257205
+        P2LIB('''DSN230.NEW.DSNSAMP''') +                               00257305
+        TERM(LEAVE) PRINT(LEAVE) SOURCE(YES) XREF(YES) +                00257404
+        HOST(COB2) RUN(CICS) BIND(NO) DELIM(APOST) +                    00257504
+        DBRMLIB('''DSN230.DBRMLIB.DATA''')   +                          00257605
+        LLIB('''DSN230.RUNLIB.LOAD''')   +                              00257705
+        COB2LOAD('''SYS1.COB2COMP(IGYCRCTL)''') +                       00257804
+        COPTION('''NODYNAM,NOTRUNC''') STDSQL(NO) +                     00257904
+        PCLOAD('''DSN230.DSNLOAD(DSNHPC)''') +                          00258007
+        XLIB('''DSN230.DSNLOAD''') +                                    00258107
+        LOAD('''DSN230.RUNLIB.LOAD''')                                  00258205
+  %DSNH INPUT('''DAVID.SETQUERY.WORKLOAD(CI2Q107)''') +                 00258304
+        PLIB('''DSN230.SRCLIB.DATA''') +                                00258405
+        P2LIB('''DSN230.NEW.DSNSAMP''') +                               00258505
+        TERM(LEAVE) PRINT(LEAVE) SOURCE(YES) XREF(YES) +                00258604
+        HOST(COB2) RUN(CICS) BIND(NO) DELIM(APOST) +                    00258704
+        DBRMLIB('''DSN230.DBRMLIB.DATA''')   +                          00258805
+        LLIB('''DSN230.RUNLIB.LOAD''')   +                              00258905
+        COB2LOAD('''SYS1.COB2COMP(IGYCRCTL)''') +                       00259004
+        COPTION('''NODYNAM,NOTRUNC''') STDSQL(NO) +                     00259104
+        PCLOAD('''DSN230.DSNLOAD(DSNHPC)''') +                          00259207
+        XLIB('''DSN230.DSNLOAD''') +                                    00259307
+        LOAD('''DSN230.RUNLIB.LOAD''')                                  00259405
+  %DSNH INPUT('''DAVID.SETQUERY.WORKLOAD(CI2Q108)''') +                 00259504
+        PLIB('''DSN230.SRCLIB.DATA''') +                                00259605
+        P2LIB('''DSN230.NEW.DSNSAMP''') +                               00259705
+        TERM(LEAVE) PRINT(LEAVE) SOURCE(YES) XREF(YES) +                00259804
+        HOST(COB2) RUN(CICS) BIND(NO) DELIM(APOST) +                    00259904
+        DBRMLIB('''DSN230.DBRMLIB.DATA''')   +                          00260005
+        LLIB('''DSN230.RUNLIB.LOAD''')   +                              00260105
+        COB2LOAD('''SYS1.COB2COMP(IGYCRCTL)''') +                       00260204
+        COPTION('''NODYNAM,NOTRUNC''') STDSQL(NO) +                     00260304
+        PCLOAD('''DSN230.DSNLOAD(DSNHPC)''') +                          00260407
+        XLIB('''DSN230.DSNLOAD''') +                                    00260507
+        LOAD('''DSN230.RUNLIB.LOAD''')                                  00260605
+  %DSNH INPUT('''DAVID.SETQUERY.WORKLOAD(CI2Q109)''') +                 00260704
+        PLIB('''DSN230.SRCLIB.DATA''') +                                00260805
+        P2LIB('''DSN230.NEW.DSNSAMP''') +                               00260905
+        TERM(LEAVE) PRINT(LEAVE) SOURCE(YES) XREF(YES) +                00261004
+        HOST(COB2) RUN(CICS) BIND(NO) DELIM(APOST) +                    00261104
+        DBRMLIB('''DSN230.DBRMLIB.DATA''')   +                          00261205
+        LLIB('''DSN230.RUNLIB.LOAD''')   +                              00261305
+        COB2LOAD('''SYS1.COB2COMP(IGYCRCTL)''') +                       00261404
+        COPTION('''NODYNAM,NOTRUNC''') STDSQL(NO) +                     00261504
+        PCLOAD('''DSN230.DSNLOAD(DSNHPC)''') +                          00261607
+        XLIB('''DSN230.DSNLOAD''') +                                    00261707
+        LOAD('''DSN230.RUNLIB.LOAD''')                                  00261805
+  %DSNH INPUT('''DAVID.SETQUERY.WORKLOAD(CI2Q110)''') +                 00261904
+        PLIB('''DSN230.SRCLIB.DATA''') +                                00262005
+        P2LIB('''DSN230.NEW.DSNSAMP''') +                               00262105
+        TERM(LEAVE) PRINT(LEAVE) SOURCE(YES) XREF(YES) +                00262204
+        HOST(COB2) RUN(CICS) BIND(NO) DELIM(APOST) +                    00262304
+        DBRMLIB('''DSN230.DBRMLIB.DATA''')   +                          00262405
+        LLIB('''DSN230.RUNLIB.LOAD''')   +                              00262505
+        COB2LOAD('''SYS1.COB2COMP(IGYCRCTL)''') +                       00262604
+        COPTION('''NODYNAM,NOTRUNC''') STDSQL(NO) +                     00262704
+        PCLOAD('''DSN230.DSNLOAD(DSNHPC)''') +                          00262807
+        XLIB('''DSN230.DSNLOAD''') +                                    00262907
+        LOAD('''DSN230.RUNLIB.LOAD''')                                  00263005
+//*                                                                     00263104
+//*        STEP  4: BIND THE PROGRAM                                    00263204
+//BIND     EXEC PGM=IKJEFT01,DYNAMNBR=20,COND=(4,LT)                    00263304
+//DBRMLIB  DD DISP=SHR,                                                 00263404
+//            DSN=DSN230.DBRMLIB.DATA                                   00263505
+//SYSUDUMP DD SYSOUT=*                                                  00263604
+//SYSTSPRT DD SYSOUT=*                                                  00263704
+//SYSPRINT DD SYSOUT=*                                                  00263804
+//SYSTSIN  DD *                                                         00263904
+DSN SYSTEM(DSN)                                                         00264004
+BIND PLAN(CI2Q101) MEMBER(CI2Q101) ACT(REP) ISO(CS) EXPLAIN(YES) -      00265004
+ VALIDATE(BIND)                                                         00265104
+BIND PLAN(CI2Q102) MEMBER(CI2Q102) ACT(REP) ISO(CS) EXPLAIN(YES) -      00265204
+ VALIDATE(BIND)                                                         00265304
+BIND PLAN(CI2Q103) MEMBER(CI2Q103) ACT(REP) ISO(CS) EXPLAIN(YES) -      00265404
+ VALIDATE(BIND)                                                         00265504
+BIND PLAN(CI2Q104) MEMBER(CI2Q104) ACT(REP) ISO(CS) EXPLAIN(YES) -      00265604
+ VALIDATE(BIND)                                                         00265704
+BIND PLAN(CI2Q105) MEMBER(CI2Q105) ACT(REP) ISO(CS) EXPLAIN(YES) -      00265804
+ VALIDATE(BIND)                                                         00265904
+BIND PLAN(CI2Q106) MEMBER(CI2Q106) ACT(REP) ISO(CS) EXPLAIN(YES) -      00266004
+ VALIDATE(BIND)                                                         00267004
+BIND PLAN(CI2Q107) MEMBER(CI2Q107) ACT(REP) ISO(CS) EXPLAIN(YES) -      00268004
+ VALIDATE(BIND)                                                         00269004
+BIND PLAN(CI2Q108) MEMBER(CI2Q108) ACT(REP) ISO(CS) EXPLAIN(YES) -      00270004
+ VALIDATE(BIND)                                                         00280004
+BIND PLAN(CI2Q109) MEMBER(CI2Q109) ACT(REP) ISO(CS) EXPLAIN(YES) -      00290004
+ VALIDATE(BIND)                                                         00300004
+BIND PLAN(CI2Q110) MEMBER(CI2Q110) ACT(REP) ISO(CS) EXPLAIN(YES) -      00310004
+ VALIDATE(BIND)                                                         00311004
+END                                                                     00312004
+//*                                                                     00313004
